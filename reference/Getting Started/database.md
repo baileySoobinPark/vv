@@ -71,7 +71,7 @@ metadata:
 
 <Tabs>
   <Tab title="First Tab">
-    ```
+    ```MySQL
       CREATE TABLE `verifications` (
       `verification_id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Verification ID',
       `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
