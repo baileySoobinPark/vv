@@ -70,7 +70,6 @@ metadata:
 ### Table Creation Query
 
 ```mysql
-
 CREATE TABLE `verifications` (
   `verification_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Verification ID',
   `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
@@ -134,7 +133,7 @@ CREATE TABLE verifications (
   ordered_at timestamp DEFAULT NULL,
   created_at timestamp DEFAULT CURRENT_TIMESTAMP
 );
-
+​
 CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
 CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
 ```
@@ -166,7 +165,7 @@ CREATE TABLE verifications (
   ordered_at datetime2(3) DEFAULT NULL,
   created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP
 );
-
+​
 CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
 CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
 ```
