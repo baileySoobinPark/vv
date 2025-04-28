@@ -244,7 +244,7 @@ It is recommended for deposit tests to be performed in the following order:
 
 * You can call the following Robot VASP API to request that Robot VASP send an account verification to your VASP.
 
-<Accordion title="Account Verification Sumulation API">
+<Accordion title="Account Verification Simulation API">
   **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account](https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account)
 
   ```json
@@ -278,3 +278,143 @@ It is recommended for deposit tests to be performed in the following order:
   }
   ```
 </Accordion>
+
+<br />
+
+### 2. User verification
+
+* You can call the following Robot VASP API to request that Robot VASP send a user verification to your VASP.
+
+<Accordion title="User Verification Simulation API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications](https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications)
+
+  ```json
+  {
+  "keyType": "PerVasp",
+  "beneficiaryVaspId": "16384656509591635927", // your VASP ID
+  "assetInfo": {
+    "symbol": "ETH",
+    "amount": "231.0",
+    "isExceedingThreshold": true,
+    "tradeCurrency": "KRW",
+    "tradePrice": "87681287",
+    "tradeISODatetime": "2022-02-08T13:02:57.824Z"
+  },
+  "requiredBeneficiaryInfo": "NATURAL_PERSON_NAME,ACCOUNT_NUMBER",
+  "payload": {
+    "version": "1.0",
+    "ivms101": {
+      "originator": {
+        "originatorPersons": [
+          {
+            "naturalPerson": {
+              "name": {
+                "nameIdentifier": [
+                  {
+                    "primaryIdentifier": "Robbins",
+                    "secondaryIdentifier": "Taylor",
+                    "nameIdentifierType": "LEGL"
+                  }
+                ]
+              },
+              "dateAndPlaceOfBirth": {
+                "dateOfBirth": "1991-05-03",
+                "placeOfBirth": "Seoul"
+              }
+            }
+          }
+        ],
+        "accountNumber": ["0x5811001506550d8356a215be229c15b6ef371a9a"]
+      },
+      "beneficiary": {
+        "beneficiaryPersons": [
+          {
+            "naturalPerson": {
+              "name": {
+                "nameIdentifier": [
+                  {
+                    "primaryIdentifier": "last name",
+                    "secondaryIdentifier": "first name",
+                    "nameIdentifierType": "LEGL"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+      }
+    }
+  }
+  }
+  ```
+</Accordion>
+
+<br />
+
+### 3. Deposit virtual assets(withdrawal from Robot VASP)
+
+* You can call the following Robot VASP API to request Robot VASP perform virtual asset transfer to your VASP.
+* User verification must be performed before requesting asset transfer. Robot VASP only performs withdrawals corresponding to the VERIFIED user verification.
+  * The accountNumber of the beneficiary must be the address to which Robot VASP should send virtual assets.
+  * Since the virtual assets sent from Robot VASP will be from the balance of what you have sent during withdrawal test, the originator's accountNumber used in this flow should be same as the beneficiary wallet address on Robot VASP you used during the withdrawal test.
+* The type and quantity of transferred assets are the same as the 'assetInfo' entered in the corresponding user verification.
+  * The deposit amount cannot exceed the total amount previously transferred during the withdrawal test. In other words, Robot VASP can send back only the amount it received.
+
+<Accordion title="Robot VASP Withdrawal Request API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal](https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal)
+
+  ```json
+    {
+    "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b", // uuid of previous successful verification
+    "omitTxReport": false // (optional) whether the transaction report is sent or not after withdrawal
+  }
+    
+  ```
+</Accordion>
+
+<br />
+
+### 4. Transaction report
+
+* Robot VASP is implemented to automatically send a transaction report after performing asset transfer unless a special option is used.
+* Therefore, transaction report will be delivered to your VASP through [Callback VASP API]()  within a few seconds after the actual transaction is sent.
+* If you want to simulate the Robot VASP not to report the transaction after transferring the asset, set `omitTxReport` to true when invoking the withdrawal request API in step 3.
+* If you want to test the transaction report feature regardless of whether the actual asset is transferred or not, you can force Robot VASP to report the transaction by calling the following API.
+
+<Accordion title="Robot VASP Transaction Reporting Simulation API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx](https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx)
+
+  ```json
+  {
+    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2", // previous successful verification
+    "txHash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
+  }
+    
+  ```
+</Accordion>
+
+### 5. Error situation report
+
+* Robot VASP does not automatically send an error report unless asset transfer fails.
+* If you want to test the error report feature, you can force Robot VASP to report the error situation by calling the following API.
+
+<Accordion title="Robot VASP Error Situation Reporting Simulation API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error](https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error)
+
+  ```json
+  {
+    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2", // previous successful verification
+    "result": "DENIED",
+    "reason": "USER-CANCELED",
+    "message": "User canceled"
+  }
+  ```
+</Accordion>
+
+<br />
+
+### 6. Transaction status query
+
+* Robot VASP is designed to automatically report transaction when withdrawal is made. Therefore, it is very unlikely that transaction report will not be delivered to your VASP.
+* Nevertheless, if you want to query the transaction status to Robot VASP, you can call the [Transaction Status Inquiry API]()  of your enclave server.
