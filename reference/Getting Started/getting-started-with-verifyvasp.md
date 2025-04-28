@@ -14,19 +14,23 @@ metadata:
 
 Do contact us for more information on our VerifyNAME℗ solution that facilitates first-party (same name) transfers between Travel Rule obliged and non Travel Rule Obliged VASPs.
 
-<Tabs>
-  <Tab title="First Tab">
-    Welcome to the content that you can only see inside the first Tab.
-  </Tab>
+<Cards columns={4}>
+  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
+    Neque porro quisquam est qui dolorem ipsum quia
+  </Card>
 
-  <Tab title="Second Tab">
-    Here's content that's only inside the second Tab.
-  </Tab>
+  <Card title="Second Card" icon="fa-user">
+    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
+  </Card>
 
-  <Tab title="Third Tab">
-    Here's content that's only inside the third Tab.
-  </Tab>
-</Tabs>
+  <Card title="Third Card" icon="fa-star">
+    > Ut enim ad minim veniam, quis nostrud ullamco
+  </Card>
+
+  <Card title="Fourth Card" icon="fa-question">
+    **Excepteur sint occaecat cupidatat non proident**
+  </Card>
+</Cards>
 
 ## How to get connected with VerifyVASP℗
 
