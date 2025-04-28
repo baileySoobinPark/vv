@@ -14,7 +14,7 @@ metadata:
 
 Do contact us for more information on our VerifyNAME℗ solution that facilitates first-party (same name) transfers between Travel Rule obliged and non Travel Rule Obliged VASPs.
 
-<Cards columns={4}>
+<Cards columns={1}>
   <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
     Neque porro quisquam est qui dolorem ipsum quia
   </Card>
