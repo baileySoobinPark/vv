@@ -153,3 +153,128 @@ It is recommended that withdrawal tests be performed in the following order:
   3. address : "0xb0bFf9721871e22653358956cf59a5FdBF3D752F" // beneficiary address (deposit address)
   ```
 </Accordion>
+
+<br />
+
+### 5. Error situation report
+
+If there is a problem during the withdrawal phase at the step 3 above, or if your VASP eventually decided not to transfer the assets corresponding to the verification, your VASP should report it to the beneficiary VASP (i.e. Robot VASP) using the [Error Report API]() .
+
+Upon successfully receiving an error status report, Robot VASP will no longer invoke [Transaction Status Query API]()  for that verification.
+
+If you do not send a transaction report or an error status report for the VERIFIED user verification, Robot VASP will periodically invoke the [Transaction Status Query API]()  for that verification until up to an hour later.
+
+<br />
+
+### 6. Transaction status query
+
+* If you do not send the transaction report (step 4) after transferring the withdrawal transaction to the blockchain (step 3), Robot VASP cannot reflect the deposit to its user since it does not know which user verification result corresponds to which deposit transaction detected on blockchain.
+* Therefore, if a transaction report does not arrive within a specific time (10 minutes) for a deposit transaction detected through the blockchain, Robot VASP begins to query the transaction status to the originating VASP (i.e. your VASP) using [Transaction status query API]() .
+* In other words, if you would like to test whether your VASP's transaction status query API is working properly, you can wait for a specific time (10 minutes) without sending a transaction report after sending a withdrawal transaction.
+* If you want to be called immediately without waiting for 10 minutes, call the following Robot VASP API:
+
+<Accordion title="Transaction status query simulation API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry](https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry)
+
+  ```json
+    {
+    "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b" // uuid of previous successful verification
+    }
+  ```
+</Accordion>
+
+<br />
+
+### How to test for each verification result
+
+To test various cases in account validation or user validation results against Robot VASP, please refer to the following:
+
+1. `VERIFIED`
+
+* Invoke verification API with the correct name and wallet address of the Robot VASP user.
+* When testing with a legal person, the name of the representative must be entered correctly. Refer to \[IVMS101 Message Format Guide] (../reference/ivms101/ivms101-1.md#personal-info)) for instructions on entering the name of the representative.
+
+2, `UNKNOWN-SYMBOL`
+
+* Currently, Robot VASP does not support other assets except ETH and XRP.
+* Therefore, if you enter a symbol other than the above two assets, UNKNOWN-SYMBOL will be returned as a result.
+
+3. `UNKNOWN-ADDRESS`
+
+* If you enter an address other than the wallet address of the Robot VASP user as the beneficial wallet address, UNKNOWN-ADDRESS will be returned as a result.
+
+4. `UNVERIFIED-KYC` (this is not applicable for user account verification API)
+
+* The Robot VASP user Ethan Cook is assumed to be not KYC verified.
+* Therefore, if you enter the information of Ethan Cook as beneficiary, UNVERIFIED-KYC will be returned as a result.
+
+5. `MISMATCHED-NAME`
+
+* If you enter the correct wallet address and incorrect user name for Robot VASP user, MISMATCHED-NAME will be returned as a result.
+
+6. `UNAVAILABLE-INFORMATION` (this is not applicable in user account verification API)
+
+* When invoking user verification API for a natural person, if you enter any Personal Data Fields other than the following fields in the requiredBeneficiaryInfo field, UNAVAILABLE-INFORMATION will be returned as a result.
+  * NATURAL\_PERSON\_NAME
+  * ACCOUNT\_NUMBER
+
+7. `LACK-OF-INFORMATION` (this is not applicable for user account verification API)
+
+* The `LACK-OF-INFORMATION` error is returned when originator verification in the beneficiary VASP is not possible due to the lack of personal information about the originator.
+* If name or dateAndPlaceOfBirth element is not found in originator information when invoking user verification API, `LACK-OF-INFORMATION` will be returned as a result.
+
+8. `BLACKLISTED` case (not returned in account verification)
+
+* The BLACKLISTED' error is returned when the originator is determined to be an undesirable person (e.g. being on a deny list) by the beneficiary VASP.
+* If you enter originator information as follow when invoking user verification API, `BLACKLISTED` will be returned as a result.
+  * first name : Pablo
+  * last name : Escobar
+  * date of birth : 1949-12-01
+  * place of birth : Colombia
+
+<br />
+
+## Deposit scenario test
+
+The deposit scenario can be validated by having the Robot VASP act as the Originating VASP. By calling the APIs below, you can have the Robot VASP invoke a series of Travel Rule APIs as if someone was trying to send virtual assets from Robot VASP to your VASP (i.e. making deposit to your VASP). In the deposit scenario test, invoke APIs with **your VASP ID as beneficialVaspId**.
+
+It is recommended for deposit tests to be performed in the following order:
+
+### 1. Account verification
+
+* You can call the following Robot VASP API to request that Robot VASP send an account verification to your VASP.
+
+<Accordion title="Account Verification Sumulation API">
+  **POST** [https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account](https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account)
+
+  ```json
+    {
+    "keyType": "PerVasp",
+    "beneficiaryVaspId": "16384656509591635927", // your VASP ID
+    "symbol": "ETH",
+    "payload": {
+      "version": "1.0",
+      "ivms101": {
+        "beneficiary": {
+          "beneficiaryPersons": [
+            {
+              "naturalPerson": {
+                "name": {
+                  "nameIdentifier": [
+                    {
+                      "primaryIdentifier": "last name",
+                      "secondaryIdentifier": "first name",
+                      "nameIdentifierType": "LEGL"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+        }
+      }
+    }
+  }
+  ```
+</Accordion>
