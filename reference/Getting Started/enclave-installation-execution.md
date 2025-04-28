@@ -6,10 +6,37 @@ hidden: true
 metadata:
   robots: index
 ---
+<Image align="center" src="https://files.readme.io/f42d76b7f747b877b9e306f817e65822e61080553223a443e9c0530c04b1e63f-VV_Architecture3.png" />
+
+<br />
+
+## System Requirements
+
+* Structure of the system/infrastructure
+* Enclave Server
+  * CPU: Minimum 2G, 4G recommended
+  * Memory: Minimum 2G, 4G recommended
+  * Storage: Minimum 8G, 16G recommended (including the docker and container)
+
+<br />
+
+## Installing Enclave Server
+
+* Download enclave docker image
+  * Enclave docker image is in Private Registry. You can acquire access by delivering a Docker Hub Credential ID to the admin.
+  * A VASP can download a Docker image by first requesting access from VV admin manager ([corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)).
+  * VASPs would require VASP’s Docker Hub credential (ID) to provide access. Once access is granted, they can follow the instruction.
+  * Download
+    ```shell
+    docker pull verifyvasp/enclave:v1.5.7
+    ```
+
+<br />
+
 | Environment Variable                       | Default    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | VEGA\_SERVER\_PORT                         | 21117      | Port no. of the enclave server.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| VEGA\_ENCLAVE\_PUBLIC\_ENDPOINT            |            | Public endpoint URL of the enclave server accessible from VV central server. Must use HTTPS protocol. \<br> e.g. “https\://api.vasp.com/enclave”                                                                                                                                                                                                                                                                                                                                                                              |
+| VEGA\_ENCLAVE\_PUBLIC\_ENDPOINT            |            | Public endpoint URL of the enclave server accessible from VV central server. Must use HTTPS protocol. \<br> e.g. “[https://api.vasp.com/enclave”](https://api.vasp.com/enclave”)                                                                                                                                                                                                                                                                                                                                              |
 | VEGA\_ALLIANCE\_ACCESS\_KEY                |            | accessKey part of the API-Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | VEGA\_ALLIANCE\_SECRET\_KEY                |            | secretKey part of the API-Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | VEGA\_DATABASE\_CLIENT                     | mysql2     | A type of database. \<br> An appropriate value for a database client is to be entered. pg, mysql, mysql2, oracledb, mssql values can be used.                                                                                                                                                                                                                                                                                                                                                                                 |
