@@ -71,7 +71,7 @@ metadata:
 
 <Tabs>
   <Tab title="First Tab">
-    <code>
+    ```
       CREATE TABLE `verifications` (
       `verification_id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Verification ID',
       `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
@@ -103,7 +103,7 @@ metadata:
       INDEX `idx_verifications_originator_account` (`originator_account_number`),
       INDEX `idx_verifications_beneficiary_account` (`beneficiary_account_number`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    </code>
+    ```
   </Tab>
 
   <Tab title="Second Tab">
