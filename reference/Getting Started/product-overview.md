@@ -1,7 +1,7 @@
 ---
 title: Product Overview
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
