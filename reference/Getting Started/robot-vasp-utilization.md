@@ -141,3 +141,15 @@ It is recommended that withdrawal tests be performed in the following order:
 * In the request body of the call, the verification uuid of the user verification process corresponding to the transaction should be placed.
 * Once Robot VASP successfully receives the transaction result report, the deposit will be reflected in the corresponding beneficiary account.
 * You can use the following API to check whether the deposit has been reflected properly in the Robot VASP.
+
+<Accordion title="Deposit reflection inquiry API">
+  **GET** [https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance](https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance)
+
+  Query parameters example
+
+  ```
+  1. vaspId : "15952089931162058999", // vaspId of your (originating) VASP
+  2. symbol : "ETH", // transferred virtual asset
+  3. address : "0xb0bFf9721871e22653358956cf59a5FdBF3D752F" // beneficiary address (deposit address)
+  ```
+</Accordion>
