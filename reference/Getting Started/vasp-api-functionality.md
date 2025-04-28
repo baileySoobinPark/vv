@@ -17,7 +17,7 @@ metadata:
 
 > 📘 Enclave Environment Variable
 >
-> Set the user address-verification API endpoint as **`VEGA_VERIFICATION_ACCOUNT_API_PATH`**
+> Set the user address-verification API endpoint as **`VEGA_VERIFICATION_ACCOUNT_API_PATH`**.
 
 <br />
 
@@ -27,10 +27,10 @@ metadata:
 
 ### Request/Response
 
-* Request
+* **Request**
   * KeyType, beneficiaryVaspId, symbol, and payload are passed to request a verification of the beneficiary's wallet address and name.
   * The wallet address and name fields need to be included in the payload in the IVMS101 messaging protocol format.
-* Response
+* **Response**
   * Returns a verification result whether the addresses of the symbol belong to (the beneficiary) VASP.
 * For detailed API specifications, please refer to the link below.
 * 카드 링크 추가
@@ -44,25 +44,39 @@ metadata:
 
 > 📘 Enclave Environment Variable
 >
-> Set the user verification API endpoint as **`VEGA_VERIFICATION_API_PATH`**
+> Set the user verification API endpoint as **`VEGA_VERIFICATION_API_PATH`**.
 
 ### Function(s)
 
 * Verify the name of the beneficiary.
 * Verify the beneficiary address (wallet address or account number).
-* Verify whether the user has been certified by KYC
+* Verify whether the user has been certified by KYC.
 * Perform AML verification.
 * Perform sanction screening on the originator.
   * VASP can use its own sanction-related service.
-  * If the originator is on the sanction list after the risk has been checked, the verification result will return as "DENIED."
+  * If the originator is on the sanction list after the risk has been checked, the verification result will return as `"DENIED"`.
 
 ### Request/Response
 
-* Request
+* **Request**
   * Includes the information of Asset, Originator, Beneficiary in the IVMS101 message format.
-* Response
+* **Response**
   * Returns the result of the validity test on the beneficiary.
   * Returns additional information of beneficiary in \*\*\*\* IVMS101 format.
     * The beneficiary information initially requested is just a name and an account number entered by the originator. Thus, to satisfy the Travel Rules, additional information on the beneficiary (social security number, address, date of birth, place of birth, etc.) is returned.
   * For detailed API specifications, please refer to the link below.
 * 카드 링크 추가
+
+<br />
+
+## Transaction Status Query API
+
+### Overview
+
+* This API is necessary for the beneficiary VASP to be called by the originating VASP.
+* If the originating VASP is to send virtual assets through blockchain once it verifies the beneficiary via VerifyVASP, it must report the ID (TxHash) of the transaction to VerifyVASP.
+* However, if the report is not performed normally, the API lets the beneficiary VASP check the transaction status on the blockchain.
+
+> 📘 Enclave Environment Variable
+>
+> Set the transaction status query API endpoint as\*\*`VEGA_VERIFICATION_TRANSACTION_API_PATH`\*\*.
