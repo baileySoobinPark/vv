@@ -70,9 +70,8 @@ metadata:
 ### Table Creation Query
 
 ```mysql
-
 CREATE TYPE enum_result AS ENUM ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR');
-​
+
 CREATE TABLE verifications (
   verification_id SERIAL NOT NULL PRIMARY KEY,
   verification_uuid varchar(40) NOT NULL,
@@ -105,7 +104,7 @@ CREATE TABLE verifications (
 CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
 CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
 ```
-```pgsql
+```pgsql PostgreSQL
 CREATE TYPE enum_result AS ENUM ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR');
 
 CREATE TABLE verifications (
@@ -140,7 +139,7 @@ CREATE TABLE verifications (
 CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
 CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
 ```
-```Text MSSQL
+```sql MSSQL
 CREATE TABLE verifications (
   verification_id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
   verification_uuid nvarchar(40) NOT NULL UNIQUE,
@@ -172,7 +171,7 @@ CREATE TABLE verifications (
 CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
 CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
 ```
-```Text Oracle
+```sql Oracle
 CREATE TABLE "verifications" (
   "verification_id" number(20) NOT NULL,
   "verification_uuid" varchar2(40) NOT NULL,
