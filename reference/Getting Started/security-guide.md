@@ -52,4 +52,6 @@ If the `VEGA_VERIFICATION_AUTHORIZATION_KEY` environment variable is not set, th
 
 `Authorization: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>`
 
-If you set the VEGA\_VERIFICATION\_AUTHORIZATION\_KEY environment variable, the authentication token is passed through the corresponding key value in the header. For example, if VEGA\_VERIFICATION\_AUTHORIZATION\_KEY=X-Api-Key is set, the authentication token is passed as follows.
+If you set the `VEGA_VERIFICATION_AUTHORIZATION_KEY` environment variable, the authentication token is passed through the corresponding key value in the header. For example, if `VEGA_VERIFICATION_AUTHORIZATION_KEY=X-Api-Key` is set, the authentication token is passed as follows.
+
+`X-Api-Key: <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>`
