@@ -3,7 +3,6 @@ info:
   title: Request User Account Verification API
   version: '1.0'
   description: Management of VerifyVASP API Spec.
-
 paths:
   /{VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT}:
     post:
@@ -43,52 +42,63 @@ paths:
                   type: string
                   description: Unique identifier of Originating VASP.
                   example: '123456789098765'
+                  x-readme-id: '0.0'
                 symbol:
                   type: string
                   description: Symbol of the virtual asset to be transferred.
-                  example: 'ETH'
+                  example: ETH
+                  x-readme-id: '0.1'
                 network:
                   type: string
-                  description: |
+                  description: >
                     The network of the virtual asset to be transferred.
 
+
                     **Conditional Use of 'network' Field:**  
-                    - If the Beneficiary VASP requires the network field and Originating VASP does not provide it, the result will be **DENIED** with reason **UNKNOWN-NETWORK**.  
-                    - If the Beneficiary VASP makes the network field optional, it can infer based on the symbol.
-                  example: 'Ethereum'
+
+                    - If the Beneficiary VASP requires the network field and
+                    Originating VASP does not provide it, the result will be
+                    **DENIED** with reason **UNKNOWN-NETWORK**.  
+
+                    - If the Beneficiary VASP makes the network field optional,
+                    it can infer based on the symbol.
+                  x-readme-id: '0.2'
                 version:
                   type: string
                   description: Version of the IVMS101 messaging protocol being used.
                   example: '1.0'
+                  x-readme-id: '0.3'
                 ivms101:
                   type: object
                   description: IVMS101-formatted data containing beneficiary information.
-                  required:
-                    - beneficiary
                   properties:
                     beneficiary:
                       type: object
                       description: Beneficiary information.
-                      required:
-                        - accountNumber
                       properties:
                         accountNumber:
                           type: array
                           description: An array containing wallet addresses.
                           items:
                             type: string
+                          x-readme-id: '2.0'
+                      required:
+                        - accountNumber
+                      x-readme-id: '1.0'
+                  required:
+                    - beneficiary
+                  x-readme-id: '0.4'
             examples:
               requestexamples:
                 value:
                   originatingVaspId: '15952089931162060684'
-                  symbol: 'ETH'
-                  network: 'Ethereum'
+                  symbol: ETH
+                  network: Ethereum
                   version: '1.0'
                   ivms101:
                     beneficiary:
                       accountNumber:
                         - '0x5811001506550d8356a215be229c15b6ef371a9b'
-
       responses:
         '200':
           description: Successful verification response
@@ -106,7 +116,7 @@ paths:
                       - VERIFIED
                       - DENIED
                     description: Result of user account verification.
-                    example: 'VERIFIED'
+                    example: VERIFIED
                   reason:
                     type: string
                     enum:
@@ -118,13 +128,15 @@ paths:
                       - BLACKLISTED
                       - UNVERIFIED-KYC
                     description: Reason for verification failure if result is DENIED.
-                    example: 'UNKNOWN-ADDRESS'
+                    example: UNKNOWN-ADDRESS
                   verifiedAt:
                     type: string
-                    description: |
+                    description: >
                       The UTC timestamp when the verification was completed.
 
-                      Recommended ISO 8601 extended format with milliseconds: "YYYY-MM-DDThh:mm:ss.sssZ"
+
+                      Recommended ISO 8601 extended format with milliseconds:
+                      "YYYY-MM-DDThh:mm:ss.sssZ"
                     example: '2024-11-25T15:30:00.000Z'
               examples:
                 successexample:
