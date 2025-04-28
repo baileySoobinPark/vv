@@ -1,7 +1,7 @@
 ---
 title: Database
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
