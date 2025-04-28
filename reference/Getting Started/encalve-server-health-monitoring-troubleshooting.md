@@ -1,7 +1,7 @@
 ---
 title: Encalve Server Health Monitoring & Troubleshooting
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
