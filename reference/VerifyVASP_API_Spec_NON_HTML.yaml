@@ -1,19 +1,17 @@
-openapi: '3.0.1'
+openapi: 3.0.1
 info:
   title: VerifyVASP API Spec
   version: '1.0'
   description: Management of VerifyVASP API Spec.
-
 paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
-      description: >
-
+      description: ''
+      tags:
+        - VASP API
       security:
         - Authorization: []
       operationId: requestUserAccountVerification
-      tags:
-        - VASP API
       parameters:
         - $ref: '#/components/parameters/Authorization'
       requestBody:
@@ -21,14 +19,13 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Response_RequestUserAccountVerification'
-
   /VASP_DEFINED_PATH_VERIFY_USER:
     post:
+      tags:
+        - VASP API
       security:
         - Authorization: []
       operationId: requestUserVerification
-      tags:
-        - VASP API
       parameters:
         - $ref: '#/components/parameters/Authorization'
       requestBody:
@@ -36,14 +33,13 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Response_RequestUserVerification'
-
   /VASP_DEFINED_PATH_TRANSACTION_CHECK:
     post:
+      tags:
+        - VASP API
       security:
         - Authorization: []
       operationId: checkTransactionStatus
-      tags:
-        - VASP API
       parameters:
         - $ref: '#/components/parameters/Authorization'
       requestBody:
@@ -51,16 +47,14 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Response_CheckTransactionStatus'
-
   /VASP_DEFINED_PATH_CALLBACK:
     post:
-      description: >
-
+      description: ''
+      tags:
+        - VASP API
       security:
         - Authorization: []
       operationId: callback
-      tags:
-        - VASP API
       parameters:
         - $ref: '#/components/parameters/Authorization'
       requestBody:
@@ -68,16 +62,14 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Response_Callback'
-
   /VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY:
     post:
-      description: >
-
+      description: ''
+      tags:
+        - VASP API
       security:
         - Authorization: []
       operationId: getDecryptedEncKey
-      tags:
-        - VASP API
       parameters:
         - $ref: '#/components/parameters/Authorization'
       requestBody:
@@ -85,15 +77,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Response_GetDecryptedEncKey'
-
-  ### Enclave API###
   /v1/vasps/self:
     get:
-      description: >
-
-      operationId: getVaspId
+      description: ''
       tags:
         - Enclave API
+      operationId: getVaspId
       responses:
         '200':
           $ref: '#/components/responses/Response_Enclave_GetVaspId'
@@ -103,14 +92,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/vasps:
     get:
-      description: >
-
-      operationId: listVasp
+      description: ''
       tags:
         - Enclave API
+      operationId: listVasp
       parameters:
         - $ref: '#/components/parameters/Params_Protocol'
       responses:
@@ -122,33 +109,31 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications/account:
     post:
-      description: >
-
-      operationId: enclave_requestUserAccountVerification
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_requestUserAccountVerification
       requestBody:
-        $ref: '#/components/requestBodies/Request_Enclave_RequestUserAccountVerification'
+        $ref: >-
+          #/components/requestBodies/Request_Enclave_RequestUserAccountVerification
       responses:
         '200':
-          $ref: '#/components/responses/Response_Enclave_RequestUserAccountVerification'
+          $ref: >-
+            #/components/responses/Response_Enclave_RequestUserAccountVerification
         '400':
           $ref: '#/components/responses/Error_400_Response'
         '404':
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications:
     post:
-      description: >
-
-      operationId: enclave_requestUserVerification
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_requestUserVerification
       requestBody:
         $ref: '#/components/requestBodies/Request_Enclave_RequestUserVerification'
       responses:
@@ -160,13 +145,11 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
     get:
-      description: >
-
-      operationId: enclave_listVerificationResult
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_listVerificationResult
       parameters:
         - $ref: '#/components/parameters/Params_FromDate'
         - $ref: '#/components/parameters/Params_ToDate'
@@ -180,7 +163,6 @@ paths:
         - $ref: '#/components/parameters/Params_BeneficiaryAccountNumber'
         - $ref: '#/components/parameters/Params_Page'
         - $ref: '#/components/parameters/Params_Rpp'
-
       responses:
         '200':
           $ref: '#/components/responses/Response_Enclave_ListVerificationResult'
@@ -190,14 +172,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications/{uuid}:
     get:
-      description: >
-
-      operationId: enclave_getVerificationResult
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_getVerificationResult
       parameters:
         - $ref: '#/components/parameters/Path_Uuid'
       responses:
@@ -209,14 +189,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications/tx:
     post:
-      description: >
-
-      operationId: enclave_reportTransactionResult
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_reportTransactionResult
       requestBody:
         $ref: '#/components/requestBodies/Request_Enclave_ReportTransactionResult'
       responses:
@@ -228,14 +206,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications/error:
     post:
-      description: >
-
-      operationId: enclave_reportError
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_reportError
       requestBody:
         $ref: '#/components/requestBodies/Request_Enclave_ReportError'
       responses:
@@ -247,14 +223,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/verifications/tx/inquiry:
     post:
-      description: >
-
-      operationId: enclave_checkTransactionStatus
+      description: ''
       tags:
         - Enclave API
+      operationId: enclave_checkTransactionStatus
       requestBody:
         $ref: '#/components/requestBodies/Request_Enclave_CheckTransactionStatus'
       responses:
@@ -266,14 +240,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/risk-assessment/chainalysis-sanction:
     post:
-      description: >
-
-      operationId: Screening_performRiskAssessmentViaChainalysisSanction
+      description: ''
       tags:
         - Screening API
+      operationId: Screening_performRiskAssessmentViaChainalysisSanction
       requestBody:
         $ref: '#/components/requestBodies/Request_Screening_Chainalysis_Sanction'
       responses:
@@ -287,14 +259,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/risk-assessment/chainalysis-kyt:
     post:
-      description: >
-
-      operationId: Screening_performRiskAssessmentViaChainalysisKYT
+      description: ''
       tags:
         - Screening API
+      operationId: Screening_performRiskAssessmentViaChainalysisKYT
       requestBody:
         $ref: '#/components/requestBodies/Request_Screening_Chainalysis_KYT'
       responses:
@@ -308,14 +278,12 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
   /v1/risk-assessment/refinitiv-wco:
     post:
-      description: >
-
-      operationId: Screening_performRiskAssessmentViaRefinitivWCO
+      description: ''
       tags:
         - Screening API
+      operationId: Screening_performRiskAssessmentViaRefinitivWCO
       requestBody:
         $ref: '#/components/requestBodies/Request_Screening_Refinitiv_WCO'
       responses:
@@ -329,7 +297,6 @@ paths:
           $ref: '#/components/responses/Error_404_Response'
         '408':
           $ref: '#/components/responses/Error_408_Response'
-
 components:
   securitySchemes:
     Authorization:
@@ -340,16 +307,12 @@ components:
       name: Authorization
       in: header
       required: true
-      description: >
+      description: |
         Bearer token for authorization.
       schema:
         type: string
         description: Bearer token for authorization.
         example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
-
-    ##########################################
-    # Query or Path Parameters
-    ##########################################
     Path_Uuid:
       name: uuid
       in: path
@@ -357,10 +320,9 @@ components:
       schema:
         type: string
         description: >
-          Unique identifier of User Verification.  
-          The format of **uuid** must follow UUID V4 standard.
+          Unique identifier of User Verification.   The format of **uuid** must
+          follow UUID V4 standard.
         example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-
     Params_Protocol:
       name: protocol
       in: query
@@ -371,54 +333,47 @@ components:
           - CODE
           - ALL
         description: >
-          Name of the protocol.  
-          "VERIFYVASP", "CODE", "ALL" can input in this field, Default is "ALL".
-        example: 'VERIFYVASP'
-
+          Name of the protocol.   "VERIFYVASP", "CODE", "ALL" can input in this
+          field, Default is "ALL".
+        example: VERIFYVASP
     Params_FromDate:
       name: fromDate
       in: query
       schema:
         type: string
         description: >
-          The start date for querying a specific point in time.  
-          The format of formDate must follow ISO 8601(YYYY-MM-DD) standard.
+          The start date for querying a specific point in time.   The format of
+          formDate must follow ISO 8601(YYYY-MM-DD) standard.
         example: '2022-01-01'
-
     Params_ToDate:
       name: toDate
       in: query
       schema:
         type: string
         description: >
-          The end date for querying a specific point in time.  
-          The format of toDate must follow ISO 8601(YYYY-MM-DD) standard.
+          The end date for querying a specific point in time.   The format of
+          toDate must follow ISO 8601(YYYY-MM-DD) standard.
         example: '2011-01-15'
-
     Params_Symbol:
       name: symbol
       in: query
       schema:
         $ref: '#/components/schemas/Symbol'
-
     Params_Network:
       name: network
       in: query
       schema:
         $ref: '#/components/schemas/Network'
-
     Params_TxHash:
       name: txHash
       in: query
       schema:
         $ref: '#/components/schemas/TxHash'
-
     Params_Result:
       name: result
       in: query
       schema:
         $ref: '#/components/schemas/Result'
-
     Params_actionType:
       name: actionType
       in: query
@@ -428,59 +383,51 @@ components:
           - SEND
           - RECEIVE
         description: >
-          A field that defines the transaction action of the VASP.  
-          When the VASP sends virtual assets, the value is set to "SEND". When the VASP receives virtual assets, the value is set to "RECEIVE".
-        example: 'SEND'
-
+          A field that defines the transaction action of the VASP.   When the
+          VASP sends virtual assets, the value is set to "SEND". When the VASP
+          receives virtual assets, the value is set to "RECEIVE".
+        example: SEND
     Params_OppositeVaspId:
       name: oppositeVaspId
       in: query
       schema:
         type: string
         description: >
-          A unique identifier used to distinguish the counterpart VASP during user verification.
+          A unique identifier used to distinguish the counterpart VASP during
+          user verification.
         example: '27372039731940175'
-
     Params_OriginatorAccountNumber:
       name: originatorAccountNumber
       in: query
       schema:
         type: string
-        description: >
+        description: |
           Wallet address of teh Originator.
         example: '0x1234567890123456789012345678901234567890'
-
     Params_BeneficiaryAccountNumber:
       name: beneficiaryAccountNumber
       in: query
       schema:
         type: string
-        description: >
+        description: |
           Wallet address of teh Beneficiary.
         example: '0x1234567890123456789012345678901234567890'
-
     Params_Page:
       name: page
       in: query
       schema:
         type: number
-        description: >
+        description: |
           Number of the page.
         example: 1
-
     Params_Rpp:
       name: rpp
       in: query
       schema:
         type: number
-        description: >
+        description: |
           Number of the records.
         example: 10
-
-  ##########################################
-  # Request Bodies
-  ##########################################
-
   requestBodies:
     Request_RequestUserAccountVerification:
       required: true
@@ -491,7 +438,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_RequestUserAccountVerification'
-
     Request_RequestUserVerification:
       required: true
       content:
@@ -501,7 +447,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_RequestUserVerification'
-
     Request_CheckTransactionStatus:
       required: true
       content:
@@ -511,7 +456,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_CheckTransactionStatus'
-
     Request_Callback:
       required: true
       content:
@@ -521,7 +465,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_Callback'
-
     Request_GetDecryptedEncKey:
       required: true
       content:
@@ -531,37 +474,39 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_GetDecryptedEncKey'
-
     Request_Enclave_RequestUserAccountVerification:
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Request_Enclave_RequestUserAccountVerification'
+            $ref: >-
+              #/components/schemas/Schema_Request_Enclave_RequestUserAccountVerification
           examples:
             requestexamples:
-              $ref: '#/components/examples/example_Request_Enclave_RequestUserAccountVerification'
-
+              $ref: >-
+                #/components/examples/example_Request_Enclave_RequestUserAccountVerification
     Request_Enclave_RequestUserVerification:
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Request_Enclave_RequestUserVerification'
+            $ref: >-
+              #/components/schemas/Schema_Request_Enclave_RequestUserVerification
           examples:
             requestexamples:
-              $ref: '#/components/examples/example_Request_Enclave_RequestUserVerification'
-
+              $ref: >-
+                #/components/examples/example_Request_Enclave_RequestUserVerification
     Request_Enclave_ReportTransactionResult:
       required: true
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Request_Enclave_ReportTransactionResult'
+            $ref: >-
+              #/components/schemas/Schema_Request_Enclave_ReportTransactionResult
           examples:
             requestexamples:
-              $ref: '#/components/examples/example_Request_Enclave_ReportTransactionResult'
-
+              $ref: >-
+                #/components/examples/example_Request_Enclave_ReportTransactionResult
     Request_Enclave_ReportError:
       required: true
       content:
@@ -571,7 +516,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_Enclave_ReportError'
-
     Request_Enclave_CheckTransactionStatus:
       required: true
       content:
@@ -580,8 +524,8 @@ components:
             $ref: '#/components/schemas/Schema_Request_Enclave_CheckTransactionStatus'
           examples:
             requestexamples:
-              $ref: '#/components/examples/example_Request_Enclave_CheckTransactionStatus'
-
+              $ref: >-
+                #/components/examples/example_Request_Enclave_CheckTransactionStatus
     Request_Screening_Chainalysis_Sanction:
       required: true
       content:
@@ -590,8 +534,8 @@ components:
             $ref: '#/components/schemas/Schema_Request_Screening_Chainalysis_Sanction'
           examples:
             requestexamples:
-              $ref: '#/components/examples/example_Request_Screening_Chainalysis_Sanction'
-
+              $ref: >-
+                #/components/examples/example_Request_Screening_Chainalysis_Sanction
     Request_Screening_Chainalysis_KYT:
       required: true
       content:
@@ -601,7 +545,6 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_Screening_Chainalysis_KYT'
-
     Request_Screening_Refinitiv_WCO:
       required: true
       content:
@@ -611,22 +554,19 @@ components:
           examples:
             requestexamples:
               $ref: '#/components/examples/example_Request_Screening_Refinitiv_WCO'
-  ##########################################
-  # Responses
-  ##########################################
   responses:
     Response_RequestUserAccountVerification:
-      description: 'Successful verification response'
+      description: Successful verification response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Response_RequestUserAccountVerification'
+            $ref: >-
+              #/components/schemas/Schema_Response_RequestUserAccountVerification
           examples:
             successexample:
               $ref: '#/components/examples/example_RequestUserAccountVerification'
-
     Response_RequestUserVerification:
-      description: 'Successful verification response'
+      description: Successful verification response
       content:
         application/json:
           schema:
@@ -650,9 +590,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_RequestUserVerification'
-
     Response_CheckTransactionStatus:
-      description: 'Successful CheckTransactionStatus response'
+      description: Successful CheckTransactionStatus response
       content:
         application/json:
           schema:
@@ -672,9 +611,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_CheckTransactionStatus'
-
     Response_Callback:
-      description: 'Successful Callback response'
+      description: Successful Callback response
       content:
         application/json:
           schema:
@@ -689,9 +627,8 @@ components:
               summary: Successful response
               value:
                 result: true
-
     Response_GetDecryptedEncKey:
-      description: 'Successful Callback response'
+      description: Successful Callback response
       content:
         application/json:
           schema:
@@ -702,9 +639,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_GetDecryptedEncKey'
-
     Response_Enclave_GetVaspId:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -715,9 +651,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_GetVaspId'
-
     Response_Enclave_ListVasp:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -731,9 +666,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_ListVasp'
-
     Response_Enclave_RequestUserAccountVerification:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -752,9 +686,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_ListVasp'
-
     Response_Enclave_RequestUserVerification:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -770,60 +703,64 @@ components:
                 $ref: '#/components/schemas/CreatedAt'
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Enclave_RequestUserVerification'
-
+              $ref: >-
+                #/components/examples/example_Response_Enclave_RequestUserVerification
     Response_Enclave_ListVerificationResult:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Response_Enclave_ListVerificationResult'
+            $ref: >-
+              #/components/schemas/Schema_Response_Enclave_ListVerificationResult
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Enclave_ListVerificationResult'
-
+              $ref: >-
+                #/components/examples/example_Response_Enclave_ListVerificationResult
     Response_Enclave_GetVerificationResult:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Schema_Response_Enclave_GetVerificationResult'
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Enclave_GetVerificationResult'
-
+              $ref: >-
+                #/components/examples/example_Response_Enclave_GetVerificationResult
     Response_Enclave_ReportTransactionResult:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Response_Enclave_ReportTransactionResult'
+            $ref: >-
+              #/components/schemas/Schema_Response_Enclave_ReportTransactionResult
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Enclave_ReportTransactionResult'
-
+              $ref: >-
+                #/components/examples/example_Response_Enclave_ReportTransactionResult
     Response_Enclave_CheckTransactionStatus:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Response_Enclave_CheckTransactionStatus'
+            $ref: >-
+              #/components/schemas/Schema_Response_Enclave_CheckTransactionStatus
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Enclave_CheckTransactionStatus'
-
+              $ref: >-
+                #/components/examples/example_Response_Enclave_CheckTransactionStatus
     Response_Screening_Chainalysis_Sanction:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Schema_Response_Screening_Chainalysis_Sanction'
+            $ref: >-
+              #/components/schemas/Schema_Response_Screening_Chainalysis_Sanction
           examples:
             successexample:
-              $ref: '#/components/examples/example_Response_Screening_Chainalysis_Sanction'
-
+              $ref: >-
+                #/components/examples/example_Response_Screening_Chainalysis_Sanction
     Response_Screening_Chainalysis_KYT:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -831,9 +768,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_Screening_Chainalysis_KYT'
-
     Response_Screening_Refinitiv_WCO:
-      description: 'Successful response'
+      description: Successful response
       content:
         application/json:
           schema:
@@ -841,9 +777,8 @@ components:
           examples:
             successexample:
               $ref: '#/components/examples/example_Response_Screening_Refinitiv_WCO'
-
     Error_400_Response:
-      description: '400 Bad Request Error response'
+      description: 400 Bad Request Error response
       content:
         application/json:
           schema:
@@ -851,9 +786,8 @@ components:
           examples:
             400Errorexample:
               $ref: '#/components/examples/example_400_Error_Response'
-
     Error_401_Response:
-      description: '401 Unauthorized Error response'
+      description: 401 Unauthorized Error response
       content:
         application/json:
           schema:
@@ -861,9 +795,8 @@ components:
           examples:
             401Errorexample:
               $ref: '#/components/examples/example_401_Error_Response'
-
     Error_403_Response:
-      description: '403 Forbidden Error response'
+      description: 403 Forbidden Error response
       content:
         application/json:
           schema:
@@ -871,9 +804,8 @@ components:
           examples:
             403Errorexample:
               $ref: '#/components/examples/example_403_Error_Response'
-
     Error_404_Response:
-      description: '404 Resource Not Found Error response'
+      description: 404 Resource Not Found Error response
       content:
         application/json:
           schema:
@@ -881,9 +813,8 @@ components:
           examples:
             404Errorexample:
               $ref: '#/components/examples/example_404_Error_Response'
-
     Error_408_Response:
-      description: '408 Request Timeout Error response'
+      description: 408 Request Timeout Error response
       content:
         application/json:
           schema:
@@ -891,9 +822,6 @@ components:
           examples:
             408Errorexample:
               $ref: '#/components/examples/example_408_Error_Response'
-  ##########################################
-  # Schemas
-  ##########################################
   schemas:
     Schema_Request_RequestUserAccountVerification:
       type: object
@@ -913,7 +841,6 @@ components:
           $ref: '#/components/schemas/Version'
         ivms101:
           $ref: '#/components/schemas/IVMS101_RequestUserAccountVerification'
-
     Schema_Response_RequestUserAccountVerification:
       type: object
       required:
@@ -926,7 +853,6 @@ components:
           $ref: '#/components/schemas/Reason'
         verifiedAt:
           $ref: '#/components/schemas/VerifiedAt'
-
     Schema_Request_RequestUserVerification:
       type: object
       required:
@@ -949,7 +875,6 @@ components:
           $ref: '#/components/schemas/Version'
         ivms101:
           $ref: '#/components/schemas/IVMS101_Request_RequestUserVerification'
-
     Schema_Response_RequestUserVerification:
       type: object
       properties:
@@ -959,7 +884,6 @@ components:
           $ref: '#/components/schemas/Reason'
         message:
           $ref: '#/components/schemas/Message'
-
     Schema_Request_CheckTransactionStatus:
       type: object
       required:
@@ -967,7 +891,6 @@ components:
       properties:
         verificationUuid:
           $ref: '#/components/schemas/VerificationUuid'
-
     Schema_Request_Callback:
       type: object
       required:
@@ -978,7 +901,6 @@ components:
           $ref: '#/components/schemas/CallbackType'
         data:
           $ref: '#/components/schemas/CallbackData'
-
     Schema_Request_GetDecryptedEncKey:
       type: object
       required:
@@ -986,7 +908,6 @@ components:
       properties:
         inputKey:
           $ref: '#/components/schemas/InputKey'
-
     Schema_Response_GetDecryptedEncKey:
       type: object
       required:
@@ -994,7 +915,6 @@ components:
       properties:
         outputKey:
           $ref: '#/components/schemas/OutputKey'
-
     Schema_Response_GetVaspId:
       type: object
       required:
@@ -1002,12 +922,10 @@ components:
       properties:
         vaspId:
           $ref: '#/components/schemas/VaspId'
-
     Schema_Response_ListVasp:
       type: array
       items:
         $ref: '#/components/schemas/Schema_ListVasp'
-
     Schema_ListVasp:
       type: object
       description: description
@@ -1046,7 +964,6 @@ components:
           $ref: '#/components/schemas/CreateAt'
         updatedAt:
           $ref: '#/components/schemas/UpdatedAt'
-
     Schema_Request_Enclave_RequestUserAccountVerification:
       type: object
       required:
@@ -1075,7 +992,6 @@ components:
               $ref: '#/components/schemas/Version'
             ivms101:
               $ref: '#/components/schemas/IVMS101_RequestUserAccountVerification'
-
     Schema_Request_Enclave_RequestUserVerification:
       type: object
       required:
@@ -1104,7 +1020,6 @@ components:
               $ref: '#/components/schemas/Version'
             ivms101:
               $ref: '#/components/schemas/IVMS101_Request_RequestUserVerification'
-
     Schema_Response_Enclave_RequestRequestUserVerification:
       type: object
       properties:
@@ -1112,7 +1027,6 @@ components:
           $ref: '#/components/schemas/VerificationUuid'
         createdAt:
           $ref: '#/components/schemas/CreatedAt'
-
     Schema_Response_Enclave_ListVerificationResult:
       type: object
       required:
@@ -1183,7 +1097,6 @@ components:
                 $ref: '#/components/schemas/OrderedAt'
               createdAt:
                 $ref: '#/components/schemas/CreatedAt'
-
     Schema_Response_Enclave_GetVerificationResult:
       type: object
       required:
@@ -1236,7 +1149,6 @@ components:
           $ref: '#/components/schemas/OrderedAt'
         createdAt:
           $ref: '#/components/schemas/CreatedAt'
-
     Schema_Request_Enclave_CheckTransactionStatus:
       type: object
       required:
@@ -1244,7 +1156,6 @@ components:
       properties:
         verificationUuid:
           $ref: '#/components/schemas/VerificationUuid'
-
     Schema_Request_Screening_Chainalysis_Sanction:
       type: object
       required:
@@ -1252,7 +1163,6 @@ components:
       properties:
         verificationUuid:
           $ref: '#/components/schemas/VerificationUuid'
-
     Schema_Request_Screening_Chainalysis_KYT:
       type: object
       required:
@@ -1262,7 +1172,6 @@ components:
           $ref: '#/components/schemas/VerificationUuid'
         network:
           $ref: '#/components/schemas/Network'
-
     Schema_Response_Screening_Chainalysis_Sanction:
       type: object
       required:
@@ -1290,7 +1199,6 @@ components:
               $ref: '#/components/schemas/ChainalysisStatus'
             createdAt:
               $ref: '#/components/schemas/CreatedAt'
-
     Schema_Response_Screening_Chainalysis_KYT:
       type: object
       required:
@@ -1298,7 +1206,6 @@ components:
       properties:
         requestId:
           $ref: '#/components/schemas/RequestId'
-
     Schema_Request_Screening_Refinitiv_WCO:
       type: object
       required:
@@ -1313,7 +1220,6 @@ components:
               $ref: '#/components/schemas/Version'
             ivms101:
               $ref: '#/components/schemas/IVMS101_Request_RequestUserVerification'
-
     Schema_Response_Screening_Refinitiv_WCO:
       type: object
       required:
@@ -1321,94 +1227,79 @@ components:
       properties:
         requestId:
           $ref: '#/components/schemas/RequestId'
-
     Schema_400_Error_Response:
       type: object
       properties:
         code:
           type: string
           description: >
-            Error message.  
-            - Invalid input parameters
-            - Missing Required Parameters
-            - Inactive VASP
-          example: 'MISSING-VERIFICATION-UUID'
-
+            Error message.   - Invalid input parameters - Missing Required
+            Parameters - Inactive VASP
+          example: MISSING-VERIFICATION-UUID
         message:
           type: string
-          description: >
+          description: |
             Explanation about the error that is returned in code
-          example: 'verificationUuid is required.'
-
+          example: verificationUuid is required.
     Schema_401_Error_Response:
       type: object
       properties:
         code:
           type: string
           description: >
-            Error message.  
-            It could be returned in the following case  
-            - Invalid API Key(Unauthorized)
-          example: 'UNKNOWN-ERROR-CODE'
-
+            Error message.   It could be returned in the following case   -
+            Invalid API Key(Unauthorized)
+          example: UNKNOWN-ERROR-CODE
         message:
           type: string
-          description: >
+          description: |
             Explanation about the error that is returned in code.
-          example: 'Invalid API Key'
-
+          example: Invalid API Key
     Schema_403_Error_Response:
       type: object
       properties:
         code:
           type: string
           description: >
-            Error message.  
-            It could be returned in the following cases:  
-            - Access Denied(API Key)
-          example: 'UNKNOWN-ERROR-CODE'
-
+            Error message.   It could be returned in the following cases:   -
+            Access Denied(API Key)
+          example: UNKNOWN-ERROR-CODE
         message:
           type: string
-          description: >
+          description: |
             Explanation about the error that is returned in code.
-          example: 'AccessDenied'
-
+          example: AccessDenied
     Schema_404_Error_Response:
       type: object
       properties:
         code:
           type: string
           description: >
-            Error message.  
-            It could be returned in the following cases:  
-            - When request with a non-existent resources is provided.
-          example: 'VERIFICATION-NOT-FOUND'
+            Error message.   It could be returned in the following cases:   -
+            When request with a non-existent resources is provided.
+          example: VERIFICATION-NOT-FOUND
         message:
           type: string
-          description: >
+          description: |
             Explanation about the error that is returned in CODE.
-          example: 'Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found'
-
+          example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
     Schema_408_Error_Response:
       type: object
       properties:
         code:
           type: string
           description: >
-            Error message.  
-            It could be returned in the following cases:  
-            When a timeout occurs during the processing of a request.
-          example: 'REQUEST-TIMEOUT'
+            Error message.   It could be returned in the following cases:   When
+            a timeout occurs during the processing of a request.
+          example: REQUEST-TIMEOUT
         message:
           type: string
-          description: >
+          description: |
             Explanation about the error that is returned in code.
-          example: 'timeout of 5000ms exceeded'
-
+          example: timeout of 5000ms exceeded
     CallbackData:
       type: object
-      description: >
+      description: |
         An object containing Callback Data.
       properties:
         verificationUuid:
@@ -1421,20 +1312,18 @@ components:
           $ref: '#/components/schemas/Message'
         ivms101:
           $ref: '#/components/schemas/IVMS101_Response_RequestUserVerification'
-
     Beneficiary_RequestUserAccountVerification:
       type: object
-      description: >
+      description: |
         An object containing Beneficiary information.
       required:
         - accountNumber
       properties:
         accountNumber:
           $ref: '#/components/schemas/AccountNumber'
-
     Request_Beneficiary_RequestUserVerification:
       type: object
-      description: >
+      description: |
         An object containing Beneficiary information.
       required:
         - beneficiaryPersons
@@ -1444,10 +1333,9 @@ components:
           $ref: '#/components/schemas/Default_BeneficiaryPersons'
         accountNumber:
           $ref: '#/components/schemas/AccountNumber'
-
     Response_Beneficiary_RequestUserVerification:
       type: object
-      description: >
+      description: |
         An object containing Beneficiary information.
       required:
         - beneficiaryPersons
@@ -1457,14 +1345,14 @@ components:
           $ref: '#/components/schemas/Optional_BeneficiaryPersons'
         accountNumber:
           $ref: '#/components/schemas/AccountNumber'
-
     RequiredBeneficiaryInfo:
       type: string
       description: >
-        The list of personal information codes required by the Originating VASP to verify the Beneficiary.  
-        The Beneficiary VASP must return the requested Beneficiary personal information using the provided personal information codes in the IVMS101 format.
-      example: 'NATURAL_PERSON_NAME,ACCOUNT_NUMBER'
-
+        The list of personal information codes required by the Originating VASP
+        to verify the Beneficiary.   The Beneficiary VASP must return the
+        requested Beneficiary personal information using the provided personal
+        information codes in the IVMS101 format.
+      example: NATURAL_PERSON_NAME,ACCOUNT_NUMBER
     Schema_Request_Enclave_ReportTransactionResult:
       type: object
       required:
@@ -1477,7 +1365,6 @@ components:
           $ref: '#/components/schemas/TxHash'
         vout:
           $ref: '#/components/schemas/Vout'
-
     Schema_Response_Enclave_ReportTransactionResult:
       type: object
       required:
@@ -1485,7 +1372,6 @@ components:
       properties:
         result:
           $ref: '#/components/schemas/BooleanResult'
-
     Schema_Request_Enclave_ReportError:
       type: object
       required:
@@ -1501,7 +1387,6 @@ components:
           $ref: '#/components/schemas/Message'
         verificationUuid:
           $ref: '#/components/schemas/VerificationUuid'
-
     Schema_Response_Enclave_CheckTransactionStatus:
       type: object
       required:
@@ -1516,7 +1401,6 @@ components:
           $ref: '#/components/schemas/TxHash'
         vout:
           $ref: '#/components/schemas/Vout'
-
     AssetInfo:
       type: object
       required:
@@ -1526,7 +1410,7 @@ components:
         - tradePrice
         - tradeCurrency
         - tradeISODateTime
-      description: 'Asset information'
+      description: Asset information
       properties:
         symbol:
           $ref: '#/components/schemas/Symbol'
@@ -1542,22 +1426,22 @@ components:
           $ref: '#/components/schemas/TradeCurrency'
         tradeISODateTime:
           $ref: '#/components/schemas/TradeISODateTime'
-
     Default_BeneficiaryPersons:
       type: array
       description: >
         An array for personal information of Beneficiary.  
           
-        Name, address, etc. information for individuals or corporations are included.
+        Name, address, etc. information for individuals or corporations are
+        included.
       items:
         $ref: '#/components/schemas/NaturalPerson'
-
     Optional_BeneficiaryPersons:
       type: array
       description: >
         Array for personal information of Beneficiary.  
           
-        Name, address, etc. information for individuals or corporations are included.
+        Name, address, etc. information for individuals or corporations are
+        included.
       items:
         $ref: '#/components/schemas/Optional_NaturalPerson'
     Result:
@@ -1566,9 +1450,9 @@ components:
         - VERIFIED
         - DENIED
         - ERROR
-      description: >
+      description: |
         Result of User Account Verification or User Verification.
-      example: 'VERIFIED'
+      example: VERIFIED
     Reason:
       type: string
       enum:
@@ -1579,10 +1463,9 @@ components:
         - UNDEFINED-ERROR
         - BLACKLISTED
         - UNVERIFIED-KYC
-      description: >
+      description: |
         Error codes indicating the reason for verification failure.
-      example: 'UNKNOWN-ADDRESS'
-
+      example: UNKNOWN-ADDRESS
     UserVerificationReason:
       type: string
       enum:
@@ -1597,10 +1480,9 @@ components:
         - UNVERIFIED-KYC
         - NOT-ALLOWED
         - UNDEFINED-ERROR
-      description: >
+      description: |
         Error codes of the reason for the verification failure
-      example: 'UNKNOWN-ADDRESS'
-
+      example: UNKNOWN-ADDRESS
     CallbackReason:
       type: string
       enum:
@@ -1617,19 +1499,20 @@ components:
         - UNDEFINED-ERROR
         - BENEFICIARY-ACCOUNT-NOT-MATCHED
         - REQUEST-TIMEOUT
-      description: >
+      description: |
         Error codes of the reason for the verification failure
-      example: 'UNKNOWN-ADDRESS'
-
+      example: UNKNOWN-ADDRESS
     CreatedAt:
       type: string
       description: >
-        The timestamp when the user verification was requested.  
-        This field must follow the UTC ISO 8601 datetime representation standard.  
+        The timestamp when the user verification was requested.   This field
+        must follow the UTC ISO 8601 datetime representation standard.  
           
         **Recommendations**  
 
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+        To ensure consistency across systems, we strongly recommend using the
+        extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+        and clearly specifies the UTC timezone.  
           
         Other ISO 8601 Acceptable Formats:  
           - Basic format("YYYYMMDDThhmmss.sssZ")  
@@ -1637,28 +1520,32 @@ components:
           
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
     Message:
       type: string
-      description: >
+      description: |
         Additional information about the verification result.
-      example: 'An unidentifiable wallet address.'
+      example: An unidentifiable wallet address.
     OriginatingVaspId:
       type: string
-      description: >
+      description: |
         Unique identifier of Originating VASP.
       example: '123456789098765'
     Symbol:
       type: string
-      description: >
+      description: |
         Symbol of the virtual asset to be transferred.
-      example: 'ETH'
+      example: ETH
     Network:
       type: string
       description: >
-        The network of the virtual asset to be transferred.  
-        The network field can be implemented conditionally. Valid values for this field can be found here.  
+        The network of the virtual asset to be transferred.   The network field
+        can be implemented conditionally. Valid values for this field can be
+        found here.  
           
         **Conditional Use of 'network' Field:**  
           When the Beneficiary VASP requires the network field:  
@@ -1666,35 +1553,34 @@ components:
             
           When the Beneficiary VASP makes the network field optional:  
           Even if the Originating VASP omits the network value, the Beneficiary VASP can infer the network based on the symbol and return the verification result.
-      example: 'Ethereum'
-
+      example: Ethereum
     VerificationUuid:
       type: string
-      description: >
+      description: |
         A unique identifier for the User Verification request.  
-
         The format of **verificationUuid** must follow the UUID v4 standard.
-      example: '4bc03a8f-5679-4358-815c-906aae5557f4'
+      example: 4bc03a8f-5679-4358-815c-906aae5557f4
     Version:
       type: string
-      description: >
+      description: |
         The version of the IVMS101 messaging protocol being used.
       example: '1.0'
-
     IVMS101_RequestUserAccountVerification:
       type: object
       description: >
-        An object with IVMS101-formatted data containing information about the Originator, OriginatingVASP, Beneficiary, and BeneficiaryVASP.
+        An object with IVMS101-formatted data containing information about the
+        Originator, OriginatingVASP, Beneficiary, and BeneficiaryVASP.
       required:
         - beneficiary
       properties:
         beneficiary:
           $ref: '#/components/schemas/Beneficiary_RequestUserAccountVerification'
-
     IVMS101_Request_RequestUserVerification:
       type: object
       description: >
-        An object with IVMS101-formatted data that may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP for sending the request.
+        An object with IVMS101-formatted data that may include information about
+        the Originator, Originating VASP, Beneficiary, and Beneficiary VASP for
+        sending the request.
       required:
         - originator
         - beneficiary
@@ -1703,17 +1589,17 @@ components:
           $ref: '#/components/schemas/Originator'
         beneficiary:
           $ref: '#/components/schemas/Request_Beneficiary_RequestUserVerification'
-
     IVMS101_Response_RequestUserVerification:
       type: object
       description: >
-        An object containing IVMS101-formatted data, which may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP.
+        An object containing IVMS101-formatted data, which may include
+        information about the Originator, Originating VASP, Beneficiary, and
+        Beneficiary VASP.
       required:
         - beneficiary
       properties:
         beneficiary:
           $ref: '#/components/schemas/Response_Beneficiary_RequestUserVerification'
-
     CallbackType:
       type: string
       enum:
@@ -1723,112 +1609,108 @@ components:
         - CHAINALYSIS_KYT_RESULT
         - REFINITIV_WCO_RESULT
       description: >
-        A type used to identify a callback request.  
-        For request body examples by callbackType, refer to the Functional Requirements section above.
-      example: 'VERIFICATION_RESULT'
-
+        A type used to identify a callback request.   For request body examples
+        by callbackType, refer to the Functional Requirements section above.
+      example: VERIFICATION_RESULT
     Originator:
       type: object
       required:
         - originatorPersons
         - accountNumber
-      description: >
+      description: |
         An object containing the Originator information.
       properties:
         originatorPersons:
           $ref: '#/components/schemas/OriginatorPersons'
         accountNumber:
           $ref: '#/components/schemas/AccountNumber'
-
     OriginatorPersons:
       type: array
-      description: >
+      description: |
         An array containing the Originator's personal information.
       items:
         $ref: '#/components/schemas/NaturalPerson'
-
     AccountNumber:
       type: array
-      description: >
+      description: |
         An array containing wallet addresses.
       items:
         type: string
-
     Amount:
       type: string
-      description: >
+      description: |
         The amount of the virtual asset to be transferred.
       example: '0.024'
-
     IsExceedingThreshold:
       type: boolean
       description: >
-        A boolean field to check whether the fiat-converted amount of the virtual asset to be transferred exceeds the legal threshold.  
-        If the value is false, User Verification for the transaction is not mandatory.  
-        (Legal threshold: 1,000 USD or 1,000,000 KRW.)
+        A boolean field to check whether the fiat-converted amount of the
+        virtual asset to be transferred exceeds the legal threshold.   If the
+        value is false, User Verification for the transaction is not
+        mandatory.   (Legal threshold: 1,000 USD or 1,000,000 KRW.)
       example: true
-
     TradePrice:
       type: string
       description: >
-        The amount of virtual assets to be transferred, converted into fiat currency.
+        The amount of virtual assets to be transferred, converted into fiat
+        currency.
       example: '2439800'
-
     TradeCurrency:
       type: string
-      description: >
+      description: |
         The code of the fiat currency into which the virtual asset is converted.
-      example: 'KRW'
-
+      example: KRW
     TradeISODateTime:
       type: string
       description: >
-        The timestamp used as the exchange rate reference when converting the virtual asset to fiat currency.  
-        This field must follow the UTC ISO 8601 datetime representation standard.  
+        The timestamp used as the exchange rate reference when converting the
+        virtual asset to fiat currency.   This field must follow the UTC ISO
+        8601 datetime representation standard.  
           
         **Recommendations**  
           
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
-        Other ISO 8601 Acceptable Formats:  
+        To ensure consistency across systems, we strongly recommend using the
+        extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+        and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable
+        Formats:  
           - Basic format("YYYYMMDDThhmmss.sssZ")    
           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
           
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
-
     NaturalPerson:
       type: object
       required:
         - naturalPerson
-      description: >
+      description: |
         An object containing details about the natural person.
       properties:
         naturalPerson:
           $ref: '#/components/schemas/NaturalPersonEntity'
-
     Optional_NaturalPerson:
       type: object
-      description: >
+      description: |
         An object containing details about the natural person.
       properties:
         naturalPerson:
           $ref: '#/components/schemas/Optional_NaturalPersonEntity'
-
     NaturalPersonEntity:
       type: object
       required:
         - name
-      description: >
+      description: |
         An object containing details about the natural person.
       properties:
         name:
           $ref: '#/components/schemas/Name'
-
     Optional_NaturalPersonEntity:
       type: object
-      description: >
+      description: |
         An object containing details about the natural person.
       properties:
         name:
@@ -1843,17 +1725,15 @@ components:
           $ref: '#/components/schemas/DateAndPlaceOfBirth'
         countryOfResidence:
           $ref: '#/components/schemas/CountryOfResidence'
-
     Name:
       type: object
       required:
         - nameIdentifier
-      description: >
+      description: |
         An object with name details.
       properties:
         nameIdentifier:
           $ref: '#/components/schemas/NameIdentifier'
-
     AccountVerificationResult:
       type: string
       enum:
@@ -1862,45 +1742,48 @@ components:
       description: >
         Result of User Account Verification:  
           
-        If the result is **DENIED**, the reason field should provide the specific reason.
-      example: 'VERIFIED'
-
+        If the result is **DENIED**, the reason field should provide the
+        specific reason.
+      example: VERIFIED
     BooleanResult:
       type: boolean
-      description: >
+      description: |
         A boolean indicating the verification result.  
           
         true represents that the result is **VERIFIED**.
       example: true
-
     CallbackResult:
       type: boolean
-      description: >
+      description: |
         A static result field for callback response. Return **true** always.
       example: true
-
     VerifiedAt:
       type: string
       description: >
         The timestamp when the verification was completed.  
           
-        This field must follow the UTC ISO 8601 datetime representation standard.
+        This field must follow the UTC ISO 8601 datetime representation
+        standard.
           
         **Recommendations**  
           
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
-        Other ISO 8601 Acceptable Formats:  
+        To ensure consistency across systems, we strongly recommend using the
+        extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+        and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable
+        Formats:  
           - Basic format("YYYYMMDDThhmmss.sssZ")  
           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
           
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
-
     NameIdentifier:
       type: array
-      description: 'An array containing the name information.'
+      description: An array containing the name information.
       items:
         type: object
         required:
@@ -1910,16 +1793,19 @@ components:
           primaryIdentifier:
             type: string
             description: >
-              The basic representation of a last name.  
-              By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
-            example: 'James'
+              The basic representation of a last name.   By default, this field
+              is used to enter the last name. However, if separating the last
+              name and first name is not feasible, the full name can be entered
+              in this field.
+            example: James
           secondaryIdentifier:
             type: string
             description: >
-              The basic representation of a first name.  
-              This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
-            example: 'James || Jeffry James'
-
+              The basic representation of a first name.   This field is
+              primarily used to enter the first name. If a middle name also
+              needs to be included, it can be combined with the first name in
+              this field.
+            example: James || Jeffry James
           nameIdentifierType:
             type: string
             enum:
@@ -1931,8 +1817,8 @@ components:
             description: >
               The type of name identifier.  
                 
-              Refer to the details below for information about each type of name identifier:  
-              The following values can be included:  
+              Refer to the details below for information about each type of name
+              identifier:   The following values can be included:  
                 **ALIA**: An alias name, commonly known apart from the legal name.  
 
                 **BIRT**: A birth name.  
@@ -1942,9 +1828,7 @@ components:
                 **LEGL**: A legally or officially registered name.  
 
                 **MISC**: Other names that do not fall under the above categories.
-
-        example: 'LEGL'
-
+        example: LEGL
     LocalNameIdentifier:
       type: array
       items:
@@ -1959,20 +1843,20 @@ components:
 
               The basic representation of a last name in the local language.  
 
-              If separating the name into first and last names is not feasible, the full name can be entered in the <code>primaryIdentifier</code> field.
-
-            example: '김 || 김재원'
-
+              If separating the name into first and last names is not feasible,
+              the full name can be entered in the <code>primaryIdentifier</code>
+              field.
+            example: 김 || 김재원
           secondaryIdentifier:
             type: string
             description: >
 
               The basic representation of a first name in the local language.  
 
-              This field is used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
-
-            example: '재원'
-
+              This field is used to enter the first name. If a middle name also
+              needs to be included, it can be combined with the first name in
+              this field.
+            example: 재원
           nameIdentifierType:
             type: string
             enum:
@@ -1985,8 +1869,8 @@ components:
 
               The type of name identifier.  
 
-              Refer to the details below for more information about the types of name identifiers:  
-              The following values can be included:  
+              Refer to the details below for more information about the types of
+              name identifiers:   The following values can be included:  
                 **ALIA**: An alias name, commonly known apart from the legal name.  
                 
                 **BIRT**: A birth name.  
@@ -1996,24 +1880,21 @@ components:
                 **LEGL**: A legally or officially registered name.  
                 
                 **MISC**: Other names that do not fall under the above categories.
-
-        example: 'LEGL'
-
+        example: LEGL
     GeographicAddress:
       type: array
       description: >
 
         An array containing address information.  
 
-        To use this field, at least one of the following conditions must be met:  
-        Required conditions  
+        To use this field, at least one of the following conditions must be
+        met:   Required conditions  
           1. At least one addressLinemust be present.  
           
           2. Both streetName and buildingName must be present.  
           
           3. Both streetName and buildingNumber must be present.  
         </details>
-
       items:
         type: object
         properties:
@@ -2023,51 +1904,48 @@ components:
               - HOME
               - BIZZ
               - GEOG
-            description: >
-              The type of geographic address.  
-              Allowed values:  
+            description: |
+              The type of geographic address.   Allowed values:  
                 HOME: Home address.  
                 BIZZ: Business address.  
                 GEOG: Geographic address.
-
-            example: 'GEOG'
-
+            example: GEOG
           townName:
             type: string
-            description: >
+            description: |
 
               The name of the town or district.
-
-            example: 'Yeoksam-dong'
-
+            example: Yeoksam-dong
           addressLine:
             type: array
             items:
               type: string
             description: >
 
-              A free-form address that identifies a specific location.  
-              If dividing the address into components (e.g., province, city, street name) is difficult, the full address can be entered as a single string in addressLine.
-
-            example: ['14 Teheran-ro 4-gil', 'Gangnam-gu', '4th floor']
-
+              A free-form address that identifies a specific location.   If
+              dividing the address into components (e.g., province, city, street
+              name) is difficult, the full address can be entered as a single
+              string in addressLine.
+            example:
+              - 14 Teheran-ro 4-gil
+              - Gangnam-gu
+              - 4th floor
           country:
             type: string
             description: >
-              The country code of the country of residence (ISO 3166-1 alpha-2 format).
-            example: 'KR'
-
+              The country code of the country of residence (ISO 3166-1 alpha-2
+              format).
+            example: KR
     NationalIdentification:
       type: object
-      description: >
+      description: |
         An object containing National Identification information.
       properties:
         nationalIdentifier:
           type: string
-          description: >
+          description: |
             National Identification Number.
-          example: '12345-67890'
-
+          example: 12345-67890
         nationalIdentifierType:
           type: string
           enum:
@@ -2081,9 +1959,8 @@ components:
             - IDCD
             - LEIX
             - MISC
-          description: >
-            Type of National Identification.  
-            Allowed values:  
+          description: |
+            Type of National Identification.   Allowed values:  
               **ARNU**: Alien Registration Number (assigned to foreigners by the state).  
               **CCPT**: Passport Number.  
               **RAID**: (For corporations only) Corporate registration number (e.g., business registration number).  
@@ -2096,40 +1973,32 @@ components:
               **MISC**: Other types of national identification numbers not defined above.  
 
               Further details can be found in the [IVMS Guide](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/references/ivms101-guide#nationalidentification-type).
-
-      example: 'IDCD'
-
+      example: IDCD
     CustomerIdentification:
       type: string
-      description: >
+      description: |
 
         Customer number of individual.
-
       example: '1234569999'
-
     DateAndPlaceOfBirth:
       type: object
       properties:
         dateOfBirth:
           type: string
-          description: >
+          description: |
             Date of birth.  
-
             Allowed format: ISO 8601 ("YYYY-MM-DD").
           example: '1985-03-14'
-
         placeOfBirth:
           type: string
-          description: >
+          description: |
             Place of birth.
-          example: 'Nonsan'
-
+          example: Nonsan
     CountryOfResidence:
       type: string
-      description: >
+      description: |
         The country code of the country of residence.
-      example: 'KR'
-
+      example: KR
     TransactionStatus:
       type: string
       enum:
@@ -2138,7 +2007,7 @@ components:
         - WAIT-CONFIRM
         - CONFIRMED
         - CANCELED
-      description: >
+      description: |
         Current status of the virtual asset transaction.  
           
         Details of each state:  
@@ -2151,105 +2020,91 @@ components:
           **CONFIRMED**: The virtual asset transaction has been mined, and the block containing the transaction has achieved finality.  
           
           **CANCELED**: The Originating VASP has permanently canceled the transaction for a specific reason.
-      example: 'PROCESSING'
-
+      example: PROCESSING
     TxHash:
       type: string
-      description: >
+      description: |
         Unique identifier of the transaction.
-      example: '8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042'
-
+      example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
     Vout:
       type: string
-      description: >
+      description: |
         Index of the output in a Bitcoin blockchain transaction.
       example: '2'
-
     InputKey:
       type: string
       description: >
-        The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**, as defined in the Enclave environment variables.
-      example: 'Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU='
-
+        The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**, as defined
+        in the Enclave environment variables.
+      example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
     OutputKey:
       type: string
-      description: >
+      description: |
         The Base64-encoded database encryption key.
-      example: 'd0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY='
-
+      example: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
     VaspId:
       type: string
-      description: >
+      description: |
         Unique identifier of VASP.
       example: '15952089931162060684'
-
     Health:
       type: string
       enum:
         - UP
         - DOWN
-      description: >
+      description: |
         Current operational health status of the VASP Enclave server.
-      example: 'UP'
-
+      example: UP
     VaspName:
       type: string
-      description: >
+      description: |
         The name of VASP.
-      example: 'A Exchange'
-
+      example: A Exchange
     LegalName:
       type: string
-      description: >
+      description: |
         The legal entity name of the VASP.
-      example: 'A Exchange'
-
+      example: A Exchange
     Jurisdiction:
       type: string
       description: >
-        The country or region where the legal entity is incorporated (jurisdiction of incorporation).
-      example: 'Singapore'
-
+        The country or region where the legal entity is incorporated
+        (jurisdiction of incorporation).
+      example: Singapore
     IsAlliance:
       type: boolean
-      description: >
+      description: |
         A boolean field indicating whether the entity is a member of VerifyVASP.
       example: true
-
     Country:
       type: string
-      description: >
+      description: |
         The name of the country where the VASP is incorporated.
-      example: 'Singapore'
-
+      example: Singapore
     CountryCode:
       type: string
       description: >
-        The ISO 3166-1 alpha-2 code of the country where the VASP is incorporated.
-      example: 'SG'
-
+        The ISO 3166-1 alpha-2 code of the country where the VASP is
+        incorporated.
+      example: SG
     Protocol:
       type: string
       enum:
         - VERIFYVASP
         - CODE
-      description: >
-        The Travel Rule Protocol used by the VASP.  
-        Allowed values:  
+      description: |
+        The Travel Rule Protocol used by the VASP.   Allowed values:  
           1. VERIFYVASP: Indicates that the VASP is a member of VerifyVASP.  
           2. CODE: Indicates that the VASP is a member of CODE.
-      example: 'VERIFYVASP'
-
+      example: VERIFYVASP
     LicensedStatus:
       type: string
       enum:
         - Regulated
         - Unregulated
-      description: >
+      description: |
         The VA License acquisition status of the VASP.
-
-      example: 'Regulated'
-
+      example: Regulated
     VaspStatus:
       type: string
       enum:
@@ -2257,9 +2112,8 @@ components:
         - VERIFIED
         - VERIFIED-MEMBER
         - INTEROPERATED
-      description: >
-        The status of the VASP on VerifyVASP.  
-        Allowed values:  
+      description: |
+        The status of the VASP on VerifyVASP.   Allowed values:  
           **VERIFIED-MEMBER**: A member of the VerifyVASP Alliance with the Enclave server properly running, enabling transactions.  
 
           **VERIFIED**: Registered with VerifyVASP but not approved as an Alliance member, or an Alliance member without an installed Enclave server. 
@@ -2267,17 +2121,16 @@ components:
           **UNVERIFIED**: Not registered with VerifyVASP.  
 
           **INTEROPERATED**: A member of another Travel Rule Protocol.
-
-      example: 'VERIFIED-MEMBER'
-
+      example: VERIFIED-MEMBER
     CreateAt:
       type: string
       description: >
-        The timestamp indicating when the VASP information was created.  
-        This field must follow the UTC ISO 8601 datetime representation standard.  
+        The timestamp indicating when the VASP information was created.   This
+        field must follow the UTC ISO 8601 datetime representation standard.  
           
-        **Recommendations**:  
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+        **Recommendations**:   To ensure consistency across systems, we strongly
+        recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which
+        includes milliseconds and clearly specifies the UTC timezone.  
           
         Other ISO 8601 Acceptable Formats:  
           - Basic format("YYYYMMDDThhmmss.sssZ")  
@@ -2285,19 +2138,22 @@ components:
 
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
-
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
-
     UpdatedAt:
       type: string
       description: >
         The timestamp when the information of VASP was updated.  
           
-        This field must follow the UTC ISO 8601 datetime representation standard.  
+        This field must follow the UTC ISO 8601 datetime representation
+        standard.  
           
-        **Recommendations**:  
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+        **Recommendations**:   To ensure consistency across systems, we strongly
+        recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which
+        includes milliseconds and clearly specifies the UTC timezone.  
           
         Other ISO 8601 Acceptable Formats:
           - Basic format("YYYYMMDDThhmmss.sssZ")  
@@ -2305,10 +2161,11 @@ components:
           
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
-
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
-
     KeyType:
       type: string
       enum:
@@ -2318,72 +2175,77 @@ components:
       description: >
         The type of Public Key to be used for encrypting personal information.  
 
-        The default value is **PerVasp**. PerAddress and PerVerification can also be entered.  
+        The default value is **PerVasp**. PerAddress and PerVerification can
+        also be entered.  
 
-        The Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.  
+        The Beneficiary VASP must provide the Public Key corresponding to the
+        Key Type specified by the Originating VASP in this field.  
           
         Explanation of allowed values:  
           
         **PerVasp**: A single key shared across all verifications for a VASP.  
 
-        **PerAddress**: A unique key is generated for each beneficiary address.  
+        **PerAddress**: A unique key is generated for each beneficiary
+        address.  
 
-        **PerVerification**: A new key is generated for every verification request.
-
-      example: 'PerVasp'
-
+        **PerVerification**: A new key is generated for every verification
+        request.
+      example: PerVasp
     BeneficiaryVaspId:
       type: string
-      description: >
+      description: |
         Unique identifier of Beneficiary VASP.
       example: '27372039731940770'
-
     BeneficiaryAccountNumber:
       type: string
-      description: >
+      description: |
         Account Address of Beneficiary.
       example: '0x5811001506550d8356a215be229c15b6ef371a9a'
-
     OriginatorAccountNumber:
       type: string
-      description: >
+      description: |
         Account Address of Originator.
       example: '0x5811001506550d8356a215be229c15b6ef371a9a'
-
     IVMS101_Originator:
       type: string
-      description: >
+      description: |
         Originator Type written in IVMS101 format.
-      example: '{"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}'
-
+      example: >-
+        {"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}
     IVMS101_OriginatingVasp:
       type: string
-      description: >
+      description: |
         OriginatingVASP Type written in IVMS101 format.
-      example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu", "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}'
-
+      example: >-
+        {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
+        "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}
     IVMS101_Beneficiary:
       type: string
-      description: >
+      description: |
         Beneficiary Type written in IVMS101 format.
-      example: '{"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}'
-
+      example: >-
+        {"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}
     IVMS101_BeneficiaryVasp:
       type: string
-      description: >
+      description: |
         BeneficiaryVASP Type written in IVMS101 format.
-      example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14", "Teheran-ro", "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}'
-
+      example: >-
+        {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
+        "Teheran-ro",
+        "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}
     OrderedAt:
       type: string
       description: >
         Timestamp indicating when the transaction hash was reported.  
 
-        This field must follow the UTC ISO 8601 datetime representation standard.  
+        This field must follow the UTC ISO 8601 datetime representation
+        standard.  
 
         Recommendations:  
           
-        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+        To ensure consistency across systems, we strongly recommend using the
+        extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+        and clearly specifies the UTC timezone.  
           
         Other ISO 8601 Acceptable Formats:  
           - Basic format("YYYYMMDDThhmmss.sssZ")  
@@ -2391,150 +2253,136 @@ components:
 
         **Implementation Note**  
           
-        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
-
+        While the extended format is recommended, your implementation should
+        account for requests from external VASPs that may use the other two
+        formats. Ensure your system can handle and correctly interpret all three
+        formats to maintain compatibility.
       example: '2024-11-25T15:30:00.000Z'
-
     Count:
       type: number
-      description: >
+      description: |
         Total number of items.
       example: 25
-
     Page:
       type: number
-      description: >
+      description: |
         The page number in the paginated response.
       example: 1
-
     Rpp:
       type: number
-      description: >
+      description: |
         The number of records per page in the paginated response.
       example: 10
-
     VerificationId:
       type: string
-      description: >
+      description: |
         Unique Identifier of User Verification Result.
       example: '12345'
-
     RequestId:
       type: string
-      description: >
+      description: |
         A unique identifier used to distinguish the request for risk assessment.
-      example: '398ace46-6baf-4488-a9f2-ee43680b413e'
-
+      example: 398ace46-6baf-4488-a9f2-ee43680b413e
     CounterpartyVaspId:
       type: string
-      description: >
+      description: |
         Unique identifer of the counterparty VASP.
       example: '15952089931162059995'
-
     Direction:
       type: string
       enum:
         - OUTGOING
         - INCOMING
-      description: >
+      description: |
         A field indicating the direction of virtual asset movement.  
-
         **OUTGOING** is used for withdrawals, and INCOMING is used for deposits.
-      example: 'OUTGOING'
-
+      example: OUTGOING
     Address:
       type: string
-      description: >
+      description: |
         Account address.
       example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
-
     ChainalysisStatus:
       type: string
-      description: >
+      description: |
         Result of risk assessment.
-      example: 'NOHIT'
-
+      example: NOHIT
     Chainalysis_CallbackType:
       type: string
       enum:
         - CHAINALYSIS_KYT_RESULT
-      description: >
+      description: |
         Callback type of Chainalysis API.
-      example: 'CHAINALYSIS_KYT_RESULT'
-
+      example: CHAINALYSIS_KYT_RESULT
     Refinitiv_CallbackType:
       type: string
       enum:
         - REFINITIV_WCO_RESULT
-      description: >
+      description: |
         Callback type of Refinitiv API.
-      example: 'REFINITIV_WCO_RESULT'
-
+      example: REFINITIV_WCO_RESULT
     ApiType:
       type: string
-      description: >
+      description: |
 
         Unused
-
-      example: 'ATTEMPT'
-
+      example: ATTEMPT
     UserId:
       type: string
       description: >
-        The userId value used when calling the Chainalysis KYT API or the counterparty VASP ID.
+        The userId value used when calling the Chainalysis KYT API or the
+        counterparty VASP ID.
       example: '15952089931162059995'
-
     Asset:
       type: string
       description: >
-        The type of virtual asset being transferred, or that has been transferred, Ticker.
-      example: 'ETH'
-
+        The type of virtual asset being transferred, or that has been
+        transferred, Ticker.
+      example: ETH
     UsdPrice:
       type: string
-      description: >
+      description: |
         The price of the virtual asset converted into USD.
       example: '1820.17'
-
     TransferRef:
       type: string
       description: >
-        If the value of apiType is TRANSFER, it represents the identifier of the asset transfer transaction subject to risk assessment.  
+        If the value of apiType is TRANSFER, it represents the identifier of the
+        asset transfer transaction subject to risk assessment.  
 
         It is returned in the format tx_hash:output_address.
-
-      example: '0x50377426410d3db14b93ae3b5001ad736e1a7832ab6b16dbf12a6d6905ea7682:0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
-
+      example: >-
+        0x50377426410d3db14b93ae3b5001ad736e1a7832ab6b16dbf12a6d6905ea7682:0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF
     OutputAddress:
       type: string
-      description: >
+      description: |
         The wallet address of the Beneficiary subject to risk assessment.
-      example: 'bb3fd383d1c5540e52ef0a7bcb9433375793aeaf'
-
+      example: bb3fd383d1c5540e52ef0a7bcb9433375793aeaf
     Timestamp:
       type: string
       description: >
         The time when the transaction subject to risk assessment occurred.  
 
-        If the value of data.riskAssement.chainalysisKYT.apiType is ATTEMPT, it refers to the time when the KYT API was called.
+        If the value of data.riskAssement.chainalysisKYT.apiType is ATTEMPT, it
+        refers to the time when the KYT API was called.
       example: '2023-05-18T12:39:44.000Z'
-
     ExternalId:
       type: string
       description: >
-        The identifier issued by Chainalysis to distinguish risk assessment requests.
-      example: '79382ac9-c7be-3fab-ad56-8c61c654e2fc'
-
+        The identifier issued by Chainalysis to distinguish risk assessment
+        requests.
+      example: 79382ac9-c7be-3fab-ad56-8c61c654e2fc
     AlertCount:
       type: number
       description: >
         The number of KYT alerts generated as a result of the risk assessment.  
 
-        If the value of alert is 1 or higher, details related to the alerts are provided in a separate array.  
+        If the value of alert is 1 or higher, details related to the alerts are
+        provided in a separate array.  
           
-        When data.riskAssement.chainalysisKYT.status is REGISTERED, the value is returned as null.
+        When data.riskAssement.chainalysisKYT.status is REGISTERED, the value is
+        returned as null.
       example: 1
-
     AlertLevel:
       type: string
       enum:
@@ -2542,58 +2390,51 @@ components:
         - MEDIUM
         - HIGH
         - SEVERE
-      description: >
+      description: |
         Level of the risk.  
-
         It can have the values "LOW", "MEDIUM", "HIGH", or "SEVERE".
-
-      example: 'MEDIUM'
-
+      example: MEDIUM
     EntityCategory:
       type: string
-      description: >
+      description: |
         The entity category being tracked by the alert rule.
-      example: 'high risk exchange'
-
+      example: high risk exchange
     ServiceName:
       type: string
       description: >
-        The service name of the counterparty as defined by Chainalysis.  
-        If the service name has not been identified or if it is an INDIRECT exposure, the value is returned as null.
-
-      example: 'HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf'
-
+        The service name of the counterparty as defined by Chainalysis.   If the
+        service name has not been identified or if it is an INDIRECT exposure,
+        the value is returned as null.
+      example: >-
+        HIGH RISK EXCHANGE: SimpleSwap.io
+        bb3fd383d1c5540e52ef0a7bcb9433375793aeaf
     ExposureType:
       type: string
       enum:
         - DIRECT
         - INDIRECT
-      description: >
+      description: |
         Defines the direction of exposure.  
-
         Returns one of two values: "DIRECT" or "INDIRECT".
-      example: 'DIRECT'
-
+      example: DIRECT
     AlertId:
       type: string
       description: >
-        A unique identifier assigned by Chainalysis to distinguish the KYT alert.
-      example: '118b8cc8-f579-11ed-b86d-a3210c6ca9b8'
-
+        A unique identifier assigned by Chainalysis to distinguish the KYT
+        alert.
+      example: 118b8cc8-f579-11ed-b86d-a3210c6ca9b8
     AlertAmount:
       type: string
-      description: >
+      description: |
         The size of the funds subject to the KYT alert.  
-
         The value is in USD.
       example: '1820.17'
-
     CaseSystemId:
       type: string
       description: >
-        A unique identifier assigned by Refinitiv to distinguish risk assessments.
-      example: '5jb7r2c9xjfk1hoc95gfayv6m'
-
+        A unique identifier assigned by Refinitiv to distinguish risk
+        assessments.
+      example: 5jb7r2c9xjfk1hoc95gfayv6m
     MatchStrength:
       type: string
       enum:
@@ -2602,55 +2443,52 @@ components:
         - STRONG
         - EXACT
       description: >
-        In cases where the risk assessment is successful, the match strength of the record with the highest match rate among the personal information matches.  
+        In cases where the risk assessment is successful, the match strength of
+        the record with the highest match rate among the personal information
+        matches.  
 
         It is displayed in the order: "WEAK", "MEDIUM", "STRONG", "EXACT".
-
-      example: 'EXACT'
-
+      example: EXACT
     AggregatedSummaryResult:
       type: string
       description: >
-        A summary of the results in cases where the risk assessment is successful.
-      example: '{"caseId":"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757", ... }}}'
-
+        A summary of the results in cases where the risk assessment is
+        successful.
+      example: >-
+        {"caseId":"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757",
+        ... }}}
     AssessedAt:
       type: string
-      description: >
+      description: |
         Timestamp when the risk assessment results were generated.
       example: '2023-05-18T12:39:57.834Z'
-
-  ##########################################
-  # examples
-  ##########################################
   examples:
     example_RequestUserAccountVerification:
       value:
         originatingVaspId: '15952089931162060684'
-        symbol: 'ETH'
-        network: 'Ethereum'
+        symbol: ETH
+        network: Ethereum
         version: '1.0'
         ivms101:
           beneficiary:
             accountNumber:
               - '0x5811001506550d8356a215be229c15b6ef371a9b'
-
     example_Request_RequestUserVerification:
-      summary: 'example of a verification request'
+      summary: example of a verification request
       description: >
-        A complete example of a request for user account verification,
-        including asset information, originating VASP details, and IVMS101 data.
+        A complete example of a request for user account verification, including
+        asset information, originating VASP details, and IVMS101 data.
       value:
-        verificationUuid: '4bc03a8f-5679-4358-815c-906aae5557f4'
+        verificationUuid: 4bc03a8f-5679-4358-815c-906aae5557f4
         assetInfo:
-          symbol: 'ETH'
-          network: 'Ethereum'
+          symbol: ETH
+          network: Ethereum
           amount: '0.024'
           isExceedingThreshold: true
           tradePrice: '2193200'
-          tradeCurrency: 'KRW'
+          tradeCurrency: KRW
           tradeISODatetime: '2022-02-06T23:13:43.513Z'
-        requiredBeneficiaryInfo: 'ACCOUNT_NUMBER,NATURAL_PERSON_NAME'
+        requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
         originatingVaspId: '123456789098765'
         version: '1.0'
         ivms101:
@@ -2659,9 +2497,9 @@ components:
               - naturalPerson:
                   name:
                     nameIdentifier:
-                      - primaryIdentifier: 'James'
-                        secondaryIdentifier: 'Din'
-                        nameIdentifierType: 'LEGL'
+                      - primaryIdentifier: James
+                        secondaryIdentifier: Din
+                        nameIdentifierType: LEGL
             accountNumber:
               - '0x5811001506550d8356a215be229c15b6ef371a9a'
           beneficiary:
@@ -2669,19 +2507,18 @@ components:
               - naturalPerson:
                   name:
                     nameIdentifier:
-                      - primaryIdentifier: 'James'
-                        nameIdentifierType: 'LEGL'
+                      - primaryIdentifier: James
+                        nameIdentifierType: LEGL
             accountNumber:
               - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-
     example_Response_RequestUserVerification:
-      summary: 'example of a successful verification response'
+      summary: example of a successful verification response
       description: >
-        A complete example of a successful verification response
-        including IVMS101 beneficiary data.
+        A complete example of a successful verification response including
+        IVMS101 beneficiary data.
       value:
-        result: 'VERIFIED'
-        reason: 'OK'
+        result: VERIFIED
+        reason: OK
         message: ''
         version: '1.0'
         ivms101:
@@ -2690,40 +2527,37 @@ components:
               - naturalPerson:
                   name:
                     nameIdentifier:
-                      - primaryIdentifier: 'James'
-                        nameIdentifierType: 'LEGL'
+                      - primaryIdentifier: James
+                        nameIdentifierType: LEGL
                     localNameIdentifier:
-                      - primaryIdentifier: '김재원'
-                        nameIdentifierType: 'LEGL'
+                      - primaryIdentifier: 김재원
+                        nameIdentifierType: LEGL
                   geographicAddress:
-                    - addressType: 'GEOG'
-                      townName: 'Yeoksam-dong'
+                    - addressType: GEOG
+                      townName: Yeoksam-dong
                       addressLine:
-                        - '14 Teheran-ro 4-gil, Gangnam-gu'
-                        - '4th floor'
-                      country: 'KR'
+                        - 14 Teheran-ro 4-gil, Gangnam-gu
+                        - 4th floor
+                      country: KR
                   nationalIdentification:
-                    nationalIdentifier: '12345-67890'
-                    nationalIdentifierType: 'IDCD'
+                    nationalIdentifier: 12345-67890
+                    nationalIdentifierType: IDCD
                   customerIdentification: '1234569999'
                   dateAndPlaceOfBirth:
                     dateOfBirth: '1985-03-14'
-                    placeOfBirth: 'Nonsan'
-                  countryOfResidence: 'KR'
+                    placeOfBirth: Nonsan
+                  countryOfResidence: KR
             accountNumber:
               - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-
     example_Request_CheckTransactionStatus:
       value:
         originatingVaspId: '15952089931162060684'
-
     example_Response_CheckTransactionStatus:
       value:
         originatingVaspId: '15952089931162060684'
-        transactionStatus: 'PROCESSING'
-        txHash: '8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042'
+        transactionStatus: PROCESSING
+        txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
         vout: '2'
-
     example_Request_Callback:
       value:
         callbackType: VERIFICATION_RESULT
@@ -2760,89 +2594,81 @@ components:
                     countryOfResidence: KR
               accountNumber:
                 - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-
     example_Response_Callback:
       value:
         result: true
-
     example_Request_GetDecryptedEncKey:
       value:
         inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
-
     example_Response_GetDecryptedEncKey:
       value:
         outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
-
     example_Response_GetVaspId:
       value:
         vaspId: '15952089931162058999'
-
     example_Response_ListVasp:
       value:
         vasps:
-          - health: 'UP'
+          - health: UP
             vaspId: '27372039731940770'
-            vaspName: 'A Exchange'
-            legalName: 'A Exchange'
-            jurisdiction: 'Singapore'
+            vaspName: A Exchange
+            legalName: A Exchange
+            jurisdiction: Singapore
             isAlliance: true
-            country: 'Singapore'
-            countryCode: 'SG'
-            protocol: 'VERIFYVASP'
-            licensedStatus: 'Regulated'
-            vaspStatus: 'VERIFIED-MEMBER'
+            country: Singapore
+            countryCode: SG
+            protocol: VERIFYVASP
+            licensedStatus: Regulated
+            vaspStatus: VERIFIED-MEMBER
             createdAt: '2021-09-27T01:48:38.000Z'
             updatedAt: '2021-11-09T07:31:54.000Z'
-          - health: 'UP'
+          - health: UP
             vaspId: '27372039731940165'
-            vaspName: 'B Exchange'
-            legalName: 'B Exchange'
-            jurisdiction: 'The Republic of Korea'
+            vaspName: B Exchange
+            legalName: B Exchange
+            jurisdiction: The Republic of Korea
             isAlliance: true
-            country: 'The Republic of Korea'
-            countryCode: 'KR'
-            protocol: 'CODE'
+            country: The Republic of Korea
+            countryCode: KR
+            protocol: CODE
             licensedStatus: null
-            vaspStatus: 'INTEROPERATED'
+            vaspStatus: INTEROPERATED
             createdAt: '2021-09-27T01:48:38.000Z'
             updatedAt: '2022-01-13T15:27:50.000Z'
-
     example_Request_Enclave_RequestUserAccountVerification:
       value:
-        keyType: 'PerVasp'
+        keyType: PerVasp
         beneficiaryVaspId: '15952089931162060684'
-        symbol: 'ETH'
-        network: 'Ethereum'
+        symbol: ETH
+        network: Ethereum
         payload:
           version: '1.0'
           ivms101:
             beneficiary:
               accountNumber:
                 - '0x5811001506550d8356a215be229c15b6ef371a9b'
-
     example_Response_Enclave_RequestUserAccountVerification:
       value:
-        accountVerificationResult: 'DENIED'
-        reason: 'UNKNOWN-ADDRESS'
+        accountVerificationResult: DENIED
+        reason: UNKNOWN-ADDRESS
         verifiedAt: '2022-03-03T12:45:34.085Z'
-
     example_Request_Enclave_RequestUserVerification:
-      summary: 'example of a verification request'
+      summary: example of a verification request
       description: >
-        A complete example of a request for user account verification,
-        including asset information, originating VASP details, and IVMS101 data.
+        A complete example of a request for user account verification, including
+        asset information, originating VASP details, and IVMS101 data.
       value:
-        keyType: 'PreVasp'
+        keyType: PreVasp
         beneficiaryVaspId: '15952089931162060684'
         assetInfo:
-          symbol: 'ETH'
-          network: 'Ethereum'
+          symbol: ETH
+          network: Ethereum
           amount: '0.024'
           isExceedingThreshold: true
           tradePrice: '2193200'
-          tradeCurrency: 'KRW'
+          tradeCurrency: KRW
           tradeISODatetime: '2022-02-06T23:13:43.513Z'
-        requiredBeneficiaryInfo: 'ACCOUNT_NUMBER,NATURAL_PERSON_NAME'
+        requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
         originatingVaspId: '123456789098765'
         payload:
           version: '1.0'
@@ -2852,9 +2678,9 @@ components:
                 - naturalPerson:
                     name:
                       nameIdentifier:
-                        - primaryIdentifier: 'James'
-                          secondaryIdentifier: 'Din'
-                          nameIdentifierType: 'LEGL'
+                        - primaryIdentifier: James
+                          secondaryIdentifier: Din
+                          nameIdentifierType: LEGL
               accountNumber:
                 - '0x5811001506550d8356a215be229c15b6ef371a9a'
             beneficiary:
@@ -2862,16 +2688,14 @@ components:
                 - naturalPerson:
                     name:
                       nameIdentifier:
-                        - primaryIdentifier: 'James'
-                          nameIdentifierType: 'LEGL'
+                        - primaryIdentifier: James
+                          nameIdentifierType: LEGL
               accountNumber:
                 - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-
     example_Response_Enclave_RequestUserVerification:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
         createdAt: '2022-03-03T12:45:34.085Z'
-
     example_Response_Enclave_ListVerificationResult:
       value:
         count: 25
@@ -2880,112 +2704,117 @@ components:
         verification:
           - verificationId: '12345'
             verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-            result: 'VERIFIED'
-            reason: 'OK'
+            result: VERIFIED
+            reason: OK
             assetInfo:
-              symbol: 'ETH'
-              network: 'Ethereum'
+              symbol: ETH
+              network: Ethereum
               amount: '0.024'
               isExceedingThreshold: true
               tradePrice: '2193200'
-              tradeCurrency: 'KRW'
+              tradeCurrency: KRW
               tradeISODatetime: '2022-02-06T23:13:43.513Z'
             txHash: '0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28'
             vout: '2'
             originatingVaspId: '123456789098765'
             originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
-            ivms101Originator: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-            ivms101:OriginatingVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
+            ivms101Originator: >-
+              {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+            ivms101:OriginatingVasp: >-
+              {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
+              Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+              Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
             benerificaryVaspId: '15952089931162060684'
-            benerificaryAccountNumber: '0xtest001506550d8356a215be229c15b6ef371a9b'
-            ivms101Beneficiary: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-            ivms101BeneficiaryVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
+            benerificaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+            ivms101Beneficiary: >-
+              {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+            ivms101BeneficiaryVasp: >-
+              {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B
+              Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+              Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
             verifiedAt: '2022-03-03T12:45:34.085Z'
             orderedAt: '2022-03-03T12:45:34.085Z'
             createdAt: '2022-03-03T12:45:34.085Z'
-
     example_Response_Enclave_GetVerificationResult:
       value:
         verificationId: '12345'
         verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-        result: 'VERIFIED'
-        reason: 'OK'
+        result: VERIFIED
+        reason: OK
         assetInfo:
-          symbol: 'ETH'
-          network: 'Ethereum'
+          symbol: ETH
+          network: Ethereum
           amount: '0.024'
           isExceedingThreshold: true
           tradePrice: '2193200'
-          tradeCurrency: 'KRW'
+          tradeCurrency: KRW
           tradeISODatetime: '2022-02-06T23:13:43.513Z'
         txHash: '0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28'
         vout: '2'
         originatingVaspId: '123456789098765'
         originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
-        ivms101Originator: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-        ivms101:OriginatingVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
+        ivms101Originator: >-
+          {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+        ivms101:OriginatingVasp: >-
+          {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
+          Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+          Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
         benerificaryVaspId: '15952089931162060684'
-        benerificaryAccountNumber: '0xtest001506550d8356a215be229c15b6ef371a9b'
-        ivms101Beneficiary: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-        ivms101BeneficiaryVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
+        benerificaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+        ivms101Beneficiary: >-
+          {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+        ivms101BeneficiaryVasp: >-
+          {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B
+          Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+          Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
         verifiedAt: '2022-03-03T12:45:34.085Z'
         orderedAt: '2022-03-03T12:45:34.085Z'
         createdAt: '2022-03-03T12:45:34.085Z'
-
     example_Request_Enclave_ReportTransactionResult:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-        txHash: '8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042'
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
+        txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
         vout: '2'
-
     example_Response_Enclave_ReportTransactionResult:
       value:
         result: true
-
     example_Request_Enclave_ReportError:
       value:
-        result: 'DENIED'
-        reason: 'UNKNOWN-ADDRESS'
-        message: 'The address is not found'
-        verificationId: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-
+        result: DENIED
+        reason: UNKNOWN-ADDRESS
+        message: The address is not found
+        verificationId: 8557f2b2-985e-431f-8d52-75c2e5a01e46
     example_Request_Enclave_CheckTransactionStatus:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
     example_Response_Enclave_CheckTransactionStatus:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-        transactionStatus: 'PROCESSING'
-        txHash: '8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042'
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
+        transactionStatus: PROCESSING
+        txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
         vout: '2'
-
     example_Request_Screening_Chainalysis_Sanction:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
     example_Response_Screening_Chainalysis_Sanction:
       value:
         chainalysisSanction:
-          requestId: '398ace46-6baf-4488-a9f2-ee43680b413e'
+          requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
           counterpartyVaspId: '15952089931162059995'
-          direction: 'OUTGOING'
+          direction: OUTGOING
           address: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
-          status: 'NOHIT'
+          status: NOHIT
           createdAt: '2023-05-26T13:34:23.053Z'
-
     example_Request_Screening_Chainalysis_KYT:
       value:
-        verificationUuid: '8557f2b2-985e-431f-8d52-75c2e5a01e46'
-        network: 'Ethereum'
-
+        verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
+        network: Ethereum
     example_Response_Screening_Chainalysis_KYT:
       value:
-        requestId: '398ace46-6baf-4488-a9f2-ee43680b413e'
-
+        requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
     example_Request_Screening_Refinitiv_WCO:
       value:
-        verificationUuid: 'd63398e3-c806-4300-bd99-170b54642080'
+        verificationUuid: d63398e3-c806-4300-bd99-170b54642080
         payload:
           version: '1.0'
           ivms101:
@@ -2994,9 +2823,9 @@ components:
                 - naturalPerson:
                     name:
                       nameIdentifier:
-                        - primaryIdentifier: 'James'
-                          secondaryIdentifier: 'Din'
-                          nameIdentifierType: 'LEGL'
+                        - primaryIdentifier: James
+                          secondaryIdentifier: Din
+                          nameIdentifierType: LEGL
               accountNumber:
                 - '0x5811001506550d8356a215be229c15b6ef371a9a'
             beneficiary:
@@ -3004,36 +2833,30 @@ components:
                 - naturalPerson:
                     name:
                       nameIdentifier:
-                        - primaryIdentifier: 'James'
-                          nameIdentifierType: 'LEGL'
+                        - primaryIdentifier: James
+                          nameIdentifierType: LEGL
               accountNumber:
                 - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-
     example_Response_Screening_Refinitiv_WCO:
       value:
-        requestId: '398ace46-6baf-4488-a9f2-ee43680b413e'
-
+        requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
     example_400_Error_Response:
       value:
-        code: 'MISSING-REQUIRED-BENEFICIARY-INFO'
+        code: MISSING-REQUIRED-BENEFICIARY-INFO
         message: '`requiredBeneficiaryInfo` is required.'
-
     example_401_Error_Response:
       value:
-        code: 'UNKNOWN-ERROR-CODE'
-        message: 'Invalid API Key'
-
+        code: UNKNOWN-ERROR-CODE
+        message: Invalid API Key
     example_403_Error_Response:
       value:
-        code: 'UNKNOWN-ERROR-CODE'
-        message: 'AccessDenied'
-
+        code: UNKNOWN-ERROR-CODE
+        message: AccessDenied
     example_404_Error_Response:
       value:
-        code: 'VERIFICATION-NOT-FOUND'
-        message: 'Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found'
-
+        code: VERIFICATION-NOT-FOUND
+        message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
     example_408_Error_Response:
       value:
-        code: 'REQUEST-TIMEOUT'
-        message: 'timeout of 5000ms exceeded'
+        code: REQUEST-TIMEOUT
+        message: timeout of 5000ms exceeded
