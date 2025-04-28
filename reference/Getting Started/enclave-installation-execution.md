@@ -33,6 +33,8 @@ metadata:
 
 <br />
 
+## Enclave Server Environment Variable
+
 | Environment Variable                       | Default    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | VEGA\_SERVER\_PORT                         | 21117      | Port no. of the enclave server.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -71,3 +73,127 @@ metadata:
 | VEGA\_REFINITIV\_WCO\_API\_KEY             |            | If you want to use the Refinitiv World Check One API integration to perform risk assessments of the other party's user, set up a Refinitiv World Check One API Key.                                                                                                                                                                                                                                                                                                                                                           |
 | VEGA\_REFINITIV\_WCO\_API\_SECRET          |            | If you want to use the Refinitiv World Check One API integration to perform risk assessments of the other party's user, set the secret issued with the Refinitiv World Check One API Key                                                                                                                                                                                                                                                                                                                                      |
 | VEGA\_REFINITIV\_WCO\_GROUP\_ID            |            | If you want to use the Refinitiv World Check One API integration to perform risk assessments of the other party's user, set the group ID created in the Refinitiv console site. All screening cases performed through the integration belong to this group.                                                                                                                                                                                                                                                                   |
+
+<br />
+
+## How to Run Enclave
+
+### How to Run by Writing an Environment Value on a File
+
+* Run by writing an environment value on a file. (e.g. stg\_env)
+
+```shell
+;Enclave Server
+VEGA_SERVER_PORT=21117
+VEGA_ENCLAVE_PUBLIC_ENDPOINT=<Enclave Server endpoint URL>
+
+;API Keys
+VEGA_ALLIANCE_ACCESS_KEY=<issued accessKey>
+VEGA_ALLIANCE_SECRET_KEY=<issued secretKey>
+
+;DB Client
+VEGA_DATABASE_CLIENT=mysql2
+VEGA_DATABASE_USERNAME=vasp
+VEGA_DATABASE_PASSWORD=1234
+VEGA_DATABASE_HOST=<database endpoint URL>
+VEGA_DATABASE_PORT=3306
+VEGA_DATABASE_DB=vega
+VEGA_DATABASE_POOL_MIN=0
+VEGA_DATABASE_POOL_MAX=5
+
+;VASP API
+VEGA_VERIFICATION_API_PATH=<VerifyUser API endpoint URL>
+VEGA_VERIFICATION_ACCOUNT_API_PATH=<VerifyAccount API endpoint URL>
+VEGA_VERIFICATION_TRANSACTION_API_PATH=<Transaction processing state querying API endpoint URL>
+VEGA_VERIFICATION_CALLBACK_API_PATH=<Callback API endpoint URL>
+VEGA_VERIFICATION_AUTHORIZATION_TOKEN=<Auth Token>
+VEGA_VERIFICATION_AUTHORIZATION_KEY=<Auth Token Header Key>
+
+;VerifyVASP Central Server URL
+VEGA_API_ENDPOINT=https://api.vega-protocol.xyz
+
+;Log level
+VEGA_LOG_LEVEL=info
+
+;DB Encryption Key
+VEGA_DECRYPT_API_ENDPOINT=<HSM URL>
+VEGA_ENCRYPTION_KEY_BASE64=<Public Key on base64>
+
+;Caching
+VEGA_PUBLIC_KEY_TTL=1800000
+
+;Risk Assessment
+VEGA_CHAINALYSIS_SANCTION_API_KEY=<Chainalysis Public Sanction API Key>
+VEGA_CHAINALYSIS_KYT_API_KEY=<Chainalysis KYT API Key>
+VEGA_REFINITIV_WCO_API_KEY=<Refinitiv World Check One API Key>
+VEGA_REFINITIV_WCO_API_SECRET=<Refinitiv World Check One API Secret>
+VEGA_REFINITIV_WCO_GROUP_ID=<Refinitiv World Check One Group ID>
+```
+
+<br />
+
+* Run
+
+```shell
+$ docker run -d -p 21117:21117 --env-file=<Name of the Environment Variable File> --name=enclave verifyvasp/enclave:v1.5.7
+```
+
+<br />
+
+## How to Run by Entering an Environment Value as Command
+
+```shell
+$ docker run -d -p 21117:21117 \\\\
+-e VEGA_SERVER_PORT=21117 \\\\
+-e VEGA_ENCLAVE_PUBLIC_ENDPOINT=<Enclave Server endpoint URL> \\\\
+-e VEGA_ALLIANCE_ACCESS_KEY=<issued accessKey> \\\\
+-e VEGA_ALLIANCE_SECRET_KEY=<issued secretKey> \\\\
+-e VEGA_DATABASE_USERNAME=vasp \\\\
+-e VEGA_DATABASE_PASSWORD=1234 \\\\
+-e VEGA_DATABASE_HOST=<database endpoint URL> \\\\
+-e VEGA_DATABASE_PORT=3306 \\\\
+-e VEGA_DATABASE_DB=vega \\\\
+-e VEGA_VERIFICATION_API_PATH=<VerifyUser API endpoint URL> \\\\
+-e VEGA_VERIFICATION_ACCOUNT_API_PATH=<VerifyAccount API endpoint URL> \\\\
+-e VEGA_VERIFICATION_TRANSACTION_API_PATH=<Transaction processing state querying API endpoint URL> \\\\
+-e VEGA_VERIFICATION_CALLBACK_API_PATH=<Callback API endpoint URL> \\\\
+-e VEGA_VERIFICATION_AUTHORIZATION_TOKEN=<Auth Token> \\\\
+-e VEGA_VERIFICATION_AUTHORIZATION_KEY=<Auth Token Header Key> \\\\
+-e VEGA_API_ENDPOINT=https://api.vega-protocol.xyz \\\\
+-e VEGA_LOG_LEVEL=info \\\\
+-e VEGA_PUBLIC_KEY_TTL=1800000 \\\\
+-e VEGA_DECRYPT_API_ENDPOINT=<HSM URL> \\\\
+-e VEGA_ENCRYPTION_KEY_BASE64=<Public Key on base64> \\\\
+-e VEGA_CHAINALYSIS_SANCTION_API_KEY=<Chainalysis Public Sanction API Key> \\\\
+-e VEGA_CHAINALYSIS_KYT_API_KEY=<Chainalysis KYT API Key> \\\\
+-e VEGA_REFINITIV_WCO_API_KEY=<Refinitiv World Check One API Key> \\\\
+-e VEGA_REFINITIV_WCO_API_SECRET=<Refinitiv World Check One API Secret> \\\\
+-e VEGA_REFINITIV_WCO_GROUP_ID=<Refinitiv World Check One Group ID> \\\\
+verifyvasp/enclave:v1.5.7
+```
+
+<br />
+
+## Enclave Server Activation
+
+### Activate Enclave Server and Check
+
+* How to check if the enclave server is successfully activated
+  * On the docker log, a message like “Listening port at 21117,” which means that it is listening through the port number previously set up, must be shown.
+  * (However, an error log must not follow.)
+
+<br />
+
+### Enclave Server Health Check
+
+* GET request via \<enclave endpoint>/healthcheck.
+* In the VV central server, the health of each VASP enclave server is regularly (every 5-10 sec) checked.
+
+<br />
+
+### Enclave Server Reactivation
+
+* If the Enclave docker stops, it should be reactivated.
+* Or if the logs as follows are shown in the Enclave docker log, it should be reactivated.
+  * “Unhandled Rejection detect: \<error message>”
+  * “Uncaught Exception detect: \<error message>”
