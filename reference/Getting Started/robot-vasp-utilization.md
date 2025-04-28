@@ -16,8 +16,20 @@ You can use Robot VASP to simulate originator / beneficiary verification and dep
 
 The following user details are test users hosted on Robot VASP. These are designed to cover most of the test cases needed to verify the VerifyVASP travel rule API implementation on your environment. Use the following user details as originator or beneficiary details when simulating withdrawals or deposits with Robot VASP as your counterparty.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="User 1(KYC verified natural person" icon="fa-info-circle">
+  This user can be assumed as a natural person who has already completed KYC verification. Therefore, if all information is entered correctly, you can receive VERIFIED verification results.
+
+  Personal Information
+
+  Last name : Robbins
+
+  First name : Taylor
+
+  Wallet Addresses
+
+  'ETH' address: '0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c'
+
+  'XRP' address: 'rGFFufDwabHuPur9927p1EgBTcCBfsjtEU'
+
+  'XRP' destination tag: '123456789'
 </Accordion>
