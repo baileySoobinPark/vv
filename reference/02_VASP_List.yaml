@@ -1,9 +1,8 @@
-openapi: '3.0.1'
+openapi: 3.0.1
 info:
   title: Enclave API
   version: '1.0'
   description: Enclave API getOwnVASPID
-
 paths:
   /v1/vasps:
     get:
@@ -11,11 +10,13 @@ paths:
       description: >
         This API returns the list of VASPs.
 
-        When a withdrawal is requested to your VASP, your VASP can call this API to find the vaspId (ID of the VASP) of the Beneficiary VASP.
+        When a withdrawal is requested to your VASP, your VASP can call this API
+        to find the vaspId (ID of the VASP) of the Beneficiary VASP.
 
-        Your VASP will only see list of VASP using Travel Rule protocol and be able to communicate with VASP in the list.
+        Your VASP will only see list of VASP using Travel Rule protocol and be
+        able to communicate with VASP in the list.
       tags:
-        - Enclave API
+        - V1
       operationId: listVasp
       parameters:
         - name: protocol
@@ -28,9 +29,9 @@ paths:
               - CODE
               - ALL
             description: >
-              Name of the protocol.  
-              "VERIFYVASP", "CODE", "ALL" can be input in this field. Default is "ALL".
-            example: 'VERIFYVASP'
+              Name of the protocol.   "VERIFYVASP", "CODE", "ALL" can be input
+              in this field. Default is "ALL".
+            example: VERIFYVASP
       responses:
         '200':
           description: Successful response
@@ -62,62 +63,67 @@ paths:
                             - UP
                             - DOWN
                           description: >
-                            Current operational health status of the VASP Enclave server.
-                          example: 'UP'
+                            Current operational health status of the VASP
+                            Enclave server.
+                          example: UP
                         vaspId:
                           type: string
-                          description: >
+                          description: |
                             Unique identifier of VASP.
                           example: '15952089931162060684'
                         vaspName:
                           type: string
-                          description: >
+                          description: |
                             The name of VASP.
-                          example: 'A Exchange'
+                          example: A Exchange
                         legalName:
                           type: string
-                          description: >
+                          description: |
                             The legal entity name of the VASP.
-                          example: 'A Exchange'
+                          example: A Exchange
                         jurisdiction:
                           type: string
                           description: >
-                            The country or region where the legal entity is incorporated (jurisdiction of incorporation).
-                          example: 'Singapore'
+                            The country or region where the legal entity is
+                            incorporated (jurisdiction of incorporation).
+                          example: Singapore
                         isAlliance:
                           type: boolean
                           description: >
-                            A boolean field indicating whether the entity is a member of VerifyVASP.
+                            A boolean field indicating whether the entity is a
+                            member of VerifyVASP.
                           example: true
                         country:
                           type: string
                           description: >
-                            The name of the country where the VASP is incorporated.
-                          example: 'Singapore'
+                            The name of the country where the VASP is
+                            incorporated.
+                          example: Singapore
                         countryCode:
                           type: string
                           description: >
-                            The ISO 3166-1 alpha-2 code of the country where the VASP is incorporated.
-                          example: 'SG'
+                            The ISO 3166-1 alpha-2 code of the country where the
+                            VASP is incorporated.
+                          example: SG
                         protocol:
                           type: string
                           enum:
                             - VERIFYVASP
                             - CODE
                           description: >
-                            The Travel Rule Protocol used by the VASP.  
-                            Allowed values:  
+                            The Travel Rule Protocol used by the VASP.   Allowed
+                            values:  
                               1. VERIFYVASP: Member of VerifyVASP Alliance.  
                               2. CODE: Member of CODE.
-                          example: 'VERIFYVASP'
+                          example: VERIFYVASP
                         licensedStatus:
                           type: string
                           enum:
                             - Regulated
                             - Unregulated
-                          description: >
+                          description: |
                             The VA License acquisition status of the VASP.
-                          example: 'Regulated'
+                          example: Regulated
                         vaspStatus:
                           type: string
                           enum:
@@ -126,51 +132,53 @@ paths:
                             - VERIFIED-MEMBER
                             - INTEROPERATED
                           description: >
-                            The status of the VASP on VerifyVASP.  
-                            Allowed values:  
+                            The status of the VASP on VerifyVASP.   Allowed
+                            values:  
                               - VERIFIED-MEMBER  
                               - VERIFIED  
                               - UNVERIFIED  
                               - INTEROPERATED
-                          example: 'VERIFIED-MEMBER'
+                          example: VERIFIED-MEMBER
                         createdAt:
                           type: string
                           description: >
-                            The timestamp indicating when the VASP information was created (ISO 8601 UTC).
+                            The timestamp indicating when the VASP information
+                            was created (ISO 8601 UTC).
                           example: '2024-11-25T15:30:00.000Z'
                         updatedAt:
                           type: string
                           description: >
-                            The timestamp indicating when the VASP information was updated (ISO 8601 UTC).
+                            The timestamp indicating when the VASP information
+                            was updated (ISO 8601 UTC).
                           example: '2024-11-25T15:30:00.000Z'
               examples:
                 successexample:
                   value:
                     vasps:
-                      - health: 'UP'
+                      - health: UP
                         vaspId: '27372039731940770'
-                        vaspName: 'A Exchange'
-                        legalName: 'A Exchange'
-                        jurisdiction: 'Singapore'
+                        vaspName: A Exchange
+                        legalName: A Exchange
+                        jurisdiction: Singapore
                         isAlliance: true
-                        country: 'Singapore'
-                        countryCode: 'SG'
-                        protocol: 'VERIFYVASP'
-                        licensedStatus: 'Regulated'
-                        vaspStatus: 'VERIFIED-MEMBER'
+                        country: Singapore
+                        countryCode: SG
+                        protocol: VERIFYVASP
+                        licensedStatus: Regulated
+                        vaspStatus: VERIFIED-MEMBER
                         createdAt: '2021-09-27T01:48:38.000Z'
                         updatedAt: '2021-11-09T07:31:54.000Z'
-                      - health: 'UP'
+                      - health: UP
                         vaspId: '27372039731940165'
-                        vaspName: 'B Exchange'
-                        legalName: 'B Exchange'
-                        jurisdiction: 'The Republic of Korea'
+                        vaspName: B Exchange
+                        legalName: B Exchange
+                        jurisdiction: The Republic of Korea
                         isAlliance: true
-                        country: 'The Republic of Korea'
-                        countryCode: 'KR'
-                        protocol: 'CODE'
+                        country: The Republic of Korea
+                        countryCode: KR
+                        protocol: CODE
                         licensedStatus: null
-                        vaspStatus: 'INTEROPERATED'
+                        vaspStatus: INTEROPERATED
                         createdAt: '2021-09-27T01:48:38.000Z'
                         updatedAt: '2022-01-13T15:27:50.000Z'
         '400':
@@ -187,11 +195,11 @@ paths:
                       - Invalid input parameters  
                       - Missing Required Parameters  
                       - Inactive VASP
-                    example: 'MISSING-VERIFICATION-UUID'
+                    example: MISSING-VERIFICATION-UUID
               examples:
                 400Errorexample:
                   value:
-                    code: 'MISSING-REQUIRED-BENEFICIARY-INFO'
+                    code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
         '404':
           description: 404 Resource Not Found Error response
@@ -202,20 +210,26 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       Error message.  
-                      It could be returned when requesting with non-existent resource.
-                    example: 'VERIFICATION-NOT-FOUND'
+
+                      It could be returned when requesting with non-existent
+                      resource.
+                    example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: >
+                    description: |
                       Explanation about the error returned in the CODE.
-                    example: 'Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found'
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404Errorexample:
                   value:
-                    code: 'VERIFICATION-NOT-FOUND'
-                    message: 'Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found'
+                    code: VERIFICATION-NOT-FOUND
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
         '408':
           description: 408 Request Timeout Error response
           content:
@@ -225,16 +239,16 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: >
+                    description: |
                       Error message when timeout occurs.
-                    example: 'REQUEST-TIMEOUT'
+                    example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: >
+                    description: |
                       Explanation about the error returned in the CODE.
-                    example: 'timeout of 5000ms exceeded'
+                    example: timeout of 5000ms exceeded
               examples:
                 408Errorexample:
                   value:
-                    code: 'REQUEST-TIMEOUT'
-                    message: 'timeout of 5000ms exceeded'
+                    code: REQUEST-TIMEOUT
+                    message: timeout of 5000ms exceeded
