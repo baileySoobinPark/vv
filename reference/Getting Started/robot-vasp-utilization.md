@@ -19,9 +19,9 @@ The following user details are test users hosted on Robot VASP. These are design
 <Accordion title="User 1(KYC verified natural person" icon="fa-info-circle">
   This user can be assumed as a natural person who has already completed KYC verification. Therefore, if all information is entered correctly, you can receive VERIFIED verification results.
 
-  Personal Information
+  * Personal Information
 
-  Last name : Robbins
+    * Last name : Robbins
 
   First name : Taylor
 
