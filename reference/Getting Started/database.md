@@ -72,7 +72,37 @@ metadata:
 <Tabs>
   <Tab title="First Tab">
     <code>
-      dasdasd
+      CREATE TABLE `verifications` (
+      `verification_id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Verification ID',
+      `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
+      `result` enum('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER\_ERROR') NOT NULL DEFAULT 'WAIT' COMMENT 'Verification Result',
+      `reason` varchar(256) DEFAULT NULL COMMENT 'Reason',
+      `message` varchar(1024) DEFAULT NULL COMMENT 'Additional information about the reason',
+      `network` varchar(128) DEFAULT NULL COMMENT 'Network for token transfer',
+      `symbol` varchar(16) DEFAULT NULL COMMENT 'Symbol',
+      `amount` varchar(128) DEFAULT NULL COMMENT 'Amount',
+      `trade_price` varchar(128) DEFAULT NULL COMMENT 'Trading Price',
+      `trade_currency` varchar(128) DEFAULT NULL COMMENT 'Trading Currency',
+      `trade_iso_datetime` datetime DEFAULT NULL COMMENT 'Trading time',
+      `is_exceeding_threshold` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Whether the threshold has been exceeded',
+      `tx_hash` varchar(128) DEFAULT NULL COMMENT 'Tx hash',
+      `vout` varchar(128) DEFAULT NULL COMMENT 'Vout',
+      `originating_vasp_id` bigint(20) unsigned DEFAULT NULL COMMENT 'Originating VASP ID',
+      `originator_account_number` varchar(256) DEFAULT NULL COMMENT 'Originator Account Address or ID',
+      `ivms101_originator` text(65535) DEFAULT NULL COMMENT 'Originator Information',
+      `ivms101_originating_vasp` text(65535) DEFAULT NULL COMMENT 'Originating VASP Information',
+      `beneficiary_vasp_id` bigint(20) unsigned DEFAULT NULL COMMENT 'Beneficiary VASP ID',
+      `beneficiary_account_number` varchar(256) DEFAULT NULL COMMENT 'Beneficiary Account Address or ID',
+      `ivms101_beneficiary` text(65535) DEFAULT NULL COMMENT 'Beneficiary Information',
+      `ivms101_beneficiary_vasp` text(65535) DEFAULT NULL COMMENT 'Beneficiary VASP Information',
+      `verified_at` datetime(3) DEFAULT NULL COMMENT 'Verified at.',
+      `ordered_at` datetime(3) DEFAULT NULL COMMENT 'Ordered at.',
+      `created_at` datetime(3) NOT NULL DEFAULT CURRENT\_TIMESTAMP(3) COMMENT 'Created at.',
+      PRIMARY KEY (`verification_id`),
+      UNIQUE KEY `uk_verifications_verification_uuid` (`verification_uuid`),
+      INDEX `idx_verifications_originator_account` (`originator_account_number`),
+      INDEX `idx_verifications_beneficiary_account` (`beneficiary_account_number`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     </code>
   </Tab>
 
