@@ -71,7 +71,9 @@ metadata:
 
 <Tabs>
   <Tab title="First Tab">
-    Welcome to the content that you can only see inside the first Tab.
+    <code>
+      dasdasd
+    </code>
   </Tab>
 
   <Tab title="Second Tab">
