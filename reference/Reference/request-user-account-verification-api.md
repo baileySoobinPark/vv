@@ -1,5 +1,5 @@
 ---
-title: Request User Account Verification API
+title: Request_User_Account_Verification
 deprecated: false
 hidden: true
 metadata:
