@@ -70,8 +70,8 @@ metadata:
 ### Table Creation Query
 
 <Tabs>
-  <Tab title="First Tab">
-    ```MySQL
+  <Tab title="MySQL">
+    ```
       CREATE TABLE `verifications` (
       `verification_id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Verification ID',
       `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
@@ -103,42 +103,6 @@ metadata:
       INDEX `idx_verifications_originator_account` (`originator_account_number`),
       INDEX `idx_verifications_beneficiary_account` (`beneficiary_account_number`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    ```
-    ```PostgreSQL
-
-    CREATE TYPE enum_result AS ENUM ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR');
-    ​
-    CREATE TABLE verifications (
-    verification_id SERIAL NOT NULL PRIMARY KEY,
-    verification_uuid varchar(40) NOT NULL,
-    UNIQUE(verification_uuid),
-    result enum_result DEFAULT 'WAIT',
-    reason varchar(256) DEFAULT NULL,
-    message varchar(1024) DEFAULT NULL,
-    network varchar(256) DEFAULT NULL,
-    symbol varchar(16) DEFAULT NULL,
-    amount varchar(128) DEFAULT NULL,
-    trade_price varchar(128) DEFAULT NULL,
-    trade_currency varchar(128) DEFAULT NULL,
-    trade_iso_datetime timestamp DEFAULT NULL,
-    is_exceeding_threshold boolean DEFAULT true NOT NULL,
-    tx_hash varchar(128) DEFAULT NULL,
-    vout varchar(128) DEFAULT NULL,
-    originating_vasp_id numeric(20) DEFAULT NULL,
-    originator_account_number varchar(256) DEFAULT NULL,
-    ivms101_originator varchar(65535) DEFAULT NULL,
-    ivms101_originating_vasp varchar(65535) DEFAULT NULL,
-    beneficiary_vasp_id numeric(20) DEFAULT NULL,
-    beneficiary_account_number varchar(256) DEFAULT NULL,
-    ivms101_beneficiary varchar(65535) DEFAULT NULL,
-    ivms101_beneficiary_vasp varchar(65535) DEFAULT NULL,
-    verified_at timestamp DEFAULT NULL,
-    ordered_at timestamp DEFAULT NULL,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP
-    );
-    ​
-    CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
-    CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
     ```
   </Tab>
 
