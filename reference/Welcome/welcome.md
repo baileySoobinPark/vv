@@ -2,7 +2,7 @@
 title: Welcome
 excerpt: Technical documentation for VerifyVASP
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
