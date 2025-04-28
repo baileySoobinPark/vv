@@ -23,13 +23,13 @@ The following user details are test users hosted on Robot VASP. These are design
 
     * Last name : Robbins
 
-  First name : Taylor
+    - First name : Taylor
 
-  Wallet Addresses
+  - Wallet Addresses
 
-  'ETH' address: '0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c'
+    * 'ETH' address: '0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c'
 
-  'XRP' address: 'rGFFufDwabHuPur9927p1EgBTcCBfsjtEU'
+    * 'XRP' address: 'rGFFufDwabHuPur9927p1EgBTcCBfsjtEU'
 
-  'XRP' destination tag: '123456789'
+    * 'XRP' destination tag: '123456789'
 </Accordion>
