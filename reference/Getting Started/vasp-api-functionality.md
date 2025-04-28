@@ -79,4 +79,78 @@ metadata:
 
 > 📘 Enclave Environment Variable
 >
-> Set the transaction status query API endpoint as\*\*`VEGA_VERIFICATION_TRANSACTION_API_PATH`\*\*.
+> Set the transaction status query API endpoint as **`VEGA_VERIFICATION_TRANSACTION_API_PATH`**.
+
+### Function(s)
+
+* VASP needs to provide a transaction result (TxHash) of the verification UUIC it received.
+
+### Request/Response
+
+* **Request**
+  * Includes verification UUID used in the user verification step
+* **Response**
+  * Returns transaction status and TxHash information corresponding to the verification UUID it received.
+* For detailed API specifications, please refer to the link below.
+* 카드 링크 추가
+
+<br />
+
+## Callback API
+
+### Overview
+
+* Some enclave APIs of VerifyVASP work asynchronously. A callback API is required to fetch the result.
+* The user verification API is a typical example of an asynchronous API. Its instant response upon a request only includes the verificationUuid, not the final verification result.
+* As the verification requests are asynchronously delivered to the Beneficiary VASP, the Originating VASP needs to implement this callback API and set a proper enclave environment variable to get the processing result notification.
+* Implementation of callback API is optional but recommended: it is complicated to handle the asynchronous case without this API.
+
+> 📘 Enclave Environment Variable
+>
+> Set the Callback API endpoint as **`VEGA_VERIFICATION_CALLBACK_API_PATH`**.
+
+### Function(s)
+
+* VASP needs to appropriately process the request along with the callbackType(VERIFICATION\_RESULT, TX\_REPORT, ERROR\_REPORT).
+* A response should be returned as soon as possible.
+
+### Request/Response
+
+* **Request**
+  * The result of an asynchronous API.
+* **Response**
+  * 200 OK Response
+* For detailed API specifications, please refer to the link below.
+
+<br />
+
+## Decryption API for Encrypted Key
+
+### Overview
+
+* For the encryption key of the database enclave uses, you can use a better encryption key with this API.
+* In an enclave, the encryption key used to encrypt sensitive information such as a private key or personal information is decrypted with this API.
+
+> 📘 Enclave Environment Variable
+>
+> Set the decryption API endpoint corresponding to the encrypted key as **`VEGA_DECRYPT_API_ENDPOINT`**.
+
+### Function(s)
+
+* Provide a decrypted encryption key corresponding to the encryption key received once again.
+
+### Response/Request
+
+* **Request**
+  * Includes an inputKey, an encryption key.
+* **Response**
+  * Returns the decrypted encryption key corresponding to the inputKey.
+* For detailed API specifications, please refer to the link below.
+* 카드 링크 추가
+
+<br />
+
+## Frontend development
+
+* To comply with Travel Rule, an additional frontend (display side) development is required.
+* At the very least, a display feature for getting the input of beneficiary VASP selection, beneficiary name, and his/her account number must be developed.
