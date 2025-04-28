@@ -33,3 +33,43 @@ The following user details are test users hosted on Robot VASP. These are design
 
     * 'XRP' destination tag: '123456789'
 </Accordion>
+
+<Accordion title="User 2(KYC unverified natural person" icon="fa-info-circle">
+  This user can be assumed as a natural person who has not completed KYC verification. Therefore, if all information is entered correctly, you can receive DENIED (UNVERIFIED-KYC) verification results.
+
+  * Personal Information
+
+    * Last name : Cook
+
+    * First name : Ethan
+
+  * Wallet Addresses
+
+    * 'ETH' address: '0x319E92715729c46869ed31d228f3b4f31e951450'
+
+    * 'XRP' address: 'rGFFufDwabHuPur9927p1EgBTcCBfsjtEU'
+
+    * 'XRP' destination tag: '345678912'
+</Accordion>
+
+<Accordion title="User 3(KYC verified legal person">
+  This user can be assumed as a legal person who has already completed KYC verification. Therefore, when requesting user verification, the representative name must also be entered to receive VERIFIED verification results.
+
+  * Personal Information
+
+    * Legal person name : Garrit Studio
+
+    * Representative information
+
+      * Last name : Clarke
+
+      * First name : Jason
+
+  * Wallet Addresses
+
+    * 'ETH' address: '0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E'
+
+    * 'XRP' address: 'rGFFufDwabHuPur9927p1EgBTcCBfsjtEU'
+
+    * 'XRP' destination tag: '234567891'
+</Accordion>
