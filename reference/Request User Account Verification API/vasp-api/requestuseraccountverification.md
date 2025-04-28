@@ -4,5 +4,5 @@ excerpt: Request to verify user account information.
 api:
   file: Request_User_Account_Verification.yaml
   operationId: requestUserAccountVerification
-hidden: false
+hidden: true
 ---
