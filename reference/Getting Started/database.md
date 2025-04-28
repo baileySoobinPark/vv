@@ -104,6 +104,8 @@ metadata:
       INDEX `idx_verifications_beneficiary_account` (`beneficiary_account_number`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
+    ```PostgreSQL
+    ```
   </Tab>
 
   <Tab title="Second Tab">
