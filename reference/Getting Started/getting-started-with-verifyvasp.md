@@ -8,7 +8,9 @@ hidden: true
 metadata:
   robots: index
 ---
-> ℹ️ Please register your entity in order to kick-start our comprehensive due-diligence process. This is necessary to ensure that only credible VASPs are onboard onto our alliance. While that is in progress, we recommend you start by understanding VerifyVASP architecture and protocols first, then follow the procedure provided.
+> ℹ️ Please register your entity in order to kick-start our comprehensive due-diligence process.
+>
+> This is necessary to ensure that only credible VASPs are onboard onto our alliance. While that is in progress, we recommend you start by understanding VerifyVASP architecture and protocols first, then follow the procedure provided.
 
 ## Understanding Architecture and Protocol of VerifyVASP's TravelRule℗ Solution
 
@@ -27,7 +29,7 @@ This document describes VerifyVASP's infrastructure setup, security requirements
 Join the Alliance by [registering on VerifyVASP Console.](https://www.verifyvasp.com/sign-up/) Please refer below for detailed steps on registration. Upon successful onboarding, an API-KEY will be issued along with other more detailed documentation including VerifyNAME℗.
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/alliance-registration-api-key-creation" target="_blank" />
+  <Card title="Alliance Registration & API Key Creation" href="https://verifyvasp.readme.io/reference/alliance-registration-api-key-creation" target="_blank" />
 </Cards>
 
 <br />
@@ -37,7 +39,7 @@ Join the Alliance by [registering on VerifyVASP Console.](https://www.verifyvasp
 Before interlocking to VerifyVASP Enclave Server, implement VASP side APIs described below.
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/vasp-api-functionality" target="_blank" />
+  <Card title="VASP API Functionality" href="https://verifyvasp.readme.io/reference/vasp-api-functionality" target="_blank" />
 </Cards>
 
 <br />
@@ -47,7 +49,7 @@ Before interlocking to VerifyVASP Enclave Server, implement VASP side APIs descr
 This is information on the database used in the VerifyVASP Enclave server.
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/database" target="_blank" />
+  <Card title="Database" href="https://verifyvasp.readme.io/reference/database" target="_blank" />
 </Cards>
 
 <br />
@@ -57,7 +59,7 @@ This is information on the database used in the VerifyVASP Enclave server.
 This explains how to install and interlock with Enclave Server.
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/enclave-installation-execution" target="_blank" />
+  <Card title="Enclave Installation & Execution" href="https://verifyvasp.readme.io/reference/enclave-installation-execution" target="_blank" />
 </Cards>
 
 <br />
@@ -67,9 +69,9 @@ This explains how to install and interlock with Enclave Server.
 This is a guide for utilizing VerifyVASP Enclave Server API.
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/encalve-server-api-utilization" target="_blank" />
+  <Card title="Enclave Server API Utilization" href="https://verifyvasp.readme.io/reference/encalve-server-api-utilization" target="_blank" />
 </Cards>
 
 <Cards columns={1}>
-  <Card title="Product Overview" href="https://verifyvasp.readme.io/reference/robot-vasp-utilization" target="_blank" />
+  <Card title="Robot VASP Utilization" href="https://verifyvasp.readme.io/reference/robot-vasp-utilization" target="_blank" />
 </Cards>
