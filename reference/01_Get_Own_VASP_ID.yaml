@@ -1,16 +1,17 @@
 openapi: 3.0.1
 info:
-  title: VASP ID API
+  title: Enclave API
   version: '1.0'
   description: Enclave API getOwnVASPID
 paths:
   /v1/vasps/self:
     get:
+      summary: VASP ID
       description: >
         VASP (Virtual Asset Service Provider) can check its own VASP ID using
         this API.
       tags:
-        - Enclave API
+        - V1
       operationId: getVaspId
       responses:
         '200':

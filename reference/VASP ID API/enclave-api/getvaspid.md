@@ -1,5 +1,5 @@
 ---
-title: /v1/vasps/self
+title: VASP ID
 excerpt: >
   VASP (Virtual Asset Service Provider) can check its own VASP ID using this
   API.
