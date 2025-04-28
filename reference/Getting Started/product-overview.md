@@ -5,7 +5,9 @@ hidden: true
 metadata:
   robots: index
 ---
-# VerifyVASP Architecture
+# Architecture
+
+<Image align="center" border={false} caption="VerifyVASP's Decentralized Architecture" src="https://files.readme.io/9b72de5dab5c3696f54e2505998dfa8260bc8a4aeb65f421fb3166c378101e39-VASP_Architecture.png" />
 
 ## Overview
 
@@ -15,8 +17,7 @@ VerifyVASP operates with a decentralized architecture, consisting of a Central S
 
 ## Central Server
 
-The Central Server, operated by VerifyVASP, acts as a message mediator between VASPs.\
-It is necessary to configure the appropriate Central Server endpoint for your Enclave Server's environment.
+VerifyVASP operates a central Server which serves as a message mediator server, operated by VerifyVASP. Please configure either the Production or Staging server endpoint's information below for the enclave environment variable `**VEGA_API_ENDPOINT**`.
 
 * **Production Endpoint**:\
   `https://api.vega-protocol.com`
