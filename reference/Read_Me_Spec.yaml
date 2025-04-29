@@ -12,7 +12,7 @@ x-readme:
     - body
     - form
 paths:
-  /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
+  /VEGA_VERIFICATION_ACCOUNT_API_PATH:
     post:
       description: ''
       summary: User Account Verification
