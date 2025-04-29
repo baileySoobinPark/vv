@@ -3,13 +3,20 @@ info:
   title: API Reference
   version: '1.0'
   description: Management of VerifyVASP API Spec.
+  x-readme:
+    parameter-ordering:
+      - header
+      - path
+      - query
+      - cookie
+      - body
+      - form
 paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
       description: ''
       tags:
         - VASP API Reference
-        - v1
       security:
         - Authorization: []
       operationId: requestUserAccountVerification
