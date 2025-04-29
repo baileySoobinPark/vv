@@ -6,7 +6,7 @@ info:
 x-tagGroups:
   - name: VASP Management
     tags:
-      - VASP API Reference
+      - VASP API Reference!
   - name: Enclave API Reference
     tags:
       - Enclave API Reference
