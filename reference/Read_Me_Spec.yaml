@@ -3,19 +3,13 @@ info:
   title: API Reference
   version: '1.0'
   description: Management of VerifyVASP API Spec.
-x-tagGroups:
-  - name: VASP Management
-    tags:
-      - VASP API Reference!
-  - name: Enclave API Reference
-    tags:
-      - Enclave API Reference
 paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
       description: ''
       tags:
         - VASP API Reference
+        - v1
       security:
         - Authorization: []
       operationId: requestUserAccountVerification
