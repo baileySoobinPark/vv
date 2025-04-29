@@ -15,6 +15,7 @@ paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
       description: ''
+      summary: User Account Verification
       tags:
         - VASP API Reference
       security:
@@ -167,7 +168,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     originatingVaspId: '15952089931162060684'
                     symbol: ETH
@@ -846,7 +847,7 @@ paths:
                             items:
                               type: string
               examples:
-                successexample:
+                SuccessfulExample:
                   summary: example of a successful verification response
                   description: >
                     A complete example of a successful verification response
@@ -975,7 +976,7 @@ paths:
                       Index of the output in a Bitcoin blockchain transaction.
                     example: '2'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     originatingVaspId: '15952089931162060684'
                     transactionStatus: PROCESSING
@@ -1411,7 +1412,7 @@ paths:
                       The Base64-encoded database encryption key.
                     example: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
   /v1/vasps/self:
@@ -1434,7 +1435,7 @@ paths:
                       Unique identifier of VASP.
                     example: '15952089931162060684'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     vaspId: '15952089931162058999'
         '400':
@@ -1696,7 +1697,7 @@ paths:
                             compatibility.
                           example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     vasps:
                       - health: UP
@@ -1983,7 +1984,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     vasps:
                       - health: UP
@@ -2542,7 +2543,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     createdAt: '2022-03-03T12:45:34.085Z'
@@ -3049,7 +3050,7 @@ paths:
                             compatibility.
                           example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     count: 25
                     page: 1
@@ -3455,7 +3456,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     verificationId: '12345'
                     verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
@@ -3626,7 +3627,7 @@ paths:
                       true represents that the result is **VERIFIED**.
                     example: true
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     result: true
         '400':
@@ -3781,7 +3782,7 @@ paths:
                       true represents that the result is **VERIFIED**.
                     example: true
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     result: true
         '400':
@@ -3939,7 +3940,7 @@ paths:
                       Index of the output in a Bitcoin blockchain transaction.
                     example: '2'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     transactionStatus: PROCESSING
@@ -4128,7 +4129,7 @@ paths:
                           all three formats to maintain compatibility.
                         example: '2024-11-25T15:30:00.000Z'
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     chainalysisSanction:
                       requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
@@ -4294,7 +4295,7 @@ paths:
                       risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
@@ -4680,7 +4681,7 @@ paths:
                       risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
-                successexample:
+                SuccessfulExample:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
@@ -5011,7 +5012,7 @@ components:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_RequestUserVerification:
       description: Successful verification response
       content:
@@ -5030,7 +5031,7 @@ components:
               version: {}
               ivms101: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_CheckTransactionStatus:
       description: Successful CheckTransactionStatus response
       content:
@@ -5046,7 +5047,7 @@ components:
               txHash: {}
               vout: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Callback:
       description: Successful Callback response
       content:
@@ -5071,7 +5072,7 @@ components:
             properties:
               outputKey: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_GetVaspId:
       description: Successful response
       content:
@@ -5081,7 +5082,7 @@ components:
             properties:
               vaspId: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_ListVasp:
       description: Successful response
       content:
@@ -5094,7 +5095,7 @@ components:
             properties:
               vasps: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_RequestUserAccountVerification:
       description: Successful response
       content:
@@ -5110,7 +5111,7 @@ components:
               reason: {}
               verifiedAt: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_RequestUserVerification:
       description: Successful response
       content:
@@ -5125,56 +5126,56 @@ components:
               verificationUuid: {}
               createdAt: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_ListVerificationResult:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_GetVerificationResult:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_ReportTransactionResult:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Enclave_CheckTransactionStatus:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Screening_Chainalysis_Sanction:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Screening_Chainalysis_KYT:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Response_Screening_Refinitiv_WCO:
       description: Successful response
       content:
         application/json:
           schema: {}
           examples:
-            successexample: {}
+            SuccessfulExample: {}
     Error_400_Response:
       description: 400 Bad Request Error response
       content:
