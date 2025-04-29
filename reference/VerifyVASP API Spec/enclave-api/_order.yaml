@@ -1,9 +1,0 @@
-- getvaspid
-- listvasp
-- enclave_requestuseraccountverification
-- enclave_requestuserverification
-- enclave_listverificationresult
-- enclave_getverificationresult
-- enclave_reporttransactionresult
-- enclave_reporterror
-- enclave_checktransactionstatus
