@@ -11,7 +11,7 @@ paths:
         - Authorization: []
       operationId: requestUserAccountVerification
       tags:
-        - VASP API
+        - VASP API Reference
       parameters:
         - name: Authorization
           in: header
@@ -175,7 +175,7 @@ paths:
         - Authorization: []
       operationId: requestUserVerification
       tags:
-        - VASP API
+        - VASP API Reference
       parameters:
         - name: Authorization
           in: header
@@ -882,7 +882,7 @@ paths:
         - Authorization: []
       operationId: checkTransactionStatus
       tags:
-        - VASP API
+        - VASP API Reference
       parameters:
         - name: Authorization
           in: header
@@ -981,7 +981,7 @@ paths:
         - Authorization: []
       operationId: callback
       tags:
-        - VASP API
+        - VASP API Reference
       parameters:
         - name: Authorization
           in: header
@@ -1359,7 +1359,7 @@ paths:
         - Authorization: []
       operationId: getDecryptedEncKey
       tags:
-        - VASP API
+        - VASP API Reference
       parameters:
         - name: Authorization
           in: header
@@ -1407,8 +1407,13 @@ paths:
                   value:
                     outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
   /v1/vasps/self:
+    servers:
+      - url: http://<enclave-endpoint>
     get:
-      description: ''
+      summary: VASP ID
+      description: >-
+        VASP (Virtual Asset Service Provider) can check its own VASP ID using
+        this API.
       operationId: getVaspId
       tags:
         - Enclave API
@@ -1505,6 +1510,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/vasps:
+    servers:
+      - url: http://<enclave-endpoint>
     get:
       description: ''
       operationId: listVasp
@@ -1793,6 +1800,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications/account:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: enclave_requestUserAccountVerification
@@ -2080,6 +2089,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: enclave_requestUserVerification
@@ -3157,6 +3168,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications/{uuid}:
+    servers:
+      - url: http://<enclave-endpoint>
     get:
       description: ''
       operationId: enclave_getVerificationResult
@@ -3559,6 +3572,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications/tx:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: enclave_reportTransactionResult
@@ -3697,6 +3712,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications/error:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: enclave_reportError
@@ -3852,6 +3869,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/verifications/tx/inquiry:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: enclave_checkTransactionStatus
@@ -4014,6 +4033,8 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
   /v1/risk-assessment/chainalysis-sanction:
+    servers:
+      - url: http://<enclave-endpoint>
     post:
       description: ''
       operationId: Screening_performRiskAssessmentViaChainalysisSanction
