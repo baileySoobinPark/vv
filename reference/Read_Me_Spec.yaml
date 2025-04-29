@@ -25,8 +25,7 @@ paths:
         - name: Authorization
           in: header
           required: true
-          description: |
-            Bearer token for authorization.
+          description: Bearer token for authorization.
           schema:
             type: string
             description: Bearer token for authorization.
@@ -135,8 +134,6 @@ paths:
                       - UNKNOWN-ADDRESS
                       - MISMATCHED-NAME
                       - UNDEFINED-ERROR
-                      - BLACKLISTED
-                      - UNVERIFIED-KYC
                     description: >
                       Error codes indicating the reason for verification
                       failure.
@@ -167,17 +164,6 @@ paths:
                       system can handle and correctly interpret all three
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
-              examples:
-                SuccessfulExample:
-                  value:
-                    originatingVaspId: '15952089931162060684'
-                    symbol: ETH
-                    network: Ethereum
-                    version: '1.0'
-                    ivms101:
-                      beneficiary:
-                        accountNumber:
-                          - '0x5811001506550d8356a215be229c15b6ef371a9b'
   /VASP_DEFINED_PATH_VERIFY_USER:
     post:
       tags:
