@@ -1,7 +1,7 @@
 ---
 title: ISO20022 Standard
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
