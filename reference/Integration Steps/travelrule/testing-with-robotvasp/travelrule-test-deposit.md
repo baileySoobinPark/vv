@@ -248,11 +248,13 @@ Your VASP must pass all test cases listed below.
 ### 3-1. Execute the transaction on the blockchain network
 
 * **Conditions**
+
   * Only completed verifications can be used for the deposit test.
   * In this test, the originator wallet address must same with the beneficiary wallet address in the withdrawal test.
   * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
-  <Accordion title="How to use the Deposit Reflection Inquery API">
+
+  <Accordion title="How to use the Robot VASP Withdrawal Request API">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal`
@@ -272,10 +274,63 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
+
   <br />
 * **Expected Result**
   * Your VASP can confirm the deposit.
-    <br />
+
+**Case 1. Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+
+* **Conditions**
+  * After the actual transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
+* **Expected Results**
+  * Your VASP can receive the transaction report through the callback API(VASP API).
+
+<br />
+
+<br />
+
+**Case 2. Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
+
+* **Conditions**
+  * If you set the omitTxReport field to true when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
+  * Your VASP must check the transaction status using the Check Transaction Status API(Enclave API).
+  * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
+  <Accordion title="How to use the Transaction Reporting Simulation API">
+    **Method**: `POST`
+
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx`
+    * **Request Query**
+
+    | Parameter Name     | Type   | Description                                                                                                                                       | Example                                        |
+    | ------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+    | `verificationUuid` | string | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | `"ecb457e3-2307-4e72-8a42-16a3774e154b"`       |
+    | `txHash`           | string | Identifier to distinguish transactions                                                                                                            | `"0xaaa042c0632f4d44c7cea978f22cd02e751a410e"` |
+
+    * **Request Body Example**
+
+    ```
+    {
+    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2",
+    "thrash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
+    }
+    ```
+  </Accordion>
+  <br />
+* **Expected Results**
+  * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />
 
 ### 4-1. Execute the transaction on the Blockchain Network
 
