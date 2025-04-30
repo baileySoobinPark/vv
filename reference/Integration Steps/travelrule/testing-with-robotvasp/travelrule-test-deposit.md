@@ -108,7 +108,9 @@ Your VASP must pass all test cases listed below.
 ### 1. Your VASP verifies the Beneficiary's account provided by Robot VASP
 
 * **Conditions**
+
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Account Verification API.
+
   <Accordion title="How to use the User Account Verification Simulation API">
     **Method**: `POST`
 
@@ -156,11 +158,81 @@ Your VASP must pass all test cases listed below.
     * `LACK-OF-INFORMATION`
     * `BLACKLISTED`
 
-### 2. Verify the Beneficiary's account information
+### 2. Your VASP verifies the Beneficiary's personal information provided by Robot VASP
 
 * **Conditions**
-  * Your VASP must use the User Account Verification API(Enclave API).
-  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+  * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Verification API.
+  * The Robot VASP must return `VERIFIED` as the result of User Account  Verification Simulation API before using User Verification Simulation API.
+  <Accordion title="How to use the User Verification Simulation API">
+    **Method**: `POST`
+
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications`
+      * **Request Body Example**
+
+    ```
+    // copy and paste it in request body params
+
+    {
+    "keyType": "PerVasp",
+    "beneficiaryVaspId": "16384656509591635927", // your VASP ID
+    "assetInfo": {
+      "symbol": "ETH",
+      "amount": "231.0",
+      "isExceedingThreshold": true,
+      "tradeCurrency": "KRW",
+      "tradePrice": "87681287",
+      "tradeISODatetime": "2022-02-08T13:02:57.824Z"
+    },
+    "requiredBeneficiaryInfo": "NATURAL_PERSON_NAME,ACCOUNT_NUMBER",
+    "payload": {
+      "version": "1.0",
+      "ivms101": {
+        "originator": {
+          "originatorPersons": [
+            {
+              "naturalPerson": {
+                "name": {
+                  "nameIdentifier": [
+                    {
+                      "primaryIdentifier": "Robbins",
+                      "secondaryIdentifier": "Taylor",
+                      "nameIdentifierType": "LEGL"
+                    }
+                  ]
+                },
+                "dateAndPlaceOfBirth": {
+                  "dateOfBirth": "1991-05-03",
+                  "placeOfBirth": "Seoul"
+                }
+              }
+            }
+          ],
+          "accountNumber": ["0x5811001506550d8356a215be229c15b6ef371a9a"]
+        },
+        "beneficiary": {
+          "beneficiaryPersons": [
+            {
+              "naturalPerson": {
+                "name": {
+                  "nameIdentifier": [
+                    {
+                      "primaryIdentifier": "last name",
+                      "secondaryIdentifier": "first name",
+                      "nameIdentifierType": "LEGL"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+        }
+      }
+    }
+    }
+    ```
+  </Accordion>
+  <br />
 * **Expected Result**
   * You can receive seven possible responses depending on how your VASP entered the test user information.
     * `VERIFIED`
