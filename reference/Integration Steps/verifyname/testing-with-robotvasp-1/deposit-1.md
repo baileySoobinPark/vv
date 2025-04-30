@@ -24,8 +24,11 @@ metadata:
 ## 1. **Your VASP verifies the Beneficiary's account provided by Robot VASP**
 
 * **Conditions**
+
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the Owner Verification API.
+
   <br />
+
   <Accordion title="* How to use Owner Verification Simulation API">
     **Method**: `POST`
 
@@ -64,36 +67,38 @@ metadata:
       }
     }
     ```
+
+    * **Expected Result**
+
+    * Robot VASP 가 Beneficiary VASP 으로 부터 받은 항목별 검증 결과를 바탕으로 판단한 최종 결과가 “verification\_result” 필드로 리턴 됩니다.
+
+    * 항목별 검증 결과 예시
+
+    ```json
+    "verification_results": {
+        "ticker": "MATCHED",
+        "network": "MATCHED",
+        "address": "MATCHED",
+        "tx_hash": "SKIPPED",
+        "dti": "SKIPPED",
+        "name": "MATCHED",
+        "birth_date": "MATCHED",
+        "date_of_incorporation": "SKIPPED",
+        "organisation_identification": "SKIPPED"
+    },
+    ```
+
+    * Robot VASP 가 판단한 결과를 포함한 응답
+      * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
+
+    ```
+    {
+      "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
+      "verified_at": "2025-04-22T10:08:31.785Z",
+      "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
+    }
+    ```
   </Accordion>
-* **Expected Result**
-
-  * Robot VASP 가 Beneficiary VASP 으로 부터 받은 항목별 검증 결과를 바탕으로 판단한 최종 결과가 “verification\_result” 필드로 리턴 됩니다.
-  * 항목별 검증 결과 예시
-
-  ```json
-  "verification_results": {
-      "ticker": "MATCHED",
-      "network": "MATCHED",
-      "address": "MATCHED",
-      "tx_hash": "SKIPPED",
-      "dti": "SKIPPED",
-      "name": "MATCHED",
-      "birth_date": "MATCHED",
-      "date_of_incorporation": "SKIPPED",
-      "organisation_identification": "SKIPPED"
-  },
-  ```
-
-  * Robot VASP 가 판단한 결과를 포함한 응답
-    * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
-
-  ```
-  {
-    "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
-    "verified_at": "2025-04-22T10:08:31.785Z",
-    "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
-  }
-  ```
 
 <br />
 
@@ -104,6 +109,31 @@ metadata:
   * In this test, the originator wallet address must same with the beneficiary wallet address in the withdrawal test.
   * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
+  <br />
+  <Accordion title="* How to use the Robot VASP Withdrawal Request API">
+    **Method**: `POST`
+
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/withdrawal`
+
+    * **Request Query**
+
+    | Parameter Name                         | Type    | Description                                                                                                                                                                                                                 | Example                                      |
+    | -------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+    | `ticker` (required)                    | string  | Ticker of the virtual asset to be transferred.                                                                                                                                                                              | `ETH`                                        |
+    | `originator_account_number` (required) | string  | Must be an address that has a balance greater than 0 as confirmed in withdrawal test 3-1 case 1.                                                                                                                            | `0xe6998af38840836d2469ae71aa849f4f94c2b6d6` |
+    | `originator_tag` (optional)            | string  | Tag used for verification when the address includes a secondary tag (e.g., destination tag, memo).                                                                                                                          | `2852039353`                                 |
+    | `amount` (required)                    | string  | Must be within the available balance verified in withdrawal test 3-1 case 1.                                                                                                                                                | –                                            |
+    | `omit_tx_report` (optional)            | boolean | To verify whether the transaction report is submitted after withdrawal. If set to `true`, the transaction result will not be submitted. Your VASP can set this to `true` to conduct test case 2 in 2-1. Default is `false`. | –                                            |
+
+    * **Request Body Example**
+
+    ```
+    {
+    "tx_hash": "0x116f1d11b871dfcc8c551fa146f02dfedca2ec5908338ce2c648416ceede26c2"
+    }
+    ```
+  </Accordion>
+  <br />
 * How to use the Robot VASP Withdrawal Request API
 
   **Method**: `POST`
