@@ -185,8 +185,6 @@ Your VASP must pass all test cases listed below.
   * **Request Example**
 
   ```
-  Request Example
-
   <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
   ```
 </Accordion>
