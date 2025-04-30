@@ -152,23 +152,27 @@ Your VASP must pass all test cases listed below.
   * Your VASP must use the Report API(`POST v2/owner-verifications/{request_id}/report, Enclave API`) to send the transaction hash to the VerifyVASP Central Server.
 * **Expected Result**
   * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
-  * How to use the Deposit Reflection Inquery API
+  <br />
+  <Accordion title="How to use the Deposit Reflection Inquery API">
+    **Method**: `GET`
 
-    **Method:`GET`**
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
+    * **Request Query**
 
-    * **Endpoint:** `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-    * **Request query**
+    | Parameter Name | Type   | Description                                       | Example                                    |
+    | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
+    | `vaspId`       | string | Originating VASP ID                               | 15952089931162058999                       |
+    | `symbol`       | string | The symbol of the virtual asset to be transferred | ETH                                        |
+    | `address`      | string | The address that is receiving the virtual asset   | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
 
-      | Parameter Name | Type   | Description                                       | example                                    |
-      | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
-      | vaspId         | string | Originating VASP ID                               | 15952089931162058999                       |
-      | symbol         | string | The symbol of the virtual asset to be transferred | ETH                                        |
-      | address        | string | The address that receiving virtual asset          | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
     * **Request Example**
 
-      ```json
-      https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F
-      ```
+    ```
+    <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
+    ```
+  </Accordion>
+  <br />
+  <br />
 * Case 2. **Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
   * **Conditions**
     * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
