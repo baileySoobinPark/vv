@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-### 📄 Database Tables for Verification and Risk Assessment
+## 📄 Database Tables for Verification and Risk Assessment
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -275,6 +275,126 @@ Enclave mode 를 TR 로 설정한 경우 데이터 베이스 유형에 적합한
     BEGIN
     SELECT "verifications_id_seq".nextval
     INTO :new."verification_id"
+    FROM dual;
+    END;
+    ```
+  </Tab>
+</Tabs>
+
+<br />
+
+## Configuration Query for Optional Table: Chainalysis Sanction Related Tables
+
+If your VASP utilizes the Chainalysis Sanction feature, execute the following queries to set up the corresponding database.
+
+<Tabs>
+  <Tab title="MySQL">
+    ```sql
+    CREATE TABLE `chainalysis_sanction_results` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `request_id` varchar(40) NOT NULL,
+    `verification_uuid` varchar(40) NOT NULL,
+    `counterparty_vasp_id` bigint(20) unsigned NOT NULL,
+    `direction` enum('OUTGOING', 'INCOMING') NOT NULL,
+    `address` varchar(512) NOT NULL,
+    `status` enum('NOHIT', 'SANCTION', 'CLOSED', 'ERROR') NOT NULL,
+    `ofac_name` varchar(1024) DEFAULT NULL,
+    `ofac_description` varchar(4096) DEFAULT NULL,
+    `ofac_url` varchar(1024) DEFAULT NULL,
+    `created_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uniq_request_id` (`request_id`),
+    INDEX `idx_counterparty_vasp_id` (`counterparty_vasp_id`, `created_at`),
+    INDEX `idx_address` (`address`, `created_at`),
+    INDEX `idx_created_at` (`created_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    ```
+  </Tab>
+
+  <Tab title="PostgreSQL">
+    ```sql
+    CREATE TYPE enum_direction AS ENUM ('OUTGOING', 'INCOMING');
+    CREATE TYPE enum_chainalysis_sanction_status AS ENUM ('NOHIT', 'SANCTION', 'CLOSED', 'ERROR');
+
+    CREATE TABLE chainalysis_sanction_results (
+    id SERIAL NOT NULL PRIMARY KEY,
+    request_id varchar(40) NOT NULL,
+    verification_uuid varchar(40) NOT NULL,
+    counterparty_vasp_id numeric(20) NOT NULL,
+    direction enum_direction NOT NULL,
+    address varchar(512) NOT NULL,
+    status enum_chainalysis_sanction_status NOT NULL,
+    ofac_name varchar(1024) DEFAULT NULL,
+    ofac_description varchar(4096) DEFAULT NULL,
+    ofac_url varchar(1024) DEFAULT NULL,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uniq_sanction_request_id UNIQUE (request_id)
+    );
+
+    CREATE INDEX idx_chainalysis_sanction_results_counterparty_vasp_id ON chainalysis_sanction_results(counterparty_vasp_id, created_at);
+    CREATE INDEX idx_chainalysis_sanction_results_address ON chainalysis_sanction_results(address, created_at);
+    CREATE INDEX idx_chainalysis_sanction_results_created_at ON chainalysis_sanction_results(created_at);
+    ```
+  </Tab>
+
+  <Tab title="MSSQL">
+    ```sql
+    CREATE TABLE chainalysis_sanction_results (
+    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    request_id nvarchar(40) NOT NULL,
+    verification_uuid nvarchar(40) NOT NULL,
+    counterparty_vasp_id BIGINT NOT NULL,
+    direction nvarchar(20) NOT NULL check (direction in ('OUTGOING', 'INCOMING')),
+    address nvarchar(512) NOT NULL,
+    status nvarchar(20) NOT NULL check (status in ('NOHIT', 'SANCTION', 'CLOSED', 'ERROR')),
+    ofac_name nvarchar(1024) DEFAULT NULL,
+    ofac_description nvarchar(4000) DEFAULT NULL,
+    ofac_url nvarchar(1024) DEFAULT NULL,
+    created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT key_uniq_sanction_request_id UNIQUE (request_id)
+    );
+
+    CREATE INDEX idx_chainalysis_sanction_results_counterparty_vasp_id ON chainalysis_sanction_results(counterparty_vasp_id, created_at);
+    CREATE INDEX idx_chainalysis_sanction_results_address ON chainalysis_sanction_results(address, created_at);
+    CREATE INDEX idx_chainalysis_sanction_results_created_at ON chainalysis_sanction_results(created_at);
+    ```
+  </Tab>
+
+  <Tab title="Oracle">
+    ```sql
+    CREATE TABLE "chainalysis_sanction_results" (
+    "id" number(20) NOT NULL,
+    "request_id" varchar2(40) NOT NULL,
+    "verification_uuid" varchar2(40) NOT NULL,
+    "counterparty_vasp_id" varchar2(20) NOT NULL,
+    "direction" varchar2(20) NOT NULL CHECK ("direction" IN ('OUTGOING', 'INCOMING')),
+    "address" varchar2(512) NOT NULL,
+    "status" varchar2(20) NOT NULL CHECK ("status" IN ('NOHIT', 'SANCTION', 'CLOSED', 'ERROR')),
+    "ofac_name" varchar2(1024) DEFAULT NULL,
+    "ofac_description" varchar2(2048) DEFAULT NULL,
+    "ofac_url" varchar2(1024) DEFAULT NULL,
+    "created_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "chainalysis_sanction_pk" PRIMARY KEY ("id"),
+    CONSTRAINT "uniq_sanction_request_id" UNIQUE ("request_id")
+    );
+
+    CREATE INDEX "idx_counterparty_vasp_id" ON "chainalysis_sanction_results" ("counterparty_vasp_id", "created_at");
+    CREATE INDEX "idx_address" ON "chainalysis_sanction_results" ("address", "created_at");
+    CREATE INDEX "idx_created_at" ON "chainalysis_sanction_results" ("created_at");
+
+    CREATE SEQUENCE "chainalysis_sanction_seq";
+
+    -- Create a trigger
+    CREATE OR REPLACE TRIGGER chainalysis_sanction_trg
+    BEFORE INSERT ON "chainalysis_sanction_results"
+    FOR EACH ROW
+    BEGIN
+    SELECT "chainalysis_sanction_seq".NEXTVAL
+    INTO :new."id"
     FROM dual;
     END;
     ```
