@@ -171,7 +171,7 @@ Your VASP must pass all test cases listed below.
   * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
 
 <Accordion title="How to use the Deposit Reflection Inquery API">
-  **Method**: GET
+  **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
   * **Request Query**
