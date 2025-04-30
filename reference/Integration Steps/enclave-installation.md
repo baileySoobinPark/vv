@@ -45,44 +45,52 @@ The following table summarizes all essential environment variables, providing de
 | VEGA\_SERVER\_PORT  | 21117   | Enclave Server Port Number.                                       |
 | VEGA\_ENCLAVE\_MODE |         | 사용 목적 별 모드 설정 입니다. 아래 모드 중 선택(최소 한개 이상)하여 콤마를 구분자로 하여 설정 하시면 됩니다. |
 
-설정 가능한 모드:\
-`TR` `VN2` `VN1_CALL` `VN1_RESPONSE` |
-\| VEGA\_ENCLAVE\_PUBLIC\_ENDPOINT |  | Public Endpoint URL for VASP's Enclave Server, accessible by VerifyVASP Central Server. Must use the HTTPS protocol. Example: “[https://api.vasp.com/enclave”](https://api.vasp.com/enclave%E2%80%9D) |
-\| VEGA\_ALLIANCE\_ACCESS\_KEY |  | The API Access Key issued via VerifyVASP Console. |
-\| VEGA\_ALLIANCE\_SECRET\_KEY |  | The API Secret Key issued via VerifyVASP Console. |
-\| VEGA\_DATABASE\_CLIENT | mysql2 | Type of the database. Acceptable values: pg, mysql, mysql2, oracledb, mssql |
-\| VEGA\_DATABASE\_USERNAME |  | Database user name. |
-\| VEGA\_DATABASE\_PASSWORD |  | Database password. |
-\| VEGA\_DATABASE\_HOST |  | Address to access the database. |
-\| VEGA\_DATABASE\_PORT | 3306 | Port number to access the database. |
-\| VEGA\_DATABASE\_DB | verifyvasp | Database name that the Enclave server uses. |
-\| VEGA\_DATABASE\_SEARCH\_PATH | enclave | Custom schema name for PostgreSQL. |
-\| VEGA\_DATABASE\_POOL\_MIN | 0 | Minimum value of database connection pool. |
-\| VEGA\_DATABASE\_POOL\_MAX | 5 | Maximum value of database connection pool. |
-\| VEGA\_DATABASE\_SSL | true / false | SSL Connection to Database (Enabled/Disabled). |
-\| VEGA\_DATABASE\_SSL\_CA |  | Path to CA Certificate File for Server Authentication. |
-\| VEGA\_DATABASE\_SSL\_KEY |  | Path to Client Certificate Private Key File for SSL Connection. |
-\| VEGA\_DATABASE\_SSL\_CERT |  | Path to Client Public Certificate File for SSL Connection. |
-\| VEGA\_DATABASE\_SSL\_CAPATH |  | Directory Path that Stores CA Certificates. |
-\| VEGA\_DATABASE\_SSL\_CIPHER |  | Encryption Algorithms for Client-Server Communication. |
-\| VEGA\_DATABASE\_SSL\_REJECT\_UNAUTHORIZED | true / false | Allow SSL Connection Even if Server Certificate is Untrusted. |
-\| VEGA\_VERIFICATION\_CALLBACK\_API\_PATH |  | Callback API (VASP API) Endpoint URL. |
-\| VEGA\_VERIFICATION\_AUTHORIZATION\_TOKEN |  | The authorization token value for Enclave to VASP’s Backend API Calls. Sent via header when Enclave server calls VASP API. |
-\| VEGA\_VERIFICATION\_AUTHORIZATION\_KEY |  | The authorization header key for delivering the token. If not set, uses `Authorization` header. |
-\| VEGA\_API\_ENDPOINT |  | VerifyVASP Central API Server Address. PRD (KR): [https://api-kr.vega-protocol.com](https://api-kr.vega-protocol.com/), PRD (Global): [https://api.vega-protocol.com](https://api.vega-protocol.com/), STG (KR): [https://api-kr.vega-protocol.xyz](https://api-kr.vega-protocol.xyz/), STG (Global): [https://api.vega-protocol.xyz](https://api.vega-protocol.xyz/) |
-\| VEGA\_LOG\_LEVEL | info | Log Level. Acceptable: none, error, warn, info, debug |
-\| VEGA\_PUBLIC\_KEY\_TTL | 1800000 | Cache duration for public key of counterparty VASP (in ms). Default: 1800000 (30 min). Min: 600000 (10 min) |
-\| VEGA\_DECRYPT\_API\_ENDPOINT |  | Endpoint of external service for decrypting VEGA\_ENCRYPTION\_KEY\_BASE64. |
-\| VEGA\_ENCRYPTION\_KEY\_BASE64 |  | Encryption Key for Personal Data. Used directly or sent to VEGA\_DECRYPT\_API\_ENDPOINT to retrieve actual key. |
+설정 가능한 모드:
+
+### 🔧 Environment Variables
+
+| Variable                                | Default        | Description                                                                                                                                                                                                                                                   |
+| --------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VEGA_ENCLAVE_PUBLIC_ENDPOINT`          | –              | Public Endpoint URL for VASP's Enclave Server, accessible by VerifyVASP Central Server. Must use the HTTPS protocol. Example: `https://api.vasp.com/enclave`                                                                                                  |
+| `VEGA_ALLIANCE_ACCESS_KEY`              | –              | The API Access Key issued via VerifyVASP Console.                                                                                                                                                                                                             |
+| `VEGA_ALLIANCE_SECRET_KEY`              | –              | The API Secret Key issued via VerifyVASP Console.                                                                                                                                                                                                             |
+| `VEGA_DATABASE_CLIENT`                  | `mysql2`       | Type of the database. Acceptable values: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`                                                                                                                                                                         |
+| `VEGA_DATABASE_USERNAME`                | –              | Database user name.                                                                                                                                                                                                                                           |
+| `VEGA_DATABASE_PASSWORD`                | –              | Database password.                                                                                                                                                                                                                                            |
+| `VEGA_DATABASE_HOST`                    | –              | Address to access the database.                                                                                                                                                                                                                               |
+| `VEGA_DATABASE_PORT`                    | `3306`         | Port number to access the database.                                                                                                                                                                                                                           |
+| `VEGA_DATABASE_DB`                      | `verifyvasp`   | Database name that the Enclave server uses.                                                                                                                                                                                                                   |
+| `VEGA_DATABASE_SEARCH_PATH`             | `enclave`      | Custom schema name for PostgreSQL.                                                                                                                                                                                                                            |
+| `VEGA_DATABASE_POOL_MIN`                | `0`            | Minimum value of database connection pool.                                                                                                                                                                                                                    |
+| `VEGA_DATABASE_POOL_MAX`                | `5`            | Maximum value of database connection pool.                                                                                                                                                                                                                    |
+| `VEGA_DATABASE_SSL`                     | `true / false` | Enable or disable SSL connection to the database.                                                                                                                                                                                                             |
+| `VEGA_DATABASE_SSL_CA`                  | –              | Path to CA Certificate File for Server Authentication.                                                                                                                                                                                                        |
+| `VEGA_DATABASE_SSL_KEY`                 | –              | Path to Client Certificate Private Key File for SSL Connection.                                                                                                                                                                                               |
+| `VEGA_DATABASE_SSL_CERT`                | –              | Path to Client Public Certificate File for SSL Connection.                                                                                                                                                                                                    |
+| `VEGA_DATABASE_SSL_CAPATH`              | –              | Directory path that stores CA certificates.                                                                                                                                                                                                                   |
+| `VEGA_DATABASE_SSL_CIPHER`              | –              | Encryption algorithms for client-server communication.                                                                                                                                                                                                        |
+| `VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED` | `true / false` | Allow SSL connection even if the server certificate is untrusted.                                                                                                                                                                                             |
+| `VEGA_VERIFICATION_CALLBACK_API_PATH`   | –              | Callback API (VASP API) endpoint URL.                                                                                                                                                                                                                         |
+| `VEGA_VERIFICATION_AUTHORIZATION_TOKEN` | –              | Authorization token value for Enclave-to-VASP Backend API calls. Sent in the header.                                                                                                                                                                          |
+| `VEGA_VERIFICATION_AUTHORIZATION_KEY`   | –              | Header key used to deliver the authorization token. Defaults to `Authorization` if not set.                                                                                                                                                                   |
+| `VEGA_API_ENDPOINT`                     | –              | VerifyVASP Central API Server Address. \<br> PRD (KR): \`https\://api-kr.vega-protocol.com\`\<br> PRD (Global): \`https\://api.vega-protocol.com\`\<br> STG (KR): \`https\://api-kr.vega-protocol.xyz\`\<br> STG (Global): \`https\://api.vega-protocol.xyz\` |
+| `VEGA_LOG_LEVEL`                        | `info`         | Log level. Acceptable values: `none`, `error`, `warn`, `info`, `debug`                                                                                                                                                                                        |
+| `VEGA_PUBLIC_KEY_TTL`                   | `1800000`      | Cache duration for the counterparty VASP's public key (in ms). Default: 1800000 (30 min), Minimum: 600000 (10 min)                                                                                                                                            |
+| `VEGA_DECRYPT_API_ENDPOINT`             | –              | Endpoint of external service for decrypting `VEGA_ENCRYPTION_KEY_BASE64`.                                                                                                                                                                                     |
+| `VEGA_ENCRYPTION_KEY_BASE64`            | –              | Encryption key for personal data. Either used directly or sent to `VEGA_DECRYPT_API_ENDPOINT` to retrieve the actual key.                                                                                                                                     |
 
 ### **Network Configuration**
 
 Once the Enclave server is successfully running, configure network allowlisting with the VerifyVASP Central Server to ensure secure communication.
 
+<br />
+
 ### **Register Enclave Server IP to VerifyVASP Central Server's Allowlist**
 
 * Please send the IP address of Your VASP Enclave server to **[corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)**, the IP will be whitelisted by VerifyVASP.
 * Only IP addresses can be registered; domain addresses are not acceptable.
+
+<br />
 
 ### **Register VerifyVASP Central Server IP on VASP**
 
