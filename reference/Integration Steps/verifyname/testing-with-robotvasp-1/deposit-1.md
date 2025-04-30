@@ -138,97 +138,58 @@ metadata:
   </Accordion>
 
   <br />
-* How to use the Robot VASP Withdrawal Request API
-
-  **Method**: `POST`
-
-  **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/withdrawal`
-
-  * **Request body**
-
-    | Parameter Name |          | Type   | Description                                    |
-    | -------------- | -------- | ------ | ---------------------------------------------- |
-    | ticker         | required | string | Ticker of the virtual asset to be transferred. |
-
-    Example: `ETH` |\
-    \| originator\_account\_ number | required | string | Withdrawal test 의 3-1 case1 을 통해 balance 가 0보다 큰것을 확인한 주소여야 합니다.
-
-    Example: `0xe6998af38840836d2469ae71aa849f4f94c2b6d6` |\
-    \| originator\_tag | optional | string | 2차 주소가 있는 address 인 경우 검증을 위한 tag 입니다.
-
-    Example: `2852039353` |\
-    \| amount | required | string | Withdrawal test 의 3-1 case1 을 통해 확인한 balance 이내여야 합니다. |
-    \| omit\_tx\_report | optional | boolean | to verify whether the transaction report is submitted after withdrawal.
-
-    If this field is set to `true`, the transaction result will not be submitted. Your VASP can set this field to `true` to conduct test case 2 in 2-1.
-
-    Default is `false`. |
-  * Expected Result
-
-    ```json
-    {
-      "tx_hash": "0x116f1d11b871dfcc8c551fa146f02dfedca2ec5908338ce2c648416ceede26c2"
-    }
-    ```
-
-    * Your VASP can confirm the deposit.
-* Case 1. **Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+* **Case 1. Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
   * **Conditions**
     * After the actual transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
   * **Expected Results**
     * Your VASP can receive the transaction report through the callback API(VASP API).
-* Case 2. **Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
+* **Case 2. Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
   * **Conditions**
     * If you set the `omitTxReport` field to `true` when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
     * Your VASP must check the transaction status using the Check Transaction Inquiry API(Enclave API) for owner verification.
     * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
-  * How to use the Transaction Reporting Simulation API
+    <br />
+    <Accordion title="How to use the Robot VASP Withdrawal Request API">
+      **Method**: `POST`
 
-    **Method:`POST`**
+      * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/report`
 
-    **Endpoint:** `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/report`
+      * **Request Query**
 
-    * Request Body
+      | Parameter Name                         | Type    | Description                                                                                                                                                                                                                 | Example                                      |
+      | -------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+      | `ticker` (required)                    | string  | Ticker of the virtual asset to be transferred.                                                                                                                                                                              | `ETH`                                        |
+      | `originator_account_number` (required) | string  | Must be an address that has a balance greater than 0 as confirmed in withdrawal test 3-1 case 1.                                                                                                                            | `0xe6998af38840836d2469ae71aa849f4f94c2b6d6` |
+      | `originator_tag` (optional)            | string  | Tag used for verification when the address includes a secondary tag (e.g., destination tag, memo).                                                                                                                          | `2852039353`                                 |
+      | `amount` (required)                    | string  | Must be within the available balance verified in withdrawal test 3-1 case 1.                                                                                                                                                | –                                            |
+      | `omit_tx_report` (optional)            | boolean | To verify whether the transaction report is submitted after withdrawal. If set to `true`, the transaction result will not be submitted. Your VASP can set this to `true` to conduct test case 2 in 2-1. Default is `false`. | –                                            |
 
-    | Parameter name       | Type                                                                | Description                                    | Example |
-    | -------------------- | ------------------------------------------------------------------- | ---------------------------------------------- | ------- |
-    | verification\_result | enum (셋중 하나)                                                        |                                                |         |
-    | `VERIFIED`           |                                                                     |                                                |         |
-    | `DENIED`             |                                                                     |                                                |         |
-    | `ERROR`              | VerifyBeneficiary type 으로 owner verification 을 요청한 VASP 가 판단한 검증 결과 | `VERIFIED`                                     |         |
-    | tx\_hash             | string                                                              | verification\_result 가 `VERIFIED` 인 경우 필수 입니다. |         |
+      * **Request Body Example**
 
-    Unique identifier of the transaction. | `8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042` |\
-    \| vout | string optional | In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction | `0` |
-    \| reason | enum | VerifyBeneficiary type 으로 owner verification 을 요청한 VASP 가 DENIED 나 ERROR 를 리포트 하는 경우 필수 입니다.
+      ```
+      {
+          "verification_result": "VERIFIED",
+          "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
+      }
 
-    [https://www.notion.so/lambda256/Owner-Verification-API-1dd644f6c0fe8094ab77fad597227370?pvs=4#1dd644f6c0fe80e08bdce87dbcd65657](https://www.notion.so/Owner-Verification-API-1dd644f6c0fe8094ab77fad597227370?pvs=21) | `MISMATCH-TICKER` |\
-    \| message | string optional | VerifyBeneficiary type 으로 owner verification 을 요청한 VASP 가 DENIED 나 ERROR 를 리포트 할때 reason 과 함께 전달할 상세 메세지 입니다. | `transfer error` |
+      or
 
-    * Request Body Example
+      {
+          "verification_result": "DENIED",
+          "reason": "MISMATCH-ADDRESS",
+          "message": "mismatch address"
+      }
 
-    ```json
-    {
-        "verification_result": "VERIFIED",
-        "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
-    }
+      or
 
-    or
+      {
+          "verification_result": "ERROR",
+          "reason": "TRANSFER-ERROR",
+          "message": "test error"
+      }
+      ```
 
-    {
-        "verification_result": "DENIED",
-        "reason": "MISMATCH-ADDRESS",
-        "message": "mismatch address"
-    }
+      * **Expected Result**
 
-    or
-
-    {
-        "verification_result": "ERROR",
-        "reason": "TRANSFER-ERROR",
-        "message": "test error"
-    }
-    ```
-
-    * Expected Results
-      * Your VASP can check the transaction status through the Check Transaction Inquiry API`(v2/owner-verifications/{request_id}/tx/inquiry, Enclave API)`.
+        * Your VASP can check the transaction status through the Check Transaction Inquiry API(`v2/owner-verifications/{request_id}/tx/inquiry`, Enclave API).
+    </Accordion>
