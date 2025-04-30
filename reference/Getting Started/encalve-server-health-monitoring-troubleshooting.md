@@ -12,3 +12,12 @@ This includes enclave server status, versions and if errors occurs.
 Additionally, VASPs may require counter-party communication when transfer or verification errors occurs, suspicious or fraudulent activity..
 
 For the above reasons, VASPs may be contacted for troubleshooting via our regular support communication channels.
+
+<br />
+
+```mermaid
+flowchart LR 
+ A --- B[fa:fa-spinner B] 
+ B --> C[fa:fa-check C] 
+ B --> D[fa:fa-ban D]
+```
