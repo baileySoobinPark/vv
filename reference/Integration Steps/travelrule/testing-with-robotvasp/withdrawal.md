@@ -175,11 +175,13 @@ Your VASP must pass all test cases listed below.
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
   * **Request Query**
-    \| Parameter Name | Type   | Description                                         | Example                                           |
-    \|----------------|--------|-----------------------------------------------------|---------------------------------------------------|
-    \| `vaspId`       | string | Originating VASP ID                                 | 15952089931162058999                              |
-    \| `symbol`       | string | The symbol of the virtual asset to be transferred   | ETH                                               |
-    \| `address`      | string | The address that is receiving the virtual asset     | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F        |
+
+  | Parameter Name | Type   | Description                                       | Example                                    |
+  | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
+  | `vaspId`       | string | Originating VASP ID                               | 15952089931162058999                       |
+  | `symbol`       | string | The symbol of the virtual asset to be transferred | ETH                                        |
+  | `address`      | string | The address that is receiving the virtual asset   | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+
   * **Request Example**
 
   ```
