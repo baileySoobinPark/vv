@@ -188,7 +188,7 @@ Your VASP must pass all test cases listed below.
 
   <br />
 
-  <Accordion title="How to use the Deposit Reflection Inquery API">
+  <Accordion title="How to use the Check Transaction Status Simulation API">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/tx/inquiry`
