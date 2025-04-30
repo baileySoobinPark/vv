@@ -658,3 +658,133 @@ If your VASP utilizes the Chainalysis KYT feature, execute the following queries
     ```
   </Tab>
 </Tabs>
+
+## Configuration Query for Optional Table: Refinitiv WCO Related Tables
+
+If your VASP utilizes the Refinitiv WCO feature, execute the following queries to set up the corresponding database.
+
+<Tabs>
+  <Tab title="MySQL">
+    ```sql
+    CREATE TABLE `refinitiv_wco_results` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `request_id` varchar(40) NOT NULL,
+    `verification_uuid` varchar(40) NOT NULL,
+    `counterparty_vasp_id` bigint(20) unsigned NOT NULL,
+    `direction` enum('OUTGOING', 'INCOMING') NOT NULL,
+    `case_system_id` varchar(128) NOT NULL,
+    `aggregated_result_summaries` varchar(4096) DEFAULT NULL,
+    `worker_id` varchar(128) DEFAULT NULL,
+    `status` enum('ERROR', 'REGISTERED', 'CHECKING', 'PROCESSED') NOT NULL,
+    `last_checked_at` datetime(3) DEFAULT NULL,
+    `created_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
+    `assessed_at` datetime(3) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uniq_request_id` (`request_id`),
+    INDEX `idx_counterparty_vasp_id` (`counterparty_vasp_id`, `created_at`),
+    INDEX `idx_direction` (`direction`, `created_at`),
+    INDEX `idx_status_last_checked_at` (`status`, `last_checked_at`),
+    INDEX `idx_status_worker_id` (`status`, `worker_id`, `id`),
+    INDEX `idx_created_at` (`created_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    ```
+  </Tab>
+
+  <Tab title="PostgreSQL">
+    ```sql
+    CREATE TYPE enum_refinitiv_wco_status AS ENUM('ERROR', 'REGISTERED', 'CHECKING', 'PROCESSED');
+
+    CREATE TABLE refinitiv_wco_results (
+    id SERIAL NOT NULL PRIMARY KEY,
+    request_id varchar(40) NOT NULL,
+    verification_uuid varchar(40) NOT NULL,
+    counterparty_vasp_id numeric(20) NOT NULL,
+    direction enum_direction NOT NULL,
+    case_system_id varchar(128) NOT NULL,
+    aggregated_result_summaries varchar(4096) DEFAULT NULL,
+    worker_id varchar(128) DEFAULT NULL,
+    status enum_refinitiv_wco_status NOT NULL,
+    last_checked_at timestamp DEFAULT NULL,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
+    assessed_at timestamp DEFAULT NULL,
+    CONSTRAINT key_uniq_wco_request_id UNIQUE (request_id)
+    );
+
+    CREATE INDEX idx_refinitiv_wco_results_counterparty_vasp_id ON refinitiv_wco_results(counterparty_vasp_id, created_at);
+    CREATE INDEX idx_refinitiv_wco_results_direction ON refinitiv_wco_results(direction, created_at);
+    CREATE INDEX idx_refinitiv_wco_results_status_last_checked_at ON refinitiv_wco_results(status, last_checked_at);
+    CREATE INDEX idx_refinitiv_wco_results_status_worker_id ON refinitiv_wco_results(status, worker_id, id);
+    CREATE INDEX idx_refinitiv_wco_results_created_at ON refinitiv_wco_results(created_at);
+    ```
+  </Tab>
+
+  <Tab title="MSSQL">
+    ```sql
+    CREATE TABLE refinitiv_wco_results (
+    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    request_id nvarchar(40) NOT NULL,
+    verification_uuid nvarchar(40) NOT NULL,
+    counterparty_vasp_id BIGINT NOT NULL,
+    direction nvarchar(20) NOT NULL check (direction in ('OUTGOING', 'INCOMING')),
+    case_system_id nvarchar(128) NOT NULL,
+    aggregated_result_summaries nvarchar(4000) DEFAULT NULL,
+    worker_id nvarchar(128) DEFAULT NULL,
+    status nvarchar(20) NOT NULL check (status in ('ERROR', 'REGISTERED', 'CHECKING', 'PROCESSED')),
+    last_checked_at datetime2(3) DEFAULT NULL,
+    created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
+    assessed_at datetime2(3) DEFAULT NULL,
+    CONSTRAINT key_uniq_wco_request_id UNIQUE (request_id)
+    );
+
+    CREATE INDEX idx_refinitiv_wco_results_counterparty_vasp_id ON refinitiv_wco_results(counterparty_vasp_id, created_at);
+    CREATE INDEX idx_refinitiv_wco_results_direction ON refinitiv_wco_results(direction, created_at);
+    CREATE INDEX idx_refinitiv_wco_results_status_last_checked_at ON refinitiv_wco_results(status, last_checked_at);
+    CREATE INDEX idx_refinitiv_wco_results_status_worker_id ON refinitiv_wco_results(status, worker_id, id);
+    CREATE INDEX idx_refinitiv_wco_results_created_at ON refinitiv_wco_results(created_at);
+    ```
+  </Tab>
+
+  <Tab title="Oracle">
+    ```sql
+    CREATE TABLE "refinitiv_wco_results" (
+    "id" number(20) NOT NULL,
+    "request_id" varchar2(40) NOT NULL,
+    "verification_uuid" varchar2(40) NOT NULL,
+    "counterparty_vasp_id" varchar2(20) NOT NULL,
+    "direction" varchar2(20) NOT NULL CHECK ("direction" IN ('OUTGOING', 'INCOMING')),
+    "case_system_id" varchar2(128) NOT NULL,
+    "aggregated_result_summaries" varchar2(2048) DEFAULT NULL,
+    "worker_id" varchar2(128) DEFAULT NULL,
+    "status" varchar2(20) NOT NULL CHECK ("status" IN ('ERROR', 'REGISTERED', 'CHECKING', 'PROCESSED')),
+    "last_checked_at" timestamp(3) DEFAULT NULL,
+    "created_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
+    "assessed_at" timestamp(3) DEFAULT NULL,
+    CONSTRAINT "refinitiv_wco_results_pk" PRIMARY KEY ("id"),
+    CONSTRAINT "uniq_wco_request_id" UNIQUE ("request_id")
+    );
+
+    CREATE INDEX "idx_wco_counterparty_vasp_id" ON "refinitiv_wco_results" ("counterparty_vasp_id", "created_at");
+    CREATE INDEX "idx_wco_direction" ON "refinitiv_wco_results" ("direction", "created_at");
+    CREATE INDEX "idx_wco_status_last_checked_at" ON "refinitiv_wco_results" ("status", "last_checked_at");
+    CREATE INDEX "idx_wco_status_worker_id" ON "refinitiv_wco_results" ("status", "worker_id", "id");
+    CREATE INDEX "idx_wco_created_at" ON "refinitiv_wco_results" ("created_at");
+
+    -- Create a sequence
+    CREATE SEQUENCE "refinitiv_wco_results_seq";
+
+    -- Create a trigger
+    CREATE OR REPLACE TRIGGER refinitiv_wco_results_trg
+    BEFORE INSERT ON "refinitiv_wco_results"
+    FOR EACH ROW
+    BEGIN
+    SELECT "refinitiv_wco_results_seq".NEXTVAL
+    INTO :new."id"
+    FROM dual;
+    END;
+    ```
+  </Tab>
+</Tabs>
