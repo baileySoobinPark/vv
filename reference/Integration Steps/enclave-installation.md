@@ -49,7 +49,7 @@ The following table summarizes all essential environment variables, providing de
 
 ### 🔧 Environment Variables
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -387,10 +387,10 @@ The following table summarizes all essential environment variables, providing de
       <td>
         VerifyVASP Central API Server Address.
 
-        * PRD (KR): `[https://api-kr.vega-protocol.com]()`
-        * PRD (Global): `[https://api.vega-protocol.com]()`
-        * STG (KR): `[https://api-kr.vega-protocol.xyz]()`
-        * STG (Global): `[https://api.vega-protocol.xyz]()`
+        * PRD (KR): `https://api-kr.vega-protocol.com`
+        * PRD (Global): `https://api.vega-protocol.com`
+        * STG (KR): `https://api-kr.vega-protocol.xyz`
+        * STG (Global): `https://api.vega-protocol.xyz`
 
         <br />
       </td>
