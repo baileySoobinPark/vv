@@ -111,6 +111,8 @@ Your VASP must pass all test cases listed below.
 
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Account Verification API.
 
+  <br />
+
   <Accordion title="How to use the User Account Verification Simulation API">
     **Method**: `POST`
 
@@ -167,6 +169,8 @@ Your VASP must pass all test cases listed below.
 
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Verification API.
   * The Robot VASP must return `VERIFIED` as the result of User Account  Verification Simulation API before using User Verification Simulation API.
+
+  <br />
 
   <Accordion title="How to use the User Verification Simulation API">
     **Method**: `POST`
@@ -260,6 +264,8 @@ Your VASP must pass all test cases listed below.
   * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
 
+  <br />
+
   <Accordion title="How to use the Robot VASP Withdrawal Request API">
     **Method**: `POST`
 
@@ -303,6 +309,8 @@ Your VASP must pass all test cases listed below.
   * Your VASP must check the transaction status using the Check Transaction Status API(Enclave API).
   * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
 
+  <br />
+
   <Accordion title="How to use the Transaction Reporting Simulation API">
     **Method**: `POST`
 
@@ -335,6 +343,8 @@ Your VASP must pass all test cases listed below.
 
   * Robot VASP does not send an Error Report to the VV Central Server unless the virtual asset transfer fails.
   * To test an error reporting scenario, you must call the Robot VASP Error Situation Reporting Simulation API to request an Error Report.
+
+  <br />
 
   <Accordion title="How to use the Error Situation Reporting Simulation API">
     **Method**: `POST`
