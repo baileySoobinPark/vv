@@ -184,21 +184,21 @@ Your VASP must pass all test cases listed below.
 * **Expected Result**
   * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
   * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
-* How to use th Check Transaction Status Simulation API
+  <br />
+  <Accordion title="How to use the Deposit Reflection Inquery API">
+    **Method**: `POST`
 
-  **Method:`POST`**
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/tx/inquiry`
 
-  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/tx/inquiry`
-  * Expected Result
+    * **Expected Result**
 
-    ```json
+    ```
     {
-      "transaction_status": "PENDING",
-      "request_id": "c40e2c91-272a-4a83-a74a-b33397dc5690"
+    "transaction_status": "PENDING",
+    "request_id": "c40e2c91-272a-4a83-a74a-b33397dc5690"
     }
     ```
-
-<br />
+  </Accordion>
 
 ### 3-2. **Cancel the transaction that has completed owner verification.**
 
