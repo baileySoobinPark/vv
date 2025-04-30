@@ -115,7 +115,7 @@ Your VASP must pass all test cases listed below.
 * **Conditions**
   * Your VASP must use the Owner Verification API(Enclave API).
   * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
-* Expected Result
+* **Expected Result**
   * “verification\_results” 필드에 각 항목들에 대한 검증 결과가 “MATCHED”, “MISMATCHED”, “SKIPPED” 중 하나로 리턴 됩니다.
   ```json
   {
@@ -135,34 +135,40 @@ Your VASP must pass all test cases listed below.
   }
   ```
 
+<br />
+
 ### 3-1. **Execute the transaction on the Blockchain Network**
 
-* Conditions
+* **Conditions**
   * 2번 단계를 진행하여 받은 응답의 “verification\_results” 필드 결과들을 바탕으로 “VERIFIED” 또는 “DENIED” 판단을 하신 후 “VERIFIED” 로 판단되었을때  이 테스트를 진행하세요.
   * If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
   * When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag.
-* Case 1. **Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
-  * **Conditions**
-    * Your VASP must use the Report API(`POST v2/owner-verifications/{request_id}/report, Enclave API`) to send the transaction hash to the VerifyVASP Central Server.
-  * **Expected Result**
-    * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
-    * How to use the Deposit Reflection Inquery API
 
-      **Method:`GET`**
+<br />
 
-      * **Endpoint:** `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-      * **Request query**
+**Case 1. Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
 
-        | Parameter Name | Type   | Description                                       | example                                    |
-        | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
-        | vaspId         | string | Originating VASP ID                               | 15952089931162058999                       |
-        | symbol         | string | The symbol of the virtual asset to be transferred | ETH                                        |
-        | address        | string | The address that receiving virtual asset          | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
-      * **Request Example**
+* **Conditions**
+  * Your VASP must use the Report API(`POST v2/owner-verifications/{request_id}/report, Enclave API`) to send the transaction hash to the VerifyVASP Central Server.
+* **Expected Result**
+  * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
+  * How to use the Deposit Reflection Inquery API
 
-        ```json
-        https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F
-        ```
+    **Method:`GET`**
+
+    * **Endpoint:** `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
+    * **Request query**
+
+      | Parameter Name | Type   | Description                                       | example                                    |
+      | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
+      | vaspId         | string | Originating VASP ID                               | 15952089931162058999                       |
+      | symbol         | string | The symbol of the virtual asset to be transferred | ETH                                        |
+      | address        | string | The address that receiving virtual asset          | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+    * **Request Example**
+
+      ```json
+      https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F
+      ```
 * Case 2. **Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
   * **Conditions**
     * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
