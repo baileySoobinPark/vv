@@ -25,14 +25,16 @@ metadata:
 
 * **Conditions**
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the Owner Verification API.
-* How to use Owner Verification Simulation API
+  <br />
+  <Accordion title="* How to use Owner Verification Simulation API">
+    **Method**: `POST`
 
-  * Method: POST
-  * Endpoint: [https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications](https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications)
-  * Request Body Example
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications`
 
-  ```
-  {
+    * **Request Body Example**
+
+    ```
+    {
       "supplementary_data": {
           "envelope": {
               "vasp_id": "17100967850059048960", // your VASP ID
@@ -60,38 +62,40 @@ metadata:
               }
           }
       }
+    }
+    ```
+  </Accordion>
+* **Expected Result**
+
+  * Robot VASP 가 Beneficiary VASP 으로 부터 받은 항목별 검증 결과를 바탕으로 판단한 최종 결과가 “verification\_result” 필드로 리턴 됩니다.
+  * 항목별 검증 결과 예시
+
+  ```json
+  "verification_results": {
+      "ticker": "MATCHED",
+      "network": "MATCHED",
+      "address": "MATCHED",
+      "tx_hash": "SKIPPED",
+      "dti": "SKIPPED",
+      "name": "MATCHED",
+      "birth_date": "MATCHED",
+      "date_of_incorporation": "SKIPPED",
+      "organisation_identification": "SKIPPED"
+  },
+  ```
+
+  * Robot VASP 가 판단한 결과를 포함한 응답
+    * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
+
+  ```
+  {
+    "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
+    "verified_at": "2025-04-22T10:08:31.785Z",
+    "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
   }
   ```
 
-  * Expected Result
-
-    * Robot VASP 가 Beneficiary VASP 으로 부터 받은 항목별 검증 결과를 바탕으로 판단한 최종 결과가 “verification\_result” 필드로 리턴 됩니다.
-    * 항목별 검증 결과 예시
-
-    ```json
-    "verification_results": {
-        "ticker": "MATCHED",
-        "network": "MATCHED",
-        "address": "MATCHED",
-        "tx_hash": "SKIPPED",
-        "dti": "SKIPPED",
-        "name": "MATCHED",
-        "birth_date": "MATCHED",
-        "date_of_incorporation": "SKIPPED",
-        "organisation_identification": "SKIPPED"
-    },
-    ```
-
-    * Robot VASP 가 판단한 결과를 포함한 응답
-      * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
-
-    ```
-    {
-      "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
-      "verified_at": "2025-04-22T10:08:31.785Z",
-      "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
-    }
-    ```
+<br />
 
 ## 2. **Execute the transaction on the blockchain network**
 
