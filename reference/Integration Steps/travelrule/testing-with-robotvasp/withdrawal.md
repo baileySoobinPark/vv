@@ -45,15 +45,16 @@ Here are virtual user informations that stored on Robot VASP for conducting test
 <Accordion title="User 1(Individual user who has completed KYC verification">
   If all the information is entered correctly, the verification result must return VERIFIED.
 
-  Individual Information
-  Last Name: Robbins
+  ### Individual Information
 
-  First Name: Taylor
+  * Last Name: Robbins
+
+  * First Name: Taylor
 
   Wallet Address
-  'ETH' address: 0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c
+  `'ETH' address`: 0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c
 
-  'XRP' address: rGFFufDwabHuPur9927p1EgBTcCBfsjtEU
+  `'XRP' address`: rGFFufDwabHuPur9927p1EgBTcCBfsjtEU
 
-  'XRP' destination tag: 123456789
+  `'XRP' destination tag`: 123456789
 </Accordion>
