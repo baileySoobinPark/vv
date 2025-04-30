@@ -1,7 +1,174 @@
 ---
 title: Withdrawal
+excerpt: >-
+  This guide provides the withdrawal test scenario, test cases and expected
+  results for the withdrawal test.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
+> 💡 Please Note:
+>
+> The withdrawal test is supported only in the Ethereum Sepolia and Ripple Testnet environments.
+>
+> Please double-check the environment before executing the virtual asset transfer transaction.
+
+<br />
+
+# **Withdrawal Test Scenario**
+
+1. Identifying the Robot VASP to interact with your VASP
+
+2. The Robot VASP verifies the Beneficiary's **account information** provided by your VASP.
+
+3. The Robot VASP verifies the Beneficiary's **personal information** provided by your VASP.
+
+4-1. Your VASP executes a virtual asset transfer transaction on the blockchain network.
+
+* Case 1: After executing the transaction, your VASP **sends the transaction hash** or transaction ID to the VV Central Server.
+* Case 2: After executing the transaction, your VASP **does not send the transaction hash** or transaction ID to the VV Central Server.
+
+4-2. **Cancel the transaction that has completed user verification.**
+
+* Case 1: For a halted virtual asset transfer, your VASP **sends an Error Report** to the VV Central Server.
+* Case 2: For a halted virtual asset transfer, your VASP **does not send an Error Report** to the VV Central Server.
+
+# **Test User Informations of RobotVASP**
+
+Here are virtual user informations that stored on Robot VASP for conducting test. Your VASP can conduct each case of withdrawal test using this information.
+
+* User 1
+
+  ### **Individual Information**
+
+  * **Last Name**: Robbins
+  * **First Name**: Taylor
+
+  ### **Wallet Address**
+
+  * **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
+  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+  * **'XRP' destination tag**: `123456789`
+* User 2
+
+  ### **Individual Information**
+
+  * **Last Name**: Cook
+  * **First Name**: Ethan
+
+  ### **Wallet Address**
+
+  * **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
+  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+  * **'XRP' destination tag**: `345678912`
+* User 3 (법인)
+
+  ### **Representative Name**
+
+  * **Last Name**: Clarke
+  * **First Name**: Jason
+
+  ### **Wallet Address**
+
+  * **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
+  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+  * **'XRP' destination tag**: `234567891`
+
+# **Test Cases**
+
+Your VASP must pass all test cases listed below.
+
+### **1. Identify the Robot VASP**
+
+* **Conditions**
+  * Your VASP must use the List VASP API(Enclave API).
+* **Expected Result**
+  * Your VASP can identify the Robot VASP using List VASP API.
+
+### **2. Verify the Beneficiary's address**
+
+* **Conditions**
+  * Your VASP must use the Owner Verification API(Enclave API).
+  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+* Expected Result
+  * “verification\_results” 필드에 각 항목들에 대한 검증 결과가 “MATCHED”, “MISMATCHED”, “SKIPPED” 중 하나로 리턴 됩니다.
+  ```json
+  {
+      "request_id": "5be3c01e-2f3f-4536-a662-6c58f0465c57",
+      "verification_results": {
+          "ticker": "MATCHED",
+          "network": "MATCHED",
+          "address": "MATCHED",
+          "tx_hash": "SKIPPED",
+          "dti": "SKIPPED",
+          "name": "MATCHED",
+          "birth_date": "MATCHED",
+          "date_of_incorporation": "SKIPPED",
+          "organisation_identification": "SKIPPED"
+      },
+      "verified_at": "2025-04-21T04:40:28.536Z"
+  }
+  ```
+
+### 3-1. **Execute the transaction on the Blockchain Network**
+
+* Conditions
+  * 2번 단계를 진행하여 받은 응답의 “verification\_results” 필드 결과들을 바탕으로 “VERIFIED” 또는 “DENIED” 판단을 하신 후 “VERIFIED” 로 판단되었을때  이 테스트를 진행하세요.
+  * If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
+  * When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag.
+* Case 1. **Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
+  * **Conditions**
+    * Your VASP must use the Report API(`POST v2/owner-verifications/{request_id}/report, Enclave API`) to send the transaction hash to the VerifyVASP Central Server.
+  * **Expected Result**
+    * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
+    * How to use the Deposit Reflection Inquery API
+
+      **Method:`GET`**
+
+      * **Endpoint:** `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
+      * **Request query**
+
+        | Parameter Name | Type   | Description                                       | example                                    |
+        | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
+        | vaspId         | string | Originating VASP ID                               | 15952089931162058999                       |
+        | symbol         | string | The symbol of the virtual asset to be transferred | ETH                                        |
+        | address        | string | The address that receiving virtual asset          | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+      * **Request Example**
+
+        ```json
+        https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F
+        ```
+* Case 2. **Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+  * **Conditions**
+    * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
+  * **Expected Result**
+    * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
+    * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
+  * How to use th Check Transaction Status Simulation API
+
+    **Method:`POST`**
+
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/tx/inquiry`
+    * Expected Result
+
+      ```json
+      {
+        "transaction_status": "PENDING",
+        "request_id": "c40e2c91-272a-4a83-a74a-b33397dc5690"
+      }
+      ```
+
+### 3-2. **Cancel the transaction that has completed owner verification.**
+
+* Case 1. **Send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+  * Conditions
+    * Your VASP must use the Report API to send the canceled transaction to the VerifyVASP Central Server.
+  * **Expected Result**
+    * The Robot VASP stops calling the Transaction Status Query API.
+    * The reported result will be changed from VERIFIED to ERROR or DENIED. Your VASP can confirm the change in the state of verification by using the Get Verification Result API or the List Verification Result API.
+* Case 2. **Do not send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+  * **Conditions**
+    * Your VASP must not use the Report API after canceling the execution of a transaction that has completed owner verification.
+  * **Expected Result**
+    * Robot VASP periodically calls Transaction Status Query API (VASP API) implemented by your VASP for the related transaction. (up to 1 hour)
