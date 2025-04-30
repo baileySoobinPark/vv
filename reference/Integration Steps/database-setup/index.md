@@ -107,7 +107,7 @@ After completing the database installation, you must create the necessary tables
 
 <Tabs>
   <Tab title="MySQL">
-    ```shell
+    ```sql
     CREATE TABLE `own_keys` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
     `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
@@ -148,7 +148,7 @@ After completing the database installation, you must create the necessary tables
   </Tab>
 
   <Tab title="PostgreSQL">
-    ```shell
+    ```sql
     CREATE TABLE own_keys (
     id SERIAL NOT NULL PRIMARY KEY,
     type enum_key_types NOT NULL,
@@ -192,7 +192,7 @@ After completing the database installation, you must create the necessary tables
   </Tab>
 
   <Tab title="MSSQL">
-    ```shell
+    ```sql
     CREATE TABLE own_keys (
     id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
@@ -232,7 +232,7 @@ After completing the database installation, you must create the necessary tables
   </Tab>
 
   <Tab title="Oracle">
-    ```shell
+    ```sql
     CREATE TABLE "own_keys" (
     "id" number(20) NOT NULL,
     "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
