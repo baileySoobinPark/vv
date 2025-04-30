@@ -199,8 +199,6 @@ Your VASP must pass all test cases listed below.
   * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
   * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
 
-<br />
-
 <Accordion title="How to use the Deposit Reflection Inquery API">
   **Method**: `POST`
 
