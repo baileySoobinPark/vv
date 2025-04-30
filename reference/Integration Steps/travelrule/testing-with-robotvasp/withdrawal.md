@@ -217,3 +217,24 @@ Your VASP must pass all test cases listed below.
   }
   ```
 </Accordion>
+
+<br />
+
+### 4-2. Cancel the transaction that has completed user verification.
+
+**Case 1. Send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+
+* **Conditions**
+  * Your VASP must use the Report Error API to send the canceled transaction to the VerifyVASP Central Server.
+* **Expected Result**
+  * The Robot VASP stops calling the Transaction Status Query API.
+  * The verification result will be changed from VERIFIED to ERROR. Your VASP can confirm the change in the state of verification by using the Get Verification Result API or the List Verification Result API.
+
+<br />
+
+**Case 2. Do not send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+
+* **Conditions**
+  * Your VASP must not use the Report Error API after canceling the execution of a transaction that has completed verification.
+* **Expected Result**
+  * Robot VASP periodically calls Transaction Status Query API (VASP API) implemented by your VASP  for the related transaction. (up to 1 hour)
