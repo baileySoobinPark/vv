@@ -170,19 +170,21 @@ Your VASP must pass all test cases listed below.
 * **Expected Result**
   * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
 
-\<Accordion title="How to use the Deposit Reflection Inquery API">
-\*\*Method\*\*: GET
-&#x20; \* \*\*Endpoint\*\*: \`https\://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance\`
-&#x20; \* \*\*Request query\*\*
-&#x20; \* \*\*Request Example\*\*
-&#x20; \| Parameter Name | Type   | Description                                         | Example                                           |
-\|----------------|--------|-----------------------------------------------------|---------------------------------------------------|
-\| \`vaspId\`       | string | Originating VASP ID                                 | 15952089931162058999                              |
-\| \`symbol\`       | string | The symbol of the virtual asset to be transferred   | ETH                                               |
-\| \`address\`      | string | The address that is receiving the virtual asset     | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F        |
-&#x20; Request Example
+<Accordion title="How to use the Deposit Reflection Inquery API">
+  **Method**: GET
 
-\<https\://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999\&symbol=ETH\&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
-&#x20; \`\`\`
+  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
+  * **Request Query**
+    \| Parameter Name | Type   | Description                                         | Example                                           |
+    \|----------------|--------|-----------------------------------------------------|---------------------------------------------------|
+    \| `vaspId`       | string | Originating VASP ID                                 | 15952089931162058999                              |
+    \| `symbol`       | string | The symbol of the virtual asset to be transferred   | ETH                                               |
+    \| `address`      | string | The address that is receiving the virtual asset     | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F        |
+  * **Request Example**
 
-\</Accordion>
+  ```
+  Request Example
+
+  <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
+  ```
+</Accordion>
