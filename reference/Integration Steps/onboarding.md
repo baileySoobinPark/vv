@@ -26,14 +26,15 @@ Your VASP can apply to participate in the VerifyVASP Alliance by signing up on t
 
 <br />
 
-3. **Enter the corporate information.**\
-   Your VASP must enter the corporate information to participate in the VerifyVASP Alliance. If the VerifyVASP Team requires additional documents, an operator from the VerifyVASP Team can send an email to the address provided in the Business Contact tab. Therefore, you must enter an email address that can accurately receive replies.
+### 3. **Enter the corporate information.**
+
+Your VASP must enter the corporate information to participate in the VerifyVASP Alliance. If the VerifyVASP Team requires additional documents, an operator from the VerifyVASP Team can send an email to the address provided in the Business Contact tab. Therefore, you must enter an email address that can accurately receive replies.
 
 <Image align="center" src="https://files.readme.io/ce2309555ff44045258a74d903dccae2741ebf73af18779f937a84dbc744f7a9-VV_Onboarding_3.png" />
 
 <br />
 
-4. **Successful request participating in the VerifyVASP Alliance**
+### 4. **Successful request participating in the VerifyVASP Alliance**
 
 The VerifyVASP Operations Team conducts the approval process for VASPs that have completed the registration. During the approval process, the Operations Team may request additional documents. They will grant approval after completing the review of all submitted documents.
 
