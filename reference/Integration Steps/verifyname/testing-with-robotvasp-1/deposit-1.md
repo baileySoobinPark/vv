@@ -29,7 +29,7 @@ metadata:
 
   <br />
 
-  <Accordion title="* How to use Owner Verification Simulation API">
+  <Accordion title="How to use Owner Verification Simulation API">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications`
@@ -105,12 +105,15 @@ metadata:
 ## 2. **Execute the transaction on the blockchain network**
 
 * **Conditions**
+
   * Only completed owner verifications can be used for the deposit test.
   * In this test, the originator wallet address must same with the beneficiary wallet address in the withdrawal test.
   * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
+
   <br />
-  <Accordion title="* How to use the Robot VASP Withdrawal Request API">
+
+  <Accordion title="How to use the Robot VASP Withdrawal Request API">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/withdrawal`
@@ -125,7 +128,7 @@ metadata:
     | `amount` (required)                    | string  | Must be within the available balance verified in withdrawal test 3-1 case 1.                                                                                                                                                | –                                            |
     | `omit_tx_report` (optional)            | boolean | To verify whether the transaction report is submitted after withdrawal. If set to `true`, the transaction result will not be submitted. Your VASP can set this to `true` to conduct test case 2 in 2-1. Default is `false`. | –                                            |
 
-    * **Request Body Example**
+    * **Expected Result**
 
     ```
     {
@@ -133,6 +136,7 @@ metadata:
     }
     ```
   </Accordion>
+
   <br />
 * How to use the Robot VASP Withdrawal Request API
 
