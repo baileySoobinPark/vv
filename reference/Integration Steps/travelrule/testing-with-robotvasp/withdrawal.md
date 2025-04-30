@@ -199,21 +199,23 @@ Your VASP must pass all test cases listed below.
   * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
   * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
 
-\<Accordion title="How to use the Deposit Reflection Inquery API">
-&#x20; \*\*Method\*\*: \`POST\`
+<br />
 
-&#x20; \* \*\*Endpoint\*\*: \`https\://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry\`
-&#x20; \* \*\*Request Query\*\*
-&#x20;&#x20;
-\| Parameter Name     | Description                                                                 | Example                                    |
-\|--------------------|-----------------------------------------------------------------------------|--------------------------------------------|
-\| \`verificationUuid\` | Identifier to distinguish User Verification. \<br>You can receive this identifier as a response after calling the User Verification API (Enclave API). | ecb457e3-2307-4e72-8a42-16a3774e154b       |
+<Accordion title="How to use the Deposit Reflection Inquery API">
+  **Method**: `POST`
 
-&#x20; \* \*\*Request Body Example\*\*
+  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry`
+  * **Request Query**
 
-&#x20; \`\`\`
-\{
-&#x20; "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
-}
-&#x20; \`\`\`
-\</Accordion>
+  | Parameter Name     | Description                                                                                                                                       | Example                              |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+  | `verificationUuid` | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | ecb457e3-2307-4e72-8a42-16a3774e154b |
+
+  * **Request Body Example**
+
+  ```
+  {
+  "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
+  }
+  ```
+</Accordion>
