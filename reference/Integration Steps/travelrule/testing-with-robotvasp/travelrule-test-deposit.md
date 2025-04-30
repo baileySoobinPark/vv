@@ -115,7 +115,8 @@ Your VASP must pass all test cases listed below.
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account`
-      * **Request Body Example**
+
+    * **Request Body Example**
 
     ```
     {
@@ -171,7 +172,8 @@ Your VASP must pass all test cases listed below.
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications`
-      * **Request Body Example**
+
+    * **Request Body Example**
 
     ```
     // copy and paste it in request body params
@@ -262,6 +264,7 @@ Your VASP must pass all test cases listed below.
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal`
+
     * **Request Query**
 
     | Parameter Name     | Type    | Description                                                                                                                                                                                                                                          |
@@ -304,6 +307,7 @@ Your VASP must pass all test cases listed below.
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx`
+
     * **Request Query**
 
     | Parameter Name     | Type   | Description                                                                                                                                       | Example                                        |
@@ -336,6 +340,7 @@ Your VASP must pass all test cases listed below.
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error`
+
     * **Request Query**
 
     | Field Name         | Type   | Description                                                                                                                                       | Example                                  |
