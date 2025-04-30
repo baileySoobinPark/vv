@@ -52,9 +52,10 @@ Here are virtual user informations that stored on Robot VASP for conducting test
   * First Name: Taylor
 
   Wallet Address
-  `'ETH' address`: 0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c
 
-  `'XRP' address`: rGFFufDwabHuPur9927p1EgBTcCBfsjtEU
+  **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
-  `'XRP' destination tag`: 123456789
+  **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+
+  **'XRP' destination tag**: `123456789`
 </Accordion>
