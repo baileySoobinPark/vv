@@ -188,3 +188,31 @@ Your VASP must pass all test cases listed below.
   <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
   ```
 </Accordion>
+
+<br />
+
+**Case 2. Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+
+* Conditions
+  * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
+* Expected Result
+  * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
+  * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
+
+<Accordion title="How to use the Check Transaction Status Simulation API">
+  **Method**: `POST`
+
+  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry`
+  * **Request Query**
+
+  \| Parameter Name | Description    | Example |
+  \| -------------- | ------------------------------------------------- | -------------------| `verificationUuid`| Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API).  | ecb457e3-2307-4e72-8a42-16a3774e154b
+
+  * **Request Body  Example**
+
+  ```json
+  {
+  "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
+  }
+  ```
+</Accordion>
