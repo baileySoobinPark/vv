@@ -107,7 +107,7 @@ After completing the database installation, you must create the necessary tables
 
 <Tabs>
   <Tab title="MySQL">
-    ```
+    ```shell
     CREATE TABLE `own_keys` (
     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
     `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
@@ -148,14 +148,150 @@ After completing the database installation, you must create the necessary tables
   </Tab>
 
   <Tab title="PostgreSQL">
-    Here's content that's only inside the second Tab.
+    ```shell
+    CREATE TABLE own_keys (
+    id SERIAL NOT NULL PRIMARY KEY,
+    type enum_key_types NOT NULL,
+    key_identifier varchar(256) NOT NULL,
+    UNIQUE(key_identifier, type),
+    public_key varchar(256) NOT NULL,
+    private_key varchar(256) NOT NULL,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE INDEX public_key ON own_keys(public_key, private_key);
+
+    CREATE TYPE enum_key_types AS ENUM ('PerVasp', 'PerAddress', 'PerVerification');
+
+    CREATE TABLE counter_party_keys (
+    id SERIAL NOT NULL PRIMARY KEY,
+    type enum_key_types NOT NULL,
+    vasp_id numeric(20) NOT NULL,
+    key_identifier varchar(256) NOT NULL,
+    UNIQUE(vasp_id, key_identifier, type),
+    public_key varchar(256) NOT NULL,
+    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE type enum_status as ENUM('CREATED', 'PROCESSING', 'DONE', 'ERROR');
+
+    CREATE TABLE commands(
+    command_id numeric(20) NOT NULL PRIMARY KEY,
+    command_type varchar(32) NOT NULL,
+    command_body text NOT NULL,
+    status enum_status NOT NULL DEFAULT 'CREATED',
+    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fetched_at timestamp DEFAULT NULL,
+    finished_at timestamp DEFAULT NULL
+    );
+
+    CREATE INDEX status_id ON commands(status, command_id);
+    CREATE INDEX status_finished_at ON  commands(status, finished_at);
+    CREATE INDEX status_fetched_at_created_at ON commands(status, fetched_at, created_at);
+    ```
   </Tab>
 
   <Tab title="MSSQL">
-    Here's content that's only inside the third Tab.
+    ```shell
+    CREATE TABLE own_keys (
+    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
+    key_identifier nvarchar(256) NOT NULL,
+    public_key nvarchar(256) NOT NULL,
+    private_key nvarchar(256) NOT NULL,
+    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT key_uniq_own_keys UNIQUE(key_identifier, type)
+    );
+
+    CREATE INDEX public_key ON own_keys(public_key, private_key);
+
+    CREATE TABLE counter_party_keys (
+    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
+    vasp_id BIGINT check (vasp_id > 0) NOT NULL,
+    key_identifier nvarchar(256) NOT NULL,
+    public_key nvarchar(256) NOT NULL,
+    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT key_uniq_counter_party_keys UNIQUE(vasp_id, key_identifier, type)
+    );
+
+    CREATE TABLE commands (
+    command_id BIGINT NOT NULL PRIMARY KEY,
+    command_type nvarchar(32) NOT NULL,
+    command_body nvarchar(MAX) NOT NULL,
+    status nvarchar(20) DEFAULT 'CREATED' NOT NULL check (status in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
+    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
+    fetched_at datetime2 DEFAULT NULL,
+    finished_at datetime2 DEFAULT NULL
+    );
+
+    CREATE INDEX idx_status_id ON commands(status, command_id);
+    CREATE INDEX idx_status_finished_at ON commands(status, finished_at);
+    CREATE INDEX idx_status_fetched_at_created_at ON commands(status, fetched_at, created_at);
+    ```
   </Tab>
 
   <Tab title="Oracle">
-    Here's content that's only inside the third Tab.
+    ```shell
+    CREATE TABLE "own_keys" (
+    "id" number(20) NOT NULL,
+    "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
+    "key_identifier" varchar2(256) NOT NULL,
+    "public_key" varchar2(256) NOT NULL,
+    "private_key" varchar2(256) NOT NULL,
+    "created_at" date DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "pk_own_keys_id" PRIMARY KEY ("id"),
+    CONSTRAINT "key_uniq_own_keys" UNIQUE ("key_identifier", "type")
+    );
+
+    CREATE INDEX "idx_public_key" ON "own_keys"("public_key", "private_key");
+    CREATE SEQUENCE "own_keys_id_seq";
+
+    CREATE OR REPLACE TRIGGER own_keys_trigger
+    BEFORE INSERT ON "own_keys"
+    FOR EACH ROW
+    BEGIN
+    SELECT "own_keys_id_seq".nextval
+    INTO :new."id"
+    FROM dual;
+    END;
+
+    CREATE TABLE "counter_party_keys" (
+    "id" number(20) NOT NULL,
+    "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
+    "vasp_id" varchar2(20) NOT NULL,
+    "key_identifier" varchar2(256) NOT NULL,
+    "public_key" varchar2(256) NOT NULL,
+    "created_at" date DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "pk_counter_party_keys_id" PRIMARY KEY ("id"),
+    CONSTRAINT "key_uniq_counter_party_keys" UNIQUE ("vasp_id", "key_identifier", "type")
+    );
+
+    CREATE SEQUENCE "counter_party_keys_id_seq";
+
+    CREATE OR REPLACE TRIGGER counter_party_keys_trigger
+    BEFORE INSERT ON "counter_party_keys"
+    FOR EACH ROW
+    BEGIN
+    SELECT "counter_party_keys_id_seq".nextval
+    INTO :new."id"
+    FROM dual;
+    END;
+
+    CREATE TABLE "commands" (
+    "command_id" number(20) NOT NULL,
+    "command_type" varchar2(32) NOT NULL,
+    "command_body" clob NOT NULL,
+    "status" varchar2(20) DEFAULT 'CREATED' NOT NULL check ("status" in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
+    "created_at" date DEFAULT CURRENT_TIMESTAMP,
+    "fetched_at" date DEFAULT NULL,
+    "finished_at" date DEFAULT NULL,
+    CONSTRAINT "command_id" PRIMARY KEY ("command_id")
+    );
+
+    CREATE INDEX "idx_status_id" ON "commands"("status", "command_id");
+    CREATE INDEX "idx_status_finished_at" ON "commands"("status", "finished_at");
+    CREATE INDEX "idx_status_fetched_at_created_at" ON "commands"("status", "fetched_at", "created_at");
+    ```
   </Tab>
 </Tabs>
