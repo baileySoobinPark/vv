@@ -143,6 +143,7 @@ metadata:
     * After the actual transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
   * **Expected Results**
     * Your VASP can receive the transaction report through the callback API(VASP API).
+    <br />
 * **Case 2. Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
   * **Conditions**
 
