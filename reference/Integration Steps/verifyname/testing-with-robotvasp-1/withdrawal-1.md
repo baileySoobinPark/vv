@@ -203,6 +203,8 @@ Your VASP must pass all test cases listed below.
     ```
   </Accordion>
 
+  <br />
+
 ### 3-2. **Cancel the transaction that has completed owner verification.**
 
 **Case 1. Send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
