@@ -158,6 +158,8 @@ Your VASP must pass all test cases listed below.
     * `LACK-OF-INFORMATION`
     * `BLACKLISTED`
 
+<br />
+
 ### 2. Your VASP verifies the Beneficiary's personal information provided by Robot VASP
 
 * **Conditions**
@@ -245,6 +247,8 @@ Your VASP must pass all test cases listed below.
     * `LACK-OF-INFORMATION`
     * `BLACKLISTED`
 
+<br />
+
 ### 3-1. Execute the transaction on the blockchain network
 
 * **Conditions**
@@ -274,8 +278,6 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-
-  <br />
 * **Expected Result**
   * Your VASP can confirm the deposit.
 
@@ -318,8 +320,6 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-
-  <br />
 * **Expected Results**
   * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
 
@@ -328,8 +328,10 @@ Your VASP must pass all test cases listed below.
 ### 3-2. Cancel the transaction that has completed user verification
 
 * **Conditions**
+
   * Robot VASP does not send an Error Report to the VV Central Server unless the virtual asset transfer fails.
   * To test an error reporting scenario, you must call the Robot VASP Error Situation Reporting Simulation API to request an Error Report.
+
   <Accordion title="How to use the Error Situation Reporting Simulation API">
     **Method**: `POST`
 
@@ -354,11 +356,5 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-  <br />
-
-<br />
-
-<br />
-
 * **Expected Results**
   * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
