@@ -100,3 +100,62 @@ After completing the database installation, you must create the necessary tables
     </tr>
   </tbody>
 </Table>
+
+<br />
+
+## Table Creation Query
+
+<Tabs>
+  <Tab title="MySQL">
+    ```
+    CREATE TABLE `own_keys` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
+    `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
+    `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or type or public key)',
+    `public_key` varchar(256) NOT NULL COMMENT 'Public Key',
+    `private_key` varchar(256) NOT NULL COMMENT 'Private Key',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `key_uniqueness` (`key_identifier`, `type`),
+    INDEX `public_key` (`public_key`, `private_key`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `counter_party_keys` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
+    `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
+    `vasp_id` bigint(20) unsigned NOT NULL COMMENT 'Counter party VASP ID',
+    `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or vaspId)',
+    `public_key` varchar(256) NOT NULL COMMENT 'Public Key of counter party',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `key_uniqueness` (`vasp_id`, `key_identifier`, `type`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    CREATE TABLE `commands` (
+    `command_id` bigint(20) unsigned NOT NULL COMMENT 'Command ID',
+    `command_type` varchar(32) NOT NULL COMMENT 'Command type',
+    `command_body` text(65535) NOT NULL COMMENT 'Command body',
+    `status` enum('CREATED', 'PROCESSING', 'DONE', 'ERROR') NOT NULL DEFAULT 'CREATED' COMMENT 'Command status',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    `fetched_at` datetime DEFAULT NULL COMMENT 'Fetched at.',
+    `finished_at` datetime DEFAULT NULL COMMENT 'Finished at.',
+    PRIMARY KEY (`command_id`),
+    INDEX `status_id` (`status`, `command_id`),
+    INDEX `status_finished_at` (`status`, `finished_at`),
+    INDEX `status_fetched_at_created_at` (`status`, `fetched_at`, `created_at`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    ```
+  </Tab>
+
+  <Tab title="PostgreSQL">
+    Here's content that's only inside the second Tab.
+  </Tab>
+
+  <Tab title="MSSQL">
+    Here's content that's only inside the third Tab.
+  </Tab>
+
+  <Tab title="Oracle">
+    Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
