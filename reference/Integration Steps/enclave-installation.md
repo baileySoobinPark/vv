@@ -27,7 +27,7 @@ Enclave environment variables can be categorized into four main groups:
 * **Security and Preferences Settings**
   * Variables to configure security settings and operational preferences for the Enclave server.
   * ex) Public key caching options
-* Enclave Modes
+* **Enclave Modes**
   * enclave mode 에는 TR, VN1\_CALL, VN1\_RESPONSE, VN2 가 있습니다. 이 값들은 enclave 환경변수 `VEGA_ENCLAVE_MODE` 에 최소 한개 이상 콤마를 구분자로 하여 설정 되어야 합니다.
   * 예시) VEGA\_ENCLAVE\_MODE=TR,VN2,VN1\_CALL,VN1\_RESPONSE
     * TR 을 설정한 경우: TravelRule API 를 호출/응답 하기 위한 목적으로 enclave 를 기동한다는 의미입니다.
@@ -40,14 +40,7 @@ The following table summarizes all essential environment variables, providing de
 
 **`The names of the environment variables must never be changed.`**
 
-| Environment Name    | Default | Description                                                       |
-| ------------------- | ------- | ----------------------------------------------------------------- |
-| VEGA\_SERVER\_PORT  | 21117   | Enclave Server Port Number.                                       |
-| VEGA\_ENCLAVE\_MODE |         | 사용 목적 별 모드 설정 입니다. 아래 모드 중 선택(최소 한개 이상)하여 콤마를 구분자로 하여 설정 하시면 됩니다. |
-
-설정 가능한 모드:
-
-### 🔧 Environment Variables
+### Environment Variables
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -67,6 +60,36 @@ The following table summarizes all essential environment variables, providing de
   </thead>
 
   <tbody>
+    <tr>
+      <td>
+        VEGA\_SERVER\_PORT
+      </td>
+
+      <td>
+        21117
+      </td>
+
+      <td>
+        Enclave Server Port Number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        VEGA\_ENCLAVE\_MODE
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        사용 목적 별 모드 설정 입니다. 아래 모드 중 선택(최소 한개 이상)하여 콤마를 구분자로 하여 설정 하시면 됩니다.
+
+        `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
+      </td>
+    </tr>
+
     <tr>
       <td>
         `VEGA_ENCLAVE_PUBLIC_ENDPOINT`
