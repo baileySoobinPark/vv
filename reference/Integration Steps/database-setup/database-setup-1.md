@@ -21,6 +21,8 @@ To interact with the VerifyVASP Enclave server, configure a supported database t
 * **MSSQL**
 * **Oracle DBMS**
 
+<br />
+
 ## **Table Description**
 
 After completing the database installation, you must create the necessary tables for the VerifyVASP Enclave server. The schema includes **four mandatory tables** and **four optional tables**, which are only needed if your implementation integrates with third-party screening services like Chainalysis or Refinitiv. Refer to the table below for detailed descriptions of each table.
@@ -97,6 +99,8 @@ After completing the database installation, you must create the necessary tables
     </tr>
   </tbody>
 </Table>
+
+<br />
 
 ## Table Creation Query
 
