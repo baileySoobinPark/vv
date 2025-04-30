@@ -100,3 +100,89 @@ Here are virtual user informations that stored on Robot VASP for conducting test
 
   **'XRP' destination tag**: `234567891`
 </Accordion>
+
+<br />
+
+## Test Cases
+
+Your VASP must pass all test cases listed below.
+
+### 1. Identify the Robot VASP
+
+* **Conditions**
+  * Your VASP must use the List VASP API(Enclave API).
+* **Expected Result**
+  * Your VASP can identify the Robot VASP using List VASP API.
+
+<br />
+
+### 2. Verify the Beneficiary's account information
+
+* **Conditions**
+  * Your VASP must use the User Account Verification API(Enclave API).
+  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+* **Expected Result**
+  * You can receive seven possible responses depending on how your VASP entered the test user information.
+    * `VERIFIED`
+    * `UNKNOWN-SYMBOL`
+    * `UNKNOWN-ADDRESS`
+    * `UNVERIFIED-KYC`
+    * `MISMATCHED-NAME`
+    * `UNAVAILABLE-INFORMATION`
+    * `LACK-OF-INFORMATION`
+    * `BLACKLISTED`
+
+<br />
+
+### 3. Verify the Beneficiary's personal information
+
+* **Conditions**
+  * Your VASP must receive VERIFIED as a result of the User Account Verification API in order to conduct this test case.
+  * Your VASP must use the User Verification API (Enclave API).
+  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+* **Expected Result**
+  * You can receive seven possible responses depending on how your VASP entered the test user information.
+    * `VERIFIED`
+    * `UNKNOWN-SYMBOL`
+    * `UNKNOWN-ADDRESS`
+    * `UNVERIFIED-KYC`
+    * `MISMATCHED-NAME`
+    * `UNAVAILABLE-INFORMATION`
+    * `LACK-OF-INFORMATIONBLACKLISTED`
+    <br />
+
+### 4-1. Execute the transaction on the Blockchain Network
+
+> 💡 Please Note:
+>
+> Upon receiving a VERIFIED response from both User Account Verification and User Verification, you must transfer the virtual assets to the Beneficiary's wallet address.
+>
+> If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
+>
+> If you send virtual assets to Robot VASP without receiving a VERIFIED response, the deposit test cannot be completed successfully.
+>
+> When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag. Instructions on how to provide the destination tag can be found in the \[IVMS Guide]\(링크 추가 필요)  // 링크 추가 필요
+
+**Case 1. Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
+
+* **Conditions**
+  * Your VASP must use the Report Transaction Result API to send the transaction hash to the VerifyVASP Central Server.
+* **Expected Result**
+  * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
+
+\<Accordion title="How to use the Deposit Reflection Inquery API">
+\*\*Method\*\*: GET
+&#x20; \* \*\*Endpoint\*\*: \`https\://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance\`
+&#x20; \* \*\*Request query\*\*
+&#x20; \* \*\*Request Example\*\*
+&#x20; \| Parameter Name | Type   | Description                                         | Example                                           |
+\|----------------|--------|-----------------------------------------------------|---------------------------------------------------|
+\| \`vaspId\`       | string | Originating VASP ID                                 | 15952089931162058999                              |
+\| \`symbol\`       | string | The symbol of the virtual asset to be transferred   | ETH                                               |
+\| \`address\`      | string | The address that is receiving the virtual asset     | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F        |
+&#x20; Request Example
+
+\<https\://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999\&symbol=ETH\&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
+&#x20; \`\`\`
+
+\</Accordion>
