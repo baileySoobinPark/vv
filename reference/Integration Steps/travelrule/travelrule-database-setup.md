@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## 📄 Database Tables for Verification and Risk Assessment
+## Database Tables for Verification and Risk Assessment
 
 <Table align={["left","left","left"]}>
   <thead>
