@@ -293,9 +293,11 @@ Your VASP must pass all test cases listed below.
 **Case 2. Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
 
 * **Conditions**
+
   * If you set the omitTxReport field to true when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
   * Your VASP must check the transaction status using the Check Transaction Status API(Enclave API).
   * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
+
   <Accordion title="How to use the Transaction Reporting Simulation API">
     **Method**: `POST`
 
@@ -316,100 +318,47 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
+
   <br />
 * **Expected Results**
   * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
 
 <br />
 
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-### 4-1. Execute the transaction on the Blockchain Network
-
-> 💡 Please Note:
->
-> Upon receiving a VERIFIED response from both User Account Verification and User Verification, you must transfer the virtual assets to the Beneficiary's wallet address.
->
-> If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
->
-> If you send virtual assets to Robot VASP without receiving a VERIFIED response, the deposit test cannot be completed successfully.
->
-> When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag. Instructions on how to provide the destination tag can be found in the \[IVMS Guide]\(링크 추가 필요)  // 링크 추가 필요
-
-**Case 1. Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
+### 3-2. Cancel the transaction that has completed user verification
 
 * **Conditions**
-  * Your VASP must use the Report Transaction Result API to send the transaction hash to the VerifyVASP Central Server.
-* **Expected Result**
-  * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
+  * Robot VASP does not send an Error Report to the VV Central Server unless the virtual asset transfer fails.
+  * To test an error reporting scenario, you must call the Robot VASP Error Situation Reporting Simulation API to request an Error Report.
+  <Accordion title="How to use the Error Situation Reporting Simulation API">
+    **Method**: `POST`
 
-<Accordion title="How to use the Deposit Reflection Inquery API">
-  **Method**: `GET`
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error`
+    * **Request Query**
 
-  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-  * **Request Query**
+    | Field Name         | Type   | Description                                                                                                                                       | Example                                  |
+    | ------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+    | `verificationUuid` | string | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | `"ecb457e3-2307-4e72-8a42-16a3774e154b"` |
+    | `result`           | string | The result of verification                                                                                                                        | `"DENIED"`                               |
+    | `reason`           | string | The reason code for the verification result being `DENIED`. This field is only shown when the value of the `result` field is `DENIED`.            | `"USER-CANCELED"`                        |
+    | `message`          | string | More details about the verification result being `DENIED`. This field is only shown when the value of the `result` field is `DENIED`.             | `"User canceled this transaction"`       |
 
-  | Parameter Name | Type   | Description                                       | Example                                    |
-  | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
-  | `vaspId`       | string | Originating VASP ID                               | 15952089931162058999                       |
-  | `symbol`       | string | The symbol of the virtual asset to be transferred | ETH                                        |
-  | `address`      | string | The address that is receiving the virtual asset   | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+    * **Request Body Example**
 
-  * **Request Example**
+    ```
+    {
+    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2", // previous successful verification
+    "result": "DENIED",
+    "reason": "USER-CANCELED",
+    "message": "User canceled this transaction"
+    }
+    ```
+  </Accordion>
+  <br />
 
-  ```
-  <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
-  ```
-</Accordion>
+<br />
 
-**Case 2. Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+<br />
 
-* Conditions
-  * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
-* Expected Result
-  * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
-  * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
-
-<Accordion title="How to use the Deposit Reflection Inquery API">
-  **Method**: `POST`
-
-  * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry`
-  * **Request Query**
-
-  | Parameter Name     | Description                                                                                                                                       | Example                              |
-  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-  | `verificationUuid` | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | ecb457e3-2307-4e72-8a42-16a3774e154b |
-
-  * **Request Body Example**
-
-  ```
-  {
-  "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
-  }
-  ```
-</Accordion>
-
-### 4-2. Cancel the transaction that has completed user verification.
-
-**Case 1. Send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
-
-* **Conditions**
-  * Your VASP must use the Report Error API to send the canceled transaction to the VerifyVASP Central Server.
-* **Expected Result**
-  * The Robot VASP stops calling the Transaction Status Query API.
-  * The verification result will be changed from VERIFIED to ERROR. Your VASP can confirm the change in the state of verification by using the Get Verification Result API or the List Verification Result API.
-
-**Case 2. Do not send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
-
-* **Conditions**
-  * Your VASP must not use the Report Error API after canceling the execution of a transaction that has completed verification.
-* **Expected Result**
-  * Robot VASP periodically calls Transaction Status Query API (VASP API) implemented by your VASP  for the related transaction. (up to 1 hour)
+* **Expected Results**
+  * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
