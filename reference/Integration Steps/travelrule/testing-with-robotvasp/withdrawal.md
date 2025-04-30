@@ -42,14 +42,14 @@ Case 2: For a halted virtual asset transfer, your VASP **does not send an Error 
 
 Here are virtual user informations that stored on Robot VASP for conducting test. Your VASP can conduct each case of withdrawal test using this information.
 
-<Accordion title="User 1(Individual user who has completed KYC verification">
+<Accordion title="User 1(Individual user who has completed KYC verification)">
   If all the information is entered correctly, the verification result must return VERIFIED.
 
   ### Individual Information
 
-  * Last Name: Robbins
+  * **Last Name**: Robbins
 
-  * First Name: Taylor
+  * **First Name**: Taylor
 
   ### Wallet Address
 
