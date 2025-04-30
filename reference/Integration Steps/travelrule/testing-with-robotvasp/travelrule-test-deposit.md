@@ -161,8 +161,10 @@ Your VASP must pass all test cases listed below.
 ### 2. Your VASP verifies the Beneficiary's personal information provided by Robot VASP
 
 * **Conditions**
+
   * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Verification API.
   * The Robot VASP must return `VERIFIED` as the result of User Account  Verification Simulation API before using User Verification Simulation API.
+
   <Accordion title="How to use the User Verification Simulation API">
     **Method**: `POST`
 
@@ -232,7 +234,6 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-  <br />
 * **Expected Result**
   * You can receive seven possible responses depending on how your VASP entered the test user information.
     * `VERIFIED`
@@ -244,21 +245,36 @@ Your VASP must pass all test cases listed below.
     * `LACK-OF-INFORMATION`
     * `BLACKLISTED`
 
-### 3. Verify the Beneficiary's personal information
+### 3-1. Execute the transaction on the blockchain network
 
 * **Conditions**
-  * Your VASP must receive VERIFIED as a result of the User Account Verification API in order to conduct this test case.
-  * Your VASP must use the User Verification API (Enclave API).
-  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+  * Only completed verifications can be used for the deposit test.
+  * In this test, the originator wallet address must same with the beneficiary wallet address in the withdrawal test.
+  * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
+  * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
+  <Accordion title="How to use the Deposit Reflection Inquery API">
+    **Method**: `POST`
+
+    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal`
+    * **Request Query**
+
+    | Parameter Name     | Type    | Description                                                                                                                                                                                                                                          |
+    | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `verificationUuid` | string  | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API).                                                                                                    |
+    | `omitTxReport`     | boolean | Used to verify whether the transaction report is submitted after withdrawal. If this field is set to `true`, the transaction result will not be submitted. Your VASP can set this field to `true` to conduct test case 2 in 3-1. Default is `false`. |
+
+    * **Request Body Example**
+
+    ```
+    {
+    "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b", 
+    "omitTxReport": false 
+    }
+    ```
+  </Accordion>
+  <br />
 * **Expected Result**
-  * You can receive seven possible responses depending on how your VASP entered the test user information.
-    * `VERIFIED`
-    * `UNKNOWN-SYMBOL`
-    * `UNKNOWN-ADDRESS`
-    * `UNVERIFIED-KYC`
-    * `MISMATCHED-NAME`
-    * `UNAVAILABLE-INFORMATION`
-    * `LACK-OF-INFORMATIONBLACKLISTED`
+  * Your VASP can confirm the deposit.
     <br />
 
 ### 4-1. Execute the transaction on the Blockchain Network
