@@ -38,42 +38,66 @@ metadata:
 
 Here are virtual user informations that stored on Robot VASP for conducting test. Your VASP can conduct each case of withdrawal test using this information.
 
-* User 1
+<Accordion title="User 1(Individual user who has completed KYC verification)">
+  If all the information is entered correctly, the verification result must return `VERIFIED`.
 
-  ### **Individual Information**
+  ### Individual Information
 
   * **Last Name**: Robbins
+
   * **First Name**: Taylor
 
-  ### **Wallet Address**
+  ### Wallet Address
 
-  * **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
-  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
-  * **'XRP' destination tag**: `123456789`
-* User 2
+  **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
-  ### **Individual Information**
+  **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+
+  **'XRP' destination tag**: `123456789`
+</Accordion>
+
+<Accordion title="User 2(Individual user who has not completed KYC verification)">
+  Even if all information is entered correctly, the verification result must return `DENIED`.
+
+  ### Individual Information
 
   * **Last Name**: Cook
+
   * **First Name**: Ethan
 
-  ### **Wallet Address**
+  ### Wallet Address
 
-  * **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
-  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
-  * **'XRP' destination tag**: `345678912`
-* User 3 (법인)
+  **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
 
-  ### **Representative Name**
+  **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+
+  **'XRP' destination tag**: `345678912`
+</Accordion>
+
+<Accordion title="User 3(Corporate user who has completed KYC verification)">
+  If all the information is entered correctly, including the representative's name, the verification result must return `VERIFIED`.
+  If the representative's name is missing or incorrect, the verification result should return `DENIED`, even if all other information is entered correctly.
+
+  ### Individual Information
+
+  * **Corporate Name**: Garrit Studio
+
+    ### Representative Name
 
   * **Last Name**: Clarke
+
   * **First Name**: Jason
 
-  ### **Wallet Address**
+  ### Wallet Address
 
-  * **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
-  * **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
-  * **'XRP' destination tag**: `234567891`
+  **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
+
+  **'XRP' address**: `rGFFufDwabHuPur9927p1EgBTcCBfsjtEU`
+
+  **'XRP' destination tag**: `234567891`
+</Accordion>
+
+<br />
 
 # **Test Cases**
 
