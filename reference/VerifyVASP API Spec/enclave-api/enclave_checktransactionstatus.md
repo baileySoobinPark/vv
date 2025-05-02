@@ -1,8 +1,6 @@
 ---
 title: Check Transaction Status API
 excerpt: >
-  ### Check Transaction Status API
-
   This API is called by the Beneficiary VASP when it cannot confirm the results
   of the Report Transaction Result or Report Error API for a verified user
   within a certain timeframe.
