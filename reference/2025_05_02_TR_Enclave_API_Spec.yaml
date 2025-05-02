@@ -3046,10 +3046,14 @@ paths:
 
 
         ### Preparation Requirements
-          1. Enclave Environment Variable Configuration: Set VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the registration process.
-          2. Database Table Setup:
-            - The Enclave database must include a table to store Chainalysis KYT API call results.
-            - Refer to the Chainalysis KYT Results table and the Chainalysis KYT Alerts table for table definitions.
+
+        1. Enclave Environment Variable Configuration: Set
+        VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the
+        registration process.
+
+        2. Database Table Setup:
+          - The Enclave database must include a table to store Chainalysis KYT API call results.
+          - Refer to the Chainalysis KYT Results table and the Chainalysis KYT Alerts table for table definitions.
       operationId: Screening_performRiskAssessmentViaChainalysisKYT
       tags:
         - Screening API
@@ -3226,16 +3230,21 @@ paths:
           Before calling the WCO API, the User Verification API (POST /verifications) must be completed. The Refinitiv WCO API allows VASPs to evaluate the risk level of the Originator/Beneficiary of a transaction. This enables VASP to perform additional risk assessments on whether the Beneficiary or Originator is a risky individual or organization. The WCO API also operates asynchronously, the results of the risk evaluation are delivered through the Callback API.
 
         ### Preparation Requirements
-          1. Enclave Environment Variable Configuration:
-            - Set VEGA_REFINITIV_WCO_API_KEY variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
-            - Set VEGA_REFINITIV_WCO_API_SECRET variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
-            - Set VEGA_REFINITIV_WCO_GROUP_ID variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
 
-          2. Use the SEQ-pre-groups: Get my top-level groups request from the Group Information folder in the Refinitiv WCO API Quick Start Postman Collection.
-          3. Set the API Key and API Secret as environment variables in Postman before making the request.
-          4. Database Table Setup:
-            - All Refinitiv WCO API call logs are stored in the Enclave database.
-            - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
+        1. Enclave Environment Variable Configuration:
+          - Set VEGA_REFINITIV_WCO_API_KEY variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
+          - Set VEGA_REFINITIV_WCO_API_SECRET variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
+          - Set VEGA_REFINITIV_WCO_GROUP_ID variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
+        2. Use the SEQ-pre-groups: Get my top-level groups request from the
+        Group Information folder in the Refinitiv WCO API Quick Start Postman
+        Collection.
+
+        3. Set the API Key and API Secret as environment variables in Postman
+        before making the request.
+
+        4. Database Table Setup:
+          - All Refinitiv WCO API call logs are stored in the Enclave database.
+          - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
       operationId: Screening_performRiskAssessmentViaRefinitivWCO
       tags:
         - Screening API
