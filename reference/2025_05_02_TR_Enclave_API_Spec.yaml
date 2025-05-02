@@ -3220,11 +3220,11 @@ paths:
 
         ### What is the Refinitiv WCO API?
           The Refinitiv World-Check One (WCO) API is a paid service designed for conducting risk assessments on individuals or entities using personal identification information. Risk assessment requests are referred to as 'case', which are uniquely identified by a caseSystemId assigned by Refinitiv. Additionally, the concept of 'groups' is used to manage case assignments, with each case belonging to a specific group. Reviewing and structuring these groups effectively is recommended before integrating the Refinitiv WCO API into your workflows.
-            - To use the WCO API, you must create an account with Refinitiv and purchase a license. For inquiries or assistance in scheduling a meeting with the Refinitiv team, contact [Refinitiv World Check One](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) directly or reach out to the VerifyVASP team for support.
-            - Once you have purchased the license, log in to the [Refinitiv WCO Console Site](https://worldcheck.refinitiv.com/) to generate your API key. Navigate to "Admin Page > Users > [Your User]" to view the API Key and Secret in the user's details.
-            - For more details about the Refinitiv WCO API and its capabilities, refer to the following resources:
-              - [Refinitiv WCO API Overview](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api)
-              - [Refinitiv WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html)
+          - To use the WCO API, you must create an account with Refinitiv and purchase a license. For inquiries or assistance in scheduling a meeting with the Refinitiv team, contact [Refinitiv World Check One](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) directly or reach out to the VerifyVASP team for support.
+          - Once you have purchased the license, log in to the [Refinitiv WCO Console Site](https://worldcheck.refinitiv.com/) to generate your API key. Navigate to "Admin Page > Users > [Your User]" to view the API Key and Secret in the user's details.
+          - For more details about the Refinitiv WCO API and its capabilities, refer to the following resources:
+            - [Refinitiv WCO API Overview](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api)
+            - [Refinitiv WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html)
 
         ### How to use WCO API
           Before calling the WCO API, the User Verification API (POST /verifications) must be completed. The Refinitiv WCO API allows VASPs to evaluate the risk level of the Originator/Beneficiary of a transaction. This enables VASP to perform additional risk assessments on whether the Beneficiary or Originator is a risky individual or organization. The WCO API also operates asynchronously, the results of the risk evaluation are delivered through the Callback API.
