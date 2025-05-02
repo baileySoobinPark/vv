@@ -1,5 +1,5 @@
 ---
-title: /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT
+title: Verify User Account API
 excerpt: >
   This API must be implemented by your VASP to fulfill its role as a
   **Beneficiary VASP**.  
