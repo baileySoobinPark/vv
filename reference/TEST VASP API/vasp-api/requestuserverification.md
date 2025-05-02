@@ -36,6 +36,7 @@ excerpt: >
     The API must return the verification result.
     * After verifying both the Originator and Beneficiary information (including addresses and personal details), the API must return the result field as `VERIFIED` if the provided data matches the beneficiary side records and there are no exceptional reasons to deny the asset transfer.
     * If the provided information is insufficient or does not match the details on the Beneficiary's side, or if the account address or its owner is considered high-risk for asset transfer, the API must return the result field as `DENIED`.
+    
     Upon successful user verification, the API must return additional personal information about the Beneficiary in the IVMS101 messaging format.
   ### 5. Failure Reason Specification
     When the result field is set to `DENIED`, the reason field in the response must specify the reason for the failure. The allowed values for this field are as follows:
