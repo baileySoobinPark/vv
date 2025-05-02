@@ -26,7 +26,7 @@ excerpt: >
     * Evaluates the risk level of the Beneficiary’s wallet address.
     * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
 
-  2. ****
+  2. **Beneficiary VASP**
     * The Beneficiary VASP is restricted from using the KYT API at this stage.
     * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
 
