@@ -2770,8 +2770,8 @@ paths:
           ### Perparation Requirements
           1. **Enclave Environment Variable Configuration**: Set `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued during the registration process.
           2. **Database Table Setup**: 
-            * The Enclave database must include a table to store Chainalysis Sanction API call results.
-            * Refer to the Chainalysis Sanction Results Table definition for implementation details.
+            - The Enclave database must include a table to store Chainalysis Sanction API call results.
+            - Refer to the Chainalysis Sanction Results Table definition for implementation details.
       operationId: Screening_performRiskAssessmentViaChainalysisSanction
       tags:
         - Screening API
