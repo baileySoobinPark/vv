@@ -22,7 +22,7 @@ excerpt: >
   implemented as mandatory processing logic.
 
 
-  ### 2. VERIFICATION_RESULT Callback Type Handling (as Originating VASP)
+  ** 2. VERIFICATION_RESULT Callback Type Handling (as Originating VASP)**
 
   When a verification result is received, your VASP must perform further
   required actions in accordance with the verification result. For example,
@@ -32,7 +32,7 @@ excerpt: >
     <details>
       <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
-      ```json
+      ``` json
         {
           "callbackType": "VERIFICATION_RESULT",
           "data": {
@@ -46,7 +46,7 @@ excerpt: >
     <details>
       <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
 
-      ```json
+      ``` json
         {
           "callbackType":"VERIFICATION_RESULT",
           "data":{
@@ -226,7 +226,7 @@ excerpt: >
   the requested verification process exceeds the allowed timeout period. |
 
 
-  ### 3. TX_REPORT Callback Handling (as Beneficiary VASP)
+  ** 3. TX_REPORT Callback Handling (as Beneficiary VASP)**
 
   When a transaction report is received, your VASP can
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
@@ -235,7 +235,7 @@ excerpt: >
     <details>
       <summary>Example of Request Body for TX_REPORT callback type</summary>
 
-      ```json
+      ``` json
         {
           "callbackType":"TX_REPORT",
           "data":{
@@ -247,7 +247,7 @@ excerpt: >
       ```
     </details>
 
-  ### 4. ERROR_REPORT Callback Handling (as Beneficiary VASP)
+  ** 4. ERROR_REPORT Callback Handling (as Beneficiary VASP)**
 
   When an error report is received, your VASP can
     - Cancel the associated asset transfer request.
@@ -256,7 +256,7 @@ excerpt: >
     <details>
       <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
-      ```json
+      ``` json
         {
           "callbackType":"ERROR_REPORT",
           "data":{
