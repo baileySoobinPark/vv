@@ -72,8 +72,8 @@ excerpt: >
   compliance issue. |
 
   | `UNVERIFIED-KYC`        | `"0x.. is unverified KYC"`          | Error code
-  returned when the Beneficiary has not completed the KYC verification process.
-  |
+  returned when the Beneficiary has not completed the KYC verification process
+  with the Beneficiary VASP.|
 
   | `MISMATCHED-NAME`       | `"Name is not matched."`            | Error code
   returned when the Beneficiary's name does not match the name provided by the
@@ -95,20 +95,20 @@ excerpt: >
   ### Recommendations
 
 
-  - Virtual asset transfers **below the threshold set by regulations** are **not
+  Virtual asset transfers **below the threshold set by regulations** are **not
   subject to the Travel Rule**, and **beneficiary name verification is not
   mandatory**.
 
   - **We highly recommend using the TravelRule Protocol for all transactions**,
-  regardless of differing thresholds across jurisdictions, to:
-    - Ensure secure and compliant transfers
-    - Reduce operational resources
+  regardless of differing thresholds across jurisdictions, to ensure secure and
+  compliant transfers reduce operational resources.
+
 
   - If the `isExceedingThreshold` field in the Originating VASP's request is set
-  to `false`:
-    - The transfer **is not subject to the Travel Rule**
-    - **User verification is not required**
-    - The virtual asset **can be transferred without further verification**
+  to `false` the transfer **is not subject to the Travel Rule**, and **User
+  verification is not mandatory** in such cases, the virtual asset **can be
+  transferred without further verification**.
+
 
   ### Environment Variable Configuration
 
@@ -121,7 +121,7 @@ excerpt: >
 
 
   - `VEGA_VERIFICATION_API_PATH`  
-    Implement this API at the desired path (`{VASP_DEFINED_PATH_VERIFY_USER}`) and set that path as the value for this variable.
+    Implement this API at the desired path (`{VASP_DEFINED_PATH_VERIFY_USER}`) and set the path in the variable.
 
   - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`  
     Set this variable to the **API key provided during your VerifyVASP onboarding process**.
