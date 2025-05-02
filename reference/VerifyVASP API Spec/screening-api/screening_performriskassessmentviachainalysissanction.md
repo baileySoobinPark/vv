@@ -18,10 +18,10 @@ excerpt: >
       * **By the Beneficiary VASP**: The Beneficiary VASP can assess the risk associated with the Originator's wallet address to identify potential threats and take necessary precautions.
 
     ### Perparation Requirements
-      1. **Enclave Environment Variable Configuration**: Set `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued during the registration process.
-      2. **Database Table Setup**: 
-        * The Enclave database must include a table to store Chainalysis Sanction API call results.
-        * Refer to the Chainalysis Sanction Results Table definition for implementation details.
+    1. **Enclave Environment Variable Configuration**: Set `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued during the registration process.
+    2. **Database Table Setup**: 
+      * The Enclave database must include a table to store Chainalysis Sanction API call results.
+      * Refer to the Chainalysis Sanction Results Table definition for implementation details.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
   operationId: Screening_performRiskAssessmentViaChainalysisSanction
