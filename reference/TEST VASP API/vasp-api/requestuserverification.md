@@ -39,6 +39,92 @@ excerpt: >
     Upon successful user verification, the API must return additional personal information about the Beneficiary in the IVMS101 messaging format.
   ### 5. Failure Reason Specification
     When the result field is set to `DENIED`, the reason field in the response must specify the reason for the failure. The allowed values for this field are as follows:
+
+  | Reason Code             | Message                            | Description |
+
+  |-------------------------|-------------------------------------|-------------|
+
+  | `UNKNOWN-SYMBOL`        | `"ETH"`                             | Error code
+  returned when the virtual asset symbol entered by the Originating VASP is not
+  supported by the Beneficiary VASP. |
+
+  | `UNKNOWN-NETWORK`       | `"Ethereum"`                        | Error code
+  returned when the network entered by the Originating VASP is either not
+  supported by the Beneficiary VASP or contains insufficient network
+  information. <br>This error is also returned if the asset symbol matches but
+  the network does not (e.g., sending `USDT` with `ETH` network when only `USDT`
+  on Tron is supported). |
+
+  | `UNKNOWN-ADDRESS`       | `"0x... is not registered."`        | Error code
+  returned when the wallet address entered by the Originating VASP does not
+  belong to a wallet managed by the Beneficiary VASP. |
+
+  | `LACK-OF-INFORMATION`   | `"ACCOUNT_NUMBER"`                  | Error code
+  returned when the information about the Originator is insufficient for the
+  Beneficiary VASP to perform verification. |
+
+  | `UNAVAILABLE-INFORMATION` | `"ACCOUNT_NUMBER"`               | Error code
+  returned when the Beneficiary VASP does not possess or cannot provide certain
+  personal information requested by the Originating VASP. |
+
+  | `BLACKLISTED`           | `"0x.. is listed on the blacklist."` | Error code
+  returned when the sanction screening results for the Originator indicate a
+  compliance issue. |
+
+  | `UNVERIFIED-KYC`        | `"0x.. is unverified KYC"`          | Error code
+  returned when the Beneficiary has not completed the KYC verification process.
+  |
+
+  | `MISMATCHED-NAME`       | `"Name is not matched."`            | Error code
+  returned when the Beneficiary's name does not match the name provided by the
+  Originating VASP. |
+
+  | `NOT-ALLOWED`           | `"This user is locked by internal policy."` |
+  Error code returned when the Beneficiary VASP rejects the user verification
+  for any reason. |
+
+  | `UNDEFINED-ERROR`       | `"Undefined Error is occurred."`    | Error code
+  returned when an error occurs that is not defined in the specified cases. |
+
+  ### Constraints
+
+
+  - This API **must respond within 5 seconds**.
+
+
+  ### Recommendations
+
+
+  - Virtual asset transfers **below the threshold set by regulations** are **not
+  subject to the Travel Rule**, and **beneficiary name verification is not
+  mandatory**.
+
+  - **We highly recommend using the TravelRule Protocol for all transactions**,
+  regardless of differing thresholds across jurisdictions, to:
+    - Ensure secure and compliant transfers
+    - Reduce operational resources
+
+  - If the `isExceedingThreshold` field in the Originating VASP's request is set
+  to `false`:
+    - The transfer **is not subject to the Travel Rule**
+    - **User verification is not required**
+    - The virtual asset **can be transferred without further verification**
+
+  ### Environment Variable Configuration
+
+
+  Set the following environment variables as per the integration guide to
+  connect the implemented API with the Enclave.  
+
+  For a complete list of Enclave environment variables, [click here](#) _(link
+  placeholder)_.
+
+
+  - `VEGA_VERIFICATION_API_PATH`  
+    Implement this API at the desired path (`{VASP_DEFINED_PATH_VERIFY_USER}`) and set that path as the value for this variable.
+
+  - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`  
+    Set this variable to the **API key provided during your VerifyVASP onboarding process**.
 api:
   file: 2025_05_02_VASP_API_Spec.yaml
   operationId: requestUserVerification
