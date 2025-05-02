@@ -21,22 +21,24 @@ excerpt: >
     Before calling the KYT API, the User Verification API (POST /verifications) must be completed. The behavior and results of the KYT API vary depending on whether the Transaction Report has been performed:
 
   **Before Submitting a Transaction Report**
-    1. Originatig VASP
-      * Evaluates the risk level of the Beneficiary’s wallet address.
-      * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
 
-    2. Beneficiary VASP
-      * The Beneficiary VASP is restricted from using the KYT API at this stage.
-      * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
+  1. Originatig VASP
+    * Evaluates the risk level of the Beneficiary’s wallet address.
+    * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
+
+  2. Beneficiary VASP
+    * The Beneficiary VASP is restricted from using the KYT API at this stage.
+    * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
 
   **After Submitting a Transaction Report**
-    1. Originatig VASP
-      * Evaluates the risk level of the withdrawal transaction.
-      * This provides insight into the potential risk associated with the transaction being sent.
 
-    2. Beneficiary VASP
-      * Assesses the risk level of the deposit transaction.
-      * This enables the evaluation of the incoming transaction's risk and allows for appropriate risk management actions.
+  1. Originatig VASP
+    * Evaluates the risk level of the withdrawal transaction.
+    * This provides insight into the potential risk associated with the transaction being sent.
+
+  2. Beneficiary VASP
+    * Assesses the risk level of the deposit transaction.
+    * This enables the evaluation of the incoming transaction's risk and allows for appropriate risk management actions.
 
   By utilizing the Chainalysis KYT API, VASPs can enhance the security of
   virtual asset transactions. The Originating VASP can proactively assess the
