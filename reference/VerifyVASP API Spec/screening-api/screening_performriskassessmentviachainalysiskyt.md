@@ -22,21 +22,21 @@ excerpt: >
 
   **Before Submitting a Transaction Report**
 
-  1. Originatig VASP
+  1. **Originatig VASP**
     * Evaluates the risk level of the Beneficiary’s wallet address.
     * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
 
-  2. Beneficiary VASP
+  2. ****
     * The Beneficiary VASP is restricted from using the KYT API at this stage.
     * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
 
   **After Submitting a Transaction Report**
 
-  1. Originatig VASP
+  1. **Originatig VASP**
     * Evaluates the risk level of the withdrawal transaction.
     * This provides insight into the potential risk associated with the transaction being sent.
 
-  2. Beneficiary VASP
+  2. **Beneficiary VASP**
     * Assesses the risk level of the deposit transaction.
     * This enables the evaluation of the incoming transaction's risk and allows for appropriate risk management actions.
 

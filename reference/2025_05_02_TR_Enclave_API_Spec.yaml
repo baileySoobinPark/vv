@@ -2767,11 +2767,15 @@ paths:
             * **By the Originating VASP**: After verifying the user via the User Verification API, the Originating VASP can evaluate the risk level of the Beneficiary's wallet address using the Sanction API before initiating an asset transfer.
             * **By the Beneficiary VASP**: The Beneficiary VASP can assess the risk associated with the Originator's wallet address to identify potential threats and take necessary precautions.
 
-          ### Perparation Requirements
-          1. **Enclave Environment Variable Configuration**: Set `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued during the registration process.
-          2. **Database Table Setup**: 
-            - The Enclave database must include a table to store Chainalysis Sanction API call results.
-            - Refer to the Chainalysis Sanction Results Table definition for implementation details.
+        ### Perparation Requirements
+
+        1. **Enclave Environment Variable Configuration**: Set
+        `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued
+        during the registration process.
+
+        2. **Database Table Setup**: 
+          - The Enclave database must include a table to store Chainalysis Sanction API call results.
+          - Refer to the Chainalysis Sanction Results Table definition for implementation details.
       operationId: Screening_performRiskAssessmentViaChainalysisSanction
       tags:
         - Screening API
@@ -3010,21 +3014,21 @@ paths:
 
         **Before Submitting a Transaction Report**
 
-        1. Originatig VASP
+        1. **Originatig VASP**
           * Evaluates the risk level of the Beneficiary’s wallet address.
           * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
 
-        2. Beneficiary VASP
+        2. ****
           * The Beneficiary VASP is restricted from using the KYT API at this stage.
           * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
 
         **After Submitting a Transaction Report**
 
-        1. Originatig VASP
+        1. **Originatig VASP**
           * Evaluates the risk level of the withdrawal transaction.
           * This provides insight into the potential risk associated with the transaction being sent.
 
-        2. Beneficiary VASP
+        2. **Beneficiary VASP**
           * Assesses the risk level of the deposit transaction.
           * This enables the evaluation of the incoming transaction's risk and allows for appropriate risk management actions.
 
