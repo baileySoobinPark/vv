@@ -58,7 +58,8 @@ excerpt: >
   Originating VASP is not supported by the Beneficiary VASP or lacks sufficient
   network information. <br><br>**Case Example:** If the requested asset's symbol
   is `USDT` and the network is `Ethereum`, but the Beneficiary VASP only
-  supports USDT on the Tron network, this reason should be used. |
+  supports USDT on the Tron network, this reason should be used in the reason
+  field. |
 
   | `UNKNOWN-ADDRESS`   | Error code returned when the provided wallet address
   does not correspond to a wallet managed by the Beneficiary VASP. |
