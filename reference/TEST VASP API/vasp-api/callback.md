@@ -28,133 +28,135 @@ excerpt: >
   required actions in accordance with the verification result. For example,
     - For successful verification, proceed with either initiating beneficiary verification on the Originating VASP side or executing the on-chain transaction.
     - For failed verification, cancel the associated asset transfer and notify the originator user of the failure with proper message. data.reason field can be refered to generate the failure messages.
-    <details>
-      <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
+  <details>
+    <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
-      ```json
+    ```json
+    {
+      "callbackType": "VERIFICATION_RESULT",
+      "data": {
+        "result": "VERIFIED",
+        "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
+      }
+    }
+    ```
+  </details>
+
+  <details>
+    <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+
+    ```json
       {
-        "callbackType": "VERIFICATION_RESULT",
-        "data": {
-          "result": "VERIFIED",
-          "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
+        "callbackType":"VERIFICATION_RESULT",
+        "data":{
+            "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
+            "verificationResult":"DENIED",
+            "reason":"UNKNOWN-ADDRESS",
+            "ivms101":{
+              "originator":{
+                  "originatorPersons":[
+                    {
+                        "naturalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "primaryIdentifier":"James",
+                                    "secondaryIdentifier":"Din",
+                                    "nameIdentifierType":"LEGL"
+                                }
+                              ]
+                          }
+                        }
+                    }
+                  ],
+                  "accountNumber":[
+                    "0x5811001506550d8356a215be229c15b6ef371a9a"
+                  ]
+              },
+              "beneficiary":{
+                  "beneficiaryPersons":[
+                    {
+                        "naturalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "primaryIdentifier":"Taylor",
+                                    "secondaryIdentifier":"Robbins",
+                                    "nameIdentifierType":"LEGL"
+                                }
+                              ]
+                          }
+                        }
+                    }
+                  ],
+                  "accountNumber":[
+                    "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                  ]
+              },
+              "originatingVASP":{
+                  "legalPerson":{
+                    "name":{
+                        "nameIdentifier":[
+                          {
+                              "legalPersonName":"Lambda256",
+                              "legalPersonNameIdentifierType":"LEGL"
+                          }
+                        ]
+                    },
+                    "geographicAddress":[
+                        {
+                          "addressType":"GEOG",
+                          "postcode":"123123c",
+                          "townName":"Yeoksam-dong",
+                          "addressLine":[
+                              "sechogu street",
+                              "100-100"
+                          ],
+                          "country":"KR"
+                        }
+                    ],
+                    "nationalIdentification":{
+                        "nationalIdentifier":"KR0001",
+                        "nationalIdentifierType":"RAID",
+                        "registrationAuthority":"RA000151"
+                    }
+                  }
+              },
+              "beneficiaryVASP":{
+                  "legalPerson":{
+                    "name":{
+                        "nameIdentifier":[
+                          {
+                              "legalPersonName":"Lambda256 Exchange",
+                              "legalPersonNameIdentifierType":"LEGL"
+                          }
+                        ]
+                    },
+                    "geographicAddress":[
+                        {
+                          "addressType":"GEOG",
+                          "postcode":"234234",
+                          "townName":"Yeoksam-dong",
+                          "addressLine":[
+                              "sechogu street",
+                              "100-100"
+                          ],
+                          "country":"KR"
+                        }
+                    ],
+                    "nationalIdentification":{
+                        "nationalIdentifier":"123456",
+                        "nationalIdentifierType":"RAID",
+                        "registrationAuthority":"RA000677"
+                    }
+                  }
+              }
+            }
         }
       }
-      ```
-    </details>
-    <details>
-      <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+    ```
+  </details>
 
-      ```json
-        {
-          "callbackType":"VERIFICATION_RESULT",
-          "data":{
-              "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-              "verificationResult":"DENIED",
-              "reason":"UNKNOWN-ADDRESS",
-              "ivms101":{
-                "originator":{
-                    "originatorPersons":[
-                      {
-                          "naturalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "primaryIdentifier":"James",
-                                      "secondaryIdentifier":"Din",
-                                      "nameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            }
-                          }
-                      }
-                    ],
-                    "accountNumber":[
-                      "0x5811001506550d8356a215be229c15b6ef371a9a"
-                    ]
-                },
-                "beneficiary":{
-                    "beneficiaryPersons":[
-                      {
-                          "naturalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "primaryIdentifier":"Taylor",
-                                      "secondaryIdentifier":"Robbins",
-                                      "nameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            }
-                          }
-                      }
-                    ],
-                    "accountNumber":[
-                      "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
-                    ]
-                },
-                "originatingVASP":{
-                    "legalPerson":{
-                      "name":{
-                          "nameIdentifier":[
-                            {
-                                "legalPersonName":"Lambda256",
-                                "legalPersonNameIdentifierType":"LEGL"
-                            }
-                          ]
-                      },
-                      "geographicAddress":[
-                          {
-                            "addressType":"GEOG",
-                            "postcode":"123123c",
-                            "townName":"Yeoksam-dong",
-                            "addressLine":[
-                                "sechogu street",
-                                "100-100"
-                            ],
-                            "country":"KR"
-                          }
-                      ],
-                      "nationalIdentification":{
-                          "nationalIdentifier":"KR0001",
-                          "nationalIdentifierType":"RAID",
-                          "registrationAuthority":"RA000151"
-                      }
-                    }
-                },
-                "beneficiaryVASP":{
-                    "legalPerson":{
-                      "name":{
-                          "nameIdentifier":[
-                            {
-                                "legalPersonName":"Lambda256 Exchange",
-                                "legalPersonNameIdentifierType":"LEGL"
-                            }
-                          ]
-                      },
-                      "geographicAddress":[
-                          {
-                            "addressType":"GEOG",
-                            "postcode":"234234",
-                            "townName":"Yeoksam-dong",
-                            "addressLine":[
-                                "sechogu street",
-                                "100-100"
-                            ],
-                            "country":"KR"
-                          }
-                      ],
-                      "nationalIdentification":{
-                          "nationalIdentifier":"123456",
-                          "nationalIdentifierType":"RAID",
-                          "registrationAuthority":"RA000677"
-                      }
-                    }
-                }
-              }
-          }
-        }
-      ```
-    </details>
 
   When data.result is `DENIED` or `ERROR`, following data.reason and
   data.message can be returned.
@@ -229,6 +231,7 @@ excerpt: >
   When a transaction report is received, your VASP can
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
     - Confirm that the asset transfer has been requested and log the details.
+    
   <details>
     <summary>Example of Request Body for TX_REPORT callback type</summary>
 
