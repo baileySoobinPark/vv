@@ -1,15 +1,12 @@
 openapi: 3.0.1
 info:
-  title: Integration Steps
-  version: "1.0"
+  title: TEST VASP API
+  version: '1.0'
   description: Management of VerifyVASP API Spec.
 paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
       description: >
-        ## Verify User Account API
-
-
         This API must be implemented by your VASP to fulfill its role as a
         **Beneficiary VASP**.  
 
@@ -54,6 +51,56 @@ paths:
         failure.  
 
         The allowed values for this field are as follows:
+
+
+        | Reason Code         | Description |
+
+        |---------------------|-------------|
+
+        | `UNKNOWN-SYMBOL`    | Error code returned when the symbol provided by
+        the Originating VASP is not supported by the Beneficiary VASP.
+        <br><br>**Case Example:** The virtual asset is not handled by the
+        exchange. |
+
+        | `UNKNOWN-NETWORK`   | Error code returned when the network provided by
+        the Originating VASP is not supported by the Beneficiary VASP or lacks
+        sufficient network information. <br><br>**Case Example:** If the
+        requested asset's symbol is `USDT` and the network is `Ethereum`, but
+        the Beneficiary VASP only supports USDT on the Tron network, this reason
+        should be used. |
+
+        | `UNKNOWN-ADDRESS`   | Error code returned when the provided wallet
+        address does not correspond to a wallet managed by the Beneficiary VASP.
+        |
+
+        | `MISMATCHED-NAME`   | Error code returned when the Beneficiary's name
+        does not match the name provided by the Originating VASP. |
+
+        | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not
+        completed the KYC verification process required by the Beneficiary VASP.
+        |
+
+        | `UNDEFINED-ERROR`   | Error code returned when an undefined or
+        unexpected error occurs. |
+
+
+        ### Constraints
+          * This API must respond within 1 second.
+
+        ### Recommendations
+
+        It is recommended that this API focus solely on verifying ownership and
+        does not perform risk assessments such as KYC or Sanction Screening
+        during the verification process.
+
+
+        ### Environment Variable Configuration
+
+        Set the following environment variables as per the guide to integrate
+        the implemented API with the Enclave. For a complete list of Enclave
+        environment variables, [click here]().
+          * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT}) and set this variable accordingly.
+          * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
       security:
         - Authorization: []
       operationId: requestUserAccountVerification
@@ -85,7 +132,7 @@ paths:
                   type: string
                   description: |
                     Unique identifier of Originating VASP.
-                  example: "123456789098765"
+                  example: '123456789098765'
                 symbol:
                   type: string
                   description: |
@@ -109,7 +156,7 @@ paths:
                   type: string
                   description: |
                     The version of the IVMS101 messaging protocol being used.
-                  example: "1.0"
+                  example: '1.0'
                 ivms101:
                   type: object
                   description: >
@@ -135,16 +182,16 @@ paths:
             examples:
               requestexamples:
                 value:
-                  originatingVaspId: "15952089931162060684"
+                  originatingVaspId: '15952089931162060684'
                   symbol: ETH
                   network: Ethereum
-                  version: "1.0"
+                  version: '1.0'
                   ivms101:
                     beneficiary:
                       accountNumber:
-                        - "0x5811001506550d8356a215be229c15b6ef371a9b"
+                        - '0x5811001506550d8356a215be229c15b6ef371a9b'
       responses:
-        "200":
+        '200':
           description: Successful verification response
           content:
             application/json:
@@ -176,7 +223,8 @@ paths:
                       - BLACKLISTED
                       - UNVERIFIED-KYC
                     description: >
-                      Error codes indicating the reason for verification failure.
+                      Error codes indicating the reason for verification
+                      failure.
                     example: UNKNOWN-ADDRESS
                   verifiedAt:
                     type: string
@@ -204,12 +252,12 @@ paths:
                       VASPs that may use the other two formats. Ensure your
                       system can handle and correctly interpret all three
                       formats to maintain compatibility.
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
               examples:
                 successfulExample:
                   value:
-                    accountVerificationResult: "15952089931162060684"
-                    verifiedAt: 2022-03-03T12:45:34.085Z
+                    accountVerificationResult: '15952089931162060684'
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
   /VASP_DEFINED_PATH_VERIFY_USER:
     post:
       security:
@@ -268,10 +316,9 @@ paths:
                     network:
                       type: string
                       description: >
-                        The network of the virtual asset to be
-                        transferred.   The network field can be implemented
-                        conditionally. Valid values for this field can be found
-                        here.  
+                        The network of the virtual asset to be transferred.  
+                        The network field can be implemented conditionally.
+                        Valid values for this field can be found here.  
                           
                         **Conditional Use of 'network' Field:**  
                           When the Beneficiary VASP requires the network field:  
@@ -284,23 +331,22 @@ paths:
                       type: string
                       description: |
                         The amount of the virtual asset to be transferred.
-                      example: "0.024"
+                      example: '0.024'
                     isExceedingThreshold:
                       type: boolean
                       description: >
                         A boolean field to check whether the fiat-converted
                         amount of the virtual asset to be transferred exceeds
                         the legal threshold.   If the value is false, User
-                        Verification for the transaction is not
-                        mandatory.   (Legal threshold: 1,000 USD or 1,000,000
-                        KRW.)
+                        Verification for the transaction is not mandatory.  
+                        (Legal threshold: 1,000 USD or 1,000,000 KRW.)
                       example: true
                     tradePrice:
                       type: string
                       description: >
                         The amount of virtual assets to be transferred,
                         converted into fiat currency.
-                      example: "2439800"
+                      example: '2439800'
                     tradeCurrency:
                       type: string
                       description: >
@@ -333,7 +379,7 @@ paths:
                         VASPs that may use the other two formats. Ensure your
                         system can handle and correctly interpret all three
                         formats to maintain compatibility.
-                      example: 2024-11-25T15:30:00.000Z
+                      example: '2024-11-25T15:30:00.000Z'
                 requiredBeneficiaryInfo:
                   type: string
                   description: >
@@ -347,12 +393,12 @@ paths:
                   type: string
                   description: |
                     Unique identifier of Originating VASP.
-                  example: "123456789098765"
+                  example: '123456789098765'
                 version:
                   type: string
                   description: |
                     The version of the IVMS101 messaging protocol being used.
-                  example: "1.0"
+                  example: '1.0'
                 ivms101:
                   type: object
                   description: >
@@ -401,7 +447,9 @@ paths:
                                     properties:
                                       nameIdentifier:
                                         type: array
-                                        description: An array containing the name information.
+                                        description: >-
+                                          An array containing the name
+                                          information.
                                         items:
                                           type: object
                                           required:
@@ -411,24 +459,22 @@ paths:
                                             primaryIdentifier:
                                               type: string
                                               description: >
-                                                The basic representation of a
-                                                last name.   By default, this
-                                                field is used to enter the last
-                                                name. However, if separating the
-                                                last name and first name is not
-                                                feasible, the full name can be
+                                                The basic representation of a last
+                                                name.   By default, this field is used
+                                                to enter the last name. However, if
+                                                separating the last name and first name
+                                                is not feasible, the full name can be
                                                 entered in this field.
                                               example: James
                                             secondaryIdentifier:
                                               type: string
                                               description: >
-                                                The basic representation of a
-                                                first name.   This field is
-                                                primarily used to enter the
-                                                first name. If a middle name
-                                                also needs to be included, it
-                                                can be combined with the first
-                                                name in this field.
+                                                The basic representation of a first
+                                                name.   This field is primarily used to
+                                                enter the first name. If a middle name
+                                                also needs to be included, it can be
+                                                combined with the first name in this
+                                                field.
                                               example: James || Jeffry James
                                             nameIdentifierType:
                                               type: string
@@ -442,9 +488,9 @@ paths:
                                                 The type of name identifier.  
                                                   
                                                 Refer to the details below for
-                                                information about each type of
-                                                name identifier:   The following
-                                                values can be included:  
+                                                information about each type of name
+                                                identifier:   The following values can
+                                                be included:  
                                                   **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                   **BIRT**: A birth name.  
@@ -501,7 +547,9 @@ paths:
                                     properties:
                                       nameIdentifier:
                                         type: array
-                                        description: An array containing the name information.
+                                        description: >-
+                                          An array containing the name
+                                          information.
                                         items:
                                           type: object
                                           required:
@@ -511,24 +559,22 @@ paths:
                                             primaryIdentifier:
                                               type: string
                                               description: >
-                                                The basic representation of a
-                                                last name.   By default, this
-                                                field is used to enter the last
-                                                name. However, if separating the
-                                                last name and first name is not
-                                                feasible, the full name can be
+                                                The basic representation of a last
+                                                name.   By default, this field is used
+                                                to enter the last name. However, if
+                                                separating the last name and first name
+                                                is not feasible, the full name can be
                                                 entered in this field.
                                               example: James
                                             secondaryIdentifier:
                                               type: string
                                               description: >
-                                                The basic representation of a
-                                                first name.   This field is
-                                                primarily used to enter the
-                                                first name. If a middle name
-                                                also needs to be included, it
-                                                can be combined with the first
-                                                name in this field.
+                                                The basic representation of a first
+                                                name.   This field is primarily used to
+                                                enter the first name. If a middle name
+                                                also needs to be included, it can be
+                                                combined with the first name in this
+                                                field.
                                               example: James || Jeffry James
                                             nameIdentifierType:
                                               type: string
@@ -542,9 +588,9 @@ paths:
                                                 The type of name identifier.  
                                                   
                                                 Refer to the details below for
-                                                information about each type of
-                                                name identifier:   The following
-                                                values can be included:  
+                                                information about each type of name
+                                                identifier:   The following values can
+                                                be included:  
                                                   **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                   **BIRT**: A birth name.  
@@ -573,14 +619,14 @@ paths:
                   assetInfo:
                     symbol: ETH
                     network: Ethereum
-                    amount: "0.024"
+                    amount: '0.024'
                     isExceedingThreshold: true
-                    tradePrice: "2193200"
+                    tradePrice: '2193200'
                     tradeCurrency: KRW
-                    tradeISODatetime: 2022-02-06T23:13:43.513Z
+                    tradeISODatetime: '2022-02-06T23:13:43.513Z'
                   requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
-                  originatingVaspId: "123456789098765"
-                  version: "1.0"
+                  originatingVaspId: '123456789098765'
+                  version: '1.0'
                   ivms101:
                     originator:
                       originatorPersons:
@@ -591,7 +637,7 @@ paths:
                                   secondaryIdentifier: Din
                                   nameIdentifierType: LEGL
                       accountNumber:
-                        - "0x5811001506550d8356a215be229c15b6ef371a9a"
+                        - '0x5811001506550d8356a215be229c15b6ef371a9a'
                     beneficiary:
                       beneficiaryPersons:
                         - naturalPerson:
@@ -600,9 +646,9 @@ paths:
                                 - primaryIdentifier: James
                                   nameIdentifierType: LEGL
                       accountNumber:
-                        - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                        - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful verification response
           content:
             application/json:
@@ -649,7 +695,7 @@ paths:
                     type: string
                     description: |
                       The version of the IVMS101 messaging protocol being used.
-                    example: "1.0"
+                    example: '1.0'
                   ivms101:
                     type: object
                     description: >
@@ -695,7 +741,9 @@ paths:
                                       properties:
                                         nameIdentifier:
                                           type: array
-                                          description: An array containing the name information.
+                                          description: >-
+                                            An array containing the name
+                                            information.
                                           items:
                                             type: object
                                             required:
@@ -705,25 +753,22 @@ paths:
                                               primaryIdentifier:
                                                 type: string
                                                 description: >
-                                                  The basic representation of a
-                                                  last name.   By default, this
-                                                  field is used to enter the
-                                                  last name. However, if
-                                                  separating the last name and
-                                                  first name is not feasible,
-                                                  the full name can be entered
-                                                  in this field.
+                                                  The basic representation of a last
+                                                  name.   By default, this field is used
+                                                  to enter the last name. However, if
+                                                  separating the last name and first name
+                                                  is not feasible, the full name can be
+                                                  entered in this field.
                                                 example: James
                                               secondaryIdentifier:
                                                 type: string
                                                 description: >
-                                                  The basic representation of a
-                                                  first name.   This field is
-                                                  primarily used to enter the
-                                                  first name. If a middle name
-                                                  also needs to be included, it
-                                                  can be combined with the first
-                                                  name in this field.
+                                                  The basic representation of a first
+                                                  name.   This field is primarily used to
+                                                  enter the first name. If a middle name
+                                                  also needs to be included, it can be
+                                                  combined with the first name in this
+                                                  field.
                                                 example: James || Jeffry James
                                               nameIdentifierType:
                                                 type: string
@@ -737,10 +782,9 @@ paths:
                                                   The type of name identifier.  
                                                     
                                                   Refer to the details below for
-                                                  information about each type of
-                                                  name identifier:   The
-                                                  following values can be
-                                                  included:  
+                                                  information about each type of name
+                                                  identifier:   The following values can
+                                                  be included:  
                                                     **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                     **BIRT**: A birth name.  
@@ -754,13 +798,13 @@ paths:
                                     geographicAddress:
                                       type: array
                                       description: >
-                                        
+
                                         An array containing address
                                         information.  
 
                                         To use this field, at least one of the
-                                        following conditions must be
-                                        met:   Required conditions  
+                                        following conditions must be met:  
+                                        Required conditions  
                                           1. At least one addressLinemust be present.  
                                           
                                           2. Both streetName and buildingName must be present.  
@@ -777,8 +821,8 @@ paths:
                                               - BIZZ
                                               - GEOG
                                             description: >
-                                              The type of geographic
-                                              address.   Allowed values:  
+                                              The type of geographic address.  
+                                              Allowed values:  
                                                 HOME: Home address.  
                                                 BIZZ: Business address.  
                                                 GEOG: Geographic address.
@@ -786,7 +830,7 @@ paths:
                                           townName:
                                             type: string
                                             description: |
-                                              
+
                                               The name of the town or district.
                                             example: Yeoksam-dong
                                           addressLine:
@@ -794,15 +838,13 @@ paths:
                                             items:
                                               type: string
                                             description: >
-                                              
-                                              A free-form address that
-                                              identifies a specific
-                                              location.   If dividing the
-                                              address into components (e.g.,
-                                              province, city, street name) is
-                                              difficult, the full address can be
-                                              entered as a single string in
-                                              addressLine.
+
+                                              A free-form address that identifies a
+                                              specific location.   If dividing the
+                                              address into components (e.g., province,
+                                              city, street name) is difficult, the
+                                              full address can be entered as a single
+                                              string in addressLine.
                                             example:
                                               - 14 Teheran-ro 4-gil
                                               - Gangnam-gu
@@ -811,8 +853,7 @@ paths:
                                             type: string
                                             description: >
                                               The country code of the country of
-                                              residence (ISO 3166-1 alpha-2
-                                              format).
+                                              residence (ISO 3166-1 alpha-2 format).
                                             example: KR
                                     nationalIdentification:
                                       type: object
@@ -839,8 +880,8 @@ paths:
                                             - LEIX
                                             - MISC
                                           description: >
-                                            Type of National
-                                            Identification.   Allowed values:  
+                                            Type of National Identification.  
+                                            Allowed values:  
                                               **ARNU**: Alien Registration Number (assigned to foreigners by the state).  
                                               **CCPT**: Passport Number.  
                                               **RAID**: (For corporations only) Corporate registration number (e.g., business registration number).  
@@ -857,20 +898,18 @@ paths:
                                     customerIdentification:
                                       type: string
                                       description: |
-                                        
+
                                         Customer number of individual.
-                                      example: "1234569999"
+                                      example: '1234569999'
                                     dateAndPlaceOfBirth:
                                       type: object
                                       properties:
                                         dateOfBirth:
                                           type: string
-                                          description: >
+                                          description: |
                                             Date of birth.  
-
-                                            Allowed format: ISO 8601
-                                            ("YYYY-MM-DD").
-                                          example: 1985-03-14
+                                            Allowed format: ISO 8601 ("YYYY-MM-DD").
+                                          example: '1985-03-14'
                                         placeOfBirth:
                                           type: string
                                           description: |
@@ -897,8 +936,8 @@ paths:
                   value:
                     result: VERIFIED
                     reason: OK
-                    message: ""
-                    version: "1.0"
+                    message: ''
+                    version: '1.0'
                     ivms101:
                       beneficiary:
                         beneficiaryPersons:
@@ -920,13 +959,13 @@ paths:
                               nationalIdentification:
                                 nationalIdentifier: 12345-67890
                                 nationalIdentifierType: IDCD
-                              customerIdentification: "1234569999"
+                              customerIdentification: '1234569999'
                               dateAndPlaceOfBirth:
-                                dateOfBirth: 1985-03-14
+                                dateOfBirth: '1985-03-14'
                                 placeOfBirth: Nonsan
                               countryOfResidence: KR
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
   /VASP_DEFINED_PATH_TRANSACTION_CHECK:
     post:
       security:
@@ -964,9 +1003,9 @@ paths:
             examples:
               requestexamples:
                 value:
-                  originatingVaspId: "15952089931162060684"
+                  originatingVaspId: '15952089931162060684'
       responses:
-        "200":
+        '200':
           description: Successful CheckTransactionStatus response
           content:
             application/json:
@@ -992,7 +1031,7 @@ paths:
                       - WAIT-CONFIRM
                       - CONFIRMED
                       - CANCELED
-                    description: >
+                    description: |
                       Current status of the virtual asset transaction.  
                         
                       Details of each state:  
@@ -1010,22 +1049,24 @@ paths:
                     type: string
                     description: |
                       Unique identifier of the transaction.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
                     description: |
                       Index of the output in a Bitcoin blockchain transaction.
-                    example: "2"
+                    example: '2'
               examples:
                 successfulExample:
                   value:
-                    originatingVaspId: "15952089931162060684"
+                    originatingVaspId: '15952089931162060684'
                     transactionStatus: PROCESSING
-                    txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                    vout: "2"
+                    txHash: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout: '2'
   /VASP_DEFINED_PATH_CALLBACK:
     post:
-      description: ""
+      description: ''
       security:
         - Authorization: []
       operationId: callback
@@ -1157,7 +1198,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -1167,25 +1210,21 @@ paths:
                                                 primaryIdentifier:
                                                   type: string
                                                   description: >
-                                                    The basic representation of
-                                                    a last name.   By default,
-                                                    this field is used to enter
-                                                    the last name. However, if
-                                                    separating the last name and
-                                                    first name is not feasible,
-                                                    the full name can be entered
-                                                    in this field.
+                                                    The basic representation of a last
+                                                    name.   By default, this field is used
+                                                    to enter the last name. However, if
+                                                    separating the last name and first name
+                                                    is not feasible, the full name can be
+                                                    entered in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
                                                   description: >
-                                                    The basic representation of
-                                                    a first name.   This field
-                                                    is primarily used to enter
-                                                    the first name. If a middle
-                                                    name also needs to be
-                                                    included, it can be combined
-                                                    with the first name in this
+                                                    The basic representation of a first
+                                                    name.   This field is primarily used to
+                                                    enter the first name. If a middle name
+                                                    also needs to be included, it can be
+                                                    combined with the first name in this
                                                     field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
@@ -1197,14 +1236,12 @@ paths:
                                                     - LEGL
                                                     - MISC
                                                   description: >
-                                                    The type of name
-                                                    identifier.  
+                                                    The type of name identifier.  
                                                       
-                                                    Refer to the details below
-                                                    for information about each
-                                                    type of name
-                                                    identifier:   The following
-                                                    values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -1218,13 +1255,13 @@ paths:
                                       geographicAddress:
                                         type: array
                                         description: >
-                                          
+
                                           An array containing address
                                           information.  
 
                                           To use this field, at least one of the
-                                          following conditions must be
-                                          met:   Required conditions  
+                                          following conditions must be met:  
+                                          Required conditions  
                                             1. At least one addressLinemust be present.  
                                             
                                             2. Both streetName and buildingName must be present.  
@@ -1241,33 +1278,30 @@ paths:
                                                 - BIZZ
                                                 - GEOG
                                               description: >
-                                                The type of geographic
-                                                address.   Allowed values:  
+                                                The type of geographic address.  
+                                                Allowed values:  
                                                   HOME: Home address.  
                                                   BIZZ: Business address.  
                                                   GEOG: Geographic address.
                                               example: GEOG
                                             townName:
                                               type: string
-                                              description: >
-                                                
-                                                The name of the town or
-                                                district.
+                                              description: |
+
+                                                The name of the town or district.
                                               example: Yeoksam-dong
                                             addressLine:
                                               type: array
                                               items:
                                                 type: string
                                               description: >
-                                                
-                                                A free-form address that
-                                                identifies a specific
-                                                location.   If dividing the
-                                                address into components (e.g.,
-                                                province, city, street name) is
-                                                difficult, the full address can
-                                                be entered as a single string in
-                                                addressLine.
+
+                                                A free-form address that identifies a
+                                                specific location.   If dividing the
+                                                address into components (e.g., province,
+                                                city, street name) is difficult, the
+                                                full address can be entered as a single
+                                                string in addressLine.
                                               example:
                                                 - 14 Teheran-ro 4-gil
                                                 - Gangnam-gu
@@ -1275,9 +1309,8 @@ paths:
                                             country:
                                               type: string
                                               description: >
-                                                The country code of the country
-                                                of residence (ISO 3166-1 alpha-2
-                                                format).
+                                                The country code of the country of
+                                                residence (ISO 3166-1 alpha-2 format).
                                               example: KR
                                       nationalIdentification:
                                         type: object
@@ -1304,9 +1337,8 @@ paths:
                                               - LEIX
                                               - MISC
                                             description: >
-                                              Type of National
-                                              Identification.   Allowed
-                                              values:  
+                                              Type of National Identification.  
+                                              Allowed values:  
                                                 **ARNU**: Alien Registration Number (assigned to foreigners by the state).  
                                                 **CCPT**: Passport Number.  
                                                 **RAID**: (For corporations only) Corporate registration number (e.g., business registration number).  
@@ -1323,20 +1355,18 @@ paths:
                                       customerIdentification:
                                         type: string
                                         description: |
-                                          
+
                                           Customer number of individual.
-                                        example: "1234569999"
+                                        example: '1234569999'
                                       dateAndPlaceOfBirth:
                                         type: object
                                         properties:
                                           dateOfBirth:
                                             type: string
-                                            description: >
+                                            description: |
                                               Date of birth.  
-
-                                              Allowed format: ISO 8601
-                                              ("YYYY-MM-DD").
-                                            example: 1985-03-14
+                                              Allowed format: ISO 8601 ("YYYY-MM-DD").
+                                            example: '1985-03-14'
                                           placeOfBirth:
                                             type: string
                                             description: |
@@ -1362,7 +1392,7 @@ paths:
                     verificationUuid: 64ab871b-14a3-47df-9b80-368e29fe8180
                     verificationResult: VERIFIED
                     reason: OK
-                    message: ""
+                    message: ''
                     ivms101:
                       beneficiary:
                         beneficiaryPersons:
@@ -1384,15 +1414,15 @@ paths:
                               nationalIdentification:
                                 nationalIdentifier: 12345-67890
                                 nationalIdentifierType: IDCD
-                              customerIdentification: "1234569999"
+                              customerIdentification: '1234569999'
                               dateAndPlaceOfBirth:
-                                dateOfBirth: 1985-03-14
+                                dateOfBirth: '1985-03-14'
                                 placeOfBirth: Nonsan
                               countryOfResidence: KR
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful Callback response
           content:
             application/json:
@@ -1414,7 +1444,7 @@ paths:
                     result: true
   /VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY:
     post:
-      description: ""
+      description: ''
       security:
         - Authorization: []
       operationId: getDecryptedEncKey
@@ -1450,7 +1480,7 @@ paths:
                 value:
                   inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
       responses:
-        "200":
+        '200':
           description: Successful Callback response
           content:
             application/json:
