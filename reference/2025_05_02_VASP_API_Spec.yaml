@@ -1421,8 +1421,9 @@ paths:
             ```
           </details>
 
-        When data.result is DENIED or ERROR, following data.reason and
+        When data.result is `DENIED` or `ERROR`, following data.reason and
         data.message can be returned.
+
 
         | Reason                             | Result | Message
         Example                                              | Description |
@@ -1503,14 +1504,14 @@ paths:
           <summary>Example of Request Body for TX_REPORT callback type</summary>
 
           ```json
-          {
-            "callbackType":"TX_REPORT",
-            "data":{
-                "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-                "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-                "vout":"2"
+            {
+              "callbackType":"TX_REPORT",
+              "data":{
+                  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
+                  "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
+                  "vout":"2"
+              }
             }
-          }
           ```
         </details>
 
@@ -1524,15 +1525,15 @@ paths:
             <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
             ```json
-            {
-              "callbackType":"ERROR_REPORT",
-              "data":{
-                  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-                  "result":"ERROR",
-                  "reason":"BLACKLISTED",
-                  "message":"Originator is included in the blacklist."
+              {
+                "callbackType":"ERROR_REPORT",
+                "data":{
+                    "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
+                    "result":"ERROR",
+                    "reason":"BLACKLISTED",
+                    "message":"Originator is included in the blacklist."
+                }
               }
-            }
             ```
           </details>
       security:
