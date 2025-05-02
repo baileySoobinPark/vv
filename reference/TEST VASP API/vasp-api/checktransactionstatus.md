@@ -49,6 +49,7 @@ excerpt: >
     * Retrieving the Transaction Hash From Enclave
       * If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Verification Result API to retrieve the previously stored transaction hash. 
       * This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
+
   Leveraging this implementation allows your VASP to efficiently manage
   verificationUuid and transaction hash mapping without a dedicated database,
   simplifying implementation while ensuring accurate and timely status handling.
