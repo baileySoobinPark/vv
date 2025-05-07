@@ -599,5 +599,136 @@ Data Model Containing the Information of the Beneficiary VASP for Virtual Asset 
 }
 ```
 
-| Field Name | Model | Condition | Descriptionss |
-| :--------- | :---- | :-------- | :------------ |
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        beneficiaryVASP
+      </td>
+
+      <td>
+        Person
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Information of the VASP Receiving the Virtual Asset
+
+        In the current VerifyVASP service structure, the information of the Beneficiary VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
+
+        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
+
+        However, information other than the
+        BeneficiaryVASP (e.g., information about the Beneficiary) must be entered.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### TransferPath model
+
+This is the data model containing information about intermediary VASPs involved in the virtual asset transfer. Currently, **VerifyVASP does not support TransferPath configuration.**
+
+```json
+//TransferPath model Example
+
+{
+  "transferPath": [
+    { ... } // IntermediaryVASP type
+  ]
+}
+```
+
+<br />
+
+### PayloadMetadata model
+
+Data Model Containing Additional Metadata.
+
+```json
+// PayloadMetadata model Example
+
+{
+  "transliterationMethod": [
+    "kore"
+  ]
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        transliterationMethod
+      </td>
+
+      <td>
+        Person
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Information of the VASP Receiving the Virtual Asset
+
+        In the current VerifyVASP service structure, the information of the Beneficiary VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
+
+        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
+
+        Field specifying the method used to convert non-Latin scripts into Latin scripts.
+
+        <br />
+
+        You can enter one of the code values from the table below\.However, information other than the
+        BeneficiaryVASP (e.g., information about the Beneficiary) must be entered.
+      </td>
+    </tr>
+  </tbody>
+</Table>
