@@ -1012,3 +1012,1406 @@ This is an object that contains identifiable information about an individual.
     </tr>
   </tbody>
 </Table>
+
+<br />
+
+### LegalPerson type
+
+This is an object that contains identifiable information about an individual.
+
+```json
+//LegalPerson type Example
+
+{
+  "name": { 
+    ...
+  },  // LegalPersonName type
+  "geographicAddress": [
+    { ... }  // Address type
+  ],
+  "customerIdentification": "xxx",
+  "nationalIdentification": {
+    ...
+  },  // NationalIdentification type
+  "countryOfRegistration": "KR",
+  "dateOfIncorporation": "2019-03-27" 
+}
+```
+
+> ⚠️ When using the `LegalPerson type`, at least one of the following fields must be included in addition to the `name` field.
+>
+> 1. `geographicAddress`
+> 2. `nationalIdentification`
+> 3. `customerIdentification`
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+      </td>
+
+      <td>
+        NaturalPersonName
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Name of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        geographicAddress
+      </td>
+
+      <td>
+        Array of Address
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        The geographic address of the individual's place of residence.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nationalIdentification
+      </td>
+
+      <td>
+        NationalIdentification
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        National identification number of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customerIdentification
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        User ID within the VASP.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dataAndPlaceOfBirth
+      </td>
+
+      <td>
+        DataAndPlaceOfBirth
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Date of birth and place of birth of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        countryOfResidence
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Current country of residence of the individual.
+        You must enter the two-letter country code as per the ISO-3166-1 alpha-2 standard.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dateOfIncorporation
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Date of establishment of the legal entity.
+        It must be entered in the format `YYYY-MM-DD`.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### NaturalPersonName type
+
+This is an object that verifies whether the entity is an individual or a legal entity. You can click here to check the input method in accordance with the IVMS101 format.
+
+```json
+{
+  "nameIdentifier": [ 
+    { ... } // NaturalPersonNameID type
+  ],
+  "localNameIdentifier": [ 
+    { ... } // LocalNaturalPersonNameID type
+  ],
+  "phoneticNameIdentifier": [ 
+    { ... } // LocalNaturalPersonNameID type
+  ]
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        nameIdentifier
+      </td>
+
+      <td>
+        Array of NaturalPersonNameID
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Basic Name Field.
+        You can enter an array of one or more `NaturalPersonNameID` types.
+        One of the `NaturalPersonNameID` values must be of the `LEGL`(legal name) type.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        localNameIdentifier
+      </td>
+
+      <td>
+        Array of LocalNaturalPersonNameID
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Name expressed in the local language.
+        You can enter an array of zero or more `LocalNaturalPersonNameID` types.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phoneticNameIdentifier
+      </td>
+
+      <td>
+        Array of LocalNaturalPersonNameID
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Phonetic representation of the name.
+        You can enter an array of zero or more `LocalNaturalPersonNameID` types.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### LegalPersonName type
+
+```json
+{
+  "nameIdentifier": [ 
+    { ... } // LegalPersonNameID type
+  ],
+  "localNameIdentifier": [ 
+    { ... } // LocalLegalPersonNameID type
+  ],
+  "phoneticNameIdentifier": [ 
+    { ... } // LocalLegalPersonNameID type
+  ]
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        nameIdentifier
+      </td>
+
+      <td>
+        Array of LegalPersonNameID
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Basic Name Field.
+        You can enter an array of one or more `LegalPersonNameID` types.
+        One of the `LegalPersonNameID` values must be of the `LEGL`(legal name) type.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        localNameIdentifier
+      </td>
+
+      <td>
+        Array of LocalLegalPersonNameID
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Name expressed in the local language.
+        You can enter an array of zero or more `LocalLegalPersonNameID` types.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phoneticNameIdentifier
+      </td>
+
+      <td>
+        Array of LocalLegalPersonNameID
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Phonetic representation of the name.
+        You can enter an array of zero or more `LocalLegalPersonNameID` types.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### NaturalPersonNameID type, LocalNaturalPersonNameID type
+
+The `NaturalPersonNameID` type and the `LocalNaturalPersonNameID` type share the same format.
+
+```json
+// NaturalPersonNameID, LocalNaturalPersonNameID type Example
+
+{
+  "primaryIdentifier": "Din",
+  "secondaryIdentifier": "James",
+  "nameIdentifierType": "LEGL"
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        primaryIdentifier
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Surname of the Individual.
+
+        If separating the surname from the given name is not feasible, you can enter the full name in this field.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        secondaryIdentifier
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Given Name of the Individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nameIdentifierType
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Type of Name.
+
+        The possible values for this field are as follows:
+
+        `ALIA`: An alias that is well-known besides the legally registered name
+
+        `BIRT`: Birth name
+
+        `MAID`: Original name used before changing surname due to marriage
+
+        `LEGL`: Legally registered name
+
+        `MISC`: Miscellaneous name that does not fall under any of the above categories
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### LegalPersonNameID type, LocalLegalPersonNameID type
+
+The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the same format.
+
+```json
+// LegalPersonNameID, LocalLegalPersonNameID type Example
+
+{
+  "legalPersonName": "Samsung Electronics Co., Ltd.",
+  "legalPersonNameIdentifierType": "LEGL"
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        legalPersonName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Name of the Legal Entity.
+
+        If separating the name into parts is not feasible, you can enter the full name in this field.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        legalPersonNameIdentifierType
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Type of Legal Entity Name.
+
+        <br />
+
+        The possible values for this field are as follows:\
+        `LEGL`: Legally registered name.
+
+        `SHRT`: Abbreviated name of the legal entity.
+
+        `TRAD`: Name used by the entity for commercial purposes.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### LegalPersonNameID type, LocalLegalPersonNameID type
+
+The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the same format.
+
+```json
+// LegalPersonNameID, LocalLegalPersonNameID type Example
+
+{
+  "legalPersonName": "Samsung Electronics Co., Ltd.",
+  "legalPersonNameIdentifierType": "LEGL"
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        legalPersonName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Name of the Legal Entity.
+
+        If separating the name into parts is not feasible, you can enter the full name in this field.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        legalPersonNameIdentifierType
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Type of Legal Entity Name.
+
+        <br />
+
+        The possible values for this field are as follows:\
+        `LEGL`: Legally registered name.
+
+        `SHRT`: Abbreviated name of the legal entity.
+
+        `TRAD`: Name used by the entity for commercial purposes.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### Address type
+
+The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the same format.
+
+```json
+{
+  "addressType": "GEOG", 
+  "department": "xxx...xxx",
+  "subDepartment": "xxx...xxx",
+  "streetName": "xxx...xxx",
+  "buildingNumber": "xxx...xxx",
+  "buildingName": "xxx...xxx",
+  "floor": "xxx...xxx", 
+  "postBox": "xxx...xxx",
+  "room": "xxx...xxx", 
+  "postcode": "xxx...xxx",
+  "townName": "xxx...xxx",
+  "townLocationName": "xxx...xxx",
+  "districtName": "xxx...xxx", 
+  "countrySubDivision": "xxx...xxx",
+  "addressLine": ["xxx", "xxx"], 
+  "country": "KR" 
+}
+```
+
+> ⚠️ When using the `Address` type, at least one of the following combinations must be include
+>
+> 1. at least, more than one `addressLine`
+> 2. `streetName` and `buildingName`
+> 3. `streetName` and `buildingNumber`
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Type
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        addressType
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Address Type.
+        The possible values for this field are as follows:
+        `HOME`: Home address.
+        `BIZZ`: Business address.
+        `GEO`: Geographic address.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        department
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Department identifier of a large organization or building.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        subDepartment
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Sub-department identifier of a large organization or building.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        streetName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Street name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        buildingNumber
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Building number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        buildingName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Building name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        floor
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Floor number within the building.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        postBox
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        P.O. Box number.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        room
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Room number within the building.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        postcode
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Postal code.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        townName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Village name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        townLocationName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Specific location name within the village.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        districtName
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        District name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        countrySubDivision
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        State or province name.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        addressLine
+      </td>
+
+      <td>
+        Array of Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Free-form address that can uniquely identify a specific location.
+        Maximum length of this array is 7.
+        If it is difficult to separate the address into components like state, city, or street name, you can use this field to enter the full address as a single string.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        country
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Country of Residence.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### DateAndPlaceOfBirth type
+
+```json
+// DataAndPlaceOfBirth type Example
+
+{
+  "dateOfBirth": "YYYY-MM-DD",
+  "placeOfBirth": "Gangnam-gu Seoul"
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        dateOfBirth
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Date of Birth.
+
+        It must be entered in the format
+        `YYYY-MM-DD`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        placeOfBirth
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Place of Birth.
+
+        May include information such as village, city, state, or country.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### NationalIdentification type
+
+```json
+// NationalIdentification type Example
+
+{
+  "nationalIdentifier": "198723-8971987",
+  "nationalIdentifierType": "SOCS",
+  "countryOfIssue": "KR",
+  "registrationAuthority": "RA0000099"
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        nationalIdentifier
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        National Identification Number of an Individual or Legal Entity.
+
+        If the value of `nationalIdentifierType` is `LEIX`, the nationalIdentifier field must contain a 20-character `LEIX` code.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nationalIdentifierType
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Type of National Identifier for an Individual or Legal Entity.
+
+        In the case of a legal entity, you must enter one of the following values: `RAID`, `LEIX`, `TXID`, or `MISC`.
+
+        The values that can be entered in this field are as follows:
+
+        1. `ARNU`: Alien Registration Number, a number assigned by the government to identify foreigners.
+
+        2. `CCPT`: Passport number.
+
+        3. `RAID`: Number assigned by a corporate registration authority, such as a business registration number. (This field is used only for legal entities.)
+
+        4. `DRLC`: Driver's license number.
+
+        5. `FIIN`: Foreign investor number, a number assigned to foreign investors.
+
+        6. `TXID`: Number assigned by tax authorities.
+
+        7. `SOCS`: Social security number, such as a resident registration number.
+
+        8. `IDCD`: ID card number assigned by a government authority.
+
+        9. `LEIX`: Global Legal Entity Identifier, LEI code assigned according to the ISO 17442 standard. (This field is used only for legal entities.)
+
+        10. `MISC`: Other types of national identification numbers not defined above.
+
+        May include information such as village, city, state, or country.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        countryOfIssue
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Country of Issue of National Identifier.
+
+        1. In the case of a legal entity, this field should not be filled.
+
+        2. For individuals, you must enter a two-letter country code as per the ISO-3166-1 alpha-2 standard.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        registrationAuthority
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Issuing Authority Code for National Identifier.
+
+        1. You must enter the code of the issuing authority as managed by the `Global Legal Entity Identifier Foundation (GLEIF)`. (The code consists of 8 characters: "RA" followed by a 6-digit number.)
+
+        2. If the value of `nationalIdentifierType` is `LEIX`, this field should not be filled.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### IntermediaryVASP type
+
+```json
+// IntermediaryVASP type
+
+{
+  "intermediaryVASP": {
+    ...
+  },  // Person type
+  "sequence": 0
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        intermediaryVASP
+      </td>
+
+      <td>
+        Person
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Information about intermediary VASPs in virtual asset transfers.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        sequence
+      </td>
+
+      <td>
+        Number
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        A field to determine which number the VASP written in the `intermediaryVASP` field is in the sequence of intermediary VASPs involved in the virtual asset transfer.
+
+        The numbering should start from 0 and increment sequentially up to the last intermediary VASP.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+## IVMS101 Message Format Guide
+
+IVMS101 is a messaging protocol for VASPs that defines data formats for transmitting various types of personal information. However, due to the lack of a clear definition of how to input personal information, it is often difficult to accurately interpret the transmitted personal data.
+
+To address this issue, this document provides guidelines on how to input and interpret information when sending and receiving personal information using the IVMS101 messaging protocol.
+
+> 📘 💡 Note:
+>
+> For the cases presented in this guide, adherence to the guidelines is mandatory.\
+> For any cases not covered in this document, please raise a separate issue.
+
+<br />
+
+### General Principles
+
+All verifications must involve information for only one transaction per verification.
+
+<br />
+
+### How to Fill in Individual or Legal Entity Information
+
+* **General Requirements**
+  * When filling in individual or legal entity information, **only one originator can be entered.** There cannot be multiple originators for a single verification.
+  * When filling in individual or legal entity information, **only one beneficiary can be entered.** There cannot be multiple beneficiaries for a single verification.
+* When There Are Multiple Originators
+  * If there are two or more originators, you must send separate verification requests for each originator.
+  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in originatorPersons. However, since all entries ultimately represent the same legal entity, it is still considered a single originator.
+* When There Are Multiple Beneficiaries
+  * If there are two or more beneficiaries, you must send separate verification requests for each beneficiary. Therefore, verifications must be requested for as many beneficiaries as there are.
+  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in beneficiaryPersons. However, since all entries ultimately represent the same legal entity, it is still considered a single beneficiary.
+* If the Originator or Beneficiary Is a Legal Person
+  * For legal entities, you'll probably need to fill in both corporate information and representative information. For example, in South Korea, both corporate information and representative information must be included. This applies to both the originator and the beneficiary.
+  * Representative information must be filled in as follows:
+    * The first element in the originatorPersons or beneficiaryPersons array must contain information about the legal entity.
+    * From the second element onward, the personal information of the legal representative(s) (natural person) must be entered.
+    * If there are multiple representatives, you must continue adding their personal information in sequence within the array.
+
+```json
+// legal person Example
+
+{
+    "originatorPersons": [
+        {
+            "legalPerson": {
+                ...  // legal entity information
+            }  // LegalPerson type
+        },
+        {
+            "naturalPerson": {
+                ...  // representative information 
+            }  // NaturalPerson type
+        },
+        {
+            "naturalPerson": {
+                ...  // add representative information if there are multiple representative
+            }  // NaturalPerson type
+        },
+        ...
+    ],
+    "accountNumber": [
+        "xxxxxxx"
+    ]
+},
+```
+
+<br />
+
+### Guidelines for Wallet Address Entry
+
+* **General Requirements**
+  * The `accountNumber` is case-sensitive and must be an array of strings.
+  * For addresses that have additional components, such as "parent address," "memo," or "destination tag" (e.g., XRP or EOS), the address should be formatted as follows:
+    * "ParentAddress:memo" or "ParentAddress:destinationTag"
+  * For more information on wallet address formats, refer to the Wallet Address and Transaction ID Standard Guide.
+* `accountNumber` of the Originator
+  * The accountNumber for the originator should contain the wallet address where the originator's assets are held.
+  * The blockchain account address of the originator must uniquely identify the originator.
+  * If the blockchain account address for the originator has not been issued, you must create a deposit address for the originator before withdrawal and enter that address.
+  * If the asset does not support a separate deposit address for the originator, enter the unique identifier assigned internally by the VASP to uniquely identify the customer.
+* `accountNumber` of the Beneficiary
+  * The accountNumber for the beneficiary should contain the blockchain account address where the beneficiary will receive the virtual assets from the originator.
+  * If there are multiple receiving addresses, enter all of them.
