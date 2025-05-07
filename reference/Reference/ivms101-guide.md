@@ -26,11 +26,11 @@ Currently, many Travel Rule solutions, including VerifyVASP, have adopted IVMS10
 
 The following content is provided in this guide.
 
-### [1. Definitions of Terms](ivms101-guide#/definitions-of-terms)
+### 1. Definitions of Terms
 
 You can check the definitions of the terms used in IVMS101.
 
-### [2. Handling of multiple character sets](ivms101-guide#/handling-of-multiple-character-sets)
+### 2. Handling of multiple character sets
 
 You can find the rules for representing language in IVMS101.
 
