@@ -1,25 +1,28 @@
 ---
 title: ISO20022 Standard
+excerpt: >-
+  ISO 20022 is an international standard format for electronic data exchange
+  between financial institutions, used for constructing messages in financial
+  transactions. Established in 2004, it has been adopted or is under
+  consideration for adoption by major national financial market infrastructures.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-ISO 20022는 **금융 기관 간 전자 데이터 교환을 위한 국제적인 표준 형식**으로, 금융 거래를 위한 메시지 작성에 사용됩니다. 2004년에 제정되었으며, 현재 주요 국가 금융 시장 인프라에 적용되었거나 적용을 검토 중입니다.
+**Key Features of ISO 20022:**
 
-**ISO 20022의 주요 특징:**
-
-* **국제 표준:** ISO(International Organization for Standardization)에서 개발한 국제 표준입니다.
-* **금융 거래 메시지:** 금융 거래 메시지 작성에 사용되는 표준 형식으로, 다양한 금융 메시지를 통일된 방식으로 교환할 수 있도록 지원합니다.
-* **전자 데이터 교환:** 금융 기관 간 전자 데이터 교환을 원활하게 수행할 수 있도록 합니다.
-* **데이터 호환성:** 국가 간 금융 거래 시 메시지의 호환성을 보장합니다.
-* **데이터 풍부함:** 이전 표준에 비해 더 풍부하고 상세한 데이터를 포함할 수 있습니다.
-* **데이터 구조:** 메시지에 포함되는 데이터가 더 잘 구조화되어 있어, 데이터 분석을 용이하게 합니다.
-* **데이터 상세성:** 데이터가 더 세분화되어 있어, 정확한 정보 전달을 지원합니다.
+* `International Standard`: Developed by the International Organization for Standardization (ISO), ensuring global
+* `Financial Transaction Messaging`: Serves as a standardized format for constructing financial transaction messages, enabling unified communication across systems.
+* `Electronic Data Exchange`: Facilitates seamless electronic data exchange between financial institutions.
+* `Cross-border Compatibility`: Ensures message compatibility across different countries during financial transactions.
+* `Rich Data Representation`: Supports richer and more detailed data compared to previous standards.
+* `Structured Data Format`: Offers well-structured message formats, enhancing data processing and analytics.
+* `Granular Data Detail`: Provides highly detailed and segmented data to ensure precise information delivery.
 
 <br />
 
-* 참고
+* **References**
   * ISO 20022 Homepage
     * [https://www.iso20022.org/](https://www.iso20022.org/)
   * ISO 20022 Whitepaper
