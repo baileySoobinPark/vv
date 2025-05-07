@@ -22,11 +22,12 @@ metadata:
 
 <br />
 
-* **References**
-  * ISO 20022 Homepage
-    * [https://www.iso20022.org/](https://www.iso20022.org/)
-  * ISO 20022 Whitepaper
-    * [https://www.iso20022.org/sites/default/files/documents/D7/ISO20022\_API\_JSON\_Whitepaper\_Final\_20180129.pdf](https://www.iso20022.org/sites/default/files/documents/D7/ISO20022_API_JSON_Whitepaper_Final_20180129.pdf)
-  * ISO 20022 SupplementaryData
-    * [https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data](https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data)
-    * [https://www.iso20022.org/sites/default/files/documents/D7/ISO\_20022\_SupplementaryData\_FAQ\_v1\_7.pdf](https://www.iso20022.org/sites/default/files/documents/D7/ISO_20022_SupplementaryData_FAQ_v1_7.pdf)
+**References**
+
+* ISO 20022 Homepage
+  * [https://www.iso20022.org/](https://www.iso20022.org/)
+* ISO 20022 Whitepaper
+  * [https://www.iso20022.org/sites/default/files/documents/D7/ISO20022\_API\_JSON\_Whitepaper\_Final\_20180129.pdf](https://www.iso20022.org/sites/default/files/documents/D7/ISO20022_API_JSON_Whitepaper_Final_20180129.pdf)
+* ISO 20022 SupplementaryData
+  * [https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data](https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data)
+  * [https://www.iso20022.org/sites/default/files/documents/D7/ISO\_20022\_SupplementaryData\_FAQ\_v1\_7.pdf](https://www.iso20022.org/sites/default/files/documents/D7/ISO_20022_SupplementaryData_FAQ_v1_7.pdf)
