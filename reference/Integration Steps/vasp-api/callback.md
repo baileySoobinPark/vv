@@ -32,7 +32,6 @@ excerpt: >
   required actions in accordance with the verification result. For example,
     - For successful verification, proceed with either initiating beneficiary verification on the Originating VASP side or executing the on-chain transaction.
     - For failed verification, cancel the associated asset transfer and notify the originator user of the failure with proper message. data.reason field can be refered to generate the failure messages.
-
     <details>
       <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
@@ -46,7 +45,6 @@ excerpt: >
         }
       ```
     </details>
-
     <details>
       <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
 
@@ -235,7 +233,6 @@ excerpt: >
   When a transaction report is received, your VASP can
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
     - Confirm that the asset transfer has been requested and log the details.
-
     <details>
       <summary>Example of Request Body for TX_REPORT callback type</summary>
 
@@ -256,7 +253,6 @@ excerpt: >
   When an error report is received, your VASP can
     - Cancel the associated asset transfer request.
     - Stop tracking the transaction and log the error for auditing purposes.
-
     <details>
       <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
@@ -369,8 +365,8 @@ excerpt: >
 
   ## Environment Variable Configuration
     Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
-      - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
-      - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
+    - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
+    - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
   operationId: callback
