@@ -25,14 +25,14 @@ excerpt: |
       Your VASP must generate an symmetric encryption key for database encryption and prepare a secure mechanism to manage it. This can include using own encryption module, or leveraging a Key Management System (KMS).
 
     ### 2. API Requirements
-      The API must use the reference value received in the inputKey field of the request to retrieve the actual encryption key. This process can involve either decrypting an encrypted key represented by the reference value or using the reference value (e.g., a key indicator) to securely fetch the key from a Key Management System (KMS) or other secure source.
+    The API must use the reference value received in the inputKey field of the request to retrieve the actual encryption key. This process can involve either decrypting an encrypted key represented by the reference value or using the reference value (e.g., a key indicator) to securely fetch the key from a Key Management System (KMS) or other secure source.
 
-      Once the actual encryption key is retrieved, the API must return it in the outputKey field of the response. This key will be used by the Enclave for database encryption.
+    Once the actual encryption key is retrieved, the API must return it in the outputKey field of the response. This key will be used by the Enclave for database encryption.
 
     ## Recommendations
-      Avoid configuring the database encryption key in plain text directly in the `VEGA_ENCRYPTION_KEY_BASE64` environment variable, as it poses significant security risks.
+    Avoid configuring the database encryption key in plain text directly in the `VEGA_ENCRYPTION_KEY_BASE64` environment variable, as it poses significant security risks.
 
-      It is strongly recommended to integrate a third-party key management service (KMS) to handle key management securely and implement the API.
+    It is strongly recommended to integrate a third-party key management service (KMS) to handle key management securely and implement the API.
 
       For example, when using a service like AWS KMS, you can set `VEGA_ENCRYPTION_KEY_BASE64` to the AWS ARN of the encryption key. 
 
