@@ -20,6 +20,10 @@ excerpt: >
     - **ERROR_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends an error report.
   `VERIFICATION_RESULT`, `TX_REPORT`, and `ERROR_REPORT` types must be
   implemented as mandatory processing logic.
+    - **CHAINALYSIS_KYT_RESULT**: This callback is triggered by Enclave when a risk assessment result is delivered from the Chainalysis KYT request.
+    - **REFINITIV_WCO_RESULT**: This callback is triggered by Enclave when a risk assessment result is delivered from the Refinitiv WCO request.
+  `CHAINALYSIS_KYT_RESULT` and `REFINITIV_WCO_RESULT` types are optional and can
+  be implemented only if the corresponding screening APIs are in use.
 
 
   ** 2. VERIFICATION_RESULT Callback Type Handling (as Originating VASP)**
@@ -268,6 +272,101 @@ excerpt: >
         }
       ```
     </details>
+  ** 5. CHAINALYSIS_KYT_RESULT Callback Handling**
+
+  When a risk assessment result is received for a Chainalysis KYT request, your
+  VASP can
+    - Update the evaluation data for the associated originator or beneficiary.
+    - Allow or deny the asset transfer based on the assessment result.
+    <details>
+      <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
+
+      ``` json
+        {
+          "callbackType":"CHAINALYSIS_KYT_RESULT",
+          "data":{
+              "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+              "riskAssessment":{
+                "chainalysisKYT":{
+                    "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+                    "counterpartyVaspId":"15952089931162059995",
+                    "apiType":"ATTEMPT",
+                    "userId":"15952089931162059995",
+                    "direction":"OUTGOING",
+                    "network":"ETHEREUM",
+                    "asset":"ETH",
+                    "amount":"1",
+                    "usdPrice":"1820.17",
+                    "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                    "timestamp":"2023-05-18T12:39:44.000Z",
+                    "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+                    "status":"PROCESSED",
+                    "alertCount":1,
+                    "createdAt":"2023-05-18T12:39:46.000Z",
+                    "assessedAt":"2023-05-18T12:39:45.263Z"
+                },
+                "chainalysisKYTAlerts":[
+                    {
+                      "counterpartyVaspId":"15952089931162059995",
+                      "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+                      "direction":"OUTGOING",
+                      "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
+                      "alertLevel":"MEDIUM",
+                      "entityCategory":"high risk exchange",
+                      "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                      "exposureType":"DIRECT",
+                      "alertAmount":"1820.17",
+                      "createdAt":"2023-05-18T12:39:52.461Z"
+                    }
+                ]
+              }
+          }
+        }
+      ```
+    </details>
+  ** 6. REFINITIV_WCO_RESULT Callback Handling**
+
+  When a risk assessment result is received for a Refinitiv WCO request, your
+  VASP can
+    - Update the evaluation data for the associated originator or beneficiary.
+    - Allow, resume, or deny the asset transfer based on the assessment result.
+    <details>
+      <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
+
+      ``` json
+        {
+          "callbackType":"REFINITIV_WCO_RESULT",
+          "data":{
+              "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+              "riskAssessment":{
+                "refinitivWorldCheckOne":{
+                    "counterpartyVaspId":"15952089931162058999",
+                    "direction":"INCOMING",
+                    "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
+                    "status":"PROCESSED",
+                    "matchStrength":"EXACT",
+                    "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
+                    "createdAt":"2023-05-18T12:39:48.000Z",
+                    "assessedAt":"2023-05-18T12:39:57.834Z"
+                }
+              }
+          }
+        }
+      ```
+    </details>
+  ## Constraints
+    - This API must respond within 1 second.
+    - Only the HTTP status code 200 OK can be returned. Other response status codes are not allowed.
+    - To maintain data consistency and reliability, the Callback API must guarantee idempotency. 
+      - This ensures that if the same Callback API request is received multiple times from the Enclave, the data state and response remain unchanged after the initial call. 
+      - For example, you can implements your VASP to ignore the duplicate requests.
+  ## Recommendations
+    Since the API response must be returned as quickly as possible, time-consuming tasks within the Callback API should be handled asynchronously.
+  ## Environment Variable Configuration
+    Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
+      - VEGA_VERIFICATION_CALLBACK_API_PATH: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
+
+      - VEGA_VERIFICATION_AUTHORIZATION_TOKEN: Set this variable to the API key provided during your VerifyVASP onboarding process.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
   operationId: callback
