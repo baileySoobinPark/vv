@@ -20,8 +20,11 @@ Each VASP must notify the VerifyVASP operations team before starting server main
 
 ### 1. Inform the schedule to the VerifyVASP operation team via Slack channel or E-mail
 
-Every VASP that belongs to VerifyVASP has its own Slack channel to contact the VerifyVASP operations team. Your VASP must notify the VerifyVASP operation team of your server maintenance at least one week in advance via Slack. Alternatively, if your VASP prefers to notify the server maintenance via E-mail, please contact using the E-mail address below.\
-Contact: [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)
+Every VASP that belongs to VerifyVASP has its own Slack channel to contact the VerifyVASP operations team. Your VASP must notify the VerifyVASP operation team of your server maintenance at least one week in advance via Slack. Alternatively, if your VASP prefers to notify the server maintenance via E-mail, please contact using the E-mail address below.
+
+* Contact: [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)
+
+<br />
 
 ### 2. Inform the schedule to the VerifyVASP operation team via VerifyVASP console
 
