@@ -26,7 +26,7 @@ Currently, many Travel Rule solutions, including VerifyVASP, have adopted IVMS10
 
 The following content is provided in this guide.
 
-### 1. Definitions of Terms
+### [1. Definitions of Terms](ref/ivms101-guide#/definitions-of-terms)
 
 You can check the definitions of the terms used in IVMS101.
 
