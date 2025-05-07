@@ -987,7 +987,7 @@ This is an object that contains identifiable information about an individual.
       </td>
 
       <td>
-        Current country of residence of the individual.\\
+        Current country of residence of the individual.
         You must enter the two-letter country code as per the ISO-3166-1 alpha-2 standard.
       </td>
     </tr>
@@ -1006,7 +1006,7 @@ This is an object that contains identifiable information about an individual.
       </td>
 
       <td>
-        Nationality of the individual.\\
+        Nationality of the individual.
         You must enter the two-letter country code as per the ISO-3166-1 alpha-2 standard.
       </td>
     </tr>
