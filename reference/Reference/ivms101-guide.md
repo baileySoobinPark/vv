@@ -708,7 +708,7 @@ Data Model Containing Additional Metadata.
       </td>
 
       <td>
-        Person
+        Array of Text
       </td>
 
       <td>
@@ -716,18 +716,298 @@ Data Model Containing Additional Metadata.
       </td>
 
       <td>
-        Information of the VASP Receiving the Virtual Asset
-
-        In the current VerifyVASP service structure, the information of the Beneficiary VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
-
-        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
-
         Field specifying the method used to convert non-Latin scripts into Latin scripts.
 
-        <br />
+        You can enter one of the code values from the table below.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
-        You can enter one of the code values from the table below\.However, information other than the
-        BeneficiaryVASP (e.g., information about the Beneficiary) must be entered.
+<Image align="center" src="https://files.readme.io/ddf8d360f11360e3fa984e3f70c468b25c56ae11e3a52419d0da3e61ab863873-transliterationMethod.png" />
+
+<br />
+
+## Data type
+
+You can verify the type of data object that will be used as a value in the IVMS101 data model.
+
+* **List of IVMS101 Data type**
+  * Person type
+  * NaturalPerson type
+  * LegalPerson type
+  * NaturalPersonName type
+  * LegalPersonName type
+  * NaturalPersonNameID type, LocalNaturalPersonNameID type
+  * LegalPersonNameID type, LocalLegalPersonNameID type
+  * Address type
+  * DateAndPlaceOfBirth type
+  * NationalIdentification type
+  * IntermediaryVASP type
+
+<br />
+
+### Person type
+
+This is an object that verifies whether the entity is an individual or a legal entity. You can click here to check the input method in accordance with the IVMS101 format.
+
+```json
+// Person type Example
+
+{
+  "naturalPerson": {
+    ...
+  },  // NaturalPerson type
+  "legalPerson": {
+    ...
+  },  // LegalPerson type
+}
+```
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        naturalPerson
+      </td>
+
+      <td>
+        NaturalPerson
+      </td>
+
+      <td>
+        Optional
+        At least one of the two types (`naturalPerson`, `legalPerson`) must be present.
+      </td>
+
+      <td>
+        Indicates that the object is an individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        legalPerson
+      </td>
+
+      <td>
+        LegalPerson
+      </td>
+
+      <td>
+        Optional
+        At least one of the two types (`naturalPerson`, `legalPerson`) must be present.
+      </td>
+
+      <td>
+        Indicates that the object is a legal entity.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
+
+### NaturalPerson type
+
+This is an object that contains identifiable information about an individual.
+
+```json
+// NaturalPerson type Example
+
+{
+  "name": {
+    ...
+  },  // NaturalPersonName type
+  "geographicAddress": [
+    { ... }  //Address type
+  ],
+  "nationalIdentification": {
+    ... 
+  },  // NationalIdentification type
+  "customerIdentification": "xxx",
+  "dataAndPlaceOfBirth": {
+    ...
+  },  // DataAndPlaceOfBirth type
+  "countryOfResidence": "KR",
+  "nationality": "KR" 
+}
+```
+
+> ⚠️ When using the `NaturalPerson type`, at least one of the following fields must be included in addition to the name field.
+>
+> 1. `geographicAddress`
+> 2. `nationalIdentification`
+> 3. `customerIdentification`
+> 4. `dataAndPlaceOfBirth`
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Field Name
+      </th>
+
+      <th>
+        Model
+      </th>
+
+      <th>
+        Condition
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        name
+      </td>
+
+      <td>
+        NaturalPersonName
+      </td>
+
+      <td>
+        Required
+      </td>
+
+      <td>
+        Name of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        geographicAddress
+      </td>
+
+      <td>
+        Array of Address
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        The geographic address of the individual's place of residence.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nationalIdentification
+      </td>
+
+      <td>
+        NationalIdentification
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        National identification number of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        customerIdentification
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        User ID within the VASP.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        dataAndPlaceOfBirth
+      </td>
+
+      <td>
+        DataAndPlaceOfBirth
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Date of birth and place of birth of the individual.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        countryOfResidence
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Current country of residence of the individual.\\
+        You must enter the two-letter country code as per the ISO-3166-1 alpha-2 standard.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        nationality
+      </td>
+
+      <td>
+        Text
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        Nationality of the individual.\\
+        You must enter the two-letter country code as per the ISO-3166-1 alpha-2 standard.
       </td>
     </tr>
   </tbody>
