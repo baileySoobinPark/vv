@@ -1,6 +1,7 @@
 - travelrule-api-implementation
 - checktransactionstatus
 - callback
+- getdecryptedenckey
 - travelrule-database-setup
 - travelrule-enclave-setup
 - trevelrule-testing-with-robotvasp
