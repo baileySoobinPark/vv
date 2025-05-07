@@ -1,5 +1,5 @@
 - travelrule-requestuseraccountverification
 - travelrule-requestuserverification
 - travelrule-checktransactionstatus
-- callback
+- travelrule-callback
 - getdecryptedenckey
