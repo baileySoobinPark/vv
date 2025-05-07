@@ -364,7 +364,7 @@ Data Model Containing the Information of the Virtual Asset Originator.
 }
 ```
 
-<Table>
+<Table align={["left","left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -599,83 +599,5 @@ Data Model Containing the Information of the Beneficiary VASP for Virtual Asset 
 }
 ```
 
-<Table align={["left","left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field Name
-      </th>
-
-      <th>
-        Model
-      </th>
-
-      <th>
-        Condition
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        beneficiaryVASP
-      </td>
-
-      <td>
-        Person
-      </td>
-
-      <td>
-        Optional
-      </td>
-
-      <td>
-        Information of the Virtual Asset Transfer Requestor
-
-        Information of the VASP Sending the Virtual Asset
-
-        <br />
-
-        In the current VerifyVASP service structure, the information of the Originating VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
-
-        <br />
-
-        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
-
-        <br />
-
-        Information of the VASP Receiving the Virtual Asset
-
-        <br />
-
-        In the current VerifyVASP service structure, the information of the Beneficiary VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
-
-        <br />
-
-        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
-
-        <br />
-
-        Information of the VASP Receiving the Virtual Asset
-
-        <br />
-
-        In the current VerifyVASP service structure, the information of the Beneficiary VASP is automatically filled in by the VV Central Server managed by VerifyVASP during the verification request process.
-
-        <br />
-
-        Therefore, this field does not need to be manually entered into the IVMS101 structure when performing User Verification; it will function correctly without it.
-
-        <br />
-
-        However, information other than the\\
-        BeneficiaryVASP (e.g., information about the Beneficiary) must be entered.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Field Name | Model | Condition | Descriptionss |
+| :--------- | :---- | :-------- | :------------ |
