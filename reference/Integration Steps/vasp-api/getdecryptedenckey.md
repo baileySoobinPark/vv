@@ -40,10 +40,8 @@ excerpt: |
 
   ## Environment Variable Configuration
     Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
-
-    - `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
-
-    - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
+      * `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
+      * `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
   operationId: getDecryptedEncKey

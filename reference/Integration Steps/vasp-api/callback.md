@@ -325,7 +325,7 @@ excerpt: >
         }
       ```
     </details>
-    
+
   ** 6. REFINITIV_WCO_RESULT Callback Handling**
 
   When a risk assessment result is received for a Refinitiv WCO request, your

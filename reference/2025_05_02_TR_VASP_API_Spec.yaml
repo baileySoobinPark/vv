@@ -1597,7 +1597,7 @@ paths:
               }
             ```
           </details>
-          
+
         ** 6. REFINITIV_WCO_RESULT Callback Handling**
 
         When a risk assessment result is received for a Refinitiv WCO request,
@@ -2059,10 +2059,8 @@ paths:
 
         ## Environment Variable Configuration
           Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
-
-          - `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
-
-          - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
+            * `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
+            * `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
       security:
         - Authorization: []
       operationId: getDecryptedEncKey
