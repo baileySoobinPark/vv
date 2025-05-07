@@ -30,7 +30,7 @@ The following content is provided in this guide.
 
 You can check the definitions of the terms used in IVMS101.
 
-### 2. Handling of multiple character sets
+### [2. Handling of multiple character sets](ivms101-guide#/handling-of-multiple-character-sets)
 
 You can find the rules for representing language in IVMS101.
 
