@@ -10,7 +10,7 @@ hidden: true
 metadata:
   robots: index
 ---
-**Key Features of ISO 20022:**
+## **Key Features of ISO 20022:**
 
 * `International Standard`: Developed by the International Organization for Standardization (ISO), ensuring global
 * `Financial Transaction Messaging`: Serves as a standardized format for constructing financial transaction messages, enabling unified communication across systems.
@@ -22,7 +22,7 @@ metadata:
 
 <br />
 
-**References**
+## **References**
 
 * ISO 20022 Homepage
   * [https://www.iso20022.org/](https://www.iso20022.org/)
