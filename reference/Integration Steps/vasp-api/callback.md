@@ -272,6 +272,7 @@ excerpt: >
         }
       ```
     </details>
+
   ** 5. CHAINALYSIS_KYT_RESULT Callback Handling**
 
   When a risk assessment result is received for a Chainalysis KYT request, your
@@ -324,6 +325,7 @@ excerpt: >
         }
       ```
     </details>
+    
   ** 6. REFINITIV_WCO_RESULT Callback Handling**
 
   When a risk assessment result is received for a Refinitiv WCO request, your
