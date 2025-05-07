@@ -1711,7 +1711,7 @@ The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the sam
 > 2. `streetName` and `buildingName`
 > 3. `streetName` and `buildingNumber`
 
-<Table>
+<Table align={["left","left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -2357,16 +2357,16 @@ All verifications must involve information for only one transaction per verifica
 * **General Requirements**
   * When filling in individual or legal entity information, **only one originator can be entered.** There cannot be multiple originators for a single verification.
   * When filling in individual or legal entity information, **only one beneficiary can be entered.** There cannot be multiple beneficiaries for a single verification.
-* When There Are Multiple Originators
+* **When There Are Multiple Originators**
   * If there are two or more originators, you must send separate verification requests for each originator.
-  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in originatorPersons. However, since all entries ultimately represent the same legal entity, it is still considered a single originator.
-* When There Are Multiple Beneficiaries
+  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in `originatorPersons`. However, since all entries ultimately represent the same legal entity, it is still considered a single originator.
+* **When There Are Multiple Beneficiaries**
   * If there are two or more beneficiaries, you must send separate verification requests for each beneficiary. Therefore, verifications must be requested for as many beneficiaries as there are.
-  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in beneficiaryPersons. However, since all entries ultimately represent the same legal entity, it is still considered a single beneficiary.
-* If the Originator or Beneficiary Is a Legal Person
+  * In the case of a legal entity, you'll probably need to fill in both corporate information and representative information, which means multiple entries can exist in `beneficiaryPersons`. However, since all entries ultimately represent the same legal entity, it is still considered a single beneficiary.
+* **If the Originator or Beneficiary Is a Legal Person**
   * For legal entities, you'll probably need to fill in both corporate information and representative information. For example, in South Korea, both corporate information and representative information must be included. This applies to both the originator and the beneficiary.
   * Representative information must be filled in as follows:
-    * The first element in the originatorPersons or beneficiaryPersons array must contain information about the legal entity.
+    * The first element in the `originatorPersons` or `beneficiaryPersons` array must contain information about the legal entity.
     * From the second element onward, the personal information of the legal representative(s) (natural person) must be entered.
     * If there are multiple representatives, you must continue adding their personal information in sequence within the array.
 
@@ -2406,12 +2406,442 @@ All verifications must involve information for only one transaction per verifica
   * The `accountNumber` is case-sensitive and must be an array of strings.
   * For addresses that have additional components, such as "parent address," "memo," or "destination tag" (e.g., XRP or EOS), the address should be formatted as follows:
     * "ParentAddress:memo" or "ParentAddress:destinationTag"
-  * For more information on wallet address formats, refer to the Wallet Address and Transaction ID Standard Guide.
-* `accountNumber` of the Originator
-  * The accountNumber for the originator should contain the wallet address where the originator's assets are held.
+  * For more information on wallet address formats, refer to the [Wallet Address and Transaction ID Standard Guide]() .
+* **`accountNumber`of the Originator**
+  * The `accountNumber` for the originator should contain the wallet address where the originator's assets are held.
   * The blockchain account address of the originator must uniquely identify the originator.
   * If the blockchain account address for the originator has not been issued, you must create a deposit address for the originator before withdrawal and enter that address.
   * If the asset does not support a separate deposit address for the originator, enter the unique identifier assigned internally by the VASP to uniquely identify the customer.
-* `accountNumber` of the Beneficiary
-  * The accountNumber for the beneficiary should contain the blockchain account address where the beneficiary will receive the virtual assets from the originator.
+* **`accountNumber`of the Beneficiary**
+  * The `accountNumber` for the beneficiary should contain the blockchain account address where the beneficiary will receive the virtual assets from the originator.
   * If there are multiple receiving addresses, enter all of them.
+
+<br />
+
+### Guidelines for Name Entry
+
+* **General Requirements**
+  * The name of both NaturalPerson and LegalPerson is not an array but a single object. Although the specification may sometimes indicate it as an array or a single object, interpreting it as a single object is more appropriate.
+  * The nameIdentifier element of name is an array. If you wish to include multiple names, you can add them to the nameIdentifier array. At least one of the elements in the nameIdentifier array must be a legal name (LEGL type).
+* **For Transactions Between VASPs In the Same Country**
+  * Names should be entered in local characters.
+  * If the original name is in English (e.g., for foreigners or corporations), enter it in English.
+* **For Transactions Between VASPs from Different Countries**
+  * The name must be entered in English.
+  * If there is no English name available in the member information, transliterate the name according to the Transliteration Standard of each language.
+
+<Image align="center" border={false} caption="Transliteration Standards" src="https://files.readme.io/ea28ced6ab3d90e22f0c6153435ccef4e949363a380e73be0c3a867e49206eef-transliterationMethod.png" />
+
+* If the legal English name is provided in the nameIdentifier element, you may enter the local name in the `localNameIdentifier` element.
+* **If the Last Name and First Name Can Be Separated**
+  * Enter the last name in `primaryIdentifier`.
+  * Enter the first name in `secondaryIdentifier`.
+* **If the Last Name and First Name Cannot Be Separated**
+  * Enter the full name in `primaryIdentifier`.
+  * Do not enter anything in `secondaryIdentifier`.
+
+<br />
+
+### Guidelines for Geographic Address Entry
+
+* **When Address Information Is Stored Separately by Elements Such as Province, City, Street, and Building**
+  * Enter the province, metropolitan city, or special city in the `countrySubDivision` element.
+    * Example: Seoul, Gwangju, Gyeonggi, Jeju.
+  * Enter the city, county, or district in the `districtName` element.
+  * Enter the town or neighborhood in the `townName` element.
+  * Enter the street name in the `streetName` element.
+  * Enter the building name or number in the `buildingName` or `buildingNumber` element.
+  * Enter the floor or room number in the `floor` or `room` element.
+* **When Address Information Is Not Stored Separately by Elements Such as Province, City, etc.**
+  * You can enter up to seven address components in the `addressLine` element as an array. If the address is stored in separate parts, include them as elements of the array.
+  * If only the full address is available, enter it as the first element of the `addressLine` array.
+* **When Entering the Address of a Legal Entity**
+  * When entering the address of a legal entity, you must include both the headquarters and the business locations.
+    * Enter the headquarters address as the first element in the geographic address array.
+    * Enter the business location address as the second element in the geographic address array.
+    * If there are multiple business locations, you can add them starting from the third element of the geographic address array.
+    * If the headquarters address and the business location address are the same, enter them in both the first and second elements.
+
+<br />
+
+### Guidelines for Date and Place of Birth or Date of Incorporation Entry
+
+* **General Requirements**
+  * Fill in the `dateOfBirth` field for natural person
+  * Fill in the `dateOfIncorporation` field for legal person
+  * The date must be entered in the `dateOfBirth` or `dateOfIncorporation` element using the format `"YYYY-MM-DD"` (ISO 8601 format).
+* **For Natural Person**
+  * The `placeOfBirth` element should include the place of birth. However, if place of birth information is not available, enter geographic address information (current residence).
+  * For customers from countries that do not have a national identification number system, such as a social security number, place of birth information must be provided.
+
+<br />
+
+### Guidelines for Nationality Entry
+
+* **General Requirements**
+  * A corporation does not need to input the nationality.
+  * IVMS101 has the format for inputting current residence country, but there is no format for inputting nationality
+  * To exchange of nationality information, VerifyVASP has modified the IVMS101 format by adding a `nationality` element to the NaturalPerson type. As a result, you can input the country code into the nationality element.
+
+<br />
+
+### IVMS101 Personal Information Code
+
+The Beneficiary VASP must return the Beneficiary’s personal information as specified in the requiredBeneficiaryInfo field in the request.
+
+* If the Beneficiary VASP cannot return the Beneficiary’s personal information for any reason, it must set the result field to DENIED, the reason field to `UNAVAILABLE-INFORMATION`, and the `message` field to a comma-separated string of the personal information codes that could not be returned. These fields must be included in the response.
+* If the Originator’s personal information is insufficient to proceed with verification by the Beneficiary VASP, it must set the result field to `DENIED`, the reason field to`LACK-OF-INFORMATION`, and the message field to a comma-separated string listing the personal information codes required for verification. These fields must be included in the response.
+* The Originating VASP that receives the error code `LACK-OF-INFORMATION` must call the new User Verification API by adding the missing Originator’s personal information listed in the response’s `message` field.
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Code Name
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Related fields of IVMS101
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        ACCOUNT\_NUMBER\*
+      </td>
+
+      <td>
+        Wallet Address (required).
+      </td>
+
+      <td>
+        * Originator.accountNumber
+        * Beneficiary.accountNumber
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_DATE\_AND\_PLACE\_OF\_BIRTH
+      </td>
+
+      <td>
+        Date of birth and place of birth.\
+        If there is no information about place of birth, please input your home address.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.dateAndPlaceOfBirth
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.dataAndPlaceOfBirth
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_NAME\*
+      </td>
+
+      <td>
+        Information of personal name.\
+        For transactions between VASPs within South Korea, it is acceptable to provide names in Korean.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.name.nameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LOCAL\_NATURAL\_PERSON\_NAME
+      </td>
+
+      <td>
+        An individual’s name written in the language of the respective country.\
+        To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.name.localNameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_NATIONALITY
+      </td>
+
+      <td>
+        Nationality
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.nationality
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.nationality
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_GEOGRAPHIC\_ADDRESS
+      </td>
+
+      <td>
+        A geographic address in English.\
+        For transactions between VASPs within South Korea, it is acceptable to provide in Korean.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.geographicAddress
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.geographicAddress
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_NATIONAL\_IDENTIFICATION
+      </td>
+
+      <td>
+        A national Identification number
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.nationalIdentification
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.nationalIdentification
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_CUSTOMER\_IDENTIFICATION
+      </td>
+
+      <td>
+        A unique customer ID assigned within the VASP.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.customerIdentification
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.customerIdentification
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        NATURAL\_PERSON\_COUNTRY\_OF\_RESIDENCE
+      </td>
+
+      <td>
+        The country of current residence.\
+        Input it as a 2-letter country code.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].naturalPerson.countryOfResidence
+        * Beneficiary.beneficiaryPersons\[0].naturalPerson.countryOfResidence
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LEGAL\_PERSON\_NAME\*
+      </td>
+
+      <td>
+        The corporate name in English.\
+        For transactions between VASPs within South Korea, it is acceptable to provide the name in Korean.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.name.nameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LOCAL\_LEGAL\_PERSON\_NAME
+      </td>
+
+      <td>
+        The corporate name in the language of the respective country.\
+        To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.name.localNameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        CORPORATE\_REPRESENTATIVE\_NAME\*
+      </td>
+
+      <td>
+        The representative’s name in English.\
+        For transactions between VASPs within South Korea, it is acceptable to provide the name in Korean.
+        Input the representative’s information in the second element of beneficiaryPersons or originatorPersons.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[1].naturalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons\[1].naturalPerson.name.nameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LOCAL\_CORPORATE\_REPRESENTATIVE\_NAME
+      </td>
+
+      <td>
+        The representative’s name in the language of the respective country.\
+        To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[1].naturalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons\[1].naturalPerson.name.localNameIdentifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        CORPORATE\_REPRESENTATIVE\_DATE\_AND\_PLACE\_OF\_BIRTH
+      </td>
+
+      <td>
+        The date of birth and place of birth of the corporate representative.\
+        If the place of birth information is unavailable, provide the home address instead.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[1].naturalPerson.dateAndPlaceOfBirth
+        * Beneficiary.beneficiaryPersons\[1].naturalPerson.dateAndPlaceOfBirth
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        CORPORATE\_REPRESENTATIVE\_NATIONALITY
+      </td>
+
+      <td>
+        The nationality of the corporate representative.\
+        Enter it as a two-letter country code.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[1].naturalPerson.nationality
+        * Beneficiary.beneficiaryPersons\[1].naturalPerson.nationality
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        HEAD\_OFFICE\_GEOGRAPHIC\_ADDRESS
+      </td>
+
+      <td>
+        The address of the corporate headquarters.\
+        Input it as the first element in the geographicAddress array.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.geographicAddress\[0]
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.geographicAddress\[0]
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        BRANCH\_OFFICE\_GEOGRAPHIC\_ADDRESS
+      </td>
+
+      <td>
+        The address of the corporate business location.\
+        Enter it as the second element in the geographicAddress array.
+        If you want to include information for multiple business locations, you can add them starting from the third element in the geographicAddress array.
+        Even if the headquarters address and business location address are the same, include them separately.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.geographicAddress\[1]
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.geographicAddress\[1]
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LEGAL\_PERSON\_CUSTOMER\_IDENTIFICATION
+      </td>
+
+      <td>
+        A unique customer ID assigned internally by the VASP.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.customerIdentification
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.customerIdentification
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LEGAL\_PERSON\_NATIONAL\_IDENTIFICATION
+      </td>
+
+      <td>
+        The corporate identification number, such as the business registration number.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.nationalIdentification
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.nationalIdentification
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LEGAL\_PERSON\_COUNTRY\_OF\_REGISTRATION
+      </td>
+
+      <td>
+        The country where the corporation is registered.\
+        Enter it as a two-letter country code.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.countryOfRegistration
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.countryOfRegistration
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        LEGAL\_PERSON\_DATE\_OF\_INCORPORATION
+      </td>
+
+      <td>
+        The established date of the corporation.\
+        You must input “YYYY-MM-DD” format.
+      </td>
+
+      <td>
+        * Originator.originatorPersons\[0].legalPerson.dateOfIncorporation
+        * Beneficiary.beneficiaryPersons\[0].legalPerson.dateOfIncorporation
+      </td>
+    </tr>
+  </tbody>
+</Table>
