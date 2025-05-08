@@ -69,7 +69,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
     <div class="card-container">
 
   <div class="card">
-    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
     <div class="contents-space">
       <p>Identify your VASP's implementation scope first</p>
       <div class="link-wrapper">
@@ -79,7 +79,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   </div>
 
   <div class="card">
-    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
     <div class="contents-space">
       <p>Identify your VASP's implementation scope first</p>
       <div class="link-wrapper">
@@ -89,7 +89,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   </div>
 
   <div class="card">
-    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
     <div class="contents-space">
       <p>Identify your VASP's implementation scope first</p>
       <div class="link-wrapper">
