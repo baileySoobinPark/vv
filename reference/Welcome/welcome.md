@@ -21,6 +21,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  gap: 16px; /* 카드 간 여백 */
 }
 
 .card-container {
