@@ -99,11 +99,11 @@ This approach ensures secure and seamless data exchange while maintaining the pr
 
   To improve the efficiency of public key retrieval, the enclave server caches the public key of the counterparty VASP for a configurable duration. This reduces the need for repeated requests to fetch the same key.
 
-  * Enclave Environment Variable
+  * **Enclave Environment Variable**
     * Configure the caching duration in milliseconds using the variable: `VEGA_PUBLIC_KEY_TTL`.
-  * Default and Minimum Values
-    * Default: `1800000` milliseconds (30 minutes).
-    * Minimum: `600000` milliseconds (10 minutes).
+  * **Default and Minimum Values**
+    * **Default**: **`1800000`** milliseconds (30 minutes).
+    * **Minimum**: **`600000`** milliseconds (10 minutes).
       Adjust this setting to balance performance and security based on your requirements.
 
   ## Public Key Types
@@ -112,15 +112,15 @@ This approach ensures secure and seamless data exchange while maintaining the pr
 
   * `PerVasp`
     * A single key shared across all verifications for a VASP.
-      * `Pros`: Most efficient option due to caching.
-      * `Cons`: Least secure, as the same key is used for all verifications.
+      * **`Pros`**: Most efficient option due to caching.
+      * **`Cons`**: Least secure, as the same key is used for all verifications.
   * `PerAddress`
   * A unique key is generated for each beneficiary address.
-    * `Pros`: More secure than PerVasp, as each address is encrypted with a unique key.
-    * `Cons`: Slightly less efficient compared to PerVasp.
+    * **`Pros`**: More secure than PerVasp, as each address is encrypted with a unique key.
+    * **`Cons`**: Slightly less efficient compared to PerVasp.
   * `PerVerification`
   * A new key is generated for every verification request.
-    * `Pros`: Most secure, as each request uses a unique key.
-    * `Cons`: Least efficient, as caching is not applicable.
+    * **`Pros`**: Most secure, as each request uses a unique key.
+    * **`Cons`**: Least efficient, as caching is not applicable.
       By selecting the appropriate caching duration and key type, you can tailor the balance between security and efficiency to meet your organization’s needs.
 </Accordion>
