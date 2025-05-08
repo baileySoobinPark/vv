@@ -55,7 +55,8 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   padding: 12px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 8px; /* 요소 간 고정 간격 */
+  justify-content: flex-start; /* 위쪽 정렬 */
 }
 
 .contents-space p {
