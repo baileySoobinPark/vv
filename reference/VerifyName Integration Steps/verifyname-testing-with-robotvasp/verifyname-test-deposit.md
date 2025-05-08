@@ -36,7 +36,7 @@ metadata:
 
     * **Request Body Example**
 
-    ```
+    ```json
       {
         "supplementary_data": {
             "envelope": {
@@ -91,7 +91,7 @@ metadata:
     * Robot VASP 가 판단한 결과를 포함한 응답
       * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
 
-    ```
+    ```json
       {
         "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
         "verified_at": "2025-04-22T10:08:31.785Z",
