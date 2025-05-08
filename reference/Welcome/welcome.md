@@ -70,35 +70,35 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   <div class="container">
     <div class="card-container">
 
-      <div class="card"> 
-        <div class="background-image"></div>
-        <div class="contents-space">
-          <p>Before starting integration, understand travel rule and VASPs' duties.</p>
-          <div class="link-wrapper">
-            <a href="#">Understanding Travel Rule</a>
-          </div>
+    <div class="card">
+      <img class="card-image" src="https://your-image-url" alt="Card Image" />
+      <div class="contents-space">
+        <p>Identify your VASP's implementation scope first</p>
+        <div class="link-wrapper">
+          <a href="#">asdasdasdasdas</a>
         </div>
       </div>
+    </div>
 
-      <div class="card"> 
-        <div class="background-image"></div>
-        <div class="contents-space">
-          <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
-          <div class="link-wrapper">
-            <a href="#">asdasdasdasdas</a>
-          </div>
+    <div class="card">
+      <img class="card-image" src="https://your-image-url" alt="Card Image" />
+      <div class="contents-space">
+        <p>Identify your VASP's implementation scope first</p>
+        <div class="link-wrapper">
+          <a href="#">asdasdasdasdas</a>
         </div>
       </div>
+    </div>
 
-      <div class="card"> 
-        <div class="background-image"></div>
-        <div class="contents-space">
-          <p>Identify your VASP's implementation scope first</p>
-          <div class="link-wrapper">
-            <a href="#">asdasdasdasdas</a>
-          </div>
+    <div class="card">
+      <img class="card-image" src="https://your-image-url" alt="Card Image" />
+      <div class="contents-space">
+        <p>Identify your VASP's implementation scope first</p>
+        <div class="link-wrapper">
+          <a href="#">asdasdasdasdas</a>
         </div>
       </div>
+    </div>
 
     </div>
   </div>
