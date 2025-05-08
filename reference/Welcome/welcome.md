@@ -16,7 +16,7 @@ metadata:
 If you’re new to the Travel Rule or VerifyVASP, explore these resources to understand its core concepts and integration framework. Grasping the background and big picture before starting integration will provide valuable clarity and guidance.
 
 <Cards columns={4}>
-  <Card title="First Card" href="https://readme.com">
+  <Card>
     <img class="tutorial-image" src="https://files.readme.io/02b87202a3e2ea76ad42448751faf80d5b119b889564f05783a1a89ca2fe58a0-wallet3.png" />
 
     Neque porro quisquam est qui dolorem ipsum quia
