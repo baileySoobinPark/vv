@@ -220,170 +220,137 @@ metadata:
     </Accordion>
 * Specific personal data specification requirements now can be designated in the request phase to VASP.
   * Refer to the newly added code specification to designate the data requirements.
+  * <Accordion title="Background of using personal data field code">
+      When sharing user personal information between VASPs, the required fields might vary along with the policy of each VASP or national regulation.
+
+      For example, a VASP may need an additional field such as the date of birth for sanction screening, or geographical address to meet the legal necessities.
+
+      Simply including the additionally required data fields upon the request or response enables the VASPs to collect required data without any unnecessary custom precessing. All the verification requester VASPs must fill the requested fields to satisfy the data request, or the verification should be DENIED.
+    </Accordion>
 * VASP API implementation policy updated.
+* <Accordion title="VASP API Policies">
+    VerifyVASP, a Travel Rule solution, is a collaborative protocol among multiple VASPs.
+
+    Each VASP has its own internal operating policy or different implementation standard, which makes it hard to orchestrate the system to work fine.
+
+    Accordingly, building a minimal consensus on the implementation policy can help the counter-side VASP reduce unexceptional errors and build the system easily.
+  </Accordion>
 * Now VerifyVASP supports a transaction in a single VASP, meaning a VASP can be both the originating VASP and beneficiary VASP of the transaction.
+* <Accordion title="Supporting transaction inside a VASP">
+    It is not mandatorily required for the users who trade virtual assets in the same VASP to be verified via VerifyVASP.
 
-Enclave API\
-The Asynchronous process is introduced to these APIs below.
+    However, the VASP might need to operate an additional system to track the verification history of internal transactions under the regulation. Integrating VerifyVASP for both internal and external transactions is recommended to reduce the operational overhead.
+  </Accordion>
 
-User Verification API
+### Enclave API
 
-Transaction Result Report API
+* The Asynchronous process is introduced to these APIs below.
+  * User Verification API
+  * Transaction Result Report API
+  * Error Report
+* User Verification API spec updated.
+  * requiredBeneficiaryInfo field was added to the request payload.
+  * Due to the change to work asynchronously, some fields from the response payload were discarded including verificationUuid.
+  * The discarded data fields are now delivered through the Callback VASP API.
+* Error report API specification updated.
+  * message field was added to the request payload.
+* New APIs added
+  * An API to check the VASP ID assigned to itself
+  * An API for verification result of single request history by UUID
 
-Error Report
+### VASP API
 
-User Verification API spec updated.
+* Callback API is newly added.
+  * The API is for getting notifications of the processing result asynchronously.
+  * Strongly recommended implementing the callback API: Polling way of implementation for all the processing transaction results without enough care might be a burden to both VASP itself and the VerifyVASP network.
+  * Implementation policies for each VASP API were updated.
+  * Error codes from the user verification API are now provided.
 
-requiredBeneficiaryInfo field was added to the request payload.
+### Enclave
 
-Due to the change to work asynchronously, some fields from the response payload were discarded including verificationUuid.
+* The database table definition was updated.
+  * Added: commands table
+  * Modified: verifications table
+    * message column is added
+* An environmental variable was added
+  * `VEGA_VERIFICATION_CALLBACK_API_PATH`: A variable for callback API endpoint setup
 
-The discarded data fields are now delivered through the Callback VASP API.
+### IVMS101
 
-Error report API specification updated.
+* IVMS101 Message Format Guide was updated.
+  * Address field expansion to support multiple addresses in addition to the parent address (e.g. XPR, EOS)
+  * The geographic address policy now requires corporations to fill out both headquarters address and branches.
 
-message field was added to the request payload.
+### Bugfix and minor updates
 
-New APIs added
-
-An API to check the VASP ID assigned to itself
-
-An API for verification result of single request history by UUID
-
-VASP API\
-Callback API is newly added.
-
-The API is for getting notifications of the processing result asynchronously.
-
-Strongly recommended implementing the callback API: Polling way of implementation for all the processing transaction results without enough care might be a burden to both VASP itself and the VerifyVASP network.
-
-Implementation policies for each VASP API were updated.
-
-Error codes from the user verification API are now provided.
-
-Enclave\
-The database table definition was updated.
-
-Added: commands table
-
-Modified: verifications table
-
-message column is added
-
-An environmental variable was added
-
-VEGA\_VERIFICATION\_CALLBACK\_API\_PATH: A variable for callback API endpoint setup
-
-IVMS101\
-IVMS101 Message Format Guide was updated.
-
-Address field expansion to support multiple addresses in addition to the parent address (e.g. XPR, EOS)
-
-The geographic address policy now requires corporations to fill out both headquarters address and branches.
-
-Bugfix and minor updates\
-The problem in setting database port number adjustment has been fixed.
-
-The endpoint scanning process during enclave boot now checks the endpoints of transaction status query API and address verification API too.
-
-A diagram describing the transaction state transition has been added to the transaction status query API page.
-
-Parameter names have been changed.
-
-The query parameters for Verification Result List API are modified as follows.
-
-* fromAccount --> originatorAccountNumber
-* toAccount --> beneficiaryAccountNumber
+* The problem in setting database port number adjustment has been fixed.
+* The endpoint scanning process during enclave boot now checks the endpoints of transaction status query API and address verification API too.
+* A diagram describing the transaction state transition has been added to the transaction status query API page.
+* Parameter names have been changed.
+  * The query parameters for Verification Result List API are modified as follows.
+    * fromAccount --> originatorAccountNumber
+    * toAccount --> beneficiaryAccountNumber
 
 <br />
 
-Version 1.1.0\
-Consol Site
-The Korean Site is open.
+## Version 1.1.0
 
-Only the staging environment and site are open; the production environment and site are to open soon.
+### Consol Site
 
-The address of the Korean VerifyVASP console site updated ([https://kr.verifyvasp.xyz](https://kr.verifyvasp.xyz)).
+* Korean Site is open.
+  * Only the staging environment and site are open; the production environment and site are to open soon.
+  * The address of the Korean VerifyVASP console site updated ([https://kr.verifyvasp.xyz](https://kr.verifyvasp.xyz)).
+  * Korean VASPs need to register to the Korean console site newly.
 
-Korean VASPs need to register to the Korean console site newly.
+### Central Server
 
-Central Server\
-The central server endpoint for the Korea region was added.
+* The central server endpoint for the Korea region was added.
 
-Enclave Server\
-Enclave server - version updated (VerifyVASP/enclave:v1.1.0)
+### Enclave Server
 
-Enclave database - table definition updated.
+* Enclave server - version updated (VerifyVASP/enclave:v1.1.0)
+* Enclave database - table definition updated.
+  * verifications
+* Enclave database - new tables
+  * counter\_party\_keys
+  * own\_keys
+* Enclave database applies encryption to some columns
+* Environment variables added
+  * `VEGA_ENCLAVE_PUBLIC_ENDPOINT`
+  * `VEGA_VERIFICATION_ADDRESSES_API_PATH`
+  * `VEGA_VERIFICATION_TRANSACTION_API_PATH`
+  * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`
+  * `VEGA_ENCRYPTION_KEY_BASE64`
+  * `VEGA_DECRYPT_API_ENDPOINT`
+  * `VEGA_PUBLIC_KEY_TTL`
+  * `VEGA_LOG_LEVEL`
 
-verifications
+### VASP API
 
-Enclave database - new tables
+* VASP side need-to-implement APIs were added
+  * User address verification API (mandatory)
+  * Transaction status query API (mandatory)
+  * Decrypting database encryption key API (recommended)
+* Specification update for user verification API
+  * symbol, amount fields moved into assetInfo object
 
-counter\_party\_keys
+### Enclave API
 
-own\_keys
+* API version information was added to all API paths.
+* Updated APIs
+  * VASP List API
+    * The list is changed to include VerifyVASP members only by default.
+    * includesAll query parameter is now supported.
+    * The response provides more detailed information including VASP health status.
+  * User verification API
+    * request body modified
+  * New APIs are now supported.
+    * Address verification API
+    * Error report API
+    * Transaction status query API
 
-Enclave database applies encryption to some columns
+### Minor Updates
 
-Environment variables added
-
-VEGA\_ENCLAVE\_PUBLIC\_ENDPOINT
-
-VEGA\_VERIFICATION\_ADDRESSES\_API\_PATH
-
-VEGA\_VERIFICATION\_TRANSACTION\_API\_PATH
-
-VEGA\_VERIFICATION\_AUTHORIZATION\_TOKEN
-
-VEGA\_ENCRYPTION\_KEY\_BASE64
-
-VEGA\_DECRYPT\_API\_ENDPOINT
-
-VEGA\_PUBLIC\_KEY\_TTL
-
-VEGA\_LOG\_LEVEL
-
-VASP API\
-VASP side need-to-implement APIs were added
-
-User address verification API (mandatory)
-
-Transaction status query API (mandatory)
-
-Decrypting database encryption key API (recommended)
-
-Specification update for user verification API
-
-symbol, amount fields moved into assetInfo object
-
-Enclave API\
-API version information was added to all API paths.
-
-Updated APIs
-
-VASP List API
-
-The list is changed to include VerifyVASP members only by default.
-
-includesAll query parameter is now supported.
-
-The response provides more detailed information including VASP health status.
-
-User verification API
-
-request body modified
-
-New APIs are now supported.
-
-Address verification API
-
-Error report API
-
-Transaction status query API
-
-Minor Updates\
-A security guide page was added.
-
-IVMS101 standard guiding page was added.
-
-IVMS101 message format guide page was added.
+* A security guide page was added.
+* IVMS101 standard guiding page was added.
+* IVMS101 message format guide page was added.
