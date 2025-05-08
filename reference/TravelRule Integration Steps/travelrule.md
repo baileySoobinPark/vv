@@ -1,5 +1,5 @@
 ---
-title: TravelRule
+title: TravelRule Integration Steps
 excerpt: >-
   This section provides a structured guide for integrating TravelRule into your
   VASP system. Each step is detailed in a dedicated page, covering the key
