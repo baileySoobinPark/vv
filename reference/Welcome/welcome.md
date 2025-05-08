@@ -314,7 +314,7 @@ a:active{
 }
   
   </style>
-
+<body>
   <div class="container">    
     <div class="tutorial-container">
        <div class="tutorial-component-container"> 
@@ -341,4 +341,5 @@ a:active{
       </div>
     </div>
   </div>
+</body>
 `}</HTMLBlock>
