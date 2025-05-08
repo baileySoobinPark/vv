@@ -75,13 +75,13 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
            <p>teststseseststsesr</p>
            <p>asdasdasdasdas</p>
          </div>
-   <div class="card"> 
+   		<div class="card"> 
          <div class="background-image"></div>
          <div class="contents-space">
            <p>teststseseststsesr</p>
            <p>asdasdasdasdas</p>
          </div>
-   <div class="card"> 
+  		 <div class="card"> 
          <div class="background-image"></div>
          <div class="contents-space">
            <p>teststseseststsesr</p>
