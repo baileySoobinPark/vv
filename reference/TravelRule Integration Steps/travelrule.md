@@ -11,15 +11,24 @@ metadata:
 ---
 ## Steps to Complete Your Integration:
 
-1. Implementing VASP APIs\
-   Develop the required APIs to handle verifications and transactions.
-2. Setting up a Database\
-   Configure a secure database to manage compliance data.
-3. Connecting with Enclave\
-   Set up the Enclave server to interface with the VerifyVASP Central Server.
-4. Testing with Robot VASP\
-   Validate your implementation using simulated transactions.
+### 1. Implementing VASP APIs
+
+Develop the required APIs to handle verifications and transactions.
 
 <br />
 
-// 링크 추가 필
+### 2. Setting up a Database
+
+Configure a secure database to manage compliance data.
+
+<br />
+
+### 3. Connecting with Enclave
+
+Set up the Enclave server to interface with the VerifyVASP Central Server.
+
+<br />
+
+### 4. Testing with Robot VASP
+
+Validate your implementation using simulated transactions.
