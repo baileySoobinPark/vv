@@ -26,37 +26,28 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .card {
   width: calc((100% - 32px) / 3);
-  height: 340px; /* 줄어든 높이 */
-  display: flex;
-  flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background-color: #fff;
-  transition: transform 0.2s ease;
-  margin: 0; /* 여백 제거 */
-}
-
-.card:hover {
-  transform: translateY(-4px);
+  display: flex;
+  flex-direction: column;
 }
 
 .background-image {
-  flex: 1;
+  width: 100%;
+  aspect-ratio: 3 / 2; /* 이미지 비율 유지 */
   background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: top;
-  margin: 0; /* 이미지 여백 제거 */
+  background-position: center;
 }
 
 .contents-space {
-  padding: 12px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 8px; /* 요소 간의 고정된 간격만 유지 */
-  height: auto; /* 불필요한 높이 고정 제거 */
+  gap: 8px;
 }
 
 .contents-space p {
