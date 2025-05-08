@@ -32,7 +32,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 }
 
 .card {
-  width: 30%;
+  width: calc((100% - 32px) / 3); /* 전체 너비에서 gap 2개(16px*2)를 제외하고 3등분 */
   min-width: 280px;
   aspect-ratio: 3 / 4;
   display: flex;
