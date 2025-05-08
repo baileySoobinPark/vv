@@ -29,8 +29,4 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   <Card title="Third Card" icon="fa-star">
     > Ut enim ad minim veniam, quis nostrud ullamco
   </Card>
-
-  <Card title="Fourth Card" icon="fa-question">
-    **Excepteur sint occaecat cupidatat non proident**
-  </Card>
 </Cards>
