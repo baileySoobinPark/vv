@@ -271,7 +271,7 @@ a:active{
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 48%;
+    width: 30%;
     height: 300px;
     transition: transform 0.2s, box-shadow 0.2s;
     color: #666;
