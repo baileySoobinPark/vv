@@ -42,7 +42,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .background-image {
   height: 50%;
-  background-image: url('https://via.placeholder.com/300x200');
+  background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
   background-size: cover;
   background-position: center;
 }
