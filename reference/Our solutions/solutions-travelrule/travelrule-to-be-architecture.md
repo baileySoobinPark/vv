@@ -1,12 +1,17 @@
 ---
 title: To-Be Architecture
+excerpt: >-
+  This page outlines the implementation scope required for your VASP to
+  integrate with TravelRule protocols. This future-state design ensures your
+  VASP is well-prepared to handle regulatory requirements and seamlessly
+  integrate with TravelRule protocols. As shown in Diagram 1, the future-state
+  architecture of your VASP’s business backend incorporates enhancements to
+  support account and user verification processes seamlessly.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This page outlines the implementation scope required for your VASP to integrate with TravelRule protocols. This future-state design ensures your VASP is well-prepared to handle regulatory requirements and seamlessly integrate with TravelRule protocols. As shown in Diagram 1, the future-state architecture of your VASP’s business backend incorporates enhancements to support account and user verification processes seamlessly.
-
 <Image align="center" border={false} caption="Diagram 1. Future-State VASP: Implementation Scope" src="https://files.readme.io/50e08e8212d7e0a2aaf3ca0ec924c3311a70710be8ef6e0273ea8d700c2d6b52-tr_to_be_arct_1.png" width="400px" />
 
 **Integrating Verification into Withdrawal Processes**
