@@ -32,3 +32,19 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
     **Excepteur sint occaecat cupidatat non proident**
   </Card>
 </Cards>
+
+<HTMLBlock>{`
+     <div class="container">
+  		<div class="new-popular-container">
+        <div class="new-popular-component-container">
+          <a href="https://developer.nodit.io/docs/nodit-mcp" class="box-tutorial"> 
+            <div class="title">Nodit MCP - Connect AI to Blockchain </div>
+            <br>Nodit이 AI를 만나 더 쉽고, 더 빠른 Web3 개발을 지원합니다. 새롭게 공개된 Nodit MCP 활용하여 자연어 프롬프트를 통한 블록체인 데이터 조회와 Nodit 연동을 바로 시작해보세요.
+            <img class="tutorial-image" src="https://files.readme.io/09b0837d53c29102f7a55a65ebbb26670d269d8362bb68812262431d58bf7503-Blockchain_MCP.png"/>
+          </a>
+          <a href="https://developer.nodit.io/reference/xrpl-quickstart" class="box-tutorial"> 
+          </a>
+      </div>
+    </div>
+  </div>
+`}</HTMLBlock>
