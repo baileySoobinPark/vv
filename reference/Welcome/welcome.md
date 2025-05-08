@@ -21,12 +21,12 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px; /* 카드 간 여백 */
+  gap: 16px;
 }
 
 .card {
   width: calc((100% - 32px) / 3);
-  height: 400px; /* 카드 전체 높이 고정 */
+  height: 400px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -36,55 +36,69 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   transition: transform 0.2s ease;
 }
 
-
 .card:hover {
   transform: translateY(-4px);
 }
 
 .background-image {
-  height: 50%; /* 전체 높이의 절반 */
+  height: 50%;
   background-image: url('https://via.placeholder.com/300x200');
   background-size: cover;
   background-position: center;
 }
 
 .contents-space {
-  height: 50%; /* 나머지 절반 */
+  height: 50%;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   font-size: 14px;
   color: #333;
 }
-  </style>
+
+.link-wrapper {
+  min-height: 40px; /* a태그 높이 고정 */
+  display: flex;
+  align-items: flex-end;
+}
+</style>
+
 <body>
-  <div class="container">    
+  <div class="container">
     <div class="card-container">
-       <div class="card"> 
-         <div class="background-image"></div>
-         <div class="contents-space">
-           <p>Before starting integration, understand travel rule and VASPs' duties.</p>
-           <a>Understanding Travel Rule</a>
-         </div>
+
+      <div class="card"> 
+        <div class="background-image"></div>
+        <div class="contents-space">
+          <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+          <div class="link-wrapper">
+            <a href="#">Understanding Travel Rule</a>
+          </div>
+        </div>
       </div>
-   		<div class="card"> 
-         <div class="background-image"></div>
-         <div class="contents-space">
-           <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
-           <a>asdasdasdasdas</a>
-         </div>
+
+      <div class="card"> 
+        <div class="background-image"></div>
+        <div class="contents-space">
+          <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
+          <div class="link-wrapper">
+            <a href="#">asdasdasdasdas</a>
+          </div>
+        </div>
       </div>
-  		 <div class="card"> 
-         <div class="background-image"></div>
-         <div class="contents-space">
-           <p>Identify your VASP's implementation scope first</p>
-           <a>asdasdasdasdas</a>
-         </div>
+
+      <div class="card"> 
+        <div class="background-image"></div>
+        <div class="contents-space">
+          <p>Identify your VASP's implementation scope first</p>
+          <div class="link-wrapper">
+            <a href="#">asdasdasdasdas</a>
+          </div>
+        </div>
       </div>
-      </div>
+
     </div>
   </div>
 </body>
-</html>
 `}</HTMLBlock>
