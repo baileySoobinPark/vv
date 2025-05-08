@@ -23,7 +23,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   <div class="container">    
     <div class="card-container">
        <div class="card"> 
-						
+						ㄴㄴㄴ
       </div>
     </div>
   </div>
