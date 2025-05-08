@@ -517,7 +517,7 @@ Once the Enclave server is successfully running, configure network allowlisting 
 
 Now, it's time to integrate the Travel Rule into your VASP's withdrawal process. Refer to the [**Best Practice Sequence Diagram**](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/our-solutions/travelrule/flow-diagram) to identify the appropriate Enclave API calls at each step of the withdrawal process. For detailed API specifications, refer to following Enclave API References. Once the integration of Enclave API calls is complete, proceed to the testing phase to ensure seamless communication between both endpoints.
 
-* [VASP API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/vasp-management-api)
+* [VASP Management API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/vasp-management-api)
 * [Verification API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/verification-api)
 * [Transaction API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/transaction-api)
 * [Report API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/report-api)
