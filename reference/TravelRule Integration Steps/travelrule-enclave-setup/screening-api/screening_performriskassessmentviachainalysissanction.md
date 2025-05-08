@@ -7,7 +7,7 @@ excerpt: >
   unauthorized or high-risk transactions.
 
 
-  ### What is the Chainalysis Sanction API??
+  ### What is the Chainalysis Sanction API?
     The Chainalysis Sanction API is a free service provided by [Chainalysis](https://www.chainalysis.com/) that assesses the risk associated with cryptocurrency wallet addresses. It allows organizations, including VASPs, to quickly identify high-risk addresses, such as those flagged for sanctions or other regulatory concerns. This API supports efficient compliance with anti-money laundering (AML) and sanction screening requirements, enhancing the security and reliability of virtual asset transactions.
       - To use the API, you must first obtain an API key by registering via the following link: [Chainalysis Public Sanction API Sign-Up](https://go.chainalysis.com/crypto-sanctions-screening.html).
       - For detailed information about the API, including usage guidelines, refer to the official documentation: [Chainalysis Public Sanction API Reference](https://public.chainalysis.com/docs/index.html)
