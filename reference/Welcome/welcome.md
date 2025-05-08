@@ -17,40 +17,32 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 <HTMLBlock>{`
 <style>
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  gap: 16px; /* 카드 간 여백 */
-}
-
 .card-container {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
   flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px; /* 카드 간 여백 */
 }
 
 .card {
   width: calc((100% - 32px) / 3); /* 전체 너비에서 gap 2개(16px*2)를 제외하고 3등분 */
-  min-width: 280px;
   aspect-ratio: 3 / 4;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  background-color: #ffffff;
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 .background-image {
   flex: 1;
-  background-image: url('https://via.placeholder.com/300x200'); /* 이미지 링크 교체 가능 */
+  background-image: url('https://via.placeholder.com/300x200');
   background-size: cover;
   background-position: center;
 }
@@ -61,10 +53,8 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: sans-serif;
   font-size: 14px;
   color: #333;
-  background-color: #fff;
 }
   </style>
 <body>
