@@ -37,35 +37,35 @@ metadata:
     * **Request Body Example**
 
     ```
-    {
-      "supplementary_data": {
-          "envelope": {
-              "vasp_id": "17100967850059048960", // your VASP ID
-              "type": "VerifyBeneficiary",
-              "ticker": "ETH",
-              "network": "ethereum",
-              "address": "0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c"
-          }
-      },
-      "creditor": {
-          "name": "<full name>",   // 수정 필요
-          "supplementary_data": {  // optional
-              "envelope": {
-                  "name": {
-                      "first_name": "<first name>",
-                      "last_name": "<last name>"
-                  }
-              }
-          },
-          "identification": {
-              "private_identification": {
-                  "date_and_place_of_birth": {
-                      "birth_date": "1990-04-05"  // 수정 필요
-                  }
-              }
-          }
+      {
+        "supplementary_data": {
+            "envelope": {
+                "vasp_id": "17100967850059048960", // your VASP ID
+                "type": "VerifyBeneficiary",
+                "ticker": "ETH",
+                "network": "ethereum",
+                "address": "0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c"
+            }
+        },
+        "creditor": {
+            "name": "<full name>",   // 수정 필요
+            "supplementary_data": {  // optional
+                "envelope": {
+                    "name": {
+                        "first_name": "<first name>",
+                        "last_name": "<last name>"
+                    }
+                }
+            },
+            "identification": {
+                "private_identification": {
+                    "date_and_place_of_birth": {
+                        "birth_date": "1990-04-05"  // 수정 필요
+                    }
+                }
+            }
+        }
       }
-    }
     ```
 
     * **Expected Result**
@@ -75,28 +75,28 @@ metadata:
     * 항목별 검증 결과 예시
 
     ```json
-    "verification_results": {
-        "ticker": "MATCHED",
-        "network": "MATCHED",
-        "address": "MATCHED",
-        "tx_hash": "SKIPPED",
-        "dti": "SKIPPED",
-        "name": "MATCHED",
-        "birth_date": "MATCHED",
-        "date_of_incorporation": "SKIPPED",
-        "organisation_identification": "SKIPPED"
-    },
+      "verification_results": {
+          "ticker": "MATCHED",
+          "network": "MATCHED",
+          "address": "MATCHED",
+          "tx_hash": "SKIPPED",
+          "dti": "SKIPPED",
+          "name": "MATCHED",
+          "birth_date": "MATCHED",
+          "date_of_incorporation": "SKIPPED",
+          "organisation_identification": "SKIPPED"
+      },
     ```
 
     * Robot VASP 가 판단한 결과를 포함한 응답
       * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
 
     ```
-    {
-      "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
-      "verified_at": "2025-04-22T10:08:31.785Z",
-      "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
-    }
+      {
+        "request_id": "cf169ab3-48f4-4f91-b63a-41a734fb0c9d",
+        "verified_at": "2025-04-22T10:08:31.785Z",
+        "verification_result": "VERIFIED" // "VERIFIED" | "DENIED"
+      }
     ```
   </Accordion>
 
@@ -171,26 +171,26 @@ metadata:
       * **Request Body Example**
 
       ```
-      {
-          "verification_result": "VERIFIED",
-          "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
-      }
+        {
+            "verification_result": "VERIFIED",
+            "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
+        }
 
-      or
+        or
 
-      {
-          "verification_result": "DENIED",
-          "reason": "MISMATCH-ADDRESS",
-          "message": "mismatch address"
-      }
+        {
+            "verification_result": "DENIED",
+            "reason": "MISMATCH-ADDRESS",
+            "message": "mismatch address"
+        }
 
-      or
+        or
 
-      {
-          "verification_result": "ERROR",
-          "reason": "TRANSFER-ERROR",
-          "message": "test error"
-      }
+        {
+            "verification_result": "ERROR",
+            "reason": "TRANSFER-ERROR",
+            "message": "test error"
+        }
       ```
 
       * **Expected Result**
