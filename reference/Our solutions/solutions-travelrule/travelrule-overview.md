@@ -55,3 +55,72 @@ Based on the verification result, if approved, the Originating VASP completes th
 <br />
 
 This process establishes a secure and structured flow of requests and responses between VASPs, ensuring efficient identity verification and transaction handling.
+
+<br />
+
+## Secured Data Exchange
+
+### End-to-End Encryption for VASP Data Exchange
+
+VerifyVASP TravelRule ensures the privacy of personal information shared during user verification by implementing robust end-to-end encryption (E2EE). This encryption guarantees that only the Originating and Beneficiary VASPs can decrypt the shared data. The VerifyVASP central server acts solely as a mediator and neither decrypts nor stores personal information.
+
+The process of E2EE is managed seamlessly by the enclave servers of the involved VASPs, as outlined below:
+
+1. **Initiating a Verification Request**
+   * The Originating VASP's backend sends a beneficiary verification request via its enclave server's API.
+2. **Public Key Retrieval**
+   * The Originating VASP's enclave server requests the Beneficiary VASP's public key through the VerifyVASP central server.
+   * The Beneficiary VASP's enclave server retrieves the public key from its database. If no key exists, the server generates, saves, and returns a new public key.
+3. **Encrypting Personal Information**
+   * Upon receiving the Beneficiary VASP's public key, the Originating VASP's enclave server encrypts the user's personal information.
+   * The encrypted data is sent to the Beneficiary VASP's enclave server via the VerifyVASP central server.
+4. **Decryption and Verification by Beneficiary VASP**
+   * The Beneficiary VASP's enclave server decrypts the data using its private key.
+   * It verifies the user information through its VASP API.
+   * Next, it encrypts the Beneficiary's personal information using the Originating VASP’s public key, which is included with the encrypted data.
+5. **Returning Encrypted Data**
+   * The encrypted information is sent back to the Originating VASP's enclave server through the VerifyVASP central server.
+6. **Final Decryption and Storage**
+   * The Originating VASP's enclave server decrypts the data using its private key.
+   * The decrypted information is securely stored in the enclave database.
+
+### Key Management
+
+The public and private keys used for encryption and decryption are automatically generated, saved, and managed within the enclave server database. This automation ensures that VASP backend systems do not need to handle E2EE directly, simplifying the implementation.
+
+### Additional Options
+
+While the enclave server fully manages the encryption process, optional configurations are available to enhance flexibility and control. Familiarity with E2EE concepts can further streamline and optimize this workflow.
+
+This approach ensures secure and seamless data exchange while maintaining the privacy and integrity of sensitive user information.
+
+<Accordion title="Configurable Key Options for End-to-End Encryption">
+  ## Public Key Caching
+
+  To improve the efficiency of public key retrieval, the enclave server caches the public key of the counterparty VASP for a configurable duration. This reduces the need for repeated requests to fetch the same key.
+
+  * Enclave Environment Variable
+    * Configure the caching duration in milliseconds using the variable: `VEGA_PUBLIC_KEY_TTL`.
+  * Default and Minimum Values
+    * Default: `1800000` milliseconds (30 minutes).
+    * Minimum: `600000` milliseconds (10 minutes).
+      Adjust this setting to balance performance and security based on your requirements.
+
+  ## Public Key Types
+
+  The enclave server supports multiple public key types to provide flexibility and enhanced security for end-to-end encryption during the verification process. The key type can be specified in the request body when calling the verification API. Supported keyTypes are as below.
+
+  * `PerVasp`
+    * A single key shared across all verifications for a VASP.
+      * `Pros`: Most efficient option due to caching.
+      * `Cons`: Least secure, as the same key is used for all verifications.
+  * `PerAddress`
+  * A unique key is generated for each beneficiary address.
+    * `Pros`: More secure than PerVasp, as each address is encrypted with a unique key.
+    * `Cons`: Slightly less efficient compared to PerVasp.
+  * `PerVerification`
+  * A new key is generated for every verification request.
+    * `Pros`: Most secure, as each request uses a unique key.
+    * `Cons`: Least efficient, as caching is not applicable.
+      By selecting the appropriate caching duration and key type, you can tailor the balance between security and efficiency to meet your organization’s needs.
+</Accordion>
