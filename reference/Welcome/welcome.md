@@ -26,45 +26,43 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .card {
   width: calc((100% - 32px) / 3);
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
 }
 
 .background-image {
   width: 100%;
-  aspect-ratio: 3 / 2;
-  background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
-  background-size: cover; /* ← 여백 제거 */
-  background-repeat: no-repeat;
+  aspect-ratio: 3 / 2; /* 이미지 비율을 고정 (예: 3:2) */
+  background-image: url('https://via.placeholder.com/300x200');
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .contents-space {
-  padding: 16px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
+  padding: 16px;
 }
 
 .contents-space p {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 8px;
-  max-width: 90%; /* 너무 긴 텍스트 제한 */
+  margin: 0 0 12px 0;
+  flex: 1;
 }
 
 .link-wrapper {
-
-}
-
-.link-wrapper a {
-  font-size: 14px;
-  color: #1a73e8;
-  text-decoration: underline;
+  margin-top: auto;
 }
 </style>
 
