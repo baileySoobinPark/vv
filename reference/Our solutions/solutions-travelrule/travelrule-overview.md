@@ -27,30 +27,25 @@ The Enclave database is exclusively accessible by the Enclave, ensuring data int
 
 ## High-level Verification Flow
 
-### 1. Originator's Asset Transfer Initiation
+1. **Originator's Asset Transfer Initiation**
 
-When an originator initiates a transfer request, the Originating VASP collects and prepares relevant information, including the beneficiary and identity details.
+   When an originator initiates a transfer request, the Originating VASP collects and prepares relevant information, including the beneficiary and identity details.
+2. **Verification Request**
 
-### 2. Verification Request
+   The Originating VASP sends this information to the Beneficiary VASP through the VerifyVASP Central Server via **the Enclave server**, which provides the dedicated APIs.
+   * The Enclave server, installed within the VASP infrastructure, enables protocol-compliant communication with the Central Server and counterparty VASPs through an end-to-end encrypted channel.
+   * Developed and maintained by VerifyVASP, the Enclave is provided as a Docker image available from a private Docker Hub registry.
+   * Each VASP must configure a dedicated database for the Enclave server.
+   * Note that the VASP’s business backend interacts solely with the Enclave server and does not directly access the Central Server API.
+3. **Verification**
 
-The Originating VASP sends this information to the Beneficiary VASP through the VerifyVASP Central Server via **the Enclave server**, which provides the dedicated APIs.
+   The Beneficiary VASP receives the verification request and verifies the originator's identity and beneficiary account details against its own records.
+4. **Verification Result**
 
-* The Enclave server, installed within the VASP infrastructure, enables protocol-compliant communication with the Central Server and counterparty VASPs through an end-to-end encrypted channel.
-* Developed and maintained by VerifyVASP, the Enclave is provided as a Docker image available from a private Docker Hub registry.
-* Each VASP must configure a dedicated database for the Enclave server.
-* Note that the VASP’s business backend interacts solely with the Enclave server and does not directly access the Central Server API.
+   After verification, the Beneficiary VASP sends the result back to the Originating VASP via VerifyVASP central server. This process includes both synchronous and asynchronous API interactions, with specific details provided in the subsequent document on scenarios and flows.
+5. **Transaction Completion**
 
-### 3. Verification
-
-The Beneficiary VASP receives the verification request and verifies the originator's identity and beneficiary account details against its own records.
-
-### 4. Verification Result
-
-After verification, the Beneficiary VASP sends the result back to the Originating VASP via VerifyVASP central server. This process includes both synchronous and asynchronous API interactions, with specific details provided in the subsequent document on scenarios and flows.
-
-### 5. Transaction Completion
-
-Based on the verification result, if approved, the Originating VASP completes the withdrawal transaction on the blockchain and shares the transaction outcome with the Beneficiary VASP to confirm the transfer. The Beneficiary VASP may also query the transaction status as needed.
+   Based on the verification result, if approved, the Originating VASP completes the withdrawal transaction on the blockchain and shares the transaction outcome with the Beneficiary VASP to confirm the transfer. The Beneficiary VASP may also query the transaction status as needed.
 
 <br />
 
