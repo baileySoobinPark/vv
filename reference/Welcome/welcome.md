@@ -63,21 +63,21 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
        <div class="card"> 
          <div class="background-image"></div>
          <div class="contents-space">
-           <p>teststseseststsesr</p>
-           <p>asdasdasdasdas</p>
+           <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+           <a>Understanding Travel Rule</a>
          </div>
       </div>
    		<div class="card"> 
          <div class="background-image"></div>
          <div class="contents-space">
-           <p>teststseseststsesr</p>
+           <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
            <p>asdasdasdasdas</p>
          </div>
       </div>
   		 <div class="card"> 
          <div class="background-image"></div>
          <div class="contents-space">
-           <p>teststseseststsesr</p>
+           <p>Identify your VASP's implementation scope first</p>
            <p>asdasdasdasdas</p>
          </div>
       </div>
