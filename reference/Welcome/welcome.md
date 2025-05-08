@@ -17,9 +17,15 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 <HTMLBlock>{`
 <style>
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .card {
-  width: calc((100% - 32px) / 3);
-  height: auto;
+  width: calc((100% - 32px) / 3); /* 3개 정렬 */
   display: flex;
   flex-direction: column;
   border-radius: 12px;
@@ -35,23 +41,26 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .card-image {
   width: 100%;
-  aspect-ratio: 3 / 2; /* 또는 필요한 비율로 조절 */
-  object-fit: cover;
+  aspect-ratio: 3 / 2; /* 이미지 비율 유지하면서 짤림 방지 */
+  object-fit: contain; /* 이미지가 짤리지 않고 전체 보이게 */
   display: block;
 }
 
 .contents-space {
+  flex: 1;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
-  padding: 16px;
-  font-size: 14px;
-  color: #333;
+}
+
+.contents-space p {
+  margin: 0 0 12px;
+  flex-grow: 1;
 }
 
 .link-wrapper {
-  margin-top: 16px;
+  margin-top: auto;
 }
 </style>
 
@@ -59,36 +68,35 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   <div class="container">
     <div class="card-container">
 
-    <div class="card">
-      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png
-" alt="Card Image" />
-      <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
-        <div class="link-wrapper">
-          <a href="#">asdasdasdasdas</a>
-        </div>
+  <div class="card">
+    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <div class="contents-space">
+      <p>Identify your VASP's implementation scope first</p>
+      <div class="link-wrapper">
+        <a href="#">asdasdasdasdas</a>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img class="card-image" src="https://your-image-url" alt="Card Image" />
-      <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
-        <div class="link-wrapper">
-          <a href="#">asdasdasdasdas</a>
-        </div>
+  <div class="card">
+    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <div class="contents-space">
+      <p>Identify your VASP's implementation scope first</p>
+      <div class="link-wrapper">
+        <a href="#">asdasdasdasdas</a>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <img class="card-image" src="https://your-image-url" alt="Card Image" />
-      <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
-        <div class="link-wrapper">
-          <a href="#">asdasdasdasdas</a>
-        </div>
+  <div class="card">
+    <img class="card-image" src="https://your-image-url.png" alt="Card Image" />
+    <div class="contents-space">
+      <p>Identify your VASP's implementation scope first</p>
+      <div class="link-wrapper">
+        <a href="#">asdasdasdasdas</a>
       </div>
     </div>
+  </div>
 
     </div>
   </div>
