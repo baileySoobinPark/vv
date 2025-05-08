@@ -1,15 +1,34 @@
 ---
-title: Welcome
-excerpt: Technical documentation for VerifyVASP
+title: Overview
+excerpt: >-
+  Welcome to the VerifyVASP documentation. Access a comprehensive overview for
+  quick entry to key reference materials supporting your TravelRule or
+  VerifyName protocol implementation.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-Headquartered in Singapore, VerifyVASP strives to be the pre-eminent RegTech solutions provider for virtual asset service providers (VASPs), their patented Travel Rule products offer a cost effective, efficient and scalable solution major VASPs, both Travel Rule Obliged and Non Travel Rule Obliged, globally.
+## Getting started with the Travel Rule & our solutions
 
-By only admitting trusted and credible VASPs through a comprehensive due-diligence process, our members-only closed network facilitates secured data transfers between members for Travel Rule compliance.
+**`Recommended to read first`**
 
-The company believes that all compliance, including Travel Rule is a front-to-back framework beyond just technology solutions, which is why they lead industry working groups in various jurisdictions to establish consistent, coherent interpretation of regulations that form the foundation to industry best practices that technological solutions can be based off.
+If you’re new to the Travel Rule or VerifyVASP, explore these resources to understand its core concepts and integration framework. Grasping the background and big picture before starting integration will provide valuable clarity and guidance.
 
-VerifyVASP’s industry-proven patented TravelRule and VerifyNAME solutions assists members to comply with FATF’s Travel Rule Recommendations and global data privacy and protection laws as it was developed through close industry, legal and regulatory engagements.
+<Cards columns={4}>
+  <Card title="First Card" href="https://readme.com" icon="fa-home" target="_blank">
+    Neque porro quisquam est qui dolorem ipsum quia
+  </Card>
+
+  <Card title="Second Card" icon="fa-user">
+    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
+  </Card>
+
+  <Card title="Third Card" icon="fa-star">
+    > Ut enim ad minim veniam, quis nostrud ullamco
+  </Card>
+
+  <Card title="Fourth Card" icon="fa-question">
+    **Excepteur sint occaecat cupidatat non proident**
+  </Card>
+</Cards>
