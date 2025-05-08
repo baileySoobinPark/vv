@@ -124,3 +124,38 @@ This approach ensures secure and seamless data exchange while maintaining the pr
     * **`Cons`**: Least efficient, as caching is not applicable.
       By selecting the appropriate caching duration and key type, you can tailor the balance between security and efficiency to meet your organization’s needs.
 </Accordion>
+
+<br />
+
+## VASP Side Action Items for TravelRule Integration
+
+To successfully implement TravelRule, here are the key steps VASP developers need to follow. Each step links to detailed guidance provided in subsequent sections.
+
+1. **Review Key Scenarios and Flows**
+
+   Gain a thorough understanding of the essential use cases and operational flows before beginning the implementation process.
+2. **Define Project Scope with Future-State VASP Architecture**
+
+   Align your implementation plan with the TravelRule architecture to ensure compatibility and scalability.
+3. **Complete Onboarding**
+
+   Register and authenticate your VASP with VerifyVASP to obtain the credentials required for integration.
+4. **Develop VASP APIs**
+
+   Implement the APIs necessary to manage transaction and verification workflows effectively.
+5. **Configure a Enclave Database**
+
+   Set up a database to store and manage verification and compliance data securely.
+6. **Deploy the Enclave**
+
+   Install and configure the Enclave Docker environment to securely connect to the VerifyVASP Central Server.
+7. **Test with Robot VASP**
+
+   Use the Robot VASP for end-to-end testing to validate your implementation and ensure protocol compliance.
+8. **Plan for Ongoing Maintenance**
+
+   Develop a strategy for maintaining the integration to accommodate regulatory updates and TravelRule enhancements.
+
+<br />
+
+By following these steps, you’ll be well-equipped to establish a secure and compliant integration with VerifyVASP.
