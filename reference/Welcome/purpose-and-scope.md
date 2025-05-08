@@ -6,7 +6,7 @@ excerpt: >-
   Service Providers (VASPs) comply with the Travel Rule and associated
   regulatory requirements.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
