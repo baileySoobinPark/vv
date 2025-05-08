@@ -36,9 +36,9 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .background-image {
   width: 100%;
-  aspect-ratio: 3 / 2; /* 이미지 비율 유지 */
+  aspect-ratio: 3 / 2;
   background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
-  background-size: contain;
+  background-size: cover; /* ← 여백 제거 */
   background-repeat: no-repeat;
   background-position: center;
 }
