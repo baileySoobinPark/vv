@@ -1,5 +1,4 @@
 - travelrule
-- vasp-api
 - travelrule-api-implementation
 - travelrule-database-setup
 - travelrule-enclave-setup
@@ -7,3 +6,4 @@
 - travelrule-maintenance
 - enclave-api
 - screening-api
+- vasp-api
