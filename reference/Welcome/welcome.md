@@ -26,7 +26,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .card {
   width: calc((100% - 32px) / 3);
-  height: 360px;
+  height: 340px; /* 줄어든 높이 */
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -34,6 +34,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background-color: #fff;
   transition: transform 0.2s ease;
+  margin: 0; /* 여백 제거 */
 }
 
 .card:hover {
@@ -41,37 +42,35 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 }
 
 .background-image {
-  height: 45%;
+  flex: 1;
   background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
+  margin: 0; /* 이미지 여백 제거 */
 }
 
 .contents-space {
-  height: 55%;
-  padding: 16px;
+  flex: 1;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 14px;
-  color: #333;
 }
 
 .contents-space p {
-  margin: 0;
-  flex-grow: 1;
-  display: flex;
-  align-items: flex-start;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+  max-width: 90%; /* 너무 긴 텍스트 제한 */
 }
 
 .link-wrapper {
-  margin-top: 12px;
+  margin-top: auto;
 }
 
 .link-wrapper a {
-  display: inline-block;
-  font-weight: 500;
+  font-size: 14px;
   color: #1a73e8;
   text-decoration: underline;
 }
