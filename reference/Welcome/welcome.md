@@ -330,10 +330,10 @@ a:active{
           <img class="tutorial-image" src="https://files.readme.io/9aae7e7-Aptos_Node.png"/>
         </a>
         <a href="https://developer.nodit.io/docs/set-up-for-tutorials" class="box-tutorial">
+                    <img class="tutorial-image" src="https://files.readme.io/9aae7e7-Aptos_Node.png"/>
+
           <div class="title">Aptos Tutorials</div>
-	     		<br>Aptos노드를 연결하고 계정생성과 APT 전송, 간단한 모듈 배포를 경험해볼까요? Aptos Dapp 개발에 필요한 기본을 빠르게 익힐 수 있습니다.
-          <img class="tutorial-image" src="https://files.readme.io/9aae7e7-Aptos_Node.png"/>
-        </a>
+	     		<br>Aptos노드를 연결하고 계정생성과 APT 전송, 간단한 모듈 배포를 경험해볼까요? Aptos Dapp 개발에 필요한 기본을 빠르게 익힐 수 있습니다.        </a>
       </div>
     </div>
   </div>
