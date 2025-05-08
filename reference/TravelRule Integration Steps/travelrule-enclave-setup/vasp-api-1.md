@@ -1,5 +1,5 @@
 ---
-title: VASP API
+title: VASP Management API
 deprecated: false
 hidden: true
 metadata:
