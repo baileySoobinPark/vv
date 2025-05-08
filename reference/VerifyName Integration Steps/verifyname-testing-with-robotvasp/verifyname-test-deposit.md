@@ -170,7 +170,7 @@ metadata:
 
       * **Request Body Example**
 
-      ```
+      ```json
         {
             "verification_result": "VERIFIED",
             "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
