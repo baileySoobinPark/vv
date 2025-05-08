@@ -68,6 +68,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   <div class="container">
     <div class="card-container">
 
+  <a href="https://docs.upbit.com/kr/reference/%EC%A2%85%EB%A3%8C-%EC%A3%BC%EB%AC%B8-%EC%A1%B0%ED%9A%8C">
   <div class="card">
     <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
     <div class="contents-space">
@@ -77,7 +78,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
       </div>
     </div>
   </div>
-
+  </a>
   <div class="card">
     <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
     <div class="contents-space">
