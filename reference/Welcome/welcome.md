@@ -315,19 +315,29 @@ a:active{
   
   </style>
 
-<div class="container">
-  		<div class="new-popular-container">
-        <div class="new-popular-component-container">
-          <a href="https://developer.nodit.io/docs/nodit-mcp" class="box-tutorial"> 
-            <div class="title">Nodit MCP - Connect AI to Blockchain </div>
-            <br>Nodit이 AI를 만나 더 쉽고, 더 빠른 Web3 개발을 지원합니다. 새롭게 공개된 Nodit MCP 활용하여 자연어 프롬프트를 통한 블록체인 데이터 조회와 Nodit 연동을 바로 시작해보세요.
-            <img class="tutorial-image" src="https://files.readme.io/09b0837d53c29102f7a55a65ebbb26670d269d8362bb68812262431d58bf7503-Blockchain_MCP.png"/>
-          </a>
-          <a href="https://developer.nodit.io/docs/nodit-mcp" class="box-tutorial"> 
-            <div class="title">Nodit MCP - Connect AI to Blockchain </div>
-            <br>Nodit이 AI를 만나 더 쉽고, 더 빠른 Web3 개발을 지원합니다. 새롭게 공개된 Nodit MCP 활용하여 자연어 프롬프트를 통한 블록체인 데이터 조회와 Nodit 연동을 바로 시작해보세요.
-            <img class="tutorial-image" src="https://files.readme.io/09b0837d53c29102f7a55a65ebbb26670d269d8362bb68812262431d58bf7503-Blockchain_MCP.png"/>
-          </a>
+  <div class="container">    
+    <div class="tutorial-container">
+       <div class="tutorial-component-container"> 
+        <a href="https://developer.nodit.io/docs/set-up-for-tutorials" class="box-tutorial">
+          <div class="title">Aptos Tutorials</div>
+	     		<br>Aptos노드를 연결하고 계정생성과 APT 전송, 간단한 모듈 배포를 경험해볼까요? Aptos Dapp 개발에 필요한 기본을 빠르게 익힐 수 있습니다.
+          <img class="tutorial-image" src="https://files.readme.io/9aae7e7-Aptos_Node.png"/>
+        </a>
+        <a href="https://developer.nodit.io/docs/building-evm-wallet" class="box-tutorial">
+          <div class="title">Building an EVM Wallet</div>
+          <br>Nodit의 Web3 Data API를 이용하여 EVM 계열의 체인에서 사용 가능한 wallet을 구현해보세요!
+          <img class="tutorial-image" src="https://files.readme.io/02b87202a3e2ea76ad42448751faf80d5b119b889564f05783a1a89ca2fe58a0-wallet3.png"/>
+        </a>
+        <a href="https://developer.nodit.io/docs/web3-data-api-tutorials" class="box-tutorial">
+          <div class="title">Building a Simple NFT Explorer</div>
+          <br>Nodit의 Web3 Data API중 NFT API를 사용하여 간단한 NFT 탐색기를 구현해보세요!
+          <img class="tutorial-image" src="https://files.readme.io/f53a2194c41fb23730517cc2c5a6da00de15b26ac3ed0786e785dc2216bec418-_2024-08-27__5.39.04.png"/>
+        </a>
+        <a href="https://developer.nodit.io/docs/building-a-simple-token-explorer-using-web3-data-apis" class="box-tutorial">
+          <div class="title">Building a Token Tracker</div>
+          <br>Token API를 활용하여 자산을 추적하는 방법을 알아봅니다.
+          <img class="tutorial-image" src="https://files.readme.io/13012aedd7e005091f6a74d7afebda9f7228a1f7a762137c2c009d52d86b98f6-_2024-09-02__2.30.49.png"/>
+        </a>
       </div>
     </div>
   </div>
