@@ -26,7 +26,7 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 .card {
   width: calc((100% - 32px) / 3);
-  height: 400px;
+  height: 360px; /* ✅ 더 슬림하게 */
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -41,27 +41,36 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 }
 
 .background-image {
-  height: 50%;
+  height: 45%; /* ✅ 약간 축소 */
   background-image: url('https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png');
-  background-size: contain; /* ✅ 이미지 전체가 보이도록 */
+  background-size: contain; /* 이미지 잘리지 않게 */
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .contents-space {
-  height: 50%;
-  padding: 16px;
+  height: 55%; /* ✅ 남은 공간 */
+  padding: 12px 16px; /* ✅ 패딩 살짝 줄임 */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; /* ✅ 아래 링크와 간격 유지 */
   font-size: 14px;
   color: #333;
 }
 
-.link-wrapper {
-  min-height: 40px; /* a태그 높이 고정 */
+.contents-space p {
+  margin: 0;
+  flex-grow: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+}
+
+.contents-space a {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+  color: #1a73e8;
+  text-decoration: underline;
 }
 </style>
 
