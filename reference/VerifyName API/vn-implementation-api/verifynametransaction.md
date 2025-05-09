@@ -28,13 +28,13 @@ excerpt: >
 
   ## Recommendations
     - To simplify the management of the request_id and transaction hash pair, it is strongly recommended to leverage the Enclave APIs: Owner Verification Transaction Report API and Get Owner Verification Result API.
-      **Ensure Prompt Transaction Reporting**
-      - Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Owner Verification Transaction Report API. This ensures you can:
-        - Notify the Beneficiary VASP of the transaction result.
-        - Store the transaction hash corresponding to the request_id in the Enclave.
-      **Retrieving the Transaction Hash From Enclave**
-      - If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Owner Verification Result API to retrieve the previously stored transaction hash.
-      - This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
+      - **Ensure Prompt Transaction Reporting**
+        - Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Owner Verification Transaction Report API. This ensures you can:
+          - Notify the Beneficiary VASP of the transaction result.
+          - Store the transaction hash corresponding to the request_id in the Enclave.
+      - **Retrieving the Transaction Hash From Enclave**
+        - If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Owner Verification Result API to retrieve the previously stored transaction hash.
+        - This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
     - Leveraging this implementation allows your VASP to efficiently manage request_id and transaction hash mapping without a dedicated database, simplifying implementation while ensuring accurate and timely status handling.
 
   ## Environment Variable Configuration
