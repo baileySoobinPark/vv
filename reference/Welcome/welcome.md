@@ -297,3 +297,263 @@ a.card-link:active {
   </div>
 </body>
 `}</HTMLBlock>
+
+<br />
+
+## For Travel Rule non-obliged VASP developers
+
+If you’re a VASP developer integrating VerifyName, these resources will help you understand its key features, implementation framework, and best practices.
+
+<HTMLBlock>{`
+<style>
+  
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.card-link,
+.card-link:visited,
+.card-link:hover,
+.card-link:focus,
+.card-link:active,
+.card-link *,
+.card-link *:visited,
+.card-link *:hover,
+.card-link *:focus,
+.card-link *:active {
+  text-decoration: none !important;
+}
+/* 방문, 호버, 포커스, 클릭 상태 모두 같은 색상으로 통일 */
+a.card-link:visited,
+a.card-link:hover,
+a.card-link:focus,
+a.card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+/* 내부 텍스트에 직접 스타일이 적용되어 있다면 아래처럼 오버라이딩 */
+.card-link p {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 혹시 강제로 스타일이 덮어씌워질 경우 */
+.card-link * {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+  
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-link {
+  width: calc((100% - 32px) / 3); /* 3개 정렬 */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain; /* 이미지 전체 표시 */
+  display: block;
+}
+
+.contents-space {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contents-space p {
+  margin: 0 0 12px;
+  flex-grow: 1;
+}
+</style>
+
+<body>
+  <div class="container">
+    <div class="card-container">
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/91bf5f41a43bdc3ff59d2f441c8d0bb820f816e6e8a6923de9e7b1c2ee23ba56-VV_08_VN_Flow_Diagram.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Differences between Post-verification and Pre-verification</p>
+      </div>
+    </div>
+  </a>
+
+      <a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/64bba7ef7310e87fd4066aa7bd430081d8a936bdc3790813663c86e1d2697a5c-VV_09_VN_To-Be_Architecture.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Review the TO-BE VASP architecture and define the implementation scope.</p>
+      </div>
+    </div>
+  </a>
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/53a8d659ba5ce227485902614759b67a86710fb5b8402ec616d6a50335450879-VV_10_VN_for_Non-Obliged_VASP.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Start your VerifyName integration here: for Travel Rule non-obliged VASP developers.</p>
+      </div>
+    </div>
+  </a>
+
+    </div>
+  </div>
+</body>
+`}</HTMLBlock>
+
+<br />
+
+## FAQ
+
+<HTMLBlock>{`
+<style>
+  
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.card-link,
+.card-link:visited,
+.card-link:hover,
+.card-link:focus,
+.card-link:active,
+.card-link *,
+.card-link *:visited,
+.card-link *:hover,
+.card-link *:focus,
+.card-link *:active {
+  text-decoration: none !important;
+}
+/* 방문, 호버, 포커스, 클릭 상태 모두 같은 색상으로 통일 */
+a.card-link:visited,
+a.card-link:hover,
+a.card-link:focus,
+a.card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+/* 내부 텍스트에 직접 스타일이 적용되어 있다면 아래처럼 오버라이딩 */
+.card-link p {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 혹시 강제로 스타일이 덮어씌워질 경우 */
+.card-link * {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+  
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-link {
+  width: calc((100% - 32px) / 3); /* 3개 정렬 */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain; /* 이미지 전체 표시 */
+  display: block;
+}
+
+.contents-space {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contents-space p {
+  margin: 0 0 12px;
+  flex-grow: 1;
+}
+</style>
+
+<body>
+  <div class="container">
+    <div class="card-container">
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/d59ed5b28060acc0e1025631e6ee099d7056093907a481534a48c644fd6011f5-VV_11_Onboarding.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Explore the Onboarding FAQ for unresolved answers.</p>
+      </div>
+    </div>
+  </a>
+
+      <a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/ae12e724d92006de4675ef906ea2871996a4949310a002f2b2387734bb95d566-VV_12_Implementation.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Explore the Implementation FAQ for unresolved answers.</p>
+      </div>
+    </div>
+  </a>
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/0dadfbeae51bee4b4a0ad95f7fab052489b977c7e85978f38b3ad37f3961f233-VV_13_Maintenance.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Explore the Maintenance FAQ for unresolved answers.</p>
+      </div>
+    </div>
+  </a>
+
+    </div>
+  </div>
+</body>
+`}</HTMLBlock>
