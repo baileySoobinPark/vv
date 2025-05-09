@@ -48,10 +48,11 @@ paths:
           | `dti`          | optional | If the dti field and its value are present in the request body, verify whether it corresponds to a Digital Token Identifier supported by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the dti field is not present or if the comparison cannot be performed, return SKIPPED. |
 
           **2. Return Verification Results**
-            This API must return verification_results. If either the address field or the tx_hash field is MATCHED, your VASP must also return the corresponding owner information.
-            - If the reuqests is `Post Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information using `debtor` field.
-            - If the reuqests is `Pre Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information using `creditor` field.
-            Example responses are provided below, depending on the request type and the type of owner information to be returned.
+          This API must return verification_results. If either the address field or the tx_hash field is MATCHED, your VASP must also return the corresponding owner information.
+          - If the reuqests is `Post Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information using `debtor` field.
+          - If the reuqests is `Pre Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information using `creditor` field.
+
+          Example responses are provided below, depending on the request type and the type of owner information to be returned.
 
           <details>
             <summary>1. Post Verification and the Owner Information is `naturalPerson`.</summary>
