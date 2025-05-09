@@ -240,7 +240,7 @@ paths:
                   required:
                     - envelope
                   properties:
-                    hashSalt:
+                    envelope:
                       type: object
                       required:
                         - request_id
