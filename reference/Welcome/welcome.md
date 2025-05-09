@@ -241,54 +241,54 @@ a.card-link:active {
 
 <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/c1ccd437b1059444118790528113b4df84081773e3b711e226aaab0762ab3e51-VV_02_TRR_Flow_Diagram.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+        <p>Learn the best practice of integration with sequence diagram.</p>
       </div>
     </div>
   </a>
 
       <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/b05f25f9e709130aa2cc873f28a725d4794578705b947408a3cf572801460e7f-VV_03_TRR_To-Be_Architecture.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
+        <p>Review the TO-BE VASP architecture and define the implementation scope.</p>
       </div>
     </div>
   </a>
 
 <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/b85f6bb2f4fe3ffa7308791888e77c55de67922a3cd7e65b64a9e4d8cdffd7f1-VV_04_TRR_Implementation_Steps.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
+        <p>Let's start integration with onboarding. See all action items here.</p>
       </div>
     </div>
   </a>
 
 <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/ba01de84cd5b0a75ab66e98a47d0a9b3748466a78815db31174248d93eeb6a39-VV_05_TRR_API_Implementation.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+        <p>API specifications that your VASP must provide.</p>
       </div>
     </div>
   </a>
 
       <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/dd7e2187ac468ca9db2212d9d44ba6faba6e789d8d32b12d11ba7f6ddcc0d974-VV_06_TRR_Enclave_Installation.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
+        <p>Enclave API specification that helping your VASP connect with counterparty VASPs.</p>
       </div>
     </div>
   </a>
 
 <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/1d0875d9b01e6f0af39382f7d75dbb9b989c4536f5a4c45c9c509f4dde4441e1-VV_07_VN_for_Travel_Rule_Obliged_VASP.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
+        <p>Start your VerifyName integration here: for Travel Rule obliged VASP developers.</p>
       </div>
     </div>
   </a>
