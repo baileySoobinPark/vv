@@ -65,11 +65,6 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
   margin: 0 0 12px;
   flex-grow: 1;
 }
-
-.link-wrapper {
-  margin-top: auto;
-  color: #1a73e8; /* 링크 색상 (원하는 색상 지정 가능) */
-}
 </style>
 
 <body>
