@@ -244,7 +244,6 @@ paths:
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                         
                       **Implementation Note**  
                         
@@ -504,7 +503,6 @@ paths:
                         Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
                           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
-
                           
                         **Implementation Note**  
                           
