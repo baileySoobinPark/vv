@@ -422,15 +422,15 @@ paths:
                 successExample:
                   value:
                     verification_results:
-                      ticker": MATCHED
-                      network": MISMATCHED
-                      address": SKIPPED
+                      ticker: MATCHED
+                      network: MISMATCHED
+                      address: SKIPPED
                       tag: SKIPPED
                       tx_hash: SKIPPED
                       dti: SKIPPED
                     debtor:
-                      name": HONG KIL DONG
-                      supplementary_data":
+                      name: HONG KIL DONG
+                      supplementary_data:
                         envelope:
                           name:
                             first_name: GIL DONG
