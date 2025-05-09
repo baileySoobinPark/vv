@@ -139,3 +139,161 @@ a.card-link:active {
   </div>
 </body>
 `}</HTMLBlock>
+
+<br />
+
+## For Travel Rule obliged VASP developers
+
+Developers integrating TravelRule can refer to these resources for a step-by-step guide to its core functionalities, architecture, and integration requirements. The documentation includes API specifications, the integration guide, process flows, and architectural details to help you implement TravelRule efficiently and ensure compliance with the Travel Rule and regulatory standards.
+
+<HTMLBlock>{`
+<style>
+  
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.card-link,
+.card-link:visited,
+.card-link:hover,
+.card-link:focus,
+.card-link:active,
+.card-link *,
+.card-link *:visited,
+.card-link *:hover,
+.card-link *:focus,
+.card-link *:active {
+  text-decoration: none !important;
+}
+/* 방문, 호버, 포커스, 클릭 상태 모두 같은 색상으로 통일 */
+a.card-link:visited,
+a.card-link:hover,
+a.card-link:focus,
+a.card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+/* 내부 텍스트에 직접 스타일이 적용되어 있다면 아래처럼 오버라이딩 */
+.card-link p {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 혹시 강제로 스타일이 덮어씌워질 경우 */
+.card-link * {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+  
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-link {
+  width: calc((100% - 32px) / 3); /* 3개 정렬 */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain; /* 이미지 전체 표시 */
+  display: block;
+}
+
+.contents-space {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contents-space p {
+  margin: 0 0 12px;
+  flex-grow: 1;
+}
+</style>
+
+<body>
+  <div class="container">
+    <div class="card-container">
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+      </div>
+    </div>
+  </a>
+
+      <a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
+      </div>
+    </div>
+  </a>
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Identify your VASP's implementation scope first</p>
+      </div>
+    </div>
+  </a>
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Before starting integration, understand travel rule and VASPs' duties.</p>
+      </div>
+    </div>
+  </a>
+
+      <a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
+      </div>
+    </div>
+  </a>
+
+<a href="#" class="card-link">
+    <div class="card">
+      <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
+      <div class="contents-space">
+        <p>Identify your VASP's implementation scope first</p>
+      </div>
+    </div>
+  </a>
+      
+    </div>
+  </div>
+</body>
+`}</HTMLBlock>
