@@ -17,6 +17,23 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 <HTMLBlock>{`
 <style>
+  a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상 상속 */
+}
+
+a:visited {
+  color: inherit; /* 방문 후 색상도 동일하게 */
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: inherit; /* 호버, 포커스, 클릭 시에도 동일하게 */
+  text-decoration: none; /* 호버 시에도 밑줄 제거 */
+  outline: none; /* 포커스 시 외곽선 제거 (접근성 고려 필요 시 주의) */
+}
+  
 .card-container {
   display: flex;
   flex-wrap: wrap;
