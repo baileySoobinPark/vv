@@ -27,11 +27,11 @@ paths:
         ## Functional Requirements
           **1. Request Verification**
           Requests are categorized into two types based on the value of the type field.
-          - Post Verification
+          - **Post Verification**
             - It means the reqeust the type is set to VerifyOriginator.
             - Use the tx_hash field to verify whether the transaction was initiated by your VASP.
             - Use the address field to confirm the beneficiary address of the transaction.
-          - Pre Verification
+          - **Pre Verification**
             - It means the reqeust the type is set to VerifyOriginator.
             - Use the address field to verify whether it matches an address registered with your VASP.
 
@@ -44,7 +44,7 @@ paths:
           | `network`      | optional | If the network is supported by your VASP, return `MATCHED`; otherwise, return `MISMATCHED` or if there is no `network` field in the request body or your VASP does not have any information about the network, return `SKIPPED`. |
           | `address`      | required | If the value of the type field in the request body is `VerifyBeneficiary`, the system verifies whether the provided address matches a registered beneficiary address in your VASP. If the type is `VerifyOriginator`, the system verifies whether the address corresponds to the beneficiary address associated with the transaction. If a matching beneficiary address is found, return `MATCHED`; otherwise, return `MISMATCHED`. |
           | `tag`          | optional | If the address field is present in the request body, verify whether the address and tag match the values registered in your VASP. If the tag matches the registered value, return MATCHED; if it does not match, return MISMATCHED. If the address field is not provided in the request body or if the comparison cannot be performed, return SKIPPED. |
-          | `tx_hash`      | If the tx_hash field and its value are present in the request body, compare it against the transaction hash values sent by your VASP. If a match is found, return MATCHED; if there is no match, return MISMATCHED. If the tx_hash field is not present or if the comparison cannot be performed, return SKIPPED. |
+          | `tx_hash`      | optional | If the tx_hash field and its value are present in the request body, compare it against the transaction hash values sent by your VASP. If a match is found, return MATCHED; if there is no match, return MISMATCHED. If the tx_hash field is not present or if the comparison cannot be performed, return SKIPPED. |
           | `dti`          | optional | If the dti field and its value are present in the request body, verify whether it corresponds to a Digital Token Identifier supported by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the dti field is not present or if the comparison cannot be performed, return SKIPPED. |
 
           **2. Return Verification Results**
