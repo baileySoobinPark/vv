@@ -22,7 +22,18 @@ a.card-link {
   text-decoration: none;
   color: inherit;
 }
-
+.card-link,
+.card-link:visited,
+.card-link:hover,
+.card-link:focus,
+.card-link:active,
+.card-link *,
+.card-link *:visited,
+.card-link *:hover,
+.card-link *:focus,
+.card-link *:active {
+  text-decoration: none !important;
+}
 /* 방문, 호버, 포커스, 클릭 상태 모두 같은 색상으로 통일 */
 a.card-link:visited,
 a.card-link:hover,
