@@ -47,152 +47,156 @@ excerpt: >
     Example responses are provided below, depending on the request type and the type of owner information to be returned.
 
     <details>
-      <summary>1. Post Verification and the Owner Information is `naturalPerson`.</summary>
-        ``` json
-          {
-            "verification_results": {
-              "ticker": "MATCHED",        
-              "network": "MISMATCHED",    
-              "address": "SKIPPED",       
-              "tag": "SKIPPED",
-              "tx_hash": "SKIPPED",      
-              "dti": "SKIPPED",         
+      <summary>1. Post Verification and the type of Owner Information is `naturalPerson`.</summary>
+      
+      ``` json
+        {
+          "verification_results": {
+            "ticker": "MATCHED",        
+            "network": "MISMATCHED",    
+            "address": "SKIPPED",       
+            "tag": "SKIPPED",
+            "tx_hash": "SKIPPED",      
+            "dti": "SKIPPED",         
+          },
+          "debtor"?: {
+            "name": "HONG KIL DONG",
+            "supplementary_data"?: {
+              "envelope": {
+                "name"?: {                  
+                  "first_name": "GIL DONG",
+                  "last_name"?: "HONG",
+                },
+              }
             },
-            "debtor"?: {
-              "name": "HONG KIL DONG",
-              "supplementary_data"?: {
-                "envelope": {
-                  "name"?: {                  
-                    "first_name": "GIL DONG",
-                    "last_name"?: "HONG",
-                  },
+            "identification": {
+              "private_identification"?: {
+                "date_and_place_of_birth": {
+                  "birth_date": "2025-01-01",
                 }
-              },
-              "identification": {
-                "private_identification"?: {
-                  "date_and_place_of_birth": {
-                    "birth_date": "2025-01-01",
+              }
+            }
+          }
+        }
+      ```
+    </details>
+    <details>
+      <summary>2. Post Verification and the type of Owner Information is `legalPerson`.</summary>
+      
+      ``` json
+        {
+          "verification_results": {
+            "ticker": "MATCHED",        
+            "network": "MISMATCHED",    
+            "address": "SKIPPED",       
+            "tag": "SKIPPED",
+            "tx_hash": "SKIPPED",      
+            "dti": "SKIPPED",         
+          },
+          "debtor"?: {
+            "name": "HONG KIL DONG",
+            "supplementary_data"?: {
+              "envelope": {
+                "name"?: {                  
+                  "first_name": "GIL DONG",
+                  "last_name"?: "HONG",
+                },
+              }
+            },
+            "identification": {
+              "organisation_identification"?: {
+                "supplementary_data": {
+                  "envelope": {
+                    "date_of_incorporation"?: "2020-01-01",
                   }
+                },
+              },
+              "lei"?: "506700GE1G29325QX363",
+              "bic"?: "KRKRKR"
+              "other"?: {
+                "identification": "5493001KJTIIGC8Y1R12",
+                "issuer": "ISO17442",
+              },
+            }
+          }
+        }
+      ```
+    </details>
+    <details>
+      <summary>3. Pre Verification and the type of Owner Information is `naturalPerson`.</summary>
+      
+      ``` json
+        {
+          "verification_results": {
+            "ticker": "MATCHED",        
+            "network": "MISMATCHED",    
+            "address": "SKIPPED",       
+            "tag": "SKIPPED",
+            "tx_hash": "SKIPPED",      
+            "dti": "SKIPPED",         
+          },
+          "creditor"?: {
+            "name": "HONG KIL DONG",
+            "supplementary_data"?: {
+              "envelope": {
+                "name"?: {                  
+                  "first_name": "GIL DONG",
+                  "last_name"?: "HONG",
+                },
+              }
+            },
+            "identification": {
+              "private_identification"?: {
+                "date_and_place_of_birth": {
+                  "birth_date": "2025-01-01",
                 }
               }
             }
           }
-        ```
+        }
+      ```
     </details>
     <details>
-      <summary>2. Post Verification and the Owner Information is `legalPerson`.</summary>
-        ``` json
-          {
-            "verification_results": {
-              "ticker": "MATCHED",        
-              "network": "MISMATCHED",    
-              "address": "SKIPPED",       
-              "tag": "SKIPPED",
-              "tx_hash": "SKIPPED",      
-              "dti": "SKIPPED",         
-            },
-            "debtor"?: {
-              "name": "HONG KIL DONG",
-              "supplementary_data"?: {
-                "envelope": {
-                  "name"?: {                  
-                    "first_name": "GIL DONG",
-                    "last_name"?: "HONG",
-                  },
-                }
-              },
-              "identification": {
-                "organisation_identification"?: {
-                  "supplementary_data": {
-                    "envelope": {
-                      "date_of_incorporation"?: "2020-01-01",
-                    }
-                  },
-                },
-                "lei"?: "506700GE1G29325QX363",
-                "bic"?: "KRKRKR"
-                "other"?: {
-                  "identification": "5493001KJTIIGC8Y1R12",
-                  "issuer": "ISO17442",
+      <summary>4. Pre Verification and the type of Owner Information is `legalPerson`.</summary>
+        
+      ``` json
+        {
+          "verification_results": {
+            "ticker": "MATCHED",        
+            "network": "MISMATCHED",    
+            "address": "SKIPPED",       
+            "tag": "SKIPPED",
+            "tx_hash": "SKIPPED",      
+            "dti": "SKIPPED",         
+          },
+          "creditor"?: {
+            "name": "HONG KIL DONG",
+            "supplementary_data"?: {
+              "envelope": {
+                "name"?: {                  
+                  "first_name": "GIL DONG",
+                  "last_name"?: "HONG",
                 },
               }
-            }
-          }
-        ```
-    </details>
-    <details>
-      <summary>3. Pre Verification and the Owner Information is `naturalPerson`.</summary>
-        ``` json
-          {
-            "verification_results": {
-              "ticker": "MATCHED",        
-              "network": "MISMATCHED",    
-              "address": "SKIPPED",       
-              "tag": "SKIPPED",
-              "tx_hash": "SKIPPED",      
-              "dti": "SKIPPED",         
             },
-            "creditor"?: {
-              "name": "HONG KIL DONG",
-              "supplementary_data"?: {
-                "envelope": {
-                  "name"?: {                  
-                    "first_name": "GIL DONG",
-                    "last_name"?: "HONG",
-                  },
-                }
-              },
-              "identification": {
-                "private_identification"?: {
-                  "date_and_place_of_birth": {
-                    "birth_date": "2025-01-01",
+            "identification": {
+              "organisation_identification"?: {
+                "supplementary_data": {
+                  "envelope": {
+                    "date_of_incorporation"?: "2020-01-01",
                   }
-                }
-              }
-            }
-          }
-        ```
-    </details>
-    <details>
-      <summary>4. Pre Verification and the Owner Information is `legalPerson`.</summary>
-        ``` json
-          {
-            "verification_results": {
-              "ticker": "MATCHED",        
-              "network": "MISMATCHED",    
-              "address": "SKIPPED",       
-              "tag": "SKIPPED",
-              "tx_hash": "SKIPPED",      
-              "dti": "SKIPPED",         
-            },
-            "creditor"?: {
-              "name": "HONG KIL DONG",
-              "supplementary_data"?: {
-                "envelope": {
-                  "name"?: {                  
-                    "first_name": "GIL DONG",
-                    "last_name"?: "HONG",
-                  },
-                }
+                },
               },
-              "identification": {
-                "organisation_identification"?: {
-                  "supplementary_data": {
-                    "envelope": {
-                      "date_of_incorporation"?: "2020-01-01",
-                    }
-                  },
-                },
-                "lei"?: "506700GE1G29325QX363",
-                "bic"?: "KRKRKR"
-                "other"?: {
-                  "identification": "5493001KJTIIGC8Y1R12",
-                  "issuer": "ISO17442",
-                },
-              }
+              "lei"?: "506700GE1G29325QX363",
+              "bic"?: "KRKRKR"
+              "other"?: {
+                "identification": "5493001KJTIIGC8Y1R12",
+                "issuer": "ISO17442",
+              },
             }
           }
-        ```
+        }
+      ```
     </details>
 api:
   file: 2025_05_09_VN_VASP_API_Spec.yaml
