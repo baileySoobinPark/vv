@@ -31,6 +31,17 @@ a.card-link:active {
   text-decoration: none;
   color: inherit;
 }
+/* 내부 텍스트에 직접 스타일이 적용되어 있다면 아래처럼 오버라이딩 */
+.card-link p {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 혹시 강제로 스타일이 덮어씌워질 경우 */
+.card-link * {
+  color: inherit !important;
+  text-decoration: none !important;
+}
   
 .card-container {
   display: flex;
