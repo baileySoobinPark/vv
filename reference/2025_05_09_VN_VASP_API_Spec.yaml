@@ -32,7 +32,7 @@ paths:
             - Use the tx_hash field to verify whether the transaction was initiated by your VASP.
             - Use the address field to confirm the beneficiary address of the transaction.
           - **Pre Verification**
-            - It means the reqeust the type is set to VerifyOriginator.
+            - It means the reqeust the type is set to VerifyBeneficiary.
             - Use the address field to verify whether it matches an address registered with your VASP.
 
           This API must return with the verification results for the values contains in the request body.
@@ -597,7 +597,222 @@ paths:
                     type: string
                     description: >
                       A field that provides a message when the
-                      `verification_result` is `DENIED` or `ERROR`. This field
-                      is required when returning `DENIED` or `ERROR` as the
-                      `verification_result`.
+                      `verification_result` is `DENIED` or `ERROR`.
                     example: Transfer Error
+  /VASP_DEFINED_PATH_CALLBACK:
+    post:
+      operationId: verifyNameCallback
+      summary: Callback API
+      description: >
+        The Callback API serves as a common interface for handling various
+        asynchronous flows. Depending on the callbackType, it may be invoked
+        when your VASP acts as either the Originating VASP or the Beneficiary
+        VASP. Your implementation must function correctly in all possible cases.
+        The Enclave will invoke this API when a counterparty VASP triggers a
+        Report APIs.
+
+
+        ## Functional Requirements
+          **1. Callback Type Support**
+          The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackType field and the scenarios in which they are used:
+            - **OWNER_VERIFICATION_TX_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result or error report.
+
+          `OWNER_VERIFICATION_TX_REPORT` type must be implemented as mandatory processing logic.
+
+          **2. OWNER_VERIFICATION_TX_REPORT Callback Handling (as Beneficiary VASP)**
+          - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
+          - Confirm that the asset transfer has been requested and log the details.
+
+          When an error report is received, your VASP can
+          - Cancel the associated asset transfer request.          
+          - Stop tracking the transaction and log the error for auditing purposes.
+
+        <details>
+          <summary>Example of Request Body for OWNER_VERIFICATION_TX_REPORT callback type.</summary>
+
+          ``` json
+            // VERIFIED
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "VERIFIED",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+              }
+            }
+
+            or
+
+            // DENIED
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "DENIED",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "reason": "MISMATCH-TICKER"
+              }
+            }
+
+            or
+
+            // ERROR
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "ERROR",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "reason": "TRANSFER-ERROR",
+                "message": "transfer error"
+              }
+            }
+          ```
+        </details>
+
+
+        ## Environment Variable Configuration
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click [here.]()
+          - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
+          - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
+      security:
+        - Authorization: []
+      tags:
+        - VN Enclave API
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: |
+            Bearer token for authorization.
+          schema:
+            type: string
+            description: Bearer token for authorization.
+            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - callbackType
+                - data
+              properties:
+                callbackType:
+                  type: string
+                  enum:
+                    - OWNER_VERIFICATION_TX_REPORT
+                  description: |
+                    A type for identifying the callback request.
+                  example: OWNER_VERIFICATION_TX_REPORT
+                data:
+                  type: object
+                  required:
+                    - request_Id
+                    - reported_result
+                    - ordered_at
+                  description: |
+                    An object containing Callback Data.
+                  properties:
+                    request_Id:
+                      type: string
+                      description: >
+                        A unique identifier for the Owner Verification request.
+
+                        The format of `request_id` must follow the UUID v4
+                        standard.
+                      example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                    reported_result:
+                      type: string
+                      enum:
+                        - VERIFIED
+                        - DENIED
+                        - ERROR
+                      description: |
+                        The result of the Owner Verification.
+                      example: VERIFIED
+                    ordered_at:
+                      type: string
+                      description: >
+                        The timestamp indicating when the transaction hash was
+                        reported.
+
+                        This field must follow the UTC ISO 8601 datetime
+                        representation standard. - **Recommendations**:
+                          - To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.
+                            - Other ISO 8601 Acceptable Formats:
+                              - Basic format("YYYYMMDDThhmmss.sssZ")
+                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - **Implementation Note**
+                          - While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+                      example: '2025-04-21T04:16:01.339Z'
+                    tx_hash:
+                      type: string
+                      description: >
+                        Unique identifier of the transaction. If the value of
+                        **reported_result** is **VERIFIED**, this field must be
+                        required.
+                      example: >-
+                        8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout:
+                      type: string
+                      description: >
+                        In cases where multiple transfers can be included in a
+                        single transaction, such as Bitcoin, an index value
+                        indicating which transfer corresponds to within a single
+                        transaction
+                      example: '0'
+                    reason:
+                      type: string
+                      enum:
+                        - MISMATCH-TICKER
+                        - MISMATCH-NETWORK
+                        - MISMATCH-ADDRESS
+                        - MISMATCH-NAME
+                        - MISMATCH-DTI
+                        - MISMATCH-DATE-OF-INCORPORATION
+                        - MISMATCH-BIRTH-DATE
+                        - MISMATCH-ORGANISATION-IDENTIFICATION
+                        - TRANSFER-ERROR
+                        - UNDEFINED-ERROR
+                      description: >
+                        The value of the reason field returned by the VASP that
+                        requested owner verification of type PreVerification,
+                        when the result of the verification is reported as
+                        `DENIED` or `ERROR`.
+                      example: MISMATCH-TICKER
+                    message:
+                      type: string
+                      description: >
+                        A field that provides a message when the
+                        `verification_result` is `DENIED` or `ERROR`.
+                      example: Transfer Error
+            examples:
+              requestExamples:
+                value:
+                  callbackType: OWNER_VERIFICATION_RESULT
+                  data:
+                    requestId: ac2ae3a1-2468-43c7-b881-75cf310b5a56
+                    verificationResult: VERIFIED
+                    verifiedAt: '2021-09-27T01:48:40.000Z'
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                properties:
+                  result:
+                    type: string
+                    description: |
+                      Result of the callback.
+                    example: 'true'
+              examples:
+                successExample:
+                  value:
+                    result: true

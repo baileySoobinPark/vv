@@ -24,7 +24,7 @@ excerpt: >
       - Use the tx_hash field to verify whether the transaction was initiated by your VASP.
       - Use the address field to confirm the beneficiary address of the transaction.
     - **Pre Verification**
-      - It means the reqeust the type is set to VerifyOriginator.
+      - It means the reqeust the type is set to VerifyBeneficiary.
       - Use the address field to verify whether it matches an address registered with your VASP.
 
     This API must return with the verification results for the values contains in the request body.
