@@ -48,7 +48,7 @@ excerpt: >
 
   <details>
     <summary>1. Post Verification and the type of Owner Information is `naturalPerson`.</summary>
-    
+
     ``` json
       {
         "verification_results": {
@@ -84,7 +84,7 @@ excerpt: >
 
   <details>
     <summary>2. Post Verification and the type of Owner Information is `legalPerson`.</summary>
-    
+
     ``` json
       {
         "verification_results": {
@@ -128,7 +128,7 @@ excerpt: >
 
   <details>
     <summary>3. Pre Verification and the type of Owner Information is `naturalPerson`.</summary>
-    
+
     ``` json
       {
         "verification_results": {
@@ -164,7 +164,7 @@ excerpt: >
 
   <details>
     <summary>4. Pre Verification and the type of Owner Information is `legalPerson`.</summary>
-      
+
     ``` json
       {
         "verification_results": {
