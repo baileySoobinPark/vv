@@ -17,6 +17,21 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
 
 <HTMLBlock>{`
 <style>
+  
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 방문, 호버, 포커스, 클릭 상태 모두 같은 색상으로 통일 */
+a.card-link:visited,
+a.card-link:hover,
+a.card-link:focus,
+a.card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+  
 .card-container {
   display: flex;
   flex-wrap: wrap;
