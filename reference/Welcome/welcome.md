@@ -81,23 +81,23 @@ If you’re new to the Travel Rule or VerifyVASP, explore these resources to und
     <div class="card">
       <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
+        <p>Before starting integration, understand travel rule and VASPs' duties.</p>
       </div>
     </div>
   </a>
 
       <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
       <div class="contents-space">
-        <p>Identify your VASP's implementation scope first</p>
+        <p>Let’s start with the big picture—architecture, main flows, and security features.</p>
       </div>
     </div>
   </a>
 
 <a href="#" class="card-link">
     <div class="card">
-      <img class="card-image" src="https://files.readme.io/5a637d6da90c1ffec03c8b4179939b9bb61da78f94ae40e7d48238d6aeb04856-IMG_2158.png" alt="Card Image" />
+      <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
       <div class="contents-space">
         <p>Identify your VASP's implementation scope first</p>
       </div>
