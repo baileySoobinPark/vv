@@ -11,8 +11,7 @@ excerpt: >
   ## Functional Requirements
     **1. Callback Type Support**
     The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackType field and the scenarios in which they are used:
-      - **OWNER_VERIFICATION_TX_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result or error report.
-
+    - **OWNER_VERIFICATION_TX_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result or error report.
     `OWNER_VERIFICATION_TX_REPORT` type must be implemented as mandatory processing logic.
 
     **2. OWNER_VERIFICATION_TX_REPORT Callback Handling (as Beneficiary VASP)**
