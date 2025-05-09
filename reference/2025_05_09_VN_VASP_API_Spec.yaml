@@ -305,8 +305,8 @@ paths:
                           type: string
                           description: >
                             Unique identifier of the transaction. If the value
-                            of **VerifyOriginator** is **type**, **tx_hash**
-                            must be required.
+                            of **VerifyOriginator** is **type**, this field must
+                            be required.
                           example: >-
                             8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
             examples:
@@ -395,7 +395,7 @@ paths:
                         type: string
                         description: >
                           Unique identifier of the transaction. If the value of
-                          **VerifyOriginator** is **type**, **tx_hash** must be
+                          **VerifyOriginator** is **type**, this field must be
                           required.
                         example: >-
                           8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
@@ -439,3 +439,164 @@ paths:
                             private_identification:
                               date_and_place_of_birth:
                                 birth_date: '2025-01-01'
+  /VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK:
+    post:
+      operationId: verifyNameTransaction
+      summary: Check Transaction Status API
+      description: >
+        This API must be implemented by your VASP to fulfill its role as a
+        Originating VASP. Its primary purpose is to retrieve and return the
+        current status of a transfer transaction submitted by the Originator on
+        the blockchain. This API is typically called by the Beneficiary VASP
+        when asynchronous status updates from the Originating VASP are delayed
+        or missing.
+
+        The Enclave will invoke this API upon receiving transaction status
+        checking requests from the Beneficiary VASP.
+
+
+        ## Functional Requirements
+          **1. Mapping Request ID to the Corresponding Transaction Hash**
+          - Your VASP, acting as the Originating VASP, must map the request_id (received in response to a previous 'Verify Name API' request) to the transaction hash of the on-chain transfer submitted following the verification result.
+          **2. Retrieving and Responding On-Chain Transaction Status**
+          - Using the transaction hash, retrieve the current status of the on-chain transaction. The transaction status must be returned in the transaction_status field, which supports the following allowed values:
+            - **PENDING**: The transaction is awaiting submission to the blockchain for any reason.
+            - **PROCESSING**: The transaction has been submitted to the blockchain and is waiting to be mined.
+            - **WAIT-CONFIRM**: The transaction has been mined, but finality has not yet been achieved.
+            - **CONFIRMED**: The transaction has been mined and has achieved finality.
+            - **CANCELED**: The transaction was either canceled before submission or permanently canceled after submission.
+
+        ## Constraints
+          - This API must respond within 1 second.
+
+        ## Recommendations
+          - To simplify the management of the request_id and transaction hash pair, it is strongly recommended to leverage the Enclave APIs: Owner Verification Transaction Report API and Get Owner Verification Result API.
+            **Ensure Prompt Transaction Reporting**
+              - Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Owner Verification Transaction Report API. This ensures you can:
+                - Notify the Beneficiary VASP of the transaction result.
+                - Store the transaction hash corresponding to the request_id in the Enclave.
+            **Retrieving the Transaction Hash From Enclave**
+              - If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Owner Verification Result API to retrieve the previously stored transaction hash.
+              - This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
+          - Leveraging this implementation allows your VASP to efficiently manage request_id and transaction hash mapping without a dedicated database, simplifying implementation while ensuring accurate and timely status handling.
+
+        ## Environment Variable Configuration
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
+          - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK}) and set the path in the variable.
+      security:
+        - Authorization: []
+      tags:
+        - VN Implementation API
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: |
+            Bearer token for authorization.
+          schema:
+            type: string
+            description: Bearer token for authorization.
+            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - request_id
+              properties:
+                request_id:
+                  type: string
+                  description: |
+                    A unique identifier for the Owner Verification request.
+                    The format of `request_id` must follow the UUID v4 standard.
+                  example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+            examples:
+              requestExamples:
+                value:
+                  request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - transaction_status
+                properties:
+                  transaction_status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - PROCESSING
+                      - WAIT-CONFIRM
+                      - CONFIRMED
+                      - CANCELED
+                    description: |
+                      The status of the transaction.
+                    example: PENDING
+                  verification_result:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                      - ERROR
+                    description: >
+                      A field that indicates whether the transaction should be
+                      executed based on the result of the owner verification.
+
+                      - Return `VERIFIED` if the owner verification is
+                      successful and the transaction is executed.
+
+                      - Return `DENIED` if the verification fails and the
+                      transaction is not executed.
+
+                      - Return `ERROR` if an error occurs during the execution
+                      process.
+                    example: VERIFIED
+                  tx_hash:
+                    type: string
+                    description: >
+                      Unique identifier of the transaction.  
+
+                      If the value of `verification_result` is `VERIFIED`, this
+                      field must be required.
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout:
+                    type: string
+                    description: >
+                      In cases where multiple transfers can be included in a
+                      single transaction, such as Bitcoin, an index value
+                      indicating which transfer corresponds to within a single
+                      transaction
+                    example: '0'
+                  reason:
+                    type: string
+                    enum:
+                      - MISMATCH-TICKER
+                      - MISMATCH-NETWORK
+                      - MISMATCH-ADDRESS
+                      - MISMATCH-NAME
+                      - MISMATCH-DTI
+                      - MISMATCH-DATE-OF-INCORPORATION
+                      - MISMATCH-BIRTH-DATE
+                      - MISMATCH-ORGANISATION-IDENTIFICATION
+                      - TRANSFER-ERROR
+                      - UNDEFINED-ERROR
+                    description: >
+                      A field that provides the reason when the
+                      `verification_result` is `DENIED` or `ERROR`. This field
+                      is required when returning `DENIED` or `ERROR` as the
+                      `verification_result`.
+                    example: MISMATCH-TICKER
+                  message:
+                    type: string
+                    description: >
+                      A field that provides a message when the
+                      `verification_result` is `DENIED` or `ERROR`. This field
+                      is required when returning `DENIED` or `ERROR` as the
+                      `verification_result`.
+                    example: Transfer Error
