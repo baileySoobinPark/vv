@@ -218,7 +218,7 @@ paths:
                   vaspId:
                     type: string
                     description: |
-                      Unique identifier of VASP.
+                      Unique identifier of VASP that supporting VerifyName.
                     example: '15952089931162060684'
               examples:
                 successfulExample:
@@ -233,17 +233,20 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: >
-                      Error message.   - Invalid input parameters - Missing
-                      Required Parameters - Inactive VASP
+                    description: |
+                      Error message.  
+
+                      It could be returned in the following cases.  
+                        1. Invalid input parameters.  
+                        2. Missing Required Parameters.
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
                     description: |
-                      Explanation about the error that is returned in code
-                    example: verificationUuid is required.
+                      Explanation about the error that is returned in **code**.
+                    example: verificationUuid` is required.
               examples:
-                400Errorexample:
+                401ErrorExample:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -257,17 +260,15 @@ paths:
                   code:
                     type: string
                     description: >
-                      Error message.   It could be returned in the following
-                      cases:   - When request with a non-existent resources is
+                      Error message. It could be returned in the following
+                      cases: - When request with a non-existent resources is
                       provided.
-                    example: VERIFICATION-NOT-FOUND
+                    example: OWNER-VERIFICATION-NOT-FOUND
                   message:
                     type: string
                     description: |
-                      Explanation about the error that is returned in CODE.
-                    example: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
+                      Explanation about the error that is returned in **code**.
+                    example: Owner Verification requestId(1234) is not found
               examples:
                 404Errorexample:
                   value:
@@ -285,17 +286,19 @@ paths:
                   code:
                     type: string
                     description: >
-                      Error message.   It could be returned in the following
-                      cases:   When a timeout occurs during the processing of a
-                      request.
+                      Error message.  
+
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
                     description: |
-                      Explanation about the error that is returned in code.
+                      Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408ErrorExample:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -1337,6 +1340,337 @@ paths:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
+  /v2/owner-verification/{request_id}:
+    get:
+      summary: Get Owner Verification Result API
+      description: >
+        This API retrieves the result of a specific owner verification request
+        using its unique request_id.
+      operationId: getOwnerVerificationResult
+      tags:
+        - VN Enclave API
+      parameters:
+        - name: request_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: |
+              A unique identifier for the Owner Verification request.
+              The format of `request_id` must follow the UUID v4 standard.
+            example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - request_Id
+                  - type
+                  - request_vasp_id
+                  - response_vasp_id
+                  - results
+                  - reported_result
+                  - reason
+                  - message
+                  - tx_hash
+                  - vout
+                  - ticker
+                  - network
+                  - address
+                  - tag
+                  - dti
+                  - status
+                  - verified_at
+                  - ordered_at
+                  - updated_at
+                  - created_at
+                properties:
+                  request_Id:
+                    type: string
+                    description: >
+                      A unique identifier for the Owner Verification request.
+
+                      The format of `request_id` must follow the UUID v4
+                      standard.
+                    example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                  type:
+                    type: string
+                    enum:
+                      - VerifyOriginator
+                      - VerifyBeneficiary
+                    description: "Indication of verification type. Acceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+                    example: VerifyOriginator
+                  request_vasp_id:
+                    type: string
+                    description: |
+                      The Vasp ID for the Onwer Verification request.
+                    example: '17624187478910414848'
+                  response_vasp_id:
+                    type: string
+                    description: |
+                      The Vasp ID for the Onwer Verification response.
+                    example: '17624187471232452134'
+                  results:
+                    type: object
+                    description: >
+                      The values of the **verification_result** has to be one of
+                      the following values.
+
+                      - **MATCHED**: The value of request from beneficiary VASP
+                      is matched with the information from originating VASP. 
+
+                      - **MISMATCHED**: The value of request from beneficiary
+                      VASP is mismatched with the information from originating
+                      VASP.
+
+                      - **SKIPPED**: The beneficiary VASP does not provide the
+                      value of request or The originating VASP does not provide
+                      the value of request.
+                    required:
+                      - ticker
+                      - network
+                      - address
+                      - tx_hash
+                      - dti
+                      - name
+                      - birth_date
+                      - date_of_incorporation
+                      - organisation_identification
+                    properties:
+                      ticker:
+                        type: string
+                        description: |
+                          The result of the Ticker verification.
+                        example: MATCHED
+                      network:
+                        type: string
+                        description: |
+                          The result of the Network verification.
+                        example: MATCHED
+                      address:
+                        type: string
+                        description: |
+                          The result of the Address verification.
+                        example: MATCHED
+                      tx_hash:
+                        type: string
+                        description: |
+                          The result of the Tx_Hash verification.
+                        example: MATCHED
+                      dti:
+                        type: string
+                        description: |
+                          The result of the DTI verification.
+                        example: MATCHED
+                      name:
+                        type: string
+                        description: |
+                          The result of the Name verification.
+                        example: MATCHED
+                      birth_date:
+                        type: string
+                        description: |
+                          The result of the Date of Birth verification.
+                        example: SKIPPED
+                      date_of_incorporation:
+                        type: string
+                        description: |
+                          The result of the Date of Incorporation verification.
+                        example: SKIPPED
+                      organisation_identification:
+                        type: string
+                        description: >
+                          The result of the Organisation Identification
+                          verification.
+                        example: 'SKIPPED '
+                  reported_result:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                      - ERROR
+                    description: |
+                      The result of the Owner Verification.
+                    example: VERIFIED
+                  reason:
+                    type: string
+                    enum:
+                      - MISMATCH-TICKER
+                      - MISMATCH-NETWORK
+                      - MISMATCH-ADDRESS
+                      - MISMATCH-NAME
+                      - MISMATCH-DTI
+                      - MISMATCH-DATE-OF-INCORPORATION
+                      - MISMATCH-BIRTH-DATE
+                      - MISMATCH-ORGANISATION-IDENTIFICATION
+                      - TRANSFER-ERROR
+                      - UNDEFINED-ERROR
+                    description: >
+                      A field that provides the reason when the
+                      `verification_result` is `DENIED` or `ERROR`. This field
+                      is required when returning `DENIED` or `ERROR` as the
+                      `verification_result`.
+                    example: MISMATCH-TICKER
+                  message:
+                    type: string
+                    description: >
+                      A field that provides a message when the
+                      `verification_result` is `DENIED` or `ERROR`.
+                    example: Transfer Error
+                  tx_hash:
+                    type: string
+                    description: >
+                      Unique identifier of the transaction. If the value of
+                      **VerifyOriginator** is **type**, this field must be
+                      required.
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout:
+                    type: string
+                    description: >
+                      In cases where multiple transfers can be included in a
+                      single transaction, such as Bitcoin, an index value
+                      indicating which transfer corresponds to within a single
+                      transaction
+                    example: '0'
+                  ticker:
+                    type: string
+                    description: |
+                      The symbol of the virtual asset to be transferred.
+                    example: ETH
+                  network:
+                    type: string
+                    description: >
+                      The network of the virtual asset to be transferred. The
+                      network field can be implemented conditionally. Valid
+                      values for this field can be found [here]().
+                    example: ETHEREUM
+                  address:
+                    type: string
+                    description: |
+                      The address of the wallet storing the virtual asset.
+                    example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                  tag:
+                    type: string
+                    description: >
+                      The wallet address tag(secondary address such as XRP, XLM,
+                      EOS, etc...), regardless VerifyOriginator or
+                      VerifyBeneficiary.
+                    example: '3256697931'
+                  dti:
+                    type: string
+                    description: >
+                      Digital Token Identifier (DTI) based on the ISO 24165
+                      standard.
+                    example: 4H95J0R2X
+                  status:
+                    type: string
+                    description: |
+                      The status of the Owner Verification.
+                    enum:
+                      - REQUESTED
+                      - REPORTED
+                      - INQUIRIED
+                      - ERROR
+                    example: REQUESTED
+                  verified_at:
+                    type: string
+                    description: >
+                      The timestamp indicating when the Owner Verification was
+                      verified.
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+                  ordered_at:
+                    type: string
+                    description: >
+                      The timestamp indicating when the transaction hash was
+                      reported.
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+                  updated_at:
+                    type: string
+                    description: >
+                      The timestamp indicating when the Owner Verification was
+                      Updated.
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+                  created_at:
+                    type: string
+                    description: >
+                      The timestamp indicating when the Owner Verification was
+                      created.
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+              examples:
+                successExample:
+                  value:
+                    request_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
+                    type: VerifyBeneficiary
+                    request_vasp_id: '15952089931162060684'
+                    response_vasp_id: '15952089931162054534'
+                    results:
+                      ticker: MATCHED
+                      network: MATCHED
+                      address: MATCHED
+                      tx_hash: MATCHED
+                      dti: SKIPPED
+                      name: MATCHED
+                      birth_date: MATCHED
+                      date_of_incorporation: SKIPPED
+                      organisation_identification: SKIPPED
+                    reported_result: VERIFIED
+                    reason: null
+                    message: null
+                    tx_hash: >-
+                      0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
+                    vout: null
+                    ticker: ETH
+                    network: ETH
+                    address: '0x5811001506550d8356a215be229c15b6ef371a9b'
+                    tag: null
+                    dti: null
+                    status: REPORTED
+                    verified_at: '2022-03-03T12:45:34.085Z'
+                    ordered_at: '2022-03-03T12:45:34.085Z'
+                    created_at: '2022-03-03T12:45:34.085Z'
+                    updated_at: '2022-03-03T12:45:34.085Z'
+        '404':
+          description: 404 Resource Not Found Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: >
+                      Error message. It could be returned in the following
+                      cases: - When request with a non-existent resources is
+                      provided.
+                    example: OWNER-VERIFICATION-NOT-FOUND
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: Owner Verification requestId(1234) is not found
+              examples:
+                404Errorexample:
+                  value:
+                    code: VERIFICATION-NOT-FOUND
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
 components:
   securitySchemes:
     Authorization:
