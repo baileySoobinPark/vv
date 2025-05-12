@@ -443,18 +443,10 @@ paths:
                                       type: object
                                       properties:
                                         birth_date:
-                                          type: object
-                                          enum:
-                                            - dateOfBirth
-                                          properties:
-                                            dateOfBirth:
-                                              type: string
-                                              description: >
-                                                Date of birth.  
-
-                                                The format of this field must follow
-                                                "YYYY-MM-DD"
-                                              example: '1985-03-14'
+                                          type: string
+                                          description: |
+                                            Date of Birth.
+                                          example: '2025-01-01'
                                 organisation_identification:
                                   type: object
                                   description: >
