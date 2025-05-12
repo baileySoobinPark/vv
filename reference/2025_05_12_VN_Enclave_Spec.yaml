@@ -86,7 +86,6 @@ paths:
                         example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       tag:
                         type: string
-                        nullable: true
                         description: >
                           The wallet address tag(secondary address such as XRP,
                           XLM, EOS, etc...), regardless VerifyOriginator or
@@ -384,7 +383,6 @@ paths:
                           example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
-                          nullable: true
                           description: >
                             The wallet address tag(secondary address such as
                             XRP, XLM, EOS, etc...), regardless VerifyOriginator
@@ -657,107 +655,397 @@ paths:
               schema:
                 type: object
                 required:
-                  - request_id
-                  - verification_results
-                  - verified_at
+                  - count
+                  - page
+                  - rpp
+                  - owner_verifications
                 properties:
-                  request_id:
-                    type: string
-                    description: >
-                      A unique identifier for the Owner Verification request.
-
-                      The format of `request_id` must follow the UUID v4
-                      standard.
-                    example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                  verificateion_results:
-                    type: object
-                    description: >
-                      The values of the **verification_result** has to be one of
-                      the following values.
-
-                      - **MATCHED**: The value of request from beneficiary VASP
-                      is matched with the information from originating VASP. 
-
-                      - **MISMATCHED**: The value of request from beneficiary
-                      VASP is mismatched with the information from originating
-                      VASP.
-
-                      - **SKIPPED**: The beneficiary VASP does not provide the
-                      value of request or The originating VASP does not provide
-                      the value of request.
-                    required:
-                      - ticker
-                      - network
-                      - address
-                      - tag
-                      - dti
-                      - tx_hash
-                    properties:
-                      ticker:
-                        type: string
-                        description: |
-                          The symbol of the virtual asset to be transferred.
-                        example: ETH
-                      network:
-                        type: string
-                        description: >
-                          The network of the virtual asset to be transferred.
-                          The network field can be implemented conditionally.
-                          Valid values for this field can be found [here]().
-                        example: ETHEREUM
-                      address:
-                        type: string
-                        description: |
-                          The address of the wallet storing the virtual asset.
-                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
-                      tag:
-                        type: string
-                        nullable: true
-                        description: >
-                          The wallet address tag(secondary address such as XRP,
-                          XLM, EOS, etc...), regardless VerifyOriginator or
-                          VerifyBeneficiary.
-                        example: '3256697931'
-                      dti:
-                        type: string
-                        description: >
-                          Digital Token Identifier (DTI) based on the ISO 24165
-                          standard.
-                        example: 4H95J0R2X
-                      tx_hash:
-                        type: string
-                        description: >
-                          Unique identifier of the transaction. If the value of
-                          **VerifyOriginator** is **type**, this field must be
-                          required.
-                        example: >-
-                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                      debtor:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            example: JHON DOE
-                          supplementary_data:
-                            type: object
-                        example:
-                          name: JHON DOE
-                          supplementary_data:
-                            envelope:
-                              name:
-                                first_name: JHON
-                                last_name: DOE
-                          identification:
-                            private_identification:
-                              date_and_place_of_birth:
-                                date_of_birth: '1990-01-01'
-                  verified_at:
-                    type: string
+                  count:
+                    type: integer
                     description: |
-                      The timestamp when the verification was verified.
-                    example: >-
-                      2021-09-27T01:48:40.326Z || 2021-09-27T01:48:40.326+00:00
-                      || 20210927T014840.326Z
+                      The total number of the results.
+                    example: 1
+                  page:
+                    type: integer
+                    description: |
+                      The page number of the response.   The default value is 1.
+                    example: 1
+                  rpp:
+                    type: integer
+                    description: |
+                      The number of records per page.   The default value is 10.
+                    example: 1
+                  owner_verifications:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - request_Id
+                        - type
+                        - request_vasp_id
+                        - response_vasp_id
+                        - results
+                        - reported_result
+                        - reason
+                        - message
+                        - tx_hash
+                        - vout
+                        - ticker
+                        - network
+                        - address
+                        - tag
+                        - dti
+                        - status
+                        - verified_at
+                        - ordered_at
+                        - updated_at
+                        - created_at
+                      properties:
+                        request_Id:
+                          type: string
+                          description: >
+                            A unique identifier for the Owner Verification
+                            request.
+
+                            The format of `request_id` must follow the UUID v4
+                            standard.
+                          example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                        type:
+                          type: string
+                          enum:
+                            - VerifyOriginator
+                            - VerifyBeneficiary
+                          description: "Indication of verification type. Acceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+                          example: VerifyOriginator
+                        request_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification request.
+                          example: '17624187478910414848'
+                        response_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification response.
+                          example: '17624187471232452134'
+                        results:
+                          type: object
+                          description: >
+                            The values of the **verification_result** has to be
+                            one of the following values.
+
+                            - **MATCHED**: The value of request from beneficiary
+                            VASP is matched with the information from
+                            originating VASP. 
+
+                            - **MISMATCHED**: The value of request from
+                            beneficiary VASP is mismatched with the information
+                            from originating VASP.
+
+                            - **SKIPPED**: The beneficiary VASP does not provide
+                            the value of request or The originating VASP does
+                            not provide the value of request.
+                          required:
+                            - ticker
+                            - network
+                            - address
+                            - tx_hash
+                            - dti
+                            - name
+                            - birth_date
+                            - date_of_incorporation
+                            - organisation_identification
+                          properties:
+                            ticker:
+                              type: string
+                              description: >
+                                The symbol of the virtual asset to be
+                                transferred.
+                              example: ETH
+                            network:
+                              type: string
+                              description: >
+                                The network of the virtual asset to be
+                                transferred. The network field can be
+                                implemented conditionally. Valid values for this
+                                field can be found [here]().
+                              example: ETHEREUM
+                            address:
+                              type: string
+                              description: >
+                                The address of the wallet storing the virtual
+                                asset.
+                              example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                            tx_hash:
+                              type: string
+                              description: >
+                                Unique identifier of the transaction. If the
+                                value of **VerifyOriginator** is **type**, this
+                                field must be required.
+                              example: >-
+                                8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                            dti:
+                              type: string
+                              description: >
+                                Digital Token Identifier (DTI) based on the ISO
+                                24165 standard.
+                              example: 4H95J0R2X
+                            name:
+                              type: object
+                              required:
+                                - nameIdentifier
+                              description: |
+                                An object containing information of name.
+                              properties:
+                                nameIdentifier:
+                                  type: array
+                                  description: Name identifier
+                                  items:
+                                    type: object
+                                    required:
+                                      - primaryIdentifier
+                                      - nameIdentifierType
+                                    properties:
+                                      primaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name.  
+
+                                          You must enter the last name of
+                                          Beneficiary.  
+
+                                          If it is difficult to separate the name
+                                          into first and last name, it is
+                                          acceptable to enter the full name in the
+                                          **primaryIdentifier**.
+                                        example: Hong
+                                      secondaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name.  
+
+                                          You must enter the first name of
+                                          Beneficiary.   Alternatively, you can
+                                          enter your middle name along with your
+                                          first name in this field.
+                                        example: Gildong
+                                      nameIdentifierType:
+                                        type: string
+                                        enum:
+                                          - ALIA
+                                          - BIRT
+                                          - MAID
+                                          - LEGL
+                                          - MISC
+                                        description: |
+                                          The type of name identifier.    
+
+                                            The following values can be included:  
+                                            **ALIA:** An alias name commonly known apart from the legal name.  
+                                            **BIRT:** A birth name.  
+                                            **MAID:** The original name used before a surname change due to marriage.  
+                                            **LEGL:** A legally or officially registered name.  
+                                            **MISC:** Other names that do not fall under the above categories.
+                                        example: LEGL
+                                localNameIdentifier:
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - primaryIdentifier
+                                      - nameIdentifierType
+                                    properties:
+                                      primaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name expressed
+                                          in the languages of each country.  
+
+                                          You must enter the last name of
+                                          Beneficiary.  
+
+                                          If it is difficult to separate the name
+                                          into first and last names, it is
+                                          acceptable to enter the full name in the
+                                          **primaryIdentifier**.
+                                        example: 홍
+                                      secondaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name expressed
+                                          in the languages of each country.  
+
+                                          You must enter the first name of
+                                          Beneficiary. Alternatively, you can
+                                          enter your middle name along with your
+                                          first name in this field.
+                                        example: 길동
+                                      nameIdentifierType:
+                                        type: string
+                                        enum:
+                                          - ALIA
+                                          - BIRT
+                                          - MAID
+                                          - LEGL
+                                          - MISC
+                                        description: |
+                                          The type of name identifier. 
+
+                                            The following values can be included:  
+                                            **ALIA:** An alias name commonly known apart from the legal name.  
+                                            **BIRT:** A birth name.  
+                                            **MAID:** The original name used before a surname change due to marriage.  
+                                            **LEGL:** A legally or officially registered name.  
+                                            **MISC:** Other names that do not fall under the above categories.
+                                        example: LEGL
+                            birth_date:
+                              type: string
+                              description: |
+                                Date of Birth.
+                              example: '2025-01-01'
+                            date_of_incorporation:
+                              type: string
+                              description: |
+                                Date of incorporation.
+                              example: '2025-01-01'
+                            organisation_identification:
+                              type: string
+                              description: >
+                                The identification number of the organization.  
+
+                                It is used to identify the organization in the
+                                country of incorporation.
+                        reported_result:
+                          type: string
+                          enum:
+                            - VERIFIED
+                            - DENIED
+                            - ERROR
+                          description: |
+                            The result of the Owner Verification.
+                          example: VERIFIED
+                        reason:
+                          type: string
+                          enum:
+                            - MISMATCH-TICKER
+                            - MISMATCH-NETWORK
+                            - MISMATCH-ADDRESS
+                            - MISMATCH-NAME
+                            - MISMATCH-DTI
+                            - MISMATCH-DATE-OF-INCORPORATION
+                            - MISMATCH-BIRTH-DATE
+                            - MISMATCH-ORGANISATION-IDENTIFICATION
+                            - TRANSFER-ERROR
+                            - UNDEFINED-ERROR
+                          description: >
+                            A field that provides the reason when the
+                            `verification_result` is `DENIED` or `ERROR`. This
+                            field is required when returning `DENIED` or `ERROR`
+                            as the `verification_result`.
+                          example: MISMATCH-TICKER
+                        message:
+                          type: string
+                          description: >
+                            A field that provides a message when the
+                            `verification_result` is `DENIED` or `ERROR`.
+                          example: Transfer Error
+                        tx_hash:
+                          type: string
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **VerifyOriginator** is **type**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        vout:
+                          type: string
+                          description: >
+                            In cases where multiple transfers can be included in
+                            a single transaction, such as Bitcoin, an index
+                            value indicating which transfer corresponds to
+                            within a single transaction
+                          example: '0'
+                        ticker:
+                          type: string
+                          description: |
+                            The symbol of the virtual asset to be transferred.
+                          example: ETH
+                        network:
+                          type: string
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
+                            Valid values for this field can be found [here]().
+                          example: ETHEREUM
+                        address:
+                          type: string
+                          description: |
+                            The address of the wallet storing the virtual asset.
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                        tag:
+                          type: string
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
+                        dti:
+                          type: string
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
+                          example: 4H95J0R2X
+                        status:
+                          type: string
+                          description: |
+                            The status of the Owner Verification.
+                          enum:
+                            - REQUESTED
+                            - REPORTED
+                            - INQUIRIED
+                            - ERROR
+                          example: PENDING
+                        verified_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was verified.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+                        ordered_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the transaction hash
+                            was reported.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard. - **Recommendations**:
+                              - To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.
+                                - Other ISO 8601 Acceptable Formats:
+                                  - Basic format("YYYYMMDDThhmmss.sssZ")
+                                  - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                            - **Implementation Note**
+                              - While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+                          example: '2025-04-21T04:16:01.339Z'
+                        updated_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was Updated.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+                        created_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was created.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
               examples:
                 successExample1:
                   value:
@@ -799,6 +1087,673 @@ paths:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
+        '408':
+          description: 408 Request Timeout Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: >
+                      Error message.  
+
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
+                    example: REQUEST-TIMEOUT
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: timeout of 5000ms exceeded
+              examples:
+                408ErrorExample:
+                  value:
+                    code: REQUEST-TIMEOUT
+                    message: timeout of 5000ms exceeded
+    get:
+      operationId: VNListOwnerVerification
+      tags:
+        - VN Enclave API
+      summary: List Owner Verification Result API
+      description: >
+        This API retrieves the history of all previously requested owner
+        verifications. 
+
+
+        ### Query with Filters
+
+        - This API supports a variety of query parameters, enabling you to
+        filter and retrieve owner verification records that match specific
+        criteria.
+
+        - Filters are particularly useful for managing verification requests
+        based on their status, timestamp, asset type, or counterparty VASP.
+
+        - Additionally, you can identify a specific verification record matched
+        with an on-chain transaction using these filters.
+
+        - All query parameters are optional, and any specified parameters are
+        applied using an AND operation to filter the results.
+
+        - For a detailed list of supported filters, refer to the Query Parameter
+        section in the specification below.
+      parameters:
+        - name: from_date
+          in: query
+          required: false
+          schema:
+            type: string
+            description: >
+              The start date for querying a specific point in time.   The format
+              of from_date must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2022-01-01'
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+            description: >
+              The end date for querying a specific point in time.   The format
+              of from_date must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2022-01-01'
+        - name: ticker
+          in: query
+          schema:
+            type: string
+            description: |
+              The symbol of the virtual asset to be transferred.
+            example: ETH
+        - name: network
+          in: query
+          schema:
+            type: string
+            description: >
+              The network of the virtual asset to be transferred. The network
+              field can be implemented conditionally. Valid values for this
+              field can be found [here]().
+            example: ETHEREUM
+        - name: tx_hash
+          in: query
+          schema:
+            type: string
+            description: >
+              Unique identifier of the transaction. If the value of
+              **VerifyOriginator** is **type**, this field must be required.
+            example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+        - name: address
+          in: query
+          schema:
+            type: string
+            description: |
+              The address of the wallet storing the virtual asset.
+            example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+        - name: request_vasp_id
+          in: query
+          required: false
+          schema:
+            type: string
+            description: |
+              The Vasp ID for the Onwer Verification request.
+            example: '17624187478910414848'
+        - name: response_vasp_id
+          in: query
+          required: false
+          schema:
+            type: string
+            description: |
+              The Vasp ID for the Onwer Verification response.
+            example: '17624187478910414848'
+        - name: request_id
+          in: query
+          schema:
+            type: string
+            description: |
+              A unique identifier for the Owner Verification request.
+              The format of `request_id` must follow the UUID v4 standard.
+            example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+        - name: tag
+          in: query
+          schema:
+            type: string
+            description: >
+              The wallet address tag(secondary address such as XRP, XLM, EOS,
+              etc...), regardless VerifyOriginator or VerifyBeneficiary.
+            example: '3256697931'
+        - name: dti
+          in: query
+          schema:
+            type: string
+            description: |
+              Digital Token Identifier (DTI) based on the ISO 24165 standard.
+            example: 4H95J0R2X
+        - name: vout
+          in: query
+          schema:
+            type: string
+            description: >
+              In cases where multiple transfers can be included in a single
+              transaction, such as Bitcoin, an index value indicating which
+              transfer corresponds to within a single transaction
+            example: '0'
+        - name: reported_result
+          in: query
+          required: false
+          schema:
+            type: string
+            description: |
+              The result of the verification.   The default value is "VERIFIED".
+            enum:
+              - VERIFIED
+              - DENIED
+              - ERROR
+            example: VERIFIED
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum:
+              - VerifyOriginator
+              - VerifyBeneficiary
+            description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+            example: VerifyOriginator
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            description: |
+              The status of the Owner Verification.
+            enum:
+              - REQUESTED
+              - REPORTED
+              - INQUIRIED
+              - ERROR
+            example: PENDING
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            description: |
+              The page number of the response.   The default value is 1.
+            example: 1
+        - name: rpp
+          in: query
+          required: false
+          schema:
+            type: integer
+            description: |
+              The number of records per page.   The default value is 10.
+            example: 10
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - count
+                  - page
+                  - rpp
+                  - owner_verifications
+                properties:
+                  count:
+                    type: integer
+                    description: |
+                      The total number of the results.
+                    example: 1
+                  page:
+                    type: integer
+                    description: |
+                      The page number of the response.   The default value is 1.
+                    example: 1
+                  rpp:
+                    type: integer
+                    description: |
+                      The number of records per page.   The default value is 10.
+                    example: 1
+                  owner_verifications:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - request_Id
+                        - type
+                        - request_vasp_id
+                        - response_vasp_id
+                        - results
+                        - reported_result
+                        - reason
+                        - message
+                        - tx_hash
+                        - vout
+                        - ticker
+                        - network
+                        - address
+                        - tag
+                        - dti
+                        - status
+                        - verified_at
+                        - ordered_at
+                        - updated_at
+                        - created_at
+                      properties:
+                        request_Id:
+                          type: string
+                          description: >
+                            A unique identifier for the Owner Verification
+                            request.
+
+                            The format of `request_id` must follow the UUID v4
+                            standard.
+                          example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                        type:
+                          type: string
+                          enum:
+                            - VerifyOriginator
+                            - VerifyBeneficiary
+                          description: "Indication of verification type. Acceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+                          example: VerifyOriginator
+                        request_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification request.
+                          example: '17624187478910414848'
+                        response_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification response.
+                          example: '17624187471232452134'
+                        results:
+                          type: object
+                          description: >
+                            The values of the **verification_result** has to be
+                            one of the following values.
+
+                            - **MATCHED**: The value of request from beneficiary
+                            VASP is matched with the information from
+                            originating VASP. 
+
+                            - **MISMATCHED**: The value of request from
+                            beneficiary VASP is mismatched with the information
+                            from originating VASP.
+
+                            - **SKIPPED**: The beneficiary VASP does not provide
+                            the value of request or The originating VASP does
+                            not provide the value of request.
+                          required:
+                            - ticker
+                            - network
+                            - address
+                            - tx_hash
+                            - dti
+                            - name
+                            - birth_date
+                            - date_of_incorporation
+                            - organisation_identification
+                          properties:
+                            ticker:
+                              type: string
+                              description: >
+                                The symbol of the virtual asset to be
+                                transferred.
+                              example: ETH
+                            network:
+                              type: string
+                              description: >
+                                The network of the virtual asset to be
+                                transferred. The network field can be
+                                implemented conditionally. Valid values for this
+                                field can be found [here]().
+                              example: ETHEREUM
+                            address:
+                              type: string
+                              description: >
+                                The address of the wallet storing the virtual
+                                asset.
+                              example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                            tx_hash:
+                              type: string
+                              description: >
+                                Unique identifier of the transaction. If the
+                                value of **VerifyOriginator** is **type**, this
+                                field must be required.
+                              example: >-
+                                8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                            dti:
+                              type: string
+                              description: >
+                                Digital Token Identifier (DTI) based on the ISO
+                                24165 standard.
+                              example: 4H95J0R2X
+                            name:
+                              type: object
+                              required:
+                                - nameIdentifier
+                              description: |
+                                An object containing information of name.
+                              properties:
+                                nameIdentifier:
+                                  type: array
+                                  description: Name identifier
+                                  items:
+                                    type: object
+                                    required:
+                                      - primaryIdentifier
+                                      - nameIdentifierType
+                                    properties:
+                                      primaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name.  
+
+                                          You must enter the last name of
+                                          Beneficiary.  
+
+                                          If it is difficult to separate the name
+                                          into first and last name, it is
+                                          acceptable to enter the full name in the
+                                          **primaryIdentifier**.
+                                        example: Hong
+                                      secondaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name.  
+
+                                          You must enter the first name of
+                                          Beneficiary.   Alternatively, you can
+                                          enter your middle name along with your
+                                          first name in this field.
+                                        example: Gildong
+                                      nameIdentifierType:
+                                        type: string
+                                        enum:
+                                          - ALIA
+                                          - BIRT
+                                          - MAID
+                                          - LEGL
+                                          - MISC
+                                        description: |
+                                          The type of name identifier.    
+
+                                            The following values can be included:  
+                                            **ALIA:** An alias name commonly known apart from the legal name.  
+                                            **BIRT:** A birth name.  
+                                            **MAID:** The original name used before a surname change due to marriage.  
+                                            **LEGL:** A legally or officially registered name.  
+                                            **MISC:** Other names that do not fall under the above categories.
+                                        example: LEGL
+                                localNameIdentifier:
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - primaryIdentifier
+                                      - nameIdentifierType
+                                    properties:
+                                      primaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name expressed
+                                          in the languages of each country.  
+
+                                          You must enter the last name of
+                                          Beneficiary.  
+
+                                          If it is difficult to separate the name
+                                          into first and last names, it is
+                                          acceptable to enter the full name in the
+                                          **primaryIdentifier**.
+                                        example: 홍
+                                      secondaryIdentifier:
+                                        type: string
+                                        description: >
+                                          The basic elements of a name expressed
+                                          in the languages of each country.  
+
+                                          You must enter the first name of
+                                          Beneficiary. Alternatively, you can
+                                          enter your middle name along with your
+                                          first name in this field.
+                                        example: 길동
+                                      nameIdentifierType:
+                                        type: string
+                                        enum:
+                                          - ALIA
+                                          - BIRT
+                                          - MAID
+                                          - LEGL
+                                          - MISC
+                                        description: |
+                                          The type of name identifier. 
+
+                                            The following values can be included:  
+                                            **ALIA:** An alias name commonly known apart from the legal name.  
+                                            **BIRT:** A birth name.  
+                                            **MAID:** The original name used before a surname change due to marriage.  
+                                            **LEGL:** A legally or officially registered name.  
+                                            **MISC:** Other names that do not fall under the above categories.
+                                        example: LEGL
+                            birth_date:
+                              type: string
+                              description: |
+                                Date of Birth.
+                              example: '2025-01-01'
+                            date_of_incorporation:
+                              type: string
+                              description: |
+                                Date of incorporation.
+                              example: '2025-01-01'
+                            organisation_identification:
+                              type: string
+                              description: >
+                                The identification number of the organization.  
+
+                                It is used to identify the organization in the
+                                country of incorporation.
+                        reported_result:
+                          type: string
+                          enum:
+                            - VERIFIED
+                            - DENIED
+                            - ERROR
+                          description: |
+                            The result of the Owner Verification.
+                          example: VERIFIED
+                        reason:
+                          type: string
+                          enum:
+                            - MISMATCH-TICKER
+                            - MISMATCH-NETWORK
+                            - MISMATCH-ADDRESS
+                            - MISMATCH-NAME
+                            - MISMATCH-DTI
+                            - MISMATCH-DATE-OF-INCORPORATION
+                            - MISMATCH-BIRTH-DATE
+                            - MISMATCH-ORGANISATION-IDENTIFICATION
+                            - TRANSFER-ERROR
+                            - UNDEFINED-ERROR
+                          description: >
+                            A field that provides the reason when the
+                            `verification_result` is `DENIED` or `ERROR`. This
+                            field is required when returning `DENIED` or `ERROR`
+                            as the `verification_result`.
+                          example: MISMATCH-TICKER
+                        message:
+                          type: string
+                          description: >
+                            A field that provides a message when the
+                            `verification_result` is `DENIED` or `ERROR`.
+                          example: Transfer Error
+                        tx_hash:
+                          type: string
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **VerifyOriginator** is **type**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        vout:
+                          type: string
+                          description: >
+                            In cases where multiple transfers can be included in
+                            a single transaction, such as Bitcoin, an index
+                            value indicating which transfer corresponds to
+                            within a single transaction
+                          example: '0'
+                        ticker:
+                          type: string
+                          description: |
+                            The symbol of the virtual asset to be transferred.
+                          example: ETH
+                        network:
+                          type: string
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
+                            Valid values for this field can be found [here]().
+                          example: ETHEREUM
+                        address:
+                          type: string
+                          description: |
+                            The address of the wallet storing the virtual asset.
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                        tag:
+                          type: string
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
+                        dti:
+                          type: string
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
+                          example: 4H95J0R2X
+                        status:
+                          type: string
+                          description: |
+                            The status of the Owner Verification.
+                          enum:
+                            - REQUESTED
+                            - REPORTED
+                            - INQUIRIED
+                            - ERROR
+                          example: PENDING
+                        verified_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was verified.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+                        ordered_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the transaction hash
+                            was reported.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard. - **Recommendations**:
+                              - To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.
+                                - Other ISO 8601 Acceptable Formats:
+                                  - Basic format("YYYYMMDDThhmmss.sssZ")
+                                  - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                            - **Implementation Note**
+                              - While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+                          example: '2025-04-21T04:16:01.339Z'
+                        updated_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was Updated.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+                        created_at:
+                          type: string
+                          description: >
+                            The timestamp indicating when the Owner Verification
+                            was created.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+              examples:
+                successExample1:
+                  value:
+                    requset_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
+                    verification_results:
+                      ticker: MATCHED
+                      network: MATCHED
+                      address: MATCHED
+                      tx_hash: MATCHED
+                      dti: SKIPPED
+                      name: MATCHED
+                      birth_date: MATCHED
+                      date_of_incorporation: SKIPPED
+                      organisation_identification: SKIPPED
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
+        '400':
+          description: 400 Bad Request Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: |
+                      Error message.  
+
+                      It could be returned in the following cases.  
+                        1. Invalid input parameters.  
+                        2. Missing Required Parameters.
+                    example: MISSING-VERIFICATION-UUID
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: verificationUuid` is required.
+              examples:
+                401ErrorExample:
+                  value:
+                    code: MISSING-REQUIRED-BENEFICIARY-INFO
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '408':
+          description: 408 Request Timeout Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: >
+                      Error message.  
+
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
+                    example: REQUEST-TIMEOUT
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: timeout of 5000ms exceeded
+              examples:
+                408ErrorExample:
+                  value:
+                    code: REQUEST-TIMEOUT
+                    message: timeout of 5000ms exceeded
 components:
   securitySchemes:
     Authorization:
