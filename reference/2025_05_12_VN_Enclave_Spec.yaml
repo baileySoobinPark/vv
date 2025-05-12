@@ -520,7 +520,7 @@ paths:
                           type: object
                           description: >
                             An object containing information about the Owner's
-                            information when the type is **VerifyBeneficiary**.
+                            information when the type is **VerifyOriginator**.
                           required:
                             - name
                             - identification
