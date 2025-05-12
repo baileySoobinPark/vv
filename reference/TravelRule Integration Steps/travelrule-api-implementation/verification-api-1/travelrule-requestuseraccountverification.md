@@ -22,9 +22,8 @@ excerpt: >
   **1. Ownership Verification**  
 
   The API must validate whether the requested beneficiary account address exists
-  in the VASP’s database.  
-
-  Based on this verification, it should return the appropriate result.
+  in the VASP’s database. Based on this verification, it should return the
+  appropriate result.
 
 
   **2. Responding with Verification Results**  
