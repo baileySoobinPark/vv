@@ -673,34 +673,28 @@ paths:
                       ticker:
                         type: string
                         description: |
-                          The symbol of the virtual asset to be transferred.
-                        example: ETH
+                          The result of the verification of the ticker.
+                        example: MATCHED
                       network:
                         type: string
-                        description: >
-                          The network of the virtual asset to be transferred.
-                          The network field can be implemented conditionally.
-                          Valid values for this field can be found [here]().
-                        example: ETHEREUM
+                        description: |
+                          The result of the verification of the network.
+                        example: MATCHED
                       address:
                         type: string
                         description: |
-                          The address of the wallet storing the virtual asset.
-                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                          The result of the verification of the Address.
+                        example: MATCHED
                       tx_hash:
                         type: string
-                        description: >
-                          Unique identifier of the transaction. If the value of
-                          **VerifyOriginator** is **type**, this field must be
-                          required.
-                        example: >-
-                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        description: |
+                          The result of the verification of the Tx_Hash.
+                        example: MATCHED
                       dti:
                         type: string
-                        description: >
-                          Digital Token Identifier (DTI) based on the ISO 24165
-                          standard.
-                        example: 4H95J0R2X
+                        description: |
+                          The result of the verification of the DTI.
+                        example: MATCHED
                       name:
                         type: string
                         description: |
@@ -709,20 +703,20 @@ paths:
                       birth_date:
                         type: string
                         description: |
-                          Date of Birth.
-                        example: '2025-01-01'
+                          The result of the verification of the Date of Birth.
+                        example: SKIPPED
                       date_of_incorporation:
                         type: string
-                        description: |
-                          Date of incorporation.
-                        example: '2025-01-01'
+                        description: >
+                          The result of the verification of the Date of
+                          Incorporation.
+                        example: SKIPPED
                       organisation_identification:
                         type: string
                         description: >
-                          The identification number of the organization.  
-
-                          It is used to identify the organization in the country
-                          of incorporation.
+                          The result of the verification of the Organisation
+                          Identification.
+                        example: 'SKIPPED '
                   verified_at:
                     type: string
                     description: >
@@ -1084,163 +1078,52 @@ paths:
                           properties:
                             ticker:
                               type: string
-                              description: >
-                                The symbol of the virtual asset to be
-                                transferred.
-                              example: ETH
+                              description: |
+                                The result of the verification of the ticker.
+                              example: MATCHED
                             network:
                               type: string
-                              description: >
-                                The network of the virtual asset to be
-                                transferred. The network field can be
-                                implemented conditionally. Valid values for this
-                                field can be found [here]().
-                              example: ETHEREUM
+                              description: |
+                                The result of the verification of the network.
+                              example: MATCHED
                             address:
                               type: string
-                              description: >
-                                The address of the wallet storing the virtual
-                                asset.
-                              example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                              description: |
+                                The result of the verification of the Address.
+                              example: MATCHED
                             tx_hash:
                               type: string
-                              description: >
-                                Unique identifier of the transaction. If the
-                                value of **VerifyOriginator** is **type**, this
-                                field must be required.
-                              example: >-
-                                8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                              description: |
+                                The result of the verification of the Tx_Hash.
+                              example: MATCHED
                             dti:
                               type: string
-                              description: >
-                                Digital Token Identifier (DTI) based on the ISO
-                                24165 standard.
-                              example: 4H95J0R2X
-                            name:
-                              type: object
-                              required:
-                                - nameIdentifier
                               description: |
-                                An object containing information of name.
-                              properties:
-                                nameIdentifier:
-                                  type: array
-                                  description: Name identifier
-                                  items:
-                                    type: object
-                                    required:
-                                      - primaryIdentifier
-                                      - nameIdentifierType
-                                    properties:
-                                      primaryIdentifier:
-                                        type: string
-                                        description: >
-                                          The basic elements of a name.  
-
-                                          You must enter the last name of
-                                          Beneficiary.  
-
-                                          If it is difficult to separate the name
-                                          into first and last name, it is
-                                          acceptable to enter the full name in the
-                                          **primaryIdentifier**.
-                                        example: Hong
-                                      secondaryIdentifier:
-                                        type: string
-                                        description: >
-                                          The basic elements of a name.  
-
-                                          You must enter the first name of
-                                          Beneficiary.   Alternatively, you can
-                                          enter your middle name along with your
-                                          first name in this field.
-                                        example: Gildong
-                                      nameIdentifierType:
-                                        type: string
-                                        enum:
-                                          - ALIA
-                                          - BIRT
-                                          - MAID
-                                          - LEGL
-                                          - MISC
-                                        description: |
-                                          The type of name identifier.    
-
-                                            The following values can be included:  
-                                            **ALIA:** An alias name commonly known apart from the legal name.  
-                                            **BIRT:** A birth name.  
-                                            **MAID:** The original name used before a surname change due to marriage.  
-                                            **LEGL:** A legally or officially registered name.  
-                                            **MISC:** Other names that do not fall under the above categories.
-                                        example: LEGL
-                                localNameIdentifier:
-                                  type: array
-                                  items:
-                                    type: object
-                                    required:
-                                      - primaryIdentifier
-                                      - nameIdentifierType
-                                    properties:
-                                      primaryIdentifier:
-                                        type: string
-                                        description: >
-                                          The basic elements of a name expressed
-                                          in the languages of each country.  
-
-                                          You must enter the last name of
-                                          Beneficiary.  
-
-                                          If it is difficult to separate the name
-                                          into first and last names, it is
-                                          acceptable to enter the full name in the
-                                          **primaryIdentifier**.
-                                        example: 홍
-                                      secondaryIdentifier:
-                                        type: string
-                                        description: >
-                                          The basic elements of a name expressed
-                                          in the languages of each country.  
-
-                                          You must enter the first name of
-                                          Beneficiary. Alternatively, you can
-                                          enter your middle name along with your
-                                          first name in this field.
-                                        example: 길동
-                                      nameIdentifierType:
-                                        type: string
-                                        enum:
-                                          - ALIA
-                                          - BIRT
-                                          - MAID
-                                          - LEGL
-                                          - MISC
-                                        description: |
-                                          The type of name identifier. 
-
-                                            The following values can be included:  
-                                            **ALIA:** An alias name commonly known apart from the legal name.  
-                                            **BIRT:** A birth name.  
-                                            **MAID:** The original name used before a surname change due to marriage.  
-                                            **LEGL:** A legally or officially registered name.  
-                                            **MISC:** Other names that do not fall under the above categories.
-                                        example: LEGL
+                                The result of the verification of the DTI.
+                              example: MATCHED
+                            name:
+                              type: string
+                              description: |
+                                The result of the verification of the Name.
+                              example: MATCHED
                             birth_date:
                               type: string
-                              description: |
-                                Date of Birth.
-                              example: '2025-01-01'
+                              description: >
+                                The result of the verification of the Date of
+                                Birth.
+                              example: SKIPPED
                             date_of_incorporation:
                               type: string
-                              description: |
-                                Date of incorporation.
-                              example: '2025-01-01'
+                              description: >
+                                The result of the verification of the Date of
+                                Incorporation.
+                              example: SKIPPED
                             organisation_identification:
                               type: string
                               description: >
-                                The identification number of the organization.  
-
-                                It is used to identify the organization in the
-                                country of incorporation.
+                                The result of the verification of the
+                                Organisation Identification.
+                              example: 'SKIPPED '
                         reported_result:
                           type: string
                           enum:
