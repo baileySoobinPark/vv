@@ -761,8 +761,18 @@ paths:
               examples:
                 successExample1:
                   value:
-                    mode: SYNC
-                    verificationResult: VERIFIED
+                    requset_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
+                    verification_results:
+                      ticker: MATCHED
+                      network: MATCHED
+                      address: MATCHED
+                      tx_hash: MATCHED
+                      dti: SKIPPED
+                      name: MATCHED
+                      birth_date: MATCHED
+                      date_of_incorporation: SKIPPED
+                      organisation_identification: SKIPPED
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
         '400':
           description: 400 Bad Request Error response
           content:
