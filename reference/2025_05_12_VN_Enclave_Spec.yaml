@@ -409,6 +409,9 @@ paths:
                           description: >
                             An object containing information about the Owner's
                             information when the type is **VerifyBeneficiary**.
+                          required:
+                            - name
+                            - identification
                           properties:
                             name:
                               type: string
@@ -419,6 +422,8 @@ paths:
                               properties:
                                 name:
                                   type: object
+                                  required:
+                                    - first_name
                                   properties:
                                     first_name:
                                       type: string
@@ -441,6 +446,8 @@ paths:
                                   properties:
                                     date_and_place_of_birth:
                                       type: object
+                                      required:
+                                        - birth_date
                                       properties:
                                         birth_date:
                                           type: string
