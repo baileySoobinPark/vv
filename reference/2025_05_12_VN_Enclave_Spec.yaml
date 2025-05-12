@@ -7,9 +7,13 @@ paths:
     get:
       operationId: VerifyNameListVASP
       summary: List VASP API
-      description: |
+      description: >
         This API provides a list of VASPs registered with VerifyVASP.
-        The list is used during the withdrawal process to select the Beneficiary VASP. After retrieving the VASP list through this API, the vaspId field of the selected VASP can be used when initiating a verification request.
+
+        The list is used during the withdrawal process to select the Beneficiary
+        VASP. After retrieving the VASP list through this API, the vaspId field
+        of the selected VASP can be used when initiating a verification request.
+
 
         ### VASP Eligibility Criteria
           The list includes your VASP and other VASPs that meet the following criteria:
@@ -30,7 +34,7 @@ paths:
               Must be a UUID format.
             example: VERIFY-NAME
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -41,11 +45,20 @@ paths:
                 properties:
                   verificationResult:
                     type: object
-                    description: |
-                      The values of the **verification_result** has to be one of the following values.
-                      - **MATCHED**: The value of request from beneficiary VASP is matched with the information from originating VASP. 
-                      - **MISMATCHED**: The value of request from beneficiary VASP is mismatched with the information from originating VASP.
-                      - **SKIPPED**: The beneficiary VASP does not provide the value of request or The originating VASP does not provide the value of request.
+                    description: >
+                      The values of the **verification_result** has to be one of
+                      the following values.
+
+                      - **MATCHED**: The value of request from beneficiary VASP
+                      is matched with the information from originating VASP. 
+
+                      - **MISMATCHED**: The value of request from beneficiary
+                      VASP is mismatched with the information from originating
+                      VASP.
+
+                      - **SKIPPED**: The beneficiary VASP does not provide the
+                      value of request or The originating VASP does not provide
+                      the value of request.
                     required:
                       - ticker
                       - network
@@ -61,30 +74,38 @@ paths:
                         example: ETH
                       network:
                         type: string
-                        description: |
-                          The network of the virtual asset to be transferred. The network field can be implemented conditionally. Valid values for this field can be found [here]().
+                        description: >
+                          The network of the virtual asset to be transferred.
+                          The network field can be implemented conditionally.
+                          Valid values for this field can be found [here]().
                         example: ETHEREUM
                       address:
                         type: string
                         description: |
                           The address of the wallet storing the virtual asset.
-                        example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       tag:
                         type: string
                         nullable: true
-                        description: |
-                          The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                        example: "3256697931"
+                        description: >
+                          The wallet address tag(secondary address such as XRP,
+                          XLM, EOS, etc...), regardless VerifyOriginator or
+                          VerifyBeneficiary.
+                        example: '3256697931'
                       dti:
                         type: string
-                        description: |
-                          Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                        description: >
+                          Digital Token Identifier (DTI) based on the ISO 24165
+                          standard.
                         example: 4H95J0R2X
                       tx_hash:
                         type: string
-                        description: |
-                          Unique identifier of the transaction. If the value of **VerifyOriginator** is **type**, this field must be required.
-                        example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        description: >
+                          Unique identifier of the transaction. If the value of
+                          **VerifyOriginator** is **type**, this field must be
+                          required.
+                        example: >-
+                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                       debtor:
                         type: object
                         properties:
@@ -103,7 +124,7 @@ paths:
                           identification:
                             private_identification:
                               date_and_place_of_birth:
-                                date_of_birth: 1990-01-01
+                                date_of_birth: '1990-01-01'
               examples:
                 successExample:
                   value:
@@ -124,8 +145,8 @@ paths:
                           identification:
                             private_identification:
                               date_and_place_of_birth:
-                                birth_date: 2025-01-01
-        "400":
+                                birth_date: '2025-01-01'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -150,8 +171,10 @@ paths:
                 401ErrorExample:
                   value:
                     code: INVALID-ENCLAVE-MODE
-                    message: mode is invalid value. The allowed modes [TR, VN1_CALL, VN1_RESPONSE, VN2]
-        "408":
+                    message: >-
+                      mode is invalid value. The allowed modes [TR, VN1_CALL,
+                      VN1_RESPONSE, VN2]
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -160,10 +183,12 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       Error message.  
 
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -184,7 +209,7 @@ paths:
       tags:
         - VN Enclave API
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -195,12 +220,12 @@ paths:
                     type: string
                     description: |
                       Unique identifier of VASP.
-                    example: "15952089931162060684"
+                    example: '15952089931162060684'
               examples:
                 successfulExample:
                   value:
-                    vaspId: "15952089931162058999"
-        "400":
+                    vaspId: '15952089931162058999'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -209,8 +234,9 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
-                      Error message.   - Invalid input parameters - Missing Required Parameters - Inactive VASP
+                    description: >
+                      Error message.   - Invalid input parameters - Missing
+                      Required Parameters - Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -221,8 +247,8 @@ paths:
                 400Errorexample:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -231,20 +257,26 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
-                      Error message.   It could be returned in the following cases:   - When request with a non-existent resources is provided.
+                    description: >
+                      Error message.   It could be returned in the following
+                      cases:   - When request with a non-existent resources is
+                      provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
                     description: |
                       Explanation about the error that is returned in CODE.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404Errorexample:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -253,8 +285,10 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
-                      Error message.   It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+                    description: >
+                      Error message.   It could be returned in the following
+                      cases:   When a timeout occurs during the processing of a
+                      request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -272,14 +306,27 @@ paths:
       tags:
         - VN Enclave API
       summary: Request Owner Verification API
-      description: |
-        - VASP can use this API to verify the Beneficiary address or TxHash of Originator.
-        - Your VASP can verify details using optional fields such as network, tag, dti etc.
-        - Your VASP can call this API to verify the originator when your VASP detect the deposit of virtual assets or verify the beneficiary before executing the virtual asset transfer transaction. 
+      description: >
+        - VASP can use this API to verify the Beneficiary address or TxHash of
+        Originator.
+
+        - Your VASP can verify details using optional fields such as network,
+        tag, dti etc.
+
+        - Your VASP can call this API to verify the originator when your VASP
+        detect the deposit of virtual assets or verify the beneficiary before
+        executing the virtual asset transfer transaction. 
+
 
         ### Owner Verification Result
-        - The result of the verification is returned in the response body of the API.
-        - The verification results for the following items — ticker, network, address, tx_hash, dti, name, birth_date, date_of_incorporation, and organisation_identification — can be returned as one of the following values: 
+
+        - The result of the verification is returned in the response body of the
+        API.
+
+        - The verification results for the following items — ticker, network,
+        address, tx_hash, dti, name, birth_date, date_of_incorporation, and
+        organisation_identification — can be returned as one of the following
+        values: 
           - MATCHED
           - MISMATCHED
           - SKIPPED
@@ -290,206 +337,186 @@ paths:
             schema:
               type: object
               required:
-                - providerVaspId
-                - type
-                - symbol
-                - txHash
-                - payload
-              description: ""
+                - supplementary_data
               properties:
-                providerVaspId:
-                  type: string
-                  description: |
-                    Unique identifier of VASP that supporting VerifyName.
-                  example: "15952089931162060684"
-                type:
-                  type: string
-                  enum:
-                    - VerifyOriginator
-                    - VerifyBeneficiary
-                  description: |
-                    Indication of verification type.  
-
-                    Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
-                  example: VerifyOriginator
-                symbol:
-                  type: string
-                  description: |
-                    Symbol of the virtual asset to be transferred.
-                  example: ETH
-                txHash:
-                  type: string
-                  description: |
-                    Unique identifier of the transaction.  
-                    It's required when **type** is **VerifyOriginator**.
-                  example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                payload:
+                supplementary_data:
                   type: object
                   required:
-                    - version
-                    - ivms101
-                  description: |
-                    An Object containing IVMS101 formatted data and the version of IVMS101 protocol.
+                    - envelope
                   properties:
-                    version:
-                      type: string
-                      description: |
-                        Version of IVMS101 messaging protocol.
-                      example: "1.0"
-                    ivms101:
+                    envelope:
                       type: object
                       required:
-                        - beneficiary
-                        - account
-                      description: |
-                        An object containing IVMS101 formatted data.  
-                        It includes the information of the Beneficiary and the wallet address.
+                        - vasp_id
+                        - type
+                        - ticker
+                        - address
                       properties:
-                        beneficiary:
-                          type: object
-                          required:
-                            - beneficiaryPersons
+                        vasp_id:
+                          type: string
+                          description: >
+                            Unique identifier of Originator or Beneficiary
+                            VASP..
+                          example: '15952089931162060684'
+                        type:
+                          type: string
+                          enum:
+                            - VerifyOriginator
+                            - VerifyBeneficiary
+                          description: "Indication of verification type. Acceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+                          example: VerifyOriginator
+                        ticker:
+                          type: string
                           description: |
-                            An object containing information about the Beneficiary.
+                            The symbol of the virtual asset to be transferred.
+                          example: ETH
+                        network:
+                          type: string
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
+                            Valid values for this field can be found [here]().
+                          example: ETHEREUM
+                        address:
+                          type: string
+                          description: |
+                            The address of the wallet storing the virtual asset.
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                        tag:
+                          type: string
+                          nullable: true
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
+                        dti:
+                          type: string
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
+                          example: 4H95J0R2X
+                        tx_hash:
+                          type: string
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **VerifyOriginator** is **type**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        creditor:
+                          type: object
                           properties:
-                            beneficiaryPersons:
-                              type: array
-                              description: |
-                                An array containing information about the natural person.
-                              items:
-                                type: array
-                                description: |
-                                  Array for personal information of Beneficiary.  
-                                  It includes the information of the name, address, etc, for individuals or corporations.
-                                items:
+                            name:
+                              type: string
+                              example: JHON DOE
+                            supplementary_data:
+                              type: object
+                            identification:
+                              type: object
+                              properties:
+                                private_identification:
                                   type: object
-                                  enum:
-                                    - naturalPerson
-                                    - legalPerson
-                                  description: |
-                                    An object containing information about the Beneficiary.
                                   properties:
-                                    naturalPerson:
+                                    date_and_place_of_birth:
+                                      type: object
+                                      properties:
+                                        birth_date:
+                                          type: string
+                                          description: >
+                                            Date of birth.  
+
+                                            The format of this field must follow
+                                            "YYYY-MM-DD"
+                                          example: '1985-03-14'
+                                organisation_identification:
+                                  type: object
+                                  required:
+                                    - supplementary_data
+                                  properties:
+                                    supplementary_data:
                                       type: object
                                       required:
-                                        - name
-                                        - dateAndPlaceOfBirth
-                                      description: |
-                                        An object containing information about natural person.
+                                        - envelope
                                       properties:
-                                        name:
+                                        envelope:
                                           type: object
                                           required:
-                                            - nameIdentifier
-                                          description: |
-                                            An object containing information of name.
+                                            - date_of_incorporation
                                           properties:
-                                            nameIdentifier:
-                                              type: array
-                                              description: Name identifier
-                                              items:
-                                                type: object
-                                                required:
-                                                  - primaryIdentifier
-                                                  - nameIdentifierType
-                                                properties:
-                                                  primaryIdentifier:
-                                                    type: string
-                                                    description: |
-                                                      The basic elements of a name.  
-                                                      You must enter the last name of Beneficiary.  
-                                                      If it is difficult to separate the name into first and last name, it is acceptable to enter the full name in the **primaryIdentifier**.
-                                                    example: Hong
-                                                  secondaryIdentifier:
-                                                    type: string
-                                                    description: |
-                                                      The basic elements of a name.  
-                                                      You must enter the first name of Beneficiary.   Alternatively, you can enter your middle name along with your first name in this field.
-                                                    example: Gildong
-                                                  nameIdentifierType:
-                                                    type: string
-                                                    enum:
-                                                      - ALIA
-                                                      - BIRT
-                                                      - MAID
-                                                      - LEGL
-                                                      - MISC
-                                                    description: |
-                                                      The type of name identifier.    
-
-                                                        The following values can be included:  
-                                                        **ALIA:** An alias name commonly known apart from the legal name.  
-                                                        **BIRT:** A birth name.  
-                                                        **MAID:** The original name used before a surname change due to marriage.  
-                                                        **LEGL:** A legally or officially registered name.  
-                                                        **MISC:** Other names that do not fall under the above categories.
-                                                    example: LEGL
-                                            localNameIdentifier:
-                                              type: array
-                                              items:
-                                                type: object
-                                                required:
-                                                  - primaryIdentifier
-                                                  - nameIdentifierType
-                                                properties:
-                                                  primaryIdentifier:
-                                                    type: string
-                                                    description: |
-                                                      The basic elements of a name expressed in the languages of each country.  
-                                                      You must enter the last name of Beneficiary.  
-                                                      If it is difficult to separate the name into first and last names, it is acceptable to enter the full name in the **primaryIdentifier**.
-                                                    example: 홍
-                                                  secondaryIdentifier:
-                                                    type: string
-                                                    description: |
-                                                      The basic elements of a name expressed in the languages of each country.  
-                                                      You must enter the first name of Beneficiary. Alternatively, you can enter your middle name along with your first name in this field.
-                                                    example: 길동
-                                                  nameIdentifierType:
-                                                    type: string
-                                                    enum:
-                                                      - ALIA
-                                                      - BIRT
-                                                      - MAID
-                                                      - LEGL
-                                                      - MISC
-                                                    description: |
-                                                      The type of name identifier. 
-
-                                                        The following values can be included:  
-                                                        **ALIA:** An alias name commonly known apart from the legal name.  
-                                                        **BIRT:** A birth name.  
-                                                        **MAID:** The original name used before a surname change due to marriage.  
-                                                        **LEGL:** A legally or officially registered name.  
-                                                        **MISC:** Other names that do not fall under the above categories.
-                                                    example: LEGL
-                                        dateAndPlaceOfBirth:
-                                          type: object
-                                          enum:
-                                            - dateOfBirth
-                                          properties:
-                                            dateOfBirth:
+                                            date_of_incorporation:
                                               type: string
                                               description: |
-                                                Date of birth.  
-                                                The format of this field must follow "YYYY-MM-DD"
-                                              example: 1985-03-14
-                        accountNumber:
-                          type: array
-                          description: |
-                            An array containing the wallet address.
-                          items:
-                            type: string
+                                                Date of incorporation.
+                                              example: '2025-01-01'
+                                    lei:
+                                      type: string
+                                      description: |
+                                        Legal Entity Identifier (LEI).
+                                      example: 506700GE1G29325QX363
+                                    bic:
+                                      type: string
+                                      description: >
+                                        Business Identifier Code (BIC). A code
+                                        defined in accordance with the ISO 9362
+                                        standard for identifying financial and
+                                        non-financial institutions.
+
+                                        - also known as a SWIFT code, is an 8-11
+                                        character code used to identify banks
+                                        and their branches globally.
+                                      example: HBUKGB4B
+                                    other:
+                                      type: object
+                                      description: >
+                                        MATCHED is returned only if both the
+                                        provided identification and issuer
+                                        exactly match the values stored in the
+                                        Enclave server.
+                                      required:
+                                        - identification
+                                        - issuer
+                                      properties:
+                                        identification:
+                                          type: string
+                                          description: |
+                                            Business Registration Number.
+                                          example: 5493001KJTIIGC8Y1R12
+                                        issuer:
+                                          type: string
+                                          description: >
+                                            Issuing Authority for the Business
+                                            Registration Number
+                                          example: ISO17442
+                        debtor:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: JHON DOE
+                            supplementary_data:
+                              type: object
+                          example:
+                            name: JHON DOE
+                            supplementary_data:
+                              envelope:
+                                name:
+                                  first_name: JHON
+                                  last_name: DOE
+                            identification:
+                              private_identification:
+                                date_and_place_of_birth:
+                                  date_of_birth: '1990-01-01'
             examples:
               requestExamples:
                 value:
                   supplementarty_data:
                     envelope:
-                      vasp_id: "15952089931162060684"
+                      vasp_id: '15952089931162060684'
                       type: VerifyBeneficiary
                       ticker: ETH
                       network: ETH
-                      address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                      address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                   creditor:
                     name: HONG KIL DONG
                     supplementary_data:
@@ -500,9 +527,9 @@ paths:
                         identification:
                           private_identification:
                             date_and_place_of_birth:
-                              birth_date: 2025-01-01
+                              birth_date: '2025-01-01'
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -515,17 +542,28 @@ paths:
                 properties:
                   request_id:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the Owner Verification request.
-                      The format of `request_id` must follow the UUID v4 standard.
+
+                      The format of `request_id` must follow the UUID v4
+                      standard.
                     example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                   verificateion_results:
                     type: object
-                    description: |
-                      The values of the **verification_result** has to be one of the following values.
-                      - **MATCHED**: The value of request from beneficiary VASP is matched with the information from originating VASP. 
-                      - **MISMATCHED**: The value of request from beneficiary VASP is mismatched with the information from originating VASP.
-                      - **SKIPPED**: The beneficiary VASP does not provide the value of request or The originating VASP does not provide the value of request.
+                    description: >
+                      The values of the **verification_result** has to be one of
+                      the following values.
+
+                      - **MATCHED**: The value of request from beneficiary VASP
+                      is matched with the information from originating VASP. 
+
+                      - **MISMATCHED**: The value of request from beneficiary
+                      VASP is mismatched with the information from originating
+                      VASP.
+
+                      - **SKIPPED**: The beneficiary VASP does not provide the
+                      value of request or The originating VASP does not provide
+                      the value of request.
                     required:
                       - ticker
                       - network
@@ -541,30 +579,38 @@ paths:
                         example: ETH
                       network:
                         type: string
-                        description: |
-                          The network of the virtual asset to be transferred. The network field can be implemented conditionally. Valid values for this field can be found [here]().
+                        description: >
+                          The network of the virtual asset to be transferred.
+                          The network field can be implemented conditionally.
+                          Valid values for this field can be found [here]().
                         example: ETHEREUM
                       address:
                         type: string
                         description: |
                           The address of the wallet storing the virtual asset.
-                        example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       tag:
                         type: string
                         nullable: true
-                        description: |
-                          The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                        example: "3256697931"
+                        description: >
+                          The wallet address tag(secondary address such as XRP,
+                          XLM, EOS, etc...), regardless VerifyOriginator or
+                          VerifyBeneficiary.
+                        example: '3256697931'
                       dti:
                         type: string
-                        description: |
-                          Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                        description: >
+                          Digital Token Identifier (DTI) based on the ISO 24165
+                          standard.
                         example: 4H95J0R2X
                       tx_hash:
                         type: string
-                        description: |
-                          Unique identifier of the transaction. If the value of **VerifyOriginator** is **type**, this field must be required.
-                        example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        description: >
+                          Unique identifier of the transaction. If the value of
+                          **VerifyOriginator** is **type**, this field must be
+                          required.
+                        example: >-
+                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                       debtor:
                         type: object
                         properties:
@@ -583,18 +629,20 @@ paths:
                           identification:
                             private_identification:
                               date_and_place_of_birth:
-                                date_of_birth: 1990-01-01
+                                date_of_birth: '1990-01-01'
                   verified_at:
                     type: string
                     description: |
                       The timestamp when the verification was verified.
-                    example: 2021-09-27T01:48:40.326Z || 2021-09-27T01:48:40.326+00:00 || 20210927T014840.326Z
+                    example: >-
+                      2021-09-27T01:48:40.326Z || 2021-09-27T01:48:40.326+00:00
+                      || 20210927T014840.326Z
               examples:
                 successExample1:
                   value:
                     mode: SYNC
                     verificationResult: VERIFIED
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -619,7 +667,7 @@ paths:
                 401ErrorExample:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
+                    message: '`requiredBeneficiaryInfo` is required.'
 components:
   securitySchemes:
     Authorization:
