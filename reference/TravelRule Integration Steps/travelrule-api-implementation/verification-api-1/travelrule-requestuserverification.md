@@ -21,6 +21,7 @@ excerpt: >
         - Name: Verify that the Beneficiary's name matches the existing records.
         - Address: Verify that the account number or wallet address matches the existing records.
 
+
   **2. Compliance Assurance**
 
     The verification process must ensure regulatory compliance by performing the following checks and validations for the Beneficiary:
@@ -29,12 +30,14 @@ excerpt: >
     - **STR Monitoring and Sanction Screening**: Perform Suspicious Transaction Reporting (STR) analysis and sanction screening for the Originator.
     - **Additional Filtering**: Your VASP may conduct extra filtering or verification of the provided personal information for both the Originator and Beneficiary
 
+
   **3. Responding to Originating VASP Data Requests**
 
     Your VASP (Beneficiary VASP) must provide all information requested by the Originating VASP in the requiredBeneficiaryInfo object during the verification process, by filling and returning the ivms101 object with the data.
     - If your VASP does not have or cannot provide the requested information, the API must set verificationResult to `DENIED` and reason to `UNAVAILABLE-INFORMATION`.
     - Only the information explicitly requested in requiredBeneficiaryInfo should be filled. Any fields not requested by the Originating VASP must remain empty.
     - The beneficiary account number (or wallet address) must be returned without modification. Altering the wallet address may result in incorrect deposits. If the deposit address is invalid or incorrect, the API must set verificationResult to `DENIED`.
+
 
   **4. Responding with Additional Beneficiary Information and Verification
   Results**
@@ -45,7 +48,9 @@ excerpt: >
     
     Upon successful user verification, the API must return additional personal information about the Beneficiary in the IVMS101 messaging format.
 
+
   **5. Failure Reason Specification**
+
     When the result field is set to `DENIED`, the reason field in the response must specify the reason for the failure. The allowed values for this field are as follows:
 
   | Reason Code             | Message                            | Description |
