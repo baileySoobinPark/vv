@@ -1759,6 +1759,12 @@ paths:
                 properties:
                   vaspId:
                     type: object
+                    required:
+                      - transaction_status
+                      - request_id
+                      - reported_result
+                      - ordered_at
+                      - tx_hash
                     properties:
                       transaction_status:
                         type: string
