@@ -414,7 +414,6 @@ paths:
                               type: string
                               description: |
                                 The name of the Owner.
-                              example: JHON DOE
                             supplementary_data:
                               type: object
                               properties:
@@ -444,13 +443,18 @@ paths:
                                       type: object
                                       properties:
                                         birth_date:
-                                          type: string
-                                          description: >
-                                            Date of birth.  
+                                          type: object
+                                          enum:
+                                            - dateOfBirth
+                                          properties:
+                                            dateOfBirth:
+                                              type: string
+                                              description: >
+                                                Date of birth.  
 
-                                            The format of this field must follow
-                                            "YYYY-MM-DD"
-                                          example: '1985-03-14'
+                                                The format of this field must follow
+                                                "YYYY-MM-DD"
+                                              example: '1985-03-14'
                                 organisation_identification:
                                   type: object
                                   description: >
