@@ -673,27 +673,27 @@ paths:
                       ticker:
                         type: string
                         description: |
-                          The result of the verification of the ticker.
+                          The result of the Ticker verification.
                         example: MATCHED
                       network:
                         type: string
                         description: |
-                          The result of the verification of the network.
+                          The result of the Network verification.
                         example: MATCHED
                       address:
                         type: string
                         description: |
-                          The result of the verification of the Address.
+                          The result of the Address verification.
                         example: MATCHED
                       tx_hash:
                         type: string
                         description: |
-                          The result of the verification of the Tx_Hash.
+                          The result of the Tx_Hash verification.
                         example: MATCHED
                       dti:
                         type: string
                         description: |
-                          The result of the verification of the DTI.
+                          The result of the DTI verification.
                         example: MATCHED
                       name:
                         type: string
@@ -703,19 +703,18 @@ paths:
                       birth_date:
                         type: string
                         description: |
-                          The result of the verification of the Date of Birth.
+                          The result of the Date of Birth verification.
                         example: SKIPPED
                       date_of_incorporation:
                         type: string
-                        description: >
-                          The result of the verification of the Date of
-                          Incorporation.
+                        description: |
+                          The result of the Date of Incorporation verification.
                         example: SKIPPED
                       organisation_identification:
                         type: string
                         description: >
-                          The result of the verification of the Organisation
-                          Identification.
+                          The result of the Organisation Identification
+                          verification.
                         example: 'SKIPPED '
                   verified_at:
                     type: string
@@ -1079,50 +1078,49 @@ paths:
                             ticker:
                               type: string
                               description: |
-                                The result of the verification of the ticker.
+                                The result of the Ticker verification.
                               example: MATCHED
                             network:
                               type: string
                               description: |
-                                The result of the verification of the network.
+                                The result of the Network verification.
                               example: MATCHED
                             address:
                               type: string
                               description: |
-                                The result of the verification of the Address.
+                                The result of the Address verification.
                               example: MATCHED
                             tx_hash:
                               type: string
                               description: |
-                                The result of the verification of the Tx_Hash.
+                                The result of the Tx_Hash verification.
                               example: MATCHED
                             dti:
                               type: string
                               description: |
-                                The result of the verification of the DTI.
+                                The result of the DTI verification.
                               example: MATCHED
                             name:
                               type: string
                               description: |
-                                The result of the verification of the Name.
+                                The result of the Name verification.
                               example: MATCHED
                             birth_date:
                               type: string
-                              description: >
-                                The result of the verification of the Date of
-                                Birth.
+                              description: |
+                                The result of the Date of Birth verification.
                               example: SKIPPED
                             date_of_incorporation:
                               type: string
                               description: >
-                                The result of the verification of the Date of
-                                Incorporation.
+                                The result of the Date of Incorporation
+                                verification.
                               example: SKIPPED
                             organisation_identification:
                               type: string
                               description: >
-                                The result of the verification of the
-                                Organisation Identification.
+                                The result of the Organisation Identification
+                                verification.
                               example: 'SKIPPED '
                         reported_result:
                           type: string
