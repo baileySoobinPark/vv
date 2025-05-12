@@ -1721,6 +1721,230 @@ paths:
                     message: >-
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
+  /v2/owner-verifications/{request_id}/tx/inquiry:
+    post:
+      summary: Check Transaction Status API
+      description: >
+        This API is called by the Beneficiary VASP when it cannot confirm the
+        results of the Report Transaction Result or Report Error API for a
+        verified user within a certain timeframe.
+
+
+        **Implementation Guide**
+          1. When the Beneficiary VASP detects an incoming deposit, it should first call the Owner Verification Result Lookup API with the tx_hash filter to check for any matching owner verification records.
+          2. If no matching tx_hash is found, the Beneficiary VASP can wait for a certain period for the Originating VASP to call the Transaction Report API.
+          3. After this waiting period, if no transaction report has been received from the Originating VASP, the Beneficiary VASP can use the Owner Verification Result Lookup API to identify potential candidate owner verifications.
+          4. To narrow down the candidates, search using the deposit’s detected from address and to address as the originatorAccountNumber and beneficiaryAccountNumber, respectively.
+          5. For the filtered candidate owner verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
+      operationId: VNcheckTransactionStatus
+      tags:
+        - VN Enclave API
+      parameters:
+        - name: request_id
+          in: path
+          required: true
+          schema:
+            type: string
+            description: |
+              A unique identifier for the Owner Verification request.
+              The format of `request_id` must follow the UUID v4 standard.
+            example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vaspId:
+                    type: object
+                    properties:
+                      transaction_status:
+                        type: string
+                        enum:
+                          - PENDING
+                          - PROCESSING
+                          - WAIT-CONFIRM
+                          - CONFIRMED
+                          - CALCENED
+                        description: >
+                          Current status of the virtual asset transaction.
+
+
+                          Details of each state:
+
+                          - **PENDING**: The Originating VASP has not yet
+                          executed the virtual asset transaction.
+
+                          - **PROCESSING**:The virtual asset transaction has
+                          been initiated and is awaiting mining.
+
+                          - **WAIT-CONFIRM**: The transaction has been mined but
+                          the block containing it has not achieved finality.
+
+                          - **CONFIRMED**: The virtual asset transaction has
+                          been mined, and the block containing the transaction
+                          has achieved finality.
+
+                          - **CANCELED**: The Originating VASP has permanently
+                          canceled the transaction for a specific reason.
+                        example: PROCESSING
+                      request_id:
+                        type: string
+                        description: >
+                          A unique identifier for the Owner Verification
+                          request.
+
+                          The format of `request_id` must follow the UUID v4
+                          standard.
+                        example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                      reported_result:
+                        type: string
+                        enum:
+                          - VERIFIED
+                          - DENIED
+                          - ERROR
+                        description: |
+                          The result of the Owner Verification.
+                        example: VERIFIED
+                      ordered_at:
+                        type: string
+                        description: >
+                          The timestamp indicating when the transaction hash was
+                          reported.
+
+                          This field must follow the UTC ISO 8601 datetime
+                          representation standard.
+                        example: '2025-04-21T04:16:01.339Z'
+                      tx_hash:
+                        type: string
+                        description: >
+                          Unique identifier of the transaction. If the value of
+                          **VerifyOriginator** is **type**, this field must be
+                          required.
+                        example: >-
+                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                      vout:
+                        type: string
+                        description: >
+                          In cases where multiple transfers can be included in a
+                          single transaction, such as Bitcoin, an index value
+                          indicating which transfer corresponds to within a
+                          single transaction
+                        example: '0'
+                      reason:
+                        type: string
+                        enum:
+                          - MISMATCH-TICKER
+                          - MISMATCH-NETWORK
+                          - MISMATCH-ADDRESS
+                          - MISMATCH-NAME
+                          - MISMATCH-DTI
+                          - MISMATCH-DATE-OF-INCORPORATION
+                          - MISMATCH-BIRTH-DATE
+                          - MISMATCH-ORGANISATION-IDENTIFICATION
+                          - TRANSFER-ERROR
+                          - UNDEFINED-ERROR
+                        description: >
+                          A field that provides the reason when the
+                          `verification_result` is `DENIED` or `ERROR`. This
+                          field is required when returning `DENIED` or `ERROR`
+                          as the `verification_result`.
+                        example: MISMATCH-TICKER
+                      message:
+                        type: string
+                        description: >
+                          A field that provides a message when the
+                          `verification_result` is `DENIED` or `ERROR`.
+                        example: Transfer Error
+              examples:
+                successfulExample:
+                  value:
+                    transaction_status: CONFIRMED
+                    request_id: ecbacf57-f813-4670-934a-5c4537fec869
+                    reported_result: VERIFIED
+                    ordered_at: '2025-04-22T08:35:24.760Z'
+                    tx_hash: >-
+                      0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58
+        '400':
+          description: 400 Bad Request Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: |
+                      Error message.  
+
+                      It could be returned in the following cases.  
+                        1. Invalid input parameters.  
+                        2. Missing Required Parameters.
+                    example: MISSING-VERIFICATION-UUID
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: verificationUuid` is required.
+              examples:
+                401ErrorExample:
+                  value:
+                    code: MISSING-REQUIRED-BENEFICIARY-INFO
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
+          description: 404 Resource Not Found Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: >
+                      Error message. It could be returned in the following
+                      cases: - When request with a non-existent resources is
+                      provided.
+                    example: OWNER-VERIFICATION-NOT-FOUND
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: Owner Verification requestId(1234) is not found
+              examples:
+                404Errorexample:
+                  value:
+                    code: VERIFICATION-NOT-FOUND
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
+          description: 408 Request Timeout Error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: >
+                      Error message.  
+
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
+                    example: REQUEST-TIMEOUT
+                  message:
+                    type: string
+                    description: |
+                      Explanation about the error that is returned in **code**.
+                    example: timeout of 5000ms exceeded
+              examples:
+                408ErrorExample:
+                  value:
+                    code: REQUEST-TIMEOUT
+                    message: timeout of 5000ms exceeded
 components:
   securitySchemes:
     Authorization:
