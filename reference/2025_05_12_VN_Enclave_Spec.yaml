@@ -1211,7 +1211,7 @@ paths:
                             - REPORTED
                             - INQUIRIED
                             - ERROR
-                          example: PENDING
+                          example: REQUESTED
                         verified_at:
                           type: string
                           description: >
@@ -1228,13 +1228,7 @@ paths:
                             was reported.
 
                             This field must follow the UTC ISO 8601 datetime
-                            representation standard. - **Recommendations**:
-                              - To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.
-                                - Other ISO 8601 Acceptable Formats:
-                                  - Basic format("YYYYMMDDThhmmss.sssZ")
-                                  - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                            - **Implementation Note**
-                              - While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+                            representation standard.
                           example: '2025-04-21T04:16:01.339Z'
                         updated_at:
                           type: string
