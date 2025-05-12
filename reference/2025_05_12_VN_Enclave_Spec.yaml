@@ -521,17 +521,21 @@ paths:
                           description: >
                             An object containing information about the Owner's
                             information when the type is **VerifyBeneficiary**.
+                          required:
+                            - name
+                            - identification
                           properties:
                             name:
                               type: string
                               description: |
                                 The name of the Owner.
-                              example: JHON DOE
                             supplementary_data:
                               type: object
                               properties:
                                 name:
                                   type: object
+                                  required:
+                                    - first_name
                                   properties:
                                     first_name:
                                       type: string
@@ -554,15 +558,14 @@ paths:
                                   properties:
                                     date_and_place_of_birth:
                                       type: object
+                                      required:
+                                        - birth_date
                                       properties:
                                         birth_date:
                                           type: string
-                                          description: >
-                                            Date of birth.  
-
-                                            The format of this field must follow
-                                            "YYYY-MM-DD"
-                                          example: '1985-03-14'
+                                          description: |
+                                            Date of Birth.
+                                          example: '2025-01-01'
                                 organisation_identification:
                                   type: object
                                   description: >
