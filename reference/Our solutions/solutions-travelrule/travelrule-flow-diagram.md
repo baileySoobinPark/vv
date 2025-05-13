@@ -143,7 +143,7 @@ To enhance risk assessment for asset transfer transactions, VASPs can optionally
 
 Each API targets different aspects of risk assessment, allowing VASPs to select and utilize the service that best aligns with their compliance and operational requirements. VerifyVASP Enclave facilitates these integrations by providing an interface to request risk assessments using verification UUID. This approach streamlines the process, eliminating the need for VASPs to separately manage data for transactions that have already undergone verification.
 
-For detailed instructions on using each API, refer to the [enclave screening API documentation]() .
+For detailed instructions on using each API, refer to the [enclave screening API documentation](ref:travelrule-Chainalysis-Sanction) .
 
 ### 1. Chainalysis Sanction API Integration
 
