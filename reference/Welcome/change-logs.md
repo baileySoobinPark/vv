@@ -56,7 +56,7 @@ metadata:
 * To minimize wallet address or transaction ID mismatches, we provide the Wallet address and transaction ID standards.
 * To improve security, the Enclave server has been modified to operate as a non-root user.
 * Added the option to use a **custom schema** instead of using the public schema when using PostgreSQL.
-  * Please refer to the `VEGA_DATABASE_SEARCH_PATH` environment variable in [Enclave Installation & Execution]() .
+  * Please refer to the `VEGA_DATABASE_SEARCH_PATH` environment variable in [Enclave setup](ref:travelrule-enclave-setup) .
 
 ### Enclave Bugfix
 
@@ -71,13 +71,13 @@ metadata:
 
 * Added the vout field.
   * Added the `vout` field to the Request body.
-    * Enclave API : [Transaction Result Report API]()
-    * VASP API : [Callback API]()
+    * Enclave API : [Transaction Result Report API](ref:travelrule-enclave-report-Transaction-Result)
+    * VASP API : [Callback API](ref:travelrule-callback)
   * Added the `vout` field to the Response body.
-    * Enclave API : [Transaction Status Query API]() , [Get Verification Result List API]() , [Get Single Verification Result API]()
-    * VASP API : [Transaction Status Query API]()
+    * Enclave API : [Transaction Status Query API](ref:travelrule-enclave-check-Transaction-Status) , [Get Verification Result List API](ref:travelrule-enclave-list-Verification-Result) , [Get Single Verification Result API](ref:travelrule-enclave-get-Verification-Result)
+    * VASP API : [Transaction Status Query API](ref:travelrule-check-Transaction-Status)
   * **(BREAKING CHANGE)** Added the `vout` column to the `verifications` database table.
-    * [verifications table scheme]()
+    * [verifications table scheme](ref:travelrule-database-setup)
 
 <br />
 
@@ -94,9 +94,9 @@ metadata:
 ### Major changes
 
 * Added APIs for Risk Assessment
-  * [Risk Assessment with Chainalysis Sanction API]()
-  * [Risk Assessment with Chainalysis KYT API]()
-  * [Risk Assessment with Refinitiv WCO API]()
+  * [Risk Assessment with Chainalysis Sanction API](ref:travelrule-Chainalysis-Sanction)
+  * [Risk Assessment with Chainalysis KYT API](ref:travelrule-Chainalysis-KYT)
+  * [Risk Assessment with Refinitiv WCO API](ref:travelrule-Refinitiv-WCO)
 * Added the `network` field.
   * Added the `network` field to the Request body.
     * Enclave API : User Account Verification API, User Verification API
