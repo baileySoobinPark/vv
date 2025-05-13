@@ -15,7 +15,7 @@ In the sections that follow, you will discover:
 * A detailed breakdown of each interaction depicted in the sequence diagram.
 * Essential considerations and recommendations to ensure security and regulatory compliance throughout the workflow.
 
-## Post-Verification - From Travel Rule Obliged VASP to Non-Obliged VASP
+## Post-Verification - From Non-Obliged VASP to Travel Rule Obliged VASP
 
 Sequence Diagram 1 illustrates the post-verification flow, detailing how ownership verification between Originator and Beneficiary accounts is conducted after a blockchain transaction is confirmed. This scenario occurs when the unregulated Originating VASP skips the verification process, prompting the regulated Beneficiary VASP to initiate a post-verification request to ensure compliance.
 
