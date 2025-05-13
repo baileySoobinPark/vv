@@ -515,14 +515,10 @@ For detailed API specifications, refer to following Enclave API References.
 
 Once the integration of Enclave API calls is complete, proceed to the testing phase to ensure seamless communication between both endpoints.
 
-[VASP Management API](https://www.notion.so/VASP-Management-API-1dc644f6c0fe80bda8fec1a4394b0bba?pvs=21)
+[VASP Management API](ref:verifyname-get-Vasp-Id)
 
-[Owner Verification API](https://www.notion.so/Owner-Verification-API-1dd644f6c0fe8094ab77fad597227370?pvs=21)
+[Verification API](ref:verifyname-owner-verification)
 
-[Transaction API](https://www.notion.so/Transaction-API-1dd644f6c0fe80ed8e86f75a22c6f4b8?pvs=21)
+[Transaction API](ref:verifyname-check-transaction-status)
 
-[Report API](https://www.notion.so/Report-API-1dd644f6c0fe807597cec72773381dbc?pvs=21)
-
-<br />
-
-// 링크 추가 필요
+[Report API](ref:verifyname-report-transaction-result-or-error)
