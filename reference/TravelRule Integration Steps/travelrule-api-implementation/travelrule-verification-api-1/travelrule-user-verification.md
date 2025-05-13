@@ -129,8 +129,8 @@ excerpt: >
   Set the following environment variables as per the integration guide to
   connect the implemented API with the Enclave.  
 
-  For a complete list of Enclave environment variables, [click here](#) _(link
-  placeholder)_.
+  For a complete list of Enclave environment variables, [click
+  here](ref:travelrule-enclave-setup).
 
 
   - `VEGA_VERIFICATION_API_PATH`  

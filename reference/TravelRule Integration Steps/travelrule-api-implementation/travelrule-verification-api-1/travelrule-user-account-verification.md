@@ -87,7 +87,7 @@ excerpt: >
 
   Set the following environment variables as per the guide to integrate the
   implemented API with the Enclave. For a complete list of Enclave environment
-  variables, [click here]().
+  variables, [click here](ref:travelrule-enclave-setup).
     * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT}) and set this variable accordingly.
     * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 api:

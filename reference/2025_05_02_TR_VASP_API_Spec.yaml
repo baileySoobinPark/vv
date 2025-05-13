@@ -100,7 +100,7 @@ paths:
 
         Set the following environment variables as per the guide to integrate
         the implemented API with the Enclave. For a complete list of Enclave
-        environment variables, [click here]().
+        environment variables, [click here](ref:travelrule-enclave-setup).
           * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT}) and set this variable accordingly.
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
       security:
@@ -394,8 +394,8 @@ paths:
         Set the following environment variables as per the integration guide to
         connect the implemented API with the Enclave.  
 
-        For a complete list of Enclave environment variables, [click here](#)
-        _(link placeholder)_.
+        For a complete list of Enclave environment variables, [click
+        here](ref:travelrule-enclave-setup).
 
 
         - `VEGA_VERIFICATION_API_PATH`  
@@ -1172,7 +1172,7 @@ paths:
 
         Set the following environment variables as per the guide to integrate
         the implemented API with the Enclave. For a complete list of Enclave
-        environment variables, [click here.]()__link__
+        environment variables, [click here.](ref:travelrule-enclave-setup).
           * `VEGA_VERIFICATION_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_TRANSACTION_CHECK}) and set the path in the variable.
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
       security:
@@ -1647,7 +1647,7 @@ paths:
           Since the API response must be returned as quickly as possible, time-consuming tasks within the Callback API should be handled asynchronously.
 
         ## Environment Variable Configuration
-          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here](ref:travelrule-enclave-setup).
           - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
           - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
       security:
@@ -2067,7 +2067,7 @@ paths:
           Then, configure `VEGA_DECRYPT_API_ENDPOINT` to point to a server that wraps AWS KMS. This server can retrieve the encryption key from AWS KMS using the ARN and provide it for decryption purposes.
 
         ## Environment Variable Configuration
-          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here](ref:travelrule-enclave-setup).
           - `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
           - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
       security:

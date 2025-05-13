@@ -39,7 +39,7 @@ excerpt: |
     Then, configure `VEGA_DECRYPT_API_ENDPOINT` to point to a server that wraps AWS KMS. This server can retrieve the encryption key from AWS KMS using the ARN and provide it for decryption purposes.
 
   ## Environment Variable Configuration
-    Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click here.
+    Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here](ref:travelrule-enclave-setup).
     - `VEGA_DECRYPT_API_ENDPOINT`: Implement this API at the desired path({VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY}) and set the path in the variable.
     - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
 api:
