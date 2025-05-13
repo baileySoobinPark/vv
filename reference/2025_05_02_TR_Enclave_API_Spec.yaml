@@ -755,7 +755,7 @@ paths:
         verification process, the result is delivered to the your VASP via the
         callback API, using the verificationUuid. The same UUID can also be used
         to retrieve the verification result at a later time if needed.
-      operationId: etravelrule-encalve-request-User-Verification
+      operationId: travelrule-encalve-request-User-Verification
       tags:
         - Enclave API
       requestBody:
