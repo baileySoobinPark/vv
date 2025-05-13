@@ -48,7 +48,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -74,7 +74,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -100,7 +100,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -289,7 +289,6 @@ paths:
                             Other ISO 8601 Acceptable Formats:
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                               
                             **Implementation Note**  
                               
@@ -349,7 +348,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -375,7 +374,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -401,7 +400,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -623,7 +622,6 @@ paths:
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                         
                       **Implementation Note**  
                         
@@ -682,7 +680,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -708,7 +706,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -734,7 +732,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -877,7 +875,6 @@ paths:
                         Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
                           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
-
                           
                         **Implementation Note**  
                           
@@ -1198,7 +1195,6 @@ paths:
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                         
                       **Implementation Note**  
                         
@@ -1232,7 +1228,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -1258,7 +1254,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -1284,7 +1280,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -1579,7 +1575,6 @@ paths:
                                 timezone.   Other ISO 8601 Acceptable Formats:  
                                   - Basic format("YYYYMMDDThhmmss.sssZ")    
                                   - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
-
                                   
                                 **Implementation Note**  
                                   
@@ -1666,7 +1661,6 @@ paths:
                             timezone.   Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                               
                             **Implementation Note**  
                               
@@ -1725,7 +1719,6 @@ paths:
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                               
                             **Implementation Note**  
                               
@@ -1762,7 +1755,7 @@ paths:
                         originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
                         ivms101Originator: >-
                           {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
-                        ivms101:OriginatingVasp: >-
+                        ivms101OriginatingVasp: >-
                           {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
                           Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
                           Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
@@ -1796,7 +1789,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -1822,7 +1815,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -1848,7 +1841,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -1998,7 +1991,6 @@ paths:
                           Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")    
                             - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
-
                             
                           **Implementation Note**  
                             
@@ -2083,7 +2075,6 @@ paths:
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                         
                       **Implementation Note**  
                         
@@ -2138,7 +2129,6 @@ paths:
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                         
                       **Implementation Note**  
                         
@@ -2204,7 +2194,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2230,7 +2220,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -2256,7 +2246,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -2351,7 +2341,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2377,7 +2367,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -2403,7 +2393,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -2517,7 +2507,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2543,7 +2533,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -2569,7 +2559,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -2691,7 +2681,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2717,7 +2707,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -2743,7 +2733,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -2870,7 +2860,6 @@ paths:
                           Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")  
                             - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
-
                             
                           **Implementation Note**  
                             
@@ -2909,7 +2898,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2932,7 +2921,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: Invalid API Key
               examples:
-                401Errorexample:
+                401 Error Example:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: Invalid API Key
@@ -2958,7 +2947,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -2984,7 +2973,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -3132,7 +3121,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -3155,7 +3144,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: AccessDenied
               examples:
-                403Errorexample:
+                403 Error Example:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: AccessDenied
@@ -3181,7 +3170,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -3207,7 +3196,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -3549,7 +3538,7 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400Errorexample:
+                400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -3572,7 +3561,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: Invalid API Key
               examples:
-                401Errorexample:
+                401 Error Example:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: Invalid API Key
@@ -3598,7 +3587,7 @@ paths:
                       Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
                       found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -3624,7 +3613,7 @@ paths:
                       Explanation about the error that is returned in code.
                     example: timeout of 5000ms exceeded
               examples:
-                408Errorexample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
