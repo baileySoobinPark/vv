@@ -1,4 +1,4 @@
 ---
 title: VN Implementation API
-hidden: false
+hidden: true
 ---
