@@ -1,9 +1,9 @@
 ---
-title: TravelRule Integration Steps
+title: Integration Steps
 excerpt: >-
-  This section provides a structured guide for integrating TravelRule into your
-  VASP system. Each step is detailed in a dedicated page, covering the key
-  actions required for seamless implementation and compliance.
+  This section provides a structured guide for integrating TravelRule or
+  VerifyName into your VASP system. Each step is detailed in a dedicated page,
+  covering the key actions required for seamless implementation and compliance.
 deprecated: false
 hidden: true
 metadata:
