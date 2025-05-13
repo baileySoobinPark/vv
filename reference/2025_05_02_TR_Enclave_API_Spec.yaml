@@ -3,6 +3,8 @@ info:
   title: Travelrule Integration Steps
   version: '1.0'
   description: Management of VerifyVASP API Spec.
+servers:
+  - url: https://<enclave-endpoint>
 paths:
   /v1/vasps/self:
     get:
