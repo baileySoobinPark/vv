@@ -28,6 +28,6 @@ excerpt: >
     - Refer to the Chainalysis Sanction Results Table definition for implementation details.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: Screening_performRiskAssessmentViaChainalysisSanction
+  operationId: travelrule-Chainalysis-Sanction
 hidden: false
 ---

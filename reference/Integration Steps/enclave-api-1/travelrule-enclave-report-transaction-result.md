@@ -11,6 +11,6 @@ excerpt: >
     3. If the transaction's finality is not secured and the virtual asset transfer fails, the Report Error API must be executed immediately to report the error to the VerifyVASP Central server.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_reportTransactionResult
+  operationId: travelrule-enclave-report-Transaction-Result
 hidden: false
 ---

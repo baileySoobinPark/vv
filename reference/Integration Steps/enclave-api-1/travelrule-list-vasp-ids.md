@@ -14,6 +14,6 @@ excerpt: >
     - The VASP is capable of handling asset transfers.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: listVasp
+  operationId: travelrule-list-Vasp-ids
 hidden: false
 ---

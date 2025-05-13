@@ -14,6 +14,6 @@ excerpt: >
     5. For the filtered candidate verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_checkTransactionStatus
+  operationId: travelrule-enclave-check-Transaction-Status
 hidden: false
 ---

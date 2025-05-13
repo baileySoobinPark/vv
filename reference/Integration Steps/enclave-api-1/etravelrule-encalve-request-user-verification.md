@@ -16,6 +16,6 @@ excerpt: >
   verification result at a later time if needed.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_requestUserVerification
+  operationId: etravelrule-encalve-request-User-Verification
 hidden: false
 ---

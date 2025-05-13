@@ -53,15 +53,15 @@ excerpt: >
 
   ### Preparation Requirements
 
-  1. Enclave Environment Variable Configuration: Set
+  1. **Enclave Environment Variable Configuration**: Set
   VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the
   registration process.
 
-  2. Database Table Setup:
+  2. **Database Table Setup**:
     - The Enclave database must include a table to store Chainalysis KYT API call results.
     - Refer to the Chainalysis KYT Results table and the Chainalysis KYT Alerts table for table definitions.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: Screening_performRiskAssessmentViaChainalysisKYT
+  operationId: travelrule-Chainalysis-KYT
 hidden: false
 ---

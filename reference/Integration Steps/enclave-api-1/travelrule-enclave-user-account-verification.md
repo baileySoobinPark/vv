@@ -44,6 +44,6 @@ excerpt: >
   completed the KYC verification process with the Beneficiary VASP. |
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_requestUserAccountVerification
+  operationId: travelrule-Enclave-User-Account-Verification
 hidden: false
 ---

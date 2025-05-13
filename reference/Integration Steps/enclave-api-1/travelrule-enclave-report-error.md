@@ -13,6 +13,6 @@ excerpt: >
     3. Clearly specify the reason for the cancellation in the request. Common reasons may include cases such as the Beneficiary being listed on a Sanction List.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_reportError
+  operationId: travelrule-enclave-report-Error
 hidden: false
 ---

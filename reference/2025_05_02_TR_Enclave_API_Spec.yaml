@@ -9,7 +9,7 @@ paths:
       summary: Get VASP ID API
       description: |
         This API returns your VASP's VASP ID.
-      operationId: getVaspId
+      operationId: travelrule-get-Vasp-Id
       tags:
         - Enclave API
       responses:
@@ -119,7 +119,7 @@ paths:
           The list includes your VASP and other VASPs that meet the following criteria:
           - The VASP is a member of VerifyVASP or another Travel Rule protocol.
           - The VASP is capable of handling asset transfers.
-      operationId: listVasp
+      operationId: travelrule-list-Vasp-ids
       tags:
         - Enclave API
       parameters:
@@ -452,7 +452,7 @@ paths:
 
         | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not
         completed the KYC verification process with the Beneficiary VASP. |
-      operationId: enclave_requestUserAccountVerification
+      operationId: travelrule-Enclave-User-Account-Verification
       tags:
         - Enclave API
       requestBody:
@@ -753,7 +753,7 @@ paths:
         verification process, the result is delivered to the your VASP via the
         callback API, using the verificationUuid. The same UUID can also be used
         to retrieve the verification result at a later time if needed.
-      operationId: enclave_requestUserVerification
+      operationId: etravelrule-encalve-request-User-Verification
       tags:
         - Enclave API
       requestBody:
@@ -1304,7 +1304,7 @@ paths:
         applied using an AND operation to filter the results. For a detailed
         list of supported filters, refer to the Query Parameter section in the
         specification below.
-      operationId: enclave_listVerificationResult
+      operationId: travelrule-enclave-list-Verification-Result
       tags:
         - Enclave API
       parameters:
@@ -1759,8 +1759,8 @@ paths:
                           {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
                           Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
                           Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
-                        benerificaryVaspId: '15952089931162060684'
-                        benerificaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+                        beneficaryVaspId: '15952089931162060684'
+                        beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
                         ivms101Beneficiary: >-
                           {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                         ivms101BeneficiaryVasp: >-
@@ -1851,7 +1851,7 @@ paths:
       description: >
         This API retrieves the result of a specific verification request using
         its unique verification UUID.
-      operationId: enclave_getVerificationResult
+      operationId: travelrule-enclave-get-Verification-Result
       tags:
         - Enclave API
       parameters:
@@ -2160,12 +2160,12 @@ paths:
                     originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
                     ivms101Originator: >-
                       {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
-                    ivms101:OriginatingVasp: >-
+                    ivms101OriginatingVasp: >-
                       {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
                       Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
                       Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
-                    benerificaryVaspId: '15952089931162060684'
-                    benerificaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+                    beneficaryVaspId: '15952089931162060684'
+                    beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
                     ivms101Beneficiary: >-
                       {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                     ivms101BeneficiaryVasp: >-
@@ -2262,7 +2262,7 @@ paths:
           1. Only transactions for which User Verification has been completed should be executed, and the txHash or txId must be reported via calling this API.
           2. As soon as the transaction hash is generated, this API must be called immediately to send the information to the VerifyVASP Central server.
           3. If the transaction's finality is not secured and the virtual asset transfer fails, the Report Error API must be executed immediately to report the error to the VerifyVASP Central server.
-      operationId: enclave_reportTransactionResult
+      operationId: travelrule-enclave-report-Transaction-Result
       tags:
         - Enclave API
       requestBody:
@@ -2411,7 +2411,7 @@ paths:
           1. Use this API to report error situations specifically for canceled virtual asset transfers that have already undergone user verification.
           2. Call this API only if the Originating VASP has permanently canceled the virtual asset transfer.
           3. Clearly specify the reason for the cancellation in the request. Common reasons may include cases such as the Beneficiary being listed on a Sanction List.
-      operationId: enclave_reportError
+      operationId: travelrule-enclave-report-Error
       tags:
         - Enclave API
       requestBody:
@@ -2578,7 +2578,7 @@ paths:
           3. After this waiting period, if no transaction report has been received from the Originating VASP, the Beneficiary VASP can use the Verification Result Lookup API to identify potential candidate verifications.
           4. To narrow down the candidates, search using the deposit’s detected from address and to address as the originatorAccountNumber and beneficiaryAccountNumber, respectively.
           5. For the filtered candidate verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
-      operationId: enclave_checkTransactionStatus
+      operationId: travelrule-enclave-check-Transaction-Status
       tags:
         - Enclave API
       requestBody:
@@ -2766,7 +2766,7 @@ paths:
         2. **Database Table Setup**: 
           - The Enclave database must include a table to store Chainalysis Sanction API call results.
           - Refer to the Chainalysis Sanction Results Table definition for implementation details.
-      operationId: Screening_performRiskAssessmentViaChainalysisSanction
+      operationId: travelrule-Chainalysis-Sanction
       tags:
         - Screening API
       requestBody:
@@ -3036,14 +3036,14 @@ paths:
 
         ### Preparation Requirements
 
-        1. Enclave Environment Variable Configuration: Set
+        1. **Enclave Environment Variable Configuration**: Set
         VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the
         registration process.
 
-        2. Database Table Setup:
+        2. **Database Table Setup**:
           - The Enclave database must include a table to store Chainalysis KYT API call results.
           - Refer to the Chainalysis KYT Results table and the Chainalysis KYT Alerts table for table definitions.
-      operationId: Screening_performRiskAssessmentViaChainalysisKYT
+      operationId: travelrule-Chainalysis-KYT
       tags:
         - Screening API
       requestBody:
@@ -3220,21 +3220,21 @@ paths:
 
         ### Preparation Requirements
 
-        1. Enclave Environment Variable Configuration:
-          - Set VEGA_REFINITIV_WCO_API_KEY variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
-          - Set VEGA_REFINITIV_WCO_API_SECRET variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
-          - Set VEGA_REFINITIV_WCO_GROUP_ID variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
-        2. Use the SEQ-pre-groups: Get my top-level groups request from the
-        Group Information folder in the Refinitiv WCO API Quick Start Postman
-        Collection.
+        1. **Enclave Environment Variable Configuration**:
+          - Set `VEGA_REFINITIV_WCO_API_KEY` variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
+          - Set `VEGA_REFINITIV_WCO_API_SECRET` variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
+          - Set `VEGA_REFINITIV_WCO_GROUP_ID` variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
+        2. **Use the SEQ-pre-groups**: Get my top-level groups request from the
+        Group Information folder in the [Refinitiv WCO API Quick Start Postman
+        Collection](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start).
 
-        3. Set the API Key and API Secret as environment variables in Postman
-        before making the request.
+        3. **Set the API Key and API Secret as environment variables in Postman
+        before making the request**.
 
-        4. Database Table Setup:
+        4. **Database Table Setup**:
           - All Refinitiv WCO API call logs are stored in the Enclave database.
           - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
-      operationId: Screening_performRiskAssessmentViaRefinitivWCO
+      operationId: travelrule-Refinitiv-WCO
       tags:
         - Screening API
       requestBody:

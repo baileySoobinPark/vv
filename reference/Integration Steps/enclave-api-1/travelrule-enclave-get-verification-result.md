@@ -5,6 +5,6 @@ excerpt: >
   unique verification UUID.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_getVerificationResult
+  operationId: travelrule-enclave-get-Verification-Result
 hidden: false
 ---

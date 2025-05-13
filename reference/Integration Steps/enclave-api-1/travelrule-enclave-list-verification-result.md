@@ -18,6 +18,6 @@ excerpt: >
   filters, refer to the Query Parameter section in the specification below.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: enclave_listVerificationResult
+  operationId: travelrule-enclave-list-Verification-Result
 hidden: false
 ---

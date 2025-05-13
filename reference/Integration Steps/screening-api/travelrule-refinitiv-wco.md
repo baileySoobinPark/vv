@@ -17,21 +17,22 @@ excerpt: >
 
   ### Preparation Requirements
 
-  1. Enclave Environment Variable Configuration:
-    - Set VEGA_REFINITIV_WCO_API_KEY variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
-    - Set VEGA_REFINITIV_WCO_API_SECRET variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
-    - Set VEGA_REFINITIV_WCO_GROUP_ID variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
-  2. Use the SEQ-pre-groups: Get my top-level groups request from the Group
-  Information folder in the Refinitiv WCO API Quick Start Postman Collection.
+  1. **Enclave Environment Variable Configuration**:
+    - Set `VEGA_REFINITIV_WCO_API_KEY` variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
+    - Set `VEGA_REFINITIV_WCO_API_SECRET` variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
+    - Set `VEGA_REFINITIV_WCO_GROUP_ID` variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
+  2. **Use the SEQ-pre-groups**: Get my top-level groups request from the Group
+  Information folder in the [Refinitiv WCO API Quick Start Postman
+  Collection](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start).
 
-  3. Set the API Key and API Secret as environment variables in Postman before
-  making the request.
+  3. **Set the API Key and API Secret as environment variables in Postman before
+  making the request**.
 
-  4. Database Table Setup:
+  4. **Database Table Setup**:
     - All Refinitiv WCO API call logs are stored in the Enclave database.
     - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
 api:
   file: 2025_05_02_TR_Enclave_API_Spec.yaml
-  operationId: Screening_performRiskAssessmentViaRefinitivWCO
+  operationId: travelrule-Refinitiv-WCO
 hidden: false
 ---
