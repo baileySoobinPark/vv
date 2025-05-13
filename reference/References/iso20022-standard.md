@@ -26,6 +26,5 @@ metadata:
 
 * **[ISO 20022 Homepage](https://www.iso20022.org/)**
 * **[ISO 20022 Whitepaper](https://www.iso20022.org/sites/default/files/documents/D7/ISO20022_API_JSON_Whitepaper_Final_20180129.pdf)**
-* **ISO 20022 SupplementaryData**
-  * [Documents](https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data)
-  * [PDF](https://www.iso20022.org/sites/default/files/documents/D7/ISO_20022_SupplementaryData_FAQ_v1_7.pdf)
+* **[ISO 20022 SupplementaryData](https://www.iso20022.org/catalogue-messages/additional-content-messages/supplementary-data)**
+  * [PDF Version](https://www.iso20022.org/sites/default/files/documents/D7/ISO_20022_SupplementaryData_FAQ_v1_7.pdf)
