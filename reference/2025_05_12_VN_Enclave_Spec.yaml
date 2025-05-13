@@ -2,6 +2,8 @@ openapi: 3.0.1
 info:
   title: VerifyName Integration Steps
   version: 1.0.0
+servers:
+  - url: https://<enclave-endpoint>
 paths:
   /v2/vasps:
     get:
