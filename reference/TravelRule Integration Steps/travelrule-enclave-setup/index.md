@@ -519,6 +519,6 @@ Now, it's time to integrate the Travel Rule into your VASP's withdrawal process.
 
 * [VASP Management API](ref:travelrule-get-Vasp-Id)
 * [Verification API](ref:travelrule-Enclave-User-Account-Verification)
-* [Transaction API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/transaction-api)
-* [Report API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/report-api)
-* [Screening API](https://kr-verifyvasp.gitbook.io/verifyvasp/4SIXfxCm5FxXbkiB9pkY/integration-steps/travelrule/enclave-installation/screening-api)
+* [Transaction API](ref:travelrule-enclave-check-Transaction-Status)
+* [Report API](ref:travelrule-enclave-report-Transaction-Result)
+* [Screening API](ref:travelrule-Chainalysis-Sanction)
