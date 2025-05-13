@@ -27,7 +27,7 @@ metadata:
 ### Enclave
 
 * Fixed to support database SSL connection
-  * Added environment variables for database SSL configuration in [Enclave setup](ref:enclave-setup)  .
+  * Added environment variables for database SSL configuration in [Enclave setup](ref:travelrule-enclave-setup)  .
 
 <br />
 
