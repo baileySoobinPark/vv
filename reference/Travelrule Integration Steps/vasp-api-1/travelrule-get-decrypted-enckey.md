@@ -44,6 +44,6 @@ excerpt: |
     - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
-  operationId: getDecryptedEncKey
+  operationId: travelrule-get-Decrypted-EncKey
 hidden: false
 ---

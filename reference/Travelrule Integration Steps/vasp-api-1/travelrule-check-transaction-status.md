@@ -64,6 +64,6 @@ excerpt: >
     * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
-  operationId: checkTransactionStatus
+  operationId: travelrule-check-Transaction-Status
 hidden: false
 ---

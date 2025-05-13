@@ -92,6 +92,6 @@ excerpt: >
     * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
-  operationId: requestUserAccountVerification
+  operationId: travelrule-User-Account-Verification
 hidden: false
 ---

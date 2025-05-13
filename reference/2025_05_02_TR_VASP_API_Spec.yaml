@@ -1,8 +1,10 @@
 openapi: 3.0.1
 info:
-  title: Integration Steps
+  title: Travelrule Integration Steps
   version: '1.0'
   description: Management of VerifyVASP API Spec.
+servers:
+  - url: /
 paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
@@ -103,7 +105,7 @@ paths:
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
       security:
         - Authorization: []
-      operationId: requestUserAccountVerification
+      operationId: travelrule-User-Account-Verification
       tags:
         - VASP API
       parameters:
@@ -403,7 +405,7 @@ paths:
           Set this variable to the **API key provided during your VerifyVASP onboarding process**.
       security:
         - Authorization: []
-      operationId: requestUserVerification
+      operationId: travelrule-User-Verification
       tags:
         - VASP API
       parameters:
@@ -1175,7 +1177,7 @@ paths:
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
       security:
         - Authorization: []
-      operationId: checkTransactionStatus
+      operationId: travelrule-check-Transaction-Status
       tags:
         - VASP API
       parameters:
@@ -1650,7 +1652,7 @@ paths:
           - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
       security:
         - Authorization: []
-      operationId: callback
+      operationId: travelrule-callback
       tags:
         - VASP API
       parameters:
@@ -2070,7 +2072,7 @@ paths:
           - `VEGA_ENCRYPTION_KEY_BASE64`: Set the reference value for encryption key to this variable.
       security:
         - Authorization: []
-      operationId: getDecryptedEncKey
+      operationId: travelrule-get-Decrypted-EncKey
       tags:
         - VASP API
       parameters:

@@ -140,6 +140,6 @@ excerpt: >
     Set this variable to the **API key provided during your VerifyVASP onboarding process**.
 api:
   file: 2025_05_02_TR_VASP_API_Spec.yaml
-  operationId: requestUserVerification
+  operationId: travelrule-User-Verification
 hidden: false
 ---
