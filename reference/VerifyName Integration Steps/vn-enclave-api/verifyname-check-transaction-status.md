@@ -14,6 +14,6 @@ excerpt: >
     5. For the filtered candidate owner verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: VNcheckTransactionStatus
+  operationId: verifyname-check-transaction-status
 hidden: false
 ---

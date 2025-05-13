@@ -54,6 +54,6 @@ excerpt: >
   codes. |
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: getOwnerVerificationResult
+  operationId: verifyname-get-owner-verification-result
 hidden: false
 ---

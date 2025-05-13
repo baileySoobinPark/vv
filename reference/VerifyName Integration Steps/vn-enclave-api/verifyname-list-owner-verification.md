@@ -23,6 +23,6 @@ excerpt: >
   section in the specification below.
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: VNListOwnerVerification
+  operationId: verifyname-list-owner-verification
 hidden: false
 ---

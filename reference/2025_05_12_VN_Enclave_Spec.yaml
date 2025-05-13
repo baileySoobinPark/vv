@@ -206,7 +206,7 @@ paths:
       summary: Get VASP ID API
       description: |
         This API returns your VASP's VASP ID.
-      operationId: getVaspId
+      operationId: verifyname-get-Vasp-Id
       tags:
         - VN Enclave API
       responses:
@@ -306,7 +306,7 @@ paths:
                     message: timeout of 5000ms exceeded
   /v2/owner-verifications:
     post:
-      operationId: VNrequestOwnerVerification
+      operationId: verifyname-owner-verification
       tags:
         - VN Enclave API
       summary: Request Owner Verification API
@@ -798,7 +798,7 @@ paths:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
     get:
-      operationId: VNListOwnerVerification
+      operationId: verifyname-list-owner-verification
       tags:
         - VN Enclave API
       summary: List Owner Verification Result API
@@ -1398,7 +1398,7 @@ paths:
         | UNDEFINED-ERROR                           | Used with
         `verification_result: ERROR` when an unexpected error occurs that is not
         covered by the above reason codes. |
-      operationId: getOwnerVerificationResult
+      operationId: verifyname-get-owner-verification-result
       tags:
         - VN Enclave API
       parameters:
@@ -1738,7 +1738,7 @@ paths:
           3. After this waiting period, if no transaction report has been received from the Originating VASP, the Beneficiary VASP can use the Owner Verification Result Lookup API to identify potential candidate owner verifications.
           4. To narrow down the candidates, search using the deposit’s detected from address and to address as the originatorAccountNumber and beneficiaryAccountNumber, respectively.
           5. For the filtered candidate owner verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
-      operationId: VNcheckTransactionStatus
+      operationId: verifyname-check-transaction-status
       tags:
         - VN Enclave API
       parameters:
@@ -1921,7 +1921,7 @@ paths:
           2. As soon as the transaction hash is generated, this API must be called immediately to send the information to the VerifyVASP Central server.
           3. If the transaction's finality is not secured and the virtual asset transfer fails, the error must be reported immediately to the VerifyVASP Central server.
           4. Clearly specify the reason for the cancellation in the request. Common reasons may include cases such as the Beneficiary being listed on a Sanction List.
-      operationId: VNReportTransactionResultOrError
+      operationId: verifyname-report-transaction-result-or-Error
       tags:
         - VN Enclave API
       parameters:

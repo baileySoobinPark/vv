@@ -24,6 +24,6 @@ excerpt: >
     - SKIPPED
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: VNrequestOwnerVerification
+  operationId: verifyname-owner-verification
 hidden: false
 ---
