@@ -1,7 +1,12 @@
 ---
 title: Maintenance
+excerpt: >-
+  This document outlines the regulations that VASPs affiliated with the
+  VerifyVASP Alliance must adhere to in order to ensure the smooth provision of
+  TravelRule Protocol services. Adhering to these regulations helps reduce
+  errors during communication and data exchange between VASPs.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
