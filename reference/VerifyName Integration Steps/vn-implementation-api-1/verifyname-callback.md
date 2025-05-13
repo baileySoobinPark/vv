@@ -71,11 +71,11 @@ excerpt: >
 
 
   ## Environment Variable Configuration
-    Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click [here.]()
+    Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, click [here.](ref:travelrule-enclave-setup#/environment-variables)
     - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
     - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
 api:
   file: 2025_05_09_VN_VASP_API_Spec.yaml
-  operationId: verifyNameCallback
+  operationId: verifyName-Callback
 hidden: false
 ---

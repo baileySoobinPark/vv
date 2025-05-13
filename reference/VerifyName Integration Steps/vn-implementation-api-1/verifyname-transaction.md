@@ -42,6 +42,6 @@ excerpt: >
     - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK}) and set the path in the variable.
 api:
   file: 2025_05_09_VN_VASP_API_Spec.yaml
-  operationId: verifyNameTransaction
+  operationId: verifyName-Transaction
 hidden: false
 ---
