@@ -262,7 +262,7 @@ paths:
                           type: string
                           description: |
                             The Vasp ID for the Onwer Verification request.
-                          example: '15952089931162060684'
+                          example: '17624187478910414848'
                         type:
                           type: string
                           enum:
@@ -289,7 +289,6 @@ paths:
                           example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
-                          nullable: true
                           description: >
                             The wallet address tag(secondary address such as
                             XRP, XLM, EOS, etc...), regardless VerifyOriginator
@@ -379,7 +378,6 @@ paths:
                         example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       tag:
                         type: string
-                        nullable: true
                         description: >
                           The wallet address tag(secondary address such as XRP,
                           XLM, EOS, etc...), regardless VerifyOriginator or
@@ -419,7 +417,7 @@ paths:
                               date_and_place_of_birth:
                                 date_of_birth: '1990-01-01'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     verification_results:
                       ticker: MATCHED
@@ -742,13 +740,7 @@ paths:
                         reported.
 
                         This field must follow the UTC ISO 8601 datetime
-                        representation standard. - **Recommendations**:
-                          - To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.
-                            - Other ISO 8601 Acceptable Formats:
-                              - Basic format("YYYYMMDDThhmmss.sssZ")
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                        - **Implementation Note**
-                          - While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
+                        representation standard.
                       example: '2025-04-21T04:16:01.339Z'
                     tx_hash:
                       type: string
@@ -815,6 +807,6 @@ paths:
                       Result of the callback.
                     example: 'true'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     result: true
