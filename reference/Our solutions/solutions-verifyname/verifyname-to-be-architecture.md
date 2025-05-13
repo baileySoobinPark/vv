@@ -44,3 +44,7 @@ To build architectures similar to those shown in Diagram 2 and Diagram 3, refer 
 
 * [Travel Rule Non-Obliged VASP (Provider)]()
 * [Travel Rule Obliged VASP]()
+
+<br />
+
+내용 확인 후, 링크 유지 확인 필요
