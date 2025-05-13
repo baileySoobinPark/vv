@@ -31,5 +31,5 @@ No, you don’t. If your VASP has been supporting the TravelRule solution after 
 
 The required fields for the enclave server environment variables to initiate the enclave server are slightly different. You can check the required fields for each environment variable via the link below.
 
-* The environment variables of TravelRule solution: [Enclave Installation]()  **링크 추가 필요**
-* The environment variables of VerifyName solution [Enclave Connection]()  **링크 추가 필요**
+* The environment variables of TravelRule solution: [Enclave setup](ref:travelrule-enclave-setup)  **링크 추가 필요**
+* The environment variables of VerifyName solution [Enclave setup](verifyname-enclave-setup)  **링크 추가 필요**
