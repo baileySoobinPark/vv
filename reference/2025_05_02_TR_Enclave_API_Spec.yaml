@@ -26,7 +26,7 @@ paths:
                       Unique identifier of VASP.
                     example: '15952089931162060684'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     vaspId: '15952089931162058999'
         '400':
@@ -300,7 +300,7 @@ paths:
                             compatibility.
                           example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     vasps:
                       - health: UP
@@ -632,7 +632,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     vasps:
                       - health: UP
@@ -1205,7 +1205,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     createdAt: '2022-03-03T12:45:34.085Z'
@@ -1730,7 +1730,7 @@ paths:
                             compatibility.
                           example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     count: 25
                     page: 1
@@ -2139,7 +2139,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     verificationId: '12345'
                     verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
@@ -2319,7 +2319,7 @@ paths:
                       true represents that the result is **VERIFIED**.
                     example: true
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     result: true
         '400':
@@ -2485,7 +2485,7 @@ paths:
                       true represents that the result is **VERIFIED**.
                     example: true
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     result: true
         '400':
@@ -2655,7 +2655,7 @@ paths:
                       Index of the output in a Bitcoin blockchain transaction.
                     example: '2'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     transactionStatus: PROCESSING
@@ -2870,7 +2870,7 @@ paths:
                           all three formats to maintain compatibility.
                         example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     chainalysisSanction:
                       requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
@@ -3099,7 +3099,7 @@ paths:
                       risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
@@ -3516,7 +3516,7 @@ paths:
                       risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
