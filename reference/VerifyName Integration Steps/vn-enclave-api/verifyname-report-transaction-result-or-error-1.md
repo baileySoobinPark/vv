@@ -19,6 +19,6 @@ excerpt: >
     4. Clearly specify the reason for the cancellation in the request. Common reasons may include cases such as the Beneficiary being listed on a Sanction List.
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: verifyname-report-transaction-result-or-Error
+  operationId: verifyname-report-transaction-result-or-error
 hidden: false
 ---

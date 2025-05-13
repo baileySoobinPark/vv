@@ -1921,7 +1921,7 @@ paths:
           2. As soon as the transaction hash is generated, this API must be called immediately to send the information to the VerifyVASP Central server.
           3. If the transaction's finality is not secured and the virtual asset transfer fails, the error must be reported immediately to the VerifyVASP Central server.
           4. Clearly specify the reason for the cancellation in the request. Common reasons may include cases such as the Beneficiary being listed on a Sanction List.
-      operationId: verifyname-report-transaction-result-or-Error
+      operationId: verifyname-report-transaction-result-or-error
       tags:
         - VN Enclave API
       parameters:
