@@ -45,7 +45,7 @@ metadata:
 
 * Added `dateOfIncorporation` field in [IVMS101 Standard](ref:ivms101-guide)  where you can fill in the date of incorporation for LegalPerson.
   * When calling the [User Verification Enclave API](ref:travelrule-encalve-request-User-Verification) , if the value `dateOfIncorporation` is present, input validation will be performed.
-  * Added `LEGAL_PERSON_DATE_OF_INCORPORATION` code in [IVMS101 Personal Data Fields](ref:ivms101-guide/ivms101#personal-information-code) .
+  * Added `LEGAL_PERSON_DATE_OF_INCORPORATION` code in [IVMS101 Personal Data Fields](ref:ivms101-guide#/ivms101-personal-information-code) .
 * In the geographic address data type in [IVMS101 Standard]() , `townName` is no longer a required field.
 * (Bugfix) Fixed a bug where `buildingNumber` and `buildingName` were transposed when saving personal information with a geographic address.
 
