@@ -14,6 +14,6 @@ excerpt: >
     - The VASP is capable of handling asset transfers.
 api:
   file: 2025_05_12_VN_Enclave_Spec.yaml
-  operationId: VerifyNameListVASP
+  operationId: verifyName-List-VASP
 hidden: false
 ---

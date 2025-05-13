@@ -1,11 +1,11 @@
 openapi: 3.0.1
 info:
-  title: VerifyName API
+  title: VerifyName Integration Steps
   version: 1.0.0
 paths:
   /v2/vasps:
     get:
-      operationId: VerifyNameListVASP
+      operationId: verifyName-List-VASP
       summary: List VASP API
       description: >
         This API provides a list of VASPs registered with VerifyVASP.
@@ -101,7 +101,7 @@ paths:
                         type: string
                         description: >
                           Unique identifier of the transaction. If the value of
-                          **VerifyOriginator** is **type**, this field must be
+                          **type** is **VerifyOriginator**, this field must be
                           required.
                         example: >-
                           8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
@@ -134,17 +134,17 @@ paths:
                       tag: SKIPPED
                       tx_hash: SKIPPED
                       dti: SKIPPED
-                    debtor:
+                    creditor:
                       name: HONG KIL DONG
                       supplementary_data:
                         envelope:
                           name:
                             first_name: GIL DONG
                             last_name: HONG
-                          identification:
-                            private_identification:
-                              date_and_place_of_birth:
-                                birth_date: '2025-01-01'
+                      identification:
+                        private_identification:
+                          date_and_place_of_birth:
+                            birth_date: '2025-01-01'
         '400':
           description: 400 Bad Request Error response
           content:
@@ -401,7 +401,7 @@ paths:
                           type: string
                           description: >
                             Unique identifier of the transaction. If the value
-                            of **VerifyOriginator** is **type**, this field must
+                            of **type** is **VerifyOriginator**, this field must
                             be required.
                           example: >-
                             8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
@@ -1163,7 +1163,7 @@ paths:
                           type: string
                           description: >
                             Unique identifier of the transaction. If the value
-                            of **VerifyOriginator** is **type**, this field must
+                            of **type** is **VerifyOriginator**, this field must
                             be required.
                           example: >-
                             8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
@@ -1574,7 +1574,7 @@ paths:
                     type: string
                     description: >
                       Unique identifier of the transaction. If the value of
-                      **VerifyOriginator** is **type**, this field must be
+                      **type** is **VerifyOriginator**, this field must be
                       required.
                     example: >-
                       8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
@@ -1827,7 +1827,7 @@ paths:
                         type: string
                         description: >
                           Unique identifier of the transaction. If the value of
-                          **VerifyOriginator** is **type**, this field must be
+                          **type** is **VerifyOriginator**, this field must be
                           required.
                         example: >-
                           8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
