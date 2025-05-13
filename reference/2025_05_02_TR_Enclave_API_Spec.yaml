@@ -435,7 +435,7 @@ paths:
         Beneficiary VASP or the network information is insufficient.<br><br>This
         error is also returned if the asset symbol provided by the Originating
         VASP matches a symbol supported by the Beneficiary VASP but corresponds
-        to a different network.<br><br>_Example: If the Originating VASP sends a
+        to a different network.<br><br>Example: If the Originating VASP sends a
         symbol field with USDT and a network field with `Ethereum` to the
         Beneficiary VASP, but the Beneficiary VASP only supports USDT on the
         Tron network. |
