@@ -513,8 +513,6 @@ Once the Enclave server is successfully running, configure network allowlisting 
 
 ## **Enclave API Integration**
 
-링크 변경 필
-
 Now, it's time to integrate the Travel Rule into your VASP's withdrawal process. Refer to the [**Best Practice Sequence Diagram**](ref:travelrule-flow-diagram) to identify the appropriate Enclave API calls at each step of the withdrawal process. For detailed API specifications, refer to following Enclave API References. Once the integration of Enclave API calls is complete, proceed to the testing phase to ensure seamless communication between both endpoints.
 
 * [VASP Management API](ref:travelrule-get-Vasp-Id)
