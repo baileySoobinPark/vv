@@ -125,7 +125,7 @@ paths:
                               date_and_place_of_birth:
                                 date_of_birth: '1990-01-01'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     verification_results:
                       ticker: MATCHED
@@ -167,7 +167,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: verificationUuid` is required.
               examples:
-                401ErrorExample:
+                401 Error Example:
                   value:
                     code: INVALID-ENCLAVE-MODE
                     message: >-
@@ -195,7 +195,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -221,7 +221,7 @@ paths:
                       Unique identifier of VASP that supporting VerifyName.
                     example: '15952089931162060684'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     vaspId: '15952089931162058999'
         '400':
@@ -246,7 +246,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: verificationUuid` is required.
               examples:
-                401ErrorExample:
+                401 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -270,7 +270,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: Owner Verification requestId(1234) is not found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -298,7 +298,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -729,7 +729,7 @@ paths:
                       representation standard.
                     example: '2025-04-21T04:16:01.339Z'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     requset_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
                     verification_results:
@@ -765,7 +765,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: verificationUuid` is required.
               examples:
-                401ErrorExample:
+                401 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -791,7 +791,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -1252,7 +1252,7 @@ paths:
                             representation standard.
                           example: '2025-04-21T04:16:01.339Z'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     count: 62
                     page: 1
@@ -1310,7 +1310,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: verificationUuid` is required.
               examples:
-                401ErrorExample:
+                401 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -1336,7 +1336,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -1663,7 +1663,7 @@ paths:
                       representation standard.
                     example: '2025-04-21T04:16:01.339Z'
               examples:
-                successExample:
+                Successful Example:
                   value:
                     request_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
                     type: VerifyBeneficiary
@@ -1715,7 +1715,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: Owner Verification requestId(1234) is not found
               examples:
-                404Errorexample:
+                404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
                     message: >-
@@ -1865,7 +1865,7 @@ paths:
                           `verification_result` is `DENIED` or `ERROR`.
                         example: Transfer Error
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     transaction_status: CONFIRMED
                     request_id: ecbacf57-f813-4670-934a-5c4537fec869
@@ -1895,7 +1895,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
@@ -2017,7 +2017,7 @@ paths:
                     description: "- A boolean indicating the reporting result.\n- It always returns\_**true**.\n"
                     example: true
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     result: true
         '400':
@@ -2042,7 +2042,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: verificationUuid` is required.
               examples:
-                401ErrorExample:
+                401 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
@@ -2068,7 +2068,7 @@ paths:
                       Explanation about the error that is returned in **code**.
                     example: timeout of 5000ms exceeded
               examples:
-                408ErrorExample:
+                408 Error Example:
                   value:
                     code: REQUEST-TIMEOUT
                     message: timeout of 5000ms exceeded
