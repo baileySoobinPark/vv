@@ -253,7 +253,7 @@ paths:
                       formats to maintain compatibility.
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     accountVerificationResult: '15952089931162060684'
                     verifiedAt: '2022-03-03T12:45:34.085Z'
@@ -1068,7 +1068,7 @@ paths:
                             items:
                               type: string
               examples:
-                successfulExample:
+                Successful Example:
                   summary: example of a successful verification response
                   description: >
                     A complete example of a successful verification response
@@ -1262,7 +1262,7 @@ paths:
                       Index of the output in a Bitcoin blockchain transaction.
                     example: '2'
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     originatingVaspId: '15952089931162060684'
                     transactionStatus: PROCESSING
@@ -2116,7 +2116,7 @@ paths:
                       The Base64-encoded database encryption key.
                     example: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
               examples:
-                successfulExample:
+                Successful Example:
                   value:
                     outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
 components:
