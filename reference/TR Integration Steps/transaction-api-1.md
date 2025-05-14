@@ -1,4 +1,4 @@
 ---
 title: Transaction API
-hidden: false
+hidden: true
 ---
