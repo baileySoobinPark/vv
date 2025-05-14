@@ -91,9 +91,12 @@ The following table summarizes all essential environment variables, providing de
       </td>
 
       <td>
-        사용 목적 별 모드 설정 입니다. 아래 모드 중 선택(최소 한개 이상)하여 콤마를 구분자로 하여 설정 하시면 됩니다.
+        Configuration based on the purpose of using the Enclave server.
+        You can select either a single mode or multiple modes by separating them with commas from the available options.
 
-        설정 가능한 모드:
+        <br />
+
+        Available modes:
         `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
       </td>
     </tr>
