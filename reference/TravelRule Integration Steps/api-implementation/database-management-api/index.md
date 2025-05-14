@@ -1,4 +1,4 @@
 ---
 title: Database Management API
-hidden: false
+hidden: true
 ---
