@@ -1,7 +1,7 @@
 ---
 title: Callback API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
