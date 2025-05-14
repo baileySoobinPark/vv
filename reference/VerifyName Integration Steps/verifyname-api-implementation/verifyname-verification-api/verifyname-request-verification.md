@@ -2,13 +2,14 @@
 title: VerifyName API
 excerpt: >
   This API must be implemented by your VASP to perform the owner verification.
-  Its primary purpose is to verify whether the beneficiary and the originator
-  are the same person. 
+  Its primary purpose is to verify whether the Beneficiary and the Originator
+  are the same individual.
 
-  If your VASP receives an owner verification request, it must return the
-  verification results for the ticker, network, address, tag, tx_hash, and dti.
-  If there is a match, the VASP must also return the corresponding beneficiary
-  or originator information along with the verification results.
+  When your VASP receives an owner verification request, it must check whether
+  any of the values included in the request body match the information held by
+  your VASP. If any matching values are found, your VASP must return the
+  corresponding Beneficiary or Originator information as part of the
+  verification result.
 
 
   ## Environment Variable Configuration
@@ -32,7 +33,7 @@ excerpt: >
     The table below describes the parameters used for verification. Even if some fields are optional in the request, the response must include verification results for all fields.
     Depending on the verification result, the value will be returned as `MATCHED`, `MISMATCHED`, or `SKIPPED`.
 
-    | Parameter Name | Required in Request | How to Verify |
+    | Parameter Name | Required | How to verify |
     |----------------|----------|-----------------|
     | `ticker`       | required | If your VASP supports the ticker, return `MATCHED`; otherwise, return `MISMATCHED`. |
     | `network`      | optional | If your VASP supports the network, return `MATCHED`. If your VASP does not support the network, return `MISMATCHED`. If the network field is missing from the request body or your VASP has no information about the network, return `SKIPPED`. |
