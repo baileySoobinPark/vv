@@ -39,7 +39,7 @@ Enclave environment variables can be categorized into four main groups:
     * When only VN1\_CALL is set: This means that your VASP is running the enclave server for handling VerifyName V1 API requests.
     * When only VN1\_RESPONSE is set: This means that your VASP is running the enclave server for handling VerifyName V1 API responses.
     * When only VN2 is set: This means that your VASP is running the enclave server for handling VerifyName V2 API requests and responses.
-    * 콤마를 구분자로 복수개의 모드를 설정한 경우: 설정한 모드별 기능을 모두 사용하겠다는 의미입니다.
+    * When multiple modes are set: This means that your VASP is running the enclave server for handling multiple modes.
 
 The following table summarizes all essential environment variables, providing details on their purpose, default values, and how to configure them effectively.
 
