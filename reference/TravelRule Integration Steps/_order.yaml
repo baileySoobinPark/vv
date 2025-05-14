@@ -1,4 +1,5 @@
 - api-implementation
+- transaction-api
 - database-setup
 - enclave-setup
 - testing-with-robotvasp
