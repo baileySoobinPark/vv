@@ -1,0 +1,731 @@
+openapi: 3.0.1
+info:
+  title: VN Integration Steps
+  version: 1.0.0
+servers:
+  - url: /
+paths:
+  /VASP_DEFINED_PATH_VERIFY_NAME:
+    post:
+      operationId: verifyName-Request-Verification
+      summary: VerifyName API
+      description: |
+        This API must be implemented by your VASP to perform the owner verification. Its primary purpose is to verify whether the beneficiary and the originator are the same person. 
+        If your VASP receives an owner verification request, it must return the verification results for the ticker, network, address, tag, tx_hash, and dti. If there is a match, the VASP must also return the corresponding beneficiary or originator information along with the verification results.
+
+        ## Environment Variable Configuration
+          To implement this API, you must configure the environment variables to integrate with the Enclave server. Please configure the following environment variables accordingly.
+          - `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH` : Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME}) and set this variable accordingly.
+          - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
+
+          For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
+
+        ## Functional Requirements
+          **1. Request Verification**
+          Requests can be classified into two types, and the implementation requirements differ depending on the type.
+          - **Post Verification**
+            - It means the request the type is set to VerifyOriginator.
+              - Your VASP must verify whether the transaction specified by the tx_hash in the request was executed by your VASP.
+              - Your VASP must verify whether the beneficiary address in the transaction executed by your VASP matches the value provided in the address field of the request.
+          - **Pre Verification**
+            - It means the request the type is set to VerifyBeneficiary.
+            - Your VASP must verify whether the address provided in the request matches an address registered with your VASP.
+
+          The table below describes the parameters used for verification. Even if some fields are optional in the request, the response must include verification results for all fields.
+          Depending on the verification result, the value will be returned as `MATCHED`, `MISMATCHED`, or `SKIPPED`.
+
+          | Parameter Name | Required in Request | How to Verify |
+          |----------------|----------|-----------------|
+          | `ticker`       | required | If your VASP supports the ticker, return `MATCHED`; otherwise, return `MISMATCHED`. |
+          | `network`      | optional | If your VASP supports the network, return `MATCHED`. If your VASP does not support the network, return `MISMATCHED`. If the network field is missing from the request body or your VASP has no information about the network, return `SKIPPED`. |
+          | `address`      | required | If the request is for pre-verification, your VASP must verify whether the provided address matches a beneficiary address registered with your VASP. If the request is for post-verification, your VASP must verify whether the provided address matches the beneficiary address specified in the transaction. If the addresses match, return MATCHED; if they do not match, return MISMATCHED. |
+          | `tag`          | optional | Your VASP must verify whether the provided tag matches a tag registered with your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the tag is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
+          | `tx_hash`      | optional | Your VASP must verify whether the provided transaction hash matches a transaction executed by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the tx_hash field is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
+          | `dti`          | optional | Your VASP must verify whether the provided value corresponds to a Digital Token Identifier supported by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the dti field is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
+
+          **2. Return Verification Results**
+          This API must return verification_results. If either the address field or the tx_hash field is MATCHED, your VASP must also return the corresponding owner information.
+          - If the reuqests is `Post Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information in the `debtor` field.
+          - If the reuqests is `Pre Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information in the `creditor` field.
+
+          Example responses are provided below, depending on the request type and the type of owner information to be returned.
+
+        <details>
+          <summary>1. Post Verification and the type of Owner Information is `naturalPerson`.</summary>
+
+          ``` json
+            {
+              "verification_results": {
+                "ticker": "MATCHED",        
+                "network": "MISMATCHED",    
+                "address": "SKIPPED",       
+                "tag": "SKIPPED",
+                "tx_hash": "SKIPPED",      
+                "dti": "SKIPPED",         
+              },
+              "debtor"?: {
+                "name": "HONG KIL DONG",
+                "supplementary_data"?: {
+                  "envelope": {
+                    "name"?: {                  
+                      "first_name": "GIL DONG",
+                      "last_name"?: "HONG",
+                    },
+                  }
+                },
+                "identification": {
+                  "private_identification"?: {
+                    "date_and_place_of_birth": {
+                      "birth_date": "2025-01-01",
+                    }
+                  }
+                }
+              }
+            }
+          ```
+        </details>
+
+        <details>
+          <summary>2. Post Verification and the type of Owner Information is `legalPerson`.</summary>
+
+          ``` json
+            {
+              "verification_results": {
+                "ticker": "MATCHED",        
+                "network": "MISMATCHED",    
+                "address": "SKIPPED",       
+                "tag": "SKIPPED",
+                "tx_hash": "SKIPPED",      
+                "dti": "SKIPPED",         
+              },
+              "debtor"?: {
+                "name": "HONG KIL DONG",
+                "supplementary_data"?: {
+                  "envelope": {
+                    "name"?: {                  
+                      "first_name": "GIL DONG",
+                      "last_name"?: "HONG",
+                    },
+                  }
+                },
+                "identification": {
+                  "organisation_identification"?: {
+                    "supplementary_data": {
+                      "envelope": {
+                        "date_of_incorporation"?: "2020-01-01",
+                      }
+                    },
+                  },
+                  "lei"?: "506700GE1G29325QX363",
+                  "bic"?: "KRKRKR"
+                  "other"?: {
+                    "identification": "5493001KJTIIGC8Y1R12",
+                    "issuer": "ISO17442",
+                  },
+                }
+              }
+            }
+          ```
+        </details>
+
+        <details>
+          <summary>3. Pre Verification and the type of Owner Information is `naturalPerson`.</summary>
+
+          ``` json
+            {
+              "verification_results": {
+                "ticker": "MATCHED",        
+                "network": "MISMATCHED",    
+                "address": "SKIPPED",       
+                "tag": "SKIPPED",
+                "tx_hash": "SKIPPED",      
+                "dti": "SKIPPED",         
+              },
+              "creditor"?: {
+                "name": "HONG KIL DONG",
+                "supplementary_data"?: {
+                  "envelope": {
+                    "name"?: {                  
+                      "first_name": "GIL DONG",
+                      "last_name"?: "HONG",
+                    },
+                  }
+                },
+                "identification": {
+                  "private_identification"?: {
+                    "date_and_place_of_birth": {
+                      "birth_date": "2025-01-01",
+                    }
+                  }
+                }
+              }
+            }
+          ```
+        </details>
+
+        <details>
+          <summary>4. Pre Verification and the type of Owner Information is `legalPerson`.</summary>
+
+          ``` json
+            {
+              "verification_results": {
+                "ticker": "MATCHED",        
+                "network": "MISMATCHED",    
+                "address": "SKIPPED",       
+                "tag": "SKIPPED",
+                "tx_hash": "SKIPPED",      
+                "dti": "SKIPPED",         
+              },
+              "creditor"?: {
+                "name": "HONG KIL DONG",
+                "supplementary_data"?: {
+                  "envelope": {
+                    "name"?: {                  
+                      "first_name": "GIL DONG",
+                      "last_name"?: "HONG",
+                    },
+                  }
+                },
+                "identification": {
+                  "organisation_identification"?: {
+                    "supplementary_data": {
+                      "envelope": {
+                        "date_of_incorporation"?: "2020-01-01",
+                      }
+                    },
+                  },
+                  "lei"?: "506700GE1G29325QX363",
+                  "bic"?: "KRKRKR"
+                  "other"?: {
+                    "identification": "5493001KJTIIGC8Y1R12",
+                    "issuer": "ISO17442",
+                  },
+                }
+              }
+            }
+          ```
+        </details>
+      security:
+        - Authorization: []
+      tags:
+        - Verification API
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: |
+            Bearer token for authorization.
+          schema:
+            type: string
+            description: Bearer token for authorization.
+            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - supplementary_data
+              properties:
+                supplementary_data:
+                  type: object
+                  required:
+                    - envelope
+                  properties:
+                    envelope:
+                      type: object
+                      required:
+                        - request_id
+                        - request_vasp_id
+                        - type
+                        - ticker
+                        - address
+                      properties:
+                        request_id:
+                          type: string
+                          description: |
+                            A unique identifier for the Owner Verification request.
+                            The format of `request_id` must follow the UUID v4 standard.
+                          example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                        request_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification request.
+                          example: '17624187478910414848'
+                        type:
+                          type: string
+                          enum:
+                            - VerifyOriginator
+                            - VerifyBeneficiary
+                          description: |
+                            Indication of verification type. Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                          example: VerifyOriginator
+                        ticker:
+                          type: string
+                          description: |
+                            The symbol of the virtual asset to be transferred.
+                          example: ETH
+                        network:
+                          type: string
+                          description: |
+                            The network of the virtual asset to be transferred. The network field can be implemented conditionally. Valid values for this field can be found [here]().
+                          example: ETHEREUM
+                        address:
+                          type: string
+                          description: |
+                            The address of the wallet storing the virtual asset.
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                        tag:
+                          type: string
+                          description: |
+                            The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
+                          example: '3256697931'
+                        dti:
+                          type: string
+                          description: |
+                            Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                          example: 4H95J0R2X
+                        tx_hash:
+                          type: string
+                          description: |
+                            Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
+                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+            examples:
+              requestExamples:
+                value:
+                  verificationType: VERIFIED
+                  txId: '0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9'
+                  symbol: ETH
+                  address: '0x5811001506550d8356a215be229c15b6ef371a9b'
+                  tag: null
+                  hashSalt: 04cc122f-97af-4630-a1cf-05e58ed37667
+                  dobHash: 9096a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                  nameHashes:
+                    - 1296a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                    - 4596a390ba4339afe391119fb3124412dc3786bf95b12cc2581bc67869cddcaf
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - verificationResult
+                properties:
+                  verificationResult:
+                    type: object
+                    description: |
+                      Each field in the **verification_result** object must have one of the following values.
+                      - **MATCHED**: The value of request from beneficiary VASP is matched with the information from originating VASP. 
+                      - **MISMATCHED**: The value of request from beneficiary VASP is mismatched with the information from originating VASP.
+                      - **SKIPPED**: The beneficiary VASP does not provide the value of request or The originating VASP does not provide the value of request.
+                    required:
+                      - ticker
+                      - network
+                      - address
+                      - tag
+                      - dti
+                      - tx_hash
+                    properties:
+                      ticker:
+                        type: string
+                        description: |
+                          The symbol of the virtual asset to be transferred.
+                        example: ETH
+                      network:
+                        type: string
+                        description: |
+                          The network of the virtual asset to be transferred. The network field can be implemented conditionally. Valid values for this field can be found [here]().
+                        example: ETHEREUM
+                      address:
+                        type: string
+                        description: |
+                          The address of the wallet storing the virtual asset.
+                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                      tag:
+                        type: string
+                        description: |
+                          The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
+                        example: '3256697931'
+                      dti:
+                        type: string
+                        description: |
+                          Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                        example: 4H95J0R2X
+                      tx_hash:
+                        type: string
+                        description: |
+                          Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
+                        example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                      debtor:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: JHON DOE
+                          supplementary_data:
+                            type: object
+                        example:
+                          name: JHON DOE
+                          supplementary_data:
+                            envelope:
+                              name:
+                                first_name: JHON
+                                last_name: DOE
+                          identification:
+                            private_identification:
+                              date_and_place_of_birth:
+                                date_of_birth: 1990-01-01
+              examples:
+                Successful Example:
+                  value:
+                    verification_results:
+                      ticker: MATCHED
+                      network: MISMATCHED
+                      address: SKIPPED
+                      tag: SKIPPED
+                      tx_hash: SKIPPED
+                      dti: SKIPPED
+                    creditor:
+                      name: HONG KIL DONG
+                      supplementary_data:
+                        envelope:
+                          name:
+                            first_name: GIL DONG
+                            last_name: HONG
+                      identification:
+                        private_identification:
+                          date_and_place_of_birth:
+                            birth_date: 2025-01-01
+  /VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK:
+    post:
+      operationId: verifyName-Transaction
+      summary: Check Transaction Status API
+      description: |
+        This API must be implemented by your VASP to fulfill its role as a Originating VASP. Its primary purpose is to retrieve and return the current status of a transfer transaction submitted by the Originator on the blockchain. This API is typically called by the Beneficiary VASP when asynchronous status updates from the Originating VASP are delayed or missing.
+        The Enclave will invoke this API upon receiving transaction status checking requests from the Beneficiary VASP.
+
+        ## Functional Requirements
+          **1. Mapping Request ID to the Corresponding Transaction Hash**
+          - Your VASP, acting as the Originating VASP, must map the request_id (received in response to a previous 'Verify Name API' request) to the transaction hash of the on-chain transfer submitted following the verification result.
+
+          **2. Retrieving and Responding On-Chain Transaction Status**
+          - Using the transaction hash, retrieve the current status of the on-chain transaction. The transaction status must be returned in the transaction_status field, which supports the following allowed values:
+            - **PENDING**: The transaction is awaiting submission to the blockchain for any reason.
+            - **PROCESSING**: The transaction has been submitted to the blockchain and is waiting to be mined.
+            - **WAIT-CONFIRM**: The transaction has been mined, but finality has not yet been achieved.
+            - **CONFIRMED**: The transaction has been mined and has achieved finality.
+            - **CANCELED**: The transaction was either canceled before submission or permanently canceled after submission.
+
+        ## Constraints
+          - This API must respond within 1 second.
+
+        ## Recommendations
+          - To simplify the management of the request_id and transaction hash pair, it is strongly recommended to leverage the Enclave APIs: Owner Verification Transaction Report API and Get Owner Verification Result API.
+            - **Ensure Prompt Transaction Reporting**
+              - Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Owner Verification Transaction Report API. This ensures you can:
+                - Notify the Beneficiary VASP of the transaction result.
+                - Store the transaction hash corresponding to the request_id in the Enclave.
+            - **Retrieving the Transaction Hash From Enclave**
+              - If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Owner Verification Result API to retrieve the previously stored transaction hash.
+              - This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
+          - Leveraging this implementation allows your VASP to efficiently manage request_id and transaction hash mapping without a dedicated database, simplifying implementation while ensuring accurate and timely status handling.
+
+        ## Environment Variable Configuration
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
+          - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK}) and set the path in the variable.
+          - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
+
+          For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
+      security:
+        - Authorization: []
+      tags:
+        - Transaction API
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: |
+            Bearer token for authorization.
+          schema:
+            type: string
+            description: Bearer token for authorization.
+            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - request_id
+              properties:
+                request_id:
+                  type: string
+                  description: |
+                    A unique identifier for the Owner Verification request.
+                    The format of `request_id` must follow the UUID v4 standard.
+                  example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+            examples:
+              requestExamples:
+                value:
+                  request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - transaction_status
+                properties:
+                  transaction_status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - PROCESSING
+                      - WAIT-CONFIRM
+                      - CONFIRMED
+                      - CANCELED
+                    description: |
+                      The status of the transaction.
+                    example: PENDING
+                  verification_result:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                      - ERROR
+                    description: |
+                      A field that indicates whether the transaction should be executed based on the result of the owner verification.
+                      - Return `VERIFIED` if the owner verification is successful and the transaction is executed.
+                      - Return `DENIED` if the verification fails and the transaction is not executed.
+                      - Return `ERROR` if an error occurs during the execution process.
+                    example: VERIFIED
+                  tx_hash:
+                    type: string
+                    description: |
+                      Unique identifier of the transaction.  
+                      If the value of `verification_result` is `VERIFIED`, this field must be required.
+                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout:
+                    type: string
+                    description: |
+                      In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction
+                    example: '0'
+                  reason:
+                    type: string
+                    enum:
+                      - MISMATCH-TICKER
+                      - MISMATCH-NETWORK
+                      - MISMATCH-ADDRESS
+                      - MISMATCH-NAME
+                      - MISMATCH-DTI
+                      - MISMATCH-DATE-OF-INCORPORATION
+                      - MISMATCH-BIRTH-DATE
+                      - MISMATCH-ORGANISATION-IDENTIFICATION
+                      - TRANSFER-ERROR
+                      - UNDEFINED-ERROR
+                    description: |
+                      A field that provides the reason when the `verification_result` is `DENIED` or `ERROR`. This field is required when returning `DENIED` or `ERROR` as the `verification_result`.
+                    example: MISMATCH-TICKER
+                  message:
+                    type: string
+                    description: |
+                      A field that provides a message when the `verification_result` is `DENIED` or `ERROR`.
+                    example: Transfer Error
+  /VASP_DEFINED_PATH_CALLBACK:
+    post:
+      operationId: verifyName-Callback
+      summary: Callback API
+      description: |
+        The Callback API serves as a common interface for handling various asynchronous flows. Depending on the callbackType, it may be invoked when your VASP acts as either the Originating VASP or the Beneficiary VASP. Your implementation must function correctly in all possible cases. The Enclave will invoke this API when a counterparty VASP triggers a Report APIs.
+
+        ## Functional Requirements
+          **1. Callback Type Support**
+          The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackType field and the scenarios in which they are used:
+          - **`OWNER_VERIFICATION_TX_REPORT`**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result or error report.
+
+        `OWNER_VERIFICATION_TX_REPORT` type must be implemented as mandatory processing logic.
+
+          **2. OWNER_VERIFICATION_TX_REPORT Callback Handling (as Beneficiary VASP)**
+          When a transaction report is received, your VASP can perform the following actions.
+            - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
+            - Confirm that the asset transfer has been requested and log the details.
+
+          When an error report is received, your VASP can perform the following actions. 
+            - Cancel the associated asset transfer request. 
+            - Stop tracking the transaction and log the error for auditing purposes.
+
+        <details>
+          <summary>Example of Request Body for OWNER_VERIFICATION_TX_REPORT callback type.</summary>
+
+          ``` json
+            // VERIFIED
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "VERIFIED",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+              }
+            }
+
+            or
+
+            // DENIED
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "DENIED",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "reason": "MISMATCH-TICKER"
+              }
+            }
+
+            or
+
+            // ERROR
+            {
+              "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+              "data": {
+                "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+                "reported_result": "ERROR",
+                "ordered_at": "2025-04-21T04:40:28.536Z",
+                "reason": "TRANSFER-ERROR",
+                "message": "transfer error"
+              }
+            }
+          ```
+        </details>
+
+        ## Environment Variable Configuration
+          Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
+          - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
+          - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
+
+          For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
+      security:
+        - Authorization: []
+      tags:
+        - Callback API
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: |
+            Bearer token for authorization.
+          schema:
+            type: string
+            description: Bearer token for authorization.
+            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - callbackType
+                - data
+              properties:
+                callbackType:
+                  type: string
+                  enum:
+                    - OWNER_VERIFICATION_TX_REPORT
+                  description: |
+                    A type for identifying the callback request.
+                  example: OWNER_VERIFICATION_TX_REPORT
+                data:
+                  type: object
+                  required:
+                    - request_Id
+                    - reported_result
+                    - ordered_at
+                  description: |
+                    An object containing Callback Data.
+                  properties:
+                    request_Id:
+                      type: string
+                      description: |
+                        A unique identifier for the Owner Verification request.
+                        The format of `request_id` must follow the UUID v4 standard.
+                      example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                    reported_result:
+                      type: string
+                      enum:
+                        - VERIFIED
+                        - DENIED
+                        - ERROR
+                      description: |
+                        The result of the Owner Verification.
+                      example: VERIFIED
+                    ordered_at:
+                      type: string
+                      description: |
+                        The timestamp indicating when the transaction hash was reported.
+                        This field must follow the UTC ISO 8601 datetime representation standard.
+                      example: 2025-04-21T04:16:01.339Z
+                    tx_hash:
+                      type: string
+                      description: |
+                        Unique identifier of the transaction. If the value of **reported_result** is **VERIFIED**, this field must be required.
+                      example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout:
+                      type: string
+                      description: |
+                        In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction
+                      example: '0'
+                    reason:
+                      type: string
+                      enum:
+                        - MISMATCH-TICKER
+                        - MISMATCH-NETWORK
+                        - MISMATCH-ADDRESS
+                        - MISMATCH-NAME
+                        - MISMATCH-DTI
+                        - MISMATCH-DATE-OF-INCORPORATION
+                        - MISMATCH-BIRTH-DATE
+                        - MISMATCH-ORGANISATION-IDENTIFICATION
+                        - TRANSFER-ERROR
+                        - UNDEFINED-ERROR
+                      description: |
+                        The value of the reason field returned by the VASP that requested owner verification of type PreVerification, when the result of the verification is reported as `DENIED` or `ERROR`.
+                      example: MISMATCH-TICKER
+                    message:
+                      type: string
+                      description: |
+                        A field that provides a message when the `verification_result` is `DENIED` or `ERROR`.
+                      example: Transfer Error
+            examples:
+              requestExamples:
+                value:
+                  callbackType: OWNER_VERIFICATION_RESULT
+                  data:
+                    requestId: ac2ae3a1-2468-43c7-b881-75cf310b5a56
+                    verificationResult: VERIFIED
+                    verifiedAt: 2021-09-27T01:48:40.000Z
+      responses:
+        '200':
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                properties:
+                  result:
+                    type: string
+                    description: |
+                      Result of the callback.
+                    example: 'true'
+              examples:
+                Successful Example:
+                  value:
+                    result: true
