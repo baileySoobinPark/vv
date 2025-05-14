@@ -28,12 +28,17 @@ Enclave environment variables can be categorized into four main groups:
   * Variables to configure security settings and operational preferences for the Enclave server.
   * ex) Public key caching options
 * **Enclave Modes**
-  * enclave mode 에는 TR, VN1\_CALL, VN1\_RESPONSE, VN2 가 있습니다. 이 값들은 enclave 환경변수 `VEGA_ENCLAVE_MODE` 에 최소 한개 이상 콤마를 구분자로 하여 설정 되어야 합니다.
-  * 예시) VEGA\_ENCLAVE\_MODE=TR,VN2,VN1\_CALL,VN1\_RESPONSE
-    * TR 을 설정한 경우: TravelRule API 를 호출/응답 하기 위한 목적으로 enclave 를 기동한다는 의미입니다.
-    * VN2 를 설정한 경우: VerifyName V2 API 를 호출/응답 하기 위한 목적으로 enclave 를 기동한다는 의미입니다.
-    * VN1\_CALL 을 설정한 경우: VerifyName V1 API 를 호출 하기 위한 목적으로 enclave 를 기동한다는 의미입니다. (deprecate 예정)
-    * VN1\_RESPONSE 를 설정한 경우: VerifyName V2 API 를 응답하기 위한 목적으로 enclave 를 기동한다는 의미입니다. (deprecate 예정)
+  * The following values can be used for the Enclave mode.
+    * TR
+    * VN1\_CALL (This mode will be deprecated soon.)
+    * VN1\_RESPONSE (This mode will be deprecated soon.)
+    * VN2
+  * These values must be set in the `VEGA_ENCLAVE_MODE` field of the environment variables. At least one mode must be specified, and multiple modes can be entered by separating them with commas.
+  * Example) `VEGA_ENCLAVE_MODE`=TR,VN2,VN1\_CALL,VN1\_RESPONSE
+    * When only TR is set: This means that your VASP is running the enclave server for handling TravelRule API requests and responses.
+    * When only VN1\_CALL is set: This means that your VASP is running the enclave server for handling VerifyName V1 API requests.
+    * When only VN1\_RESPONSE is set: This means that your VASP is running the enclave server for handling VerifyName V1 API responses.
+    * When only VN2 is set: This means that your VASP is running the enclave server for handling VerifyName V2 API requests and responses.
     * 콤마를 구분자로 복수개의 모드를 설정한 경우: 설정한 모드별 기능을 모두 사용하겠다는 의미입니다.
 
 The following table summarizes all essential environment variables, providing details on their purpose, default values, and how to configure them effectively.
