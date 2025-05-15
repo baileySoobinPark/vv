@@ -70,6 +70,16 @@ excerpt: >
   </details>
 
 
+  ## Constraints
+    - This API must respond within 1 second.
+    - Only the HTTP status code 200 OK can be returned. Other response status codes are not allowed.
+    - To maintain data consistency and reliability, the Callback API must guarantee idempotency. 
+      - This ensures that if the same Callback API request is received multiple times from the Enclave, the data state and response remain unchanged after the initial call. 
+      - For example, you can implements your VASP to ignore the duplicate requests.
+
+  ## Recommendations
+    Since the API response must be returned as quickly as possible, time-consuming tasks within the Callback API should be handled asynchronously.
+
   ## Environment Variable Configuration
     Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
     - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
