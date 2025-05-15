@@ -32,6 +32,7 @@ excerpt: >
   required actions in accordance with the verification result. For example,
     - For successful verification, proceed with either initiating beneficiary verification on the Originating VASP side or executing the on-chain transaction.
     - For failed verification, cancel the associated asset transfer and notify the originator user of the failure with proper message. data.reason field can be refered to generate the failure messages.
+
   <details>
     <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
@@ -236,6 +237,7 @@ excerpt: >
   When a transaction report is received, your VASP can
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
     - Confirm that the asset transfer has been requested and log the details.
+
   <details>
     <summary>Example of Request Body for TX_REPORT callback type</summary>
 
@@ -257,6 +259,7 @@ excerpt: >
   When an error report is received, your VASP can
     - Cancel the associated asset transfer request.
     - Stop tracking the transaction and log the error for auditing purposes.
+
   <details>
     <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
@@ -280,6 +283,7 @@ excerpt: >
   VASP can
     - Update the evaluation data for the associated originator or beneficiary.
     - Allow or deny the asset transfer based on the assessment result.
+
   <details>
     <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
 
@@ -334,6 +338,7 @@ excerpt: >
   VASP can
     - Update the evaluation data for the associated originator or beneficiary.
     - Allow, resume, or deny the asset transfer based on the assessment result.
+
   <details>
     <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
 
