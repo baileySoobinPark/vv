@@ -14,7 +14,7 @@ metadata:
 1. **Onboarding**\
    Register your VASP and complete the initial onboarding process.
 2. **Implementing VASP APIs**\
-   Develop the required APIs to handle verifications and transactions.
+   Implement the required APIs to handle verifications and transactions.
 3. **Setting up a Database**\
    Configure a secure database to manage compliance data.
 4. **Connecting with Enclave**\
