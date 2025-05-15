@@ -32,133 +32,136 @@ excerpt: >
   required actions in accordance with the verification result. For example,
     - For successful verification, proceed with either initiating beneficiary verification on the Originating VASP side or executing the on-chain transaction.
     - For failed verification, cancel the associated asset transfer and notify the originator user of the failure with proper message. data.reason field can be refered to generate the failure messages.
-    <details>
-      <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
+  <details>
+    <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
-      ``` json
-        {
-          "callbackType": "VERIFICATION_RESULT",
-          "data": {
-            "result": "VERIFIED",
-            "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
-          }
+    ``` json
+      {
+        "callbackType": "VERIFICATION_RESULT",
+        "data": {
+          "result": "VERIFIED",
+          "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
         }
-      ```
-    </details>
-    <details>
-      <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+      }
+    ```
+  </details>
 
-      ``` json
-        {
-          "callbackType":"VERIFICATION_RESULT",
-          "data":{
-              "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-              "verificationResult":"DENIED",
-              "reason":"UNKNOWN-ADDRESS",
-              "ivms101":{
-                "originator":{
-                    "originatorPersons":[
-                      {
-                          "naturalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "primaryIdentifier":"James",
-                                      "secondaryIdentifier":"Din",
-                                      "nameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            }
+
+  <details>
+    <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+
+    ``` json
+      {
+        "callbackType":"VERIFICATION_RESULT",
+        "data":{
+            "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
+            "verificationResult":"DENIED",
+            "reason":"UNKNOWN-ADDRESS",
+            "ivms101":{
+              "originator":{
+                  "originatorPersons":[
+                    {
+                        "naturalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "primaryIdentifier":"James",
+                                    "secondaryIdentifier":"Din",
+                                    "nameIdentifierType":"LEGL"
+                                }
+                              ]
                           }
-                      }
-                    ],
-                    "accountNumber":[
-                      "0x5811001506550d8356a215be229c15b6ef371a9a"
-                    ]
-                },
-                "beneficiary":{
-                    "beneficiaryPersons":[
-                      {
-                          "naturalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "primaryIdentifier":"Taylor",
-                                      "secondaryIdentifier":"Robbins",
-                                      "nameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            }
-                          }
-                      }
-                    ],
-                    "accountNumber":[
-                      "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
-                    ]
-                },
-                "originatingVASP":{
-                    "legalPerson":{
-                      "name":{
-                          "nameIdentifier":[
-                            {
-                                "legalPersonName":"Lambda256",
-                                "legalPersonNameIdentifierType":"LEGL"
-                            }
-                          ]
-                      },
-                      "geographicAddress":[
-                          {
-                            "addressType":"GEOG",
-                            "postcode":"123123c",
-                            "townName":"Yeoksam-dong",
-                            "addressLine":[
-                                "sechogu street",
-                                "100-100"
-                            ],
-                            "country":"KR"
-                          }
-                      ],
-                      "nationalIdentification":{
-                          "nationalIdentifier":"KR0001",
-                          "nationalIdentifierType":"RAID",
-                          "registrationAuthority":"RA000151"
-                      }
+                        }
                     }
-                },
-                "beneficiaryVASP":{
-                    "legalPerson":{
-                      "name":{
-                          "nameIdentifier":[
-                            {
-                                "legalPersonName":"Lambda256 Exchange",
-                                "legalPersonNameIdentifierType":"LEGL"
-                            }
-                          ]
-                      },
-                      "geographicAddress":[
-                          {
-                            "addressType":"GEOG",
-                            "postcode":"234234",
-                            "townName":"Yeoksam-dong",
-                            "addressLine":[
-                                "sechogu street",
-                                "100-100"
-                            ],
-                            "country":"KR"
+                  ],
+                  "accountNumber":[
+                    "0x5811001506550d8356a215be229c15b6ef371a9a"
+                  ]
+              },
+              "beneficiary":{
+                  "beneficiaryPersons":[
+                    {
+                        "naturalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "primaryIdentifier":"Taylor",
+                                    "secondaryIdentifier":"Robbins",
+                                    "nameIdentifierType":"LEGL"
+                                }
+                              ]
                           }
-                      ],
-                      "nationalIdentification":{
-                          "nationalIdentifier":"123456",
-                          "nationalIdentifierType":"RAID",
-                          "registrationAuthority":"RA000677"
-                      }
+                        }
                     }
-                }
+                  ],
+                  "accountNumber":[
+                    "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                  ]
+              },
+              "originatingVASP":{
+                  "legalPerson":{
+                    "name":{
+                        "nameIdentifier":[
+                          {
+                              "legalPersonName":"Lambda256",
+                              "legalPersonNameIdentifierType":"LEGL"
+                          }
+                        ]
+                    },
+                    "geographicAddress":[
+                        {
+                          "addressType":"GEOG",
+                          "postcode":"123123c",
+                          "townName":"Yeoksam-dong",
+                          "addressLine":[
+                              "sechogu street",
+                              "100-100"
+                          ],
+                          "country":"KR"
+                        }
+                    ],
+                    "nationalIdentification":{
+                        "nationalIdentifier":"KR0001",
+                        "nationalIdentifierType":"RAID",
+                        "registrationAuthority":"RA000151"
+                    }
+                  }
+              },
+              "beneficiaryVASP":{
+                  "legalPerson":{
+                    "name":{
+                        "nameIdentifier":[
+                          {
+                              "legalPersonName":"Lambda256 Exchange",
+                              "legalPersonNameIdentifierType":"LEGL"
+                          }
+                        ]
+                    },
+                    "geographicAddress":[
+                        {
+                          "addressType":"GEOG",
+                          "postcode":"234234",
+                          "townName":"Yeoksam-dong",
+                          "addressLine":[
+                              "sechogu street",
+                              "100-100"
+                          ],
+                          "country":"KR"
+                        }
+                    ],
+                    "nationalIdentification":{
+                        "nationalIdentifier":"123456",
+                        "nationalIdentifierType":"RAID",
+                        "registrationAuthority":"RA000677"
+                    }
+                  }
               }
-          }
+            }
         }
-      ```
-    </details>
+      }
+    ```
+  </details>
+
 
   When data.result is `DENIED` or `ERROR`, following data.reason and
   data.message can be returned.
@@ -233,41 +236,43 @@ excerpt: >
   When a transaction report is received, your VASP can
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
     - Confirm that the asset transfer has been requested and log the details.
-    <details>
-      <summary>Example of Request Body for TX_REPORT callback type</summary>
+  <details>
+    <summary>Example of Request Body for TX_REPORT callback type</summary>
 
-      ``` json
-        {
-          "callbackType":"TX_REPORT",
-          "data":{
-              "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-              "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-              "vout":"2"
-          }
+    ``` json
+      {
+        "callbackType":"TX_REPORT",
+        "data":{
+            "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
+            "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
+            "vout":"2"
         }
-      ```
-    </details>
+      }
+    ```
+  </details>
+
 
   ** 4. ERROR_REPORT Callback Handling (as Beneficiary VASP)**
 
   When an error report is received, your VASP can
     - Cancel the associated asset transfer request.
     - Stop tracking the transaction and log the error for auditing purposes.
-    <details>
-      <summary>Example of Request Body for ERROR_REPORT callback type</summary>
+  <details>
+    <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
-      ``` json
-        {
-          "callbackType":"ERROR_REPORT",
-          "data":{
-              "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-              "result":"ERROR",
-              "reason":"BLACKLISTED",
-              "message":"Originator is included in the blacklist."
-          }
+    ``` json
+      {
+        "callbackType":"ERROR_REPORT",
+        "data":{
+            "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
+            "result":"ERROR",
+            "reason":"BLACKLISTED",
+            "message":"Originator is included in the blacklist."
         }
-      ```
-    </details>
+      }
+    ```
+  </details>
+
 
   ** 5. CHAINALYSIS_KYT_RESULT Callback Handling**
 
@@ -275,52 +280,53 @@ excerpt: >
   VASP can
     - Update the evaluation data for the associated originator or beneficiary.
     - Allow or deny the asset transfer based on the assessment result.
-    <details>
-      <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
+  <details>
+    <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
 
-      ``` json
-        {
-          "callbackType":"CHAINALYSIS_KYT_RESULT",
-          "data":{
-              "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-              "riskAssessment":{
-                "chainalysisKYT":{
-                    "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+    ``` json
+      {
+        "callbackType":"CHAINALYSIS_KYT_RESULT",
+        "data":{
+            "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+            "riskAssessment":{
+              "chainalysisKYT":{
+                  "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+                  "counterpartyVaspId":"15952089931162059995",
+                  "apiType":"ATTEMPT",
+                  "userId":"15952089931162059995",
+                  "direction":"OUTGOING",
+                  "network":"ETHEREUM",
+                  "asset":"ETH",
+                  "amount":"1",
+                  "usdPrice":"1820.17",
+                  "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                  "timestamp":"2023-05-18T12:39:44.000Z",
+                  "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+                  "status":"PROCESSED",
+                  "alertCount":1,
+                  "createdAt":"2023-05-18T12:39:46.000Z",
+                  "assessedAt":"2023-05-18T12:39:45.263Z"
+              },
+              "chainalysisKYTAlerts":[
+                  {
                     "counterpartyVaspId":"15952089931162059995",
-                    "apiType":"ATTEMPT",
-                    "userId":"15952089931162059995",
-                    "direction":"OUTGOING",
-                    "network":"ETHEREUM",
-                    "asset":"ETH",
-                    "amount":"1",
-                    "usdPrice":"1820.17",
-                    "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-                    "timestamp":"2023-05-18T12:39:44.000Z",
                     "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-                    "status":"PROCESSED",
-                    "alertCount":1,
-                    "createdAt":"2023-05-18T12:39:46.000Z",
-                    "assessedAt":"2023-05-18T12:39:45.263Z"
-                },
-                "chainalysisKYTAlerts":[
-                    {
-                      "counterpartyVaspId":"15952089931162059995",
-                      "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-                      "direction":"OUTGOING",
-                      "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
-                      "alertLevel":"MEDIUM",
-                      "entityCategory":"high risk exchange",
-                      "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-                      "exposureType":"DIRECT",
-                      "alertAmount":"1820.17",
-                      "createdAt":"2023-05-18T12:39:52.461Z"
-                    }
-                ]
-              }
-          }
+                    "direction":"OUTGOING",
+                    "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
+                    "alertLevel":"MEDIUM",
+                    "entityCategory":"high risk exchange",
+                    "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                    "exposureType":"DIRECT",
+                    "alertAmount":"1820.17",
+                    "createdAt":"2023-05-18T12:39:52.461Z"
+                  }
+              ]
+            }
         }
-      ```
-    </details>
+      }
+    ```
+  </details>
+
 
   ** 6. REFINITIV_WCO_RESULT Callback Handling**
 
@@ -328,30 +334,31 @@ excerpt: >
   VASP can
     - Update the evaluation data for the associated originator or beneficiary.
     - Allow, resume, or deny the asset transfer based on the assessment result.
-    <details>
-      <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
+  <details>
+    <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
 
-      ``` json
-        {
-          "callbackType":"REFINITIV_WCO_RESULT",
-          "data":{
-              "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-              "riskAssessment":{
-                "refinitivWorldCheckOne":{
-                    "counterpartyVaspId":"15952089931162058999",
-                    "direction":"INCOMING",
-                    "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
-                    "status":"PROCESSED",
-                    "matchStrength":"EXACT",
-                    "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
-                    "createdAt":"2023-05-18T12:39:48.000Z",
-                    "assessedAt":"2023-05-18T12:39:57.834Z"
-                }
+    ``` json
+      {
+        "callbackType":"REFINITIV_WCO_RESULT",
+        "data":{
+            "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+            "riskAssessment":{
+              "refinitivWorldCheckOne":{
+                  "counterpartyVaspId":"15952089931162058999",
+                  "direction":"INCOMING",
+                  "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
+                  "status":"PROCESSED",
+                  "matchStrength":"EXACT",
+                  "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
+                  "createdAt":"2023-05-18T12:39:48.000Z",
+                  "assessedAt":"2023-05-18T12:39:57.834Z"
               }
-          }
+            }
         }
-      ```
-    </details>
+      }
+    ```
+  </details>
+
 
   ## Constraints
     - This API must respond within 1 second.

@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: TR Integration Steps
-  version: "1.0"
+  version: '1.0'
   description: Management of VerifyVASP API Spec.
 servers:
   - url: /
@@ -9,44 +9,98 @@ paths:
   /VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT:
     post:
       summary: Verify User Account API
-      description: |
-        This API must be implemented by your VASP to fulfill its role as a **Beneficiary VASP**.  
-        Its primary purpose is to verify whether the beneficiary account address—designated by the Originator as the transfer destination—is owned by your VASP.
+      description: >
+        This API must be implemented by your VASP to fulfill its role as a
+        **Beneficiary VASP**.  
 
-        By providing this endpoint, your VASP allows the **Enclave** to delegate verification tasks.  
-        The Enclave will invoke this API upon receiving verification requests from the Originating VASP.
+        Its primary purpose is to verify whether the beneficiary account
+        address—designated by the Originator as the transfer destination—is
+        owned by your VASP.
+
+
+        By providing this endpoint, your VASP allows the **Enclave** to delegate
+        verification tasks.  
+
+        The Enclave will invoke this API upon receiving verification requests
+        from the Originating VASP.
+
 
         ### Functional Requirements
 
+
         **1. Ownership Verification**  
-        The API must validate whether the requested beneficiary account address exists in the VASP’s database. Based on this verification, it should return the appropriate result.
+
+        The API must validate whether the requested beneficiary account address
+        exists in the VASP’s database. Based on this verification, it should
+        return the appropriate result.
+
 
         **2. Responding with Verification Results**  
+
         The API must return the verification result.  
-        - If the account is owned by the VASP, the API must set the `accountVerificationResult` field value to `VERIFIED`.  
-        - If the account is not recognized by the VASP, the API must set the `accountVerificationResult` field value to `DENIED`.
+
+        - If the account is owned by the VASP, the API must set the
+        `accountVerificationResult` field value to `VERIFIED`.  
+
+        - If the account is not recognized by the VASP, the API must set the
+        `accountVerificationResult` field value to `DENIED`.
+
 
         **3. Failure Reason Specification**  
-        When the `accountVerificationResult` field is set to `DENIED`, the `reason` field in the response must specify the reason for the failure.  
+
+        When the `accountVerificationResult` field is set to `DENIED`, the
+        `reason` field in the response must specify the reason for the
+        failure.  
+
         The allowed values for this field are as follows:
 
+
         | Reason Code         | Description |
+
         |---------------------|-------------|
-        | `UNKNOWN-SYMBOL`    | Error code returned when the symbol provided by the Originating VASP is not supported by the Beneficiary VASP. <br><br>**Case Example:** The virtual asset is not handled by the exchange. |
-        | `UNKNOWN-NETWORK`   | Error code returned when the network provided by the Originating VASP is not supported by the Beneficiary VASP or lacks sufficient network information. <br><br>**Case Example:** If the requested asset's symbol is `USDT` and the network is `Ethereum`, but the Beneficiary VASP only supports USDT on the Tron network, this reason should be used in the reason field. |
-        | `UNKNOWN-ADDRESS`   | Error code returned when the provided wallet address does not correspond to a wallet managed by the Beneficiary VASP. |
-        | `MISMATCHED-NAME`   | Error code returned when the Beneficiary's name does not match the name provided by the Originating VASP. |
-        | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not completed the KYC verification process required by the Beneficiary VASP. |
-        | `UNDEFINED-ERROR`   | Error code returned when an undefined or unexpected error occurs. |
+
+        | `UNKNOWN-SYMBOL`    | Error code returned when the symbol provided by
+        the Originating VASP is not supported by the Beneficiary VASP.
+        <br><br>**Case Example:** The virtual asset is not handled by the
+        exchange. |
+
+        | `UNKNOWN-NETWORK`   | Error code returned when the network provided by
+        the Originating VASP is not supported by the Beneficiary VASP or lacks
+        sufficient network information. <br><br>**Case Example:** If the
+        requested asset's symbol is `USDT` and the network is `Ethereum`, but
+        the Beneficiary VASP only supports USDT on the Tron network, this reason
+        should be used in the reason field. |
+
+        | `UNKNOWN-ADDRESS`   | Error code returned when the provided wallet
+        address does not correspond to a wallet managed by the Beneficiary VASP.
+        |
+
+        | `MISMATCHED-NAME`   | Error code returned when the Beneficiary's name
+        does not match the name provided by the Originating VASP. |
+
+        | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not
+        completed the KYC verification process required by the Beneficiary VASP.
+        |
+
+        | `UNDEFINED-ERROR`   | Error code returned when an undefined or
+        unexpected error occurs. |
+
 
         ### Constraints
           * This API must respond within 1 second.
 
         ### Recommendations
-        It is recommended that this API focus solely on verifying ownership and does not perform risk assessments such as KYC or Sanction Screening during the verification process.
+
+        It is recommended that this API focus solely on verifying ownership and
+        does not perform risk assessments such as KYC or Sanction Screening
+        during the verification process.
+
 
         ### Environment Variable Configuration
-        Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here](ref:travelrule-enclave-setup).
+
+        Set the following environment variables as per the guide to integrate
+        the implemented API with the Enclave. For a complete list of Enclave
+        environment variables, [click here](ref:travelrule-enclave-setup).
           * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_USER_ACCOUNT}) and set this variable accordingly.
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
       security:
@@ -80,7 +134,7 @@ paths:
                   type: string
                   description: |
                     Unique identifier of Originating VASP.
-                  example: "123456789098765"
+                  example: '123456789098765'
                 symbol:
                   type: string
                   description: |
@@ -88,8 +142,10 @@ paths:
                   example: ETH
                 network:
                   type: string
-                  description: |
-                    The network of the virtual asset to be transferred.   The network field can be implemented conditionally. Valid values for this field can be found here.  
+                  description: >
+                    The network of the virtual asset to be transferred.   The
+                    network field can be implemented conditionally. Valid values
+                    for this field can be found here.  
                       
                     **Conditional Use of 'network' Field:**  
                       When the Beneficiary VASP requires the network field:  
@@ -102,11 +158,13 @@ paths:
                   type: string
                   description: |
                     The version of the IVMS101 messaging protocol being used.
-                  example: "1.0"
+                  example: '1.0'
                 ivms101:
                   type: object
-                  description: |
-                    An object with IVMS101-formatted data containing information about the Originator, OriginatingVASP, Beneficiary, and BeneficiaryVASP.
+                  description: >
+                    An object with IVMS101-formatted data containing information
+                    about the Originator, OriginatingVASP, Beneficiary, and
+                    BeneficiaryVASP.
                   required:
                     - beneficiary
                   properties:
@@ -126,16 +184,16 @@ paths:
             examples:
               requestexamples:
                 value:
-                  originatingVaspId: "15952089931162060684"
+                  originatingVaspId: '15952089931162060684'
                   symbol: ETH
                   network: Ethereum
-                  version: "1.0"
+                  version: '1.0'
                   ivms101:
                     beneficiary:
                       accountNumber:
-                        - "0x5811001506550d8356a215be229c15b6ef371a9b"
+                        - '0x5811001506550d8356a215be229c15b6ef371a9b'
       responses:
-        "200":
+        '200':
           description: Successful verification response
           content:
             application/json:
@@ -150,10 +208,11 @@ paths:
                     enum:
                       - VERIFIED
                       - DENIED
-                    description: |
+                    description: >
                       Result of User Account Verification:  
                         
-                      If the result is **DENIED**, the reason field should provide the specific reason.
+                      If the result is **DENIED**, the reason field should
+                      provide the specific reason.
                     example: VERIFIED
                   reason:
                     type: string
@@ -165,39 +224,58 @@ paths:
                       - UNDEFINED-ERROR
                       - BLACKLISTED
                       - UNVERIFIED-KYC
-                    description: |
-                      Error codes indicating the reason for verification failure.
+                    description: >
+                      Error codes indicating the reason for verification
+                      failure.
                     example: UNKNOWN-ADDRESS
                   verifiedAt:
                     type: string
-                    description: |
+                    description: >
                       The timestamp when the verification was completed.  
                         
-                      This field must follow the UTC ISO 8601 datetime representation standard.
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
                         
                       **Recommendations**  
                         
-                      To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                      To ensure consistency across systems, we strongly
+                      recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.   Other ISO 8601
+                      Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")  
                         
                       **Implementation Note**  
                         
-                      While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
-                    example: 2024-11-25T15:30:00.000Z
+                      While the extended format is recommended, your
+                      implementation should account for requests from external
+                      VASPs that may use the other two formats. Ensure your
+                      system can handle and correctly interpret all three
+                      formats to maintain compatibility.
+                    example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
-                    accountVerificationResult: "15952089931162060684"
-                    verifiedAt: 2022-03-03T12:45:34.085Z
+                    accountVerificationResult: '15952089931162060684'
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
   /VASP_DEFINED_PATH_VERIFY_USER:
     post:
       summary: Verify User API
-      description: |
-        This API must be implemented by your VASP to fulfill its role as a Beneficiary VASP. Its primary purpose is to verify the consistency of the originator user provided Beneficiary's personal information against the Beneficiary VASP managing data, while ensuring compliance with KYC/AML and sanction screening requirements.
-        By providing this endpoint, your VASP allows the Enclave to delegate verification tasks. The Enclave will invoke this API upon receiving verification requests from the Originating VASP.
+      description: >
+        This API must be implemented by your VASP to fulfill its role as a
+        Beneficiary VASP. Its primary purpose is to verify the consistency of
+        the originator user provided Beneficiary's personal information against
+        the Beneficiary VASP managing data, while ensuring compliance with
+        KYC/AML and sanction screening requirements.
+
+        By providing this endpoint, your VASP allows the Enclave to delegate
+        verification tasks. The Enclave will invoke this API upon receiving
+        verification requests from the Originating VASP.
+
 
         ### Functional Requirements
+
         **1. Personal Information Verification**
 
           - The API must validate whether the personal information provided by the Originating VASP matches the data managed by the Beneficiary VASP.
@@ -223,7 +301,8 @@ paths:
           - The beneficiary account number (or wallet address) must be returned without modification. Altering the wallet address may result in incorrect deposits. If the deposit address is invalid or incorrect, the API must set verificationResult to `DENIED`.
 
 
-        **4. Responding with Additional Beneficiary Information and Verification Results**
+        **4. Responding with Additional Beneficiary Information and Verification
+        Results**
 
           The API must return the verification result.
           * After verifying both the Originator and Beneficiary information (including addresses and personal details), the API must return the result field as `VERIFIED` if the provided data matches the beneficiary side records and there are no exceptional reasons to deny the asset transfer.
@@ -236,33 +315,88 @@ paths:
 
           When the result field is set to `DENIED`, the reason field in the response must specify the reason for the failure. The allowed values for this field are as follows:
 
-        | Reason Code             | Message                            | Description |
+        | Reason Code             | Message                            |
+        Description |
+
         |-------------------------|-------------------------------------|-------------|
-        | `UNKNOWN-SYMBOL`        | `"ETH"`                             | Error code returned when the virtual asset symbol entered by the Originating VASP is not supported by the Beneficiary VASP. |
-        | `UNKNOWN-NETWORK`       | `"Ethereum"`                        | Error code returned when the network entered by the Originating VASP is either not supported by the Beneficiary VASP or contains insufficient network information. <br>This error is also returned if the asset symbol matches but the network does not (e.g., sending `USDT` with `ETH` network when only `USDT` on Tron is supported). |
-        | `UNKNOWN-ADDRESS`       | `"0x... is not registered."`        | Error code returned when the wallet address entered by the Originating VASP does not belong to a wallet managed by the Beneficiary VASP. |
-        | `LACK-OF-INFORMATION`   | `"ACCOUNT_NUMBER"`                  | Error code returned when the information about the Originator is insufficient for the Beneficiary VASP to perform verification. |
-        | `UNAVAILABLE-INFORMATION` | `"ACCOUNT_NUMBER"`               | Error code returned when the Beneficiary VASP does not possess or cannot provide certain personal information requested by the Originating VASP. |
-        | `BLACKLISTED`           | `"0x.. is listed on the blacklist."` | Error code returned when the sanction screening results for the Originator indicate a compliance issue. |
-        | `UNVERIFIED-KYC`        | `"0x.. is unverified KYC"`          | Error code returned when the Beneficiary has not completed the KYC verification process with the Beneficiary VASP.|
-        | `MISMATCHED-NAME`       | `"Name is not matched."`            | Error code returned when the Beneficiary's name does not match the name provided by the Originating VASP. |
-        | `NOT-ALLOWED`           | `"This user is locked by internal policy."` | Error code returned when the Beneficiary VASP rejects the user verification for any reason. |
-        | `UNDEFINED-ERROR`       | `"Undefined Error is occurred."`    | Error code returned when an error occurs that is not defined in the specified cases. |
+
+        | `UNKNOWN-SYMBOL`        | `"ETH"`                             | Error
+        code returned when the virtual asset symbol entered by the Originating
+        VASP is not supported by the Beneficiary VASP. |
+
+        | `UNKNOWN-NETWORK`       | `"Ethereum"`                        | Error
+        code returned when the network entered by the Originating VASP is either
+        not supported by the Beneficiary VASP or contains insufficient network
+        information. <br>This error is also returned if the asset symbol matches
+        but the network does not (e.g., sending `USDT` with `ETH` network when
+        only `USDT` on Tron is supported). |
+
+        | `UNKNOWN-ADDRESS`       | `"0x... is not registered."`        | Error
+        code returned when the wallet address entered by the Originating VASP
+        does not belong to a wallet managed by the Beneficiary VASP. |
+
+        | `LACK-OF-INFORMATION`   | `"ACCOUNT_NUMBER"`                  | Error
+        code returned when the information about the Originator is insufficient
+        for the Beneficiary VASP to perform verification. |
+
+        | `UNAVAILABLE-INFORMATION` | `"ACCOUNT_NUMBER"`               | Error
+        code returned when the Beneficiary VASP does not possess or cannot
+        provide certain personal information requested by the Originating VASP.
+        |
+
+        | `BLACKLISTED`           | `"0x.. is listed on the blacklist."` | Error
+        code returned when the sanction screening results for the Originator
+        indicate a compliance issue. |
+
+        | `UNVERIFIED-KYC`        | `"0x.. is unverified KYC"`          | Error
+        code returned when the Beneficiary has not completed the KYC
+        verification process with the Beneficiary VASP.|
+
+        | `MISMATCHED-NAME`       | `"Name is not matched."`            | Error
+        code returned when the Beneficiary's name does not match the name
+        provided by the Originating VASP. |
+
+        | `NOT-ALLOWED`           | `"This user is locked by internal policy."`
+        | Error code returned when the Beneficiary VASP rejects the user
+        verification for any reason. |
+
+        | `UNDEFINED-ERROR`       | `"Undefined Error is occurred."`    | Error
+        code returned when an error occurs that is not defined in the specified
+        cases. |
+
         ### Constraints
+
 
         - This API **must respond within 5 seconds**.
 
+
         ### Recommendations
 
-        Virtual asset transfers **below the threshold set by regulations** are **not subject to the Travel Rule**, and **beneficiary name verification is not mandatory**.
-        - **We highly recommend using the TravelRule Protocol for all transactions**, regardless of differing thresholds across jurisdictions, to ensure secure and compliant transfers reduce operational resources.
 
-        - If the `isExceedingThreshold` field in the Originating VASP's request is set to `false` the transfer **is not subject to the Travel Rule**, and **User verification is not mandatory** in such cases, the virtual asset **can be transferred without further verification**.
+        Virtual asset transfers **below the threshold set by regulations** are
+        **not subject to the Travel Rule**, and **beneficiary name verification
+        is not mandatory**.
+
+        - **We highly recommend using the TravelRule Protocol for all
+        transactions**, regardless of differing thresholds across jurisdictions,
+        to ensure secure and compliant transfers reduce operational resources.
+
+
+        - If the `isExceedingThreshold` field in the Originating VASP's request
+        is set to `false` the transfer **is not subject to the Travel Rule**,
+        and **User verification is not mandatory** in such cases, the virtual
+        asset **can be transferred without further verification**.
+
 
         ### Environment Variable Configuration
 
-        Set the following environment variables as per the integration guide to connect the implemented API with the Enclave.  
-        For a complete list of Enclave environment variables, [click here](ref:travelrule-enclave-setup).
+
+        Set the following environment variables as per the integration guide to
+        connect the implemented API with the Enclave.  
+
+        For a complete list of Enclave environment variables, [click
+        here](ref:travelrule-enclave-setup).
+
 
         - `VEGA_VERIFICATION_API_PATH`  
           Implement this API at the desired path (`{VASP_DEFINED_PATH_VERIFY_USER}`) and set the path in the variable.
@@ -300,9 +434,11 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 assetInfo:
                   type: object
@@ -322,8 +458,10 @@ paths:
                       example: ETH
                     network:
                       type: string
-                      description: |
-                        The network of the virtual asset to be transferred.   The network field can be implemented conditionally. Valid values for this field can be found here.  
+                      description: >
+                        The network of the virtual asset to be transferred.  
+                        The network field can be implemented conditionally.
+                        Valid values for this field can be found here.  
                           
                         **Conditional Use of 'network' Field:**  
                           When the Beneficiary VASP requires the network field:  
@@ -336,56 +474,79 @@ paths:
                       type: string
                       description: |
                         The amount of the virtual asset to be transferred.
-                      example: "0.024"
+                      example: '0.024'
                     isExceedingThreshold:
                       type: boolean
-                      description: |
-                        A boolean field to check whether the fiat-converted amount of the virtual asset to be transferred exceeds the legal threshold.   If the value is false, User Verification for the transaction is not mandatory.   (Legal threshold: 1,000 USD or 1,000,000 KRW.)
+                      description: >
+                        A boolean field to check whether the fiat-converted
+                        amount of the virtual asset to be transferred exceeds
+                        the legal threshold.   If the value is false, User
+                        Verification for the transaction is not mandatory.  
+                        (Legal threshold: 1,000 USD or 1,000,000 KRW.)
                       example: true
                     tradePrice:
                       type: string
-                      description: |
-                        The amount of virtual assets to be transferred, converted into fiat currency.
-                      example: "2439800"
+                      description: >
+                        The amount of virtual assets to be transferred,
+                        converted into fiat currency.
+                      example: '2439800'
                     tradeCurrency:
                       type: string
-                      description: |
-                        The code of the fiat currency into which the virtual asset is converted.
+                      description: >
+                        The code of the fiat currency into which the virtual
+                        asset is converted.
                       example: KRW
                     tradeISODateTime:
                       type: string
-                      description: |
-                        The timestamp used as the exchange rate reference when converting the virtual asset to fiat currency.   This field must follow the UTC ISO 8601 datetime representation standard.  
+                      description: >
+                        The timestamp used as the exchange rate reference when
+                        converting the virtual asset to fiat currency.   This
+                        field must follow the UTC ISO 8601 datetime
+                        representation standard.  
                           
                         **Recommendations**  
                           
-                        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                        To ensure consistency across systems, we strongly
+                        recommend using the extended format
+                        "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                        and clearly specifies the UTC timezone.   Other ISO 8601
+                        Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
                           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")    
                           
                         **Implementation Note**  
                           
-                        While the extended format is recommended, your implementation should account for requests from external VASPs that may use the other two formats. Ensure your system can handle and correctly interpret all three formats to maintain compatibility.
-                      example: 2024-11-25T15:30:00.000Z
+                        While the extended format is recommended, your
+                        implementation should account for requests from external
+                        VASPs that may use the other two formats. Ensure your
+                        system can handle and correctly interpret all three
+                        formats to maintain compatibility.
+                      example: '2024-11-25T15:30:00.000Z'
                 requiredBeneficiaryInfo:
                   type: string
-                  description: |
-                    The list of personal information codes required by the Originating VASP to verify the Beneficiary.   The Beneficiary VASP must return the requested Beneficiary personal information using the provided personal information codes in the IVMS101 format.
+                  description: >
+                    The list of personal information codes required by the
+                    Originating VASP to verify the Beneficiary.   The
+                    Beneficiary VASP must return the requested Beneficiary
+                    personal information using the provided personal information
+                    codes in the IVMS101 format.
                   example: NATURAL_PERSON_NAME,ACCOUNT_NUMBER
                 originatingVaspId:
                   type: string
                   description: |
                     Unique identifier of Originating VASP.
-                  example: "123456789098765"
+                  example: '123456789098765'
                 version:
                   type: string
                   description: |
                     The version of the IVMS101 messaging protocol being used.
-                  example: "1.0"
+                  example: '1.0'
                 ivms101:
                   type: object
-                  description: |
-                    An object with IVMS101-formatted data that may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP for sending the request.
+                  description: >
+                    An object with IVMS101-formatted data that may include
+                    information about the Originator, Originating VASP,
+                    Beneficiary, and Beneficiary VASP for sending the request.
                   required:
                     - originator
                     - beneficiary
@@ -400,21 +561,24 @@ paths:
                       properties:
                         originatorPersons:
                           type: array
-                          description: |
-                            An array containing the Originator's personal information.
+                          description: >
+                            An array containing the Originator's personal
+                            information.
                           items:
                             type: object
                             required:
                               - naturalPerson
-                            description: |
-                              An object containing details about the natural person.
+                            description: >
+                              An object containing details about the natural
+                              person.
                             properties:
                               naturalPerson:
                                 type: object
                                 required:
                                   - name
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   name:
                                     type: object
@@ -425,7 +589,9 @@ paths:
                                     properties:
                                       nameIdentifier:
                                         type: array
-                                        description: An array containing the name information.
+                                        description: >-
+                                          An array containing the name
+                                          information.
                                         items:
                                           type: object
                                           required:
@@ -434,13 +600,23 @@ paths:
                                           properties:
                                             primaryIdentifier:
                                               type: string
-                                              description: |
-                                                The basic representation of a last name.   By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                              description: >
+                                                The basic representation of a last
+                                                name.   By default, this field is used
+                                                to enter the last name. However, if
+                                                separating the last name and first name
+                                                is not feasible, the full name can be
+                                                entered in this field.
                                               example: James
                                             secondaryIdentifier:
                                               type: string
-                                              description: |
-                                                The basic representation of a first name.   This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                              description: >
+                                                The basic representation of a first
+                                                name.   This field is primarily used to
+                                                enter the first name. If a middle name
+                                                also needs to be included, it can be
+                                                combined with the first name in this
+                                                field.
                                               example: James || Jeffry James
                                             nameIdentifierType:
                                               type: string
@@ -450,10 +626,13 @@ paths:
                                                 - MAID
                                                 - LEGL
                                                 - MISC
-                                              description: |
+                                              description: >
                                                 The type of name identifier.  
                                                   
-                                                Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                Refer to the details below for
+                                                information about each type of name
+                                                identifier:   The following values can
+                                                be included:  
                                                   **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                   **BIRT**: A birth name.  
@@ -480,23 +659,26 @@ paths:
                       properties:
                         beneficiaryPersons:
                           type: array
-                          description: |
+                          description: >
                             An array for personal information of Beneficiary.  
                               
-                            Name, address, etc. information for individuals or corporations are included.
+                            Name, address, etc. information for individuals or
+                            corporations are included.
                           items:
                             type: object
                             required:
                               - naturalPerson
-                            description: |
-                              An object containing details about the natural person.
+                            description: >
+                              An object containing details about the natural
+                              person.
                             properties:
                               naturalPerson:
                                 type: object
                                 required:
                                   - name
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   name:
                                     type: object
@@ -507,7 +689,9 @@ paths:
                                     properties:
                                       nameIdentifier:
                                         type: array
-                                        description: An array containing the name information.
+                                        description: >-
+                                          An array containing the name
+                                          information.
                                         items:
                                           type: object
                                           required:
@@ -516,13 +700,23 @@ paths:
                                           properties:
                                             primaryIdentifier:
                                               type: string
-                                              description: |
-                                                The basic representation of a last name.   By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                              description: >
+                                                The basic representation of a last
+                                                name.   By default, this field is used
+                                                to enter the last name. However, if
+                                                separating the last name and first name
+                                                is not feasible, the full name can be
+                                                entered in this field.
                                               example: James
                                             secondaryIdentifier:
                                               type: string
-                                              description: |
-                                                The basic representation of a first name.   This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                              description: >
+                                                The basic representation of a first
+                                                name.   This field is primarily used to
+                                                enter the first name. If a middle name
+                                                also needs to be included, it can be
+                                                combined with the first name in this
+                                                field.
                                               example: James || Jeffry James
                                             nameIdentifierType:
                                               type: string
@@ -532,10 +726,13 @@ paths:
                                                 - MAID
                                                 - LEGL
                                                 - MISC
-                                              description: |
+                                              description: >
                                                 The type of name identifier.  
                                                   
-                                                Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                Refer to the details below for
+                                                information about each type of name
+                                                identifier:   The following values can
+                                                be included:  
                                                   **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                   **BIRT**: A birth name.  
@@ -555,21 +752,23 @@ paths:
             examples:
               requestexamples:
                 summary: example of a verification request
-                description: |
-                  A complete example of a request for user account verification, including asset information, originating VASP details, and IVMS101 data.
+                description: >
+                  A complete example of a request for user account verification,
+                  including asset information, originating VASP details, and
+                  IVMS101 data.
                 value:
                   verificationUuid: 4bc03a8f-5679-4358-815c-906aae5557f4
                   assetInfo:
                     symbol: ETH
                     network: Ethereum
-                    amount: "0.024"
+                    amount: '0.024'
                     isExceedingThreshold: true
-                    tradePrice: "2193200"
+                    tradePrice: '2193200'
                     tradeCurrency: KRW
-                    tradeISODatetime: 2022-02-06T23:13:43.513Z
+                    tradeISODatetime: '2022-02-06T23:13:43.513Z'
                   requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
-                  originatingVaspId: "123456789098765"
-                  version: "1.0"
+                  originatingVaspId: '123456789098765'
+                  version: '1.0'
                   ivms101:
                     originator:
                       originatorPersons:
@@ -580,7 +779,7 @@ paths:
                                   secondaryIdentifier: Din
                                   nameIdentifierType: LEGL
                       accountNumber:
-                        - "0x5811001506550d8356a215be229c15b6ef371a9a"
+                        - '0x5811001506550d8356a215be229c15b6ef371a9a'
                     beneficiary:
                       beneficiaryPersons:
                         - naturalPerson:
@@ -589,9 +788,9 @@ paths:
                                 - primaryIdentifier: James
                                   nameIdentifierType: LEGL
                       accountNumber:
-                        - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                        - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful verification response
           content:
             application/json:
@@ -638,11 +837,13 @@ paths:
                     type: string
                     description: |
                       The version of the IVMS101 messaging protocol being used.
-                    example: "1.0"
+                    example: '1.0'
                   ivms101:
                     type: object
-                    description: |
-                      An object containing IVMS101-formatted data, which may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP.
+                    description: >
+                      An object containing IVMS101-formatted data, which may
+                      include information about the Originator, Originating
+                      VASP, Beneficiary, and Beneficiary VASP.
                     required:
                       - beneficiary
                     properties:
@@ -656,19 +857,22 @@ paths:
                         properties:
                           beneficiaryPersons:
                             type: array
-                            description: |
+                            description: >
                               Array for personal information of Beneficiary.  
                                 
-                              Name, address, etc. information for individuals or corporations are included.
+                              Name, address, etc. information for individuals or
+                              corporations are included.
                             items:
                               type: object
-                              description: |
-                                An object containing details about the natural person.
+                              description: >
+                                An object containing details about the natural
+                                person.
                               properties:
                                 naturalPerson:
                                   type: object
-                                  description: |
-                                    An object containing details about the natural person.
+                                  description: >
+                                    An object containing details about the
+                                    natural person.
                                   properties:
                                     name:
                                       type: object
@@ -679,7 +883,9 @@ paths:
                                       properties:
                                         nameIdentifier:
                                           type: array
-                                          description: An array containing the name information.
+                                          description: >-
+                                            An array containing the name
+                                            information.
                                           items:
                                             type: object
                                             required:
@@ -688,13 +894,23 @@ paths:
                                             properties:
                                               primaryIdentifier:
                                                 type: string
-                                                description: |
-                                                  The basic representation of a last name.   By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                description: >
+                                                  The basic representation of a last
+                                                  name.   By default, this field is used
+                                                  to enter the last name. However, if
+                                                  separating the last name and first name
+                                                  is not feasible, the full name can be
+                                                  entered in this field.
                                                 example: James
                                               secondaryIdentifier:
                                                 type: string
-                                                description: |
-                                                  The basic representation of a first name.   This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                description: >
+                                                  The basic representation of a first
+                                                  name.   This field is primarily used to
+                                                  enter the first name. If a middle name
+                                                  also needs to be included, it can be
+                                                  combined with the first name in this
+                                                  field.
                                                 example: James || Jeffry James
                                               nameIdentifierType:
                                                 type: string
@@ -704,10 +920,13 @@ paths:
                                                   - MAID
                                                   - LEGL
                                                   - MISC
-                                                description: |
+                                                description: >
                                                   The type of name identifier.  
                                                     
-                                                  Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                  Refer to the details below for
+                                                  information about each type of name
+                                                  identifier:   The following values can
+                                                  be included:  
                                                     **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                     **BIRT**: A birth name.  
@@ -720,10 +939,14 @@ paths:
                                             example: LEGL
                                     geographicAddress:
                                       type: array
-                                      description: |
-                                        
-                                        An array containing address information.  
-                                        To use this field, at least one of the following conditions must be met:   Required conditions  
+                                      description: >
+
+                                        An array containing address
+                                        information.  
+
+                                        To use this field, at least one of the
+                                        following conditions must be met:  
+                                        Required conditions  
                                           1. At least one addressLinemust be present.  
                                           
                                           2. Both streetName and buildingName must be present.  
@@ -739,8 +962,9 @@ paths:
                                               - HOME
                                               - BIZZ
                                               - GEOG
-                                            description: |
-                                              The type of geographic address.   Allowed values:  
+                                            description: >
+                                              The type of geographic address.  
+                                              Allowed values:  
                                                 HOME: Home address.  
                                                 BIZZ: Business address.  
                                                 GEOG: Geographic address.
@@ -748,29 +972,36 @@ paths:
                                           townName:
                                             type: string
                                             description: |
-                                              
+
                                               The name of the town or district.
                                             example: Yeoksam-dong
                                           addressLine:
                                             type: array
                                             items:
                                               type: string
-                                            description: |
-                                              
-                                              A free-form address that identifies a specific location.   If dividing the address into components (e.g., province, city, street name) is difficult, the full address can be entered as a single string in addressLine.
+                                            description: >
+
+                                              A free-form address that identifies a
+                                              specific location.   If dividing the
+                                              address into components (e.g., province,
+                                              city, street name) is difficult, the
+                                              full address can be entered as a single
+                                              string in addressLine.
                                             example:
                                               - 14 Teheran-ro 4-gil
                                               - Gangnam-gu
                                               - 4th floor
                                           country:
                                             type: string
-                                            description: |
-                                              The country code of the country of residence (ISO 3166-1 alpha-2 format).
+                                            description: >
+                                              The country code of the country of
+                                              residence (ISO 3166-1 alpha-2 format).
                                             example: KR
                                     nationalIdentification:
                                       type: object
-                                      description: |
-                                        An object containing National Identification information.
+                                      description: >
+                                        An object containing National
+                                        Identification information.
                                       properties:
                                         nationalIdentifier:
                                           type: string
@@ -790,8 +1021,9 @@ paths:
                                             - IDCD
                                             - LEIX
                                             - MISC
-                                          description: |
-                                            Type of National Identification.   Allowed values:  
+                                          description: >
+                                            Type of National Identification.  
+                                            Allowed values:  
                                               **ARNU**: Alien Registration Number (assigned to foreigners by the state).  
                                               **CCPT**: Passport Number.  
                                               **RAID**: (For corporations only) Corporate registration number (e.g., business registration number).  
@@ -808,9 +1040,9 @@ paths:
                                     customerIdentification:
                                       type: string
                                       description: |
-                                        
+
                                         Customer number of individual.
-                                      example: "1234569999"
+                                      example: '1234569999'
                                     dateAndPlaceOfBirth:
                                       type: object
                                       properties:
@@ -819,7 +1051,7 @@ paths:
                                           description: |
                                             Date of birth.  
                                             Allowed format: ISO 8601 ("YYYY-MM-DD").
-                                          example: 1985-03-14
+                                          example: '1985-03-14'
                                         placeOfBirth:
                                           type: string
                                           description: |
@@ -827,8 +1059,9 @@ paths:
                                           example: Nonsan
                                     countryOfResidence:
                                       type: string
-                                      description: |
-                                        The country code of the country of residence.
+                                      description: >
+                                        The country code of the country of
+                                        residence.
                                       example: KR
                           accountNumber:
                             type: array
@@ -839,13 +1072,14 @@ paths:
               examples:
                 Successful Example:
                   summary: example of a successful verification response
-                  description: |
-                    A complete example of a successful verification response including IVMS101 beneficiary data.
+                  description: >
+                    A complete example of a successful verification response
+                    including IVMS101 beneficiary data.
                   value:
                     result: VERIFIED
                     reason: OK
-                    message: ""
-                    version: "1.0"
+                    message: ''
+                    version: '1.0'
                     ivms101:
                       beneficiary:
                         beneficiaryPersons:
@@ -867,26 +1101,43 @@ paths:
                               nationalIdentification:
                                 nationalIdentifier: 12345-67890
                                 nationalIdentifierType: IDCD
-                              customerIdentification: "1234569999"
+                              customerIdentification: '1234569999'
                               dateAndPlaceOfBirth:
-                                dateOfBirth: 1985-03-14
+                                dateOfBirth: '1985-03-14'
                                 placeOfBirth: Nonsan
                               countryOfResidence: KR
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
   /VASP_DEFINED_PATH_TRANSACTION_CHECK:
     post:
       summary: Check Trasnaction Status API
-      description: |
-        This API must be implemented by your VASP to fulfill its role as a Originating VASP. Its primary purpose is to retrieve and return the current status of a transfer transaction submitted by the Originator on the blockchain. This API is typically called by the Beneficiary VASP when asynchronous status updates from the Originating VASP are delayed or missing. 
-        The Enclave will invoke this API upon receiving transaction status checking requests from the Beneficiary VASP.
+      description: >
+        This API must be implemented by your VASP to fulfill its role as a
+        Originating VASP. Its primary purpose is to retrieve and return the
+        current status of a transfer transaction submitted by the Originator on
+        the blockchain. This API is typically called by the Beneficiary VASP
+        when asynchronous status updates from the Originating VASP are delayed
+        or missing. 
+
+        The Enclave will invoke this API upon receiving transaction status
+        checking requests from the Beneficiary VASP.
+
 
         ### Functional Requirements
+
         **1. Mapping Verification UUID to the Corresponding Transaction Hash**
-        Your VASP, acting as the Originating VASP, must map the verificationUuid (received in response to a previous 'Verify User API' request) to the transaction hash of the on-chain transfer submitted following the verification result.
+
+        Your VASP, acting as the Originating VASP, must map the verificationUuid
+        (received in response to a previous 'Verify User API' request) to the
+        transaction hash of the on-chain transfer submitted following the
+        verification result.
+
 
         **2. Retrieving and Responding On-Chain Transaction Status**
-        Using the transaction hash, retrieve the current status of the on-chain transaction. The transaction status must be returned in the transactionStatus field, which supports the following allowed values:
+
+        Using the transaction hash, retrieve the current status of the on-chain
+        transaction. The transaction status must be returned in the
+        transactionStatus field, which supports the following allowed values:
           * **PENDING**: The transaction is awaiting submission to the blockchain for any reason.
           * ** PROCESSING**: The transaction has been submitted to the blockchain and is waiting to be mined.
           * **WAIT-CONFIRM**: The transaction has been mined, but finality has not yet been achieved.
@@ -894,10 +1145,15 @@ paths:
           * **CANCELED**: The transaction was either canceled before submission or permanently canceled after submission.
 
         ### Contraints 
+
         * This API must respond within 1 second.
 
+
         ### Recommendations
-        To simplify the management of the verificationUuid and transaction hash pair, it is strongly recommended to leverage the Enclave APIs: Report Transaction Result API and Get Verification Result API. 
+
+        To simplify the management of the verificationUuid and transaction hash
+        pair, it is strongly recommended to leverage the Enclave APIs: Report
+        Transaction Result API and Get Verification Result API. 
           * Ensure Prompt Transaction Reporting
             * Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Report Transaction Result API. This ensures you can:
               * Notify the Beneficiary VASP of the transaction result.
@@ -906,10 +1162,17 @@ paths:
             * If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Verification Result API to retrieve the previously stored transaction hash. 
             * This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
 
-        Leveraging this implementation allows your VASP to efficiently manage verificationUuid and transaction hash mapping without a dedicated database, simplifying implementation while ensuring accurate and timely status handling.
+        Leveraging this implementation allows your VASP to efficiently manage
+        verificationUuid and transaction hash mapping without a dedicated
+        database, simplifying implementation while ensuring accurate and timely
+        status handling.
+
 
         ### Environment Variable Configuration
-        Set the following environment variables as per the guide to integrate the implemented API with the Enclave. For a complete list of Enclave environment variables, [click here.](ref:travelrule-enclave-setup).
+
+        Set the following environment variables as per the guide to integrate
+        the implemented API with the Enclave. For a complete list of Enclave
+        environment variables, [click here.](ref:travelrule-enclave-setup).
           * `VEGA_VERIFICATION_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_TRANSACTION_CHECK}) and set the path in the variable.
           * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
       security:
@@ -938,16 +1201,18 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
               requestexamples:
                 value:
-                  originatingVaspId: "15952089931162060684"
+                  originatingVaspId: '15952089931162060684'
       responses:
-        "200":
+        '200':
           description: Successful CheckTransactionStatus response
           content:
             application/json:
@@ -959,9 +1224,11 @@ paths:
                 properties:
                   verificationUuid:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the User Verification request.  
-                      The format of **verificationUuid** must follow the UUID v4 standard.
+
+                      The format of **verificationUuid** must follow the UUID v4
+                      standard.
                     example: 4bc03a8f-5679-4358-815c-906aae5557f4
                   transactionStatus:
                     type: string
@@ -989,303 +1256,392 @@ paths:
                     type: string
                     description: |
                       Unique identifier of the transaction.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
                     description: |
                       Index of the output in a Bitcoin blockchain transaction.
-                    example: "2"
+                    example: '2'
               examples:
                 Successful Example:
                   value:
-                    originatingVaspId: "15952089931162060684"
+                    originatingVaspId: '15952089931162060684'
                     transactionStatus: PROCESSING
-                    txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                    vout: "2"
+                    txHash: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout: '2'
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       summary: Callback API
-      description: |
-        The Callback API serves as a common interface for handling various asynchronous flows. Depending on the callbackType, it may be invoked when your VASP acts as either the Originating VASP or the Beneficiary VASP. Your implementation must function correctly in all possible cases. The Enclave will invoke this API when a counterparty VASP triggers a Report APIs.
+      description: >
+        The Callback API serves as a common interface for handling various
+        asynchronous flows. Depending on the callbackType, it may be invoked
+        when your VASP acts as either the Originating VASP or the Beneficiary
+        VASP. Your implementation must function correctly in all possible cases.
+        The Enclave will invoke this API when a counterparty VASP triggers a
+        Report APIs.
+
 
         ### Functional Requirements
+
         ** 1. Callback Type Support**
-        The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackType field and the scenarios in which they are used:
+
+        The implementation must route the request to appropriate business logic
+        for each callbackType values. The following are the possible values for
+        the callbackType field and the scenarios in which they are used:
           - **VERIFICATION_RESULT**: callbackType for Originating VASP role. This callback is triggered by Enclave when it the user verification process is terminated and result is delivered to the Enclave asynchronously.
           - **TX_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result report.
           - **ERROR_REPORT**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends an error report.
-        `VERIFICATION_RESULT`, `TX_REPORT`, and `ERROR_REPORT` types must be implemented as mandatory processing logic.
+        `VERIFICATION_RESULT`, `TX_REPORT`, and `ERROR_REPORT` types must be
+        implemented as mandatory processing logic.
           - **CHAINALYSIS_KYT_RESULT**: This callback is triggered by Enclave when a risk assessment result is delivered from the Chainalysis KYT request.
           - **REFINITIV_WCO_RESULT**: This callback is triggered by Enclave when a risk assessment result is delivered from the Refinitiv WCO request.
-        `CHAINALYSIS_KYT_RESULT` and `REFINITIV_WCO_RESULT` types are optional and can be implemented only if the corresponding screening APIs are in use.
+        `CHAINALYSIS_KYT_RESULT` and `REFINITIV_WCO_RESULT` types are optional
+        and can be implemented only if the corresponding screening APIs are in
+        use.
+
 
         ** 2. VERIFICATION_RESULT Callback Type Handling (as Originating VASP)**
-        When a verification result is received, your VASP must perform further required actions in accordance with the verification result. For example,
+
+        When a verification result is received, your VASP must perform further
+        required actions in accordance with the verification result. For
+        example,
           - For successful verification, proceed with either initiating beneficiary verification on the Originating VASP side or executing the on-chain transaction.
           - For failed verification, cancel the associated asset transfer and notify the originator user of the failure with proper message. data.reason field can be refered to generate the failure messages.
-          <details>
-            <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
+        <details>
+          <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `VERIFIED` result</summary>
 
-            ``` json
-              {
-                "callbackType": "VERIFICATION_RESULT",
-                "data": {
-                  "result": "VERIFIED",
-                  "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
-                }
+          ``` json
+            {
+              "callbackType": "VERIFICATION_RESULT",
+              "data": {
+                "result": "VERIFIED",
+                "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
               }
-            ```
-          </details>
-          <details>
-            <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+            }
+          ```
+        </details>
 
-            ``` json
-              {
-                "callbackType":"VERIFICATION_RESULT",
-                "data":{
-                    "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-                    "verificationResult":"DENIED",
-                    "reason":"UNKNOWN-ADDRESS",
-                    "ivms101":{
-                      "originator":{
-                          "originatorPersons":[
-                            {
-                                "naturalPerson":{
-                                  "name":{
-                                      "nameIdentifier":[
-                                        {
-                                            "primaryIdentifier":"James",
-                                            "secondaryIdentifier":"Din",
-                                            "nameIdentifierType":"LEGL"
-                                        }
-                                      ]
-                                  }
+
+        <details>
+          <summary>Example of Request Body for `VERIFICATION_RESULT` callback type with `DENIED` result</summary>
+
+          ``` json
+            {
+              "callbackType":"VERIFICATION_RESULT",
+              "data":{
+                  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
+                  "verificationResult":"DENIED",
+                  "reason":"UNKNOWN-ADDRESS",
+                  "ivms101":{
+                    "originator":{
+                        "originatorPersons":[
+                          {
+                              "naturalPerson":{
+                                "name":{
+                                    "nameIdentifier":[
+                                      {
+                                          "primaryIdentifier":"James",
+                                          "secondaryIdentifier":"Din",
+                                          "nameIdentifierType":"LEGL"
+                                      }
+                                    ]
                                 }
-                            }
-                          ],
-                          "accountNumber":[
-                            "0x5811001506550d8356a215be229c15b6ef371a9a"
-                          ]
-                      },
-                      "beneficiary":{
-                          "beneficiaryPersons":[
-                            {
-                                "naturalPerson":{
-                                  "name":{
-                                      "nameIdentifier":[
-                                        {
-                                            "primaryIdentifier":"Taylor",
-                                            "secondaryIdentifier":"Robbins",
-                                            "nameIdentifierType":"LEGL"
-                                        }
-                                      ]
-                                  }
-                                }
-                            }
-                          ],
-                          "accountNumber":[
-                            "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
-                          ]
-                      },
-                      "originatingVASP":{
-                          "legalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "legalPersonName":"Lambda256",
-                                      "legalPersonNameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            },
-                            "geographicAddress":[
-                                {
-                                  "addressType":"GEOG",
-                                  "postcode":"123123c",
-                                  "townName":"Yeoksam-dong",
-                                  "addressLine":[
-                                      "sechogu street",
-                                      "100-100"
-                                  ],
-                                  "country":"KR"
-                                }
-                            ],
-                            "nationalIdentification":{
-                                "nationalIdentifier":"KR0001",
-                                "nationalIdentifierType":"RAID",
-                                "registrationAuthority":"RA000151"
-                            }
+                              }
                           }
-                      },
-                      "beneficiaryVASP":{
-                          "legalPerson":{
-                            "name":{
-                                "nameIdentifier":[
-                                  {
-                                      "legalPersonName":"Lambda256 Exchange",
-                                      "legalPersonNameIdentifierType":"LEGL"
-                                  }
-                                ]
-                            },
-                            "geographicAddress":[
-                                {
-                                  "addressType":"GEOG",
-                                  "postcode":"234234",
-                                  "townName":"Yeoksam-dong",
-                                  "addressLine":[
-                                      "sechogu street",
-                                      "100-100"
-                                  ],
-                                  "country":"KR"
+                        ],
+                        "accountNumber":[
+                          "0x5811001506550d8356a215be229c15b6ef371a9a"
+                        ]
+                    },
+                    "beneficiary":{
+                        "beneficiaryPersons":[
+                          {
+                              "naturalPerson":{
+                                "name":{
+                                    "nameIdentifier":[
+                                      {
+                                          "primaryIdentifier":"Taylor",
+                                          "secondaryIdentifier":"Robbins",
+                                          "nameIdentifierType":"LEGL"
+                                      }
+                                    ]
                                 }
-                            ],
-                            "nationalIdentification":{
-                                "nationalIdentifier":"123456",
-                                "nationalIdentifierType":"RAID",
-                                "registrationAuthority":"RA000677"
-                            }
+                              }
                           }
-                      }
+                        ],
+                        "accountNumber":[
+                          "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                        ]
+                    },
+                    "originatingVASP":{
+                        "legalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "legalPersonName":"Lambda256",
+                                    "legalPersonNameIdentifierType":"LEGL"
+                                }
+                              ]
+                          },
+                          "geographicAddress":[
+                              {
+                                "addressType":"GEOG",
+                                "postcode":"123123c",
+                                "townName":"Yeoksam-dong",
+                                "addressLine":[
+                                    "sechogu street",
+                                    "100-100"
+                                ],
+                                "country":"KR"
+                              }
+                          ],
+                          "nationalIdentification":{
+                              "nationalIdentifier":"KR0001",
+                              "nationalIdentifierType":"RAID",
+                              "registrationAuthority":"RA000151"
+                          }
+                        }
+                    },
+                    "beneficiaryVASP":{
+                        "legalPerson":{
+                          "name":{
+                              "nameIdentifier":[
+                                {
+                                    "legalPersonName":"Lambda256 Exchange",
+                                    "legalPersonNameIdentifierType":"LEGL"
+                                }
+                              ]
+                          },
+                          "geographicAddress":[
+                              {
+                                "addressType":"GEOG",
+                                "postcode":"234234",
+                                "townName":"Yeoksam-dong",
+                                "addressLine":[
+                                    "sechogu street",
+                                    "100-100"
+                                ],
+                                "country":"KR"
+                              }
+                          ],
+                          "nationalIdentification":{
+                              "nationalIdentifier":"123456",
+                              "nationalIdentifierType":"RAID",
+                              "registrationAuthority":"RA000677"
+                          }
+                        }
                     }
-                }
+                  }
               }
-            ```
-          </details>
+            }
+          ```
+        </details>
 
-        When data.result is `DENIED` or `ERROR`, following data.reason and data.message can be returned.
 
-        | Reason                             | Result | Message Example                                              | Description |
+        When data.result is `DENIED` or `ERROR`, following data.reason and
+        data.message can be returned.
+
+
+        | Reason                             | Result | Message
+        Example                                              | Description |
+
         |------------------------------------|--------|--------------------------------------------------------------|-------------|
-        | `UNKNOWN-SYMBOL`                   | DENIED | `"ETH"`                                                      | Error code returned when the virtual asset symbol entered by the Originating VASP is not supported by the Beneficiary VASP. |
-        | `UNKNOWN-NETWORK`                  | DENIED | `"Ethereum"`                                                 | Error code returned when the network entered by the Originating VASP is either not supported by the Beneficiary VASP or contains insufficient network information. This error is also returned if the asset symbol matches but is on a different network (e.g., USDT on Ethereum vs supported only on Tron). |
-        | `UNKNOWN-ADDRESS`                  | DENIED | `"0x... is not registered."`                                 | Error code returned when the wallet address entered by the Originating VASP does not belong to a wallet managed by the Beneficiary VASP. |
-        | `LACK-OF-INFORMATION`              | DENIED | `"ACCOUNT_NUMBER"`                                           | A comma-separated list of required but missing personal information fields. Error occurs when Originator info is insufficient for Beneficiary VASP to perform verification. |
-        | `UNAVAILABLE-INFORMATION`         | DENIED | `"ACCOUNT_NUMBER"`                                           | A comma-separated list of undeliverable personal information fields. Error occurs when the Beneficiary VASP cannot provide certain information requested by the Originating VASP. |
-        | `BLACKLISTED`                      | DENIED | `"0x.. is listed on the blacklist."`                         | Error code returned when the Sanction Screening results for the Originator indicate a compliance issue. |
-        | `UNVERIFIED-KYC`                   | DENIED | `"0x.. is unverified KYC"`                                   | Error code returned when the Beneficiary has not completed the KYC verification process with the Beneficiary VASP. |
-        | `MISMATCHED-NAME`                  | DENIED | `"Name is not matched."`                                     | Error code returned when the Beneficiary's name does not match the name provided by the Originating VASP. |
-        | `NOT-ALLOWED`                      | DENIED | `"This user is locked by internal policy."`                  | Error code returned when the Beneficiary VASP rejects the user verification due to internal policies. |
-        | `UNDEFINED-ERROR`                  | DENIED | `"Undefined Error is occurred."`                             | Error code returned when an unspecified or unknown error occurs. |
-        | `BENEFICIARY-ACCOUNT-NOT-MATCHED` | ERROR  | `"Beneficiary account is not matched with requested account."` | Error code returned when the Beneficiary VASP modifies the beneficiary address from the one that was requested. |
-        | `REQUEST-TIMEOUT`                  | ERROR  | `"Request timeout."`                                         | Error code returned when the requested verification process exceeds the allowed timeout period. |
+
+        | `UNKNOWN-SYMBOL`                   | DENIED |
+        `"ETH"`                                                      | Error
+        code returned when the virtual asset symbol entered by the Originating
+        VASP is not supported by the Beneficiary VASP. |
+
+        | `UNKNOWN-NETWORK`                  | DENIED |
+        `"Ethereum"`                                                 | Error
+        code returned when the network entered by the Originating VASP is either
+        not supported by the Beneficiary VASP or contains insufficient network
+        information. This error is also returned if the asset symbol matches but
+        is on a different network (e.g., USDT on Ethereum vs supported only on
+        Tron). |
+
+        | `UNKNOWN-ADDRESS`                  | DENIED | `"0x... is not
+        registered."`                                 | Error code returned when
+        the wallet address entered by the Originating VASP does not belong to a
+        wallet managed by the Beneficiary VASP. |
+
+        | `LACK-OF-INFORMATION`              | DENIED |
+        `"ACCOUNT_NUMBER"`                                           | A
+        comma-separated list of required but missing personal information
+        fields. Error occurs when Originator info is insufficient for
+        Beneficiary VASP to perform verification. |
+
+        | `UNAVAILABLE-INFORMATION`         | DENIED |
+        `"ACCOUNT_NUMBER"`                                           | A
+        comma-separated list of undeliverable personal information fields. Error
+        occurs when the Beneficiary VASP cannot provide certain information
+        requested by the Originating VASP. |
+
+        | `BLACKLISTED`                      | DENIED | `"0x.. is listed on the
+        blacklist."`                         | Error code returned when the
+        Sanction Screening results for the Originator indicate a compliance
+        issue. |
+
+        | `UNVERIFIED-KYC`                   | DENIED | `"0x.. is unverified
+        KYC"`                                   | Error code returned when the
+        Beneficiary has not completed the KYC verification process with the
+        Beneficiary VASP. |
+
+        | `MISMATCHED-NAME`                  | DENIED | `"Name is not
+        matched."`                                     | Error code returned
+        when the Beneficiary's name does not match the name provided by the
+        Originating VASP. |
+
+        | `NOT-ALLOWED`                      | DENIED | `"This user is locked by
+        internal policy."`                  | Error code returned when the
+        Beneficiary VASP rejects the user verification due to internal policies.
+        |
+
+        | `UNDEFINED-ERROR`                  | DENIED | `"Undefined Error is
+        occurred."`                             | Error code returned when an
+        unspecified or unknown error occurs. |
+
+        | `BENEFICIARY-ACCOUNT-NOT-MATCHED` | ERROR  | `"Beneficiary account is
+        not matched with requested account."` | Error code returned when the
+        Beneficiary VASP modifies the beneficiary address from the one that was
+        requested. |
+
+        | `REQUEST-TIMEOUT`                  | ERROR  | `"Request
+        timeout."`                                         | Error code returned
+        when the requested verification process exceeds the allowed timeout
+        period. |
+
 
         ** 3. TX_REPORT Callback Handling (as Beneficiary VASP)**
+
         When a transaction report is received, your VASP can
           - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
           - Confirm that the asset transfer has been requested and log the details.
-          <details>
-            <summary>Example of Request Body for TX_REPORT callback type</summary>
+        <details>
+          <summary>Example of Request Body for TX_REPORT callback type</summary>
 
-            ``` json
-              {
-                "callbackType":"TX_REPORT",
-                "data":{
-                    "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-                    "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-                    "vout":"2"
-                }
+          ``` json
+            {
+              "callbackType":"TX_REPORT",
+              "data":{
+                  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
+                  "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
+                  "vout":"2"
               }
-            ```
-          </details>
+            }
+          ```
+        </details>
+
 
         ** 4. ERROR_REPORT Callback Handling (as Beneficiary VASP)**
+
         When an error report is received, your VASP can
           - Cancel the associated asset transfer request.
           - Stop tracking the transaction and log the error for auditing purposes.
-          <details>
-            <summary>Example of Request Body for ERROR_REPORT callback type</summary>
+        <details>
+          <summary>Example of Request Body for ERROR_REPORT callback type</summary>
 
-            ``` json
-              {
-                "callbackType":"ERROR_REPORT",
-                "data":{
-                    "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-                    "result":"ERROR",
-                    "reason":"BLACKLISTED",
-                    "message":"Originator is included in the blacklist."
-                }
+          ``` json
+            {
+              "callbackType":"ERROR_REPORT",
+              "data":{
+                  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
+                  "result":"ERROR",
+                  "reason":"BLACKLISTED",
+                  "message":"Originator is included in the blacklist."
               }
-            ```
-          </details>
+            }
+          ```
+        </details>
+
 
         ** 5. CHAINALYSIS_KYT_RESULT Callback Handling**
-        When a risk assessment result is received for a Chainalysis KYT request, your VASP can
+
+        When a risk assessment result is received for a Chainalysis KYT request,
+        your VASP can
           - Update the evaluation data for the associated originator or beneficiary.
           - Allow or deny the asset transfer based on the assessment result.
-          <details>
-            <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
+        <details>
+          <summary>Example of Request Body for CHAINALYSIS_KYT_RESULT callback type</summary>
 
-            ``` json
-              {
-                "callbackType":"CHAINALYSIS_KYT_RESULT",
-                "data":{
-                    "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-                    "riskAssessment":{
-                      "chainalysisKYT":{
-                          "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+          ``` json
+            {
+              "callbackType":"CHAINALYSIS_KYT_RESULT",
+              "data":{
+                  "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+                  "riskAssessment":{
+                    "chainalysisKYT":{
+                        "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+                        "counterpartyVaspId":"15952089931162059995",
+                        "apiType":"ATTEMPT",
+                        "userId":"15952089931162059995",
+                        "direction":"OUTGOING",
+                        "network":"ETHEREUM",
+                        "asset":"ETH",
+                        "amount":"1",
+                        "usdPrice":"1820.17",
+                        "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                        "timestamp":"2023-05-18T12:39:44.000Z",
+                        "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+                        "status":"PROCESSED",
+                        "alertCount":1,
+                        "createdAt":"2023-05-18T12:39:46.000Z",
+                        "assessedAt":"2023-05-18T12:39:45.263Z"
+                    },
+                    "chainalysisKYTAlerts":[
+                        {
                           "counterpartyVaspId":"15952089931162059995",
-                          "apiType":"ATTEMPT",
-                          "userId":"15952089931162059995",
-                          "direction":"OUTGOING",
-                          "network":"ETHEREUM",
-                          "asset":"ETH",
-                          "amount":"1",
-                          "usdPrice":"1820.17",
-                          "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-                          "timestamp":"2023-05-18T12:39:44.000Z",
                           "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-                          "status":"PROCESSED",
-                          "alertCount":1,
-                          "createdAt":"2023-05-18T12:39:46.000Z",
-                          "assessedAt":"2023-05-18T12:39:45.263Z"
-                      },
-                      "chainalysisKYTAlerts":[
-                          {
-                            "counterpartyVaspId":"15952089931162059995",
-                            "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-                            "direction":"OUTGOING",
-                            "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
-                            "alertLevel":"MEDIUM",
-                            "entityCategory":"high risk exchange",
-                            "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-                            "exposureType":"DIRECT",
-                            "alertAmount":"1820.17",
-                            "createdAt":"2023-05-18T12:39:52.461Z"
-                          }
-                      ]
-                    }
-                }
+                          "direction":"OUTGOING",
+                          "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
+                          "alertLevel":"MEDIUM",
+                          "entityCategory":"high risk exchange",
+                          "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+                          "exposureType":"DIRECT",
+                          "alertAmount":"1820.17",
+                          "createdAt":"2023-05-18T12:39:52.461Z"
+                        }
+                    ]
+                  }
               }
-            ```
-          </details>
+            }
+          ```
+        </details>
+
 
         ** 6. REFINITIV_WCO_RESULT Callback Handling**
-        When a risk assessment result is received for a Refinitiv WCO request, your VASP can
+
+        When a risk assessment result is received for a Refinitiv WCO request,
+        your VASP can
           - Update the evaluation data for the associated originator or beneficiary.
           - Allow, resume, or deny the asset transfer based on the assessment result.
-          <details>
-            <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
+        <details>
+          <summary>Example of Request Body for REFINITIV_WCO_RESULT callback type</summary>
 
-            ``` json
-              {
-                "callbackType":"REFINITIV_WCO_RESULT",
-                "data":{
-                    "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-                    "riskAssessment":{
-                      "refinitivWorldCheckOne":{
-                          "counterpartyVaspId":"15952089931162058999",
-                          "direction":"INCOMING",
-                          "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
-                          "status":"PROCESSED",
-                          "matchStrength":"EXACT",
-                          "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
-                          "createdAt":"2023-05-18T12:39:48.000Z",
-                          "assessedAt":"2023-05-18T12:39:57.834Z"
-                      }
+          ``` json
+            {
+              "callbackType":"REFINITIV_WCO_RESULT",
+              "data":{
+                  "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
+                  "riskAssessment":{
+                    "refinitivWorldCheckOne":{
+                        "counterpartyVaspId":"15952089931162058999",
+                        "direction":"INCOMING",
+                        "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
+                        "status":"PROCESSED",
+                        "matchStrength":"EXACT",
+                        "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
+                        "createdAt":"2023-05-18T12:39:48.000Z",
+                        "assessedAt":"2023-05-18T12:39:57.834Z"
                     }
-                }
+                  }
               }
-            ```
-          </details>
+            }
+          ```
+        </details>
+
 
         ## Constraints
           - This API must respond within 1 second.
@@ -1334,8 +1690,10 @@ paths:
                     - ERROR_REPORT
                     - CHAINALYSIS_KYT_RESULT
                     - REFINITIV_WCO_RESULT
-                  description: |
-                    A type used to identify a callback request.   For request body examples by callbackType, refer to the Functional Requirements section above.
+                  description: >
+                    A type used to identify a callback request.   For request
+                    body examples by callbackType, refer to the Functional
+                    Requirements section above.
                   example: VERIFICATION_RESULT
                 data:
                   type: object
@@ -1344,19 +1702,22 @@ paths:
                   properties:
                     verificationUuid:
                       type: string
-                      description: |
+                      description: >
                         A unique identifier for the User Verification request.  
-                        The format of **verificationUuid** must follow the UUID v4 standard.
+
+                        The format of **verificationUuid** must follow the UUID
+                        v4 standard.
                       example: 4bc03a8f-5679-4358-815c-906aae5557f4
                     verificationResult:
                       type: string
                       enum:
                         - VERIFIED
                         - DENIED
-                      description: |
+                      description: >
                         Result of User Account Verification:  
                           
-                        If the result is **DENIED**, the reason field should provide the specific reason.
+                        If the result is **DENIED**, the reason field should
+                        provide the specific reason.
                       example: VERIFIED
                     reason:
                       type: string
@@ -1384,8 +1745,10 @@ paths:
                       example: An unidentifiable wallet address.
                     ivms101:
                       type: object
-                      description: |
-                        An object containing IVMS101-formatted data, which may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP.
+                      description: >
+                        An object containing IVMS101-formatted data, which may
+                        include information about the Originator, Originating
+                        VASP, Beneficiary, and Beneficiary VASP.
                       required:
                         - beneficiary
                       properties:
@@ -1399,19 +1762,22 @@ paths:
                           properties:
                             beneficiaryPersons:
                               type: array
-                              description: |
+                              description: >
                                 Array for personal information of Beneficiary.  
                                   
-                                Name, address, etc. information for individuals or corporations are included.
+                                Name, address, etc. information for individuals
+                                or corporations are included.
                               items:
                                 type: object
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   naturalPerson:
                                     type: object
-                                    description: |
-                                      An object containing details about the natural person.
+                                    description: >
+                                      An object containing details about the
+                                      natural person.
                                     properties:
                                       name:
                                         type: object
@@ -1422,7 +1788,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -1431,13 +1799,23 @@ paths:
                                               properties:
                                                 primaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a last name.   By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                  description: >
+                                                    The basic representation of a last
+                                                    name.   By default, this field is used
+                                                    to enter the last name. However, if
+                                                    separating the last name and first name
+                                                    is not feasible, the full name can be
+                                                    entered in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a first name.   This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                  description: >
+                                                    The basic representation of a first
+                                                    name.   This field is primarily used to
+                                                    enter the first name. If a middle name
+                                                    also needs to be included, it can be
+                                                    combined with the first name in this
+                                                    field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
                                                   type: string
@@ -1447,10 +1825,13 @@ paths:
                                                     - MAID
                                                     - LEGL
                                                     - MISC
-                                                  description: |
+                                                  description: >
                                                     The type of name identifier.  
                                                       
-                                                    Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -1463,10 +1844,14 @@ paths:
                                               example: LEGL
                                       geographicAddress:
                                         type: array
-                                        description: |
-                                          
-                                          An array containing address information.  
-                                          To use this field, at least one of the following conditions must be met:   Required conditions  
+                                        description: >
+
+                                          An array containing address
+                                          information.  
+
+                                          To use this field, at least one of the
+                                          following conditions must be met:  
+                                          Required conditions  
                                             1. At least one addressLinemust be present.  
                                             
                                             2. Both streetName and buildingName must be present.  
@@ -1482,8 +1867,9 @@ paths:
                                                 - HOME
                                                 - BIZZ
                                                 - GEOG
-                                              description: |
-                                                The type of geographic address.   Allowed values:  
+                                              description: >
+                                                The type of geographic address.  
+                                                Allowed values:  
                                                   HOME: Home address.  
                                                   BIZZ: Business address.  
                                                   GEOG: Geographic address.
@@ -1491,29 +1877,36 @@ paths:
                                             townName:
                                               type: string
                                               description: |
-                                                
+
                                                 The name of the town or district.
                                               example: Yeoksam-dong
                                             addressLine:
                                               type: array
                                               items:
                                                 type: string
-                                              description: |
-                                                
-                                                A free-form address that identifies a specific location.   If dividing the address into components (e.g., province, city, street name) is difficult, the full address can be entered as a single string in addressLine.
+                                              description: >
+
+                                                A free-form address that identifies a
+                                                specific location.   If dividing the
+                                                address into components (e.g., province,
+                                                city, street name) is difficult, the
+                                                full address can be entered as a single
+                                                string in addressLine.
                                               example:
                                                 - 14 Teheran-ro 4-gil
                                                 - Gangnam-gu
                                                 - 4th floor
                                             country:
                                               type: string
-                                              description: |
-                                                The country code of the country of residence (ISO 3166-1 alpha-2 format).
+                                              description: >
+                                                The country code of the country of
+                                                residence (ISO 3166-1 alpha-2 format).
                                               example: KR
                                       nationalIdentification:
                                         type: object
-                                        description: |
-                                          An object containing National Identification information.
+                                        description: >
+                                          An object containing National
+                                          Identification information.
                                         properties:
                                           nationalIdentifier:
                                             type: string
@@ -1533,8 +1926,9 @@ paths:
                                               - IDCD
                                               - LEIX
                                               - MISC
-                                            description: |
-                                              Type of National Identification.   Allowed values:  
+                                            description: >
+                                              Type of National Identification.  
+                                              Allowed values:  
                                                 **ARNU**: Alien Registration Number (assigned to foreigners by the state).  
                                                 **CCPT**: Passport Number.  
                                                 **RAID**: (For corporations only) Corporate registration number (e.g., business registration number).  
@@ -1551,9 +1945,9 @@ paths:
                                       customerIdentification:
                                         type: string
                                         description: |
-                                          
+
                                           Customer number of individual.
-                                        example: "1234569999"
+                                        example: '1234569999'
                                       dateAndPlaceOfBirth:
                                         type: object
                                         properties:
@@ -1562,7 +1956,7 @@ paths:
                                             description: |
                                               Date of birth.  
                                               Allowed format: ISO 8601 ("YYYY-MM-DD").
-                                            example: 1985-03-14
+                                            example: '1985-03-14'
                                           placeOfBirth:
                                             type: string
                                             description: |
@@ -1570,8 +1964,9 @@ paths:
                                             example: Nonsan
                                       countryOfResidence:
                                         type: string
-                                        description: |
-                                          The country code of the country of residence.
+                                        description: >
+                                          The country code of the country of
+                                          residence.
                                         example: KR
                             accountNumber:
                               type: array
@@ -1587,7 +1982,7 @@ paths:
                     verificationUuid: 64ab871b-14a3-47df-9b80-368e29fe8180
                     verificationResult: VERIFIED
                     reason: OK
-                    message: ""
+                    message: ''
                     ivms101:
                       beneficiary:
                         beneficiaryPersons:
@@ -1609,15 +2004,15 @@ paths:
                               nationalIdentification:
                                 nationalIdentifier: 12345-67890
                                 nationalIdentifierType: IDCD
-                              customerIdentification: "1234569999"
+                              customerIdentification: '1234569999'
                               dateAndPlaceOfBirth:
-                                dateOfBirth: 1985-03-14
+                                dateOfBirth: '1985-03-14'
                                 placeOfBirth: Nonsan
                               countryOfResidence: KR
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful Callback response
           content:
             application/json:
@@ -1628,8 +2023,9 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: |
-                      A static result field for callback response. Return **true** always.
+                    description: >
+                      A static result field for callback response. Return
+                      **true** always.
                     example: true
               examples:
                 success:
@@ -1707,15 +2103,16 @@ paths:
               properties:
                 inputKey:
                   type: string
-                  description: |
-                    The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**, as defined in the Enclave environment variables.
+                  description: >
+                    The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**,
+                    as defined in the Enclave environment variables.
                   example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
             examples:
               requestexamples:
                 value:
                   inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
       responses:
-        "200":
+        '200':
           description: Successful Callback response
           content:
             application/json:
