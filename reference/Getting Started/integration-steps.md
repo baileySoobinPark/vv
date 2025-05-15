@@ -24,4 +24,9 @@ metadata:
 6. **Maintenance**\
    Plan for updates and ongoing system maintenance.
 
-Click on each step for detailed instructions and best practices.
+<br />
+
+You can click the link below to navigate to the TravelRule Integration Steps and VerifyName Integration Steps.
+
+* [TravelRule Integration Steps](ref:travelrule-user-account-verification)
+* [VerifyName Integration Steps](verifyname-user-account-verification)
