@@ -14,11 +14,11 @@ metadata:
 1. **Onboarding**\
    Register your VASP and complete the initial onboarding process.
 2. **Implementing VASP APIs**\
-   Implement the required APIs to handle verifications and transactions.
+   Implement the required APIs to handle verifications and transactions. These APIs are called by your VASP’s Enclave server to perform verifications or check the transaction status.
 3. **Setting up a Database**\
    Configure a secure database to manage compliance data.
 4. **Connecting with Enclave**\
-   Set up the Enclave server to interface with the VerifyVASP Central Server.
+   Set up the Enclave server to interface with the VerifyVASP Central Server and call the VASP APIs.
 5. **Testing with Robot VASP**\
    Validate your implementation using simulated transactions.
 6. **Maintenance**\
