@@ -29,4 +29,4 @@ metadata:
 You can click the link below to navigate to the TravelRule Integration Steps and VerifyName Integration Steps.
 
 * [TravelRule Integration Steps](ref:travelrule-user-account-verification)
-* [VerifyName Integration Steps](verifyname-user-account-verification)
+* [VerifyName Integration Steps](ref:verifyname-request-verification)
