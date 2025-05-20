@@ -27,8 +27,8 @@ excerpt: >
       - Your VASP must verify whether the transaction specified by the tx_hash in the request was executed by your VASP.
       - Your VASP must verify whether the beneficiary address in the transaction executed by your VASP matches the value provided in the address field of the request.
     - **Pre Verification**
-    - It means the request the type is set to VerifyBeneficiary.
-    - Your VASP must verify whether the address provided in the request matches an address registered with your VASP.
+      - It means the request the type is set to VerifyBeneficiary.
+      - Your VASP must verify whether the address provided in the request matches an address registered with your VASP.
 
     The table below describes the parameters used for verification. Even if some fields are optional in the request, the response must include verification results for all fields.
     Depending on the verification result, the value will be returned as `MATCHED`, `MISMATCHED`, or `SKIPPED`.

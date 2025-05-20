@@ -18,12 +18,12 @@ excerpt: >
 
     **2. OWNER_VERIFICATION_TX_REPORT Callback Handling (as Beneficiary VASP)**
     When a transaction report is received, your VASP can perform the following actions.
-      - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
-      - Confirm that the asset transfer has been requested and log the details.
+    - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
+    - Confirm that the asset transfer has been requested and log the details.
 
     When an error report is received, your VASP can perform the following actions. 
-      - Cancel the associated asset transfer request. 
-      - Stop tracking the transaction and log the error for auditing purposes.
+    - Cancel the associated asset transfer request. 
+    - Stop tracking the transaction and log the error for auditing purposes.
 
   <details>
     <summary>Example of Request Body for OWNER_VERIFICATION_TX_REPORT callback type.</summary>
