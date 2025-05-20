@@ -71,4 +71,4 @@ In contrast to the post-verification case, when the Originating VASP is a regula
 
 <br />
 
-<Image align="center" src="https://files.readme.io/98c72041632df1aba20ec5b865841b3aac4a9320d64a6e65525363708df0f591-sequence_diagram.drawio_1.png" />
+<Image align="center" src="https://files.readme.io/708fc2ab008928fdc52752c6957aecce67799e8c84698b37ce87a088e8dbb47a-sequence_diagram.drawio_2.png" />
