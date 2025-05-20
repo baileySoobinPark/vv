@@ -5,8 +5,10 @@ excerpt: >
   its unique request_id.
 
 
-  The table below lists the valid values for the reason field and their
-  corresponding descriptions.
+  When the verification result is DENIED or ERROR, the reason field in the
+  response provides a code that explains the reason for the verification result.
+  The following table lists the codes available in the reason field along with
+  their descriptions.
 
 
   | Reason Code                              | Description |

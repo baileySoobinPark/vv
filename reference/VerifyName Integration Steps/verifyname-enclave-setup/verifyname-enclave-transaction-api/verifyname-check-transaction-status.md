@@ -6,7 +6,7 @@ excerpt: >
   within a certain timeframe.
 
 
-  **Implementation Guide**
+  ### Implementation Guide
     1. When the Beneficiary VASP detects an incoming deposit, it should first call the Owner Verification Result Lookup API with the tx_hash filter to check for any matching owner verification records.
     2. If no matching tx_hash is found, the Beneficiary VASP can wait for a certain period for the Originating VASP to call the Transaction Report API.
     3. After this waiting period, if no transaction report has been received from the Originating VASP, the Beneficiary VASP can use the Owner Verification Result Lookup API to identify potential candidate owner verifications.
