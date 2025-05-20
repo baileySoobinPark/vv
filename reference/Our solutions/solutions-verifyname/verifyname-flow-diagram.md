@@ -68,3 +68,7 @@ In contrast to the post-verification case, when the Originating VASP is a regula
 14-15. Once the transaction is propagated and mined, the Originating VASP confirms the result.
 
 16. Based on the service flow, the Originating VASP notifies the user that the withdrawal is complete, marking the end of the withdrawal process.
+
+<br />
+
+<Image align="center" src="https://files.readme.io/98c72041632df1aba20ec5b865841b3aac4a9320d64a6e65525363708df0f591-sequence_diagram.drawio_1.png" />
