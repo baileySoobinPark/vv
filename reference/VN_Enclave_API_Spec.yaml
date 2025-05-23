@@ -43,110 +43,93 @@ paths:
               schema:
                 type: object
                 required:
-                  - verificationResult
+                  - providers
                 properties:
-                  verificationResult:
-                    type: object
-                    description: >
-                      Each field in the **verification_result** object must have
-                      one of the following values.
-
-                      - **MATCHED**: The value of request from beneficiary VASP
-                      is matched with the information from originating VASP. 
-
-                      - **MISMATCHED**: The value of request from beneficiary
-                      VASP is mismatched with the information from originating
-                      VASP.
-
-                      - **SKIPPED**: The beneficiary VASP does not provide the
-                      value of request or The originating VASP does not provide
-                      the value of request.
-                    required:
-                      - ticker
-                      - network
-                      - address
-                      - tag
-                      - dti
-                      - tx_hash
-                    properties:
-                      ticker:
-                        type: string
-                        description: |
-                          The symbol of the virtual asset to be transferred.
-                        example: ETH
-                      network:
-                        type: string
-                        description: >
-                          The network of the virtual asset to be transferred.
-                          The network field can be implemented conditionally.
-                          Valid values for this field can be found [here]().
-                        example: ETHEREUM
-                      address:
-                        type: string
-                        description: |
-                          The address of the wallet storing the virtual asset.
-                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
-                      tag:
-                        type: string
-                        description: >
-                          The wallet address tag(secondary address such as XRP,
-                          XLM, EOS, etc...), regardless VerifyOriginator or
-                          VerifyBeneficiary.
-                        example: '3256697931'
-                      dti:
-                        type: string
-                        description: >
-                          Digital Token Identifier (DTI) based on the ISO 24165
-                          standard.
-                        example: 4H95J0R2X
-                      tx_hash:
-                        type: string
-                        description: >
-                          Unique identifier of the transaction. If the value of
-                          **type** is **VerifyOriginator**, this field must be
-                          required.
-                        example: >-
-                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                      debtor:
-                        type: object
-                        properties:
-                          name:
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - vaspId
+                        - vaspName
+                        - protocol
+                        - legalName
+                        - jurisdiction
+                        - country
+                        - licensedStatus
+                      properties:
+                        vaspId:
+                          type: string
+                          description: >
+                            Unique identifier of VASP that supporting
+                            VerifyName.
+                          example: '15952089931162060684'
+                        vaspName:
+                          type: string
+                          description: |
+                            Name of the VASP.
+                          example: A Exchange
+                        protocol:
+                          type: array
+                          items:
                             type: string
-                            example: JHON DOE
-                          supplementary_data:
-                            type: object
-                        example:
-                          name: JHON DOE
-                          supplementary_data:
-                            envelope:
-                              name:
-                                first_name: JHON
-                                last_name: DOE
-                          identification:
-                            private_identification:
-                              date_and_place_of_birth:
-                                date_of_birth: '1990-01-01'
+                            enum:
+                              - TRAVEL-RULE
+                              - VERIFY-NAME
+                          description: |
+                            The protocol of the VASP.
+                        legalName:
+                          type: string
+                          description: |
+                            The legal entity name of the VASP.
+                          example: A Exchange
+                        jurisdiction:
+                          type: string
+                          description: >
+                            The country or region where the legal entity is
+                            established (jurisdiction of incorporation).
+                          example: Singapore
+                        country:
+                          type: string
+                          description: >
+                            The name of the country where the VASP is
+                            established.
+                          example: Singapore
+                        licensedStatus:
+                          type: string
+                          enum:
+                            - Regulated
+                            - Unregulated
+                          description: |
+                            The VA License acquisition status of the VASP.
+                          example: Regulated
               examples:
                 Successful Example:
                   value:
-                    verification_results:
-                      ticker: MATCHED
-                      network: MISMATCHED
-                      address: SKIPPED
-                      tag: SKIPPED
-                      tx_hash: SKIPPED
-                      dti: SKIPPED
-                    creditor:
-                      name: HONG KIL DONG
-                      supplementary_data:
-                        envelope:
-                          name:
-                            first_name: GIL DONG
-                            last_name: HONG
-                      identification:
-                        private_identification:
-                          date_and_place_of_birth:
-                            birth_date: '2025-01-01'
+                    vasps:
+                      - health: UP
+                        vaspId: '15952089931162060684'
+                        vaspName: A Exchange
+                        protocol:
+                          - TRAVEL-RULE
+                        legalName: A Exchange
+                        jurisdiction: Singapore
+                        country: Singapore
+                        licensedStatus: Processing
+                        countryCode: KR
+                        vendor: VERIFYVASP
+                        vaspStatus: INTEROPERATED
+                      - vaspId: '15952089931162060683'
+                        vaspName: B Exchange
+                        protocol:
+                          - VERIFY-NAME
+                        legalName: B Exchange
+                        jurisdiction: Singapore
+                        country: Singapore
+                        licensedStatus: Processing
+                        countryCode: SG
+                        vendor: CODE
+                        vaspStatus: INTEROPERATED
         '400':
           description: 400 Bad Request Error response
           content:
