@@ -17,36 +17,35 @@ excerpt: >
 
   | MISMATCH-TICKER                           | Used with `verification_result:
   DENIED` when the owner verification result for the `ticker` field is
-  `MISMATCHED` and the transaction is not sent. |
+  `MISMATCHED`.|
 
   | MISMATCH-NETWORK                          | Used with `verification_result:
   DENIED` when the owner verification result for the `network` field is
-  `MISMATCHED` and the transaction is not sent. |
+  `MISMATCHED`.|
 
   | MISMATCH-ADDRESS                          | Used with `verification_result:
   DENIED` when the owner verification result for the `address` field is
-  `MISMATCHED` and the transaction is not sent. |
+  `MISMATCHED`.|
 
   | MISMATCH-NAME                             | Used with `verification_result:
   DENIED` when the owner verification result for the `name` field is
-  `MISMATCHED` and the transaction is not sent. |
+  `MISMATCHED`.|
 
   | MISMATCH-DTI                              | Used with `verification_result:
-  DENIED` when the owner verification result for the `dti` field is `MISMATCHED`
-  and the transaction is not sent. |
+  DENIED` when the owner verification result for the `dti` field is
+  `MISMATCHED`.|
 
   | MISMATCH-DATE-OF-INCORPORATION            | Used with `verification_result:
   DENIED` when the owner verification result for the `date_of_incorporation`
-  field is `MISMATCHED` and the transaction is not sent. |
+  field is `MISMATCHED`.|
 
   | MISMATCH-BIRTH-DATE                       | Used with `verification_result:
   DENIED` when the owner verification result for the `birth_date` field is
-  `MISMATCHED` and the transaction is not sent. |
+  `MISMATCHED`.|
 
   | MISMATCH-ORGANISATION-IDENTIFICATION      | Used with `verification_result:
   DENIED` when the owner verification result for the
-  `organisation_identification` field is `MISMATCHED` and the transaction is not
-  sent. |
+  `organisation_identification` field is `MISMATCHED`.|
 
   | TRANSFER-ERROR                            | Used with `verification_result:
   ERROR` when a transaction transfer fails. |

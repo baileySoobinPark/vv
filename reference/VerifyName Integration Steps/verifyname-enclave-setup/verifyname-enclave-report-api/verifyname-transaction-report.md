@@ -5,7 +5,8 @@ excerpt: >
   transaction.
 
 
-  The Beneficiary VASP can receives the final result via the Callback API.
+  The Beneficiary VASP can receives the result of the transaction via the
+  Callback API.
 
 
   ### Implementation Policy

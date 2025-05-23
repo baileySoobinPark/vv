@@ -2,7 +2,7 @@
 title: Owner Verification Result Report API
 excerpt: >
   This API is used by the VASP that received the Owner Verification result to
-  report the final verification decision based on the received result.
+  report the final verification decision.
 
 
   The VASP that performed the Owner Verification receives the final result via

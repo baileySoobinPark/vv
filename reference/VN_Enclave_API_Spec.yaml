@@ -301,14 +301,12 @@ paths:
         VASPs can initiate the verification flow by calling this API to verify
         both the Originator and the Beneficiary.
 
+
         Owner verification is performed in the following two scenarios:
-          1. **Post Verification**: After the Originator withdraws from the Originating VASP and deposits to the Beneficiary address managed by the Beneficiary VASP, the Beneficiary VASP initiates owner verification to confirm whether the Beneficiary and the Originator are the same entity.
-          2. **Pre Verification**: Before the Originator initiates a withdrawal from the Originating VASP, owner verification is performed to confirm that the Beneficiary at the Beneficiary VASP is indeed the Originator’s own account.
+          1. **Post Verification**: The Beneficiary VASP performs Owner Verification after the Originating VASP executes the withdrawal transaction. This process is initiated by the Beneficiary VASP to verify whether the Originator and the Beneficiary represent the same entity.
+          2. **Pre Verification**: Before executing the withdrawal transaction, the Originating VASP performs Owner Verification to confirm that the Beneficiary and the Originator represent the same entity.
 
         ### Owner Verification Result
-
-        - The result of the verification is returned in the response body of the
-        API.
 
         - The verification results for the following items — ticker, network,
         address, tx_hash, dti, name, birth_date, date_of_incorporation, and
@@ -798,17 +796,8 @@ paths:
         filter and retrieve owner verification records that match specific
         criteria.
 
-        - Filters are particularly useful for managing verification requests
-        based on their status, timestamp, asset type, or counterparty VASP.
-
-        - Additionally, you can identify a specific verification record matched
-        with an on-chain transaction using these filters.
-
         - All query parameters are optional, and any specified parameters are
         applied using an AND operation to filter the results.
-
-        - For a detailed list of supported filters, refer to the Query Parameter
-        section in the specification below.
       parameters:
         - name: from_date
           in: query
@@ -1349,37 +1338,35 @@ paths:
 
         | MISMATCH-TICKER                           | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `ticker` field is `MISMATCHED` and the transaction is not sent. |
+        `ticker` field is `MISMATCHED`.|
 
         | MISMATCH-NETWORK                          | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `network` field is `MISMATCHED` and the transaction is not sent. |
+        `network` field is `MISMATCHED`.|
 
         | MISMATCH-ADDRESS                          | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `address` field is `MISMATCHED` and the transaction is not sent. |
+        `address` field is `MISMATCHED`.|
 
         | MISMATCH-NAME                             | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `name` field is `MISMATCHED` and the transaction is not sent. |
+        `name` field is `MISMATCHED`.|
 
         | MISMATCH-DTI                              | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `dti` field is `MISMATCHED` and the transaction is not sent. |
+        `dti` field is `MISMATCHED`.|
 
         | MISMATCH-DATE-OF-INCORPORATION            | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `date_of_incorporation` field is `MISMATCHED` and the transaction is not
-        sent. |
+        `date_of_incorporation` field is `MISMATCHED`.|
 
         | MISMATCH-BIRTH-DATE                       | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `birth_date` field is `MISMATCHED` and the transaction is not sent. |
+        `birth_date` field is `MISMATCHED`.|
 
         | MISMATCH-ORGANISATION-IDENTIFICATION      | Used with
         `verification_result: DENIED` when the owner verification result for the
-        `organisation_identification` field is `MISMATCHED` and the transaction
-        is not sent. |
+        `organisation_identification` field is `MISMATCHED`.|
 
         | TRANSFER-ERROR                            | Used with
         `verification_result: ERROR` when a transaction transfer fails. |
@@ -1716,17 +1703,9 @@ paths:
     post:
       summary: Check Transaction Status API
       description: >
-        This API is called by the Beneficiary VASP when it cannot confirm the
-        results of the Report Transaction Result or Report Error API for a
-        verified user within a certain timeframe.
-
-
-        ### Implementation Guide
-          1. When the Beneficiary VASP detects an incoming deposit, it should first call the Owner Verification Result Lookup API with the tx_hash filter to check for any matching owner verification records.
-          2. If no matching tx_hash is found, the Beneficiary VASP can wait for a certain period for the Originating VASP to call the Transaction Report API.
-          3. After this waiting period, if no transaction report has been received from the Originating VASP, the Beneficiary VASP can use the Owner Verification Result Lookup API to identify potential candidate owner verifications.
-          4. To narrow down the candidates, search using the deposit’s detected from address and to address as the originatorAccountNumber and beneficiaryAccountNumber, respectively.
-          5. For the filtered candidate owner verifications, the Beneficiary VASP can then call the Check Transaction Status API for each to match the transaction ID information.
+        This API is called by the Beneficiary VASP to check the current status
+        of the transaction when the transaction result has not been reported by
+        the Originating VASP after the Owner Verification is completed.
       operationId: verifyname-check-transaction-status
       tags:
         - Transaction API
@@ -1895,7 +1874,7 @@ paths:
       summary: Owner Verification Result Report API
       description: >
         This API is used by the VASP that received the Owner Verification result
-        to report the final verification decision based on the received result.
+        to report the final verification decision.
 
 
         The VASP that performed the Owner Verification receives the final result
@@ -2050,7 +2029,8 @@ paths:
         transfer transaction.
 
 
-        The Beneficiary VASP can receives the final result via the Callback API.
+        The Beneficiary VASP can receives the result of the transaction via the
+        Callback API.
 
 
         ### Implementation Policy
