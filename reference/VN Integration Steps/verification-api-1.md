@@ -1,4 +1,4 @@
 ---
 title: Verification API
-hidden: false
+hidden: true
 ---
