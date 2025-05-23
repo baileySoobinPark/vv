@@ -1,4 +1,4 @@
 ---
 title: VASP Verification API
-hidden: false
+hidden: true
 ---
