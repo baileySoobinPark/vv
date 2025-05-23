@@ -1,7 +1,9 @@
 ---
 title: VerifyName API
 excerpt: >
-  This API must be implemented by your VASP to perform the owner verification.
+  This API must be implemented by your VASP to **perform the owner
+  verification**. 
+
   Its primary purpose is to verify whether the Beneficiary and the Originator
   are the same individual.
 

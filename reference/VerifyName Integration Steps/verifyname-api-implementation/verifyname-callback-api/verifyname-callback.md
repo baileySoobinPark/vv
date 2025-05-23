@@ -9,34 +9,32 @@ excerpt: >
 
 
   ## Functional Requirements
-    **1. Callback Type Support**
-    The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackType field and the scenarios in which they are used:
-    - **`OWNER_VERIFICATION_TX_REPORT`**: callbackType for Beneficiary VASP role. This callback is triggered by Enclave when the Originating VASP sends a transaction result or error report.
+    **1. Callback Types Support**
+    The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackTypes field and the scenarios in which they are used:
+    - **`OWNER_VERIFICATION_RESULT_REPORT`**: This callback is triggered by the Enclave when the final Owner Verification result is reported.
+    - **`OWNER_VERIFICATION_TX_REPORT`**: This callback is triggered by the Enclave when the Originating VASP reports the execution of a transfer transaction.
 
-  `OWNER_VERIFICATION_TX_REPORT` type must be implemented as mandatory
-  processing logic.
+    `OWNER_VERIFICATION_RESULT_REPORT` and `OWNER_VERIFICATION_TX_REPORT` type must be implemented as mandatory processing logic.
 
-    **2. OWNER_VERIFICATION_TX_REPORT Callback Handling (as Beneficiary VASP)**
-    When a transaction report is received, your VASP can perform the following actions.
+    **2.Callback Handling**
+    When a Owner Verification result report is received, your VASP can perform the following actions.
+    - If the result is `VERIFIED`, your VASP can proceed with the asset transfer.
+    - If the result is `DENIED` or `ERROR`, your VASP can stop the asset transfer or deposit process and notify it to the Originator.
+
+    When a Transaction result report is received, your VASP can perform the following actions.
     - Match the reported on-chain transaction hash with the actual deposit to the beneficiary address.
     - Confirm that the asset transfer has been requested and log the details.
 
-    When an error report is received, your VASP can perform the following actions. 
-    - Cancel the associated asset transfer request. 
-    - Stop tracking the transaction and log the error for auditing purposes.
-
   <details>
-    <summary>Example of Request Body for OWNER_VERIFICATION_TX_REPORT callback type.</summary>
+    <summary>Example of Request Body for OWNER_VERIFICATION_RESULT_REPORT callback type.</summary>
 
     ``` json
       // VERIFIED
       {
-        "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+        "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
         "data": {
           "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
           "reported_result": "VERIFIED",
-          "ordered_at": "2025-04-21T04:40:28.536Z",
-          "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
         }
       }
 
@@ -44,12 +42,12 @@ excerpt: >
 
       // DENIED
       {
-        "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+        "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
         "data": {
           "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
           "reported_result": "DENIED",
-          "ordered_at": "2025-04-21T04:40:28.536Z",
           "reason": "MISMATCH-TICKER"
+          "message": "Ticker is mismatched."
         }
       }
 
@@ -57,13 +55,26 @@ excerpt: >
 
       // ERROR
       {
-        "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+        "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
         "data": {
           "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
           "reported_result": "ERROR",
-          "ordered_at": "2025-04-21T04:40:28.536Z",
           "reason": "TRANSFER-ERROR",
-          "message": "transfer error"
+          "message": "Transfer is failed."
+        }
+      }
+    ```
+  </details>
+
+  <details>
+    <summary>Example of Request Body for OWNER_VERIFICATION_TX_REPORT callback type.</summary>
+
+    ``` json
+      {
+        "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+        "data": {
+          "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+          "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
         }
       }
     ```
