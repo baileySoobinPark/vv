@@ -193,10 +193,8 @@ metadata:
 
       * **Expected Result**
 
-        * Your VASP can check the transaction status through the Check Transaction Status API(`v2/owner-verifications/{request_id}/tx/inquiry`, Enclave API).
+        * This API should return `{result: true}`.
     </Accordion>
-
-    <br />
 
     <Accordion title="How to use the Owner Verification Result Reporting Simulation API">
       **Method**: `POST`
