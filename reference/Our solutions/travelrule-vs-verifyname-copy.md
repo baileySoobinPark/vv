@@ -5,17 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
-## Differences in Functionalities
+## 두 프로토콜의 차이점
 
-**TravelRule** is designed to ensure comprehensive compliance for regulated VASPs, accommodating complex asset transfers that involve different individuals as the originator and beneficiary. This solution supports full fourth-party verification, where the entire chain—from the originator to the originating VASP, the beneficiary VASP, and the beneficiary—is validated to ensure regulatory standards are met. TravelRule also incorporates advanced features, such as multi-party verifications and integration with third-party screening services, making it ideal for jurisdictions with stringent AML and CFT regulations.
+**TravelRule** 은 Travel Rule 규제 의무가 있는 VASP간 송.수신인의 개인정보를 암호화하여 안전하게 주고 받을 수 있도록 설계되었습니다. 송신인과 수신인이 같거나 다른 경우 모두 지원이 가능합니다.
 
-In contrast, **VerifyName** is tailored for non-obliged VASPs, offering a streamlined approach to compliance. It focuses solely on third-party relationships, allowing asset transfers only when the originator and beneficiary are the same individual. VerifyName simplifies the verification process while maintaining essential safeguards, providing a practical solution for VASPs operating in jurisdictions with less rigorous compliance mandates.
+반면, **VerifyName**은 Travel Rule 규제 의무가 있는 VASP와 의무가 없는 VASP 간의 가상자산 송·수신을 지원하기 위해 설계된 솔루션입니다. 해당 솔루션은 송.수신인이 동일한 경우에만 자산 이동을 허용하며, 개인정보를 직접 주고받는 대신, 개인정보를 Hash 처리한 후 해당 Hash 값의 일치 여부를 통해 동일인 여부를 확인합니다.
 
 <br />
 
-## Travel Rule Obliged VASP vs. Non-Travel Rule Obliged VASP
+## Travel Rule 의무 VASP vs. 비의무 VASP
 
-The determination depends on regulatory requirements and the operational scope of your organization. Because regulatory frameworks vary widely by jurisdiction, some VASPs may qualify as Travel Rule Non-Obliged, requiring only basic identity checks (VerifyName), while others fall under the Travel Rule Obliged category, mandating comprehensive due diligence (TravelRule). For example, jurisdictions with stricter AML regulations often require a more detailed verification process. Review the compliance guidelines specific to your jurisdiction, and consult your legal or compliance teams to clarify the exact requirements.
+VASP가 Travel Rule 의무 대상인지 여부는 관할 지역의 규제 요건에 따라 달라집니다. 관할 지역의 규제상 라이센스 또는 신고/등록이 요구되는지, AML/CFT 의무사항 여부 등 법무 또는 컴플라이언스 팀과 함께 정확한 요구사항을 파악하여 TravelRule 과 VerifyName 중 어떤 솔루션을 사용할지를 판단하십시오.
 
 Typically, smaller or regionally restricted VASPs may fall into the Travel Rule Non-Obliged category, needing only VerifyName implementation, which focuses on basic identity checks without additional compliance measures. In contrast, Travel Rule Obliged VASPs are subject to broader regulatory requirements, such as identity verification, financial history checks, Anti-Money Laundering (AML), and Know Your Customer (KYC) compliance. This classification is more common for larger or globally regulated VASPs.
 
