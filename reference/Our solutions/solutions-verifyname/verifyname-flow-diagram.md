@@ -19,7 +19,7 @@ In the sections that follow, you will discover:
 
 Sequence Diagram 1 illustrates the post-verification flow, detailing how ownership verification between Originator and Beneficiary accounts is conducted after a blockchain transaction is confirmed. This scenario occurs when the unregulated Originating VASP skips the verification process, prompting the regulated Beneficiary VASP to initiate a post-verification request to ensure compliance.
 
-<Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/cb3b72bf4ce86ad467c88b22abba0eed094f11cb5d48178e601d7c4bcbea5dc0-vn_flow_diagram_1.webp" />
+<Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/bb53309e56104dec5d301ae78e88c668b7b0ad42fea6418283c4928c0eeddd84-VerifyName_Post_Verification.png" />
 
 1. The Originator user requests a withdrawal from his/her account with the Originating VASP.
 2. As the Originating VASP is unregulated, it directly executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
