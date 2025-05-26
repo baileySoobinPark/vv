@@ -33,7 +33,7 @@ paths:
 
         ## Environment Variable Configuration
           To implement this API, you must configure the environment variables to integrate with the Enclave server. Please configure the following environment variables accordingly.
-          - `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH` : Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME}) and set this variable accordingly.
+          - `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH` : Implement this API at the desired path({`VASP_DEFINED_PATH_VERIFY_NAME`}) and set this variable accordingly.
           - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 
           For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
@@ -42,11 +42,11 @@ paths:
           **1. Request Verification**
           Requests can be classified into two types, and the implementation requirements differ depending on the type.
           - **Post Verification**
-            - It means the request the type is set to VerifyOriginator.
-            - Your VASP must verify whether the transaction specified by the tx_hash in the request was executed by your VASP.
+            - It means the request the type is set to `VerifyOriginator`.
+            - Your VASP must verify whether the transaction specified by the `tx_hash` in the request was executed by your VASP.
             - Your VASP must verify whether the beneficiary address in the transaction executed by your VASP matches the value provided in the address field of the request.
           - **Pre Verification**
-            - It means the request the type is set to VerifyBeneficiary.
+            - It means the request the type is set to `VerifyBeneficiary`.
             - Your VASP must verify whether the address provided in the request matches an address registered with your VASP.
 
           The table below describes the parameters used for verification. Even if some fields are optional in the request, the response must include verification results for all fields.
@@ -468,7 +468,7 @@ paths:
 
         ## Environment Variable Configuration
           Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
-          - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK}) and set the path in the variable.
+          - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({`VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK`}) and set the path in the variable.
           - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 
           For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
@@ -567,7 +567,7 @@ paths:
 
         ## Functional Requirements
           **1. Callback Types Support**
-          The implementation must route the request to appropriate business logic for each callbackType values. The following are the possible values for the callbackTypes field and the scenarios in which they are used:
+          The implementation must route the request to appropriate business logic for each `callbackType` values. The following are the possible values for the `callbackTypes` field and the scenarios in which they are used:
           - **`OWNER_VERIFICATION_RESULT_REPORT`**: This callback is triggered by the Enclave when the final Owner Verification result is reported.
           - **`OWNER_VERIFICATION_TX_REPORT`**: This callback is triggered by the Enclave when the Originating VASP reports the execution of a transfer transaction.
 
@@ -650,7 +650,7 @@ paths:
 
         ## Environment Variable Configuration
           Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
-          - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_CALLBACK}) and set the path in the variable.
+          - `VEGA_VERIFICATION_CALLBACK_API_PATH`: Implement this API at the desired path({`VASP_DEFINED_PATH_CALLBACK`}) and set the path in the variable.
           - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
 
           For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup/environment-variables)
@@ -672,6 +672,7 @@ paths:
                   type: string
                   enum:
                     - OWNER_VERIFICATION_TX_REPORT
+                    - OWNER_VERIFICATION_RESULT_REPORT
                   description: |
                     A type for identifying the callback request.
                   example: OWNER_VERIFICATION_TX_REPORT

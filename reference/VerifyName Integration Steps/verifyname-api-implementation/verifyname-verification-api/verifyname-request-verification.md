@@ -17,7 +17,7 @@ excerpt: >
 
   ## Environment Variable Configuration
     To implement this API, you must configure the environment variables to integrate with the Enclave server. Please configure the following environment variables accordingly.
-    - `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH` : Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME}) and set this variable accordingly.
+    - `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH` : Implement this API at the desired path({`VASP_DEFINED_PATH_VERIFY_NAME`}) and set this variable accordingly.
     - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 
     For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
@@ -26,11 +26,11 @@ excerpt: >
     **1. Request Verification**
     Requests can be classified into two types, and the implementation requirements differ depending on the type.
     - **Post Verification**
-      - It means the request the type is set to VerifyOriginator.
-      - Your VASP must verify whether the transaction specified by the tx_hash in the request was executed by your VASP.
+      - It means the request the type is set to `VerifyOriginator`.
+      - Your VASP must verify whether the transaction specified by the `tx_hash` in the request was executed by your VASP.
       - Your VASP must verify whether the beneficiary address in the transaction executed by your VASP matches the value provided in the address field of the request.
     - **Pre Verification**
-      - It means the request the type is set to VerifyBeneficiary.
+      - It means the request the type is set to `VerifyBeneficiary`.
       - Your VASP must verify whether the address provided in the request matches an address registered with your VASP.
 
     The table below describes the parameters used for verification. Even if some fields are optional in the request, the response must include verification results for all fields.

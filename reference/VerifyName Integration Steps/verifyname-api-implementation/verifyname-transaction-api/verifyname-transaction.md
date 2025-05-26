@@ -40,7 +40,7 @@ excerpt: >
 
   ## Environment Variable Configuration
     Set the following environment variables as per the guide to integrate the implemented API with the Enclave.
-    - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK}) and set the path in the variable.
+    - `VEGA_VERIFICATION_VERIFYNAME_TRANSACTION_API_PATH`: Implement this API at the desired path({`VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK`}) and set the path in the variable.
     - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Use the API key provided during your VerifyVASP onboarding process to configure this variable.
 
     For a complete list of Enclave environment variables, [click here.](ref:verifyname-enclave-setup#/environment-variables)
