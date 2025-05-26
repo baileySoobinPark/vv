@@ -1732,7 +1732,7 @@ paths:
                     required:
                       - transaction_status
                       - request_id
-                      - reported_result
+                      - result
                       - ordered_at
                       - tx_hash
                     properties:
@@ -1775,7 +1775,7 @@ paths:
                           The format of `request_id` must follow the UUID v4
                           standard.
                         example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                      reported_result:
+                      result:
                         type: string
                         enum:
                           - VERIFIED
