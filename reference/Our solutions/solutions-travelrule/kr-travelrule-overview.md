@@ -1,5 +1,5 @@
 ---
-title: (KR)-Overview
+title: (KR)Overview
 deprecated: false
 hidden: true
 metadata:
