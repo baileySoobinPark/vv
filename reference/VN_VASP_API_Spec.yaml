@@ -9,7 +9,7 @@ components:
     ApiKeyAuth:
       type: apiKey
       in: header
-      name: X-API-KEY
+      name: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
 paths:
   /VASP_DEFINED_PATH_VERIFY_NAME:
     post:
@@ -231,16 +231,6 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Verification API
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: |
-            Bearer token for authorization.
-          schema:
-            type: string
-            description: Bearer token for authorization.
-            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
       requestBody:
         required: true
         content:
@@ -486,16 +476,6 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Transaction API
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: |
-            Bearer token for authorization.
-          schema:
-            type: string
-            description: Bearer token for authorization.
-            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
       requestBody:
         required: true
         content:
@@ -678,16 +658,6 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Callback API
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: |
-            Bearer token for authorization.
-          schema:
-            type: string
-            description: Bearer token for authorization.
-            example: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
       requestBody:
         required: true
         content:
