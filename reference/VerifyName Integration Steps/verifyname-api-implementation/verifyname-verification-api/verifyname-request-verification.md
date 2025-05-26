@@ -9,9 +9,10 @@ excerpt: >
 
   When your VASP receives an owner verification request, it must check whether
   any of the values included in the request body match the information held by
-  your VASP. If any matching values are found, your VASP must return the
-  corresponding Beneficiary or Originator information as part of the
-  verification result.
+  your VASP. 
+
+  If any matching values are found, your VASP must return the corresponding
+  Beneficiary or Originator information as part of the verification result.
 
 
   ## Environment Variable Configuration
@@ -39,15 +40,15 @@ excerpt: >
     |----------------|----------|-----------------|
     | `ticker`       | required | If your VASP supports the ticker, return `MATCHED`; otherwise, return `MISMATCHED`. |
     | `network`      | optional | If your VASP supports the network, return `MATCHED`; otherwise, return `MISMATCHED`. If this field is not provided or your VASP has no information about the network, return `SKIPPED`. |
-    | `address`      | required | If the request is for pre-verification, your VASP must verify whether the provided address matches a beneficiary address registered with your VASP. <br/><br/> If the request is for post-verification, your VASP must verify whether the provided address matches the beneficiary address specified in the transaction. If the addresses match, return MATCHED; if they do not match, return MISMATCHED. |
-    | `tag`          | optional | Your VASP must verify whether the provided tag matches a tag registered with your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the tag is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
-    | `tx_hash`      | optional | Your VASP must verify whether the provided transaction hash matches a transaction executed by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the tx_hash field is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
-    | `dti`          | optional | Your VASP must verify whether the provided value corresponds to a Digital Token Identifier supported by your VASP. If it matches, return MATCHED; if it does not match, return MISMATCHED. If the dti field is not provided in the request or if the comparison cannot be performed, return SKIPPED. |
+    | `address`      | required | If the request is for `pre-verification`, your VASP must verify whether the provided address matches a beneficiary address registered with your VASP. <br/><br/> If the request is for `post-verification`, your VASP must verify whether the provided address matches the beneficiary address specified in the transaction. <br/><br/> If the addresses match, return `MATCHED`; if they do not match, return `MISMATCHED`. |
+    | `tag`          | optional | Your VASP must verify whether the provided tag matches a tag registered with your VASP. <br/><br/> If it matches, return MATCHED; otherwise, return `MISMATCHED`. If the tag is not provided or if the comparison cannot be performed, return `SKIPPED`. |
+    | `tx_hash`      | optional | Your VASP must verify whether the provided transaction hash matches a transaction executed by your VASP.<br/><br/> If it matches, return MATCHED; otherwise, return `MISMATCHED` If the tx_hash field is not provided or if the comparison cannot be performed, return `SKIPPED`. |
+    | `dti`          | optional | Your VASP must verify whether the provided value corresponds to a Digital Token Identifier supported by your VASP. If it matches, return MATCHED; otherwise, return `MISMATCHED` If the dti field is not provided or if the comparison cannot be performed, return `SKIPPED`. |
 
     **2. Return Verification Results**
     This API must return verification_results. If either the address field or the tx_hash field is MATCHED, your VASP must also return the corresponding owner information.
-    - If the reuqests is `Post Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information in the `debtor` field.
-    - If the reuqests is `Pre Verification` and the address or the tx_hash field is MATCHED, your VASP must return the owner information in the `creditor` field.
+    - If the reuqest type is `Post Verification` and the address or the tx_hash field matches, your VASP must include the owner information in the `debtor` field of the response.
+    - If the request type is `Pre Verification` and either the address or the tx_hash field matches, your VASP must include the owner information in the creditor field of the response.
 
     **3. Response Examples**
     Example responses are provided below, depending on the request type and the type of owner information to be returned.
