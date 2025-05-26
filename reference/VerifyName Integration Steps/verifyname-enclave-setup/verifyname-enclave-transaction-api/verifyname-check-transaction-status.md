@@ -1,7 +1,7 @@
 ---
 title: Check Transaction Status API
 excerpt: >
-  This API is called by the Beneficiary VASP to check the current status of the
+  This API is used by the Beneficiary VASP to check the current status of the
   transaction when the transaction result has not been reported by the
   Originating VASP after the Owner Verification is completed.
 api:

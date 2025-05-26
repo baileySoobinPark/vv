@@ -1,5 +1,5 @@
 ---
-title: Transaction Report API
+title: Owner Verification Transaction Report API
 excerpt: >
   This API is used by the Originating VASP to report the execution of a transfer
   transaction.

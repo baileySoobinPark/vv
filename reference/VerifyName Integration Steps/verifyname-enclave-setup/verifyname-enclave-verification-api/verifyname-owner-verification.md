@@ -11,9 +11,10 @@ excerpt: >
 
   ### Owner Verification Result
 
-  - The verification results for the following items — ticker, network, address,
-  tx_hash, dti, name, birth_date, date_of_incorporation, and
-  organisation_identification — can be returned as one of the following values: 
+  - The verification results for the following items — `ticker`, `network`,
+  `address`, `tx_hash`, `dti`, `name`, `birth_date`, `date_of_incorporation`,
+  and `organisation_identification` — can be returned as one of the following
+  values: 
     - `MATCHED`
     - `MISMATCHED`
     - `SKIPPED`

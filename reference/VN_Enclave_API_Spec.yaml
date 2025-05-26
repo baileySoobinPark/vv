@@ -308,10 +308,10 @@ paths:
 
         ### Owner Verification Result
 
-        - The verification results for the following items — ticker, network,
-        address, tx_hash, dti, name, birth_date, date_of_incorporation, and
-        organisation_identification — can be returned as one of the following
-        values: 
+        - The verification results for the following items — `ticker`,
+        `network`, `address`, `tx_hash`, `dti`, `name`, `birth_date`,
+        `date_of_incorporation`, and `organisation_identification` — can be
+        returned as one of the following values: 
           - `MATCHED`
           - `MISMATCHED`
           - `SKIPPED`
@@ -1323,56 +1323,56 @@ paths:
       summary: Get Owner Verification Result API
       description: >
         This API retrieves the result of a specific owner verification request
-        using its unique request_id.
+        using its unique `request_id`.
 
 
-        When the verification result is DENIED or ERROR, the reason field in the
-        response provides a code that explains the reason for the verification
-        result. The following table lists the codes available in the reason
-        field along with their descriptions.
+        When the verification result is `DENIED` or `ERROR`, the `reason` field
+        in the response provides a code that explains the reason for the
+        verification result. The following table lists the codes available in
+        the `reason`  field along with their descriptions.
 
 
         | Reason Code                              | Description |
 
         |-------------------------------------------|-------------|
 
-        | MISMATCH-TICKER                           | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-TICKER`                           | Used with
+        verification_result:  DENIED` when the owner verification result for the
         `ticker` field is `MISMATCHED`.|
 
-        | MISMATCH-NETWORK                          | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-NETWORK`                          | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `network` field is `MISMATCHED`.|
 
-        | MISMATCH-ADDRESS                          | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-ADDRESS`                          | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `address` field is `MISMATCHED`.|
 
-        | MISMATCH-NAME                             | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-NAME`                             | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `name` field is `MISMATCHED`.|
 
-        | MISMATCH-DTI                              | Used with
-        `verification_result: DENIED` when the owner verification result for the
-        `dti` field is `MISMATCHED`.|
-
-        | MISMATCH-DATE-OF-INCORPORATION            | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-DATE-OF-INCORPORATION`            | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `date_of_incorporation` field is `MISMATCHED`.|
 
-        | MISMATCH-BIRTH-DATE                       | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-DTI`                              | Used with
+        verification_result: `DENIED` when the owner verification result for the
+        `dti` field is `MISMATCHED`.|
+
+        | `MISMATCH-BIRTH-DATE`                       | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `birth_date` field is `MISMATCHED`.|
 
-        | MISMATCH-ORGANISATION-IDENTIFICATION      | Used with
-        `verification_result: DENIED` when the owner verification result for the
+        | `MISMATCH-ORGANISATION-IDENTIFICATION`      | Used with
+        verification_result: `DENIED` when the owner verification result for the
         `organisation_identification` field is `MISMATCHED`.|
 
-        | TRANSFER-ERROR                            | Used with
-        `verification_result: ERROR` when a transaction transfer fails. |
+        | `TRANSFER-ERROR`                            | Used with
+        verification_result: `ERROR` when a transaction transfer fails. |
 
-        | UNDEFINED-ERROR                           | Used with
-        `verification_result: ERROR` when an unexpected error occurs that is not
+        | `UNDEFINED-ERROR`                           | Used with
+        verification_result: `ERROR` when an unexpected error occurs that is not
         covered by the above reason codes. |
       operationId: verifyname-get-owner-verification-result
       tags:
@@ -1703,9 +1703,9 @@ paths:
     post:
       summary: Check Transaction Status API
       description: >
-        This API is called by the Beneficiary VASP to check the current status
-        of the transaction when the transaction result has not been reported by
-        the Originating VASP after the Owner Verification is completed.
+        This API is used by the Beneficiary VASP to check the current status of
+        the transaction when the transaction result has not been reported by the
+        Originating VASP after the Owner Verification is completed.
       operationId: verifyname-check-transaction-status
       tags:
         - Transaction API
@@ -1839,7 +1839,7 @@ paths:
                   value:
                     transaction_status: CONFIRMED
                     request_id: ecbacf57-f813-4670-934a-5c4537fec869
-                    reported_result: VERIFIED
+                    result: VERIFIED
                     ordered_at: '2025-04-22T08:35:24.760Z'
                     tx_hash: >-
                       0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58
@@ -2023,7 +2023,7 @@ paths:
                     message: timeout of 5000ms exceeded
   /v2/owner-verifications/{request_id}/tx:
     post:
-      summary: Transaction Report API
+      summary: Owner Verification Transaction Report API
       description: >
         This API is used by the Originating VASP to report the execution of a
         transfer transaction.
