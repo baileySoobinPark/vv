@@ -9,38 +9,38 @@ metadata:
 
 <Image align="center" border={false} caption="Diagram 1. VerifyVASP Integration Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
 
-### VASP to VASP Communication
+### Travel Rule Commination
 
-VASPs using TravelRule solutions for Travel Rule compliance rely on a Central Server to relay requests and responses between Originating and Beneficiary VASPs. Each VASP alternates between these roles—sending assets as an Originating VASP or receiving them as a Beneficiary VASP—depending on the transaction context.
+VASP는 VerifyVASP의 중앙 서버(Central Server)를 통해 상대 VASP와 요청 및 응답을 주고받으며, 입.출금 상황에 따라 송신 VASP 또는 수신 VASP의 역할을 번갈아 수행합니다.
 
-### Enclave Integration Within VASP Infrastructure
+### Enclave 설치 및 연동
 
-Within each VASP infrastructure, a business backend and database operate alongside the VerifyVASP Enclave and its dedicated Enclave database. The Enclave, provided by VerifyVASP, is a prebuilt server providing protocol interface to integrate with VerifyVASP products. It must be installed and deployed within the VASP’s infrastructure.
+Enclave는 VerifyVASP에서 제공하는 사전 구축된 서버로, VerifyVASP Central Server와 연동할 수 있도록 설계된 프로토콜 인터페이스를 제공합니다. 이 서버는 VASP의 자체 인프라 내에 설치되어야 하며, Enclave API를 통하여 상대 VASP와 검증 요청을 주고 받을 수 있습니다.
 
-A VASP backend can send requests to a Counterparty VASP by calling the Enclave API. A VASP receiving a request handles it within its Enclave but delegates core tasks requiring custom business logic or proprietary data to its backend through defined APIs, such as Transaction or Verification APIs. This architecture ensures a secure and modular system by establishing a loosely coupled integration between the VASP business backend and the Enclave through API calls.
+### 데이터 보안 및 개인정보 보호
 
-### Ensuring Data Security and Privacy
-
-The Enclave database is exclusively accessible by the Enclave, ensuring data integrity and isolation. Communication between VASPs and the Central Server is encrypted and transmitted over HTTPS channels with layered security. This protects sensitive data, including personal information, exchanged during the verification and transaction processes.
+Enclave 데이터베이스는 VASP 만 접근할 수 있도록 제한되어 있어, 데이터 무결성과 격리가 보장됩니다. 또한, VASP 간 및 중앙 서버와의 통신은 HTTPS 기반의 암호화된 채널을 통해 다중 보안 계층을 적용하여 수행됩니다. 이를 통해, 검증 및 거래 과정에서 오가는 개인정보 등 민감한 데이터가 안전하게 보호됩니다.
 
 <br />
 
-## High-level Verification Flow
+## 검증 흐름 (High-level Verification Flow)
 
-1. **Originator's Asset Transfer Initiation**
+1. **송금인의 자산 전송 요청**
 
-   When an originator initiates a transfer request, the Originating VASP collects and prepares relevant information, including the beneficiary and identity details.
-2. **Verification Request**
+   송신인이 자산 전송 요청을 시작하면, 송신 VASP는 송신인 정보와 송신인으로부터 수집한 수신인 정보를 취합합니다.
+2. **검증 요청**
 
-   The Originating VASP sends this information to the Beneficiary VASP through the VerifyVASP Central Server via **the Enclave server**, which provides the dedicated APIs.
-   * The Enclave server, installed within the VASP infrastructure, enables protocol-compliant communication with the Central Server and counterparty VASPs through an end-to-end encrypted channel.
-   * Developed and maintained by VerifyVASP, the Enclave is provided as a Docker image available from a private Docker Hub registry.
-   * Each VASP must configure a dedicated database for the Enclave server.
-   * Note that the VASP’s business backend interacts solely with the Enclave server and does not directly access the Central Server API.
-3. **Verification**
+   송신 VASP는 수집된 정보를 Enclave 서버를 통해 VerifyVASP 중앙 서버로 전송하며, 해당 정보를 수신 VASP에게 전달합니다.
 
-   The Beneficiary VASP receives the verification request and verifies the originator's identity and beneficiary account details against its own records.
-4. **Verification Result**
+   * 이때 전달되는 송.수신인 개인정보는 양 VASP의 Enclave 에서 종단간 암복호화 됩니다.
+   * Enclave는 VerifyVASP에서 제공하는 Docker 이미지 형태로 배포되며, 전용 데이터베이스 구성이 필요합니다.
+   * VASP의 백엔드는 Enclave 서버와만 통신하며, VerifyVASP Central Server API와 직접 통신하지 않습니다.
+3. **검증 수행**
+
+   수신 VASP는 검증 요청을 수신한 후, 자체 보유한 기록을 바탕으로 수신인 정보를 확인 후 검증합니다.
+
+   * 송신 VASP 로부터 전달받은 송신인 정보는 별도 검증을 하지 않습니다.
+4. **검증 결과 전달**
 
    After verification, the Beneficiary VASP sends the result back to the Originating VASP via VerifyVASP central server. This process includes both synchronous and asynchronous API interactions, with specific details provided in the subsequent document on scenarios and flows.
 5. **Transaction Completion**
