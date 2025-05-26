@@ -70,9 +70,7 @@ metadata:
 
     * **Expected Result**
 
-    * Robot VASP 가 Beneficiary VASP 으로 부터 받은 항목별 검증 결과를 바탕으로 판단한 최종 결과가 “verification\_result” 필드로 리턴 됩니다.
-
-    * 항목별 검증 결과 예시
+    * The verification\_result field returns the final result determined by the Robot VASP based on the itemized verification results received from the Beneficiary VASP.
 
     ```json
       "verification_results": {
@@ -88,7 +86,7 @@ metadata:
       },
     ```
 
-    * Robot VASP 가 판단한 결과를 포함한 응답
+    * The response including the result determined by the Robot VASP
       * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
 
     ```json
