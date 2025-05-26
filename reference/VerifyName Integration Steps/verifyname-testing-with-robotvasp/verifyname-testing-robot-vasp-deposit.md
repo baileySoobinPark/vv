@@ -32,39 +32,29 @@ metadata:
   <Accordion title="How to use Owner Verification Simulation API">
     **Method**: `POST`
 
-    * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications`
+    * **Endpoint**: \`[https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/\{request\_id}/result](https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/\{request_id}/result)'
 
     * **Request Body Example**
 
     ```json
+       {
+          "verification_result": "VERIFIED"
+      }
+
+      or
+
       {
-        "supplementary_data": {
-            "envelope": {
-                "vasp_id": "17100967850059048960", // your VASP ID
-                "type": "VerifyBeneficiary",
-                "ticker": "ETH",
-                "network": "ethereum",
-                "address": "0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c"
-            }
-        },
-        "creditor": {
-            "name": "<Enter_Full_Name>",  
-            "supplementary_data": { 
-                "envelope": {
-                    "name": {
-                        "first_name": "<Enter_First_Name>",
-                        "last_name": "<Enter_Last_Name>"
-                    }
-                }
-            },
-            "identification": {
-                "private_identification": {
-                    "date_and_place_of_birth": {
-                        "birth_date": "1990-04-05"
-                    }
-                }
-            }
-        }
+          "verification_result": "DENIED",
+          "reason": "MISMATCH-ADDRESS",
+          "message": "mismatch address"
+      }
+
+      or
+
+      {
+          "verification_result": "ERROR",
+          "reason": "TRANSFER-ERROR",
+          "message": "test error"
       }
     ```
 
