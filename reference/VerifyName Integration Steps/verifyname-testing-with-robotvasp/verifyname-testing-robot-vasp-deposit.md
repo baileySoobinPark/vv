@@ -70,7 +70,8 @@ metadata:
 
     * **Expected Result**
 
-    * The verification\_result field returns the final result determined by the Robot VASP based on the itemized verification results received from the Beneficiary VASP.
+    * Upon request from the Robot VASP, your VASP performs owner verification to validate the beneficiary.
+      The result of the verification must be returned in the `verification_results` field. An example is shown below.
 
     ```json
       "verification_results": {
@@ -86,8 +87,8 @@ metadata:
       },
     ```
 
-    * The response including the result determined by the Robot VASP
-      * 어떻게 결과를 해석하는가는 VASP 에 따라 다르겠지만 Robot VASP 는 “verification\_results” 항목들 중 하나라도 MISMATCHED 가 있으면 “DENIED” 로 판단하고 있습니다.
+    * The Robot VASP returns the final verification result based on the values provided by your VASP.
+      * In the case of the Robot VASP, if any field in the verification\_results is MISMATCHED, it returns DENIED. Your VASP can test both successful and failed verification scenarios by adjusting the input values accordingly.
 
     ```json
       {
