@@ -116,7 +116,7 @@ Your VASP must pass all test cases listed below.
   * Your VASP must use the Owner Verification API(Enclave API).
   * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
 * **Expected Result**
-  * “verification\_results” 필드에 각 항목들에 대한 검증 결과가 “MATCHED”, “MISMATCHED”, “SKIPPED” 중 하나로 리턴 됩니다.
+  * Each field in the `verification_results` object will return one of the following values: `MATCHED`, `MISMATCHED`, or `SKIPPED`.
   ```json
   {
       "request_id": "5be3c01e-2f3f-4536-a662-6c58f0465c57",
@@ -140,7 +140,7 @@ Your VASP must pass all test cases listed below.
 ### 3-1. **Execute the transaction on the Blockchain Network**
 
 * **Conditions**
-  * 2번 단계를 진행하여 받은 응답의 “verification\_results” 필드 결과들을 바탕으로 “VERIFIED” 또는 “DENIED” 판단을 하신 후 “VERIFIED” 로 판단되었을때  이 테스트를 진행하세요.
+  * After evaluating the `verification_results` field from the response in **Step 2**, proceed with this test only if your VASP determines that the result is `VERIFIED`.
   * If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
   * When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag.
 
