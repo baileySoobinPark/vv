@@ -70,7 +70,7 @@ metadata:
 
     * **Expected Result**
 
-    * Upon request from the Robot VASP, your VASP performs owner verification to validate the beneficiary.
+      Upon request from the Robot VASP, your VASP performs owner verification to validate the beneficiary.
       The result of the verification must be returned in the `verification_results` field. An example is shown below.
 
     ```json
