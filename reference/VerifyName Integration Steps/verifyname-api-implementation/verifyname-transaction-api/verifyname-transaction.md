@@ -14,7 +14,7 @@ excerpt: >
 
   ## Functional Requirements
     **1. Mapping Request ID to the Corresponding Transaction Hash**
-    - Your VASP, acting as the Originating VASP, must map the request_id (received in response to a previous 'Verify Name API' request) to the transaction hash.
+    - Your VASP, acting as the Originating VASP, must map the `request_id` (received in response to a previous 'Verify Name API' request) to the transaction hash.
 
     **2. Retrieving and Responding On-Chain Transaction Status**
     - Using the transaction hash, retrieve the current status of the on-chain transaction. The transaction status must be returned in the transaction_status field, which supports the following allowed values:
