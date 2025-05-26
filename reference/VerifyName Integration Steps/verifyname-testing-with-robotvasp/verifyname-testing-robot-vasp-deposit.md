@@ -131,9 +131,26 @@ metadata:
     * **Expected Result**
 
     ```
-    {
-    "tx_hash": "0x116f1d11b871dfcc8c551fa146f02dfedca2ec5908338ce2c648416ceede26c2"
-    }
+      {
+          "verification_result": "VERIFIED",
+          "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
+      }
+
+      or
+
+      {
+          "verification_result": "DENIED",
+          "reason": "MISMATCH-ADDRESS",
+          "message": "mismatch address"
+      }
+
+      or
+
+      {
+          "verification_result": "ERROR",
+          "reason": "TRANSFER-ERROR",
+          "message": "test error"
+      }
     ```
   </Accordion>
 
