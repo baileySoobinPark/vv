@@ -196,6 +196,8 @@ metadata:
         * This API should return `{result: true}`.
     </Accordion>
 
+    <br />
+
     <Accordion title="How to use the Owner Verification Result Reporting Simulation API">
       **Method**: `POST`
 
