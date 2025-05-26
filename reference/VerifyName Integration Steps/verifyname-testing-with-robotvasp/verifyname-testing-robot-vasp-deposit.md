@@ -120,37 +120,20 @@ metadata:
 
     * **Request Query**
 
-    | Parameter Name               | Type   | Description                                                                                                                                                                                                                 | Example                                                            |
-    | ---------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-    | `ticker`                     | string | Ticker of the virtual asset to be transferred.                                                                                                                                                                              | `ETH`                                                              |
-    | `originator_account_ number` | string | Unique Identifier of transaction. <br /><br />  This field is required when the `verification_result` is `VERIFIED`.                                                                                                        | `8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042` |
-    | `originator_tag`             | string | In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.                                            | `0`                                                                |
-    | `amount`                     | string | Must be within the available balance verified in withdrawal test 3-1 case 1.                                                                                                                                                | –                                                                  |
-    | `omit_tx_report`             | string | To verify whether the transaction report is submitted after withdrawal. If set to `true`, the transaction result will not be submitted. Your VASP can set this to `true` to conduct test case 2 in 2-1. Default is `false`. | –                                                                  |
+    | Parameter Name               | Type    | Description                                                                                                                                                                                                                                                    | Example                                      |
+    | ---------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+    | `ticker`                     | string  | Ticker of the virtual asset to be transferred.                                                                                                                                                                                                                 | `ETH`                                        |
+    | `originator_account_ number` | string  | The address must be one whose balance was confirmed to be greater than 0 through Case 1 of Step 3-1 in the withdrawal test.                                                                                                                                    | 0xe6998af38840836d2469ae71aa849f4f94c2b6d6\` |
+    | `originator_tag`             | string  | This is a tag used for verification when the address includes a secondary identifier (e.g., destination tag or memo).                                                                                                                                          | `2852039353`                                 |
+    | `amount`                     | string  | The amount must not exceed the balance confirmed in Case 1 of Step 3-1 during the withdrawal test.                                                                                                                                                             | `100000`                                     |
+    | `omit_tx_report`             | boolean | o verify whether the transaction report is submitted after withdrawal.<br /><br />If this field is set to true, the transaction result will not be submitted. Your VASP can set this field to true to conduct test case 2 in 2-1.<br /><br />Default is false. | `false`                                      |
 
     * **Expected Result**
 
     ```
-      {
-          "verification_result": "VERIFIED",
-          "tx_hash": "0xbdd6e9e12514507cee06e31dd4a64acb0777f2365902ee9577c656322f9f2f74"
-      }
-
-      or
-
-      {
-          "verification_result": "DENIED",
-          "reason": "MISMATCH-ADDRESS",
-          "message": "mismatch address"
-      }
-
-      or
-
-      {
-          "verification_result": "ERROR",
-          "reason": "TRANSFER-ERROR",
-          "message": "test error"
-      }
+     {
+      "tx_hash": "0x116f1d11b871dfcc8c551fa146f02dfedca2ec5908338ce2c648416ceede26c2"
+    }
     ```
   </Accordion>
 
