@@ -1,4 +1,4 @@
 ---
 title: VASP Callback API
-hidden: false
+hidden: true
 ---
