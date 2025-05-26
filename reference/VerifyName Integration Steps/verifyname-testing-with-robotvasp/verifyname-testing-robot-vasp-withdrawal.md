@@ -211,9 +211,10 @@ Your VASP must pass all test cases listed below.
 
 * **Conditions**
   * Your VASP must use the Report API to send the canceled transaction to the VerifyVASP Central Server.
+  * Your VASP must call the Owner Verification Result API again to report the error.
 * **Expected Result**
   * The Robot VASP stops calling the Check Transaction Status API.
-  * The reported result will be changed from VERIFIED to ERROR or DENIED. Your VASP can confirm the change in the state of verification by using the Get Owner Verification Result API or the List Owner Verification Result API.
+  * The reported result will be changed from `VERIFIED` to` ERROR` or` DENIED`. Your VASP can confirm the change in the state of verification by using the Get Owner Verification Result API or the List Owner Verification Result API.
 
 <br />
 
