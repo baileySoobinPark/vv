@@ -87,8 +87,8 @@ metadata:
       },
     ```
 
-    * The Robot VASP returns the final verification result based on the values provided by your VASP.
-      * In the case of the Robot VASP, if any field in the verification\_results is MISMATCHED, it returns DENIED. Your VASP can test both successful and failed verification scenarios by adjusting the input values accordingly.
+    The Robot VASP returns the final verification result based on the values provided by your VASP.
+    In the case of the Robot VASP, if any field in the verification\_results is MISMATCHED, it returns DENIED. Your VASP can test both successful and failed verification scenarios by adjusting the input values accordingly.
 
     ```json
       {
