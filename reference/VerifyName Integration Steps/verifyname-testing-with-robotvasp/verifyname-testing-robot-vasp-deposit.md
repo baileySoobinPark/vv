@@ -198,7 +198,7 @@ metadata:
 
     <br />
 
-    <Accordion title="How to use the Owner Verification Result Reporting Simulation API">
+    <Accordion title="How to use the Transaction Reporting Simulation API">
       **Method**: `POST`
 
       * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/tx`
