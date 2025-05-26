@@ -148,7 +148,7 @@ metadata:
   * **Conditions**
 
     * If you set the `omitTxReport` field to `true` when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
-    * Your VASP must check the transaction status using the Check Transaction status API(Enclave API) for owner verification.
+    * Your VASP must check the transaction status using the Check Transaction Status API(Enclave API) for owner verification.
     * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
 
     <br />
