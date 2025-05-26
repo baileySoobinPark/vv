@@ -1,5 +1,5 @@
 ---
-title: TravelRule VS VerifyName (COPY)
+title: (KR)TravelRule VS VerifyName
 deprecated: false
 hidden: true
 metadata:
