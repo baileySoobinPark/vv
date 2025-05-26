@@ -222,4 +222,4 @@ Your VASP must pass all test cases listed below.
 * **Conditions**
   * Your VASP must not use the Report API after canceling the execution of a transaction that has completed owner verification.
 * **Expected Result**
-  * Robot VASP periodically calls Transaction Status Query API (VASP API) implemented by your VASP for the related transaction. (up to 1 hour)
+  * Robot VASP periodically calls Check Transaction Status API (VASP API) implemented by your VASP for the related transaction. (up to 1 hour)
