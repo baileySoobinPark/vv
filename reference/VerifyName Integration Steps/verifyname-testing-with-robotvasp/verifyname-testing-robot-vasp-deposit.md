@@ -153,7 +153,7 @@ metadata:
 
     <br />
 
-    <Accordion title="How to use the Robot VASP Withdrawal Request API">
+    <Accordion title="How to use the Result Reporting Simulation API">
       **Method**: `POST`
 
       * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/{request_id}/report`
