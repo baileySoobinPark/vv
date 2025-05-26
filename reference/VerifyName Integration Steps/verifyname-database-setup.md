@@ -337,7 +337,7 @@ After completing the database installation, you must create the necessary tables
 
 ## Table Creation Query
 
-* When the Enclave mode is set to either VN1\_CALL or VN2, the appropriate database must be configured according to the selected type. You can create and configure the database by running the appropriate command for each database type as shown below.
+* When the Enclave mode is set to either`VN1_CALL` or` VN2`, the appropriate database must be configured according to the selected type. You can create and configure the database by running the appropriate command for each database type as shown below.
 
 <Tabs>
   <Tab title="MySQL">
