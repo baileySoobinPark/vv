@@ -32,29 +32,39 @@ metadata:
   <Accordion title="How to use Owner Verification Simulation API">
     **Method**: `POST`
 
-    * **Endpoint**: \`[https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/\{request\_id}/result](https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications/\{request_id}/result)'
+    * **Endpoint**: \`[https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications](https://api.verifyvasp.xyz/vega/robot/v2.0/action/owner-verifications)'
 
     * **Request Body Example**
 
     ```json
-       {
-          "verification_result": "VERIFIED"
-      }
-
-      or
-
       {
-          "verification_result": "DENIED",
-          "reason": "MISMATCH-ADDRESS",
-          "message": "mismatch address"
-      }
-
-      or
-
-      {
-          "verification_result": "ERROR",
-          "reason": "TRANSFER-ERROR",
-          "message": "test error"
+          "supplementary_data": {
+              "envelope": {
+                  "vasp_id": "17100967850059048960", // your VASP ID
+                  "type": "VerifyBeneficiary",
+                  "ticker": "ETH",
+                  "network": "ethereum",
+                  "address": "0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c"
+              }
+          },
+          "creditor": {
+              "name": "<full name>", // optional
+              "supplementary_data": {  // optional
+                  "envelope": {
+                      "name": {
+                          "first_name": "<first name>",
+                          "last_name": "<last name>" // optional
+                      }
+                  }
+              },
+              "identification": { // optional
+                  "private_identification": { // optional
+                      "date_and_place_of_birth": {
+                          "birth_date": "1990-04-05"
+                      }
+                  }
+              }
+          }
       }
     ```
 
@@ -153,8 +163,6 @@ metadata:
       | Parameter Name        | Type   | Description                                                                                                                                                                                                                                                                                       | Example                                                                                                                                                                                                                                                                                                               |
       | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
       | `verification_result` | string | The verification result determined by the VASP that initiated the owner verification request with the VerifyBeneficiary type.                                                                                                                                                                     | - `VERIFIED`<br /> - `DENIED` <br /> - `ERROR`                                                                                                                                                                                                                                                                        |
-      | `tx_hash`             | string | Unique identifier of the transaction.                                                                                                                                                                                                                                                             | `8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042`                                                                                                                                                                                                                                                    |
-      | `vout`                | string | In cases where multiple transfers can be included in a single transaction (e.g., Bitcoin), this is the index value that indicates which transfer corresponds to this verification.                                                                                                                | `0`                                                                                                                                                                                                                                                                                                                   |
       | `reason`              | string | This field explains the reason why the result of the owner verification is DENIED or ERROR. <br /><br /> This field is required when the verification result has been reported as `DENIED` or `ERROR` by the VASP that initiated the owner verification request using the VerifyBeneficiary type. | - `MISTMATCH-TICKER` <br /> - `MISTMATCH-NETWORK` <br /> - `MISTMATCH-ADDRESS` <br /> - `MISMATCH-NAME` <br /> - `MISMATCH-DTI` <br /> - `MISMATCH-DATE-OF-INCORPORATION` <br /> - `MISTMATCH-BIRTH-DATE` <br /> - `MISMATCH-ORGANISATION-IDENTIFICATION` <br /> - `TRANSFER-ERROR` <br /> - `UNDEFINED-ERROR` <br /> |
       | `message`             | string | This is a detailed message provided by the VASP when reporting an owner verification result of `DENIED` or `ERROR`, along with the reason.                                                                                                                                                        | `transfer error`                                                                                                                                                                                                                                                                                                      |
 
