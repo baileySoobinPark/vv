@@ -140,7 +140,7 @@ metadata:
   <br />
 * **Case 1. Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
   * **Conditions**
-    * After the actual transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
+    * After the transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
   * **Expected Results**
     * Your VASP can receive the transaction report through the callback API(VASP API).
     <br />
@@ -148,7 +148,7 @@ metadata:
   * **Conditions**
 
     * If you set the `omitTxReport` field to `true` when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
-    * Your VASP must check the transaction status using the Check Transaction Inquiry API(Enclave API) for owner verification.
+    * Your VASP must check the transaction status using the Check Transaction status API(Enclave API) for owner verification.
     * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
 
     <br />
