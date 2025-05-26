@@ -48,19 +48,19 @@ metadata:
             }
         },
         "creditor": {
-            "name": "<full name>",   // 수정 필요
-            "supplementary_data": {  // optional
+            "name": "<Enter_Full_Name>",  
+            "supplementary_data": { 
                 "envelope": {
                     "name": {
-                        "first_name": "<first name>",
-                        "last_name": "<last name>"
+                        "first_name": "<Enter_First_Name>",
+                        "last_name": "<Enter_Last_Name>"
                     }
                 }
             },
             "identification": {
                 "private_identification": {
                     "date_and_place_of_birth": {
-                        "birth_date": "1990-04-05"  // 수정 필요
+                        "birth_date": "1990-04-05"
                     }
                 }
             }
