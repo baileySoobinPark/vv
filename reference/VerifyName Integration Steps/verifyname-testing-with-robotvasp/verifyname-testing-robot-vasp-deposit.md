@@ -195,5 +195,5 @@ metadata:
 
       * **Expected Result**
 
-        * Your VASP can check the transaction status through the Check Transaction status API(`v2/owner-verifications/{request_id}/tx/inquiry`, Enclave API).
+        * Your VASP can check the transaction status through the Check Transaction Status API(`v2/owner-verifications/{request_id}/tx/inquiry`, Enclave API).
     </Accordion>
