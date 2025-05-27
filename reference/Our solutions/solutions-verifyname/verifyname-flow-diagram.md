@@ -21,27 +21,37 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 
 <Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/7e75c4995f2b8b686ba210d9793debccd5c7b8a14dd71545b324fff0d665092b-Post_Verification.svg" />
 
-1. The Originator user requests a withdrawal from his/her account with the Originating VASP.
+1. The originator initiates a withdrawal from the Originating VASP side account.
 2. As the Originating VASP is unregulated, it directly executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
-3. Once the transaction is mined on the blockchain,
-4. The Beneficiary VASP detects the deposit to the Beneficiary address.
-5. To identify the origin, the Beneficiary VASP may prompt the user to specify the Originating VASP. To facilitate this, the Beneficiary VASP can use the Enclave's List Provider API, which retrieves a list of VASPs capable of performing ownership verification (referred to as providers). The Enclave queries the VerifyVASP Central Server in real-time to obtain this provider list.
-6. The Central Server returns a list of provider VASPs to the BV.
-7. Based on this list, the Beneficiary VASP prompts the user to select the Originating VASP responsible for the withdrawal.
-8. After the user provides the information:
-9. The Beneficiary VASP server includes the selected provider VASP identifier and calls the Enclave's **Owner Verification API**, passing details such as the Beneficiary account owner’s name, date of birth, and the detected transaction hash.
-10. The Beneficiary VASP side Enclave hashes the name and date of birth.
-11. It forwards the hashed values to the VerifyVASP Central Server, which then routes the verification request to the selected Originating VASP.
-12. The Central Server calls the **VerifyName API** of the selected provider VASP.
-13. Upon receiving the request, the Originating VASP server identifies the transaction origin address by referencing the transaction hash.
-14. The Originating VASP server retrieves the name and date of birth of the Originator from its database.
-15. Following the VerifyName guidelines, the Originating VASP server hashes these values.
-16. By comparing the generated hash with the one included in the request, the Originating VASP confirms whether the Originator and Beneficiary accounts belong to the same owner.
-17. The verification result is returned to the VerifyVASP Central Server.
-18. The Central Server relays the result back to the Beneficiary VASP Enclave.
-19. The Beneficiary VASP Enclave then sends back the result to the Beneficiary VASP business server.
-20. The Beneficiary VASP server updates the deposit status to indicate the completion of the ownership verification.
-21. The Beneficiary VASP may notify the Originator user of the successful deposit verification.
+3. Once the transaction is mined on the blockchain, the Beneficiary VASP detects the deposit to the Beneficiary address.
+4. To identify the origin, the Beneficiary VASP may prompt the user to specify the Originating VASP. To facilitate this, the Beneficiary VASP can use the Enclave's List VASP API, which retrieves a list of VASPs capable of performing ownership verification (referred to as providers).
+5. The Enclave queries the VerifyVASP Central Server in real-time to obtain this provider list.
+6. The Central Server returns a list of VASPs to the Beneficiary VASP's Enclave.
+7. The Enclave returns a list of VASPs to the Beneficiary VASP.
+8. Based on this list, the Beneficiary VASP prompts the user to select the Originating VASP responsible for the withdrawal.
+9. After the user provides the information:
+10. The Beneficiary VASP server includes the selected provider VASP identifier and calls the Enclave's **Owner Verification API**. For verification purposes, the Beneficiary VASP provides information such as **name**, **date of birth**, and **transaction hash**. The required information may vary depending on whether the Beneficiary is an individual or a corporate entity.
+11. The Beneficiary VASP's Enclave generates Salt.
+12. The generated salt is used to hash the Beneficiary's name and date of birth.
+13. The salt is encrypted using the Originating VASP’s public key.
+
+14 \~ 15. The Enclave delivers the required Owner Verification data, including the hashed name and date of birth and encrypted salt to the Originating VASP’s Enclave.
+
+16. The Originating VASP’s Enclave initiates the verification process by calling the Originating VASP’s VerifyName API. Only digital asset information—such as the network, ticker, and transaction hash—is provided to the Originating VASP.
+17. The Originating VASP server verifies whether the received information matches the details of the transaction it has sent.
+18. If a matching value is found, the Originator is identified using the transaction hash, and their name and date of birth are retrieved from the database.
+19. The Originating VASP returns the verification result of the digital asset transfer, along with the sender’s name and date of birth, to the Originating VASP Enclave.
+20. The Enclave decrypts the encrypted salt using its private key.
+21. The Originator’s name and date of birth are hashed using the salt.
+22. The hashed name and date of birth are compared with the hashed name and date of birth received from the Beneficiary VASP.
+
+23 \~ 25. Returns the digital asset verification result and the hash comparison result.
+
+26 \~ 27. Based on the returned verification data, the Beneficiary VASP determines the final result and submits a report to share its decision.
+
+28 \~ 30. The reported final verification result is shared with the Originating VASP via the Callback API.
+
+31 \~ 31. Based on the verification result, both the Originating VASP and the Beneficiary VASP can process deposits and withdrawals, and notify the user accordingly.
 
 <br />
 
@@ -49,26 +59,46 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 
 In contrast to the post-verification case, when the Originating VASP is a regulated entity, it performs account verification before executing the transfer. If the counterparty VASP is a provider VASP supporting the verifyName API, the Originating VASP can leverage the VerifyVASP Central Server to call this API and complete the pre-verification process.
 
-<Image align="center" border={false} caption="Sequence Diagram 2. VerifyName integration flow for regulated VASP originating withdrawal" src="https://files.readme.io/3b3d39f40d0b3f9f62f4b1070a6d26f36b1e4ecd78f8335edd9f0b0eb86d76a4-Pre_Verification.svg" />
+<Image align="center" border={false} caption="Sequence Diagram 2. VerifyName integration flow for regulated VASP originating withdrawal" src="https://files.readme.io/94c4ef4c879ff08b3b9363c946332722c6437aac948ef57086f1059bf772e930-Pre_Verification.svg" />
 
-1. The originator initiates a withdrawal from the Originating VASP side account. During this process, the user must designate a Beneficiary VASP through a series of actions facilitated by the Originating VASP’s interface.
-2. The Originating VASP calls the Enclave's Request Owner Verification API to initiate pre-verification for the beneficiary account. Since the transaction has not yet occurred, the request includes the beneficiary account address instead of a transaction hash.
-3. The Beneficiary VASP's Enclave hashes the provided name and date of birth information according to the VerifyName guidelines.
-4. The hashed data is included in a verification request sent to the VerifyVASP Central Server.
-5. The Central Server forwards the request to the Beneficiary VASP's VerifyName API, which must be implemented by the Beneficiary VASP.
-6. The Beneficiary VASP queries its database to retrieve the user information associated with the specified beneficiary account address.
-7. It retrieves the user's name and date of birth.
-8. The Beneficiary VASP hashes these values following the VerifyName guidelines to produce a hash value.
-9. It then compares the generated hash with the hash included in the request. This confirms whether the name and date of birth of the Originator user and Beneficiary user match.
-10. The verification result is returned to the VerifyVASP Central Server.
-11. And the VerifyVASP Central Server relays the result back to the Originating VASP's Enclave.
-12. Ultimately the Originating VASP’s business server can get response. All actions between 2 to 12 are performed synchronously.
-13. If the verification result is `VERIFIED`, the Originating VASP submits the transfer transaction to the blockchain for execution.
+1. The originator initiates a withdrawal from the Originating VASP side account.
+2. The Originating VASP calls the Enclave's Request Owner Verification API to initiate pre-verification for the beneficiary account. The request includes digital asset information, along with the Beneficiary’s name, date of birth, and address. The required information may vary depending on whether the Beneficiary is an individual or a corporate entity.
+3. The Originating VASP's Enclave generates Salt.
+4. The generated salt is used to hash the Originator's name and date of birth.
+5. The salt is encrypted using the Beneficiary VASP’s public key.
 
-14-15. Once the transaction is propagated and mined, the Originating VASP confirms the result.
+6 \~ 7. The Enclave delivers the required Owner Verification data, including the hashed name and date of birth and encrypted salt to the Beneficiary VASP’s Enclave.
 
-16. Based on the service flow, the Originating VASP notifies the user that the withdrawal is complete, marking the end of the withdrawal process.
+8. The Beneficiary VASP’s Enclave initiates the verification process by calling the Beneficiary VASP’s VerifyName API. Only digital asset information—such as the network, ticker, and Beneficiary address —is provided to the Beneficiary VASP.
+9. The Beneficiary VASP server verifies whether the received digital asset information corresponds to an asset managed by the Beneficiary VASP.
+10. If a matching value is found, the Beneficiary is identified using the Beneficiary address, and their name and date of birth are retrieved from the database.
+11. The Beneficiary VASP returns the verification result of the digital asset, along with the Beneficiary name and date of birth, to the Originating VASP Enclave.
+12. The Enclave decrypts the encrypted salt using its private key.
+13. The Beneficiary's name and date of birth are hashed using the salt.
+14. The hashed name and date of birth are compared with the hashed name and date of birth received from the Originating VASP.
 
-<br />
+15 \~ 17. Returns the digital asset verification result and the hash comparison result.
 
-<Image align="center" src="https://files.readme.io/708fc2ab008928fdc52752c6957aecce67799e8c84698b37ce87a088e8dbb47a-sequence_diagram.drawio_2.png" />
+18 \~19. Based on the returned verification data, the Originating VASP determines the final result and submits a report to share its decision.
+
+20 \~ 22. The reported final verification result is shared with the Originating VASP via the Callback API.
+
+23. **\[optional]** If the Originating VASP reports the final verification result as a failure, it may notify the Originator of the withdrawal cancellation along with the reason for the cancellation.
+24. If the Originating VASP reports the final verification result as successful, the digital asset transfer transaction is executed.
+
+**Steps 25 to 30 describe the case in which the transaction execution is reported after the transaction has been performed.**
+
+25. After executing the transaction, the transaction hash is returned.
+26. The Owner Verification Transaction Result API is called using the request ID and transaction hash returned from the Owner Verification result.
+
+27 \~ 30. The Beneficiary VASP can check the transaction execution report result via the Callback API and, based on the result, confirm the deposit and notify the Beneficiary.
+
+**Steps 31 to 39 describe the flow in which the Beneficiary VASP checks the transaction status when the Originating VASP has not reported the transaction execution after performing the transaction.**
+
+31. The Beneficiary VASP calls the Check Transaction Status API to query the transaction status for a case that Owner Verification has been completed.
+
+32 \~ 34. The Originating VASP receives the transaction status inquiry via the Callback API.
+
+35 \~ 38. The Originating VASP checks the transaction status and returns the result.
+
+39. The Beneficiary VASP can confirm the deposit and notify the user based on the transaction status.
