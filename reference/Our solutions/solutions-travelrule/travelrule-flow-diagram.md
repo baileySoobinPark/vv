@@ -1,9 +1,9 @@
 ---
 title: Flow Diagram
 excerpt: >-
-  This page outlines the **best practice flow**, focusing on the interactions
-  among the key components—Originating VASP, VerifyVASP Central Server, and
-  Beneficiary VASP—during a typical transaction process.
+  This page explains the TravelRule transaction flow, focusing on the
+  interaction between the ordering VASP, VerifyVASP Central Server, and
+  Beneficiary VASP.
 deprecated: false
 hidden: true
 metadata:
@@ -13,9 +13,8 @@ metadata:
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
-The sequence diagram 1 illustrates the **best practice flow** for the withdrawal process using the VerifyVASP protocol. This process is divided into four key stages:\
-**(1) Beneficiary VASP Selection, (2) Account Verification, (3) User Verification**, and **(4) Transaction Execution**.
-Each stage is marked by a dashed box in the diagram for better segmentation.
+The sequence diagram 1 shows the process in four key steps:\
+(1) Beneficiary VASP Selection, (2) Account Verification, (3) User Verification, and (4) Transaction Execution. Each step is highlighted with a dashed box in the diagram for clarity.
 
 <br />
 
