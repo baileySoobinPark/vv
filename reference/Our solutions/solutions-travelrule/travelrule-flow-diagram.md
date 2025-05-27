@@ -14,19 +14,19 @@ metadata:
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
 The sequence diagram 1 shows the process in four key steps:\
-(1) Beneficiary VASP Selection, (2) Account Verification, (3) User Verification, and (4) Transaction Execution. Each step is highlighted with a dashed box in the diagram for clarity.
+**(1) Beneficiary VASP Selection**, **(2) Account Verification**, **(3) User Verification**, and **(4) Transaction Execution**. Each step is highlighted with a dashed box in the diagram for clarity.
 
 <br />
 
 ### 1. Beneficiary VASP Selection
 
-1. The originator user initiates a withdrawal request from an originator address (managed by the Originating VASP) to a beneficiary address (managed by the Beneficiary VASP).
-2. The Originating VASP system displays a selection screen for the user to choose a Beneficiary VASP. The list of available Beneficiary VASP candidates can be generated using the response from the **Get VASP List API**.
-3. Upon calling the API, the Originating VASP Enclave requests a list of VASPs from the Central Server.
-4. The Central Server returns a list of currently available Beneficiary VASPs.
-5. The Originating VASP Enclave forwards the list to the Originating VASP business backend.
-6. The Originating VASP system displays the list of Beneficiary VASPs to the user.
-7. The user selects their desired Beneficiary VASP.
+1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
+2. The ordering VASP displays a screen showing a list of available beneficiary VASPs that the originator can withdraw to. This list is retrieved by calling the Get VASP List API through the Enclave.
+3. The ordering VASP Enclave requests a list of VASPs from the Central Server.
+4. The Central Server returns the list to the Enclave.
+5. The Enclave passes the list to the VASP.
+6. The ordering VASP displays the list to the user.
+7. The user selects the beneficiary VASP.
 
 <br />
 
@@ -34,36 +34,36 @@ The sequence diagram 1 shows the process in four key steps:\
 
 **Information Collection**
 
-8. To comply with the Travel Rule, the user enters the required information as prompted by the Originating VASP system.
-9. The Originating VASP backend combines the user-provided data with internally managed data and initiates account verification by calling the Enclave’s **Request User Account Verification API**. The request includes the selected Beneficiary VASP ID, keyType for encryption, virtual asset information, and the beneficiary address to be verified.
-10. Upon receiving the API call, the Originating VASP Enclave checks for a cached public key corresponding to the specified keyType. If no valid key is found, the optional **key exchange process** (steps 11–18) begins.
+8. To comply with the Travel Rule, the user enters the required information as prompted by the ordering VASP.
+9. The ordering VASP combines the user input with internal data and calls the User Account Verification API. The request includes the beneficiary VASP ID, encryption key type, ticker, transfer information, and the beneficiary address.
+10. The Enclave checks for a cached public key matching the specified keyType. If no valid key is found, the optional key exchange process (steps 11–18) is initiated.
 
 **Key Exchange Process (Optional)**
 
-11. The Originating VASP Enclave requests a public key from the Beneficiary VASP through the Central Server.
-12. The Central Server forwards this request to the Beneficiary VASP Enclave.
-13. The Beneficiary VASP Enclave searches for a suitable cached public key in its key list. If none exists, it generates a new asymmetric key pair without involving the Beneficiary VASP backend.
-14. The Beneficiary VASP Enclave returns the appropriate public key.
-15. The public key is forwarded to the Originating VASP Enclave.
-16. The Originating VASP Enclave caches the received key if necessary, based on the specified keyType.
+11. The ordering VASP Enclave requests the beneficiary VASP’s public key via the Central Server.
+12. The Central Server forwards the request to the beneficiary VASP Enclave.
+13. The beneficiary VASP Enclave checks for a cached public key. If none is found, the Enclave generates a new key pair itself.
+14. The public key is returned to the ordering VASP via the Central Server.
+15. The ordering VASP Enclave receives the key.
+16. If needed, the Enclave caches the key based on the specified keyType.
 
 **Verification Request**
 
-17. Using the Beneficiary VASP's public key, the Originating VASP Enclave encrypts any sensitive personal information required for the verification request.
-18. The Originating VASP Enclave generates or retrieves an appropriate key pair to sign the request.
-19. The encrypted beneficiary address and other details are included in the account verification request, which the Originating VASP Enclave sends to the Beneficiary VASP via the Central Server.
-20. The Central Server forwards the request to the Beneficiary VASP Enclave.
-21. The Beneficiary VASP Enclave decrypts the request using its private key.
+17. The ordering VASP Enclave encrypts sensitive user data using the beneficiary VASP’s public key.
+18. It generates or retrieves a key pair to sign the request.
+19. The Enclave sends the encrypted beneficiary address and related details to the beneficiary VASP via the Central Server.
+20. The Central Server forwards the request to the beneficiary VASP Enclave.
+21. The beneficiary VASP Enclave decrypts the request using its private key.
 
 **Account Verification Logic**
 
-22. To determine ownership of the beneficiary address, the Beneficiary VASP Enclave delegates the verification logic to the Beneficiary VASP business backend by calling the **Verify User Account API.**
-23. The Beneficiary VASP backend checks the address against its database to confirm ownership.
-24. The verification result is sent back to the Beneficiary VASP Enclave.
-25. The result is forwarded to the Central Server.
-26. The Central Server relays the result to the Originating VASP Enclave.
-27. Finally, the Originating VASP Enclave passes the result to the Originating VASP backend.
-28. If the verification result is **DENIED**, the Originating VASP notifies the user that the withdrawal cannot proceed, terminating the process. If the result is **VERIFIED**, the system advances to the next stage: **User Verification.**
+22. The Enclave calls the Verify User Account API to check ownership of the beneficiary address.
+23. The beneficiary VASP verifies the address.
+24. The result is returned to the beneficiary VASP enclave
+25. The enclave forwards the result to the Central Server.
+26. The Central Server relays the result to the ordering VASP enclave.
+27. The ordering VASP enclave passes the result to the ordering VASP.
+28. If the result is DENIED, the user is notified and the withdrawal process is terminated. If VERIFIED, the ordering VASP proceeds to the next step: User Verification.
 
 <br />
 
@@ -71,68 +71,68 @@ The sequence diagram 1 shows the process in four key steps:\
 
 **Verification Request**
 
-29. Upon successful account verification, the process advances to the user verification phase. The Originating VASP backend initiates this by calling the Request User Verification API provided by its Enclave.
-30. The Originating VASP Enclave encrypts sensitive information using the Beneficiary VASP's public key.
-31. The encrypted request is sent to the VerifyVASP Central Server.
-32. The VerifyVASP Central Server queues the request and assigns a unique verification UUID to map the request. This asynchronous approach accommodates the potentially long processing time required for user verification on the Beneficiary VASP side.
-33. The Central Server responds with the UUID to the Originating VASP Enclave.
-34. The Originating VASP Enclave stores the UUID in its database.
-35. The Originating VASP backend receives the UUID from the Enclave and uses it for tracking the verification request.
-36. Simultaneously, the VerifyVASP Central Server forwards the verification request to the Beneficiary VASP.
-37. Upon receiving the request, the Beneficiary VASP Enclave decrypts the sensitive information using its private key.
+29. Once the account is verified, the ordering VASP begins the User Verification API.
+30. The enclave encrypts sensitive user data using the beneficiary VASP’s public key.
+31. The encrypted requests is sent to the Central Server.
+32. The Central Server queues the request and assigns a unique verification UUID, enabling asynchronous processing to accommodate potential delays on the beneficiary VASP side.
+33. The Central Server returns the UUID to the ordering VASP enclave.
+34. The enclave stores the UUID in its database.
+35. The ordering VASP retrieves the UUID and uses it to track the verification status.
+36. Simultaneously, the Central Server forwards the verification request to the beneficiary VASP.
+37. The beneficiary VASP enclave decrypts the request using its private key.
 
 **Verification Logic Delegation**
 
-38. The Beneficiary VASP Enclave delegates the user verification logic to its backend by calling the **Verify User API**.
-39. The Beneficiary VASP backend verifies the originator and beneficiary information based on its defined policies. This process may optionally include a screening phase, such as compliance or risk assessment. Detailed steps for this are provided in the \[Optional Screening Flow] section.
-40. Once verification is complete, the Beneficiary VASP backend includes additional beneficiary information (if available) in the response. For any unavailable information, an appropriate error message is returned.
-41. The Beneficiary VASP Enclave updates the verification request record using the UUID and encrypts sensitive information with the Originating VASP's public key.
-42. The Enclave sends the final verification result back to the VerifyVASP Central Server.
-43. The Central Server notifies the Originating VASP that the verification process has been completed asynchronously. This is achieved via a new Report API call delivering the results.
-44. Upon receiving the result, the Originating VASP Enclave decrypts sensitive information with its private key and updates its database with the verification outcome.
+38. The beneficiary VASP enclave calls the Verify User API to perform user verification.
+39. The beneficiary VASP verifies the beneficiary details. This may include optional checks such as compliance or risk screening (see Optional Screening Flow for details).
+40. Once verification is complete, the beneficiary VASP returns the result, optionally including additional beneficiary information or error messages.
+41. The enclave updates the request record using the UUID and encrypts the result with the ordering VASP’s public key.
+42. The verification result is sent to the Central Server.
+43. The Central Server notifies the ordering VASP via a Report API, delivering the result asynchronously.
+44. The ordering VASP enclave decrypts the response using its private key and updates its database with the verification outcome.
 
 **Callback and Additional Verification**
 
-45. The Enclave calls the **Callback API** provided by the Originating VASP backend, delivering the verification result along with any additional beneficiary information requested.
-46. The Originating VASP backend may optionally perform further checks based on the additional information provided. This phase may also include a screening step as detailed in the \[Optional Screening Flow] section.
-47. Since the callback request must always respond with 200 OK, the Originating VASP backend confirms receipt by returning this response to the Enclave.
+45. The ordering VASP enclave calls the Callback API, delivering the verification result and any additional beneficiary information requested.
+46. The ordering VASP may optionally perform further checks based on this data, including optional screening (see Optional Screening Flow).
+47. The ordering VASP must always return a 200 OK response to acknowledge receipt of the callback.
 
 **Withdrawal Cancelation and Error Reporting**
 
-48. If the verification result from the Beneficiary VASP is **DENIED**, or if additional checks by the Originating VASP backend determine the withdrawal cannot proceed, the user is notified, and the process is terminated.
-49. In cases where the Beneficiary VASP returns a **VERIFIED** result for user verification, but the Originating VASP decides not to proceed with the withdrawal (e.g., due to user cancellation, internal issues, or assessment result as high-risk transaction), it must notify the Beneficiary VASP. To avoid unnecessary waiting, the Originating VASP should inform the Beneficiary VASP that the transaction will not be completed by calling the Enclave's Report API to report an error.
-50. Upon receiving the error report, the Originating VASP Enclave forwards the report to the VerifyVASP Central Server.
-51. The Central Server relays the error report to the Beneficiary VASP Enclave.
-52. The Beneficiary VASP Enclave informs its backend by calling the **Callback API** to finalize the failed status.
+48. If the verification result is DENIED, or if the ordering VASP decides not to proceed (e.g, due to screening failure), the user is notified, and the process is terminated.
+49. If the result is VERIFIED, but the ordering VASP choose not to continue (e.g., user cancels, internal error, or high-risk result), it must notify the beneficiary VASP.
+50. The ordering VASP enclave forwards the error report to the Central Server.
+51. The Central Server relays it to the beneficiary VASP enclave.
+52. The enclave notifies beneficiary VASP by calling the Callback API, making the verification as failed.
 
 **Completing the Process**
 
-53. If all verification steps are successfully completed, the Originating VASP communicates the results to the user and proceeds to the final phase: Transaction Execution.
+53. If all verifications are successful, the ordering VASP notifies the user and proceeds to the next phase: Transaction Execution.
 
 <br />
 
 ### 4. Transaction Execution
 
-54. After successfully completing the verification process, the Originating VASP initiates the blockchain transaction to transfer assets from the originator address to the beneficiary address. The Originating VASP backend creates and submits the transfer transaction.
-55. For blockchains requiring finality tracking, the Originating VASP may implement additional transaction monitoring to track the status of the transaction.
-56. Once the transaction is submitted, the Originating VASP backend calls the **Report Transaction Result API** of its Enclave to share the transaction hash (generated from the blockchain submission) with the Beneficiary VASP. This step must be performed immediately after obtaining the transaction hash.
-57. The Originating VASP Enclave maps the transaction hash to the verification UUID and updates its database.
-58. The Enclave forwards the report to the VerifyVASP Central Server.
-59. The VerifyVASP Central Server relays the transaction report to the Beneficiary VASP Enclave.
-60. Upon receiving the report, the Beneficiary VASP Enclave maps the transaction hash to the verification UUID in its database and calls the Beneficiary VASP backend’s **Callback API** to share the transaction details.
-61. The process concludes when the Beneficiary VASP backend returns a 200 OK response to the callback request.
+54. The ordering VASP creates and submits a blockchain transaction, transferring assets from the originator to beneficiary.
+55. If required by the blockchain, the ordering VASP may implement finality tracking to monitor transaction status.
+56. Once submitted, the ordering VASP calls the Report Transaction Result API to send the transaction hash to the beneficiary VASP. It must be done immediately after obtaining the hash.
+57. The enclave maps the hash to the verification UUID and updates its database.
+58. It forwards the report to the Central Server.
+59. The Central Server relays the report to the beneficiary VASP enclave.
+60. The beneficiary VASP enclave maps the hash to the UUID and call Callback API to share transaction details.
+61. The process is complete when the beneficiary VASP returns a 200 OK response.
 
 **Handling Exceptions: Missing Transaction Reports**
 
-62. If the Beneficiary VASP detects an on-chain deposit to the beneficiary account but has not received the corresponding transaction report, it may initiate additional steps to verify the transaction status. To begin, the Beneficiary VASP can query the verification history for the beneficiary address to identify potential verification UUID candidates. The Beneficiary VASP calls the **Check Transaction Result API** of its Enclave for each candidate UUID.
-63. The request is relayed to the VerifyVASP Central Server.
-64. The Central Server forwards the request to the Originating VASP Enclave.
-65. The Originating VASP Enclave delegates the query to the Originating VASP backend by calling its **Check Transaction Result API.**
-66. The Originating VASP backend retrieves the transaction hash associated with the verification UUID and check on-chain processing status of the transaction.
-67. The response propagates back through the Central Server to the Beneficiary VASP backend.
-68. The Beneficiary VASP verifies whether the reported transaction hash matches the on-chain deposit it detected.
-69. If the transaction hash matches the detected deposit, the Beneficiary VASP updates its records to reflect the transaction status.
-70. The Beneficiary VASP completes the process and ensures the integrity of the matched transaction data.
+62. If the beneficiary VASP detects an on-chain deposit but hasn’t received a corresponding transaction report, call the Check Transaction Result API.
+63. The request is forwarded to the Central Server.
+64. The Central Server relays the request to the ordering VASP enclave.
+65. The ordering VASP calls Check Transaction Result API to delegate the query.
+66. The ordering VASP retrieves the transaction hash linked to the verification UUID and checks its status on-chain.
+67. The result is returned through the Central Server back to the beneficiary VASP.
+68. The beneficiary VASP compares the reported transaction hash with the on-chain deposit it detected.
+69. If the hashes match, the beneficiary VASP updates it records accordingly.
+70. The process is complete, ensuring the integrity of the matched transaction.
 
 <br />
 
