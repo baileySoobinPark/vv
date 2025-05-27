@@ -59,7 +59,7 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 
 In contrast to the post-verification case, when the Originating VASP is a regulated entity, it performs account verification before executing the transfer. If the counterparty VASP is a provider VASP supporting the verifyName API, the Originating VASP can leverage the VerifyVASP Central Server to call this API and complete the pre-verification process.
 
-<Image align="center" border={false} caption="Sequence Diagram 2. VerifyName integration flow for regulated VASP originating withdrawal" src="https://files.readme.io/94c4ef4c879ff08b3b9363c946332722c6437aac948ef57086f1059bf772e930-Pre_Verification.svg" />
+<Image align="center" border={false} caption="Sequence Diagram 2. VerifyName integration flow for regulated VASP originating withdrawal" src="https://files.readme.io/6acd5fc06ec5260ce27b351e66539efbbebc659126fc82f6132001b7bf170f4a-Pre_Verification.svg" />
 
 1. The originator initiates a withdrawal from the Originating VASP side account.
 2. The Originating VASP calls the Enclave's Request Owner Verification API to initiate pre-verification for the beneficiary account. The request includes digital asset information, along with the Beneficiary’s name, date of birth, and address. The required information may vary depending on whether the Beneficiary is an individual or a corporate entity.
