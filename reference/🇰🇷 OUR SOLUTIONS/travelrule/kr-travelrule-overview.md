@@ -25,7 +25,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 <br />
 
-## 검증 흐름 (High-level Verification Flow)
+## 검증 프로세스 개요
 
 1. **송금인의 자산 전송 요청**
 
