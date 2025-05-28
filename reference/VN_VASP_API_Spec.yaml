@@ -231,6 +231,8 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Verification API
+      x-readme:
+        explorer-enabled: false
       requestBody:
         required: true
         content:
@@ -476,6 +478,8 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Transaction API
+      x-readme:
+        explorer-enabled: false
       requestBody:
         required: true
         content:
@@ -658,6 +662,8 @@ paths:
         - ApiKeyAuth: []
       tags:
         - VASP Callback API
+      x-readme:
+        explorer-enabled: false
       requestBody:
         required: true
         content:
