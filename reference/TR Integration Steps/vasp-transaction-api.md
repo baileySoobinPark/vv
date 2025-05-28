@@ -1,4 +1,4 @@
 ---
 title: VASP Transaction API
-hidden: false
+hidden: true
 ---
