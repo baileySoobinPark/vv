@@ -1,5 +1,5 @@
 ---
-title: Onboarding (COPY)
+title: Onboarding
 excerpt: >-
   This guide provides how the VASP registers with the Alliance of VerifyVASP and
   how to obtain the API Key to call the VerifyVASP API.
