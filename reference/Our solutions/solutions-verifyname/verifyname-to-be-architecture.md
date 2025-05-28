@@ -18,7 +18,7 @@ metadata:
 Diagram 1 illustrates the Future-State architectures for both Unregulated and Regulated VASPs:
 
 * **Travel Rule Non-Obliged(Unregulated) VASPs**: These VASPs should implement the VerifyName API to facilitate name and date of birth verification requested from Regulated VASPs during virtual asset transfers. No pre-verification or modification to the withdrawal process is required.
-* **Travel Rule Obliged(Regulated) VASPs**: These VASPs modify their withdrawal processes to perform **Pre-verification** as the Originator VASP. They do not need to implement or expose the VerifyName API unless acting as a provider.
+* **Travel Rule Obliged(Regulated) VASPs**: These VASPs modify their withdrawal processes to perform **Pre-verification** as the Ordering VASP. They do not need to implement or expose the VerifyName API unless acting as a provider.
 
 <br />
 
