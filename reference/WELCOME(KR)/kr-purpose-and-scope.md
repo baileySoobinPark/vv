@@ -1,5 +1,5 @@
 ---
-title: (KR)Purpose and Scope
+title: Purpose and Scope
 excerpt: >-
   이 문서는 TravelRule과 VerifyName 솔루션에 대한 종합 가이드로, 가상자산사업자가 트래블룰 및 관련 규제 요건을 효과적으로
   준수할 수 있도록 지원합니다.
