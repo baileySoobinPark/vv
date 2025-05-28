@@ -24,10 +24,11 @@ metadata:
 
 * A person who receives virtual assets
 
-## Originating VASP
+## Ordering VASP
 
 * The VASP to which an originator belongs
-* aka. ordering VASP
+* aka. Originating VASP
+* In the FATF standards, the term is referred to as **Ordering VASP**, whereas the IVMS101 standard uses the term **Originating VASP**.
 
 ## Beneficiary VASP
 
