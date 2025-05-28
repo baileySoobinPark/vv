@@ -21,10 +21,10 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 
 <Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/7e75c4995f2b8b686ba210d9793debccd5c7b8a14dd71545b324fff0d665092b-Post_Verification.svg" />
 
-1. The originator initiates a withdrawal from the Ordering VASP side account.
-2. As the Ordering VASP is unregulated, it directly executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
+1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
+2. As the Ordering VASP is unregulated, it executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
 3. Once the transaction is mined on the blockchain, the Beneficiary VASP detects the deposit to the Beneficiary address.
-4. To identify the origin, the Beneficiary VASP may prompt the user to specify the Ordering VASP. To facilitate this, the Beneficiary VASP can use the Enclave's List VASP API, which retrieves a list of VASPs capable of performing ownership verification (referred to as providers).
+4. To identify the Originator, the Beneficiary VASP calls the VASP LIST API to retrieve the list of the VASPs that can deposit to.
 5. The Enclave queries the VerifyVASP Central Server in real-time to obtain this provider list.
 6. The Central Server returns a list of VASPs to the Beneficiary VASP's Enclave.
 7. The Enclave returns a list of VASPs to the Beneficiary VASP.
@@ -61,7 +61,7 @@ In contrast to the post-verification case, when the Ordering VASP is a regulated
 
 <Image align="center" border={false} caption="The Beneficiary VASP can confirm the deposit and notify the user based on the transaction status." src="https://files.readme.io/0446271b8557cb4007d6f656d8972440b023a65d5ea6871e346744775979198b-Pre_Verification.svg" />
 
-1. The originator initiates a withdrawal from the Ordering VASP side account.
+1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
 2. The Ordering VASP calls the Enclave's Request Owner Verification API to initiate pre-verification for the beneficiary account. The request includes digital asset information, along with the Beneficiary’s name, date of birth, and address. The required information may vary depending on whether the Beneficiary is an individual or a corporate entity.
 3. The Ordering VASP's Enclave generates Salt.
 4. The generated salt is used to hash the Originator's name and date of birth.
