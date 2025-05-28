@@ -260,6 +260,7 @@ paths:
                             A unique identifier for the Owner Verification
                             request.
 
+
                             The format of `request_id` must follow the UUID v4
                             standard.
                           example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
@@ -273,7 +274,7 @@ paths:
                           enum:
                             - VerifyOriginator
                             - VerifyBeneficiary
-                          description: "Indication of verification type. Acceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
+                          description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
                           example: VerifyOriginator
                         ticker:
                           type: string
@@ -285,12 +286,11 @@ paths:
                           description: >
                             The network of the virtual asset to be transferred.
                             The network field can be implemented conditionally.
-                            Valid values for this field can be found [here]().
                           example: ETHEREUM
                         address:
                           type: string
                           description: |
-                            The address of the wallet storing the virtual asset.
+                            The address of the wallet.
                           example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
@@ -489,6 +489,7 @@ paths:
                   type: string
                   description: |
                     A unique identifier for the Owner Verification request.
+
                     The format of `request_id` must follow the UUID v4 standard.
                   example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
             examples:
@@ -527,10 +528,9 @@ paths:
                       executed based on the result of the owner verification.
 
                       - Return `VERIFIED` if the owner verification is
-                      successful and the transaction is executed.
+                      successful.
 
-                      - Return `DENIED` if the verification fails and the
-                      transaction is not executed.
+                      - Return `DENIED` if the verification is failed.
 
                       - Return `ERROR` if an error occurs during the execution
                       process.
@@ -550,7 +550,7 @@ paths:
                       In cases where multiple transfers can be included in a
                       single transaction, such as Bitcoin, an index value
                       indicating which transfer corresponds to within a single
-                      transaction
+                      transaction.
                     example: '0'
   /VASP_DEFINED_PATH_CALLBACK:
     post:
@@ -690,6 +690,7 @@ paths:
                       description: >
                         A unique identifier for the Owner Verification request.
 
+
                         The format of `request_id` must follow the UUID v4
                         standard.
                       example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
@@ -705,8 +706,7 @@ paths:
                     ordered_at:
                       type: string
                       description: >
-                        The timestamp indicating when the transaction hash was
-                        reported.
+                        Timestamp of the transaction hash report.
 
                         This field must follow the UTC ISO 8601 datetime
                         representation standard.
@@ -725,7 +725,7 @@ paths:
                         In cases where multiple transfers can be included in a
                         single transaction, such as Bitcoin, an index value
                         indicating which transfer corresponds to within a single
-                        transaction
+                        transaction.
                       example: '0'
                     reason:
                       type: string
@@ -741,16 +741,14 @@ paths:
                         - TRANSFER-ERROR
                         - UNDEFINED-ERROR
                       description: >
-                        The value of the reason field returned by the VASP that
-                        requested owner verification of type PreVerification,
-                        when the result of the verification is reported as
-                        `DENIED` or `ERROR`.
+                        This field provides the reason when the verification
+                        result is DENIED or ERROR.
                       example: MISMATCH-TICKER
                     message:
                       type: string
                       description: >
-                        A field that provides a message when the
-                        `verification_result` is `DENIED` or `ERROR`.
+                        This field provides a detailed explanation of the reason
+                        for verification failure.
                       example: Transfer Error
             examples:
               requestExamples:
