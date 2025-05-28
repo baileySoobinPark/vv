@@ -23,6 +23,8 @@ paths:
           - The VASP is capable of handling asset transfers.
       tags:
         - VASP Management API
+      x-readme:
+        explorer-enabled: false
       parameters:
         - name: protocol
           in: query
@@ -192,6 +194,8 @@ paths:
       operationId: verifyname-get-Vasp-Id
       tags:
         - VASP Management API
+      x-readme:
+        explorer-enabled: false
       responses:
         '200':
           description: Successful response
@@ -312,6 +316,8 @@ paths:
           - `MATCHED`
           - `MISMATCHED`
           - `SKIPPED`
+      x-readme:
+        explorer-enabled: false
       requestBody:
         required: true
         content:
@@ -1371,6 +1377,8 @@ paths:
       operationId: verifyname-get-owner-verification-result
       tags:
         - Verification API
+      x-readme:
+        explorer-enabled: false
       parameters:
         - name: request_id
           in: path
@@ -1702,6 +1710,8 @@ paths:
       operationId: verifyname-check-transaction-status
       tags:
         - Transaction API
+      x-readme:
+        explorer-enabled: false
       parameters:
         - name: request_id
           in: path
@@ -1880,6 +1890,8 @@ paths:
       operationId: verifyname-owner-verification-result-report
       tags:
         - Report API
+      x-readme:
+        explorer-enabled: false
       parameters:
         - name: request_id
           in: path
@@ -2027,6 +2039,8 @@ paths:
       operationId: verifyname-transaction-report
       tags:
         - Report API
+      x-readme:
+        explorer-enabled: false
       parameters:
         - name: request_id
           in: path
