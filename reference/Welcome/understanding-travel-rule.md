@@ -7,12 +7,25 @@ metadata:
 ---
 ## Introduction
 
-* The FATF (Financial Action Task Force) is an international body that was established in 1989 by the G7 to combat money laundering globally. It sets international anti-money laundering (AML) and counter-terrorist financing (CTF) standards through recommendations, which over 200 jurisdictions have committed to implementing. Failure to align with FATF standards can result in countries being placed on grey or blacklists.
-* In 2016, the FATF recognized Virtual Assets (VAs) and their growing role in the global financial system including their potential use in illicit activities. This marked the beginning of a structured approach to regulating virtual assets and their service providers within the existing AML/CTF framework.
-* The FATF released its first recommendations for Virtual Asset Service Providers (VASPs) in 2019, establishing clear guidelines for how countries should develop regulations. The rationale for defining and regulating VASPs and the transfers they make was that sooner or later, illicit actors have to rely on these types of service providers to move assets or access fiat rails.
-* These recommendations were updated in October 2021 with the release of the [Updated Guidance for a Risk-Based Approach to Virtual Assets and Virtual Asset Service Providers](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html#:~:text=In%20October%202021%2C%20the%20FATF,virtual%20assets%20and%20VASP%20sector) , which many jurisdictional regulations are based on. Recommendation 16 (R.16), known as the Travel Rule, was detailed further as a key pillar in combating illicit financial flows in the virtual asset space. It requires VASPs to collect and transmit specific information about the originator and beneficiary for virtual asset transfers, similar to traditional wire transfers. This includes names, account numbers, physical addresses, and national identity numbers, immediately and securely.
-* Additionally, R.16 prescribes several key requisites such as counterparty due diligence, data protection and functionality of technological solutions.
-* Given the focus on virtual assets, the FATF publishes key [updates](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2024.html)  addressing the challenges of implementing the Travel Rule across different jurisdictions, providing practical examples and best practices for compliance. The [2023 Update](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html)  featured questions for travel rule tool providers, which VerifyVASP responded to and had audited. The updates also included strengthened requirements for VASP licensing and registration.
+The FATF (Financial Action Task Force) is an international body that was established in 1989 by the G7 to combat money laundering globally. It sets international anti-money laundering (AML) and counter-terrorist financing (CTF) standards through recommendations, which over 200 jurisdictions have committed to implementing. Failure to align with FATF standards can result in countries being placed on grey or blacklists.
+
+<br />
+
+In 2016, the FATF recognized Virtual Assets (VAs) and their growing role in the global financial system including their potential use in illicit activities. This marked the beginning of a structured approach to regulating virtual assets and their service providers within the existing AML/CTF framework.
+
+<br />
+
+The FATF released its first recommendations for Virtual Asset Service Providers (VASPs) in 2019, establishing clear guidelines for how countries should develop regulations. The rationale for defining and regulating VASPs and the transfers they make was that sooner or later, illicit actors have to rely on these types of service providers to move assets or access fiat rails.
+
+<br />
+
+These recommendations were updated in October 2021 with the release of the [Updated Guidance for a Risk-Based Approach to Virtual Assets and Virtual Asset Service Providers](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/Guidance-rba-virtual-assets-2021.html#:~:text=In%20October%202021%2C%20the%20FATF,virtual%20assets%20and%20VASP%20sector) , which many jurisdictional regulations are based on. Recommendation 16 (R.16), known as the Travel Rule, was detailed further as a key pillar in combating illicit financial flows in the virtual asset space. It requires VASPs to collect and transmit specific information about the originator and beneficiary for virtual asset transfers, similar to traditional wire transfers. This includes names, account numbers, physical addresses, and national identity numbers, immediately and securely.
+
+<br />
+
+Additionally, R.16 prescribes several key requisites such as counterparty due diligence, data protection and functionality of technological solutions.
+
+Given the focus on virtual assets, the FATF publishes key [updates](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2024.html)  addressing the challenges of implementing the Travel Rule across different jurisdictions, providing practical examples and best practices for compliance. The [2023 Update](https://www.fatf-gafi.org/en/publications/Fatfrecommendations/targeted-update-virtual-assets-vasps-2023.html)  featured questions for travel rule tool providers, which VerifyVASP responded to and had audited. The updates also included strengthened requirements for VASP licensing and registration.
 
 <br />
 
