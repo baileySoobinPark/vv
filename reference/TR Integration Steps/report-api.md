@@ -1,4 +1,4 @@
 ---
 title: Report API
-hidden: false
+hidden: true
 ---
