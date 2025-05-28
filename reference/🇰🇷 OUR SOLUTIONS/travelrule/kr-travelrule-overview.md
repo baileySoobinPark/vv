@@ -5,13 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
-## Architecture
+## 아키텍처 개요
 
 <Image align="center" border={false} caption="Diagram 1. VerifyVASP Integration Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
 
-### Travel Rule Commination
+### VerifyVASP 중앙 서버 중계를 통한 VASP 간 통신
 
-VASP는 VerifyVASP의 중앙 서버(Central Server)를 통해 상대 VASP와 요청 및 응답을 주고받으며, 입.출금 상황에 따라 송신 VASP 또는 수신 VASP의 역할을 번갈아 수행합니다.
+TravelRule 준수를 위한 VASP간 통신 과정에서 VerifyVASP 중앙 서버는 송신 VASP와 수신 VASP간의 요청과 응답을 중계합니다. 각 VASP는 입출금 시나리오에 따라 송신자와 수신자 역할을 교차 수행합니다.
 
 ### Enclave 설치 및 연동
 
