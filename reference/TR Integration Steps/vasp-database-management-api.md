@@ -1,4 +1,4 @@
 ---
 title: VASP Database Management API
-hidden: false
+hidden: true
 ---
