@@ -2,7 +2,7 @@
 title: Flow Diagram
 excerpt: 시나리오별 Flow Diagram을 통해 TravelRule 트랜잭션의 흐름과 구체적인 연동 방식을 이해할 수 있습니다.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
