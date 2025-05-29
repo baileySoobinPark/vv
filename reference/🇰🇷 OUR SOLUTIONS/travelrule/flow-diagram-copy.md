@@ -1,6 +1,8 @@
 ---
 title: Flow Diagram
-excerpt: 시나리오별 Flow Diagram을 통해 TravelRule 트랜잭션과 데이터의 흐름을 확인할 수 있습니다.
+excerpt: >-
+  Best Practice Flow를 통해 기본적인 TravelRule 트랜잭션의 흐름을 이해하고 Screening 관련 기능을 구현하기 위한
+  세부 요구사항을 확인할 수 있습니다.
 deprecated: false
 hidden: false
 metadata:
