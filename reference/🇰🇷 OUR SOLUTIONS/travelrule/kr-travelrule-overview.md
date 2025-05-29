@@ -11,15 +11,15 @@ metadata:
 
 <br />
 
-### VerifyVASP 중앙 서버 기반 VASP 간 통신
+#### VerifyVASP 중앙 서버 기반 VASP 간 통신
 
 VASP 간 TravelRule 통신은 VerifyVASP 중앙 서버를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 중앙 서버를 거쳐 전달됩니다.
 
-### Enclave 설치 및 연동
+#### Enclave 설치 및 연동
 
 Enclave는 VerifyVASP 중앙 서버와의 통신 인터페이스를 제공하는 사전 구축 서버 모듈입니다. Enclave는 Docker 이미지 형태로 배포되며, 모든 VASP는 인프라 내에 Enclave 서버와 Enclave용 데이터베이스를 반드시 설치해야 합니다. 각 VASP의 백엔드는 Enclave 서버와 상호 API 호출을 통해 통신하며, VerifyVASP Central Server API와 직접 통신하지 않습니다.
 
-### 데이터 보안 및 개인정보 보호
+#### 데이터 보안 및 개인정보 보호
 
 Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성되므로 데이터의 무결성과 격리성을 보장합니다. VASP와 중앙 서버 간의 모든 통신은 HTTPS 프로토콜을 사용하며, 민감정보를 포함한 모든 데이터는 종단간 암호화됩니다.
 
