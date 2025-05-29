@@ -1,8 +1,8 @@
 ---
 title: Flow Diagram
 excerpt: >-
-  Best Practice Flow를 통해 기본적인 TravelRule 트랜잭션의 흐름을 이해하고 Screening 관련 기능을 구현하기 위한
-  세부 요구사항을 확인할 수 있습니다.
+  Best Practice Flow를 통해 TravelRule 트랜잭션의 기본 흐름을 이해하고 Screening 기능 구현에 필요한 요구사항을
+  확인할 수 있습니다.
 deprecated: false
 hidden: false
 metadata:
