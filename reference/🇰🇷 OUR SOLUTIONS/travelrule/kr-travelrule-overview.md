@@ -169,7 +169,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
     <div class="step-title">4. 검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
     <div class="step-content">
       <p>수신자 검증 결과가 수신 VASP의 Enclave와 VerifyVASP 중앙 서버를 지나 송신 VASP로 전달됩니다.</p>
-      <p>이 과정은 동기 또는 비동기 방식으로 처리될 수 있으며, 각 Flow는 API 명세는 관련 문서를 통해 확인할 수 있습니다.</p>
+      <p>이 과정은 동기 또는 비동기 방식으로 처리될 수 있으며, 각 Flow 및 API 명세는 관련 문서를 통해 확인할 수 있습니다.</p>
     </div>
   </div>
   <div class="step-box">
