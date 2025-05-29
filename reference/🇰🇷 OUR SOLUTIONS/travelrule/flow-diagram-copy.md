@@ -96,6 +96,102 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
   </ol>
 </div>
+<div class="scenario-section">
+  <div class="scenario-title">2. 계정 검증 (Account Verification)</div>
+  <ol class="step-list">
+    <!-- 정보 수집 -->
+    <li class="step-item">
+      <div class="step-badge">8</div>
+      <div class="step-content">사용자는 Travel Rule 준수를 위해 송신 VASP가 요청하는 정보를 입력합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">9</div>
+      <div class="step-content">송신 VASP는 사용자 입력과 내부 정보를 조합하여 <code>User Account Verification API</code>를 호출합니다. 요청에는 수신 VASP ID, 키 유형, 티커, 전송 정보, 수신자 주소 등이 포함됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">10</div>
+      <div class="step-content">Enclave는 요청된 키 유형에 해당하는 공개키가 캐시에 존재하는지 확인합니다. 유효한 키가 없으면 키 교환 절차(11–16단계)를 진행합니다.</div>
+    </li>
+
+    <!-- 키 교환 (선택적) -->
+    <li class="step-item">
+      <div class="step-badge">11</div>
+      <div class="step-content">송신 VASP의 Enclave는 중앙 서버를 통해 수신 VASP의 공개키를 요청합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">12</div>
+      <div class="step-content">중앙 서버는 해당 요청을 수신 VASP Enclave로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">13</div>
+      <div class="step-content">수신 VASP Enclave는 캐시된 공개키가 없다면 새 키 쌍을 생성합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">14</div>
+      <div class="step-content">수신 VASP는 생성된 공개키를 중앙 서버를 통해 송신 VASP로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">15</div>
+      <div class="step-content">송신 VASP Enclave는 공개키를 수신합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">16</div>
+      <div class="step-content">필요한 경우, Enclave는 키를 지정된 키 유형에 따라 캐시에 저장합니다.</div>
+    </li>
+
+    <!-- 검증 요청 -->
+    <li class="step-item">
+      <div class="step-badge">17</div>
+      <div class="step-content">송신 VASP Enclave는 수신 VASP의 공개키로 민감 정보를 암호화합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">18</div>
+      <div class="step-content">요청 서명을 위해 Enclave는 키 쌍을 생성하거나 기존 키를 조회합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">19</div>
+      <div class="step-content">암호화된 수신자 주소 및 관련 정보가 중앙 서버를 통해 수신 VASP로 전송됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">20</div>
+      <div class="step-content">중앙 서버는 요청을 수신 VASP Enclave로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">21</div>
+      <div class="step-content">수신 VASP Enclave는 비공개키로 요청 데이터를 복호화합니다.</div>
+    </li>
+
+    <!-- 계정 검증 로직 -->
+    <li class="step-item">
+      <div class="step-badge">22</div>
+      <div class="step-content">수신 VASP Enclave는 <code>Verify User Account API</code>를 호출하여 주소 소유 여부를 확인합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">23</div>
+      <div class="step-content">수신 VASP는 해당 주소가 본인 고객의 것인지 검증합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">24</div>
+      <div class="step-content">검증 결과가 수신 VASP Enclave에 반환됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">25</div>
+      <div class="step-content">수신 VASP Enclave는 결과를 중앙 서버에 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">26</div>
+      <div class="step-content">중앙 서버는 결과를 송신 VASP Enclave로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">27</div>
+      <div class="step-content">송신 VASP Enclave는 결과를 송신 VASP 백엔드로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">28</div>
+      <div class="step-content">검증 결과가 <code>DENIED</code>인 경우 사용자는 안내를 받고 절차가 종료되며, <code>VERIFIED</code>인 경우 사용자 검증 단계로 진행됩니다.</div>
+    </li>
+  </ol>
+</div>
 `}</HTMLBlock>
 
 <br />
