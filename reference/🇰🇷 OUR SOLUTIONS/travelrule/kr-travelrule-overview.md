@@ -204,6 +204,43 @@ VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되�
 
 <br />
 
+```mermaid
+sequenceDiagram
+    participant Backend_O as Ordering VASP Backend
+    participant Enclave_O as Ordering VASP Enclave
+    participant Central as VerifyVASP Central Server
+    participant Enclave_B as Beneficiary VASP Enclave
+    participant Backend_B as Beneficiary VASP Backend
+
+    %% Step 1: Verification Request
+    Backend_O->>Enclave_O: 사용자 정보 포함한 검증 요청
+
+    %% Step 2: Public Key Retrieval
+    Enclave_O->>Central: 수신 VASP의 공개키 요청
+    Central->>Enclave_B: 공개키 요청
+    Enclave_B->>Enclave_B: 공개키 조회 또는 생성
+    Enclave_B->>Central: 공개키 반환
+    Central->>Enclave_O: 공개키 전달
+
+    %% Step 3: Encrypt Personal Info
+    Enclave_O->>Enclave_O: 수신자의 공개키로 사용자 정보 암호화
+    Enclave_O->>Central: 암호화된 데이터 전송
+    Central->>Enclave_B: 암호화된 데이터 전달
+
+    %% Step 4: Decryption & Verification
+    Enclave_B->>Enclave_B: 개인키로 데이터 복호화
+    Enclave_B->>Backend_B: 사용자 정보 검증 요청
+    Backend_B->>Enclave_B: 검증 결과 및 수신자 정보
+    Enclave_B->>Enclave_B: 송신자의 공개키로 수신자 정보 암호화
+
+    %% Step 5: Return Encrypted Result
+    Enclave_B->>Central: 암호화된 결과 전송
+    Central->>Enclave_O: 암호화된 결과 전달
+
+    %% Step 6: Final Decryption
+    Enclave_O->>Enclave_O: 개인키로 복호화 및 DB 저장
+```
+
 <br />
 
 1. **검증 요청 시작**
