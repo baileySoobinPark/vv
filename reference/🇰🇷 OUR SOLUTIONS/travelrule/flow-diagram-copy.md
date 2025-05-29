@@ -492,32 +492,9 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 
 <br />
 
-**Beneficiary VASP side risk assessment via sanction API**
+<br />
 
-1. The Beneficiary VASP may initiate a risk assessment of the originator's address by calling the Enclave API for Chainalysis Sanction API integration. The request must include the verification UUID.
-2. Upon receiving the request, the Enclave generates the required requestId and the appropriate request body for the Chainalysis API call.
-3. The Enclave interacts with the Chainalysis server, completing the screening process. The sanction result is retrieved and securely sent back to the Enclave.
-4. The Enclave forwards the sanction result to the Beneficiary VASP’s business server for further processing.
-
-> 📘 Note:
->
-> Since this API is called after the Beneficiary VASP receives a user verification request from the Originating VASP, the Beneficiary VASP may choose to respond with a DENIED result for the related user verification if the Sanction API identifies the originator address as high-risk.
-
-5. The Enclave stores the result in the **Sanction Results Table** within its dedicated database for future reference.
-
-**Originating VASP side risk assessment via sanction API**
-
-6. (\~10) The Originating VASP can also perform an optional risk assessment following the same process. The primary difference lies in the assessment target, which would be the beneficiary address in this case.
-
-> 📘 Note:
->
-> If the Sanction API identifies the Beneficiary address as high-risk, the Originating VASP may choose to cancel the asset transfer. In such cases, the Originating VASP must notify the Beneficiary VASP of the cancellation or termination by sending an ERROR REPORT.
-
-**Transaction execution**
-
-11. (\~15) For transactions deemed not high-risk based on the sanction results, the Originating VASP continues with the asset transfer process as outlined in the Best Practice flow. This includes executing the transaction on the blockchain and reporting the result to the Beneficiary VASP.
-
-### 2) Chainalysis KYT API Integration
+### 2. Chainalysis KYT API Integration
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Chainalysis KYT API integration flow for risk assessment" src="https://files.readme.io/2ac080e6cc5469ea7f1d6769eceb099cb13cb44aaed4b95becc9f69d38e42b2c-tr_solution_3.avif" />
 
