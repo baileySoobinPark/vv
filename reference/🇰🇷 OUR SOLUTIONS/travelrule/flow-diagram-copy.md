@@ -1,9 +1,6 @@
 ---
 title: Flow Diagram
-excerpt: >-
-  This page explains the TravelRule transaction flow, focusing on the
-  interaction between the ordering VASP, VerifyVASP Central Server, and
-  Beneficiary VASP.
+excerpt: TravelRule 트랜잭션 흐름과 VASP 간 통신을 이해하기 위한 Flow Diagram 페이지입니다.
 deprecated: false
 hidden: true
 metadata:
