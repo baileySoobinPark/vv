@@ -31,8 +31,6 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 <!DOCTYPE html>
 
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
 <style>
 
 .flow-container {
