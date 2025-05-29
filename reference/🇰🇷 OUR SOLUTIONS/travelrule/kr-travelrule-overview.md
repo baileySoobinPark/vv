@@ -249,41 +249,109 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
 
 ### 보안 옵션
 
-Enclave 서버는 암호화 처리를 전자동으로 수행하지만, 구성 유연성을 위해 일부 설정 옵션을 제공합니다. 적절한 설정을 통해 우수한 보안 수준을 유지하면서 보다 원활하고 효율적으로 VASP간 데이터를 교환 할 수 있습니다.
+Enclave 서버는 암호화 처리를 전자동으로 수행하지만, 구성 유연성을 위해 일부 설정 옵션을 제공합니다. 적절한 설정을 통해 우수한 보안 수준을 유지하면서 보다 효율적으로 VASP간에 데이터를 교환 할 수 있습니다.
 
-<Accordion title="Configurable Key Options for End-to-End Encryption">
-  ## 공개키 캐싱 (Public Key Caching)
+<br />
 
-  공개키 조회 효율성을 높이기 위해, Enclave 서버는 상대 VASP의 공개키를 일정 시간 동안 캐싱합니다. 이를 통해 동일한 키에 대한 반복 요청을 줄여 성능을 향상시킬 수 있습니다.
+#### 공개키 Caching 설정
 
-  * **Enclave 환경 변수 (Enclave Environment Variable)**
-    * 공개키 캐싱 시간은 다음 환경 변수로 설정할 수 있습니다:
-  * *VEGA\_PUBLIC\_KEY\_TTL (단위: 밀리초)*\*
-    * **기본값**: **`1800000`** 밀리초 (30분).
-    * **최소값**: **`600000`** 밀리초 (10분)
-      시스템 성능과 보안 수준의 균형을 고려해 이 값을 조정할 수 있습니다.
+효율적인 공개키 관리를 위해 Enclave 서버는 상대 VASP의 공개키를 설정한 시간 동안 Caching할 수 있습니다. 적절한 Caching을 통해 키 교환을 위한 반복 요청을 줄임으로써 검증 시간을 최소화 할 수 있습니다.
 
-  ## 공개키 유형 (Public Key Types)
+> Enclave 환경 변수 - `VEGA_PUBLIC_KEY_TTL`에 Caching 유효시간(TTL, Time-to-Live)을 밀리초 단위로 설정합니다.
+>
+> 캐싱 유효시간 기본값은 1800000(30분)이며 최소값은 600000(10분)입니다.
 
-  Enclave 는 종단 간 암호화(E2EE) 과정에서 유연성과 보안성을 강화하기 위해 여러 유형의 공개키 방식을 지원합니다. 검증 API 호출 시 요청 본문에 사용할 키 유형(keyType)을 지정할 수 있습니다.
+<br />
 
-  * `PerVasp`
-    설명: VASP 단위로 하나의 키를 모든 검증에 공유
-    * 장점: 캐싱 효율이 가장 높아 성능 최적화에 유리
-    * 단점: 모든 검증 요청에 동일한 키가 사용되어 보안 수준이 낮음
-  * `PerAddress`
-    * 설명: 수취인 주소(address)마다 고유한 키를 생성
-    * 장점: PerVasp보다 높은 보안성 확보 가능
-    * 단점: 성능은 PerVasp 대비 약간 떨어짐
-  * `PerVerification`
-    * 설명: 검증 요청마다 새로운 키를 생성
-    * 장점: 요청마다 고유한 키가 사용되어 가장 높은 보안성 제공
-    * 단점: 캐싱이 불가능하므로 성능은 가장 낮음
+#### 공개키 타입(keyType) 설정
 
-  공개키 캐싱 시간과 키 유형을 적절히 선택함으로써, VASP 요구사항에 따라 보안성과 성능 사이의 최적 균형을 설정할 수 있습니다.
-</Accordion>
+Enclave 서버는 다양한 공개키 타입을 지원합니다. 검증 요청 시 원하는 keyType을 지정하여 상대 VASP와 동일한 암호화 키 갱신 주기를 사용할 수 있습니다. 지원하는 keyType은 다음과 같습니다.
+
+<Table align={["left","left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        keyType
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Pros
+      </th>
+
+      <th>
+        Cons
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `PerVasp`
+      </td>
+
+      <td>
+        동일 VASP에 대해 하나의 키 쌍을 사용
+      </td>
+
+      <td>
+        높은 Caching 효율성
+      </td>
+
+      <td>
+        모든 요청에 같은 키를 사용,
+        상대적으로 낮은 보안성
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `PerAddress`
+      </td>
+
+      <td>
+        수신자 주소별로 서로 다른 키 쌍을 사용
+      </td>
+
+      <td>
+        PerVasp 대비
+        높은 보안성
+      </td>
+
+      <td>
+        Caching 효율성 낮음
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `PerVerification`
+      </td>
+
+      <td>
+        매 검증 요청마다 새로운 키 쌍을 사용
+      </td>
+
+      <td>
+        가장 높은 보안성 제공
+      </td>
+
+      <td>
+        Caching 사용 불가
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
 
 ***
+
+<br />
 
 ## TravelRule 연동을 위한 VASP 작업 항목
 
