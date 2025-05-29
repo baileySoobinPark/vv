@@ -385,7 +385,112 @@ For detailed instructions on using each API, refer to the [enclave screening API
 
 <Image align="center" border={false} caption="Sequence Diagram 2. Chainalysis Sanction API integration flow for risk assessment" src="https://files.readme.io/6c2f368995602e6a646743e3e28ee61a067a9aff95941a7315a9afebe1e87947-tr_solution_2.webp" />
 
-Sequence Diagram 2 demonstrates how both Originating VASP and Beneficiary VASP can integrate with the Chainalysis Sanction API for risk assessment. The Sanction API must be invoked after user verification request is called and is recommended to be called prior to transaction execution for pre-screening purposes. The detailed flow is as follows:
+Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 트랜잭션 실행 전에 사전 스크리닝 용도로 활용하는 것을 권장합니다. 자세한 흐름은 아래와 같습니다.
+
+<HTMLBlock>{`
+<style>
+  .scenario-section {
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 32px;
+    background-color: #fdfdfd;
+  }
+
+  .scenario-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .sub-section-title {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 16px 0 10px;
+    border-left: 4px solid #1364FF;
+    padding-left: 8px;
+  }
+
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .step-badge {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 13px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .info-note {
+    background-color: #f1f7ff;
+    border-left: 4px solid #007bff;
+    padding: 10px 12px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #333;
+  }
+</style>
+
+<div class="scenario-section">
+  <div class="scenario-title">Sanction API 기반 리스크 평가 흐름</div>
+
+  <div class="sub-section-title">수신 VASP 측 리스크 평가</div>
+  <ol class="step-list">
+    <li class="step-item"><div class="step-badge">1</div><div class="step-content">수신 VASP는 Enclave API를 통해 Originator 주소에 대한 Sanction API 기반 리스크 평가를 요청할 수 있습니다. 요청에는 Verification UUID가 포함되어야 합니다.</div></li>
+    <li class="step-item"><div class="step-badge">2</div><div class="step-content">Enclave는 requestId 및 Chainalysis API 요청 바디를 생성합니다.</div></li>
+    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료하고, 결과를 수신하여 안전하게 저장합니다.</div></li>
+    <li class="step-item"><div class="step-badge">4</div><div class="step-content">Enclave는 결과를 수신 VASP의 비즈니스 서버로 전달합니다.</div></li>
+  </ol>
+
+  <div class="info-note">
+    📘 참고: 이 API는 수신 VASP가 송신 VASP로부터 사용자 검증 요청을 수신한 이후 호출됩니다. Sanction API 결과에 따라 Originator 주소가 고위험으로 판단되면, 수신 VASP는 해당 사용자 검증 결과를 DENIED로 응답할 수 있습니다.
+  </div>
+
+  <ol class="step-list">
+    <li class="step-item"><div class="step-badge">5</div><div class="step-content">Enclave는 평가 결과를 Enclave 전용 데이터베이스의 <b>Sanction Results Table</b>에 저장합니다.</div></li>
+  </ol>
+
+  <div class="sub-section-title">송신 VASP 측 리스크 평가</div>
+  <ol class="step-list">
+    <li class="step-item"><div class="step-badge">6</div><div class="step-content">송신 VASP는 수신자 주소에 대해 동일한 방식의 선택적 리스크 평가를 수행할 수 있습니다.</div></li>
+    <li class="step-item"><div class="step-badge">7</div><div class="step-content">평가 대상만 수신자 주소로 바뀌며, 전체 흐름은 수신 VASP와 동일하게 Enclave를 통해 진행됩니다.</div></li>
+  </ol>
+
+  <div class="info-note">
+    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 이때 반드시 Beneficiary VASP에게 ERROR REPORT를 전송하여 취소 사실을 알려야 합니다.
+  </div>
+
+  <div class="sub-section-title">트랜잭션 실행</div>
+  <ol class="step-list">
+    <li class="step-item"><div class="step-badge">11</div><div class="step-content">Sanction 결과에 따라 고위험이 아닌 것으로 판단되면, 송신 VASP는 Best Practice 흐름에 따라 트랜잭션을 실행합니다.</div></li>
+    <li class="step-item"><div class="step-badge">12</div><div class="step-content">블록체인 상에서 자산 전송을 완료한 후, 송신 VASP는 <b>Report Transaction Result API</b>를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div></li>
+  </ol>
+</div>
+`}</HTMLBlock>
+
+<br />
 
 **Beneficiary VASP side risk assessment via sanction API**
 
