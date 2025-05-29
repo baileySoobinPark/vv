@@ -14,6 +14,91 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
+<HTMLBlock>{`
+<style>
+  .scenario-section {
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 32px;
+    background-color: #fdfdfd;
+  }
+
+  .scenario-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #1364FF;
+  }
+
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .step-badge {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 13px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+</style>
+
+<div class="scenario-section">
+  <div class="scenario-title">1. 수신 VASP 선택</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">1</div>
+      <div class="step-content">사용자(송신자)가 송신 VASP에 출금을 요청합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">2</div>
+      <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>Get VASP list</code> API를 호출합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">3</div>
+      <div class="step-content">송신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">4</div>
+      <div class="step-content">중앙 서버는 사용 가능한 수신 VASP 목록을 반환합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">5</div>
+      <div class="step-content">Enclave는 목록을 수신한 후 VASP 백엔드로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">6</div>
+      <div class="step-content">사용자에게 수신 VASP 목록이 표시됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">7</div>
+      <div class="step-content">사용자가 수신 VASP를 선택합니다.</div>
+    </li>
+  </ol>
+</div>
+`}</HTMLBlock>
+
 <br />
 
 ### 1. 수신 VASP 선택
