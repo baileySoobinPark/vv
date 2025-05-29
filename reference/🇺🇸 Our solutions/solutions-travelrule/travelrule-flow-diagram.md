@@ -15,54 +15,6 @@ metadata:
 
 <br />
 
-<HTMLBlock>{`
-<style>
-  .step-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .step-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 12px;
-  }
-
-  .step-badge {
-    background-color: #000;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
-    font-size: 13px;
-    margin-right: 12px;
-    flex-shrink: 0;
-  }
-
-  .step-content {
-    flex: 1;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-</style>
-
-<ol class="step-list">
-  <li class="step-item">
-    <div class="step-badge">1</div>
-    <div class="step-content">사용자(송신자)가 송신 VASP에 출금을 요청합니다.</div>
-  </li>
-  <li class="step-item">
-    <div class="step-badge">23</div>
-    <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>Get VASP list</code> API를 호출합니다.</div>
-  </li>
-  <!-- ...계속 추가 -->
-</ol>
-`}</HTMLBlock>
-
 <br />
 
 ### 1. Beneficiary VASP Selection
