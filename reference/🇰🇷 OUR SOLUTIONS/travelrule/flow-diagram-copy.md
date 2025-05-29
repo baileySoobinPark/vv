@@ -1,6 +1,6 @@
 ---
 title: Flow Diagram
-excerpt: 시나리오별 Flow Diagram을 통해 TravelRule 트랜잭션과 데이터의 흐름을 이해할 수 있습니다.
+excerpt: 시나리오별 Flow Diagram을 통해 TravelRule 트랜잭션과 데이터의 흐름을 확인할 수 있습니다.
 deprecated: false
 hidden: false
 metadata:
