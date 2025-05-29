@@ -28,7 +28,6 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 12px;
-    color: #1364FF;
   }
 
   .step-list {
@@ -65,7 +64,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Phase 1. Beneficiary VASP Selection</div>
+  <div class="scenario-title">Phase 1. 송신자의 출금 신청 및 수신 VASP 선택</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
