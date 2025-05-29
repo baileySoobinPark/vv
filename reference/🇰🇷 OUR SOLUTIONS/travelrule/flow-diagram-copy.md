@@ -65,7 +65,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Phase 1. 수신 VASP 선택</div>
+  <div class="scenario-title">Phase 1. Beneficiary VASP Selection</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
