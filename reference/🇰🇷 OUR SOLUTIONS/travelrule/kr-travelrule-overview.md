@@ -63,8 +63,8 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
   background-color: #ffffff;
   border: 1px solid #1364FF;
   border-radius: 8px;
-  flex: 1 1 280px;
-  max-width: 300px;
+  flex: 1 1 240px;
+  max-width: 250px;
   box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
   display: flex;
   flex-direction: column;
