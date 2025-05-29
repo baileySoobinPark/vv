@@ -52,7 +52,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     text-align: center;
     line-height: 24px;
     font-size: 13px;
-    margin-right: 12px;
+    margin-right: 5px;
     flex-shrink: 0;
   }
 
