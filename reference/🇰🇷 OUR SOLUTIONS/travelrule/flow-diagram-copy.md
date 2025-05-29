@@ -107,14 +107,14 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
   <ol class="step-list">
     
     <!-- 정보 수집 -->
-    <div class="subsection-title">정보 수집</div>
+    <div class="subsection-title">수신 계정 및 수신자 정보 수집</div>
     <li class="step-item">
       <div class="step-badge">8</div>
       <div class="step-content">사용자는 Travel Rule 준수를 위해 송신 VASP가 요청하는 정보를 입력합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">9</div>
-      <div class="step-content">송신 VASP는 사용자 입력과 내부 정보를 조합하여 <code>User Account Verification API</code>를 호출합니다. 요청에는 수신 VASP ID, 키 유형, 티커, 전송 정보, 수신자 주소 등이 포함됩니다.</div>
+      <div class="step-content">송신 VASP는 사용자 입력과 내부 정보를 조합하여 Enclave의 <code>User Account Verification API</code>를 호출합니다. 요청에는 수신 VASP ID, 키 유형, 티커, 전송 정보, 수신자 주소 등이 포함됩니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">10</div>
@@ -122,7 +122,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
 
     <!-- 키 교환 (선택적) -->
-    <div class="subsection-title">키 교환 (선택적)</div>
+    <div class="subsection-title">키 교환 (공개키가 캐시에 존재하지 않는 경우 수행)</div>
     <li class="step-item">
       <div class="step-badge">11</div>
       <div class="step-content">송신 VASP의 Enclave는 중앙 서버를 통해 수신 VASP의 공개키를 요청합니다.</div>
@@ -172,14 +172,14 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
 
     <!-- 계정 검증 로직 -->
-    <div class="subsection-title">계정 검증 로직</div>
+    <div class="subsection-title">수신 계정 검증 로직</div>
     <li class="step-item">
       <div class="step-badge">22</div>
-      <div class="step-content">수신 VASP Enclave는 <code>Verify User Account API</code>를 호출하여 주소 소유 여부를 확인합니다.</div>
+      <div class="step-content">수신 VASP Enclave는 VASP 백엔드의 <code>Verify User Account API</code>를 호출하여 주소 소유 여부를 확인합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">23</div>
-      <div class="step-content">수신 VASP는 해당 주소가 본인 고객의 것인지 검증합니다.</div>
+      <div class="step-content">수신 VASP는 해당 주소가 VASP 소유 주소인지 여부를 검증합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">24</div>
