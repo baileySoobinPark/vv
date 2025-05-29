@@ -37,33 +37,34 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       font-family: 'Segoe UI', sans-serif;
       background-color: #f5f8fb;
       padding: 40px;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
     }
 
     .flow-container {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      align-items: center;
+      gap: 40px;
     }
 
     .row {
-      width: 100%;
       display: flex;
-      justify-content: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 12px;
     }
 
     .step-box {
       background-color: #ffffff;
       border: 1px solid #1364FF;
       border-radius: 8px;
-      flex: 1 1 320px;
-      max-width: 660px;
-      width: 100%;
+      flex: 1 1 0;
+      max-width: 280px;
       box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
       display: flex;
       flex-direction: column;
+      height: 280px;
     }
 
     .step-title {
@@ -104,17 +105,32 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       padding-left: 1.2em;
     }
 
-    .arrow-vertical {
-      text-align: center;
+    .arrow-horizontal {
+      align-self: center;
       font-size: 32px;
       color: #007bff;
       font-weight: bold;
     }
+
+    .arrow-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -16px;
+      margin-bottom: -16px;
+    }
+
+    .arrow-row div {
+      flex: 1 1 0;
+      display: flex;
+      justify-content: center;
+    }
+
   </style>
 </head>
 <body>
   <div class="flow-container">
 
+    <!-- 위쪽 3단계 -->
     <div class="row">
       <div class="step-box">
         <div class="step-title">자산 전송 요청<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
@@ -123,11 +139,6 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;<b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.
         </div>
       </div>
-    </div>
-
-    <div class="arrow-vertical">⬇</div>
-
-    <div class="row">
       <div class="step-box">
         <div class="step-title">검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
         <div class="step-content">
@@ -135,11 +146,6 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;전체 통신 구간에 걸쳐 검증 요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.
         </div>
       </div>
-    </div>
-
-    <div class="arrow-vertical">⬇</div>
-
-    <div class="row">
       <div class="step-box">
         <div class="step-title">수신 VASP 검증 수행<br><span class="subtitle">(Beneficiary VASP)</span></div>
         <div class="step-content">
@@ -148,8 +154,13 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       </div>
     </div>
 
-    <div class="arrow-vertical">⬇</div>
+    <div class="arrow-row">
+      <div class="arrow-horizontal">➡</div>
+      <div class="arrow-horizontal">➡</div>
+      <div class="arrow-horizontal">➡</div>
+    </div>
 
+    <!-- 아래쪽 3단계 -->
     <div class="row">
       <div class="step-box">
         <div class="step-title">검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
@@ -158,28 +169,24 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;이 과정은 동기(Synchronous) 또는 비동기(Asynchronous) 방식으로 처리될 수 있으며, 각 방식에 사용되는 API 명세 및 Flow는 관련 문서를 통해 확인할 수 있습니다.
         </div>
       </div>
-    </div>
-
-    <div class="arrow-vertical">⬇</div>
-
-    <div class="row">
       <div class="step-box">
         <div class="step-title">트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
         <div class="step-content">
           &bull;검증 결과가 정상인 경우 송신 VASP가 블록체인에서 출금 트랜잭션을 실행합니다. <br><br>
         </div>
       </div>
-    </div>
-
-    <div class="arrow-vertical">⬇</div>
-
-    <div class="row">
       <div class="step-box">
         <div class="step-title">트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
         <div class="step-content">
           &bull;송신 VASP는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다. <br><br>
         </div>
       </div>
+    </div>
+
+    <div class="arrow-row">
+      <div class="arrow-horizontal">➡</div>
+      <div class="arrow-horizontal">➡</div>
+      <div class="arrow-horizontal">➡</div>
     </div>
 
   </div>
