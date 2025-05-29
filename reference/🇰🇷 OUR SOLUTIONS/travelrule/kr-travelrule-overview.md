@@ -7,6 +7,8 @@ metadata:
 ---
 ## 아키텍처 개요
 
+Diagram 1은 VerifyVASP TravelRule 솔루션의 구성 요소와 이들 간의 통신 구조를 요약한 아키텍처 개요도입니다. TravelRule 아키텍쳐의 주요 특성은 다음과 같습니다.
+
 <Image align="center" border={false} caption="Diagram 1. VerifyVASP Integration Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
 
 <br />
