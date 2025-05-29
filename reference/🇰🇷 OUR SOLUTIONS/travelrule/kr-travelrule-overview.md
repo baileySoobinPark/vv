@@ -204,7 +204,7 @@ VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되�
 
 <br />
 
-#### 키 교환(Key Exchange)
+#### \[키 교환(Key Exchange)]
 
 * **공개 키 요청 (Ordering VASP → Beneficiary VASP)**
   * 데이터 암호화를 수행하기에 앞서, 송신 VASP의 Enclave는 저장된 수신 VASP의 공개키가 있는지 확인합니다.
@@ -218,7 +218,7 @@ VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되�
 
 <br />
 
-#### 데이터 암호화 및 복호화(Encryption & Decryption)
+#### \[데이터 암호화 및 복호화(Encryption & Decryption)]
 
 * **개인 정보 암호화 및 요청 전송 (Ordering VASP → Beneficiary VASP)**
   * 송신 VASP Enclave는 검증 요청을 보내기 전 키 교환 과정에서 획득한 수신 VASP 공개키로 개인 정보 필드를 암호화합니다.
