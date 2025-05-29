@@ -10,7 +10,7 @@ metadata:
 ---
 ## TravelRule Best Practice
 
-Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 보여줍니다. TravelRule 프로토콜은 다음 4개의 단계로 진행됩니다: (1)수신 VASP 선택 (2)수신자 계정 검증 (3)수신자 검증 (4)트랜잭션 실행. Sequence Diagram 1은 각 단계를 점선 박스로 구분하여 표시합니다.
+Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 보여줍니다. TravelRule 프로토콜은 크게 다음 4개의 단계로 진행됩니다: (1)수신 VASP 선택 (2)수신자 계정 검증 (3)수신자 검증 (4)트랜잭션 실행. Sequence Diagram 1은 각 단계를 점선 박스로 구분하여 표시합니다.
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
@@ -64,7 +64,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Phase 1. 송신자의 출금 신청 및 수신 VASP 선택</div>
+  <div class="scenario-title">1. 송신자의 자산 출금 신청 및 수신 VASP 선택</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
