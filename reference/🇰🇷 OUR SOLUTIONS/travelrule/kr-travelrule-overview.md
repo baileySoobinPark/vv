@@ -61,7 +61,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 .step-box {
   background-color: #ffffff;
-  border: 1px solid #007bff;
+  border: 1px solid #1364FF;
   border-radius: 8px;
   flex: 1 1 280px;
   max-width: 300px;
