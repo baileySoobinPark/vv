@@ -37,7 +37,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       font-family: 'Segoe UI', sans-serif;
       background-color: #f5f8fb;
       padding: 40px;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
     }
 
@@ -58,21 +58,21 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       background-color: #ffffff;
       border: 1px solid #1364FF;
       border-radius: 8px;
-      max-width: 500px;
+      flex: 1 1 320px;
+      max-width: 660px;
       width: 100%;
       box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
       display: flex;
       flex-direction: column;
-      height: auto;
     }
 
     .step-title {
       background-color: #1364FF;
       color: #ffffff;
-      padding: 12px;
+      padding: 8px 12px;
       font-weight: bold;
       font-size: 14px;
-      line-height: 1.3;
+      line-height: 1.2;
       text-align: center;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
