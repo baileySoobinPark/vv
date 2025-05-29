@@ -1,6 +1,6 @@
 ---
 title: Flow Diagram
-excerpt: TravelRule 트랜잭션 흐름과 VASP 간 통신을 이해하기 위한 Flow Diagram 페이지입니다.
+excerpt: 시나리오별 Flow Diagram을 통해 TravelRule 트랜잭션의 흐름과 구체적인 연동 방식을 이해할 수 있습니다.
 deprecated: false
 hidden: true
 metadata:
