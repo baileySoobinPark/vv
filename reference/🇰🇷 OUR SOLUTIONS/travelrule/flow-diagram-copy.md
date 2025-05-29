@@ -1,8 +1,8 @@
 ---
 title: Flow Diagram
 excerpt: >-
-  Best Practice Flow를 통해 TravelRule 트랜잭션의 기본 흐름을 이해하고 Screening 기능 구현에 필요한 요구사항을
-  확인할 수 있습니다.
+  이 문서에서는 전체 TravelRule 트랜잭션의 흐름과 API 호출, 각 Entity간 주고받는 데이터 명세를 포함한 Best
+  Practice 시나리오 Flow를 확인할 수 있습니다. 
 deprecated: false
 hidden: false
 metadata:
