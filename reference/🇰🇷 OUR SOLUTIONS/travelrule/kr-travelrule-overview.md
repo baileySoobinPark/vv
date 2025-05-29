@@ -29,102 +29,93 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 <HTMLBlock>{`
 <!DOCTYPE html>
-
 <html lang="ko">
-<style>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f8fb;
+      padding: 40px;
+      max-width: 700px;
+      margin: auto;
+    }
 
-.flow-container {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 24px;
-}
+    .row {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
 
-.row.top {
-  justify-content: space-between;
-}
+    .step-box {
+      background-color: #ffffff;
+      border: 1px solid #1364FF;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
 
-.row.bottom {
-  justify-content: flex-start;
-}
+    .step-title {
+      background-color: #1364FF;
+      color: #ffffff;
+      padding: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 1.3;
+      text-align: center;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
 
-.subtitle {
-  font-size: 12px;
-  opacity: 0.9;
-}
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+    }
 
-.step-box {
-  background-color: #ffffff;
-  border: 1px solid #1364FF;
-  border-radius: 8px;
-  flex: 1 1 240px;
-  max-width: 250px;
-  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  height: 280px;
-}
+    .step-content {
+      padding: 16px;
+      color: #333333;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-.step-title {
-  background-color: #1364FF;
-  color: #ffffff;
-  padding: 12px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 1.3;
-  text-align: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
+    .step-content b {
+      font-weight: 600;
+    }
 
-.step-content {
-  padding: 16px;
-  color: #333333;
-  font-size: 14px;
-  line-height: 1.5;
-}
+    .step-content br + br {
+      line-height: 1.8;
+    }
 
-.step-content b {
-  font-weight: 600;
-}
+    .step-content p {
+      margin: 0 0 10px;
+      text-indent: -1.2em;
+      padding-left: 1.2em;
+    }
 
-.step-content br + br {
-  line-height: 1.8;
-}
-
-.step-content p {
-  margin: 0 0 10px;
-  text-indent: -1.2em;
-  padding-left: 1.2em;
-}
-
-.arrow-horizontal {
-  font-size: 32px;
-  color: #007bff;
-  font-weight: bold;
-  align-self: center;
-}
-
-.arrow-vertical {
-  text-align: center;
-  font-size: 32px;
-  color: #007bff;
-  font-weight: bold;
-  margin: -40px auto 0 auto;
-}
-
-</style>
-
+    .arrow-vertical {
+      text-align: center;
+      font-size: 32px;
+      color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
   <div class="flow-container">
 
-    <!-- 위쪽 3단계 -->
-    <div class="row top">
+    <div class="row">
       <div class="step-box">
         <div class="step-title">자산 전송 요청<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
         <div class="step-content">
@@ -132,7 +123,11 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;<b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.
         </div>
       </div>
-      <div class="arrow-horizontal">➡</div>
+    </div>
+
+    <div class="arrow-vertical">⬇</div>
+
+    <div class="row">
       <div class="step-box">
         <div class="step-title">검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
         <div class="step-content">
@@ -140,7 +135,11 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;전체 통신 구간에 걸쳐 검증 요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.
         </div>
       </div>
-      <div class="arrow-horizontal">➡</div>
+    </div>
+
+    <div class="arrow-vertical">⬇</div>
+
+    <div class="row">
       <div class="step-box">
         <div class="step-title">수신 VASP 검증 수행<br><span class="subtitle">(Beneficiary VASP)</span></div>
         <div class="step-content">
@@ -149,9 +148,9 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       </div>
     </div>
 
-    <!-- 아래쪽 2단계 (좌측 정렬) -->
-    <div class="row bottom">
-      <div class="arrow-horizontal">➡</div>
+    <div class="arrow-vertical">⬇</div>
+
+    <div class="row">
       <div class="step-box">
         <div class="step-title">검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
         <div class="step-content">
@@ -159,14 +158,22 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
           &bull;이 과정은 동기(Synchronous) 또는 비동기(Asynchronous) 방식으로 처리될 수 있으며, 각 방식에 사용되는 API 명세 및 Flow는 관련 문서를 통해 확인할 수 있습니다.
         </div>
       </div>
-      <div class="arrow-horizontal">➡</div>
+    </div>
+
+    <div class="arrow-vertical">⬇</div>
+
+    <div class="row">
       <div class="step-box">
         <div class="step-title">트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
         <div class="step-content">
           &bull;검증 결과가 정상인 경우 송신 VASP가 블록체인에서 출금 트랜잭션을 실행합니다. <br><br>
         </div>
       </div>
-      <div class="arrow-horizontal">➡</div>
+    </div>
+
+    <div class="arrow-vertical">⬇</div>
+
+    <div class="row">
       <div class="step-box">
         <div class="step-title">트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
         <div class="step-content">
@@ -175,9 +182,8 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       </div>
     </div>
 
-
   </div>
-
+</body>
 </html>
 `}</HTMLBlock>
 
