@@ -311,15 +311,73 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
   </ol>
 </div>
+<div class="scenario-section">
+  <div class="scenario-title">4. 트랜잭션 실행</div>
+  <ol class="step-list">
+
+    <div class="subgroup-title">트랜잭션 생성 및 제출</div>
+    <li class="step-item">
+      <div class="step-badge">54</div>
+      <div class="step-content">송신 VASP는 송신자 계정의 자산을 수신자에게 전송하는 블록체인 트랜잭션을 생성하고 제출합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">55</div>
+      <div class="step-content">필요한 경우, 블록체인 특성에 따라 트랜잭션의 finality를 추적하는 기능을 구현할 수 있습니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">56</div>
+      <div class="step-content">트랜잭션 해시를 확보한 직후, 송신 VASP는 <code>Report Transaction Result</code> API를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">57</div>
+      <div class="step-content">Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 내부 데이터베이스를 갱신합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">58</div><div class="step-badge">59</div>
+      <div class="step-content">Report 데이터가 중앙 서버를 통해 수신 VASP Enclave로 전달됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">60</div>
+      <div class="step-content">수신 VASP Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 저장하고, <code>Callback API</code>를 호출하여 트랜잭션 정보를 수신 VASP에 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">61</div>
+      <div class="step-content">수신 VASP가 <code>200 OK</code> 응답을 반환하면 트랜잭션 프로세스는 완료됩니다.</div>
+    </li>
+
+    <div class="subgroup-title">예외 처리: 트랜잭션 보고 누락</div>
+    <li class="step-item">
+      <div class="step-badge">62</div>
+      <div class="step-content">수신 VASP가 온체인 입금을 감지했으나 관련 트랜잭션 보고를 받지 못한 경우, Enclave의<code>Check Transaction Result</code> API를 호출합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">63</div><div class="step-badge">64</div>
+      <div class="step-content">요청은 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">65</div>
+      <div class="step-content">송신 VASP Enclave는 검증 UUID에 매핑된 트랜잭션 해시를 조회한 뒤 백엔드로 전달하여 온체인 상태를 확인합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">66</div>
+      <div class="step-content">송신 VASP는 보고된 트랜잭션 해시의 온체인 처리 상태를 확인합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">67</div><div class="step-badge">68</div><div class="step-badge">69</div><div class="step-badge">70</div>
+      <div class="step-content">트랜잭션의 처리 상태를 Enclave를 통해 수신 VASP에게 반환합니다.</div>
+    </li>
+
+  </ol>
+</div>
 `}</HTMLBlock>
 
 <br />
 
 ## Screening (Optional)
 
-To enhance risk assessment for asset transfer transactions, VASPs can optionally integrate third-party screening services. These services enable evaluations of specific addresses, transactions, or individuals for potential risks. The flows outlined below illustrate integrations with APIs such as Chainalysis Sanction API, Chainalysis Know Your Transaction (KYT) API, and Refinitiv’s World-Check One (WCO) API.
+리스크 기반 자산 이동 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 이러한 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 평가를 가능하게 하며, 대표적으로 Chainalysis Sanction API, Chainalysis KYT API, Refinitiv World-Check One(WCO) API와 같은 외부 API를 활용할 수 있습니다.
 
-Each API targets different aspects of risk assessment, allowing VASPs to select and utilize the service that best aligns with their compliance and operational requirements. VerifyVASP Enclave facilitates these integrations by providing an interface to request risk assessments using verification UUID. This approach streamlines the process, eliminating the need for VASPs to separately manage data for transactions that have already undergone verification.
+각 API는 리스크 평가의 대상과 목적이 다르므로, VASP는 자사 컴플라이언스 및 운영 요건에 따라 적합한 서비스를 선택하여 연동할 수 있습니다. VerifyVASP Enclave는 검증 UUID를 기반으로 외부 리스크 평가 요청을 수행할 수 있는 인터페이스를 제공하여, 이미 검증을 완료한 트랜잭션에 대한 추가 리스크 평가를 간소화하고 데이터 이중 관리를 방지합니다.
 
 For detailed instructions on using each API, refer to the [enclave screening API documentation](ref:travelrule-Chainalysis-Sanction) .
 
