@@ -208,7 +208,7 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 
 <br />
 
-## Security
+## 보
 
 ### VASP 간 End-to-End 암호화
 
