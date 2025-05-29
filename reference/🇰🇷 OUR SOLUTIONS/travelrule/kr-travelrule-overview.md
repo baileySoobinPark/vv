@@ -29,6 +29,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 <HTMLBlock>{`
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -41,141 +42,150 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
       margin: auto;
     }
 
-    .flow-container {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
 
-    .row {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-      align-items: stretch;
-      gap: 12px;
-    }
+.flow-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
-    .step-box {
-      background-color: #ffffff;
-      border: 1px solid #1364FF;
-      border-radius: 8px;
-      flex: 1 1 0;
-      max-width: 280px;
-      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
-      display: flex;
-      flex-direction: column;
-      height: 280px;
-    }
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+}
 
-    .step-title {
-      background-color: #1364FF;
-      color: #ffffff;
-      padding: 8px 12px;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 1.2;
-      text-align: center;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-    }
+.step-box {
+  background-color: #ffffff;
+  border: 1px solid #1364FF;
+  border-radius: 8px;
+  flex: 1 1 0;
+  max-width: 280px;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+}
 
-    .subtitle {
-      font-size: 11px;
-      opacity: 0.9;
-    }
+.step-title {
+  background-color: #1364FF;
+  color: #ffffff;
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
 
-    .step-content {
-      padding: 16px;
-      color: #333333;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+.subtitle {
+  font-size: 11px;
+  opacity: 0.9;
+}
 
-    .step-content b {
-      font-weight: 600;
-    }
+.step-content {
+  padding: 16px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.5;
+}
 
-    .step-content br + br {
-      line-height: 1.8;
-    }
+.step-content b {
+  font-weight: 600;
+}
 
-    .step-content p {
-      margin: 0 0 10px;
-      text-indent: -1.2em;
-      padding-left: 1.2em;
-    }
+.step-content p {
+  margin: 0 0 10px;
+  padding-left: 1.4em;  /* 왼쪽 여백 확보 */
+  position: relative;
+}
 
-    .arrow-horizontal {
-      align-self: center;
-      font-size: 32px;
-      color: #007bff;
-      font-weight: bold;
-    }
+.step-content p::before {
+  content: "•";
+  position: absolute;
+  left: 0;  /* 왼쪽 여백 내부에서 시작 */
+  top: 0;
+  font-weight: bold;
+  color: #333;
+}
 
-    .arrow-row {
-      display: flex;
-      justify-content: space-between;
-      margin-top: -16px;
-      margin-bottom: -16px;
-    }
+.arrow-horizontal {
+  align-self: center;
+  font-size: 32px;
+  color: #007bff;
+  font-weight: bold;
+}
 
-    .arrow-row div {
-      flex: 1 1 0;
-      display: flex;
-      justify-content: center;
-    }
+.arrow-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -16px;
+  margin-bottom: -16px;
+}
+
+.arrow-row div {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
+
 
   </style>
 </head>
 <body>
   <div class="flow-container">
 
-    <!-- 위쪽 3단계 -->
-    <div class="row">
-      <div class="step-box">
-        <div class="step-title">1. 자산 전송 요청<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
-        <div class="step-content">
-          &bull;송신 VASP의 <b>사용자(송신자, Originator)</b>가 자산 전송을 요청합니다.<br><br>
-          &bull;<b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.
-        </div>
-      </div>
-      <div class="step-box">
-        <div class="step-title">2. 검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
-        <div class="step-content">
-          &bull;<b>송신 VASP</b>는 수집된 정보를 기반으로 수신자 검증을 요청합니다. 검증 요청은 Enclave 서버를 통해 VerifyVASP 중앙서버로 전송되어 수신 VASP로 전달됩니다. <br><br>
-          &bull;전체 통신 구간에 걸쳐 검증 요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.
-        </div>
-      </div>
-      <div class="step-box">
-        <div class="step-title">3. 수신 VASP 검증 수행<br><span class="subtitle">(Beneficiary VASP)</span></div>
-        <div class="step-content">
-          &bull;검증 요청을 수신한 <b>수신 VASP</b>는 보유하고 있는 사용자 데이터를 기반으로 수신자 정보를 검증합니다. <br><br>
-        </div>
-      </div>
-    </div>
 
-    <!-- 아래쪽 3단계 -->
-    <div class="row">
-      <div class="step-box">
-        <div class="step-title">4. 검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
-        <div class="step-content">
-          &bull;수신자 검증 결과가 수신 VASP의 Enclave와 VerifyVASP 중앙 서버를 지나 송신 VASP로 전달됩니다. <br><br>
-          &bull;이 과정은 동기(Synchronous) 또는 비동기(Asynchronous) 방식으로 처리될 수 있으며, 각 방식에 사용되는 API 명세 및 Flow는 관련 문서를 통해 확인할 수 있습니다.
-        </div>
-      </div>
-      <div class="step-box">
-        <div class="step-title">5. 트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
-        <div class="step-content">
-          &bull;검증 결과가 정상인 경우 송신 VASP가 블록체인에서 출금 트랜잭션을 실행합니다. <br><br>
-        </div>
-      </div>
-      <div class="step-box">
-        <div class="step-title">6. 트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
-        <div class="step-content">
-          &bull;송신 VASP는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다. <br><br>
-        </div>
-      </div>
+<!-- 위쪽 3단계 -->
+<div class="row">
+  <div class="step-box">
+    <div class="step-title">1. 자산 전송 요청<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
+    <div class="step-content">
+      <p><b>송신 VASP</b>의 사용자(송신자, Originator)가 자산 전송을 요청합니다.</p>
+      <p><b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.</p>
     </div>
+  </div>
+  <div class="step-box">
+    <div class="step-title">2. 검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
+    <div class="step-content">
+      <p><b>송신 VASP</b>는 수집된 정보를 기반으로 수신자 검증을 요청합니다. 검증 요청은 Enclave 서버를 통해 VerifyVASP 중앙서버로 전송되어 수신 VASP로 전달됩니다.</p>
+      <p>전체 통신 구간에 걸쳐 검증 요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.</p>
+    </div>
+  </div>
+  <div class="step-box">
+    <div class="step-title">3. 수신 VASP 검증 수행<br><span class="subtitle">(Beneficiary VASP)</span></div>
+    <div class="step-content">
+      <p>검증 요청을 수신한 <b>수신 VASP</b>는 보유하고 있는 사용자 데이터를 기반으로 수신자 정보를 검증합니다.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 아래쪽 3단계 -->
+<div class="row">
+  <div class="step-box">
+    <div class="step-title">4. 검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
+    <div class="step-content">
+      <p>수신자 검증 결과가 수신 VASP의 Enclave와 VerifyVASP 중앙 서버를 지나 송신 VASP로 전달됩니다.</p>
+      <p>이 과정은 동기(Synchronous) 또는 비동기(Asynchronous) 방식으로 처리될 수 있으며, 각 방식에 사용되는 API 명세 및 Flow는 관련 문서를 통해 확인할 수 있습니다.</p>
+    </div>
+  </div>
+  <div class="step-box">
+    <div class="step-title">5. 트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
+    <div class="step-content">
+      <p>검증 결과가 정상인 경우 송신 VASP가 블록체인에서 출금 트랜잭션을 실행합니다.</p>
+    </div>
+  </div>
+  <div class="step-box">
+    <div class="step-title">6. 트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
+    <div class="step-content">
+      <p>송신 VASP는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다.</p>
+    </div>
+  </div>
+</div>
+
 
   </div>
 </body>
