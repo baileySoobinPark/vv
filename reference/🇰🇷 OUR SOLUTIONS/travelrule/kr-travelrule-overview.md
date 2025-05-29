@@ -27,6 +27,8 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 ## 검증 프로세스 개요
 
+TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증 프로세스는 다음과 같습니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Flow Diagram 및 Integration Guide에서 확인할 수 있습니다.
+
 <HTMLBlock>{`
 <!DOCTYPE html>
 
