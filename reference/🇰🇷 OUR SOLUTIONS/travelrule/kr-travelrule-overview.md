@@ -80,7 +80,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
     }
 
     .subtitle {
-      font-size: 12px;
+      font-size: 11px;
       opacity: 0.9;
     }
 
