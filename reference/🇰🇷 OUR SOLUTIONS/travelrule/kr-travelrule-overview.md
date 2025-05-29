@@ -21,7 +21,7 @@ VASP 간 TravelRule 통신은 VerifyVASP 중앙 서버를 통해 중계됩니다
 
 #### Enclave 설치 및 연동
 
-Enclave는 VerifyVASP 중앙 서버와의 통신 인터페이스를 제공하는 사전 구축 서버 모듈입니다. Enclave는 Docker 이미지 형태로 배포되며, 모든 VASP는 인프라 내에 Enclave 서버와 Enclave용 데이터베이스를 반드시 설치해야 합니다. 각 VASP의 백엔드는 Enclave 서버와 상호 API 호출을 통해 통신하며, VerifyVASP Central Server API와 직접 통신하지 않습니다.
+Enclave는 VerifyVASP 중앙 서버와의 통신 인터페이스를 제공하는 사전 구축된 서버 모듈입니다. Enclave는 Docker 이미지 형태로 배포되며, 모든 VASP는 인프라 내에 Enclave 서버와 Enclave용 데이터베이스를 반드시 설치해야 합니다. 각 VASP의 백엔드는 Enclave 서버와 상호 API 호출을 통해 통신하며, VerifyVASP Central Server API와 직접 통신하지 않습니다.
 
 #### 데이터 보안 및 개인정보 보호
 
