@@ -194,13 +194,13 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 <br />
 
-## 안전한 데이터 교환
+## Security
 
-### VASP 간 종단 간 암호화
+### VASP 간 End-to-End 암호화
 
-TravelRule 솔루션은 송.수신인 검증 과정에서 교환되는 개인정보의 프라이버시를 보호하기 위해 강력한 종단 간 암호화(E2EE) 를 적용합니다. 이 암호화는 송신 VASP와 수신 VASP만이 데이터를 복호화할 수 있도록 합니다. VerifyVASP Central Server 느 단순 중계 역할만 수행하며, 개인정보를 복호화하거나 저장하지 않습니다.
+VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 대해 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화 하거나 저장하지 않습니다.
 
-이 종단 간 암호화(E2EE) 는 아래와 같이 각 VASP의 Enclave 서버를 통해 자동으로 처리됩니다:
+종단 간 암호화(E2EE) 는 양측 VASP의 Enclave 서버에 의해 자동으로 처리되며, 세부 절차는 다음과 같습니다.
 
 1. **검증 요청 시작**
    * 송신 VASP에서 Enclave API를 통해 수신인 검증을 요청합니다.
