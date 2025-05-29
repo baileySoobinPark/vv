@@ -61,6 +61,15 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     font-size: 14px;
     line-height: 1.6;
   }
+  
+  .subsection-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin: 24px 0 12px 0;
+    padding-left: 4px;
+    border-left: 4px solid #007bff;
+  }
 </style>
 
 <div class="scenario-section">
@@ -88,18 +97,17 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
     <li class="step-item">
       <div class="step-badge">6</div><div class="step-badge">7</div>
-      <div class="step-content">사용자에게 수신 VASP 목록이 표시됩니다.</div>
-    </li>
-    <li class="step-item">
-      <div class="step-badge">7</div>
-      <div class="step-content">사용자가 수신 VASP를 선택합니다.</div>
+      <div class="step-content">사용자에게 수신 VASP 목록을 표시한 후 사용자가 수신 VASP를 선택합니다.</div>
     </li>
   </ol>
 </div>
+
 <div class="scenario-section">
   <div class="scenario-title">2. 계정 검증 (Account Verification)</div>
   <ol class="step-list">
+    
     <!-- 정보 수집 -->
+    <div class="subsection-title">정보 수집</div>
     <li class="step-item">
       <div class="step-badge">8</div>
       <div class="step-content">사용자는 Travel Rule 준수를 위해 송신 VASP가 요청하는 정보를 입력합니다.</div>
@@ -114,6 +122,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
 
     <!-- 키 교환 (선택적) -->
+    <div class="subsection-title">키 교환 (선택적)</div>
     <li class="step-item">
       <div class="step-badge">11</div>
       <div class="step-content">송신 VASP의 Enclave는 중앙 서버를 통해 수신 VASP의 공개키를 요청합니다.</div>
@@ -140,6 +149,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
 
     <!-- 검증 요청 -->
+    <div class="subsection-title">검증 요청</div>
     <li class="step-item">
       <div class="step-badge">17</div>
       <div class="step-content">송신 VASP Enclave는 수신 VASP의 공개키로 민감 정보를 암호화합니다.</div>
@@ -162,6 +172,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     </li>
 
     <!-- 계정 검증 로직 -->
+    <div class="subsection-title">계정 검증 로직</div>
     <li class="step-item">
       <div class="step-badge">22</div>
       <div class="step-content">수신 VASP Enclave는 <code>Verify User Account API</code>를 호출하여 주소 소유 여부를 확인합니다.</div>
