@@ -13,8 +13,7 @@ metadata:
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
-The sequence diagram 1 shows the process in four key steps:\
-**(1) Beneficiary VASP Selection**, **(2) Account Verification**, **(3) User Verification**, and **(4) Transaction Execution**. Each step is highlighted with a dashed box in the diagram for clarity.
+<br />
 
 <HTMLBlock>{`
 <style>
@@ -57,7 +56,7 @@ The sequence diagram 1 shows the process in four key steps:\
     <div class="step-content">사용자(송신자)가 송신 VASP에 출금을 요청합니다.</div>
   </li>
   <li class="step-item">
-    <div class="step-badge">2</div>
+    <div class="step-badge">23</div>
     <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>Get VASP list</code> API를 호출합니다.</div>
   </li>
   <!-- ...계속 추가 -->
