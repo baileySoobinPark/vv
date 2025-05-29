@@ -1,5 +1,5 @@
 ---
-title: Flow Diagram (COPY)
+title: Flow Diagram
 excerpt: >-
   This page explains the TravelRule transaction flow, focusing on the
   interaction between the ordering VASP, VerifyVASP Central Server, and
