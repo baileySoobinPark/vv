@@ -21,7 +21,7 @@ Enclave는 VerifyVASP 중앙 서버와의 통신 인터페이스를 제공하는
 
 ### 데이터 보안 및 개인정보 보호
 
-Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성되므로 데이터의 무결성과 격리성을 보장합니다. VASP와 중앙 서버 간의 모든 통신은 HTTPS 기반 암호화 채널을 통해 수행되며, 민감정보를 포함한 모든 데이터는 다층 보안 구조로 보호됩니다.
+Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성되므로 데이터의 무결성과 격리성을 보장합니다. VASP와 중앙 서버 간의 모든 통신은 HTTPS 프로토콜을 사용하며, 민감정보를 포함한 모든 데이터는 종단간 암호화됩니다.
 
 <br />
 
@@ -152,7 +152,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
     <div class="step-title">2. 검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
     <div class="step-content">
       <p><b>송신 VASP</b>는 수집된 정보를 기반으로 수신자 검증을 요청합니다. 검증 요청은 Enclave 서버를 통해 VerifyVASP 중앙서버로 전송되어 수신 VASP로 전달됩니다.</p>
-      <p>전체 통신 구간에 걸쳐 검증 요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.</p>
+      <p>요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.</p>
     </div>
   </div>
   <div class="step-box">
@@ -198,61 +198,38 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 ### VASP 간 End-to-End 암호화
 
-VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 대해 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화 하거나 저장하지 않습니다.
+VerifyVASP TravelRule 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보의 무결성과 프라이버시를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 대해 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화하거나 저장하지 않습니다.
 
-키 교환 및 종단 간 암호화(E2EE) 는 양측 VASP의 Enclave 서버에 의해 자동으로 처리되며 다음과 같이 진행됩니다. 상세 Flow는 [Flow Diagram](ref:travelrule-flow-diagram) 문서의 수신자 검증 Flow를 참고해주세요.
+키 교환 및 종단 간 암호화(E2EE) 는 양측 VASP의 Enclave 서버에 의해 자동으로 처리됩니다. 주요 단계별 프로세스는 아래와 같습니다.
 
 #### 키 교환(Key Exchange)
 
 * **공개 키 요청 (Ordering VASP → Beneficiary VASP)**
-  * 데이터 암호화가 필요한 시점에, 송신 VASP의 Enclave는 저장된 수신 VASP의 공개키가 있는지 확인합니다.
-  * 사용 가능한 공개키가 없는 경우, 송신 VASP Enclave는 중앙 서버를 통해 수신 VASP Enclave로 공개키를 요청합니다.
+  * 데이터 암호화를 수행하기에 앞서, 송신 VASP의 Enclave는 저장된 수신 VASP의 공개키가 있는지 확인합니다.
+  * 사용 가능한 공개키가 없는 경우 송신 VASP Enclave는 중앙 서버를 통해 수신 VASP Enclave로 공개키를 요청합니다.
 * **키 쌍 생성 및 공개키 반환(Beneficiary VASP → Ordering VASP)**
-  * 수신 VASP Enclave는 공개키 설정에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.
-  * 공개키가 VerifyVASP 중앙 서버를 통해 송신 VASP Enclave로 반환됩니다.
+  * 수신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.
+  * 공개키가 VerifyVASP 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.
+* **공개 키 전달 (Ordering VASP → Beneficiary VASP)**
+  * 송신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.
+  * 검증 요청 전송 시점에, 송신 VASP Enclave는 공개키를 검증 요청과 함께 함께 중앙 서버를 통해 수신 VASP로 전달합니다.
 
 <br />
 
 #### 데이터 암호화 및 복호화(Encryption & Decryption)
 
-* 검증 요청 내 개인 정보 암호화 및 복호화 (Ordering VASP → Beneficiary VASP)
-* 검증 결과 내 개인 정보 암호화 및 복호화 (Beneficiary VASP → Ordering VASP)
+* **개인 정보 암호화 및 요청 전송 (Ordering VASP → Beneficiary VASP)**
+  * 송신 VASP Enclave는 검증 요청을 보내기 전 키 교환 과정에서 획득한 수신 VASP 공개키로 개인 정보 필드를 암호화합니다.
+  * 암호화된 개인 정보 필드를 포함한 검증 요청이 송신 VASP의 공개키와 함께 수신 VASP로 전달됩니다.
+* **검증 요청 내 개인 정보 복호화 및 결과 내 개인 정보 암호화(Beneficiary VASP)**
+  * 검증 요청을 받은 수신 VASP Enclave는 암호화에 사용된 공개키와 쌍인 비밀키를 조회하여 복호화를 수행합니다.
+  * 개인정보 원문(Plaintext) 중 필요한 정보를 Enclave 데이터베이스에 저장하고, 백엔드로 전달하여 검증을 수행합니다.
+  * 검증 결과에 포함되는 개인 정보를 송신 VASP의 공개키로 암호화합니다.
+* **검증 결과 내 개인 정보 복호화 (Ordering VASP)**
+  * 송신 VASP Encalve는 검증 결과를 수신한 뒤, 암호화된 개인 정보 필드를 자신의 비밀키로 복호화합니다.
+  * 개인정보 원문에 대해 필요한 정보를 Enclave 데이터베이스에 저정하고, 검증 결과를 송신 VASP 백엔드로 전달합니다.
 
 <br />
-
-#### 개인정보 암호화 (Ordering VASP)
-
-* 송신 VASP Enclave는 전달받은 공개키로 개인 정보 필드를 암호화합니다.
-* 송신 VASP Encalve는 암호화된 데이터와 자신의 공개키를 포함한 검증 요청을. 중앙 서버를 통해 수신 VASP의 Enclave 서버로 전송합니다.
-
-#### 개인정보 복호화 및 검증(Beneficiary VASP)
-
-* 수신 VASP Enclave가 개인키로 데이터를 복호화한 뒤 검증합니다.
-* 이후, 송신 VASP의 공개키로 필요한 개인정보를 암호화합니다.
-* 암호화된 검증 결과 응답은 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.
-
-####
-
-<br />
-
-<br />
-
-1. **검증 요청 시작**
-   * 송신 VASP에서 Enclave API를 통해 수신인 검증을 요청합니다.
-2. **공개키 요청**
-   * 송신 VASP의 Enclave 서버에서 VerifyVASP Central Server 를 통해 수신 VASP의 공개키를 요청합니다.
-3. **공개키 제공**
-   * 수신 VASP의 Enclave 서버는 공개키를 자체 데이터베이스에서 조회하고, 해당 키가 없을 경우 새로운 공개키를 생성하여 저장한 뒤 이를 송신 VASP에 전달합니다.
-4. **개인정보 암호화**
-   * 공개키 수신 후, 송신 VASP의 Enclave 서버는 사용자의 개인정보를 암호화합니다.
-   * 암호화된 데이터는 VerifyVASP 중앙 서버를 통해 수신 VASP의 Enclave 로 전달됩니다.
-5. **수취 VASP의 복호화 및 검증**
-   * 수신 VASP의 Enclave 는 자신의 개인키를 이용해 전달 받은 데이터를 복호화하고, 수신인 정보를 검증합니다. 그 후, 수신인의 정보를 송신 VASP의 공개키로 다시 암호화하여 검증 결과와 함께 응답을 생성합니다.
-6. **암호화된 데이터 반환**
-   * 수신 VASP는 암호화된 수신인 개인정보와 검증 결과를 VerifyVASP Central Server 를 통해 송신 VASP의 Enclave 로 전송합니다.
-7. **최종 복호화 및 저장**
-   * 송신 VASP의 Enclave 는 자신의 개인키를 사용해 해당 데이터를 복호화하며, 복호화된 수신인 정보는 Enclave 전용 데이터베이스에 안전하게 저장됩니다.
-   * 이러한 절차를 통해 VASP 간의 민감한 개인정보가 제3자 노출 없이 안전하게 교환될 수 있으며, 데이터 무결성과 프라이버시가 효과적으로 보장됩니다.
 
 ### 키 관리 (Key Management)
 
