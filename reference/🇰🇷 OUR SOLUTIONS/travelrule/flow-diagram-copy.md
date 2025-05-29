@@ -375,9 +375,9 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 
 ## Screening (Optional)
 
-리스크 기반 자산 이동 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 이러한 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 평가를 가능하게 하며, 대표적으로 Chainalysis Sanction API, Chainalysis KYT API, Refinitiv World-Check One(WCO) API와 같은 외부 API를 활용할 수 있습니다.
+리스크 기반 자산 이동 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 스크리닝 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 점수를 제공하여 이를 위험도 평가 기준으로 활용 가능합니다. 대표적인 3rd Party API로는 Chainalysis의 Sanction API, Chainalysis의 KYT API, Refinitiv의 World-Check One(WCO) API가 있습니다.
 
-각 API는 리스크 평가의 대상과 목적이 다르므로, VASP는 자사 컴플라이언스 및 운영 요건에 따라 적합한 서비스를 선택하여 연동할 수 있습니다. VerifyVASP Enclave는 검증 UUID를 기반으로 외부 리스크 평가 요청을 수행할 수 있는 인터페이스를 제공하여, 이미 검증을 완료한 트랜잭션에 대한 추가 리스크 평가를 간소화하고 데이터 이중 관리를 방지합니다.
+각 API는 리스크 평가의 대상과 목적이 다르므로, VASP는 자사 컴플라이언스 및 운영 요건에 따라 적합한 서비스를 선택하여 연동할 수 있습니다. VerifyVASP Enclave는 검증 UUID를 기반으로 외부 리스크 평가 API를 요청하기 위한 인터페이스를 제공하여 검증 완료 트랜잭션에 대한 추가 리스크 평가를 간소화하고 데이터 이중 관리를 방지합니다.
 
 For detailed instructions on using each API, refer to the [enclave screening API documentation](ref:travelrule-Chainalysis-Sanction) .
 
