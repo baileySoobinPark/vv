@@ -458,33 +458,33 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 
   <div class="sub-section-title">수신 VASP 측 리스크 평가</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">1</div><div class="step-content">수신 VASP는 Enclave API를 통해 Originator 주소에 대한 Sanction API 기반 리스크 평가를 요청할 수 있습니다. 요청에는 Verification UUID가 포함되어야 합니다.</div></li>
-    <li class="step-item"><div class="step-badge">2</div><div class="step-content">Enclave는 requestId 및 Chainalysis API 요청 바디를 생성합니다.</div></li>
-    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료하고, 결과를 수신하여 안전하게 저장합니다.</div></li>
-    <li class="step-item"><div class="step-badge">4</div><div class="step-content">Enclave는 결과를 수신 VASP의 비즈니스 서버로 전달합니다.</div></li>
+    <li class="step-item"><div class="step-badge">1</div><div class="step-content">수신 VASP는 Enclave API를 호출하여 송신자 주소에 대한 Sanction API 기반 리스크 평가를 요청할 수 있습니다. 요청에는 Verification UUID가 포함되어야 합니다.</div></li>
+    <li class="step-item"><div class="step-badge">2</div><div class="step-content">Enclave는 requestId 및 Chainalysis API 요청 본문(Body)을 생성합니다.</div></li>
+    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료한 뒤 결과를 수신하여 안전하게 저장합니다.</div></li>
+    <li class="step-item"><div class="step-badge">4</div><div class="step-content">Enclave가 결과를 VASP백엔드로 전달합니다.</div></li>
   </ol>
 
   <div class="info-note">
-    📘 참고: 이 API는 수신 VASP가 송신 VASP로부터 사용자 검증 요청을 수신한 이후 호출됩니다. Sanction API 결과에 따라 Originator 주소가 고위험으로 판단되면, 수신 VASP는 해당 사용자 검증 결과를 DENIED로 응답할 수 있습니다.
+    📘 참고: 이 API는 수신 VASP가 송신 VASP로부터 사용자 검증 요청을 수신한 이후 호출됩니다. Sanction API 결과에 따라 송신자 주소가 고위험으로 판단되면, 수신 VASP는 해당 사용자 검증 결과를 DENIED로 응답할 수 있습니다.
   </div>
 
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">5</div><div class="step-content">Enclave는 평가 결과를 Enclave 전용 데이터베이스의 <b>Sanction Results Table</b>에 저장합니다.</div></li>
+    <li class="step-item"><div class="step-badge">5</div><div class="step-content">Enclave는 평가 결과를 Enclave 데이터베이스의 <b>Sanction Results Table</b>에 저장합니다.</div></li>
   </ol>
 
   <div class="sub-section-title">송신 VASP 측 리스크 평가</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">6</div><div class="step-content">송신 VASP는 수신자 주소에 대해 동일한 방식의 선택적 리스크 평가를 수행할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">7</div><div class="step-content">평가 대상만 수신자 주소로 바뀌며, 전체 흐름은 수신 VASP와 동일하게 Enclave를 통해 진행됩니다.</div></li>
+    <li class="step-item"><div class="step-badge">6</div><div class="step-content">송신 VASP도 수신자 주소에 대해 동일한 방식으로 리스크 평가를 수행할 수 있습니다.</div></li>
+    <li class="step-item"><div class="step-badge">7</div><div class="step-content">평가 대상이 수신자 주소로 변경될 뿐 전체 흐름은 수신 VASP 측 시나리오와 동일한 Flow를 통해 진행됩니다.</div></li>
   </ol>
 
   <div class="info-note">
-    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 이때 반드시 Beneficiary VASP에게 ERROR REPORT를 전송하여 취소 사실을 알려야 합니다.
+    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 단, 자산 출금 취소시 반드시 수신 VASP에게 ERROR REPORT를 전송하여 취소 사실을 알려야 합니다.
   </div>
 
   <div class="sub-section-title">트랜잭션 실행</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">11</div><div class="step-content">Sanction 결과에 따라 고위험이 아닌 것으로 판단되면, 송신 VASP는 Best Practice 흐름에 따라 트랜잭션을 실행합니다.</div></li>
+    <li class="step-item"><div class="step-badge">11</div><div class="step-content">Sanction 결과에 따라 각 계정이 고위험 계정으로 판단되지 않는 경우 송신 VASP는 Best Practice와 같이 블록체인 트랜잭션을 실행 단계로 진입할 수 있습니다.</div></li>
     <li class="step-item"><div class="step-badge">12</div><div class="step-content">블록체인 상에서 자산 전송을 완료한 후, 송신 VASP는 <b>Report Transaction Result API</b>를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div></li>
   </ol>
 </div>
