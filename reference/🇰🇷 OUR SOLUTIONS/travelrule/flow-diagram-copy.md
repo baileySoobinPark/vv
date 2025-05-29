@@ -87,7 +87,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
       <div class="step-content">Enclave는 목록을 수신한 후 VASP 백엔드로 전달합니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">6</div>~<div class="step-badge">7</div>
+      <div class="step-badge">6</div><div class="step-badge">7</div>
       <div class="step-content">사용자에게 수신 VASP 목록이 표시됩니다.</div>
     </li>
     <li class="step-item">
