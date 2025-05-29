@@ -66,7 +66,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
   box-shadow: 0 2px 6px rgba(0, 123, 255, 0.15);
   display: flex;
   flex-direction: column;
-  height: 280px;
+  height: 290px;
 }
 
 .step-title {
