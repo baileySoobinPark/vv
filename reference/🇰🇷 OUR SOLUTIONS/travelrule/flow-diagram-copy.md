@@ -140,12 +140,8 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
       <div class="step-content">수신 VASP는 생성된 공개키를 중앙 서버를 통해 송신 VASP로 전달합니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">15</div>
-      <div class="step-content">송신 VASP Enclave는 공개키를 수신합니다.</div>
-    </li>
-    <li class="step-item">
-      <div class="step-badge">16</div>
-      <div class="step-content">필요한 경우, Enclave는 키를 지정된 키 유형에 따라 캐시에 저장합니다.</div>
+      <div class="step-badge">15</div><div class="step-badge">16</div>
+      <div class="step-content">송신 VASP Enclave는 공개키를 수신한 뒤 키 유형에 따라 캐싱합니다.</div>
     </li>
 
     <!-- 검증 요청 -->
@@ -200,6 +196,130 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
     <li class="step-item">
       <div class="step-badge">28</div>
       <div class="step-content">검증 결과가 <code>DENIED</code>인 경우 사용자는 안내를 받고 절차가 종료되며, <code>VERIFIED</code>인 경우 사용자 검증 단계로 진행됩니다.</div>
+    </li>
+  </ol>
+</div>
+<div class="scenario-section">
+  <div class="scenario-title">3. 사용자 검증 (User Verification)</div>
+  <ol class="step-list">
+
+    <!-- 정보 암호화 및 요청 -->
+    <div class="subsection-title">정보 암호화 및 요청</div>
+    <li class="step-item">
+      <div class="step-badge">29</div>
+      <div class="step-content">계정이 검증되면, 송신 VASP는 사용자 검증 API 절차를 시작합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">30</div>
+      <div class="step-content">Enclave는 수신 VASP의 공개키를 사용하여 민감한 사용자 정보를 암호화합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">31</div>
+      <div class="step-content">암호화된 요청은 중앙 서버로 전송됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">32</div>
+      <div class="step-content">중앙 서버는 요청을 큐에 등록하고 고유한 검증 UUID를 할당합니다. 이는 수신 VASP의 지연 가능성을 고려한 비동기 처리를 위한 것입니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">33</div>
+      <div class="step-content">중앙 서버는 UUID를 송신 VASP Enclave에 반환합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">34</div>
+      <div class="step-content">Enclave는 UUID를 자체 데이터베이스에 저장합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">35</div>
+      <div class="step-content">송신 VASP는 UUID를 통해 검증 상태를 추적합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">36</div>
+      <div class="step-content">동시에 중앙 서버는 검증 요청을 수신 VASP로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">37</div>
+      <div class="step-content">수신 VASP Enclave는 개인키로 요청을 복호화합니다.</div>
+    </li>
+
+    <!-- 검증 처리 -->
+    <div class="subsection-title">검증 처리</div>
+    <li class="step-item">
+      <div class="step-badge">38</div>
+      <div class="step-content">수신 VASP Enclave는 <code>Verify User API</code>를 호출하여 사용자 정보를 검증합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">39</div>
+      <div class="step-content">수신 VASP는 사용자를 검증합니다. 이 과정에는 컴플라이언스 또는 리스크 스크리닝 등 선택적 절차가 포함될 수 있습니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">40</div>
+      <div class="step-content">검증이 완료되면 결과와 추가 정보 또는 오류 메시지를 반환합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">41</div>
+      <div class="step-content">Enclave는 UUID와 연관된 기록을 갱신하고, 송신 VASP의 공개키로 결과를 암호화합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">42</div>
+      <div class="step-content">검증 결과는 중앙 서버로 전송됩니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">43</div>
+      <div class="step-content">중앙 서버는 송신 VASP에 결과를 비동기로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">44</div>
+      <div class="step-content">송신 VASP Enclave는 결과를 복호화하여 데이터베이스에 저장합니다.</div>
+    </li>
+
+    <!-- 콜백 및 추가 확인 -->
+    <div class="subsection-title">콜백 및 추가 확인</div>
+    <li class="step-item">
+      <div class="step-badge">45</div>
+      <div class="step-content">송신 VASP Enclave는 Callback API를 호출하여 검증 결과와 추가 정보를 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">46</div>
+      <div class="step-content">송신 VASP는 해당 정보를 바탕으로 추가적인 확인 절차(선택적 스크리닝 등)를 수행할 수 있습니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">47</div>
+      <div class="step-content">Callback API 수신 시, 송신 VASP는 항상 <code>200 OK</code> 응답을 반환하여 수신 완료를 명시해야 합니다.</div>
+    </li>
+
+    <!-- 취소 및 오류 처리 -->
+    <div class="subsection-title">취소 및 오류 처리</div>
+    <li class="step-item">
+      <div class="step-badge">48</div>
+      <div class="step-content">검증 결과가 <code>DENIED</code>이거나, 송신 VASP가 절차를 중단하기로 결정한 경우 사용자에게 안내 후 절차를 종료합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">49</div>
+      <div class="step-content">검증이 <code>VERIFIED</code>된 경우에도, 송신자가 중단을 원하거나 내부 오류 또는 고위험 사유로 인해 절차를 종료할 수 있습니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">50</div>
+      <div class="step-content">송신 VASP는 이 사실을 수신 VASP에 통보해야 합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">51</div>
+      <div class="step-content">송신 VASP Enclave는 오류 보고서를 중앙 서버로 전송합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">52</div>
+      <div class="step-content">중앙 서버는 해당 보고를 수신 VASP Enclave로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">53</div>
+      <div class="step-content">Enclave는 Callback API를 호출하여 수신 VASP에 검증 실패를 통지합니다.</div>
+    </li>
+
+    <!-- 프로세스 완료 -->
+    <div class="subsection-title">프로세스 완료</div>
+    <li class="step-item">
+      <div class="step-badge">54</div>
+      <div class="step-content">모든 검증이 성공하면 송신 VASP는 사용자에게 통보하고 트랜잭션 실행 단계로 넘어갑니다.</div>
     </li>
   </ol>
 </div>
