@@ -10,26 +10,21 @@ metadata:
 ---
 ## TravelRule Best Practice
 
-Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 보여줍니다. TravelRule 프로토콜은 아래 4개 Phase 로 구성됩니다. Sequence Diagram 1은 각 단계를 점선 박스로 구분하여 표시합니다.
-
-1. 수신 VASP 선택 (Beneficiary VASP Selection)
-2. 수신자 계정 검증 (Beneficiary Account Verification)
-3. 수신자 검증 (Beneficiary Verification)
-4. 트랜잭션 실행 (Withdrawal Transaction Execution)
+Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 보여줍니다. TravelRule 프로토콜은 다음 4개의 기본 단계로 진행됩니다: (1)수신 VASP 선택 (2)수신자 계정 검증 (3)수신자 검증 (4)트랜잭션 실행. Sequence Diagram 1은 각 단계를 점선 박스로 구분하여 표시합니다.
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
 <br />
 
-### 1. 수신 VASP 선택 (Ordering VASP)
+### 1. 수신 VASP 선택
 
-1. 사용자(송신자)가 송신 VASP에서 수신자 계정으로의 출금을 요청합니다.
+1. 사용자(송신자)가 송신 VASP에 출금을 요청합니다.
 2. 송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해  Enclave의 `Get VASP list` API를 호출합니다.
 3. 송신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.
 4. 중앙 서버는 사용 가능한 수신 VASP 목록을 반환합니다.
 5. Enclave는 목록을 수신한 후 VASP 백엔드로 전달합니다.
-6. 송신 VASP는 수신 VASP 목록을 사용자에게 보여줍니다.
-7. 사용자는 원하는 수신 VASP를 선택합니다.
+
+6\~7. 송신자는 수신 VASP 목록으로부터 출금하고자 하는 대상 수신 VASP를 선택합니다.
 
 <br />
 
