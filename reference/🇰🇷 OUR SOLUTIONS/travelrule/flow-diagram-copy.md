@@ -21,15 +21,15 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice를 
 
 <br />
 
-### 1. Beneficiary VASP Selection
+### 1. 수신 VASP 선택 (Ordering VASP)
 
-1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
-2. The ordering VASP displays a screen showing a list of available beneficiary VASPs that the originator can withdraw to. This list is retrieved by calling the Get VASP List API through the Enclave.
-3. The ordering VASP Enclave requests a list of VASPs from the Central Server.
-4. The Central Server returns the list to the Enclave.
-5. The Enclave passes the list to the VASP.
-6. The ordering VASP displays the list to the user.
-7. The user selects the beneficiary VASP.
+1. 사용자(송신자)가 송신 VASP에서 수신자 계정으로의 출금을 요청합니다.
+2. 송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해  Enclave의 `Get VASP list` API를 호출합니다.
+3. 송신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.
+4. 중앙 서버는 사용 가능한 수신 VASP 목록을 반환합니다.
+5. Enclave는 목록을 수신한 후 VASP 백엔드로 전달합니다.
+6. 송신 VASP는 수신 VASP 목록을 사용자에게 보여줍니다.
+7. 사용자는 원하는 수신 VASP를 선택합니다.
 
 <br />
 
