@@ -72,7 +72,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 }
 
 .step-title {
-  background-color: #007bff;
+  background-color: #1364FF;
   color: #ffffff;
   padding: 12px;
   font-weight: bold;
