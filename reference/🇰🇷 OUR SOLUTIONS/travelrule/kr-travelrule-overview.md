@@ -249,12 +249,18 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
     padding-left: 0;
   }
 
+  .step-item > strong {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   .step-subitem {
     list-style-type: disc;
     margin-left: 10px;
     margin-bottom: 8px;
     font-size: 14px;
   }
+
 </style>
 
 <div class="scenario-section">
@@ -306,7 +312,7 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
       <strong>검증 결과 내 개인 정보 복호화 (Ordering VASP)</strong>
       <ul class="step-sublist">
         <li class="step-subitem">송신 VASP Encalve는 검증 결과를 수신한 뒤, 암호화된 개인 정보 필드를 자신의 비밀키로 복호화합니다.</li>
-        <li class="step-subitem">* * 개인정보 원문에 대해 필요한 정보를 Enclave 데이터베이스에 저장하고, 검증 결과를 송신 VASP 백엔드로 전달합니다.</li>
+        <li class="step-subitem">개인정보 원문에 대해 필요한 정보를 Enclave 데이터베이스에 저장하고, 검증 결과를 송신 VASP 백엔드로 전달합니다.</li>
        
       </ul>
     </li>
