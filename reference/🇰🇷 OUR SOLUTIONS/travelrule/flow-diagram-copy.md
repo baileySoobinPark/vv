@@ -498,11 +498,11 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Chainalysis KYT API integration flow for risk assessment" src="https://files.readme.io/2ac080e6cc5469ea7f1d6769eceb099cb13cb44aaed4b95becc9f69d38e42b2c-tr_solution_3.avif" />
 
-Sequence Diagram 3 illustrates how both the Originating VASP and Beneficiary VASP can integrate with the Chainalysis KYT API for risk assessment. The KYT API supports risk assessment for both addresses and transactions.
+Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연동하여 위험도 평가를 수행하는 절차를 보여줍니다. KYT API는 특정 주소 또는 트랜잭션을 대상으로 한 위험도 평가를 지원합니다.
 
-The Originating VASP can call the KYT API to assess the risk of a beneficiary address before submitting a transaction. After creating a transaction, the Originating VASP can submit the transaction identifier to evaluate the risk associated with the transaction itself. Similarly, the Beneficiary VASP can perform transaction risk assessment by calling the KYT API after receiving a transaction result report or detecting a deposit transaction.
+송신 VASP는 트랜잭션 실행에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 트랜잭션을 실행한 후에는 해당 트랜잭션 식별자를 제출하여 트랜잭션 자체의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다.
 
-The detailed steps of this process are outlined below.
+이 프로세스의 세부 단계는 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
