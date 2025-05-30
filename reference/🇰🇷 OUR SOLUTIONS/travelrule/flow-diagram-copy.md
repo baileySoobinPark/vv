@@ -502,7 +502,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
 송신 VASP는 트랜잭션 실행에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 트랜잭션을 실행한 후에는 해당 트랜잭션 식별자를 제출하여 트랜잭션 자체의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다.
 
-이 프로세스의 세부 단계는 아래와 같습니다.
+자세한 흐름은 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
