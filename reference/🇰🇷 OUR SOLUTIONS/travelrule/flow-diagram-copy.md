@@ -628,18 +628,18 @@ Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VAS
 
   <div class="info-note">
     📘 <strong>참고:</strong><br>
-    WCO API가 수신자의 PII를 고위험으로 식별한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 이 경우 송신 VASP는 오류 보고(ERROR REPORT)를 통해 수신 VASP에 취소 사실을 통지해야 합니다.
+    WCO API가 수신자의 PII를 고위험군으로 판단한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 전송 취소시 송신 VASP는 오류 보고(ERROR REPORT)를 통해 수신 VASP에 취소 사실을 반드시 통지해야 합니다.
   </div>
 
   <div class="sub-section-title">수신 VASP 측 위험도 평가 - 송신자 PII</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">8</div>
-      <div class="step-content">수신 VASP도 송신자의 PII를 대상으로 WCO API를 활용한 위험도 평가를 수행할 수 있습니다.</div>
+      <div class="step-content">수신 VASP도 송신자의 PII를 대상으로 WCO API 기반 위험도 평가를 수행할 수 있습니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">9</div>
-      <div class="step-content">해당 요청은 수신 VASP가 사용자 검증 요청을 수신한 이후에 이루어지므로, 사용자 검증 결과를 반환하기 전에 완료되어야 합니다.</div>
+      <div class="step-badge">9</div> ~<div class="step-badge">14</div>
+      <div class="step-content">위험도 평가는 수신 VASP가 사용자 검증 요청을 수신한 이후, 사용자 검증 결과를 반환하기 이전에 수행되어야 합니다.</div>
     </li>
   </ol>
 
