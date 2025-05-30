@@ -281,7 +281,7 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
       </ul>
     </li>
     <li class="step-item">
-      <strong>공개 키 전달 및 서명 검증</strong>
+      <strong>공개 키 전달 및 서명 검증 (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
         <li class="step-subitem">송신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.</li>
         <li class="step-subitem">송신 VASP Enclave는 검증 요청을 서명한 뒤 중앙 서버를 통해 수신 VASP로 전달합니다.</li>
