@@ -1,6 +1,6 @@
 ---
 title: To-Be Architecture
-excerpt: '이 페이지는 TravelRule 연동을 위한 귀사 VASP의 To-Be Architecture와 구현 범위를 안내합니다. '
+excerpt: '이 페이지는 TravelRule 연동을 위한 귀사 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다. '
 deprecated: false
 hidden: false
 metadata:
@@ -8,17 +8,22 @@ metadata:
 ---
 <Image align="center" border={false} caption="Diagram 1. Future-State VASP: Implementation Scope" src="https://files.readme.io/50e08e8212d7e0a2aaf3ca0ec924c3311a70710be8ef6e0273ea8d700c2d6b52-tr_to_be_arct_1.png" width="400px" />
 
+Diagram 1은 TravelRule 연동을 완료한 VASP 백엔드의 To-Be Architecture 입니다. TravelRule 연동은 `VASP Business Logic`으로 표시된 부분 외 영역의 점선으로 표시된 영역에 대한 프로세스 통합 및 구현을 필수로 요구합니다.
+
 <br />
 
-**출금 프로세스 내 검증 실행**
+### 출금 검증 프로세스 통합
 
-To function as an Originating VASP, your system must first integrate account and user verification processes into the existing withdrawal workflow. This implementation ensures compliance with best practices outlined in the **Scenarios and Flows** page. Refer to the **Enclave API Reference** for detailed requirements and guidance.
+Travel Rule을 준수하는 송신 VASP로 작동하기 위해, 모든 VASP는 수신 계정 및 수신자 신원 검증 시나리오를 출금 프로세스에 반드시 통합해야 합니다. [Scenarios and Flows](ref:flow-diagram-copy) 섹션에 정의된 Best Practice의 Workflow와 같이 동작함을 보장함으로써 규제 요건을 충족하고 VASP의 역량을 강화할 수 있습니다.
 
-Travel Rule을 준수하는 송신 VASP로 작동하기 위해, 모든 VASP는 수신 계정 및 수신자 신원 검증 시나리오를 출금 프로세스에 반드시 통합해야 합니다.
+<br />
 
-이 구현은 시나리오 및 플로우 페이지에서 제시한 Best Practice를 준수하기 위함입니다. 세부 연동 요건은 Enclave API Reference를 참조하시기 바랍니다.
+### 필수 API 구현 (Implementing Required APIs)
 
-**Implementing New APIs**
+TravelRule 연동 비즈니스 로직을 수행하기 위한 5개의 Backend
+
+TravelRule 연동을 위해 총 5개 신규 API 구현이 요구됩니다. 해당 API 목록은 Diagram 1에 요약되어 있으며, 검증 및 보고 로직 수행에 필수적입니다.\
+자세한 사양은 Implementing VASP APIs 섹션을 참조하세요.
 
 In addition to enhancing existing workflows, your VASP must implement five new APIs to enable TravelRule integration. The dashed box in Diagram 1 outlines the scope of these API implementations, which are essential for executing compliance logic. For detailed specifications, refer to the **Implementing VASP APIs** section in the integration guide.
 
