@@ -504,6 +504,90 @@ The Originating VASP can call the KYT API to assess the risk of a beneficiary ad
 
 The detailed steps of this process are outlined below.
 
+<HTMLBlock>{`
+<div class="scenario-section">
+  <div class="scenario-title">KYT API 기반 리스크 평가 흐름</div>
+
+  <div class="sub-section-title">수신자 주소에 대한 위험도 평가(By 송신 VASP)</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">1</div>
+      <div class="step-content">송신 VASP는 사용자 검증 요청을 보낸 이후, Enclave API를 호출하여 수신자 주소에 대한 위험도 평가를 요청합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">2</div>
+      <div class="step-content">Enclave는 Chainalysis의 KYT API 호출 시 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">3</div>
+      <div class="step-content">Enclave가 Chainalysis 서버에 평가 요청을 전송합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">4</div>
+      <div class="step-content">Chainalysis 서비스로부터 수신자 주소에 대한 위험도 평가 결과를 조회합니다. 다이어그램에서서는 평가 요청에 대한 동기 응답으로 표현되어 있으나, 실제로는 Enclave의 결과 조회 API 호출을 통한 비동기 조회 방식으로 동작합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">5</div>
+      <div class="step-content">Enclave가 조회한 평가 결과를 데이터베이스에 저장합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">6</div>
+      <div class="step-content">Enclave는 VASP의 Callback API를 호출하여 위험도 평가 결과를 전달합니다.</div>
+    </li>
+  </ol>
+
+  <div class="info-note">
+    📘 <strong>참고:</strong><br>
+    KYT API 결과로 수신자 주소가 고위험(high-risk)으로 판단될 경우, Originating VASP는 자산 이전을 취소할 수 있습니다. 이 경우, 반드시 Beneficiary VASP에 ERROR REPORT를 전송하여 취소 사실을 통보해야 합니다.
+  </div>
+
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">7</div> ~ <div class="step-badge">14</div>
+      <div class="step-content"> 수신 주소가 리스크가 낮다고 판단된 경우, 송신 VASP는 Best Practice Flow와 같이 자산 이전 및 결과 보고 절차를 재개합니다.</div>
+    </li>
+  </ol>
+
+  <div class="sub-section-title">트랜잭션에 대한 위험도 평가(By 송신 VASP)</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">15</div>
+      <div class="step-content">자산 이전 후 트랜잭션 해시가 확보되면, 송신 VASP는 Enclave API를 호출하여 해당 트랜잭션에 대한 위험도 평가를 요청할 수 있습니다.<br>※ 호출 전 반드시 Report Transaction Result API가 선행되어야 합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">16</div>
+      <div class="step-content">Enclave는 Chainalysis API 요청에 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">17</div>
+      <div class="step-content">Enclave가 Chainalysis 트랜잭션 위험도 평가 API 요청을 전송합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">18</div>
+      <div class="step-content">Chainalysis 서버는 트랜잭션에 대한 평가 결과를 반환합니다. 주소 위험도 평가와 마찬가지로, 다이어그램에는 동기 응답으로 표현되어 있으나 실제로는 Enclave의 결과 조회 API 호출을 통한 비동기 방식으로 결과를 확인합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">19</div>
+      <div class="step-content">Enclave가 조회환 결과를 데이터베이스에 저장합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">20</div>
+      <div class="step-content">Enclave는 VASP의 Callback API를 호출하여 평가 결과를 전달하고, 리스크 평가 절차를 종료합니다.</div>
+    </li>
+  </ol>
+
+  <div class="sub-section-title">입금 트랜잭션에 대한 위험도 평가(By 수신 VASP)</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">21</div> ~<div class="step-badge">28</div>
+      <div class="step-content">수신 VASP 측에서도 트랜잭션 Report를 수신하거나 온체인 입금을 감지한 후 해당 트랜잭션에 대한 위험도 평가를 수행할 수 있습니다. Flow는 송신 VASP측 트랜잭션 위험도 평가와 동일합니다. 트랜잭션 위험도 평가를 통해 자산 이전 과정의 보안성과 규제 대응 능력을 향상시킬 수 있습니다.</div>
+    </li>
+  </ol>
+</div>
+`}</HTMLBlock>
+
+<br />
+
 **Risk assessment on Beneficiary address by Originating VASP**
 
 1. After requesting user verification from the Beneficiary VASP, the Originating VASP can initiate a risk assessment for the beneficiary address using the KYT API provided by the Enclave.
