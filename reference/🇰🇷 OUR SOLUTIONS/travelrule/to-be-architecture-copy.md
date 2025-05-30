@@ -6,9 +6,11 @@ hidden: false
 metadata:
   robots: index
 ---
-<Image align="center" border={false} caption="Diagram 1. Future-State VASP: Implementation Scope" src="https://files.readme.io/50e08e8212d7e0a2aaf3ca0ec924c3311a70710be8ef6e0273ea8d700c2d6b52-tr_to_be_arct_1.png" width="400px" />
+## VASP Backend To-Be Architecture
 
-Diagram 1은 TravelRule 연동을 완료한 VASP 백엔드의 To-Be Architecture 입니다. TravelRule 연동은 `VASP Business Logic`으로 표시된 부분 외 영역의 점선으로 표시된 영역에 대한 프로세스 통합 및 구현을 필수로 요구합니다.
+Diagram 1은 TravelRule 연동이 완료된 VASP 백엔드의 To-Be Architecture입니다. TravelRule 연동을 위해 VASP Business Logic 외부의 점선으로 구분된 영역에 표기된 관련 프로세스를 통합하고 필요한 기능을 구현해야 합니다. 세부 내용은 아래와 같습니다.
+
+<Image align="center" border={false} caption="Diagram 1. Future-State VASP: Implementation Scope" src="https://files.readme.io/50e08e8212d7e0a2aaf3ca0ec924c3311a70710be8ef6e0273ea8d700c2d6b52-tr_to_be_arct_1.png" width="400px" />
 
 <br />
 
@@ -20,7 +22,9 @@ Travel Rule을 준수하는 송신 VASP로 작동하기 위해, 모든 VASP는 �
 
 ### 필수 API 구현 (Implementing Required APIs)
 
-VASP는 TravelRule 연동을 위해 Diagram 1에 표기된 4개의 필수 API와 Database 관리를 위한 1개 추가 API를 백엔드 내부에 구현해야 합니다. 이들 API는 검증 및 Report 프로세스를 처리하기 위한 필수 요구사항으로서 반드시 구현되어 Enclave로부터 호출 될 수 있어야 합니다. 각 API에 대한 자세한 사양은 아래 API 문서 링크를 참고하세요.
+VASP는 TravelRule 연동을 위해 Diagram 1에 표기된 4개의 핵심 API와 데이터베이스 관리를 위한 1개의 보조 API를 백엔드에 구현해야 합니다. 이들 API는 검증 및 Report 절차를 수행하는 데 필수적이며, Enclave가 해당 API를 호출할 수 있도록 제공되어야 합니다.
+
+각 API의 세부 사양은 아래 VASP API 문서 목록에서 확인할 수 있습니다.
 
 * [Verify User Account API](ref:travelrule-user-account-verification)
 * [Verify User API](ref:travelrule-user-verification)
@@ -28,16 +32,15 @@ VASP는 TravelRule 연동을 위해 Diagram 1에 표기된 4개의 필수 API와
 * [Callback API](ref:travelrule-callback-api)
 * [Database Setup](ref:travelrule-database-setup)
 
-TravelRule 연동을 위해 총 5개 신규 API 구현이 요구됩니다. 해당 API 목록은 Diagram 1에 요약되어 있으며, 검증 및 보고 로직 수행에 필수적입니다.\
-자세한 사양은 Implementing VASP APIs 섹션을 참조하세요.
+<br />
 
-In addition to enhancing existing workflows, your VASP must implement five new APIs to enable TravelRule integration. The dashed box in Diagram 1 outlines the scope of these API implementations, which are essential for executing compliance logic. For detailed specifications, refer to the **Implementing VASP APIs** section in the integration guide.
+## 전체 시스템 To-Be Architecture
 
 <Image align="center" border={false} caption="Diagram 2. Future-State VASP: Final Architecture" src="https://files.readme.io/00c107710ed90f7bd0430933f94e66c07db48f94e255b7db41651086fcda0413-tr_to_be_arct_2.webp" />
 
-Diagram 2 illustrates the Final Architecture of Future-State of VASP with interaction within the entire system. The Enclave Server, installed alongside the VASP Business Backend within the same infrastructure, interacts with the VASP Business Backend through API calls. It also manages Travel Rule records and related data in a dedicated Enclave Database.
+Diagram 2는 VASP의 최종 시스템 아키텍처입니다. VASP는 Enclave 서버는 VASP 백엔드와 동일한 인프라 내에 **Enclave 서버를 설치**하고 VASP 백엔드와 TravelRule 프로세스 수행에 필요한 **API 호출을 주고 받도록 연동**해야 합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
 
-* **Grey arrows** represent the interactions required when acting as an Originating VASP.
-* **Green arrows** represent the interactions necessary when functioning as a Beneficiary VASP.
+* **회색 화살표**는 Ordering VASP로 동작할 때의 연동 흐름을 나타냅니다.
+* **녹색 화살표**는 Beneficiary VASP로 동작할 때의 연동 흐름을 나타냅니다.
 
 This diagram provides a comprehensive overview of your VASP’s TO-BE architecture. Use it as a reference to plan your development scope and align your implementation with the expected workflows.
