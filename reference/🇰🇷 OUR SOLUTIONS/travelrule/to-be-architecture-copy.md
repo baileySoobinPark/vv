@@ -20,7 +20,13 @@ Travel Rule을 준수하는 송신 VASP로 작동하기 위해, 모든 VASP는 �
 
 ### 필수 API 구현 (Implementing Required APIs)
 
-TravelRule 연동 비즈니스 로직을 수행하기 위한 5개의 Backend
+VASP는 TravelRule 연동을 위해 Diagram 1에 표기된 4개의 필수 API와 Database 관리를 위한 1개 추가 API를 백엔드 내부에 구현해야 합니다. 이들 API는 검증 및 Report 프로세스를 처리하기 위한 필수 요구사항으로서 반드시 구현되어 Enclave로부터 호출 될 수 있어야 합니다. 각 API에 대한 자세한 사양은 아래 API 문서 링크를 참고하세요.
+
+* [Verify User Account API](ref:travelrule-user-account-verification)
+* [Verify User API](ref:travelrule-user-verification)
+* [Check Transaction Status API](ref:travelrule-enclave-check-transaction-status)
+* [Callback API](ref:travelrule-callback-api)
+* [Database Setup](ref:travelrule-database-setup)
 
 TravelRule 연동을 위해 총 5개 신규 API 구현이 요구됩니다. 해당 API 목록은 Diagram 1에 요약되어 있으며, 검증 및 보고 로직 수행에 필수적입니다.\
 자세한 사양은 Implementing VASP APIs 섹션을 참조하세요.
