@@ -256,7 +256,7 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
 
   .step-subitem {
     list-style-type: disc;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-bottom: 8px;
     font-size: 14px;
   }
