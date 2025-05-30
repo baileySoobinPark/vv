@@ -1,12 +1,6 @@
 ---
 title: To-Be Architecture
-excerpt: >-
-  This page outlines the implementation scope required for your VASP to
-  integrate with TravelRule protocols. This future-state design ensures your
-  VASP is well-prepared to handle regulatory requirements and seamlessly
-  integrate with TravelRule protocols. As shown in Diagram 1, the future-state
-  architecture of your VASP’s business backend incorporates enhancements to
-  support account and user verification processes seamlessly.
+excerpt: '이 페이지는 TravelRule 연동을 위한 귀사 VASP의 To-Be Architecture와 구현 범위를 안내합니다. '
 deprecated: false
 hidden: false
 metadata:
@@ -14,9 +8,15 @@ metadata:
 ---
 <Image align="center" border={false} caption="Diagram 1. Future-State VASP: Implementation Scope" src="https://files.readme.io/50e08e8212d7e0a2aaf3ca0ec924c3311a70710be8ef6e0273ea8d700c2d6b52-tr_to_be_arct_1.png" width="400px" />
 
-**Integrating Verification into Withdrawal Processes**
+<br />
+
+**출금 프로세스 내 검증 실행**
 
 To function as an Originating VASP, your system must first integrate account and user verification processes into the existing withdrawal workflow. This implementation ensures compliance with best practices outlined in the **Scenarios and Flows** page. Refer to the **Enclave API Reference** for detailed requirements and guidance.
+
+Travel Rule을 준수하는 송신 VASP로 작동하기 위해, 모든 VASP는 수신 계정 및 수신자 신원 검증 시나리오를 출금 프로세스에 반드시 통합해야 합니다.
+
+이 구현은 시나리오 및 플로우 페이지에서 제시한 Best Practice를 준수하기 위함입니다. 세부 연동 요건은 Enclave API Reference를 참조하시기 바랍니다.
 
 **Implementing New APIs**
 
