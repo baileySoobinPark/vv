@@ -1,8 +1,8 @@
 ---
 title: Flow Diagram
 excerpt: >-
-  TravelRule 트랜잭션의 흐름과 API 호출 순서, Entity간 데이터 흐름을 포함한 Best Practice Flow와, 선택
-  수행할 수 있는 리스크 평가 Flow를 확인할 수 있습니다. 
+  TravelRule 트랜잭션의 흐름과 API 호출 순서, Entity간 데이터 흐름을 포함한 Best Practice Flow와, 3rd
+  Party 서비스를 이용한 리스크 평가 Flow를 확인할 수 있습니다. 
 deprecated: false
 hidden: false
 metadata:
