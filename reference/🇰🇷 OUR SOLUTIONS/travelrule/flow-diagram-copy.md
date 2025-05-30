@@ -454,7 +454,7 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Sanction API 기반 리스크 평가 흐름</div>
+  <div class="scenario-title">Sanction API 기반 리스크 평가</div>
 
   <div class="sub-section-title">수신 VASP 측 리스크 평가</div>
   <ol class="step-list">
@@ -506,9 +506,9 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
 <HTMLBlock>{`
 <div class="scenario-section">
-  <div class="scenario-title">KYT API 기반 리스크 평가 흐름</div>
+  <div class="scenario-title">KYT API 기반 리스크 평가</div>
 
-  <div class="sub-section-title">수신자 주소에 대한 위험도 평가(By 송신 VASP)</div>
+  <div class="sub-section-title">송신 VASP 측 리스크 평가 - 수신자 주소</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
@@ -548,7 +548,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
     </li>
   </ol>
 
-  <div class="sub-section-title">트랜잭션에 대한 위험도 평가(By 송신 VASP)</div>
+  <div class="sub-section-title">송신 VASP 측 리스크 평가 - 출금 트랜잭션</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">15</div>
@@ -576,7 +576,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
     </li>
   </ol>
 
-  <div class="sub-section-title">입금 트랜잭션에 대한 위험도 평가(By 수신 VASP)</div>
+  <div class="sub-section-title">입금 VASP 측 리스크 평가 - 입금 트랜잭션</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">21</div> ~<div class="step-badge">28</div>
@@ -593,6 +593,79 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 <Image align="center" border={false} caption="Sequence Diagram 3. Refinitiv WCO API integration flow for risk assessment" src="https://files.readme.io/e20fb9a58375cd5403148ec1a6ea7d4f462964c57fd23f3c576893f81391fe22-tr_solution_4.webp" />
 
 Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VASP can integrate with the Refinitiv WCO API to conduct risk assessments. The WCO API facilitates risk evaluation of individuals (e.g., originator and beneficiary) using their personal identifiable information (PII). The detailed process is outlined below:
+
+<HTMLBlock>{`
+<div class="scenario-section">
+  <div class="scenario-title">WCO API를 활용한 PII 기반 위험도 평가</div>
+
+  <div class="sub-section-title">송신 VASP 측 위험도 평가 - 수신자 PII</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">1</div>
+      <div class="step-content">송신 VASP 백엔드가 수신자의 PII에 대해 위험도 평가를 수행하기 위해 Enclave의 Refinitiv WCO API를 호출합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">2</div>
+      <div class="step-content">Enclave가 WCO API 요청에 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">3</div>
+      <div class="step-content">Enclave는 수신자의 PII를 포함한 위험도 평가 요청을 Refinitiv 서버에 전송합니다. 다이어그램에서는 단일 요청처럼 보이지만, 실제로는 여러 단계의 API 호출로 이루어진 비동기 방식으로 동작합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">4</div>
+      <div class="step-content">Refinitiv 서버가 수신자 PII의 위험도를 평가하고 결과를 반환합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">5</div>
+      <div class="step-content">Enclave는 위험도 평가 결과를 데이터베이스에 저장합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">6</div><div class="step-badge">7</div>
+      <div class="step-content">Enclave가 VASP 백엔드의 Callback API를 호출하여 결과를 전달합니다.</div>
+    </li>
+  </ol>
+
+  <div class="info-note">
+    📘 <strong>참고:</strong><br>
+    WCO API가 수신자의 PII를 고위험으로 식별한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 이 경우 송신 VASP는 오류 보고(ERROR REPORT)를 통해 수신 VASP에 취소 사실을 통지해야 합니다.
+  </div>
+
+  <div class="sub-section-title">수신 VASP 측 위험도 평가 - 송신자 PII</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">8</div>
+      <div class="step-content">수신 VASP도 송신자의 PII를 대상으로 WCO API를 활용한 위험도 평가를 수행할 수 있습니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">9</div>
+      <div class="step-content">해당 요청은 수신 VASP가 사용자 검증 요청을 수신한 이후에 이루어지므로, 사용자 검증 결과를 반환하기 전에 완료되어야 합니다.</div>
+    </li>
+  </ol>
+
+  <div class="sub-section-title">트랜잭션 실행</div>
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-badge">15</div>
+      <div class="step-content">WCO 결과에 따라 고위험으로 분류되지 않은 경우, 송신 VASP는 Best Practice 절차에 따라 자산 전송 프로세스를 계속 진행합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">16</div>
+      <div class="step-content">블록체인 상에서 실제 자산 전송을 실행합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">17</div>
+      <div class="step-content">송신 VASP는 트랜잭션 결과 보고 API를 호출하여 수신 VASP에 전송 결과를 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">18</div>
+      <div class="step-content">수신 VASP는 보고된 트랜잭션 해시를 수신하고 필요한 경우 추가 처리를 수행합니다.</div>
+    </li>
+  </ol>
+</div>
+`}</HTMLBlock>
+
+<br />
 
 **Risk assessment on Beneficiary PII by Originating VASP**
 
