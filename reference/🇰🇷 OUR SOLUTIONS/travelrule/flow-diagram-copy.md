@@ -647,19 +647,19 @@ Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VAS
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">15</div>
-      <div class="step-content">WCO 결과에 따라 고위험으로 분류되지 않은 경우, 송신 VASP는 Best Practice 절차에 따라 자산 전송 프로세스를 계속 진행합니다.</div>
+      <div class="step-content">WCO의 위험도 판단 결과 저위험군으로 분류된 경우, 송신 VASP는 Best Practice와 같이 자산 전송 프로세스를 재개합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">16</div>
-      <div class="step-content">블록체인 상에서 실제 자산 전송을 실행합니다.</div>
+      <div class="step-content">블록체인 상에서 실제 자산 전송 트랜잭션을 실행합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">17</div>
-      <div class="step-content">송신 VASP는 트랜잭션 결과 보고 API를 호출하여 수신 VASP에 전송 결과를 전달합니다.</div>
+      <div class="step-content">송신 VASP는 트랜잭션 결과 Report API를 호출하여 수신 VASP에 트랜잭션 결과를 전달합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">18</div>
-      <div class="step-content">수신 VASP는 보고된 트랜잭션 해시를 수신하고 필요한 경우 추가 처리를 수행합니다.</div>
+      <div class="step-content">수신 VASP는 보고된 트랜잭션 해시를 확인 후 VASP 정책에 따라 필요한 확인 절차들을 수행합니다.</div>
     </li>
   </ol>
 </div>
