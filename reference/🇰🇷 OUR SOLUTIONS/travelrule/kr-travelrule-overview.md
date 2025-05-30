@@ -434,17 +434,6 @@ TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행�
 
 <HTMLBlock>{`
 <style>
-  .step-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .step-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
 
   .step-badge {
     background-color: #000;
@@ -465,62 +454,68 @@ TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행�
     font-size: 14px;
     line-height: 1.6;
   }
+
+  .step-title {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
 </style>
 
 <ol class="step-list">
   <li class="step-item">
     <div class="step-badge">1</div>
     <div class="step-content">
-      <strong>주요 시나리오 및 흐름 검토</strong><br />
+      <div class="step-title">주요 시나리오 및 흐름 검토</div>
       구현에 앞서 <a href="ref:travelrule-flow-diagram">Best Practice</a> 를 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">2</div>
     <div class="step-content">
-      <strong>구현 범위 확인 및 계획 수립</strong><br />
+      <div class="step-title">구현 범위 확인 및 계획 수립</div>
       To-Be 아키텍처를 기반으로 실제 구현 범위를 확인하고 연동 계획을 수립합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">3</div>
     <div class="step-content">
-      <strong>VerifyVASP 온보딩</strong><br />
+      <div class="step-title">VerifyVASP 온보딩</div>
       VerifyVASP Alliance에 가입하고 인증 절차를 완료하여 연동에 필요한 자격 증명(Credential)을 발급받습니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">4</div>
     <div class="step-content">
-      <strong>VASP API 개발</strong><br />
+      <div class="step-title">VASP API 개발</div>
       검증을 처리하기 위한 VASP 자체 API를 구현하고, Enclave 서버가 해당 API를 호출할 수 있도록 연동합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">5</div>
     <div class="step-content">
-      <strong>Enclave 데이터베이스 구성</strong><br />
+      <div class="step-title">Enclave 데이터베이스 구성</div>
       Enclave 설치에 앞서, 검증 및 규제 대응 데이터를 안전하게 저장할 수 있는 전용 데이터베이스를 구축합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">6</div>
     <div class="step-content">
-      <strong>Enclave 설치</strong><br />
+      <div class="step-title">Enclave 설치</div>
       VASP 인프라 내에 Enclave 서버를 Docker 환경으로 설치하고, VASP 백엔드와 연결하여 VerifyVASP 중앙 서버와의 통신을 준비합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">7</div>
     <div class="step-content">
-      <strong>Robot VASP를 통한 TravelRule 시나리오 테스트</strong><br />
+      <div class="step-title">Robot VASP를 통한 TravelRule 시나리오 테스트</div>
       Robot VASP를 활용한 시나리오 기반 테스트를 통해 구현 결과를 검증하고 프로토콜 준수 여부를 확인합니다.
     </div>
   </li>
   <li class="step-item">
     <div class="step-badge">8</div>
     <div class="step-content">
-      <strong>지속적 유지관리 계획 수립</strong><br />
+      <div class="step-title">지속적 유지관리 계획 수립</div>
       규제 변경 및 TravelRule 업데이트에 대응할 수 있도록 유지관리 계획을 마련합니다.
     </div>
   </li>
