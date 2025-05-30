@@ -434,7 +434,17 @@ TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행�
 
 <HTMLBlock>{`
 <style>
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
   .step-badge {
     background-color: #000;
     color: #fff;
