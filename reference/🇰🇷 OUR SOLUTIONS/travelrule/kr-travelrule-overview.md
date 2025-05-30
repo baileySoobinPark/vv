@@ -218,40 +218,6 @@ TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
 
 모든 키 관리 절차(생성, 저장, 갱신)는 Enclave 내에서 자동화된 방식으로 처리되므로, 각 VASP는 키 관리 기능을 별도로 구현할 필요 없이 표준화된 방식으로 End-to-End 암호화를 적용한 안전한 통신을 수행할 수 있습니다. 프로토콜의 주요 수행 단계는 다음과 같습니다.
 
-<HTMLBlock>{`
-<style>
-  .scenario-section {
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 32px;
-    background-color: #fdfdfd;
-  }
-
-  .scenario-title {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-</style>
-
-<div class="scenario-section">
-  <div class="scenario-title">키 교환(Key Exchange)</div>
-  * **공개 키 요청 (Ordering VASP → Beneficiary VASP)**
-  * 데이터 암호화를 수행하기에 앞서, 송신 VASP의 Enclave는 저장된 수신 VASP의 공개키가 있는지 확인합니다.
-  * 사용 가능한 공개키가 없는 경우 송신 VASP Enclave는 중앙 서버를 통해 수신 VASP Enclave로 공개키를 요청합니다.
-* **키 쌍 생성 및 공개키 반환(Beneficiary VASP → Ordering VASP)**
-  * 수신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.
-  * 공개키가 VerifyVASP 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.
-* **공개 키 전달 (Ordering VASP → Beneficiary VASP)**
-  * 송신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.
-  * 송신 VASP Enclave는 검증 요청을 서명한 뒤 중앙 서버를 통해 수신 VASP로 전달합니다.
-  * 수신 VASP는 요청 데이터 서명에 포함된 송신 VASP의 공개키를 사용하여 서명을 검증하고 서명이 유효한 경우 해당 키를 Caching 정책에 따라 저장합니다.
-  </ol>
-</div>
-`}</HTMLBlock>
-
 <br />
 
 #### 키 교환(Key Exchange)
