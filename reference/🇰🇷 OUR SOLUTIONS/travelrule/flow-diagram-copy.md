@@ -588,35 +588,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
 <br />
 
-**Risk assessment on Beneficiary address by Originating VASP**
-
-1. After requesting user verification from the Beneficiary VASP, the Originating VASP can initiate a risk assessment for the beneficiary address using the KYT API provided by the Enclave.
-2. When the KYT API is called, the Enclave generates the required RequestId and RequestBody.
-3. The Enclave sends a request to the Chainalysis server. Although depicted as a single request in the diagram, this step involves separate API calls: (1) submitting the risk assessment request and (2) retrieving the results. As such, the Enclave API operates asynchronously, returning the results when they become available.
-4. The Chainalysis server evaluates the risk associated with the beneficiary address and responds with the results via the result retrieval API.
-5. The Enclave stores the results in its database.
-6. The Enclave calls the VASP’s Callback API to deliver the risk assessment results.
-
-> 📘 Note:
->
-> If the KYT API identifies the Beneficiary address as high-risk, the Originating VASP may choose to cancel the asset transfer. In such cases, the Originating VASP must notify the Beneficiary VASP of the cancellation or termination by sending an ERROR REPORT.
-
-7. (\~14) For transactions that are not deemed high-risk based on the KYT results, the Originating VASP continues with the asset transfer process as outlined in the Best Practice flow. This includes executing the transaction on the blockchain and reporting the results to the Beneficiary VASP.
-
-**Risk assessment on withdrawal transaction by Originating VASP**
-
-15. Once the asset transfer is completed and the transaction identifier becomes available, the Originating VASP can initiate a transaction risk assessment using the KYT API via the Enclave. Before this step, the transaction result report API must have been called to provide the transaction identifier to the Enclave.
-16. Upon receiving the request, the Enclave generates the required RequestId and RequestBody.
-17. The Enclave sends a transaction risk assessment request to the Chainalysis server. This step also involves multiple API calls, similar to the address risk assessment process.
-18. The Chainalysis server evaluates the transaction and returns the assessment results through the result retrieval API.
-19. The Enclave stores the results in the relevant database table.
-20. The Enclave calls the VASP’s Callback API to deliver the transaction risk assessment results, completing the process.
-
-**Risk assessment on deposit transaction by Beneficiary VASP**
-
-21. (\~28) This entire process can also be executed by the Beneficiary VASP after receiving a transaction report or detecting a withdrawal transaction. In such cases, the Beneficiary VASP follows the same steps to perform risk assessments for the detected transactions, enhancing the overall security and compliance of the asset transfer process.
-
-### 3) Refinitiv WCO API Integration
+### 3. Refinitiv WCO API Integration
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Refinitiv WCO API integration flow for risk assessment" src="https://files.readme.io/e20fb9a58375cd5403148ec1a6ea7d4f462964c57fd23f3c576893f81391fe22-tr_solution_4.webp" />
 
