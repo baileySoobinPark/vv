@@ -1,5 +1,5 @@
 ---
-title: To-Be Architecture (COPY)
+title: To-Be Architecture
 excerpt: >-
   This page outlines the implementation scope required for your VASP to
   integrate with TravelRule protocols. This future-state design ensures your
