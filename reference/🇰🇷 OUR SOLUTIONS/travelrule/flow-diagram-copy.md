@@ -385,7 +385,7 @@ For detailed instructions on using each API, refer to the [enclave screening API
 
 <Image align="center" border={false} caption="Sequence Diagram 2. Chainalysis Sanction API integration flow for risk assessment" src="https://files.readme.io/6c2f368995602e6a646743e3e28ee61a067a9aff95941a7315a9afebe1e87947-tr_solution_2.webp" />
 
-Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 트랜잭션 실행 전에 사전 스크리닝 용도로 활용하는 것을 권장합니다. 자세한 흐름은 아래와 같습니다.
+Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 트랜잭션 실행 전에 사전 스크리닝 용도로 활용하는 것을 권장합니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <style>
@@ -500,9 +500,7 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 
 Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연동하여 위험도 평가를 수행하는 절차를 보여줍니다. KYT API는 특정 주소 또는 트랜잭션을 대상으로 한 위험도 평가를 지원합니다.
 
-송신 VASP는 트랜잭션 실행에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 트랜잭션을 실행한 후에는 해당 트랜잭션 식별자를 제출하여 트랜잭션 자체의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다.
-
-자세한 흐름은 아래와 같습니다.
+송신 VASP는 트랜잭션 실행에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 트랜잭션을 실행한 후에는 해당 트랜잭션 식별자를 제출하여 트랜잭션 자체의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
@@ -543,7 +541,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
   <ol class="step-list">
     <li class="step-item">
-      <div class="step-badge">7</div> ~ <div class="step-badge">14</div>
+      <div class="step-badge">7</div>~ <div class="step-badge">14</div>
       <div class="step-content"> 수신 주소가 리스크가 낮다고 판단된 경우, 송신 VASP는 Best Practice Flow와 같이 자산 이전 및 결과 보고 절차를 재개합니다.</div>
     </li>
   </ol>
@@ -592,7 +590,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Refinitiv WCO API integration flow for risk assessment" src="https://files.readme.io/e20fb9a58375cd5403148ec1a6ea7d4f462964c57fd23f3c576893f81391fe22-tr_solution_4.webp" />
 
-Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VASP can integrate with the Refinitiv WCO API to conduct risk assessments. The WCO API facilitates risk evaluation of individuals (e.g., originator and beneficiary) using their personal identifiable information (PII). The detailed process is outlined below:
+Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 활용하여 위험도 평가를 수행하는 과정을 보여줍니다. WCO API는 개인 식별 정보(PII)를 기반으로 송신자 및 수신자와 같은 개인에 대한 위험도를 평가할 수 있도록 지원합니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
@@ -638,7 +636,7 @@ Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VAS
       <div class="step-content">수신 VASP도 송신자의 PII를 대상으로 WCO API 기반 위험도 평가를 수행할 수 있습니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">9</div> ~<div class="step-badge">14</div>
+      <div class="step-badge">9</div>~ <div class="step-badge">14</div>
       <div class="step-content">위험도 평가는 수신 VASP가 사용자 검증 요청을 수신한 이후, 사용자 검증 결과를 반환하기 이전에 수행되어야 합니다.</div>
     </li>
   </ol>
@@ -664,28 +662,3 @@ Sequence Diagram 4 illustrates how both the Originating VASP and Beneficiary VAS
   </ol>
 </div>
 `}</HTMLBlock>
-
-<br />
-
-**Risk assessment on Beneficiary PII by Originating VASP**
-
-1. The Originating VASP's business server calls the Enclave’s Refinitiv WCO API to initiate the risk assessment for the beneficiary’s PII.
-2. Upon receiving the request, the Enclave generates the required RequestId and RequestBody for the API call.
-3. The Enclave sends the risk assessment request to the Refinitiv server, including the beneficiary’s PII. While depicted as a single call in the diagram, this process may involve multiple API calls depending on the context. Consequently, the Enclave API responds asynchronously.
-4. The Refinitiv server evaluates the risk and returns the results.
-5. The Enclave stores the assessment results in the relevant database table.
-6. (\~7) The Enclave then calls the VASP’s Callback API to deliver the results to the VASP business server.
-
-> 📘 Note:
->
-> If the WCO API identifies the Beneficiary address as high-risk, the Originating VASP may choose to cancel the asset transfer. In such cases, the Originating VASP must notify the Beneficiary VASP of the cancellation or termination by sending an ERROR REPORT.
-
-**Risk assessment on Originator PII by Beneficiary VASP**
-
-8. (\~14) The Beneficiary VASP can also use the WCO API to conduct risk assessments, with the key difference being the assessment target: the originator’s PII. Since the API call occurs after the Beneficiary VASP has received a user verification request, this process must be completed before returning the verification result.
-
-<br />
-
-**Transaction execution**
-
-15. (\~21) For transactions that are not deemed high-risk based on the WCO results, the Originating VASP continues with the asset transfer process as outlined in the Best Practice flow. This includes executing the transaction on the blockchain and reporting the results to the Beneficiary VASP.
