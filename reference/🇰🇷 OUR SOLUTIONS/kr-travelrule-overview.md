@@ -225,16 +225,13 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     <b>
-      송신 VASP
-     </b>
-     의 사용자(송신자, Originator)가 자산 전송을 요청합니다.
+     <b>송신 VASP의 사용자(송신자, Originator)</b>가 자산 전송을 요청합니다.
     </p>
     <p>
      <b>
       송신 VASP
      </b>
-     는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.
+     는 수신 계좌 정보를 사용자로부터 수집합니다.
     </p>
    </div>
   </div>
@@ -249,17 +246,17 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    <div class="step-content">
     <p>
      <span style="color:#ff4d4f; font-weight:600;">
-      * Ordering VASP가 Regulated VASP인 경우 선택적으로 수행
+      송신 VASP가 Regulated VASP인 경우 수행
      </span>
     </p>
     <p>
-     Ordering VASP는 수신자 주소와 송신자의 이름, 생년월일로부터 생성한 해시값을 포함하여 사전 검증을 요청합니다.
+     송신 VASP는 송신자의 이름, 생년월일로부터 생성한 Hash값과 수신 주소를 수신 VASP로 전달하여 계좌 소유주와 송신자 정보간 일치 여부 검증을 요청합니다.
     </p>
     <p>
-     수신 VASP는 수신자 주소의 유효성과 해당 주소 소유주의 이름, 생년월일로부터 생성한 해시값과의 일치 여부를 검증합니다.
+     수신 VASP는 수신자 주소의 유효성을 확인하고 해당 주소 소유주의 이름, 생년월일로부터 생성한 Hash값을 전달받은 Hash값과 비교하여 일치 여부를 검증합니다.
     </p>
     <p>
-     검증 결과가 성공인 경우 송신 VASP는 이후 트랜잭션을 실행합니다.
+     검증 결과가 성공인 경우 송신 VASP는 트랜잭션을 실행합니다.
     </p>
    </div>
   </div>
@@ -305,14 +302,14 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    <div class="step-content">
     <p>
      <span style="color:#ff4d4f; font-weight:600;">
-      * Ordering VASP가 Unregulated VASP, Beneficiary VASP가 Regulated VASP인 경우 선택적으로 수행
+      송신 VASP가 Unregulated, 수신 VASP가 Regulated VASP인 경우 수행
      </span>
     </p>
     <p>
-     Beneficiary VASP는 입금된 자산의 송신자 정보가 사전에 공유된 정보와 일치하는지 확인하기 위해 Ordering VASP에게 소유주 검증을 요청합니다.
+     수신 VASP는 입금된 자산의 송신자 정보가 수신 계좌의 소유주 정보와 일치하는지 확인하기 위해 송신 VASP에게 검증을 요청합니다.
     </p>
     <p>
-     이때 송신자 이름 및 생년월일의 해시값을 비교하여 동일인 여부를 판단합니다.
+     송신자 이름 및 생년월일의 Hash값을 비교하여 동일인 여부를 판단합니다.
     </p>
    </div>
   </div>
@@ -326,7 +323,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     Beneficiary VASP는 송신 VASP로부터 전달받은 검증 결과를 기반으로 입금 반영 여부를 확정합니다.
+     수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 기반으로 입금 반영 여부를 확정합니다.
     </p>
     <p>
      필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
