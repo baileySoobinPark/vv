@@ -1,14 +1,12 @@
 ---
 title: Integration Steps
-excerpt: >-
-  TravelRule 또는 VerifyName 지원을 위한 주요 연동 단계를 확인하고 솔루션 별로 제공되는 상세 가이드 페이지로 이동하여
-  연동을 시작하십시오.
+excerpt: TravelRule 또는 VerifyName 지원을 위한 주요 연동 단계를 확인하고 연동을 시작하십시오.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-VerifyVASP 솔루션 연동은 총 6단계로 진행되며, Onboarding을 제외한 단계는 각 프로토콜(TravelRule 또는 VerifyName) 카테고리 로 이동하여 순서에 따른 가이드 문서를 확인할 수 있습니다.
+VerifyVASP 솔루션 연동은 총 6단계로 진행되며, Onboarding을 제외한 단계는 각 프로토콜(TravelRule 또는 VerifyName) 카테고리 에서 세부 가이드가 제공됩니다.
 
 1. **Onboarding**\
    VerifyVASP 콘솔에 VASP를 등록하고 API Key를 발급받습니다.
