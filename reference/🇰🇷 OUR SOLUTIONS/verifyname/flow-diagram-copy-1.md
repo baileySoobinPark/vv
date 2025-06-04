@@ -1,6 +1,9 @@
 ---
 title: Scenarios and Flows
-excerpt: '본 문서에서는 VerifyName 2.0 프로토콜을 적용하기 위한 '
+excerpt: >-
+  본 문서에서는 VerifyName 2.0 프로토콜을 사용한 사후 검증(Post-Verification) 및 사전
+  검증(Pre-Verification) 시나리오와 Flow를 소개합니다. 각 VASP는 상대 VASP의 요건에 따라 적절한 시나리오를 선택하여
+  수행할 수 있습니다.
 deprecated: false
 hidden: false
 metadata:
