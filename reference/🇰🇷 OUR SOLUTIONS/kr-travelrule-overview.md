@@ -207,7 +207,137 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 </html>
 `}</HTMLBlock>
 
-### VerifyName 2.0 검증 프로세스
+### VerifyName 검증 프로세스
+
+VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule Regulated VASP와 Unregulated VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라, 송신자-수신 계좌 소유주의 동일인 여부 검증은 크게 아래 6단계와 같이 진행됩니다.
+
+<HTMLBlock>{`
+<div class="flow-container">
+ <!-- 위쪽 3단계 -->
+ <div class="row">
+  <div class="step-box">
+   <div class="step-title">
+    1. 자산 전송 요청
+    <br/>
+    <span class="subtitle">
+     (Originator → Ordering VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     <b>
+      송신 VASP
+     </b>
+     의 사용자(송신자, Originator)가 자산 전송을 요청합니다.
+    </p>
+    <p>
+     <b>
+      송신 VASP
+     </b>
+     는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.
+    </p>
+   </div>
+  </div>
+  <div class="step-box">
+   <div class="step-title">
+    2. 사전 검증 요청
+    <br/>
+    <span class="subtitle">
+     (Ordering VASP → Beneficiary VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     <span style="color:#ff4d4f; font-weight:600;">
+      * Ordering VASP가 Regulated VASP인 경우 선택적으로 수행
+     </span>
+    </p>
+    <p>
+     Ordering VASP는 수신자 주소와 송신자의 이름, 생년월일로부터 생성한 해시값을 포함하여 사전 검증을 요청합니다.
+    </p>
+    <p>
+     수신 VASP는 수신자 주소의 유효성과 해당 주소 소유주의 이름, 생년월일로부터 생성한 해시값과의 일치 여부를 검증합니다.
+    </p>
+    <p>
+     검증 결과가 성공인 경우 송신 VASP는 이후 트랜잭션을 실행합니다.
+    </p>
+   </div>
+  </div>
+  <div class="step-box">
+   <div class="step-title">
+    3. 트랜잭션 실행
+    <br/>
+    <span class="subtitle">
+     (Ordering VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     검증 결과에 따라 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
+    </p>
+   </div>
+  </div>
+ </div>
+ <!-- 아래쪽 3단계 -->
+ <div class="row">
+  <div class="step-box">
+   <div class="step-title">
+    4. 입금 트랜잭션 감지
+    <br/>
+    <span class="subtitle">
+     (Beneficiary VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     수신 VASP는 블록체인 상에서 수신 주소로 입금된 트랜잭션을 감지합니다.
+    </p>
+   </div>
+  </div>
+  <div class="step-box">
+   <div class="step-title">
+    5. 사후 검증 요청
+    <br/>
+    <span class="subtitle">
+     (Beneficiary VASP → Ordering VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     <span style="color:#ff4d4f; font-weight:600;">
+      * Ordering VASP가 Unregulated VASP, Beneficiary VASP가 Regulated VASP인 경우 선택적으로 수행
+     </span>
+    </p>
+    <p>
+     Beneficiary VASP는 입금된 자산의 송신자 정보가 사전에 공유된 정보와 일치하는지 확인하기 위해 Ordering VASP에게 소유주 검증을 요청합니다.
+    </p>
+    <p>
+     이때 송신자 이름 및 생년월일의 해시값을 비교하여 동일인 여부를 판단합니다.
+    </p>
+   </div>
+  </div>
+  <div class="step-box">
+   <div class="step-title">
+    6. 검증 결과에 따른 입금 처리 여부 반영
+    <br/>
+    <span class="subtitle">
+     (Beneficiary VASP)
+    </span>
+   </div>
+   <div class="step-content">
+    <p>
+     Beneficiary VASP는 송신 VASP로부터 전달받은 검증 결과를 기반으로 입금 반영 여부를 확정합니다.
+    </p>
+    <p>
+     필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
+    </p>
+   </div>
+  </div>
+ </div>
+</div>
+`}</HTMLBlock>
+
+<br />
 
 ***
 
