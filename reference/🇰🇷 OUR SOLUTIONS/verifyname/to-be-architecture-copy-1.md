@@ -47,3 +47,5 @@ Diagram 2와 같이 Travel Rule 규제 의무가 없는 VASP들은 주로 중앙
 <Image align="center" border={false} caption="Diagram 3: To-Be Architecture of Regulated VASPs" src="https://files.readme.io/9d5a6a5ebeb9f734ef2ea9895e6cac3610777b697d2dbf7ee97717c452ba9de4-regulated_1.png" />
 
 Travel Rule 규제 준수 의무가 있는 VASP는 Diagram 3과 같이 입/출금시 Enclave의 Verification API를 호출하여 사전 또는 사후 검증을 진행해야 합니다. 또한 검증 결과에 따라  입/출금 진행 여부를 확정하는 경우 그 결과를 Enclave의 Report API를 호출하여 상대 VASP에게 공유해야 하는 의무를 갖습니다.
+
+These diagrams provide a comprehensive overview of your VASP’s TO-BE architecture. Use it as a reference to plan your development scope and align your implementation with the expected workflows.
