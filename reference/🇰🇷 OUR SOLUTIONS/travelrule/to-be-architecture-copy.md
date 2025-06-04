@@ -38,7 +38,7 @@ VASP는 TravelRule 연동을 위해 Diagram 1에 표기된 4개의 핵심 API와
 
 <Image align="center" border={false} caption="Diagram 2. Future-State VASP: Final Architecture" src="https://files.readme.io/00c107710ed90f7bd0430933f94e66c07db48f94e255b7db41651086fcda0413-tr_to_be_arct_2.webp" />
 
-Diagram 2는 VASP의 최종 시스템 아키텍처입니다. VASP는 Enclave 서버는 VASP 백엔드와 동일한 인프라 내에 **Enclave 서버를 설치**하고 VASP 백엔드와 TravelRule 프로세스 수행에 필요한 **API 호출을 주고 받도록 연동**해야 합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
+Diagram 2는 VASP의 최종 시스템 아키텍처입니다. 각 VASP는 VASP 백엔드와 동일한 인프라 내에 **Enclave 서버를 설치**하고 VASP 백엔드와 TravelRule 프로세스 수행에 필요한 **API 호출을 주고 받도록 연동**해야 합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
 
 * **회색 화살표**는 Ordering VASP로 동작할 때의 연동 흐름을 나타냅니다.
 * **녹색 화살표**는 Beneficiary VASP로 동작할 때의 연동 흐름을 나타냅니다.
