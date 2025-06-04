@@ -8,11 +8,23 @@ metadata:
 ---
 ## VASP Backend To-Be Architecture
 
-Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. VASP의 Travel Rule 규제 의무 여부에 따라 필수 구현해야 하는 API(점선 표시)의 범위는 다음과 같이 달라집니다.
+Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. 각 VASP는 Travel Rule 규제 의무 여부에 따라 다음과 같이 프로세스 연동 및 API 구현을 진행해야 합니다.
 
-* **Travel Rule 규제 의무가 없는(Travel Rule Non-Obliged) VASP**의 경우 규제 의무 대상 VASP로부터의 검증 요청에 대응하기 위해 Backend에서 VerifyName API와 Callback API를 구현하여 Enclave에게 제공해야 합니다.
-* **Travel Rule 규제 의무가 있는(Travel Rule Obliged) VASP**는 자산의 출금 과정에 송/수신자 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현하여 연동해야 합니다. 또한 규제 의무 대상이 아닌 VASP로부터의 입금건이 확인되는 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다. VASP는 이 과정에서 필요한 필수 API들을 모두 구현하여 Enclave에게 제공해야 합니다.
-* **Travel Rule 규제 의무 대상 여부와 상관없이**, VerifyName 2.0 프로토콜을 지원하는 모든 VASP는 응답 가능한 **VerifyName API**를 구현하여 제공해야 할 의무가 있습니다.
+#### 입출금 검증 프로세스 통합
+
+Travel Rule 규제 준수 의무가 있는 VASP는 자산의 출금 과정에 송/수신자 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현하여 연동해야 합니다. 또한 규제 의무 대상이 아닌 VASP로부터의 입금건이 확인되는 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다.
+
+<br />
+
+#### 필수 API 구현 (Implementing Required APIs)
+
+VASP는 VerifyName 연동을 위해 Travel Rule 규제 준수 의무 여부에 따라 Diagram 1에 표시된 필수 API들을 백엔드에 구현해야 합니다. 이들 API는 VerifyName 프로토콜을 통한 검증 및 Report 절차를 수행하는 데 필수적입니다. 특히 VerifyName API의 경우 VASP의 규제 준수 의무 여부와 상관없이 반드시 구현되어야합니다.
+
+각 API의 세부 사양은 아래 VerifyName VASP API 문서 목록에서 확인할 수 있습니다.
+
+* [VerifyName API](ref:verifyname-request-verification)
+* [Check Transaction Status API](ref:verifyname-transaction)
+* [Callback API](ref:verifyname-callback)
 
 <br />
 
@@ -20,11 +32,10 @@ Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처�
 
 <br />
 
-## 전체 To-Be Architecture
+## 전체 시스템 To-Be Architecture
 
-Diagram 2와 Diagram 3은 각각 Travel Rule 규제 의무가 없는 VASP와 규제 의무가 있는 VASP의 인프라 전체와 VerifyVASP 중앙 서버를 포함한 전체 To-Be 아키텍쳐를 보여줍니다.
+Diagram 2와 Diagram 3은 각각 Travel Rule 규제 의무가 없는 VASP와 규제 의무가 있는 VASP의 인프라 전체와 VerifyVASP 중앙 서버를 포함한 전체 To-Be 아키텍처입니다. 규제 의무 여부와 상관 없이, VerifyName 2.0 프로토콜을 지원하는 **모든 VASP는 VerifyVASP Enclave를 VASP 인프라 내에 필수적으로 설치하여 연동**해야합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터의 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
 
-* 규제 의무 여부와 상관 없이, VerifyName 2.0 프로토콜을 지원하는 **모든 VASP는 VerifyVASP Enclave를 VASP 인프라 내에 필수적으로 설치하여 연동**해야합니다.
 * VASP Backend에 구현된 필수 API들은 그 Endpoint를 VerifyVASP 콘솔을 통해 사전에 반드시 등록하여, 중앙 서버에 요청에 따라 Enclave를 통해 호출 가능해야합니다.
 
 <Image align="center" border={false} caption="Diagram 2: To-Be Architecture of Unregulated VASPs" src="https://files.readme.io/4f92bffd7c1f3756ff1b5c9637a9c84e24da9c8162aa5018169874d4f44192f7-unregulated_1.png" />
