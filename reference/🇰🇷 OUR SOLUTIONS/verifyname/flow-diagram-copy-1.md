@@ -1,9 +1,6 @@
 ---
 title: Scenarios and Flows
-excerpt: >-
-  This page outlines the VerifyName best practice flow, focusing on the
-  interactions among the key components—Ordering VASP, VerifyVASP Central
-  Server, and Beneficiary VASP—during a typical transaction process.
+excerpt: '본 문서에서는 VerifyName 2.0 프로토콜을 적용하기 위한 '
 deprecated: false
 hidden: false
 metadata:
