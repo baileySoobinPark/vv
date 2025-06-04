@@ -10,6 +10,8 @@ metadata:
 
 Diagram 1은 VerifyName 프로토콜을 지원하기 위한 VASP Backend의 To-Be 아키텍처를 보여줍니다. VASP의 Travel Rule 규제 의무 여부에 따라 필수 구현해야 하는 API의 범위는 다음과 같이 달라집니다.
 
+<br />
+
 <Image align="center" border={false} caption="Diagram 1. Future-State Overview for Unregulated and Regulated VASPs" src="https://files.readme.io/3d0a215b3227af898e113287fb06d5a6e332bf6aac1e7b91378449d36e25d106-2_0_tobe.png" />
 
 * **Travel Rule 규제 의무가 없는(Travel Rule Non-Obliged) VASP**의 경우 규제 의무 대상 VASP로부터의 검증 요청에 대응하기 위해 Backend에서 VerifyName API와 Callback API를 구현하여 Enclave에게 제공해야 합니다.
