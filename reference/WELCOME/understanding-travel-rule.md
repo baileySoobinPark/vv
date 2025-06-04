@@ -1,7 +1,7 @@
 ---
 title: Understanding Travel Rule
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
