@@ -318,6 +318,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
     6. 결과 Report
     <br/>
     <span class="subtitle">
+      (Regluated VASP)
     </span>
    </div>
    <div class="step-content">
