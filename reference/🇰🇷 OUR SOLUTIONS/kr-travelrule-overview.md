@@ -209,7 +209,7 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 
 ### VerifyName 검증 프로세스
 
-VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule Regulated VASP와 Unregulated VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라, 송신자-수신 계좌 소유주의 동일인 여부 검증은 크게 아래 6단계와 같이 진행됩니다.
+VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule Regulated VASP와 Unregulated VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라 사전 검증 또는 사후 검증 형태로 아래와 같이 진행됩니다.
 
 <HTMLBlock>{`
 <div class="flow-container">
