@@ -15,6 +15,12 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 
 <Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/7e75c4995f2b8b686ba210d9793debccd5c7b8a14dd71545b324fff0d665092b-Post_Verification.svg" />
 
+<HTMLBlock>{`
+
+`}</HTMLBlock>
+
+<br />
+
 1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
 2. As the Ordering VASP is unregulated, it executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
 3. Once the transaction is mined on the blockchain, the Beneficiary VASP detects the deposit to the Beneficiary address.
