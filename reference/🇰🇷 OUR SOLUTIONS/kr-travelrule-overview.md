@@ -190,13 +190,13 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
   <div class="step-box">
     <div class="step-title">5. 트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
     <div class="step-content">
-      <p>검증 결과가 정상인 경우 송신 VASP가 블록체인에서 출금 트랜잭션을 실행합니다.</p>
+      <p>검증 결과가 정상인 경우 <b>송신 VASP</b>가 블록체인에서 출금 트랜잭션을 실행합니다.</p>
     </div>
   </div>
   <div class="step-box">
     <div class="step-title">6. 트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
     <div class="step-content">
-      <p>송신 VASP는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다.</p>
+      <p><b>송신 VASP</b>는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다.</p>
     </div>
   </div>
 </div>
@@ -250,10 +250,10 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
      </span>
     </p>
     <p>
-     송신 VASP는 송신자의 이름과 생년월일로부터 생성한 Hash값과 수신 주소를 수신 VASP로 전달하여 검증을 요청합니다.
+     <b>송신 VASP</b>는 송신자의 이름과 생년월일로부터 생성한 Hash값과 수신 주소를 수신 VASP로 전달하여 검증을 요청합니다.
     </p>
     <p>
-     수신 VASP는 주소의 유효성을 확인하고 해당 주소 소유주의 이름, 생년월일로부터 생성한 Hash값을 비교하여 일치여부를 검증합니다.
+     <b>수신 VASP</b>는 주소의 유효성을 확인하고 해당 주소 소유주의 이름, 생년월일로부터 생성한 Hash값을 비교하여 일치여부를 검증합니다.
     </p>
    </div>
   </div>
@@ -287,7 +287,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     수신 VASP는 블록체인 상에서 VASP에서 발급한 수신 주소로의 입금 트랜잭션을 감지합니다.
+     <b>수신 VASP</b>는 블록체인 상에서 VASP에서 발급한 수신 주소로의 입금 트랜잭션을 감지합니다.
     </p>
    </div>
   </div>
@@ -306,7 +306,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
      </span>
     </p>
     <p>
-     수신 VASP는 입금된 자산의 송신자 정보가 수신 계좌의 소유주 정보와 일치하는지 확인하기 위해 송신 VASP에게 검증을 요청합니다.
+     <b>수신 VASP</b>는 입금된 자산의 송신자 정보가 수신 계좌의 소유주 정보와 일치하는지 확인하기 위해 송신 VASP에게 검증을 요청합니다.
     </p>
     <p>
      송신자 이름 및 생년월일의 Hash값을 비교하여 동일인 여부를 판단합니다.
