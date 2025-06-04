@@ -203,7 +203,7 @@ In contrast to the post-verification case, when the Ordering VASP is a regulated
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">3. 트랜잭션 실행 후 결과 Report</div>
+  <div class="scenario-title">3. 트랜잭션 실행 결과 Report</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">20</div>
       <div class="step-content">트랜잭션 실행 후, 트랜잭션 Hash가 생성됩니다.</div></li>
