@@ -5,7 +5,7 @@ excerpt: >-
   quick entry to key reference materials supporting your TravelRule or
   VerifyName protocol implementation.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
