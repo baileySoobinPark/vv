@@ -1,5 +1,6 @@
 ---
 title: Overview
+excerpt: 'TravelRule 솔루션의 아키텍처와 검증 프로세스 개요를 살펴보며 전체적인 구성과 흐름을 이해할 수 있습니다. 또한 '
 deprecated: false
 hidden: false
 metadata:
