@@ -1,8 +1,8 @@
 ---
 title: Overview
 excerpt: >-
-  TravelRule 솔루션의 아키텍처와 검증 프로세스 개요를 살펴보며 전체적인 구성과 흐름을 이해할 수 있습니다. TravelRule 연동
-  작업을 시작하기에 앞서, 지원하는 보안 옵션을 살펴보고 VASP에게 요구되는 연동 순서를 확인하여 작업 계획을 수립하세요. 
+  이 문서에서는 TravelRule 솔루션과 VerifyName 2.0 솔루션의 개략적인 아키텍처와 검증 프로세스 개요를 제공합니다.
+  TravelRule 연동 작업을 시작하기에 앞서, 지원하는 보안 옵션을 살펴보고 VASP 측 연동 순서를 확인하여 작업 계획을 수립하세요. 
 deprecated: false
 hidden: false
 metadata:
@@ -12,15 +12,15 @@ next:
 ---
 ## 아키텍처 개요
 
-Diagram 1은 VerifyVASP TravelRule 솔루션의 구성 요소와 이들 간의 통신 구조를 요약한 아키텍처 개요도입니다. TravelRule 아키텍쳐의 주요 특성은 다음과 같습니다.
+Diagram 1은 VerifyVASP 솔루션의 구성 요소와 이들 간의 통신 구조를 요약한 아키텍처 개요도입니다. VerifyVASP 아키텍쳐의 주요 특성은 다음과 같습니다.
 
-<Image align="center" border={false} caption="Diagram 1. VerifyVASP Integration Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
+<Image align="center" border={false} caption="Diagram 1. VerifyVASP Solution Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
 
 <br />
 
 #### VerifyVASP 중앙 서버 기반 VASP 간 통신
 
-VASP 간 TravelRule 통신은 VerifyVASP 중앙 서버를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 중앙 서버를 거쳐 전달됩니다.
+VASP 간 TravelRule 및 VerifyName 2.0 통신은 VerifyVASP 중앙 서버를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 중앙 서버를 거쳐 전달됩니다.
 
 #### Enclave 설치 및 연동
 
@@ -37,6 +37,8 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 <br />
 
 ## 검증 프로세스 개요
+
+### TravelRule 검증 프로세스
 
 TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크게 아래 6개 단계를 통해 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Flow Diagram 및 Integration Guide에서 확인할 수 있습니다.
 
@@ -205,7 +207,7 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 </html>
 `}</HTMLBlock>
 
-<br />
+### VerifyName 2.0 검증 프로세스
 
 ***
 
@@ -215,9 +217,9 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 
 ### VASP 간 End-to-End 암호화
 
-VerifyVASP의 TravelRule 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보의 무결성과 프라이버시를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화하거나 저장하지 않습니다.
+VerifyVASP 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보의 무결성과 프라이버시를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화하거나 저장하지 않습니다.
 
-TravelRule 프로토콜은 비대칭키 기반 암호화를 채택하고 있으며, 각 VASP에 설치된 Enclave 서버는 자체적으로 비대칭 키 쌍을 생성하고 이를 Enclave 전용 데이터베이스에 안전하게 저장합니다. 생성된 키 쌍은 공개키와 개인키로 구성되며, 개인키는 외부 노출 없이 Enclave 내부에서만 암복호화 작업에 사용됩니다.
+VerifyVASP 프로토콜은 비대칭키 기반 암호화를 채택하고 있으며, 각 VASP에 설치된 Enclave 서버는 자체적으로 비대칭 키 쌍을 생성하고 이를 Enclave 전용 데이터베이스에 안전하게 저장합니다. 생성된 키 쌍은 공개키와 개인키로 구성되며, 개인키는 외부 노출 없이 Enclave 내부에서만 암복호화 작업에 사용됩니다.
 
 모든 키 관리 절차(생성, 저장, 갱신)는 Enclave 내에서 자동화된 방식으로 처리되므로, 각 VASP는 키 관리 기능을 별도로 구현할 필요 없이 표준화된 방식으로 End-to-End 암호화를 적용한 안전한 통신을 수행할 수 있습니다. 프로토콜의 주요 수행 단계는 다음과 같습니다.
 
@@ -431,7 +433,9 @@ Enclave 서버는 다양한 공개키 타입을 지원합니다. 검증 요청 �
 
 <br />
 
-## TravelRule 연동을 위한 VASP 작업 항목
+## VASP 작업 요구사항
+
+### TravelRule 지원을 위한 VASP 작업 요구사항
 
 TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행해야 합니다. 각 항목에 대한 세부 내용은 관련 문서를 참조하세요.
 
@@ -535,6 +539,10 @@ TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행�
   </li>
 </ol>
 `}</HTMLBlock>
+
+<br />
+
+### VerifyName 2.0 지원을 위한 VASP 작업 요구사항
 
 <br />
 
