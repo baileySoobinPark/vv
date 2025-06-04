@@ -36,7 +36,7 @@ VASP는 VerifyName 연동을 위해 Travel Rule 규제 준수 의무 여부에 �
 
 Diagram 2와 Diagram 3은 각각 Travel Rule 규제 의무가 없는 VASP와 규제 의무가 있는 VASP의 인프라 전체와 VerifyVASP 중앙 서버를 포함한 전체 To-Be 아키텍처입니다. 규제 의무 여부와 상관 없이, VerifyName 2.0 프로토콜을 지원하는 **모든 VASP는 VerifyVASP Enclave를 VASP 인프라 내에 필수적으로 설치하여 연동**해야합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터의 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
 
-* VASP Backend에 구현된 필수 API들은 그 Endpoint를 VerifyVASP 콘솔을 통해 사전에 반드시 등록하여, 중앙 서버에 요청에 따라 Enclave를 통해 호출 가능해야합니다.
+VASP Backend에 구현된 필수 API들은 그 Endpoint를 VerifyVASP 콘솔을 통해 사전에 반드시 등록하여, 중앙 서버에 요청에 따라 Enclave를 통해 호출 가능해야합니다.
 
 <Image align="center" border={false} caption="Diagram 2: To-Be Architecture of Unregulated VASPs" src="https://files.readme.io/4f92bffd7c1f3756ff1b5c9637a9c84e24da9c8162aa5018169874d4f44192f7-unregulated_1.png" />
 
