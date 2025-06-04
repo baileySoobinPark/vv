@@ -1,6 +1,6 @@
 ---
 title: To-Be Architecture
-excerpt: 이 페이지는 VerifyName 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
+excerpt: 이 페이지에서는 VerifyName 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
 deprecated: false
 hidden: false
 metadata:
