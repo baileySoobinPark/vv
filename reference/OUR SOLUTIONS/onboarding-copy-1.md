@@ -1,5 +1,5 @@
 ---
-title: VerifyVASP Onboarding
+title: Onboarding
 excerpt: >-
   본격적인 TravelRule과 VerifyName 연동에 앞서 VerifyVASP 콘솔 가입을 통해 VASP를 등록하고 API Key
   발급받기 위한 절차를 먼저 수행해야 합니다.
