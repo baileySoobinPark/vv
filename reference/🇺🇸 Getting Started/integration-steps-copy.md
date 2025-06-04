@@ -5,7 +5,7 @@ excerpt: >-
   VerifyName into your VASP system. Each step is detailed in a dedicated page,
   covering the key actions required for seamless implementation and compliance.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
