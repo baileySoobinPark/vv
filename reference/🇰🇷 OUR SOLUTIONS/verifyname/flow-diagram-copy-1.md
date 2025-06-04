@@ -1,5 +1,5 @@
 ---
-title: Flow Diagram
+title: Scenarios and Flows
 excerpt: >-
   This page outlines the VerifyName best practice flow, focusing on the
   interactions among the key components—Ordering VASP, VerifyVASP Central
