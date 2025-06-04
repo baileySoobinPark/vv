@@ -1,13 +1,6 @@
 ---
 title: To-Be Architecture
-excerpt: >-
-  This page provides an overview of the implementation scope required for your
-  VASP to integrate with the VerifyName protocol. Depending on whether your VASP
-  acts as a **Travel-Rule Obliged VASP** performing pre-verification or as an
-  **Travel Rule Non-Obliged VASP** (VerifyName Provider) supporting name and
-  date of birth verification only upon Beneficiary VASP requests, your
-  Future-State architecture will vary. Use the information on this page to
-  estimate implementation tasks and ensure a smooth integration process.
+excerpt: 이 페이지는 VerifyName 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
 deprecated: false
 hidden: false
 metadata:
