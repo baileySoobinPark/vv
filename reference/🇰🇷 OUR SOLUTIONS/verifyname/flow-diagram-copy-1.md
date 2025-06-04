@@ -91,7 +91,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
       <div class="step-content">트랜잭션이 확정(Confirmed)되면 수신 VASP가 수신자 주소로의 입금을 감지합니다.</div></li>
     <div class="subsection-title">송신 VASP 확인</div>
     <li class="step-item"><div class="step-badge">4</div>
-      <div class="step-content">Travel Rule 규제 대상인 수신 VASP는 입금을 반영하기에 앞서 송신자와 수신자의 일치 여부를 사후 검증을 통해 확인할 수 있습니다. 사용자(수신자)와의 송신 VASP 확인을 위해 Enclave의 <code>List VASP API</code>를 호출합니다.</div></li>
+      <div class="step-content">Travel Rule 규제 대상인 수신 VASP는 입금을 반영하기에 앞서 송신자와 수신자의 일치 여부를 사후 검증을 통해 확인할 수 있습니다. 가장 먼저, 송신 VASP 확인을 위해 Enclave의 <code>List VASP API</code>를 호출합니다.</div></li>
     <li class="step-item"><div class="step-badge">5</div>
       <div class="step-content">수신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.</div></li>
     <li class="step-item"><div class="step-badge">6</div>
