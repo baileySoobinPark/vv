@@ -82,7 +82,7 @@ Sequence Diagram 1은 TravelRule 기본 프로토콜 구현의 Best Practice Flo
     </li>
     <li class="step-item">
       <div class="step-badge">2</div>
-      <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>Get VASP list</code> API를 호출합니다.</div>
+      <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>List VASP </code> API를 호출합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">3</div>
