@@ -524,7 +524,7 @@ VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위�
   <li class="vasp-step-item">
     <div class="vasp-step-badge">7</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">Robot VASP를 통한 TravelRule 시나리오 테스트</div>
+      <div class="vasp-step-title">Robot VASP를 통한 시나리오 테스트</div>
       Robot VASP를 활용한 시나리오 기반 테스트를 통해 구현 결과를 검증하고 프로토콜 준수 여부를 확인합니다.
     </div>
   </li>
@@ -532,7 +532,7 @@ VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위�
     <div class="vasp-step-badge">8</div>
     <div class="vasp-step-content">
       <div class="vasp-step-title">지속적 유지관리 계획 수립</div>
-      규제 변경 및 TravelRule 업데이트에 대응할 수 있도록 유지관리 계획을 마련합니다.
+      규제 변경 및 프로토콜 업데이트에 대응할 수 있도록 유지관리 계획을 마련합니다.
     </div>
   </li>
 </ol>
