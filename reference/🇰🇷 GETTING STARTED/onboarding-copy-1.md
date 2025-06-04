@@ -1,20 +1,20 @@
 ---
 title: Onboarding
 excerpt: >-
-  This guide provides how the VASP registers with the Alliance of VerifyVASP and
-  how to obtain the API Key to call the VerifyVASP API.
+  본격적인 TravelRule과 VerifyName 연동에 앞서 VerifyVASP 콘솔 가입을 통해 VASP를 등록하고 API Key
+  발급받기 위한 절차를 먼저 수행해야 합니다.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
-## Sign up to VerifyVASP
+## VerifyVASP 콘솔 회원가입
 
-Your VASP can apply to participate in the VerifyVASP Alliance by signing up on the VerifyVASP Console. By following the steps below, you can proceed to sign up on the VerifyVASP Console.
+아래 절차에 따른 VerifyVASP 콘솔 회원가입을 통해, TravelRule 또는 VerifyName 프로토콜을 연동하기 위한 VASP 온보딩을 완료할 수 있습니다.
 
 <br />
 
-### 1. **Click the \[Get Started] button on the VerifyVASP Console.**
+### 1. [VerifyVASP 홈페이지](\[https://www.verifyvasp.com]\(https://www.verifyvasp.com\))의 우측 상단 \[Get Started] 버튼을 클릭하여 콘솔로 이동합니다.
 
 <Image align="center" src="https://files.readme.io/01daa9f786c6b15eb40a8ca98e865271467b0c1a4793dd7f731b8dfd21b2404c-VV_Onboarding.png" />
 
