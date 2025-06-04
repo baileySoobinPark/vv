@@ -1,5 +1,8 @@
 ---
 title: TravelRule VS VerifyName
+excerpt: >-
+  VerifyVASP의 두 대표 솔루션인 TravelRule과 VerifyName의 기능적 차이 및 VASP 요구사항에 따른 구현 권장사항을
+  확인할 수 있습니다. 
 deprecated: false
 hidden: false
 metadata:
