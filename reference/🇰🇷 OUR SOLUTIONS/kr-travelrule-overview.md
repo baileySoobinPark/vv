@@ -1,8 +1,8 @@
 ---
 title: Overview
 excerpt: >-
-  이 문서에서는 TravelRule 솔루션과 VerifyName 2.0 솔루션의 개략적인 아키텍처와 검증 프로세스 개요를 제공합니다.
-  TravelRule 연동 작업을 시작하기에 앞서, 지원하는 보안 옵션을 살펴보고 VASP 측 연동 순서를 확인하여 작업 계획을 수립하세요. 
+  이 문서에서는 VerifyVASP 솔루션의 개략적인 아키텍처와 TravelRule, VerifyName 기반 검증 프로세스 개요를
+  제공합니다. 연동 작업을 시작하기에 앞서, 지원하는 보안 옵션을 살펴보고 VASP 측 연동 순서를 확인하여 작업 계획을 수립하세요. 
 deprecated: false
 hidden: false
 metadata:
