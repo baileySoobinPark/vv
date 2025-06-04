@@ -74,9 +74,9 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Owner Verification</div>
+  <div class="scenario-title">송금 실행 후 수신 계좌 소유주 검증</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">1</div><div class="step-content">Originator는 Ordering VASP를 통해 출금 요청을 수행합니다.</div></li>
+    <li class="step-item"><div class="step-badge">1</div><div class="step-content">송신자가 Ordering VASP에 수신 출금을 요청합니다.</div></li>
     <li class="step-item"><div class="step-badge">2</div><div class="step-content">Ordering VASP가 규제 대상이 아닌 경우, 사전 검증 없이 블록체인에 트랜잭션을 실행하고 자산을 수신자 주소로 전송합니다.</div></li>
     <li class="step-item"><div class="step-badge">3</div><div class="step-content">트랜잭션이 블록에 포함되면, Beneficiary VASP는 수신자 주소로의 입금을 감지합니다.</div></li>
     <li class="step-item"><div class="step-badge">4</div><div class="step-content">Beneficiary VASP는 어떤 VASP가 보냈는지 확인하기 위해 <code>VASP LIST API</code>를 호출합니다.</div></li>
@@ -102,7 +102,7 @@ Sequence Diagram 1 illustrates the post-verification flow, detailing how ownersh
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">Verification Result Report</div>
+  <div class="scenario-title">검증 결과 Report</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">26</div><div class="step-badge">27</div><div class="step-content">Beneficiary VASP는 해당 결과를 바탕으로 최종 검증 결과를 결정하고 보고서를 작성합니다.</div></li>
     <li class="step-item"><div class="step-badge">28</div><div class="step-badge">29</div><div class="step-badge">30</div><div class="step-content">작성된 최종 검증 결과는 <code>Callback API</code>를 통해 Ordering VASP에 전달됩니다.</div></li>
