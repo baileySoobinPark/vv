@@ -82,7 +82,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
       <div class="step-content">Travel Rule 규제 대상이 아닌 송신 VASP는 별도의 수신자/수신자 계좌 검증 없이 출금 트랜잭션을 불록체인 상에 실행하여 자산을 전송합니다.</div></li>
   </ol>
 </div>
-<div>
+<div class="scenario-section">
   <div class="scenario-title">2. 수신 VASP 측 입금 트랜잭션 감지에 따른 검증 수행</div>
   <ol>
     <div class="subsection-title">송신 VASP 확인</div>
