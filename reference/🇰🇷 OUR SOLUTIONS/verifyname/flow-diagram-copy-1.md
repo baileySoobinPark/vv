@@ -140,38 +140,6 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 
 <br />
 
-1. The originator initiates a withdrawal request from ordering VASP to the beneficiary.
-2. As the Ordering VASP is unregulated, it executes the transaction on the blockchain without pre-verification, sending assets to the Beneficiary address.
-3. Once the transaction is mined on the blockchain, the Beneficiary VASP detects the deposit to the Beneficiary address.
-4. To identify the Originator, the Beneficiary VASP calls the VASP LIST API to retrieve the list of the VASPs that can deposit to.
-5. The Enclave requests a list of VASPs from the Central Server.
-6. The Central Server returns a list of VASPs.
-7. The Enclave returns a list of VASPs.
-8. The Beneficiary VASP displays the list to the user.
-9. The Beneficiary selects the Ordering VASP.
-10. The Beneficiary VASP calls the Owner Verification API to verify whether the Originator and the Beneficiary are the same entity. The request includes the digital asset information and the Beneficiary’s name and date of birth.
-11. The Beneficiary VASP's Enclave generates Salt.
-12. The generated salt is used to hash the Beneficiary's name and date of birth.
-13. The salt is encrypted using the Ordering VASP’s public key.
-
-14 \~ 15. The Enclave passes the required Owner Verification data, including the hashed name and date of birth and encrypted salt to the Ordering VASP’s Enclave.
-
-16. The Ordering VASP’s Enclave initiates the verification process by calling the Ordering VASP’s VerifyName API. Only digital asset information—such as the network, ticker, and transaction hash—is provided to the Ordering VASP.
-17. The Ordering VASP server verifies whether the received information matches the details of the transaction it has sent.
-18. If a matching value is found, the Originator is identified using the transaction hash, and their name and date of birth are retrieved from the database.
-19. The Ordering VASP returns the verification result of the digital asset transfer, along with the Originator’s name and date of birth, to the Ordering VASP Enclave.
-20. The Enclave decrypts the encrypted salt using the Ordering VASP's private key.
-21. The Originator’s name and date of birth are hashed using the salt.
-22. The hashed name and date of birth are compared with the hashed name and date of birth received from the Beneficiary VASP.
-
-23 \~ 25. Returns the digital asset verification result and the hash comparison result.
-
-26 \~ 27. Based on the returned verification data, the Beneficiary VASP determines the final result and submits a report to share its decision.
-
-28 \~ 30. The reported final verification result is shared with the Ordering VASP via the Callback API.
-
-31 \~ 32. **\[optional]** Based on the final verification result, both the Ordering VASP and the Beneficiary VASP can process deposits and withdrawals, and notify the user accordingly.
-
 <br />
 
 ## Pre-Verification - From Travel Rule Obliged VASP to Travel Rule Non-Obliged VASP
