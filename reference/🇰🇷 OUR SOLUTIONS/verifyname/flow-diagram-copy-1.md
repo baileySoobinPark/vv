@@ -5,7 +5,7 @@ excerpt: >-
   interactions among the key components—Ordering VASP, VerifyVASP Central
   Server, and Beneficiary VASP—during a typical transaction process.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
