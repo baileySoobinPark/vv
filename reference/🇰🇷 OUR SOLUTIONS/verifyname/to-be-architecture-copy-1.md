@@ -6,9 +6,11 @@ hidden: false
 metadata:
   robots: index
 ---
-<Image align="center" border={false} caption="Diagram 1. Future-State Overview for Unregulated and Regulated VASPs" src="https://files.readme.io/4674e99a0ef8971a44c143865ae712663183d880883753d0ed0b16046fd2f370-vn_to_be_arct1.avif" />
+## VASP Backend To-Be Architecture
 
-Diagram 1 illustrates the Future-State architectures for both Unregulated and Regulated VASPs:
+Diagram 1은 VerifyName 연동이 완료된 VASP 백엔드의 To-Be Architecture입니다.
+
+<Image align="center" border={false} caption="Diagram 1. Future-State Overview for Unregulated and Regulated VASPs" src="https://files.readme.io/4674e99a0ef8971a44c143865ae712663183d880883753d0ed0b16046fd2f370-vn_to_be_arct1.avif" />
 
 * **Travel Rule Non-Obliged(Unregulated) VASPs**: These VASPs should implement the VerifyName API to facilitate name and date of birth verification requested from Regulated VASPs during virtual asset transfers. No pre-verification or modification to the withdrawal process is required.
 * **Travel Rule Obliged(Regulated) VASPs**: These VASPs modify their withdrawal processes to perform **Pre-verification** as the Ordering VASP. They do not need to implement or expose the VerifyName API unless acting as a provider.
