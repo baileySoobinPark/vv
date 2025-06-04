@@ -8,7 +8,7 @@ metadata:
 ---
 ## VASP Backend To-Be Architecture
 
-Diagram 1은 VerifyName 프로토콜을 지원하기 위한 VASP Backend의 To-Be 아키텍처를 보여줍니다. VASP의 Travel Rule 규제 의무 여부에 따라 필수 구현해야 하는 API의 범위는 다음과 같이 달라집니다.
+Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. VASP의 Travel Rule 규제 의무 여부에 따라 필수 구현해야 하는 API(점선 표시)의 범위는 다음과 같이 달라집니다.
 
 * **Travel Rule 규제 의무가 없는(Travel Rule Non-Obliged) VASP**의 경우 규제 의무 대상 VASP로부터의 검증 요청에 대응하기 위해 Backend에서 VerifyName API와 Callback API를 구현하여 Enclave에게 제공해야 합니다.
 * **Travel Rule 규제 의무가 있는(Travel Rule Obliged) VASP**는 자산의 출금 과정에 송/수신자 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현하여 연동해야 합니다. 또한 규제 의무 대상이 아닌 VASP로부터의 입금건이 확인되는 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다. VASP는 이 과정에서 필요한 필수 API들을 모두 구현하여 Enclave에게 제공해야 합니다.
