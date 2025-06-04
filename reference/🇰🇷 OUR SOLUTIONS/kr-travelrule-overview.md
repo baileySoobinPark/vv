@@ -670,7 +670,3 @@ VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위�
   </li>
 </ol>
 `}</HTMLBlock>
-
-<br />
-
-위 절차를 통해 VASP는 VerifyVASP와의 연동을 안정적으로 구현하고 관련 규제를 효과적으로 준수할 수 있습니다.
