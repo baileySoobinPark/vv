@@ -40,7 +40,7 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 ### TravelRule 검증 프로세스
 
-TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크게 아래 6개 단계를 통해 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Flow Diagram 및 Integration Guide에서 확인할 수 있습니다.
+TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크게 아래 6개 단계를 통해 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Scenarios and Flows 문서 및 Integration Guide에서 확인할 수 있습니다.
 
 <HTMLBlock>{`
 <!DOCTYPE html>
@@ -209,7 +209,7 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 
 ### VerifyName 검증 프로세스
 
-VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule Regulated VASP와 Unregulated VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라 사전 검증 또는 사후 검증 형태로 아래와 같이 진행됩니다.
+VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule Regulated VASP와 Unregulated VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라 사전 검증 또는 사후 검증 형태로 아래와 같이 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Scenarios and Flows 문서 및 Integration Guide에서 확인할 수 있습니다.
 
 <HTMLBlock>{`
 <div class="flow-container">
@@ -269,6 +269,9 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
     <p>
      검증 결과가 정상인 경우 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
     </p>
+    <p>
+     송신 VASP가 Unregulated VASP인 경우 별도의 검증 없이 즉시 출금 트랜잭션을 실행할 수 있습니다.  
+    </p>
    </div>
   </div>
  </div>
@@ -312,15 +315,15 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
   </div>
   <div class="step-box">
    <div class="step-title">
-    6. 검증 결과에 따른 입금 처리 여부 반영
+    6. 결과 Report
     <br/>
     <span class="subtitle">
-     (Beneficiary VASP)
+     (Ordering VASP 또는 Beneficiary VASP)
     </span>
    </div>
    <div class="step-content">
     <p>
-     수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 기반으로 입금 반영 여부를 확정합니다.
+     Regulated VASP는 검증 결과를 기반으로 입금 또는 출금의 최종 반영 여부를 Report해야 합니다. 
     </p>
     <p>
      필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
