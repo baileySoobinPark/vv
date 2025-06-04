@@ -1,5 +1,5 @@
 ---
-title: To-Be Architecture (COPY)
+title: To-Be Architecture
 excerpt: >-
   This page provides an overview of the implementation scope required for your
   VASP to integrate with the VerifyName protocol. Depending on whether your VASP
@@ -9,7 +9,7 @@ excerpt: >-
   Future-State architecture will vary. Use the information on this page to
   estimate implementation tasks and ensure a smooth integration process.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
