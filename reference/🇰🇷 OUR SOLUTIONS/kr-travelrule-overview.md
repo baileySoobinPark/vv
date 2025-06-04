@@ -242,6 +242,9 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
     <span class="subtitle">
      (Ordering VASP → Beneficiary VASP)
     </span>
+     <span style="color:#ff4d4f; font-weight:600;">
+      송신 VASP가 Regulated VASP인 경우 수행
+     </span>
    </div>
    <div class="step-content">
     <p>
