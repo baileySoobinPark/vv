@@ -1,32 +1,24 @@
 ---
 title: Integration Steps
 excerpt: >-
-  This section provides a structured guide for integrating TravelRule or
-  VerifyName into your VASP system. Each step is detailed in a dedicated page,
-  covering the key actions required for seamless implementation and compliance.
+  TravelRule 또는 VerifyName 지원을 위한 주요 연동 단계를 확인하고 솔루션 별로 제공되는 상세 가이드 페이지로 이동하여
+  연동을 시작하십시오.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Steps to Complete Your Integration:
+VerifyVASP 솔루션 연동은 총 6단계로 진행되며, Onboarding을 제외한 단계는 각 프로토콜(TravelRule 또는 VerifyName) 카테고리 로 이동하여 순서에 따른 가이드 문서를 확인할 수 있습니다.
 
 1. **Onboarding**\
-   Register your VASP and complete the initial onboarding process.
-2. **Implementing VASP APIs**\
-   Implement the required APIs to handle verifications and transactions. These APIs are called by your VASP’s Enclave server to perform verifications or check the transaction status.
+   VerifyVASP 콘솔에 VASP를 등록하고 API Key를 발급받습니다.
+2. **VASP API 구현**\
+   각 프로토콜 지원을 위해 필요한 VASP API를 요구사항에 따라 백엔드에 구현합니다.
 3. **Setting up a Database**\
-   Configure a secure database to manage compliance data.
+   Enclave와 연동하여 검증 결과 및 사용자 데이터를 안전하게 저장하기 위한 데이터베이스를 구성합니다.
 4. **Connecting with Enclave**\
-   Set up the Enclave server to interface with the VerifyVASP Central Server and call the VASP APIs.
+   VerifyVASP에서 제공하는 Enclave Docker를 다운로드 받아 VASP 인프라 내에 설치하고, 중앙 서버 및 VASP 백엔드와 통신할 수 있도록 연동합니다.
 5. **Testing with Robot VASP**\
-   Validate your implementation using simulated transactions.
+   로봇 VASP를 상대 VASP로 하여 모의 입출금 검증 테스트를 진행합니다. 구현한 VASP API의 기능을 검증하고 Enclave, Enclave 데이터베이스,  VerifyVASP 중앙서버와의 정상 연동 여부를 확인할 수 있습니다.
 6. **Maintenance**\
-   Plan for updates and ongoing system maintenance.
-
-<br />
-
-You can click the link below to navigate to the TravelRule and VerifyName Integration Steps.
-
-* [TravelRule Integration Steps](ref:travelrule-user-account-verification)
-* [VerifyName Integration Steps](ref:verifyname-request-verification)
+   구현 및 연동이 완료되었다면 프로토콜을 실 서비스에 적용합니다. 안정적인 서비스를 위한 업데이트 및 유지보수 계획을 수립하고 VerifyVASP의 운영 가이드에 따라 운영합니다.
