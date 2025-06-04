@@ -149,7 +149,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 
 ## Pre-Verification - From Travel Rule Obliged VASP to Travel Rule Non-Obliged VASP
 
-In contrast to the post-verification case, when the Ordering VASP is a regulated entity, it performs owner verification before executing the transfer.
+사후 검증 시나리오와 반대로, VerifyName 프로토콜의 사전 검증(Pre-Verification) 시나리오는 송신 VASP가 Travel Rule을 준수하는 VASP인 경우에 해당됩니다. 송신 VASP는 출금 트랜잭션을 실행하기에 앞서, 수신 계좌의 소유주가 송신자 정보와 일치하는지 검증을 선제적으로 진행한 뒤 그 결과에 따라 출금 진행 여부를 판단할 수 있습니다.
 
 <Image align="center" border={false} caption="The Beneficiary VASP can confirm the deposit and notify the user based on the transaction status." src="https://files.readme.io/0446271b8557cb4007d6f656d8972440b023a65d5ea6871e346744775979198b-Pre_Verification.svg" />
 
