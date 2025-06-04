@@ -13,6 +13,8 @@ metadata:
 
 VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송금을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 경우 발생합니다. 주로 송금 VASP가 Travel Rule 규제 대상 VASP가 아닌 경우 별도의 검증 없이 송금을 실행하는 경우에 해당합니다. 수신 VASP는 컴플라이언스 준수를 위해 미확인 입금건에 대해 송신자가 수신 계정 소유주와 일치하는지 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
 
+<br />
+
 <Image align="center" border={false} caption="Sequence Diagram 1. VerifyName integration flow for unregulated VASP originating withdrawal" src="https://files.readme.io/7e75c4995f2b8b686ba210d9793debccd5c7b8a14dd71545b324fff0d665092b-Post_Verification.svg" />
 
 <HTMLBlock>{`
@@ -85,9 +87,9 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 <div class="scenario-section">
   <div class="scenario-title">2. 수신 VASP 측 입금 트랜잭션 감지에 따른 사후 검증(Post-Verification) 요청</div>
   <ol>
-    <div class="subsection-title">송신 VASP 확인</div>
     <li class="step-item"><div class="step-badge">3</div>
       <div class="step-content">트랜잭션이 확정(Confirmed)되면 수신 VASP가 수신자 주소로의 입금을 감지합니다.</div></li>
+    <div class="subsection-title">송신 VASP 확인</div>
     <li class="step-item"><div class="step-badge">4</div>
       <div class="step-content">Travel Rule 규제 대상인 수신 VASP는 입금을 반영하기에 앞서 송신자와 수신자의 일치 여부를 사후 검증을 통해 확인할 수 있습니다. 사용자(수신자)와의 송신 VASP 확인을 위해 Enclave의 <code>List VASP API</code>를 호출합니다.</div></li>
     <li class="step-item"><div class="step-badge">5</div>
