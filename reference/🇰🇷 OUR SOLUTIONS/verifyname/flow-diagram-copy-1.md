@@ -165,23 +165,23 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
       <div class="step-content">송신 VASP의 Enclave는 랜덤 Salt를 생성한 뒤, VerifyName 프로토콜에 따라 Salt와 송신자의 이름, 생년월일 정보를 입력값으로 하는 Hash를 생성합니다.</div></li>
     <li class="step-item"><div class="step-badge">5</div>
       <div class="step-content">생성한 Salt값을 수신 VASP의 공개키로 암호화합니다.</div></li>
-    <li class="step-item"><div class="step-badge">6</div>
+    <li class="step-item"><div class="step-badge">6</div><div class="step-badge">7</div>
       <div class="step-content">Enclave는 생성된 Hash값과 암호화된 Salt를 포함한 소유주 검증 요청을 중앙 서버를 통해 수신 VASP로 전달합니다.</div></li>
-    <li class="step-item"><div class="step-badge">7</div>
-      <div class="step-content">수신 VASP의 Enclave가 VASP 백엔드로 <code>VerifyName API</code>를 호출하여 검증 프로세스를 시작합니다. 이때 수신 VASP 백엔드로는 Hash를 제외한 수신 주소, 전송하고자 하는 자산의 티커 및 네트워크 정보만 전달됩니다.</div></li>
     <li class="step-item"><div class="step-badge">8</div>
-      <div class="step-content">수신 VASP 서버는 자산 정보와 수신 주소를 데이터베이스와 대조하여 해당 VASP에서 발급한 입금 주소인지 여부를 확인합니다.</div></li>
+      <div class="step-content">수신 VASP의 Enclave가 VASP 백엔드로 <code>VerifyName API</code>를 호출하여 검증 프로세스를 시작합니다. 이때 수신 VASP 백엔드로는 Hash를 제외한 수신 주소, 전송하고자 하는 자산의 티커 및 네트워크 정보만 전달됩니다.</div></li>
     <li class="step-item"><div class="step-badge">9</div>
-      <div class="step-content">유효한 입금 주소인 경우 해당 주소의 소유주를 식별한 뒤, 데이터베이스에서 해당 사용자의 이름과 생년월일을 조회합니다.</div></li>
+      <div class="step-content">수신 VASP 서버는 자산 정보와 수신 주소를 데이터베이스와 대조하여 해당 VASP에서 발급한 입금 주소인지 여부를 확인합니다.</div></li>
     <li class="step-item"><div class="step-badge">10</div>
-      <div class="step-content">수신 VASP 백엔드는 주소 검증 결과와 함께 수신자의 이름 및 생년월일을 Enclave에 전달합니다.</div></li>
+      <div class="step-content">유효한 입금 주소인 경우 해당 주소의 소유주를 식별한 뒤, 데이터베이스에서 해당 사용자의 이름과 생년월일을 조회합니다.</div></li>
     <li class="step-item"><div class="step-badge">11</div>
-      <div class="step-content">Enclave는 개인키로 암호화된 Salt를 복호화합니다.</div></li>
+      <div class="step-content">수신 VASP 백엔드는 주소 검증 결과와 함께 수신자의 이름 및 생년월일을 Enclave에 반환합니다.</div></li>
     <li class="step-item"><div class="step-badge">12</div>
-      <div class="step-content">복호화된 Salt와 수신자의 이름, 생년월일을 입력값으로 Hash를 생성합니다.</div></li>
+      <div class="step-content">Enclave는 개인키로 암호화된 Salt를 복호화합니다.</div></li>
     <li class="step-item"><div class="step-badge">13</div>
-      <div class="step-content">생성된 해시값과 송신 VASP로부터 전달받은 해시값의 일치 여부를 비교합니다.</div></li>
+      <div class="step-content">복호화된 Salt와 수신자의 이름, 생년월일을 입력값으로 Hash를 생성합니다.</div></li>
     <li class="step-item"><div class="step-badge">14</div>
+      <div class="step-content">생성된 해시값과 송신 VASP로부터 전달받은 해시값의 일치 여부를 비교합니다.</div></li>
+    <li class="step-item"><div class="step-badge">15</div><div class="step-badge">16</div><div class="step-badge">17</div>
       <div class="step-content">Enclave는 수신 계좌 검증 결과와 해시값 비교 결과를 중앙 서버를 통해 송신 VASP로 반환합니다.</div></li>
   </ol>
 </div>
@@ -189,15 +189,15 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 <div class="scenario-section">
   <div class="scenario-title">2. 검증 결과 Report</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">15</div>
-      <div class="step-content">송신 VASP는 반환받은 검증 결과를 바탕으로 최종 검증 결과(송금 실행 여부)를 판단하고 결과를 수신 VASP에게 Report해야 합니다.</div></li>
-    <li class="step-item"><div class="step-badge">16</div>
-      <div class="step-content">Enclave의 <code>Report Verification Result API</code>를 호출하여 결과를 수신 VASP에 공유합니다.</div></li>
-    <li class="step-item"><div class="step-badge">17</div>
-      <div class="step-content">수신 VASP의 Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 Report 된 결과를 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">18</div>
-      <div class="step-content"><strong>[선택]</strong> 송신 VASP의 검증 결과가 <code>실패</code>인 경우, 사용자에게 출금이 불가함을 출금 취소 사유와 함께 안내할 수 있습니다.</div></li>
+      <div class="step-content">송신 VASP는 반환받은 검증 결과를 바탕으로 최종 검증 결과(송금 실행 여부)를 판단하고 결과를 수신 VASP에게 Report해야 합니다.</div></li>
     <li class="step-item"><div class="step-badge">19</div>
+      <div class="step-content">Enclave의 <code>Report Verification Result API</code>를 호출하여 결과를 수신 VASP에 공유합니다.</div></li>
+    <li class="step-item"><div class="step-badge">20</div><div class="step-badge">21</div><div class="step-badge">22</div>
+      <div class="step-content">수신 VASP의 Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 Report 된 결과를 전달합니다.</div></li>
+    <li class="step-item"><div class="step-badge">23</div>
+      <div class="step-content"><strong>[선택]</strong> 송신 VASP의 검증 결과가 <code>실패</code>인 경우, 사용자에게 출금이 불가함을 출금 취소 사유와 함께 안내할 수 있습니다.</div></li>
+    <li class="step-item"><div class="step-badge">24</div>
       <div class="step-content">송신 VASP의 검증 결과가 <code>성공</code>인 경우, 디지털 자산 전송을 위한 트랜잭션을 실행합니다.</div></li>
   </ol>
 </div>
@@ -205,13 +205,13 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 <div class="scenario-section">
   <div class="scenario-title">3. 트랜잭션 실행 결과 Report</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">20</div>
+    <li class="step-item"><div class="step-badge">25</div>
       <div class="step-content">트랜잭션 실행 후, 트랜잭션 Hash가 생성됩니다.</div></li>
-    <li class="step-item"><div class="step-badge">21</div>
+    <li class="step-item"><div class="step-badge">26</div>
       <div class="step-content"><code>Owner Verification Transaction Result API</code>를 호출하여 해당 트랜잭션 해시를 기반으로 실행 결과를 Report합니다.</div></li>
-    <li class="step-item"><div class="step-badge">22</div>
+    <li class="step-item"><div class="step-badge">27</div><div class="step-badge">28</div><div class="step-badge">29</div>
       <div class="step-content">수신 VASP Enclave는 백엔드의 <code>Callback API</code>를 통해 트랜잭션 실행 보고 결과를 전달합니다.</div></li>
-    <li class="step-item"><div class="step-badge">23</div>
+    <li class="step-item"><div class="step-badge">30</div>
       <div class="step-content">결과를 전달받은 수신 VASP는 해당 결과를 바탕으로 입금 여부를 확정하고 사용자에게 안내할 수 있습니다.</div></li>
   </ol>
 </div>
@@ -219,13 +219,13 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 <div class="scenario-section">
   <div class="scenario-title">4. Report 누락에 따른 상태 조회</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">24</div>
+    <li class="step-item"><div class="step-badge">31</div>
       <div class="step-content">만약 별도의 트랜잭션 실행 Report를 수신하지 못했음에도 입금이 탐지된 경우, 수신 VASP는 <code>Check Transaction Status API</code>를 호출하여 트랜잭션 상태를 조회할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">25</div>
+    <li class="step-item"><div class="step-badge">32</div><div class="step-badge">33</div><div class="step-badge">34</div>
       <div class="step-content">해당 요청은 중앙서버와 송신 VASP의 Enclave를 통해 송신 VASP 백엔드의  <code>Callback API</code>를 통해 전달됩니다.</div></li>
-    <li class="step-item"><div class="step-badge">26</div>
+    <li class="step-item"><div class="step-badge">35</div><div class="step-badge">36</div><div class="step-badge">37</div><div class="step-badge">38</div>
       <div class="step-content">송신 VASP는 전달받은 트랜잭션 Hash로 트랜잭션 상태를 확인한 후, 결과를 반환합니다.</div></li>
-    <li class="step-item"><div class="step-badge">27</div>
+    <li class="step-item"><div class="step-badge">39</div>
       <div class="step-content">수신 VASP는 해당 결과를 바탕으로 입금 반영 여부를 판단하고 사용자에게 안내할 수 있습니다.</div></li>
   </ol>
 </div>
