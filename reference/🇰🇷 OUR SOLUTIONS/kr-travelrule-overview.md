@@ -38,6 +38,8 @@ Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성�
 
 ## 검증 프로세스 개요
 
+<br />
+
 ### TravelRule 검증 프로세스
 
 TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크게 아래 6개 단계를 통해 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Scenarios and Flows 문서 및 Integration Guide에서 확인할 수 있습니다.
@@ -206,6 +208,8 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 </body>
 </html>
 `}</HTMLBlock>
+
+<br />
 
 ### VerifyName 검증 프로세스
 
@@ -548,13 +552,15 @@ Enclave 서버는 다양한 공개키 타입을 지원합니다. 검증 요청 �
       </td>
 
       <td>
-        Caching 사용 불가
+        Caching 사용 불가대
       </td>
     </tr>
   </tbody>
 </Table>
 
-<br />
+> ⚠️ VerifyName 프로토콜의 `keyType` 파라미터는 VerifyName 2.0부터 지원됩니다.
+>
+> Enclave API의 `keyType` 파라미터는 VerifyVASP의 TravelRule과 VerifyName 2.0 프로토콜에서 동일하게 지원됩니다. 단 VerifyName 프로토콜을 사용하는 경우, 요청을 처리하는 상대 VASP도 VerifyName 2.0 프로토콜을 지원하는 경우에만 지정한 `keyType`에 따른 키 생성 주기가 유효하게 반영됩니다. 상대 VASP가 VerifyName 1.0 프로토콜을 사용하는 경우 상대 VASP에서 암호화 키는 항상 `PerVasp` 타입으로 생성 및 관리됩니다.
 
 ***
 
