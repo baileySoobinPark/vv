@@ -267,7 +267,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     검증 결과에 따라 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
+     검증 결과가 정상인 경우 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
     </p>
    </div>
   </div>
@@ -284,7 +284,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     수신 VASP는 블록체인 상에서 수신 주소로 입금된 트랜잭션을 감지합니다.
+     수신 VASP는 블록체인 상에서 VASP에서 발급한 수신 주소로의 입금 트랜잭션을 감지합니다.
     </p>
    </div>
   </div>
