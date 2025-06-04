@@ -1,6 +1,8 @@
 ---
 title: Overview
-excerpt: 'TravelRule 솔루션의 아키텍처와 검증 프로세스 개요를 살펴보며 전체적인 구성과 흐름을 이해할 수 있습니다. 또한 '
+excerpt: >-
+  TravelRule 솔루션의 아키텍처와 검증 프로세스 개요를 살펴보며 전체적인 구성과 흐름을 이해할 수 있습니다. TravelRule 연동
+  작업을 시작하기에 앞서, 지원하는 보안 옵션을 살펴보고 VASP에게 요구되는 연동 순서를 확인하여 작업 계획을 수립하세요. 
 deprecated: false
 hidden: false
 metadata:
