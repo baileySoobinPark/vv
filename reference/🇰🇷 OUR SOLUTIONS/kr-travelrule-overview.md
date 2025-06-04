@@ -318,12 +318,11 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
     6. 결과 Report
     <br/>
     <span class="subtitle">
-     (Ordering VASP 또는 Beneficiary VASP)
     </span>
    </div>
    <div class="step-content">
     <p>
-     Regulated VASP는 검증 결과를 기반으로 입금 또는 출금의 최종 반영 여부를 Report해야 합니다. 
+     Regulated VASP는 검증 결과를 기반으로 입금/출금의 최종 반영 여부를 확정하고 상대 VASP로 Report해야 합니다. 
     </p>
     <p>
      필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
