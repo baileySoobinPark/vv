@@ -1,9 +1,9 @@
 ---
 title: Scenarios and Flows
 excerpt: >-
-  본 문서에서는 TravelRule 구현을 위한 필수 연동 과정을 포함하는 Best Practice Flow와, VASP측에서 선택적으로
-  구현할 수 있는 Screening 시나리오에서의 연동 Flow를 설명합니다. 각 VASP는 시나리오별 Flow를 참고하여 효과적인 구현 및
-  연동을 진행할 수 있습니다. 
+  본 문서에서는 TravelRule 구현을 위한 필수 연동 과정을 포함하는 Best Practice 시나리오와 선택 구현사항인
+  Screening 시나리오 및 세부 Flow를 소개합니다. 각 VASP는 시나리오별 Flow를 참고하여 요구사항에 맞추어 TravelRule
+  솔루션을 도입할 수 있습니다. 
 deprecated: false
 hidden: false
 metadata:
