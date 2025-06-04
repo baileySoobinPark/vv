@@ -98,7 +98,8 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
       <div class="step-content">Enclave는 목록을 수신한 후 송신 VASP 백엔드로 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">8</div><div class="step-badge">9</div>
       <div class="step-content">사용자(수신자)는 수신 VASP가 제시한 목록으로부터 해당 입금건의 송신 VASP를 선택합니다. </div></li>
-    <div class="subsection-title">송신자와 수신 계좌 소유주와의 일치여부 검증</div>
+    
+    <div class="subsection-title">수신 VASP의 송신 트랜잭션 및 송신자 정보 검증 요청</div>
     <li class="step-item"><div class="step-badge">10</div>
       <div class="step-content">수신 VASP는 <code>Owner Verification API</code>를 호출하여 송신 VASP측으로 송신자의 이름과 생년월일이 수신 계좌 소유주의 것과 일치하는지에 대한 검증을 요청합니다. 요청은 자산 정보와 수신자의 이름, 생년월일을 포함합니다.</div></li>
     <li class="step-item"><div class="step-badge">11</div><div class="step-badge">12</div>
@@ -107,6 +108,8 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
       <div class="step-content">수신 VASP의 Enclave는 Hash 생성에 사용한 Salt를 송신 VASP의 공개키로 암호화합니다. 이때 만약 송신 VASP의 공개키가 캐싱되어있지 않거나 사용할 수 없는 상태인 경우, <a href="https://verifyvasp.readme.io/reference/flow-diagram-copy#/travelrule-best-practice"> TravelRule 프로토콜과 같은 방식 </a> 으로 Enclave간 키 교환 및 캐싱을 진행합니다. </div></li>
     <li class="step-item"><div class="step-badge">14</div>
       <div class="step-badge">15</div><div class="step-content"> 11번 Step에서 생성된 해시값을 포함한 검증 요청이 중앙 서버를 통해 송신 VASP의 Enclave로 전달됩니다.</div></li>
+    
+    <div class="subsection-title">송신 VASP측 송신 트랜잭션 및 송신자 정보 검증</div>
     <li class="step-item"><div class="step-badge">16</div>
       <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>VerifyName API</code>를 호출하여 트랜잭션 검증을 요청합니다. 트랜잭션 검증 요청은 수신자의 개인정보를 포함하지 않으며 오직 트랜잭션 해시, 자산 티커, 네트워크 정보만을 포함합니다.</div></li>
     <li class="step-item"><div class="step-badge">17</div>
@@ -126,7 +129,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">검증 결과 Report</div>
+  <div class="scenario-title">최종 소유주 검증 결과 및 입금 반영 여부 Report</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">26</div>
       <div class="step-badge">27</div><div class="step-content">수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 바탕으로 계정 소유주 검증 결과 및 이에 따른 입금 반영 여부를 확정합니다.</div></li>
