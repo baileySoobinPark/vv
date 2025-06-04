@@ -435,9 +435,7 @@ Enclave 서버는 다양한 공개키 타입을 지원합니다. 검증 요청 �
 
 ## VASP 작업 요구사항
 
-### TravelRule 지원을 위한 VASP 작업 요구사항
-
-TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행해야 합니다. 각 항목에 대한 세부 내용은 관련 문서를 참조하세요.
+VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위해 VASP는 다음의 절차를 순차적으로 수행해야 합니다. 각 항목에 대한 세부 내용은 관련 문서를 참조하세요.
 
 <HTMLBlock>{`
 <style>
@@ -539,10 +537,6 @@ TravelRule 연동을 위해 VASP는 다음의 절차를 순차적으로 수행�
   </li>
 </ol>
 `}</HTMLBlock>
-
-<br />
-
-### VerifyName 2.0 지원을 위한 VASP 작업 요구사항
 
 <br />
 
