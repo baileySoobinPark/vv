@@ -83,7 +83,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
   </ol>
 </div>
 <div class="scenario-section">
-  <div class="scenario-title">2. 수신 VASP 측 입금 트랜잭션 감지에 따른 사후 검증 요청</div>
+  <div class="scenario-title">2. 수신 VASP 측 입금 트랜잭션 감지에 따른 사후 검증(Post-Verification) 요청</div>
   <ol>
     <div class="subsection-title">송신 VASP 확인</div>
     <li class="step-item"><div class="step-badge">3</div>
