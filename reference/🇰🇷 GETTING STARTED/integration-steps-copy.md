@@ -6,7 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-VerifyVASP 솔루션 연동은 총 6단계로 진행되며, Onboarding을 제외한 단계는 각 프로토콜(TravelRule 또는 VerifyName) 카테고리 에서 세부 가이드가 제공됩니다.
+VerifyVASP 솔루션 연동은 아래와 같이 총 6단계로 진행됩니다. 공통 과정인 Onboarding을 제외한 과정들은 프로토콜별 연동 단계 카테고리(TravelRule Integration Steps 또는 VerifyName Integration Steps) 에서 세부 가이드를 제공하오니, 연동 대상에 따라 적절한 문서로 이동하여 연동을 시작하시기 바랍니다.
 
 1. **Onboarding**\
    VerifyVASP 콘솔에 VASP를 등록하고 API Key를 발급받습니다.
