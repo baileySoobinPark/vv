@@ -1864,7 +1864,7 @@ paths:
                 Successful Example:
                   value:
                     outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
-  /TEST_CUSTOM_PATH_VERIFY_USER_ACCOUNT:
+  /VASP_CUSTOM_PATH_VERIFY_USER_ACCOUNT:
     post:
       summary: Verify User Account API
       description: ''
