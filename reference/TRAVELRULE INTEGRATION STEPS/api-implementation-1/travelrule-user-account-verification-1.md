@@ -22,22 +22,84 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 `DENIED`일 경우, `reason` 필드에 아래의 사유 코드 중 하나를 반드시 포함해야 합니다:
 
-\| 사유 코드             | 설명 |
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        사유 코드
+      </th>
 
-\|----------------------|------|
+      <th>
+        설명
+      </th>
+    </tr>
+  </thead>
 
-\| `UNKNOWN-SYMBOL`     | 지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목) |
+  <tbody>
+    <tr>
+      <td>
+        `UNKNOWN-SYMBOL`
+      </td>
 
-\| `UNKNOWN-NETWORK`    | 지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서\
-USDT-Tron만 지원하는 경우) |
+      <td>
+        지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)
+      </td>
+    </tr>
 
-\| `UNKNOWN-ADDRESS`    | 해당 주소를 관리하지 않음 |
+    <tr>
+      <td>
+        `UNKNOWN-NETWORK`
+      </td>
 
-\| `MISMATCHED-NAME`    | 수신자 이름 불일치 |
+      <td>
+        지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서\\
+        USDT-Tron만 지원하는 경우)
+      </td>
+    </tr>
 
-\| `UNVERIFIED-KYC`     | KYC 미완료 사용자 |
+    <tr>
+      <td>
+        `UNKNOWN-ADDRESS`
+      </td>
 
-\| `UNDEFINED-ERROR`    | 정의되지 않은 기타 오류 |
+      <td>
+        해당 주소를 관리하지 않음
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `MISMATCHED-NAME`
+      </td>
+
+      <td>
+        수신자 이름 불일치
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `UNVERIFIED-KYC`
+      </td>
+
+      <td>
+        KYC 미완료 사용자
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `UNDEFINED-ERROR`
+      </td>
+
+      <td>
+        정의되지 않은 기타 오류
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
 
 ### 제약 사항
 
