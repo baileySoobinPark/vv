@@ -8,3 +8,4 @@ hidden: false
 metadata:
   robots: index
 ---
+TravelRule VASP API는 VASP의 비즈니스 로직을 Enclave로부터 호출되어 VASP의 비
