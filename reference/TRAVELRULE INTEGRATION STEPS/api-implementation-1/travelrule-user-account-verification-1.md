@@ -7,7 +7,7 @@ hidden: false
 ---
 VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 **수신 VASP** 역할을 위한 구현 요구사항입니다. 송신자가 지정한 수신 주소가 VASP의 소유 주소인지 여부를 검증하고 결과를 반환합니다.
 
-### 기능 요구사항
+#### 기능 요구사항
 
 **1. VASP의 주소 소유 여부 검증**\
 요청에 포함된 수신 주소(beneficiary.accountNumber)가 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인하고, 결과를 응답합니다.
@@ -88,8 +88,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
 
 ### 제약 사항
 
