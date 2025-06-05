@@ -1,71 +1,46 @@
 ---
 title: Check Trasnaction Status API
-excerpt: >
-  This API must be implemented by your VASP to fulfill its role as a Originating
-  VASP. Its primary purpose is to retrieve and return the current status of a
-  transfer transaction submitted by the Originator on the blockchain. This API
-  is typically called by the Beneficiary VASP when asynchronous status updates
-  from the Originating VASP are delayed or missing. 
-
-  The Enclave will invoke this API upon receiving transaction status checking
-  requests from the Beneficiary VASP.
-
-
-  ### Functional Requirements
-
-  **1. Mapping Verification UUID to the Corresponding Transaction Hash**
-
-  Your VASP, acting as the Originating VASP, must map the verificationUuid
-  (received in response to a previous 'Verify User API' request) to the
-  transaction hash of the on-chain transfer submitted following the verification
-  result.
-
-
-  **2. Retrieving and Responding On-Chain Transaction Status**
-
-  Using the transaction hash, retrieve the current status of the on-chain
-  transaction. The transaction status must be returned in the transactionStatus
-  field, which supports the following allowed values:
-    * **PENDING**: The transaction is awaiting submission to the blockchain for any reason.
-    * ** PROCESSING**: The transaction has been submitted to the blockchain and is waiting to be mined.
-    * **WAIT-CONFIRM**: The transaction has been mined, but finality has not yet been achieved.
-    * **CONFIRMED**: The transaction has been mined and has achieved finality.
-    * **CANCELED**: The transaction was either canceled before submission or permanently canceled after submission.
-
-  ### Contraints 
-
-  * This API must respond within 1 second.
-
-
-  ### Recommendations
-
-  To simplify the management of the verificationUuid and transaction hash pair,
-  it is strongly recommended to leverage the Enclave APIs: Report Transaction
-  Result API and Get Verification Result API. 
-    * Ensure Prompt Transaction Reporting
-      * Immediately after submitting the blockchain transaction and obtaining the transaction hash, call the Report Transaction Result API. This ensures you can:
-        * Notify the Beneficiary VASP of the transaction result.
-        * Store the transaction hash corresponding to the verificationUuid in the Enclave.
-    * Retrieving the Transaction Hash From Enclave
-      * If the Beneficiary VASP later calls the Check Transaction Status API, use the Enclave's Get Verification Result API to retrieve the previously stored transaction hash. 
-      * This transaction hash can then be used to query the real-time status of the blockchain transaction and respond to the Beneficiary VASP.
-
-  Leveraging this implementation allows your VASP to efficiently manage
-  verificationUuid and transaction hash mapping without a dedicated database,
-  simplifying implementation while ensuring accurate and timely status handling.
-
-
-  ### Environment Variable Configuration
-
-  Set the following environment variables as per the guide to integrate the
-  implemented API with the Enclave.
-    * `VEGA_VERIFICATION_TRANSACTION_API_PATH`: Implement this API at the desired path({VASP_DEFINED_PATH_TRANSACTION_CHECK}) and set the path in the variable.
-    * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Set this variable to the API key provided during your VerifyVASP onboarding process.
-
-  For a complete list of Enclave environment variables, [click
-  here.](ref:travelrule-enclave-setup).
 api:
   file: TR_VASP_API_KR_Spec.yaml
   operationId: travelrule-check-Transaction-Status
 hidden: false
 ---
+본 API는 귀사의 VASP가 **송신 VASP(Originating VASP)** 역할을 수행할 때 구현해야 합니다.\
+송신자가 제출한 블록체인 트랜잭션의 상태를 수신 VASP가 확인할 수 있도록 현재 상태를 조회하여 응답하는 것이 목적입니다.
+
+이 API는 수신 VASP가 비동기 리포트를 받지 못한 경우, Enclave를 통해 호출됩니다.
+
+### 기능 요건
+
+**1. verificationUuid와 트랜잭션 해시 매핑**
+
+* 송신 VASP는 이전 검증 요청 시 발급받은 `verificationUuid`에 대해, 실제 전송한 트랜잭션의 해시 값을 연결해 관리해야 합니다.
+
+**2. 트랜잭션 상태 조회 및 응답**
+
+* 트랜잭션 해시를 기반으로 현재 블록체인 상의 상태를 조회하고, `transactionStatus` 필드에 아래 값 중 하나로 응답해야 합니다:
+  * `PENDING`: 아직 블록체인에 제출되지 않은 상태
+  * `PROCESSING`: 제출되었지만 아직 마이닝되지 않은 상태
+  * `WAIT-CONFIRM`: 마이닝되었지만 아직 finality가 확보되지 않은 상태
+  * `CONFIRMED`: 마이닝 완료 및 finality 확보된 상태
+  * `CANCELED`: 제출 전 또는 후에 취소된 상태
+
+### 제약 조건
+
+* 1초 이내에 응답해야 합니다.
+
+### 구현 권장 사항
+
+`verificationUuid`와 트랜잭션 해시 관리를 단순화하기 위해 Enclave의 다음 API를 활용하는 것을 권장합니다:
+
+* **Report Transaction Result API**: 트랜잭션 실행 직후 해시를 Enclave에 저장하고 수신 VASP에 리포트
+* **Get Verification Result API**: 수신 VASP의 요청 시 저장된 트랜잭션 해시를 조회하여 실시간 상태 확인에 사용
+
+Enclave를 활용하면 별도 DB 없이도 효율적인 매핑 및 상태 응답 처리가 가능합니다.
+
+### Enclave 연동 설정
+
+다음 환경변수를 설정해야 Enclave와 연동됩니다:
+
+* `VEGA_VERIFICATION_TRANSACTION_API_PATH`: 해당 API 구현 경로
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 온보딩 시 발급받은 API 키
