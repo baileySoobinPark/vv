@@ -23,8 +23,9 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
   .api-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 24px;
+    background-color: #fff;
     font-size: 14px;
+    margin-top: 24px;
   }
 
   .api-table th, .api-table td {
@@ -35,14 +36,13 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
   }
 
   .api-table th {
-    background-color: #f2f6fb;
-    font-weight: bold;
+    background-color: #f8f9fa;
     color: #333;
+    font-weight: bold;
   }
 
   .api-name a {
     color: #1364FF;
-    font-weight: bold;
     text-decoration: none;
   }
 
@@ -64,6 +64,17 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
     display: inline-block;
     margin: 2px 0;
   }
+
+  .badge-key {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #1364FF;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
 </style>
 
 <table class="api-table">
@@ -84,6 +95,7 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
       <td class="api-name"><a href="#">Verify User API</a></td>
       <td class="api-role">수신 VASP</td>
       <td>
+        <span class="badge-key">핵심 API</span><br>
         VASP의 자체 KYC/AML 데이터 및 정책을 기준으로 송신자가 입력한 수신자 정보를 검증합니다.
         검증 결과를 반환하여 해당 자산 전송건을 허용 또는 반려(Deny)할 수 있습니다.
       </td>
