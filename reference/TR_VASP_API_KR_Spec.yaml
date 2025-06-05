@@ -4,7 +4,7 @@ info:
   version: "1.0"
   description: Management of VerifyVASP API Spec.
 servers:
-  - url: /
+  - url: https://{vasp-endpoint}
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -21,7 +21,7 @@ paths:
         ### 기능 요구사항
 
         **1. VASP의 주소 소유 여부 검증**  
-        요청에 포함된 수신 주소(beneficiary.accountNumber)가 VASP로부터 발급된 주시인지 여부를 데이터베이스와 대조하여 확인하고, 결과를 응답합니다.
+        요청에 포함된 수신 주소(beneficiary.accountNumber)가 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인하고, 결과를 응답합니다.
 
         **2. 검증 결과 응답**  
         - VASP 소유 주소인 경우(검증 성공): `accountVerificationResult` 값을 `VERIFIED`로 반환  
