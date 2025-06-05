@@ -49,7 +49,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
   .custom-table td.code-col {
     min-width: 250px;
-    font-family: monospace;
     white-space: nowrap;
   }
 </style>
@@ -63,27 +62,27 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   </thead>
   <tbody>
     <tr>
-      <td class="code-col">\`UNKNOWN-SYMBOL\`</td>
+      <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
       <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
     </tr>
     <tr>
-      <td class="code-col">\`UNKNOWN-NETWORK\`</td>
+      <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
       <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
     </tr>
     <tr>
-      <td class="code-col">\`UNKNOWN-ADDRESS\`</td>
+      <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
       <td>해당 주소를 관리하지 않음</td>
     </tr>
     <tr>
-      <td class="code-col">\`MISMATCHED-NAME\`</td>
+      <td class="code-col"><code>MISMATCHED-NAME</code></td>
       <td>수신자 이름 불일치</td>
     </tr>
     <tr>
-      <td class="code-col">\`UNVERIFIED-KYC\`</td>
+      <td class="code-col"><code>UNVERIFIED-KYC</code></td>
       <td>KYC 미완료 사용자</td>
     </tr>
     <tr>
-      <td class="code-col">\`UNDEFINED-ERROR\`</td>
+      <td class="code-col"><code>UNDEFINED-ERROR</code></td>
       <td>정의되지 않은 기타 오류</td>
     </tr>
   </tbody>
