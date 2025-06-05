@@ -8,4 +8,208 @@ hidden: false
 metadata:
   robots: index
 ---
-TravelRule VASP API는 VASP의 비즈니스 로직을 Enclave로부터 호출되어 VASP의 비
+VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, 각 VASP의 정책과 데이터를 기반으로 검증 및 입출금 관리에 필요한 비즈니스 로직을 실행하는 역할을 합니다. VASP 백엔드에 구현된 VASP API들은 Enclave 서버로부터 호출되어 계정 및 사용자 정보 검증, 트랜잭션 상태 조회, 결과 보고 수신 등의 주요 기능을 담당함으로서 규제 요구사항을 충족하고 프로토콜 흐름을 완성합니다.
+
+본 문서에서는 구현이 필요한 API 목록과 각 API의 동작 목적, 호출 흐름, 구현 시 유의사항 등을 순차적으로 설명합니다.
+
+<br />
+
+## 구현되어야 하는 VASP API 목록
+
+<br />
+
+<HTMLBlock>{`
+<style>
+  .api-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+
+  .api-table th, .api-table td {
+    border: 1px solid #ddd;
+    padding: 12px 14px;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  .api-table th {
+    background-color: #f2f6fb;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .api-name a {
+    color: #1364FF;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .api-name a:hover {
+    text-decoration: underline;
+  }
+
+  .api-role {
+    color: #555;
+    font-weight: 500;
+  }
+
+  .callback-events code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    display: inline-block;
+    margin: 2px 0;
+  }
+</style>
+
+<table class="api-table">
+  <thead>
+    <tr>
+      <th>API Name</th>
+      <th>VASP 포지션</th>
+      <th>API의 역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="api-name"><a href="#">Verify User Account API</a></td>
+      <td class="api-role">수신 VASP</td>
+      <td>수신 계정이 VASP에서 발급된 계정인지 여부를 검증합니다.</td>
+    </tr>
+    <tr>
+      <td class="api-name"><a href="#">Verify User API</a></td>
+      <td class="api-role">수신 VASP</td>
+      <td>
+        VASP의 자체 KYC/AML 데이터 및 정책을 기준으로 송신자가 입력한 수신자 정보를 검증합니다.
+        검증 결과를 반환하여 해당 자산 전송건을 허용 또는 반려(Deny)할 수 있습니다.
+      </td>
+    </tr>
+    <tr>
+      <td class="api-name"><a href="#">Callback API</a></td>
+      <td class="api-role">송신 VASP & 수신 VASP</td>
+      <td>
+        Enclave와의 비동기 통신을 위해 제공해야 하는 공통 인터페이스입니다. 아래 5개 타입의 Callback 이벤트를 수신할 수 있습니다.
+        <div class="callback-events">
+          <code>VERIFICATION_RESULT</code> : 검증 결과 수신<br>
+          <code>TX_REPORT</code> : 트랜잭션 결과 수신<br>
+          <code>ERROR_REPORT</code> : 프로토콜 처리 중 에러 수신<br>
+          <code>CHAINALYSIS_KYT_RESULT</code> : Chainalysis 연계 리스크 평가 결과 수신<br>
+          <code>REFINITIV_WCO_RESULT</code> : Refinitiv WCO 연계 리스크 평가 결과 수신
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="api-name"><a href="#">Check Transaction Status API</a></td>
+      <td class="api-role">송신 VASP</td>
+      <td>온체인 송금 트랜잭션의 현재 처리 상태를 조회하여 반환합니다.</td>
+    </tr>
+    <tr>
+      <td class="api-name"><a href="#">Database Management API</a></td>
+      <td class="api-role">송신 VASP & 수신 VASP</td>
+      <td>Enclave 데이터베이스에 사용할 암호화 키를 반환하여 Runtime으로 주입합니다.</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        API Name
+      </th>
+
+      <th>
+        VASP 포지션
+      </th>
+
+      <th>
+        API의 역할
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Verify User Account API
+      </td>
+
+      <td>
+        수신 VASP
+      </td>
+
+      <td>
+        수신 계정이 VASP에서 발급된 계정인지 여부를 검증합니다.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Verify User API
+      </td>
+
+      <td>
+        수신 VASP
+      </td>
+
+      <td>
+        VASP의 자체 KYC/AML 데이터 및 정책을 기준으로 송신자가 입력한 수신자 정보를 검증합니다. 검증 결과를 반환하여 해당 자산 전송건을 허용 또는 반려(Deny) 할 수 있습니다.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Callback API
+      </td>
+
+      <td>
+        송신 VASP & 수신 VASP
+      </td>
+
+      <td>
+        Enclave와의 비동기 통신을 위해 제공해야 하는 공통 인터페이스입니다. 아래 5개타입의 Callback 이벤트를 수신할 수 있습니다.
+
+        * `VERIFICATION_RESULT`: 검증 결과 수신
+        * `TX_REPORT`: 트랜잭션 결과 수신
+        * `ERROR_REPORT`: 프로토콜 처리 중 에러 수신
+        * `CHAINALYSIS_KYT_RESULT`: Chainalysis 연계 리스크 평가 결과 수신
+        * `REFINITIV_WCO_RESULT`: Refinitive WCO 연계 리스크 평과 결과 수신
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Check Transaction Status API
+      </td>
+
+      <td>
+        송신 VASP
+      </td>
+
+      <td>
+        온체인 송금 트랜잭션의 현재 처리 상태를 조회하여 반환합니다.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Database Management API
+      </td>
+
+      <td>
+        송신 VASP & 수신 VASP
+      </td>
+
+      <td>
+        Enclave 데이터베이스에 사용할 암호화 키를 반환하여 Runtime으로 주입합니다.
+      </td>
+    </tr>
+  </tbody>
+</Table>
