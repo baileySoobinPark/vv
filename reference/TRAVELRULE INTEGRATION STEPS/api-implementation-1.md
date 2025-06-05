@@ -33,6 +33,7 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
     padding: 12px 14px;
     vertical-align: top;
     text-align: left;
+    background-color: #fff;
   }
 
   .api-name a {
