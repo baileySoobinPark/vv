@@ -12,149 +12,6 @@ components:
       in: header
       name: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
 paths:
-  /VASP_CUSTOM_PATH_VERIFY_USER_ACCOUNT:
-    post:
-      summary: Verify User Account API
-      description: >
-        
-      security:
-        - ApiKeyAuth: []
-      operationId: travelrule-User-Account-Verification
-      tags:
-        - VASP Verification API
-      x-readme:
-        explorer-enabled: false
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - originatingVaspId
-                - symbol
-                - version
-                - ivms101
-              properties:
-                originatingVaspId:
-                  type: string
-                  description: |
-                    Unique identifier of Originating VASP.
-                  example: '123456789098765'
-                symbol:
-                  type: string
-                  description: |
-                    Symbol of the virtual asset.
-                  example: ETH
-                network:
-                  type: string
-                  description: >
-                    The network of the virtual asset. Conditionally required by
-                    the Beneficiary VASP.
-                      
-                    **Conditional Use of 'network' Field:**  
-                      1. If the Beneficiary VASP requires network field:  
-                      Beneficary VASP could return **DENIED** and **UNKNOWN-NETWORK** if the Originating VASP does not provide a network value in the request.  
-                        
-                      2. If the Beneficiary VASP does not require network field:  
-                      Beneficiary VASP can infer the network based on the symbol and return the verification result.
-                  example: Ethereum
-                version:
-                  type: string
-                  description: |
-                    The version of the IVMS101 messaging protocol being used.
-                  example: '1.0'
-                ivms101:
-                  type: object
-                  description: >
-                    An object with IVMS101-formatted data containing information
-                    about the Originator, OriginatingVASP, Beneficiary, and
-                    BeneficiaryVASP.
-                  required:
-                    - beneficiary
-                  properties:
-                    beneficiary:
-                      type: object
-                      description: |
-                        An object containing Beneficiary information.
-                      required:
-                        - accountNumber
-                      properties:
-                        accountNumber:
-                          type: array
-                          description: |
-                            An array containing wallet addresses.
-                          items:
-                            type: string
-            examples:
-              requestexamples:
-                value:
-                  originatingVaspId: '15952089931162060684'
-                  symbol: ETH
-                  network: Ethereum
-                  version: '1.0'
-                  ivms101:
-                    beneficiary:
-                      accountNumber:
-                        - '0x5811001506550d8356a215be229c15b6ef371a9b'
-      responses:
-        '200':
-          description: Successful verification response
-          content:
-            application/json:
-              schema:
-                type: object
-                required:
-                  - accountVerificationResult
-                  - verifiedAt
-                properties:
-                  accountVerificationResult:
-                    type: string
-                    enum:
-                      - VERIFIED
-                      - DENIED
-                    description: >
-                      Result of User Account Verification:  
-
-                      If the result is **DENIED**, the reason field should
-                      provide the specific reason.
-                    example: VERIFIED
-                  reason:
-                    type: string
-                    enum:
-                      - UNKNOWN-SYMBOL
-                      - UNKNOWN-NETWORK
-                      - UNKNOWN-ADDRESS
-                      - MISMATCHED-NAME
-                      - UNDEFINED-ERROR
-                      - BLACKLISTED
-                      - UNVERIFIED-KYC
-                    description: |
-                      This field provides the reason for verification failure.
-                    example: UNKNOWN-ADDRESS
-                  verifiedAt:
-                    type: string
-                    description: >
-                      The timestamp when the verification was completed.  
-                        
-                      This field must follow the UTC ISO 8601 datetime
-                      representation standard.
-                        
-                      **Recommendations**  
-                        
-                      To ensure consistency across systems, we strongly
-                      recommend using the extended format
-                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
-                      and clearly specifies the UTC timezone.   Other ISO 8601
-                      Acceptable Formats:  
-                        - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: '2024-11-25T15:30:00.000Z'
-              examples:
-                Successful Example:
-                  value:
-                    accountVerificationResult: '15952089931162060684'
-                    verifiedAt: '2022-03-03T12:45:34.085Z'
   /VASP_DEFINED_PATH_VERIFY_USER:
     post:
       summary: Verify User API
@@ -2007,3 +1864,145 @@ paths:
                 Successful Example:
                   value:
                     outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
+  /TEST_CUSTOM_PATH_VERIFY_USER_ACCOUNT:
+    post:
+      summary: Verify User Account API
+      description: ''
+      security:
+        - ApiKeyAuth: []
+      operationId: travelrule-User-Account-Verification
+      tags:
+        - VASP Verification API
+      x-readme:
+        explorer-enabled: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - originatingVaspId
+                - symbol
+                - version
+                - ivms101
+              properties:
+                originatingVaspId:
+                  type: string
+                  description: |
+                    Unique identifier of Originating VASP.
+                  example: '123456789098765'
+                symbol:
+                  type: string
+                  description: |
+                    Symbol of the virtual asset.
+                  example: ETH
+                network:
+                  type: string
+                  description: >
+                    The network of the virtual asset. Conditionally required by
+                    the Beneficiary VASP.
+                      
+                    **Conditional Use of 'network' Field:**  
+                      1. If the Beneficiary VASP requires network field:  
+                      Beneficary VASP could return **DENIED** and **UNKNOWN-NETWORK** if the Originating VASP does not provide a network value in the request.  
+                        
+                      2. If the Beneficiary VASP does not require network field:  
+                      Beneficiary VASP can infer the network based on the symbol and return the verification result.
+                  example: Ethereum
+                version:
+                  type: string
+                  description: |
+                    The version of the IVMS101 messaging protocol being used.
+                  example: '1.0'
+                ivms101:
+                  type: object
+                  description: >
+                    An object with IVMS101-formatted data containing information
+                    about the Originator, OriginatingVASP, Beneficiary, and
+                    BeneficiaryVASP.
+                  required:
+                    - beneficiary
+                  properties:
+                    beneficiary:
+                      type: object
+                      description: |
+                        An object containing Beneficiary information.
+                      required:
+                        - accountNumber
+                      properties:
+                        accountNumber:
+                          type: array
+                          description: |
+                            An array containing wallet addresses.
+                          items:
+                            type: string
+            examples:
+              requestexamples:
+                value:
+                  originatingVaspId: '15952089931162060684'
+                  symbol: ETH
+                  network: Ethereum
+                  version: '1.0'
+                  ivms101:
+                    beneficiary:
+                      accountNumber:
+                        - '0x5811001506550d8356a215be229c15b6ef371a9b'
+      responses:
+        '200':
+          description: Successful verification response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - accountVerificationResult
+                  - verifiedAt
+                properties:
+                  accountVerificationResult:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                    description: >
+                      Result of User Account Verification:  
+
+                      If the result is **DENIED**, the reason field should
+                      provide the specific reason.
+                    example: VERIFIED
+                  reason:
+                    type: string
+                    enum:
+                      - UNKNOWN-SYMBOL
+                      - UNKNOWN-NETWORK
+                      - UNKNOWN-ADDRESS
+                      - MISMATCHED-NAME
+                      - UNDEFINED-ERROR
+                      - BLACKLISTED
+                      - UNVERIFIED-KYC
+                    description: |
+                      This field provides the reason for verification failure.
+                    example: UNKNOWN-ADDRESS
+                  verifiedAt:
+                    type: string
+                    description: >
+                      The timestamp when the verification was completed.  
+                        
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                        
+                      **Recommendations**  
+                        
+                      To ensure consistency across systems, we strongly
+                      recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.   Other ISO 8601
+                      Acceptable Formats:  
+                        - Basic format("YYYYMMDDThhmmss.sssZ")  
+                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                    example: '2024-11-25T15:30:00.000Z'
+              examples:
+                Successful Example:
+                  value:
+                    accountVerificationResult: '15952089931162060684'
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
