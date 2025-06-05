@@ -34,7 +34,7 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 150px
+    min-width: 150px;
   }
 
 	.api-table th {
