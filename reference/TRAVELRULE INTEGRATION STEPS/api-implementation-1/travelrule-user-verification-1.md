@@ -1,145 +1,70 @@
 ---
 title: Verify User API
-excerpt: >
-  This API must be implemented by your VASP to fulfill its role as a Beneficiary
-  VASP. Its primary purpose is to verify the consistency of the originator user
-  provided Beneficiary's personal information against the Beneficiary VASP
-  managing data, while ensuring compliance with KYC/AML and sanction screening
-  requirements.
-
-  By providing this endpoint, your VASP allows the Enclave to delegate
-  verification tasks. The Enclave will invoke this API upon receiving
-  verification requests from the Originating VASP.
-
-
-  ### Functional Requirements
-
-  **1. Personal Information Verification**
-
-    - The API must validate whether the personal information provided by the Originating VASP matches the data managed by the Beneficiary VASP.
-    - Fields to be matched include:
-        - Name: Verify that the Beneficiary's name matches the existing records.
-        - Address: Verify that the account number or wallet address matches the existing records.
-
-
-  **2. Compliance Assurance**
-
-    The verification process must ensure regulatory compliance by performing the following checks and validations for the Beneficiary:
-    - **KYC Validation**: Check if the Beneficiary has completed Know Your Customer (KYC) authentication.
-    - **AML Validation**: Confirm the Beneficiary complies with Anti-Money Laundering (AML) requirements.
-    - **STR Monitoring and Sanction Screening**: Perform Suspicious Transaction Reporting (STR) analysis and sanction screening for the Originator.
-    - **Additional Filtering**: Your VASP may conduct extra filtering or verification of the provided personal information for both the Originator and Beneficiary
-
-
-  **3. Responding to Originating VASP Data Requests**
-
-    Your VASP (Beneficiary VASP) must provide all information requested by the Originating VASP in the requiredBeneficiaryInfo object during the verification process, by filling and returning the ivms101 object with the data.
-    - If your VASP does not have or cannot provide the requested information, the API must set verificationResult to `DENIED` and reason to `UNAVAILABLE-INFORMATION`.
-    - Only the information explicitly requested in requiredBeneficiaryInfo should be filled. Any fields not requested by the Originating VASP must remain empty.
-    - The beneficiary account number (or wallet address) must be returned without modification. Altering the wallet address may result in incorrect deposits. If the deposit address is invalid or incorrect, the API must set verificationResult to `DENIED`.
-
-
-  **4. Responding with Additional Beneficiary Information and Verification
-  Results**
-
-    The API must return the verification result.
-    * After verifying both the Originator and Beneficiary information (including addresses and personal details), the API must return the result field as `VERIFIED` if the provided data matches the beneficiary side records and there are no exceptional reasons to deny the asset transfer.
-    * If the provided information is insufficient or does not match the details on the Beneficiary's side, or if the account address or its owner is considered high-risk for asset transfer, the API must return the result field as `DENIED`.
-    
-    Upon successful user verification, the API must return additional personal information about the Beneficiary in the IVMS101 messaging format.
-
-
-  **5. Failure Reason Specification**
-
-    When the result field is set to `DENIED`, the reason field in the response must specify the reason for the failure. The allowed values for this field are as follows:
-
-  | Reason Code             | Message                            | Description |
-
-  |-------------------------|-------------------------------------|-------------|
-
-  | `UNKNOWN-SYMBOL`        | `"ETH"`                             | Error code
-  returned when the virtual asset symbol entered by the Originating VASP is not
-  supported by the Beneficiary VASP. |
-
-  | `UNKNOWN-NETWORK`       | `"Ethereum"`                        | Error code
-  returned when the network entered by the Originating VASP is either not
-  supported by the Beneficiary VASP or contains insufficient network
-  information. <br>This error is also returned if the asset symbol matches but
-  the network does not (e.g., sending `USDT` with `ETH` network when only `USDT`
-  on Tron is supported). |
-
-  | `UNKNOWN-ADDRESS`       | `"0x... is not registered."`        | Error code
-  returned when the wallet address entered by the Originating VASP does not
-  belong to a wallet managed by the Beneficiary VASP. |
-
-  | `LACK-OF-INFORMATION`   | `"ACCOUNT_NUMBER"`                  | Error code
-  returned when the information about the Originator is insufficient for the
-  Beneficiary VASP to perform verification. |
-
-  | `UNAVAILABLE-INFORMATION` | `"ACCOUNT_NUMBER"`               | Error code
-  returned when the Beneficiary VASP does not possess or cannot provide certain
-  personal information requested by the Originating VASP. |
-
-  | `BLACKLISTED`           | `"0x.. is listed on the blacklist."` | Error code
-  returned when the sanction screening results for the Originator indicate a
-  compliance issue. |
-
-  | `UNVERIFIED-KYC`        | `"0x.. is unverified KYC"`          | Error code
-  returned when the Beneficiary has not completed the KYC verification process
-  with the Beneficiary VASP.|
-
-  | `MISMATCHED-NAME`       | `"Name is not matched."`            | Error code
-  returned when the Beneficiary's name does not match the name provided by the
-  Originating VASP. |
-
-  | `NOT-ALLOWED`           | `"This user is locked by internal policy."` |
-  Error code returned when the Beneficiary VASP rejects the user verification
-  for any reason. |
-
-  | `UNDEFINED-ERROR`       | `"Undefined Error is occurred."`    | Error code
-  returned when an error occurs that is not defined in the specified cases. |
-
-  ### Constraints
-
-
-  - This API **must respond within 5 seconds**.
-
-
-  ### Recommendations
-
-
-  Virtual asset transfers **below the threshold set by regulations** are **not
-  subject to the Travel Rule**, and **beneficiary name verification is not
-  mandatory**.
-
-  - **We highly recommend using the TravelRule Protocol for all transactions**,
-  regardless of differing thresholds across jurisdictions, to ensure secure and
-  compliant transfers reduce operational resources.
-
-
-  - If the `isExceedingThreshold` field in the Originating VASP's request is set
-  to `false` the transfer **is not subject to the Travel Rule**, and **User
-  verification is not mandatory** in such cases, the virtual asset **can be
-  transferred without further verification**.
-
-
-  ### Environment Variable Configuration
-
-
-  Set the following environment variables as per the integration guide to
-  connect the implemented API with the Enclave.  
-
-  For a complete list of Enclave environment variables, [click
-  here](ref:travelrule-enclave-setup).
-
-
-  - `VEGA_VERIFICATION_API_PATH`  
-    Implement this API at the desired path (`{VASP_DEFINED_PATH_VERIFY_USER}`) and set the path in the variable.
-
-  - `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`  
-    Set this variable to the **API key provided during your VerifyVASP onboarding process**.
 api:
   file: TR_VASP_API_KR_Spec.yaml
   operationId: travelrule-User-Verification
 hidden: false
 ---
+본 API는 귀사의 VASP가 **수신 VASP(Beneficiary VASP)** 역할을 수행할 때 구현해야 합니다.\
+송신 VASP가 제공한 수신자 정보(이름, 주소 등)가 귀사에서 관리하는 데이터와 일치하는지 검증하고,
+KYC/AML 및 제재 목록 확인 등의 컴플라이언스 검사를 수행하는 것이 목적입니다.
+
+이 API는 Enclave가 검증 요청을 위임하기 위한 엔드포인트이며, 송신 VASP로부터 요청이 오면 Enclave가 호출합니다.
+
+### 기능 요건
+
+**1. 개인 정보 검증**
+
+* 수신자 이름 및 주소(계좌 번호 또는 지갑 주소)를 귀사의 내부 정보와 비교하여 일치 여부를 검증해야 합니다.
+
+**2. 컴플라이언스 확인**
+
+* 다음 사항들을 검증하여 컴플라이언스 요건을 충족해야 합니다:
+  * KYC 완료 여부
+  * AML 정책 충족 여부
+  * 송신자에 대한 STR(의심거래보고) 및 제재 목록 조회
+  * 필요 시 추가적인 필터링 수행 가능
+
+**3. 송신 VASP가 요청한 정보 응답**
+
+* 송신 VASP의 `requiredBeneficiaryInfo`에 따라 필요한 정보를 `ivms101` 객체에 채워 응답해야 합니다.
+* 정보가 없거나 제공 불가능할 경우, `verificationResult`는 `DENIED`, `reason`은 `UNAVAILABLE-INFORMATION`으로 설정해야 합니다.
+* 요청되지 않은 항목은 빈 값으로 유지합니다.
+* 지갑 주소는 원본 그대로 반환해야 하며, 잘못된 경우에는 `DENIED` 처리합니다.
+
+**4. 검증 결과 응답**
+
+* 검증 결과는 `VERIFIED` 또는 `DENIED`로 반환합니다.
+  * 모든 정보가 일치하고 이슈가 없을 경우: `VERIFIED`
+  * 정보 불일치, 정보 부족, 고위험 사용자 등인 경우: `DENIED`
+* 검증 성공 시, 수신자 정보를 IVMS101 포맷으로 함께 반환해야 합니다.
+
+**5. 실패 사유 코드**
+
+* `verificationResult: DENIED`일 경우, 아래 사유 코드를 `reason` 필드에 지정해야 합니다:
+  * `UNKNOWN-SYMBOL`: 지원하지 않는 가상자산
+  * `UNKNOWN-NETWORK`: 지원하지 않는 네트워크
+  * `UNKNOWN-ADDRESS`: 미등록 지갑 주소
+  * `LACK-OF-INFORMATION`: 송신자 정보 부족
+  * `UNAVAILABLE-INFORMATION`: 제공 불가한 수신자 정보
+  * `BLACKLISTED`: 제재 목록 포함 주소
+  * `UNVERIFIED-KYC`: KYC 미완료
+  * `MISMATCHED-NAME`: 수신자 이름 불일치
+  * `NOT-ALLOWED`: 내부 정책으로 인해 거부됨
+  * `UNDEFINED-ERROR`: 정의되지 않은 오류
+
+### 제약 조건
+
+* 응답 시간은 5초 이내여야 합니다.
+
+### 참고 사항
+
+* 규제 기준 이하의 소액 전송은 Travel Rule 대상이 아니며, 수신자 이름 검증은 선택 사항입니다.
+* 다만, 모든 트랜잭션에 TravelRule 적용을 권장하며, 규제 기준은 관할 구역별로 상이할 수 있습니다.
+* 송신 VASP 요청에 `isExceedingThreshold: false`로 표시된 경우, 추가 검증 없이 전송할 수 있습니다.
+
+### Enclave 연동 설정
+
+* 다음 환경 변수를 설정해야 Enclave와 연동됩니다:
+  * `VEGA_VERIFICATION_API_PATH`: 해당 API 구현 경로
+  * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 온보딩 과정에서 발급받은 API 키
