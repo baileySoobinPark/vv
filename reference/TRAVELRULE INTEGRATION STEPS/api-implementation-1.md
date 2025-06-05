@@ -129,3 +129,27 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
   </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
+
+## VASP API 인증 구현 (선택)
+
+인증 기능 구현을 통해 VASP API를 오직 Enclave만 호출할 수 있도록 접근을 제한하고 보안을 강화할 수 있습니다. 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 추가 구현한 뒤 Enclave 환경 변수를 설정하여 모든 Enclave 발 VASP API 요청이 인증 헤더를 포함하도록 설정하세요.
+
+설정 방법은 다음과 같습니다.
+
+#### 인증 관련 Enclave 환경 변수
+
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 인증 토큰 값(Value). 설정한 값이 Enclave의 모든 요청의 인증 헤더 값으로 포함되어 전달됩니다.
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: 인증 토큰을 전달할 HTTP 헤더의 Key.
+  * 미 설정시 기본 `Authorization` 헤더를 사용합니다.
+
+**예시**
+
+```json
+// VEGA_VERIFICATION_AUTHORIZATION_KEY 미설정 시 헤더 예시
+Authorization: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+
+// VEGA_VERIFICATION_AUTHORIZATION_KEY를 X-Api-Key 로 설정 시 헤더 예시
+X-Api-Key: <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+```
