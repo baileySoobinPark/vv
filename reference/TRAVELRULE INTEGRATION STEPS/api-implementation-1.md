@@ -14,9 +14,9 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
 
 <br />
 
-## 구현되어야 하는 VASP API 목록
+## 구현 대상 VASP API 목록
 
-<br />
+각 VASP는 자산 전송 시 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위해 VASP가 필수 구현해야 하는 API 목록과 해당 API가 호출되는 시점의 VASP의 포지션(송신 또는 수신 VASP), 그리고 해당 API에서 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 구체적인 구현 요구사항 및 명세는 각 API Specficiation 문서를 확인하세요.
 
 <HTMLBlock>{`
 <style>
