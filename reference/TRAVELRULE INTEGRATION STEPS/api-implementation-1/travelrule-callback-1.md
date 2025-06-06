@@ -90,7 +90,53 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 `VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
 <HTMLBlock>{`
-<details>
+<style>
+  .custom-accordion {
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border 0.3s ease;
+  }
+
+  .custom-accordion[open] {
+    border: 2px solid #1d78ff;
+  }
+
+  .custom-accordion summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 500;
+    background-color: #f9f9f9;
+  }
+
+  .custom-accordion summary::marker,
+  .custom-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .custom-accordion summary::before {
+    content: "›";
+    display: inline-block;
+    margin-right: 8px;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+  }
+
+  .custom-accordion[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .custom-accordion pre {
+    background-color: #ffffff;
+    padding: 16px;
+    margin: 0;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+</style>
+<details class="custom-accordion">
   <summary>EXAMPLE: VERIFIED 콜백 메시지</summary>
 
   <pre><code class="language-json">
@@ -153,7 +199,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 }
   </code></pre>
 </details>
-<details>
+<details class="custom-accordion">
   <summary>EXAMPLE: DENIED 콜백 메시지</summary>
 
   <pre><code class="language-json">
