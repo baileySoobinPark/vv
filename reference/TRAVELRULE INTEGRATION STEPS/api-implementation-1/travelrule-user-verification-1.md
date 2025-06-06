@@ -64,7 +64,7 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
   }
 
   .custom-table td.code-col {
-    min-width: 300px;
+    min-width: 200px;
     white-space: nowrap;
   }
 </style>
