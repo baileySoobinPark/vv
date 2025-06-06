@@ -132,20 +132,18 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
 </table>
 `}</HTMLBlock>
 
-<br />
-
 ### 제약 조건
 
 이 API는 5초 이내에 응답해야 합니다.
 
-### 참고 사항
+### 구현 권장사항
 
-* 규제 기준 이하의 소액 전송은 Travel Rule 대상이 아니며, 수신자 이름 검증은 선택 사항입니다.
-* 다만, 모든 트랜잭션에 TravelRule 적용을 권장하며, 규제 기준은 관할 구역별로 상이할 수 있습니다.
-* 송신 VASP 요청에 `isExceedingThreshold: false`로 표시된 경우, 추가 검증 없이 전송할 수 있습니다.
+* 규제 요건과 관계없이 모든 가상자산 전송건에 대해 Travel Rule 프로토콜을 적용하는 것을 권장합니다. 보안성과 컴플라이언스를 강화하고 운영 리소스를 줄일 수 있습니다.
+* 송신 VASP의 요청의 `isExceedingThreshold` 필드가 `false`로 설정된 경우 해당 전송은 Travel Rule 적용 대상이 아니며, 사용자 검증 절차 없이 전송할 수 있습니다.
 
 ### Enclave 연동 설정
 
-* 다음 환경 변수를 설정해야 Enclave와 연동됩니다:
-  * `VEGA_VERIFICATION_API_PATH`: 해당 API 구현 경로
-  * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 온보딩 과정에서 발급받은 API 키
+Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+
+* `VEGA_VERIFICATION_API_PATH`: 해당 API 경로
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
