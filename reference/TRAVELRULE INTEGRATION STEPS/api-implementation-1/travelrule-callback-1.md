@@ -89,7 +89,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 * 검증 성공 시, 이어서 송신 VASP측 수신자 검증을 진행하거나 트랜잭션을 실행합니다.
 * 검증 실패 시, 자산의 출금을 취소로 처리하고 사용자에게 적절한 안내 메세지와 함께 전송 실패를 고지합니다. `data.reason`필드로부터 실패 사유를 참조하여 안내 메세지에 반영할 수 있습니다.
 
-data.result가 DENIED 또는 ERROR인 경우, 다음과 같은 실패 코드가 함께 전달될 수 있습니다.
+`data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
 
 <HTMLBlock>{`
 <style>
