@@ -90,7 +90,7 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>대상 주소<br>(ex)</td>
+      <td>대상 주소<br>(ex)"0xasd..."</td>
       <td>확인할 수 없는 지갑 주소</td>
     </tr>
     <tr>
@@ -105,7 +105,7 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
     </tr>
     <tr>
       <td class="code-col"><code>BLACKLISTED</code></td>
-      <td>대상 주소</td>
+      <td>대상 주소<br>(ex)"0xasd..."</td>
       <td>제재 목록에 포함된 주소</td>
     </tr>
     <tr>
