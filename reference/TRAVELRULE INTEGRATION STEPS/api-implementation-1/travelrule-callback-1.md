@@ -117,7 +117,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   }
 
   .custom-table td.code-col {
-    min-width: 200px;
+    min-width: 150px;
     white-space: nowrap;
   }
 </style>
