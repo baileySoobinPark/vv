@@ -89,6 +89,24 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 `VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
+<HTMLBlock>{`
+<details>
+  <summary>예시: VERIFIED 결과가 포함된 VERIFICATION_RESULT 콜백</summary>
+
+  <pre><code class="language-json">
+{
+  "callbackType": "VERIFICATION_RESULT",
+  "data": {
+    "result": "VERIFIED",
+    "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b"
+  }
+}
+  </code></pre>
+</details>
+`}</HTMLBlock>
+
+<br />
+
 ```json 'VERIFIED' 결과 메시지 예시
 {
    "callbackType":"VERIFICATION_RESULT",
