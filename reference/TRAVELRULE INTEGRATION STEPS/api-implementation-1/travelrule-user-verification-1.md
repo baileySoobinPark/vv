@@ -40,16 +40,91 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
 
 * 검증 결과 해당 전송건에 문제가 없다고 판단하는 경우 `VERIFIED`로 설정하고, 수신자 정보를 IVMS101으로 함께 반환합니다.
 * 정보를 검증할 수 없거나 검증 결과에 문제가 있는 경우 검증 결과를 `DENIED`로 설정하고, 아래 실패 사유 코드 중 하나를 `reason`에 함께 반환합니다.
-* `UNKNOWN-SYMBOL`: 지원하지 않는 가상자산
-* `UNKNOWN-NETWORK`: 지원하지 않는 네트워크
-* `UNKNOWN-ADDRESS`: 미등록 지갑 주소
-* `LACK-OF-INFORMATION`: 송신자 정보 부족
-* `UNAVAILABLE-INFORMATION`: 제공 불가한 수신자 정보
-* `BLACKLISTED`: 제재 목록 포함 주소
-* `UNVERIFIED-KYC`: KYC 미완료
-* `MISMATCHED-NAME`: 수신자 이름 불일치
-* `NOT-ALLOWED`: 내부 정책으로 인해 거부됨
-* `UNDEFINED-ERROR`: 정의되지 않은 오류
+
+<HTMLBlock>{`
+<style>
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .custom-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+
+  .custom-table td {
+    background-color: #ffffff;
+  }
+
+  .custom-table td.code-col {
+    min-width: 250px;
+    white-space: nowrap;
+  }
+</style>
+
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th>사유 코드</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
+      <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
+      <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
+      <td>확인할 수 없는 지갑 주소</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>LACK-OF-INFORMATION</code></td>
+      <td>송신자 정보 부족</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>UNAVAILABLE-INFORMATION</code></td>
+      <td>제공 불가한 수신자 정보</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>BLACKLISTED</code></td>
+      <td>제재 목록에 포함된 주소</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>UNVERIFIED-KYC</code></td>
+      <td>KYC 미완료</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>MISMATCHED-NAME</code></td>
+      <td>수신자 이름 불일치</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>NOT-ALLOWED</code></td>
+      <td>내부 정책으로 인해 거부됨</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>UNDEFINED-ERROR</code></td>
+      <td>정의되지 않은 기타 오류</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
 
 ### 제약 조건
 
