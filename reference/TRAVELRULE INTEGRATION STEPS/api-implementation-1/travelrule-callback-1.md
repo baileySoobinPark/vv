@@ -5,11 +5,84 @@ api:
   operationId: travelrule-callback
 hidden: false
 ---
+VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 두 역할 모두에서 비동기적 콜백 상황을 처리하기 위한 공통 인터페이스입니다. Enclave는 상대 VASP로부터 Report API가 호출되었을 때 이 API를 실행합니다.
+
+***
+
 ## 구현 가이드
 
-Callback API는 Enclave에서 발생하는 다양한 비동기 이벤트를 처리하기 위한 공통 인터페이스입니다.\
-요청의 `callbackType`에 따라 Originating VASP 또는 Beneficiary VASP 역할일 수 있으며, 모든 콜백 유형에 대해 정상 동작하도록 구현되어야 합니다.
-이 API는 상대 VASP가 Report API를 호출하면 Enclave가 호출합니다.
+### 기능 요구사항
+
+#### 1. 콜백 타입 분기 처리
+
+요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원되는 콜백 타입은 아래와 같으며, `VERIFICATION_RESULT`, `TX_REPORT`, `ERROR_REPORT`는 필수 구현 대상입니다.
+
+<HTMLBlock>{`
+<HTMLBlock>{\`
+<style>
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .custom-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+
+  .custom-table td {
+    background-color: #ffffff;
+  }
+
+  .custom-table td.code-col {
+    min-width: 200px;
+    white-space: nowrap;
+  }
+</style>
+
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th><code>callbackType</code></th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="code-col"><code>VERIFICATION_RESULT</code></td>
+      <td>송신 VASP 역할에서 사용됩니다. 수신자 검증이 종료되어 결과가 비동기적으로 전달될 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>TX_REPORT</code></td>
+      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 트랜잭션 결과를 Report할 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>ERROR_REPORT</code></td>
+      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 오류를 Report할 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>CHAINALYSIS_KYT_RESULT</code></td>
+      <td>Chainalysis KYT 결과를 비동기 방식으로 전달할 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>REFINITIV_WCO_RESULT</code></td>
+      <td>Refinitiv WCO 결과를 비동기 방식으로 전달할 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+    </tr>
+  </tbody>
+</table>
+\`}</HTMLBlock>
+`}</HTMLBlock>
+
+<br />
 
 ### Functional Requirements
 
