@@ -73,7 +73,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>해당 주소를 관리하지 않음</td>
+      <td>확인할 수 없는 주소</td>
     </tr>
     <tr>
       <td class="code-col"><code>MISMATCHED-NAME</code></td>
