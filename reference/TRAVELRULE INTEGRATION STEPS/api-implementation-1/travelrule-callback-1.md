@@ -80,8 +80,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
-<br />
-
 #### 2. VERIFICATION\_RESULT 처리
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
@@ -195,19 +193,13 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
-<br />
-
 #### 3. TX\_REPORT 처리 (수신 VASP 역할)
 
 콜백으로 수신한 트랜잭션 Hash가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 결과 및 이력을 데이터베이스에 기록합니다.
 
-<br />
-
 #### 4. ERROR\_REPORT 처리 (수신 VASP 역할)
 
 오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
-
-<br />
 
 #### 5. CHAINALYSIS\_KYT\_RESULT 처리
 
@@ -215,8 +207,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 * Originator 또는 Beneficiary의 평가 데이터 갱신
 * 트랜잭션 허용 또는 차단 결정
-
-<br />
 
 #### 6. REFINITIV\_WCO\_RESULT 처리
 
