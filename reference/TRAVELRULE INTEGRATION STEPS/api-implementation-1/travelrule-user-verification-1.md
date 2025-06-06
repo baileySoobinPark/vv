@@ -5,7 +5,7 @@ api:
   operationId: travelrule-User-Verification
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 수신 VASP 역할을 위한 구현 요구사항입니다. 수신자의 개인 정보(이름, 주소 등)가 VASP의 KYC를 통해 확보한 정보와 일치하는지 검증하고, KYC/AML 및 제재 목록 대조 등 VASP 정책에 따른 컴플라이언스 결과를 수행한 뒤 검증 결과를 반환합니다.
+VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 수신 VASP 역할을 위한 구현 요구사항입니다. 송신 VASP가 전송을 실행하기 전 수신자 검증을 요청하는 경우 Enclave에 의해 호출되는 API입니다.
 
 ***
 
@@ -15,23 +15,24 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 **1. 개인 정보 검증**
 
-IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 정보와 대조하여 일치 여부를 검증해야합니다.
+IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 정보와 대조하여 일치 여부를 검증해야합니다. 이름 검증 및 주소 검증을 포함합니다.
 
-**2. 컴플라이언스 확인**
+**2. Travel Rule 규제 요건 검증**
 
-다음 사항들을 검증하여 컴플라이언스 요건을 충족해야 합니다:
+아래 항목들을 검토하여 해당 자산 전송이 규제 준수 요건을 충족하는지 검증해야 합니다.
 
 * KYC 완료 여부
 * AML 정책 충족 여부
-* 송신자에 대한 STR(의심거래보고) 및 제재 목록 조회
-* 필요 시 추가적인 필터링 수행 가능
+* 송신자에 대한 STR 모니터링 및 Sanction Screening 검증
+* VASP 정책에 따라 추가적인 필터링 수행
 
-**3. 송신 VASP가 요청한 정보 응답**
+**3. 송신 VASP의 요청 정보 반환**
 
-* 송신 VASP의 `requiredBeneficiaryInfo`에 따라 필요한 정보를 `ivms101` 객체에 채워 응답해야 합니다.
-* 정보가 없거나 제공 불가능할 경우, `verificationResult`는 `DENIED`, `reason`은 `UNAVAILABLE-INFORMATION`으로 설정해야 합니다.
-* 요청되지 않은 항목은 빈 값으로 유지합니다.
-* 지갑 주소는 원본 그대로 반환해야 하며, 잘못된 경우에는 `DENIED` 처리합니다.
+송신 VASP가 `requiredBeneficiaryInfo`에 지정한 요청 항목를 `ivms101` 객체에 채워 응답해야 합니다.
+
+* 요청된 정보를 보유하지 않았거나 제공할 수 없는 경우, `verificationResult`는 `DENIED`, `reason`은 `UNAVAILABLE-INFORMATION`으로 설정해야 합니다.
+* 요청된 항목만 반환해야 하며, 요청되지 않은 항목은 반드시 빈 값으로 반환합니다.
+* 지갑 주소는 원본 그대로 반환해야 하며, 유효하지 않은 주소인 경우 `verificationResult`를 `DENIED`로 반환해야 합니다.
 
 **4. 검증 결과 응답**
 
