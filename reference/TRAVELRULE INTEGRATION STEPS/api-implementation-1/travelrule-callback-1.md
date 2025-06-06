@@ -5,7 +5,7 @@ api:
   operationId: travelrule-callback
 hidden: false
 ---
-## Callback API
+## 구현 가이드
 
 Callback API는 Enclave에서 발생하는 다양한 비동기 이벤트를 처리하기 위한 공통 인터페이스입니다.\
 요청의 `callbackType`에 따라 Originating VASP 또는 Beneficiary VASP 역할일 수 있으며, 모든 콜백 유형에 대해 정상 동작하도록 구현되어야 합니다.
