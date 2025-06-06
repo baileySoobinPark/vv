@@ -89,65 +89,65 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 `VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
-\<Accordion title="VERIFIED 결과의 콜백 메시지 예시" icon="fa-info-circle">
-&#x20;\{
-&#x20;  "callbackType":"VERIFICATION\_RESULT",
-&#x20;  "data":\{
-&#x20;     "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-&#x20;     "verificationResult":"VERIFIED",
-&#x20;     "reason":"OK",
-&#x20;     "message":"",
-&#x20;     "ivms101":\{
-&#x20;        "beneficiary":\{
-&#x20;           "beneficiaryPersons":\[
-&#x20;              \{
-&#x20;                 "naturalPerson":\{
-&#x20;                    "name":\{
-&#x20;                       "nameIdentifier":\[
-&#x20;                          \{
-&#x20;                             "primaryIdentifier":"James",
-&#x20;                             "nameIdentifierType":"LEGL"
-&#x20;                          }
-&#x20;                       ],
-&#x20;                       "localNameIdentifier":\[
-&#x20;                          \{
-&#x20;                             "primaryIdentifier":"김재원",
-&#x20;                             "nameIdentifierType":"LEGL"
-&#x20;                          }
-&#x20;                       ]
-&#x20;                    },
-&#x20;                    "geographicAddress":\[
-&#x20;                       \{
-&#x20;                          "addressType":"GEOG",
-&#x20;                          "townName":"Yeoksam-dong",
-&#x20;                          "addressLine":\[
-&#x20;                             "14 Teheran-ro 4-gil, Gangnam-gu",
-&#x20;                             "4th floor"
-&#x20;                          ],
-&#x20;                          "country":"KR"
-&#x20;                       }
-&#x20;                    ],
-&#x20;                    "nationalIdentification":\{
-&#x20;                       "nationalIdentifier":"12345-67890",
-&#x20;                       "nationalIdentifierType":"IDCD"
-&#x20;                    },
-&#x20;                    "customerIdentification":"1234569999",
-&#x20;                    "dateAndPlaceOfBirth":\{
-&#x20;                       "dateOfBirth":"1985-03-14",
-&#x20;                       "placeOfBirth":"Nonsan"
-&#x20;                    },
-&#x20;                    "countryOfResidence":"KR"
-&#x20;                 }
-&#x20;              }
-&#x20;           ],
-&#x20;           "accountNumber":\[
-&#x20;              "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
-&#x20;           ]
-&#x20;        }
-&#x20;     }
-&#x20;  }
-}
-\</Accordion>
+<Accordion title="VERIFIED 결과의 콜백 메시지 예시" icon="fa-info-circle">
+  \{
+  "callbackType":"VERIFICATION\_RESULT",
+  "data":\{
+  "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
+  "verificationResult":"VERIFIED",
+  "reason":"OK",
+  "message":"",
+  "ivms101":\{
+  "beneficiary":\{
+  "beneficiaryPersons":\[
+  \{
+  "naturalPerson":\{
+  "name":\{
+  "nameIdentifier":\[
+  \{
+  "primaryIdentifier":"James",
+  "nameIdentifierType":"LEGL"
+  }
+  ],
+  "localNameIdentifier":\[
+  \{
+  "primaryIdentifier":"김재원",
+  "nameIdentifierType":"LEGL"
+  }
+  ]
+  },
+  "geographicAddress":\[
+  \{
+  "addressType":"GEOG",
+  "townName":"Yeoksam-dong",
+  "addressLine":\[
+  "14 Teheran-ro 4-gil, Gangnam-gu",
+  "4th floor"
+  ],
+  "country":"KR"
+  }
+  ],
+  "nationalIdentification":\{
+  "nationalIdentifier":"12345-67890",
+  "nationalIdentifierType":"IDCD"
+  },
+  "customerIdentification":"1234569999",
+  "dateAndPlaceOfBirth":\{
+  "dateOfBirth":"1985-03-14",
+  "placeOfBirth":"Nonsan"
+  },
+  "countryOfResidence":"KR"
+  }
+  }
+  ],
+  "accountNumber":\[
+  "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+  ]
+  }
+  }
+  }
+  }
+</Accordion>
 
 `data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
 
