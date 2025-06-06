@@ -5,7 +5,7 @@ api:
   operationId: travelrule-User-Verification
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 수신 VASP 역할을 위한 구현 요구사항입니다. 송신 VASP가 전송을 실행하기 전 수신자 검증을 요청하는 경우 Enclave에 의해 호출되는 API입니다.
+VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이 API는 수신 VASP 역할을 위한 구현 요구사항입니다. 송신 VASP가 전송을 실행하기 전 수신 VASP에게 수신자 검증을 요청할 때 Enclave에 의해 호출되는 API입니다. 수신자 정보 및 규제 요건 충족 여부를 검증하고 송신 VASP의 요청 정보를 전달하여 전송을 허가할 수 있습니다.
 
 ***
 
@@ -32,28 +32,24 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
 
 * 요청된 정보를 보유하지 않았거나 제공할 수 없는 경우, `verificationResult`는 `DENIED`, `reason`은 `UNAVAILABLE-INFORMATION`으로 설정해야 합니다.
 * 요청된 항목만 반환해야 하며, 요청되지 않은 항목은 반드시 빈 값으로 반환합니다.
-* 지갑 주소는 원본 그대로 반환해야 하며, 유효하지 않은 주소인 경우 `verificationResult`를 `DENIED`로 반환해야 합니다.
+* 지갑 주소는 요청 원본 그대로 반환하며, 유효하지 않은 주소인 경우 `verificationResult`를 `DENIED`로 반환합니다.
 
 **4. 검증 결과 응답**
 
-* 검증 결과는 `VERIFIED` 또는 `DENIED`로 반환합니다.
-  * 모든 정보가 일치하고 이슈가 없을 경우: `VERIFIED`
-  * 정보 불일치, 정보 부족, 고위험 사용자 등인 경우: `DENIED`
-* 검증 성공 시, 수신자 정보를 IVMS101 포맷으로 함께 반환해야 합니다.
+최종 검증 결과를 `verificationResult`필드에 반환해야 합니다.
 
-**5. 실패 사유 코드**
-
-* `verificationResult: DENIED`일 경우, 아래 사유 코드를 `reason` 필드에 지정해야 합니다:
-  * `UNKNOWN-SYMBOL`: 지원하지 않는 가상자산
-  * `UNKNOWN-NETWORK`: 지원하지 않는 네트워크
-  * `UNKNOWN-ADDRESS`: 미등록 지갑 주소
-  * `LACK-OF-INFORMATION`: 송신자 정보 부족
-  * `UNAVAILABLE-INFORMATION`: 제공 불가한 수신자 정보
-  * `BLACKLISTED`: 제재 목록 포함 주소
-  * `UNVERIFIED-KYC`: KYC 미완료
-  * `MISMATCHED-NAME`: 수신자 이름 불일치
-  * `NOT-ALLOWED`: 내부 정책으로 인해 거부됨
-  * `UNDEFINED-ERROR`: 정의되지 않은 오류
+* 검증 결과 해당 전송건에 문제가 없다고 판단하는 경우 `VERIFIED`로 설정하고, 수신자 정보를 IVMS101으로 함께 반환합니다.
+* 정보를 검증할 수 없거나 검증 결과에 문제가 있는 경우 검증 결과를 `DENIED`로 설정하고, 아래 실패 사유 코드 중 하나를 `reason`에 함께 반환합니다.
+* `UNKNOWN-SYMBOL`: 지원하지 않는 가상자산
+* `UNKNOWN-NETWORK`: 지원하지 않는 네트워크
+* `UNKNOWN-ADDRESS`: 미등록 지갑 주소
+* `LACK-OF-INFORMATION`: 송신자 정보 부족
+* `UNAVAILABLE-INFORMATION`: 제공 불가한 수신자 정보
+* `BLACKLISTED`: 제재 목록 포함 주소
+* `UNVERIFIED-KYC`: KYC 미완료
+* `MISMATCHED-NAME`: 수신자 이름 불일치
+* `NOT-ALLOWED`: 내부 정책으로 인해 거부됨
+* `UNDEFINED-ERROR`: 정의되지 않은 오류
 
 ### 제약 조건
 
