@@ -82,7 +82,93 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 \`}</HTMLBlock>
 `}</HTMLBlock>
 
-<br />
+#### 2. VERIFICATION\_RESULT 처리
+
+콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
+
+* 검증 성공 시, 이어서 송신 VASP측 수신자 검증을 진행하거나 트랜잭션을 실행합니다.
+* 검증 실패 시, 자산의 출금을 취소로 처리하고 사용자에게 적절한 안내 메세지와 함께 전송 실패를 고지합니다. `data.reason`필드로부터 실패 사유를 참조하여 안내 메세지에 반영할 수 있습니다.
+
+data.result가 DENIED 또는 ERROR인 경우, 다음과 같은 실패 코드가 함께 전달될 수 있습니다.
+
+<HTMLBlock>{`
+<style>
+  .custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .custom-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+
+  .custom-table td {
+    background-color: #ffffff;
+  }
+
+  .custom-table td.code-col {
+    min-width: 200px;
+    white-space: nowrap;
+  }
+</style>
+
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th><code>callbackType</code></th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="code-col"><code>VERIFICATION_RESULT</code></td>
+      <td>송신 VASP 역할에서 사용됩니다. 수신자 검증이 종료되어 결과가 비동기적으로 전달될 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>TX_REPORT</code></td>
+      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 트랜잭션 결과를 보고할 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>ERROR_REPORT</code></td>
+      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 오류를 보고할 때 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>CHAINALYSIS_KYT_RESULT</code></td>
+      <td>Chainalysis KYT 결과가 도착했을 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>REFINITIV_WCO_RESULT</code></td>
+      <td>Refinitiv WCO 결과가 도착했을 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+#### 3. TX\_REPORT 처리 (수신 VASP 역할)
+
+송신 VASP로부터 트랜잭션 Report를 수신하면, 해당 해시가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 내부에 기록합니다.
+
+#### 4. ERROR\_REPORT 처리 (수신 VASP 역할)
+
+오류 보고를 수신하면, 해당 전송을 취소하고 추적을 중단한 후 감사 기록을 남깁니다.
+
+#### 5. CHAINALYSIS\_KYT\_RESULT 처리
+
+Chainalysis KYT 결과가 도착하면 위험 평가 결과를 기준으로 전송을 허용 또는 거절할 수 있습니다.
+
+#### 6. REFINITIV\_WCO\_RESULT 처리
+
+Refinitiv WCO 결과가 도착하면 위험 평가 결과를 기반으로 전송을 허용, 보류 또는 거절할 수 있습니다.
 
 ### Functional Requirements
 
