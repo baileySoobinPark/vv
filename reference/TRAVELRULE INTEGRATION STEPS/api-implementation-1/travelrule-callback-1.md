@@ -89,8 +89,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 `VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
-\<Accordion title="My Accordion Title" icon="fa-info-circle">
-
 ```json 'VERIFIED' 결과 메시지 예시
 {
    "callbackType":"VERIFICATION_RESULT",
@@ -261,7 +259,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 }
 ```
 
-\</Accordion>
+<br />
 
 `data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
 
