@@ -859,6 +859,11 @@ paths:
                               countryOfResidence: KR
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
+                ' Response Body for both Natural Person and Legal Person':
+                  summary: ' Response Body for both Natural Person and Legal Person'
+                  value:
+                    result: DENIED
+                    reason: UNVERIFIED-KYC
   /VASP_CUSTOM_PATH_TRANSACTION_CHECK:
     post:
       summary: Check Trasnaction Status API
