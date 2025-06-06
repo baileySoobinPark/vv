@@ -13,10 +13,11 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 ### 기능 요구사항
 
-**1. VASP의 주소 소유 여부 검증**\
+#### 1. VASP의 주소 소유 여부 검증
+
 요청에 포함된 수신 주소(beneficiary.accountNumber)가 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인하고, 결과를 응답합니다.
 
-**2. 검증 결과 응답**
+#### 2. 검증 결과 응답
 
 검증 결과를 `accountVerificationResult` 필드에 반환해야합니다. 검증 성공인 경우(VASP가 소유한 주소가 맞는 경우) `VERIFIED`, 검증 실패인 경우 `DENIED`로 반환합니다. 검증 결과가 `DENIED`인 경우, `reason` 필드에 아래의 사유 코드 중 하나를 반드시 포함해야 합니다:
 
