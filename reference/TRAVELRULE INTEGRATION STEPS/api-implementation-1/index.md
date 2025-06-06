@@ -103,6 +103,11 @@ API Implementation 섹션에서는 구현 대상 API 목록과 각 API의 명세
       </td>
     </tr>
     <tr>
+      <td class="api-name"><a href="#">Check Transaction Status API</a></td>
+      <td class="api-role">송신 VASP</td>
+      <td>온체인 송금 트랜잭션의 현재 처리 상태를 조회하여 반환합니다.</td>
+    </tr>
+    <tr>
       <td class="api-name"><a href="#">Callback API</a></td>
       <td class="api-role">송신 VASP & 수신 VASP</td>
       <td>
@@ -115,11 +120,6 @@ API Implementation 섹션에서는 구현 대상 API 목록과 각 API의 명세
           <code>REFINITIV_WCO_RESULT</code> : Refinitiv WCO 연계 리스크 평가 결과 수신
         </div>
       </td>
-    </tr>
-    <tr>
-      <td class="api-name"><a href="#">Check Transaction Status API</a></td>
-      <td class="api-role">송신 VASP</td>
-      <td>온체인 송금 트랜잭션의 현재 처리 상태를 조회하여 반환합니다.</td>
     </tr>
     <tr>
       <td class="api-name"><a href="#">Database Management API</a></td>
