@@ -154,7 +154,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   </code></pre>
 </details>
 <details>
-  <summary>EXAMPLE: VERIFIED 콜백 메시지</summary>
+  <summary>EXAMPLE: DENIED 콜백 메시지</summary>
 
   <pre><code class="language-json">
 {
