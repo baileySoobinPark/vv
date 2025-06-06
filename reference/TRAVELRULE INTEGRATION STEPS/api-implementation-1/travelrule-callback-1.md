@@ -18,7 +18,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원되는 콜백 타입은 아래와 같으며, `VERIFICATION_RESULT`, `TX_REPORT`, `ERROR_REPORT`는 필수 구현 대상입니다.
 
 <HTMLBlock>{`
-<HTMLBlock>{\`
 <style>
   .custom-table {
     border-collapse: collapse;
@@ -79,7 +78,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
     </tr>
   </tbody>
 </table>
-\`}</HTMLBlock>
 `}</HTMLBlock>
 
 #### 2. VERIFICATION\_RESULT 처리
