@@ -152,7 +152,7 @@ paths:
               examples:
                 Successful Example:
                   value:
-                    accountVerificationResult: '15952089931162060684'
+                    accountVerificationResult: VERIFIED
                     verifiedAt: '2022-03-03T12:45:34.085Z'
   /VASP_CUSTOM_PATH_VERIFY_USER:
     post:
