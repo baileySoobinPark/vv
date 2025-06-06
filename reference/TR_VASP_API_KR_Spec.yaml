@@ -859,8 +859,8 @@ paths:
                               countryOfResidence: KR
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-                DENIED Example:
-                  summary: DENIED Example
+                Example of DENIED case:
+                  summary: Example of DENIED case
                   value:
                     result: DENIED
                     reason: UNVERIFIED-KYC
