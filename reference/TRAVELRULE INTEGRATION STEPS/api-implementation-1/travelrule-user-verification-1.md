@@ -36,7 +36,7 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
 
 #### 4. 검증 결과 응답
 
-최종 검증 결과를 `result`필드로 반환해야 합니다. 검증 결과 해당 전송건에 문제가 없다고 판단하는 경우 `VERIFIED`로 응답하고, 수신자 정보를 IVMS101으로 함께 반환합니다. 정보를 검증할 수 없거나 검증 결과에 문제가 있는 경우 검증 결과를 `DENIED`로 응답하고, 아래 실패 사유 코드 중 하나를 `reason`필드에 함께 반환해야 합니다.
+최종 검증 결과를 `result`필드로 반환해야 합니다. 검증 결과 해당 전송건에 문제가 없다고 판단하는 경우 `VERIFIED`로 응답하고, 수신자 정보를 IVMS101으로 함께 반환합니다. 정보를 검증할 수 없거나 검증 결과에 문제가 있는 경우 결과를 `DENIED`로 응답하고, 아래 실패 사유 코드 중 하나를 `reason`필드에 함께 반환해야 합니다.
 
 <HTMLBlock>{`
 <style>
@@ -72,49 +72,60 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP의 보유 �
 <table class="custom-table">
   <thead>
     <tr>
-      <th>사유 코드</th>
-      <th>설명</th>
+      <th><code>reason</code></th>
+      <th><code>message</code></th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
+      <td>미지원 자산 심볼<br>(ex)"ETH"</td>
       <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
+      <td>미지원 네트워크 이름<br>(ex)"Ethereum"</td>
       <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
+      <td>대상 주소<br>(ex)</td>
       <td>확인할 수 없는 지갑 주소</td>
     </tr>
     <tr>
       <td class="code-col"><code>LACK-OF-INFORMATION</code></td>
+      <td>콤마(,)로 구분된 누락 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
       <td>송신자 정보 부족</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNAVAILABLE-INFORMATION</code></td>
+      <td>콤마(,)로 구분된 제공 불가 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
       <td>제공 불가한 수신자 정보</td>
     </tr>
     <tr>
       <td class="code-col"><code>BLACKLISTED</code></td>
+      <td>대상 주소</td>
       <td>제재 목록에 포함된 주소</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNVERIFIED-KYC</code></td>
+      <td>-</td>
       <td>KYC 미완료</td>
     </tr>
     <tr>
       <td class="code-col"><code>MISMATCHED-NAME</code></td>
+      <td>-</td>
       <td>수신자 이름 불일치</td>
     </tr>
     <tr>
       <td class="code-col"><code>NOT-ALLOWED</code></td>
+      <td>해당 사유<br>(ex) "This user is locked by internal policy."</td>
       <td>내부 정책으로 인해 거부됨</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNDEFINED-ERROR</code></td>
+      <td>-</td>
       <td>정의되지 않은 기타 오류</td>
     </tr>
   </tbody>
