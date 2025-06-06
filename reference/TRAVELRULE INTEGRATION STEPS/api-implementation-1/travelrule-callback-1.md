@@ -15,7 +15,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 1. 콜백 타입 분기 처리
 
-요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원되는 콜백 타입은 아래와 같으며, `VERIFICATION_RESULT`, `TX_REPORT`, `ERROR_REPORT`는 필수 구현 대상입니다.
+요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원되는 콜백 유형은 아래와 같으며, `VERIFICATION_RESULT`, `TX_REPORT`, `ERROR_REPORT`는 필수 구현 대상입니다.
 
 <HTMLBlock>{`
 <style>
@@ -86,6 +86,68 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 * 검증 성공 시, 이어서 송신 VASP측 수신자 검증을 진행하거나 트랜잭션을 실행합니다.
 * 검증 실패 시, 자산의 출금을 취소로 처리하고 사용자에게 적절한 안내 메세지와 함께 전송 실패를 고지합니다. `data.reason`필드로부터 실패 사유를 참조하여 안내 메세지에 반영할 수 있습니다.
+
+`VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
+
+\<Accordion title="VERIFIED 결과의 콜백 메시지 예시" icon="fa-info-circle">
+&#x20;\{
+&#x20;  "callbackType":"VERIFICATION\_RESULT",
+&#x20;  "data":\{
+&#x20;     "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
+&#x20;     "verificationResult":"VERIFIED",
+&#x20;     "reason":"OK",
+&#x20;     "message":"",
+&#x20;     "ivms101":\{
+&#x20;        "beneficiary":\{
+&#x20;           "beneficiaryPersons":\[
+&#x20;              \{
+&#x20;                 "naturalPerson":\{
+&#x20;                    "name":\{
+&#x20;                       "nameIdentifier":\[
+&#x20;                          \{
+&#x20;                             "primaryIdentifier":"James",
+&#x20;                             "nameIdentifierType":"LEGL"
+&#x20;                          }
+&#x20;                       ],
+&#x20;                       "localNameIdentifier":\[
+&#x20;                          \{
+&#x20;                             "primaryIdentifier":"김재원",
+&#x20;                             "nameIdentifierType":"LEGL"
+&#x20;                          }
+&#x20;                       ]
+&#x20;                    },
+&#x20;                    "geographicAddress":\[
+&#x20;                       \{
+&#x20;                          "addressType":"GEOG",
+&#x20;                          "townName":"Yeoksam-dong",
+&#x20;                          "addressLine":\[
+&#x20;                             "14 Teheran-ro 4-gil, Gangnam-gu",
+&#x20;                             "4th floor"
+&#x20;                          ],
+&#x20;                          "country":"KR"
+&#x20;                       }
+&#x20;                    ],
+&#x20;                    "nationalIdentification":\{
+&#x20;                       "nationalIdentifier":"12345-67890",
+&#x20;                       "nationalIdentifierType":"IDCD"
+&#x20;                    },
+&#x20;                    "customerIdentification":"1234569999",
+&#x20;                    "dateAndPlaceOfBirth":\{
+&#x20;                       "dateOfBirth":"1985-03-14",
+&#x20;                       "placeOfBirth":"Nonsan"
+&#x20;                    },
+&#x20;                    "countryOfResidence":"KR"
+&#x20;                 }
+&#x20;              }
+&#x20;           ],
+&#x20;           "accountNumber":\[
+&#x20;              "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+&#x20;           ]
+&#x20;        }
+&#x20;     }
+&#x20;  }
+}
+\</Accordion>
 
 `data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
 
