@@ -156,19 +156,25 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 3. TX\_REPORT 처리 (수신 VASP 역할)
 
-송신 VASP로부터 트랜잭션 Report를 수신하면, 해당 해시가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 내부에 기록합니다.
+콜백으로 수신한 트랜잭션 Hash가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 결과 및 이력을 데이터베이스에 기록합니다.
 
 #### 4. ERROR\_REPORT 처리 (수신 VASP 역할)
 
-오류 보고를 수신하면, 해당 전송을 취소하고 추적을 중단한 후 감사 기록을 남깁니다.
+오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
 
 #### 5. CHAINALYSIS\_KYT\_RESULT 처리
 
-Chainalysis KYT 결과가 도착하면 위험 평가 결과를 기준으로 전송을 허용 또는 거절할 수 있습니다.
+콜백으로 수신한 Chainalysis KYT 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
+
+* Originator 또는 Beneficiary의 평가 데이터 갱신
+* 트랜잭션 허용 또는 차단 결정
 
 #### 6. REFINITIV\_WCO\_RESULT 처리
 
-Refinitiv WCO 결과가 도착하면 위험 평가 결과를 기반으로 전송을 허용, 보류 또는 거절할 수 있습니다.
+콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
+
+* Originator 또는 Beneficiary의 평가 데이터 갱신
+* 트랜잭션 허용, 재개 또는 차단 결정
 
 ### Functional Requirements
 
@@ -246,29 +252,28 @@ Refinitiv WCO 분석 결과 도착 시 다음과 같이 활용합니다.
 
 ***
 
-## Constraints
+### 제약 조건
 
-* 이 API는 반드시 **1초 이내로 응답**해야 합니다.
-* 응답은 반드시 HTTP status code 200 OK만 사용해야 하며, 다른 상태 코드는 허용되지 않습니다.
-* **Idempotent 보장 필요**\
-  동일한 요청이 여러 번 수신되더라도 결과가 달라지지 않도록 구현해야 합니다.
-
-***
-
-## Recommendations
-
-* 응답 속도가 중요하므로, 시간 소모가 큰 작업은 비동기 처리하는 것을 권장합니다.
+* 이 API는 1초 이내에 응답해야 합니다.
+* 응답의 HTTP 상태 코드는 200 OK만 허용됩니다.
+* 동일한 콜백 요청이 여러 번 수신되어도 처리 결과가 동일하도록 멱등성을 보장해야 합니다.\
+  (ex) 중복 요청 시 내부 처리 로직에서 무시하도록 구현
 
 ***
 
-## Environment Variable Configuration
+### 구현 권장사항
 
-다음 환경 변수를 설정하여 구현한 API와 Enclave 간 연동을 완료하세요.
+* 콜백 API의 경우 응답 속도가 중요하므로, 시간 소모가 큰 작업은 응답 이후 비동기 방식으로 처리하는 것을 권장합니다.
 
-* `VEGA_VERIFICATION_CALLBACK_API_PATH`\
-  해당 API의 엔드포인트 경로를 이 변수에 설정합니다. (`{VASP_DEFINED_PATH_CALLBACK}`)
+***
 
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`\
-  VerifyVASP 가입 시 제공받은 API Key를 이 변수에 설정합니다.
+### Enclave 연동 설정
 
-Enclave 환경 변수 전체 목록은 [여기](ref:travelrule-enclave-setup)에서 확인할 수 있습니다.
+Enclave와의 정상 연동을 위해 아래 환경 변수를 설정해야 합니다.
+
+* `VEGA_VERIFICATION_CALLBACK_API_PATH`: 해당 API 경로
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
+
+***
+
+## API 명세
