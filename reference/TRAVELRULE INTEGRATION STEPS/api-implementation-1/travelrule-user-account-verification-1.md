@@ -103,6 +103,10 @@ Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 
 * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: 해당 API의 경로
 * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
 
+### 관련 링크
+
+* [IVMS101 Guide](ref:ivms101-guide)
+
 ***
 
 ## API 명세
