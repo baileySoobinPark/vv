@@ -5,7 +5,7 @@ api:
   operationId: travelrule-Chainalysis-Sanction
 hidden: false
 ---
-이 API는 Chainalysis Sanction API를 활용한 지갑 주소의 리스크 평가 용도로 사용될 수 있습니다. 응답 결과에 따라, VASP는 특정 주소의 잠재적 위험을 사전에 파악함으로서 비인가 또는 고위험 거래를 방지할 수 있습니다.
+이 API는 Chainalysis Sanction API를 활용한 지갑 주소의 리스크 평가 용도로 사용됩니. 응답 결과에 따라, VASP는 특정 주소의 잠재적 위험을 사전에 파악함으로서 비인가 또는 고위험 거래를 방지할 수 있습니다.
 
 ***
 
