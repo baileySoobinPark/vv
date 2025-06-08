@@ -1,5 +1,5 @@
 ---
-title: Request User Verification API
+title: User Verification API
 excerpt: >
   The Originating VASP can request user verification by calling this Enclave
   API. This API verifies whether the personal information provided by the
