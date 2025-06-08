@@ -15,3 +15,7 @@ Travel Rule 규제를 준수하는 모든 VASP 목록을 조회하기 위한 API
 
 * 해당 VASP가 VerifyVASP 또는 타 Travel Rule 프로토콜의 회원일 것
 * 자산 전송 처리가 가능할 것
+
+***
+
+## API 명세
