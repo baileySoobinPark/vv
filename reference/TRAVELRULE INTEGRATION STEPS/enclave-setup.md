@@ -166,6 +166,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       <td>
         VerifyVASP API Access Key.\
         온보딩 시 발급받은 값을 입력합니다.
+
+        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
       </td>
     </tr>
 
@@ -181,6 +183,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       <td>
         VerifyVASP API Secret Key.\
         온보딩 시 발급받은 값을 입력합니다.
+
+        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
       </td>
     </tr>
 
@@ -196,6 +200,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       <td>
         Enclave 데이터베이스의 DBMS 유형.\
         **사용 가능한 값**: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`
+
+        **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
       </td>
     </tr>
 
@@ -511,7 +517,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        Enclave 데이터베이스 암호화 대칭키 조회를 위한 API Path.
+        Enclave 데이터베이스 암호화 대칭키 조회를 위한 API Path.\
+        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
       </td>
     </tr>
 
@@ -525,7 +532,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.
+        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
+        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
       </td>
     </tr>
   </tbody>
