@@ -1,7 +1,21 @@
 ---
 title: RobotVASP 연동 통합 테스트
+excerpt: >-
+  주요 연동 작업이 완료되면 VerifyVASP가 제공하는 Robot VASP를 상대 VASP로 하여 모의 입출금을 테스트해볼 수 있습니다.
+  본 문서에서는 모의 테스트를 통해 주요 케이스에 대한 정상 연동 여부를 확인하는 방법을 안내합니다. 
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
+## Robot VASP란?
+
+Robot VASP란, VerifyVASP에서 제공하는 TravelRule 연동 테스트 환경 내 가상의 VASP입니다. VASP API와 Enclave 초도 연동이 완료된 VASP는 Robot VASP를 상대 VASP로 하는 가상 사용자 기반의 모의 입출금 테스트를 통해 구현의 완결성을 확인할 수 있습니다.
+
+Robot VASP를 활용하여 다음과 같은 시나리오들을 테스트 할 수 있습니다:
+
+1. **KYC를 완료한 개인 사용자에 대한 정보 검증**
+2. **KYC를 완료하지 않은 개인 사용자에 대한 정보 검증**
+3. **KYC를 완료한 법인 사용자에 대한 정보 검증**
+
+각 테스트 케이스의 결과에 따라 트랜잭션 결과 보고(Report Transaction) 또는 오류 보고(Report Error) 시나리오 또한 함께 테스트 할 수 있습니다.
