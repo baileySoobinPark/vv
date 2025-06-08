@@ -1,38 +1,46 @@
 ---
 title: Risk Assessment Via Refinitiv WCO API
-excerpt: >
-  This API provides risk level assessment of wallet addresses and transactions
-  by leveraging the Refinitiv WCO API.
-
-  ### What is the Refinitiv WCO API?
-    The Refinitiv World-Check One (WCO) API is a paid service designed for conducting risk assessments on individuals or entities using personal identification information. Risk assessment requests are referred to as 'case', which are uniquely identified by a caseSystemId assigned by Refinitiv. Additionally, the concept of 'groups' is used to manage case assignments, with each case belonging to a specific group. Reviewing and structuring these groups effectively is recommended before integrating the Refinitiv WCO API into your workflows.
-    - To use the WCO API, you must create an account with Refinitiv and purchase a license. For inquiries or assistance in scheduling a meeting with the Refinitiv team, contact [Refinitiv World Check One](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) directly or reach out to the VerifyVASP team for support.
-    - Once you have purchased the license, log in to the [Refinitiv WCO Console Site](https://worldcheck.refinitiv.com/) to generate your API key. Navigate to "Admin Page > Users > [Your User]" to view the API Key and Secret in the user's details.
-    - For more details about the Refinitiv WCO API and its capabilities, refer to the following resources:
-      - [Refinitiv WCO API Overview](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api)
-      - [Refinitiv WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html)
-
-  ### How to use WCO API
-    Before calling the WCO API, the User Verification API (POST /verifications) must be completed. The Refinitiv WCO API allows VASPs to evaluate the risk level of the Originator/Beneficiary of a transaction. This enables VASP to perform additional risk assessments on whether the Beneficiary or Originator is a risky individual or organization. The WCO API also operates asynchronously, the results of the risk evaluation are delivered through the Callback API.
-
-  ### Preparation Requirements
-
-  1. **Enclave Environment Variable Configuration**:
-    - Set `VEGA_REFINITIV_WCO_API_KEY` variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
-    - Set `VEGA_REFINITIV_WCO_API_SECRET` variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
-    - Set `VEGA_REFINITIV_WCO_GROUP_ID` variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
-  2. **Use the SEQ-pre-groups**: Get my top-level groups request from the Group
-  Information folder in the [Refinitiv WCO API Quick Start Postman
-  Collection](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start).
-
-  3. **Set the API Key and API Secret as environment variables in Postman before
-  making the request**.
-
-  4. **Database Table Setup**:
-    - All Refinitiv WCO API call logs are stored in the Enclave database.
-    - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
 api:
   file: TR_Enclave_API_KR_Spec.yaml
   operationId: travelrule-Refinitiv-WCO
 hidden: false
 ---
+이 API는 Refinitiv WCO(World-Check One) API를 활용하여 지갑 주소의 소유자 또는 거래 당사자의 리스크 수준을 평가합니다.
+
+Refinitiv WCO API란?
+
+Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정보를 기반으로 리스크 평가를 수행하는 유료 서비스입니다. 평가 요청은 “케이스(case)“로 생성되며, 각각은 Refinitiv에서 발급하는 caseSystemId로 식별됩니다. 또한, 각 케이스는 하나의 “그룹(group)“에 속하며, 그룹 단위로 케이스를 관리합니다. WCO API 연동 전에 그룹 구성을 미리 검토하고 체계화하는 것이 좋습니다.\
+•	WCO API 사용을 위해서는 Refinitiv 계정 생성과 라이선스 구매가 필요합니다.
+Refinitiv WCO 공식 페이지 또는 VerifyVASP팀을 통해 지원을 요청해 미팅을 주선받을 수 있습니다.
+•	라이선스를 구매한 후, WCO 콘솔 사이트에 로그인하여 API Key를 확인할 수 있습니다.
+“Admin Page > Users > \[본인 사용자]” 경로에서 API Key 및 Secret 값을 확인할 수 있습니다.
+•	Refinitiv WCO API의 기능 및 문서는 아래를 참고하세요:
+•	WCO API 개요
+•	WCO API 상세 문서
+
+⸻
+
+WCO API 사용 방법
+
+WCO API 호출 전, 반드시 사용자 검증 API(POST /verifications)를 먼저 완료해야 합니다.\
+Refinitiv WCO API를 통해 송신자 또는 수신자의 실명 정보를 기반으로 고위험 인물 또는 단체 여부를 평가할 수 있습니다.
+•	송신 VASP 또는 수신 VASP는 상대방의 실명 정보 기반으로 위험 여부를 검토할 수 있습니다.
+•	WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를 통해 전달됩니다.
+
+⸻
+
+사용 전 준비 사항
+
+1. Enclave 환경 변수 설정\
+   •	VEGA\_REFINITIV\_WCO\_API\_KEY: Refinitiv 콘솔 사이트에서 발급받은 API Key
+   (경로: Admin Page > Users > \[본인 사용자])
+   •	VEGA\_REFINITIV\_WCO\_API\_SECRET: 위와 동일한 위치에서 확인 가능한 API Secret
+   •	VEGA\_REFINITIV\_WCO\_GROUP\_ID: 케이스를 분류하기 위한 Group ID
+   그룹은 콘솔 사이트의 Admin Page에서 생성 가능
+   ✅ Group ID 조회 방법:
+   •	Refinitiv WCO API Quick Start Postman Collection에서
+   Group Information > Get my top-level groups 요청 실행
+   •	이 요청 전, Postman 환경 변수에 API Key와 Secret을 설정해야 합니다
+2. 데이터베이스 테이블 구성\
+   •	Refinitiv WCO API의 호출 결과는 Enclave DB에 저장됩니다.
+   •	별도의 테이블을 구성해야 하며, 테이블 명세는 Refinitiv WCO 결과 테이블 정의서를 참고하세요.
