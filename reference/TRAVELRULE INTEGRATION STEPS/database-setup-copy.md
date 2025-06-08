@@ -9,24 +9,27 @@ hidden: false
 metadata:
   robots: index
 ---
-## **Choose and Install a Database**
+## DBMS 선택 및 설치
 
-To interact with the VerifyVASP Enclave server, configure a supported database to store key data, such as transaction logs and verification results. Choose a DBMS that suits your infrastructure and operations; MySQL is recommended for its simplicity and performance.
+VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 로그, 상대 VASP의 공개 키 등 주요 정보를 저장하기 위해 사용됩니다. 아래 지원 DBMS 중 귀사의 인프라와 운영 환경에 적합한 DBMS를 선택하십시오.
 
-**Supported Databases:**
+### 지원하는 DBMS
 
 * **MySQL`Recommended`**
+  * 설치 및 운영이 간편하고 성능이 우수한 MySQL 사용을 권장합니다.
 * **PostgreSQL**
 * **MSSQL**
 * **Oracle DBMS**
 
-## **Table Description**
+<br />
 
-After completing the database installation, you must create the necessary tables for the VerifyVASP Enclave server. The schema includes **four mandatory tables** and **four optional tables**, which are only needed if your implementation integrates with third-party screening services like Chainalysis or Refinitiv. Refer to the table below for detailed descriptions of each table.
+## 테이블 명세
 
-> ⚠️ **Considerations—storage size and recovery policy**
+DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 합니다. 전체 스키마는 필수 테이블 4개와 선택 테이블 4개로 구성됩니다. 선택 테이블은 Chainalysis, Refinitiv 등 3rd Party를 통한 Screening 프로세스를 사용하는 경우에만 필요합니다. 각 테이블에 대한 상세 설명은 아래 표와 같습니다.
+
+> ⚠️ 저장소 크기 및 백업 정책 유의사항
 >
-> Review the estimated record size included in the descriptions to ensure adequate storage allocation for anticipated request volumes. Additionally, follow the backup and recovery policies to maintain data integrity and enable reliable operations over time.
+> 각 테이블 설명에 포함된 예상 레코드 크기를 참고하여, 예상 요청량에 맞는 충분한 저장소를 사전에 확보하시기 바랍니다. 또한, 장기적인 데이터 무결성과 안정적인 운영을 위해 백업 및 복구 정책을 반드시 적용해 주십시오.
 
 <Table align={["left","left","left"]}>
   <thead>
