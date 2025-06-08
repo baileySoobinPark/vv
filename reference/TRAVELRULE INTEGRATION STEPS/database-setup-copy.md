@@ -66,7 +66,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>Table</code></th>
+      <th>Table</th>
       <th>Description</th>
       <th>Backup Policy</th>
     </tr>
