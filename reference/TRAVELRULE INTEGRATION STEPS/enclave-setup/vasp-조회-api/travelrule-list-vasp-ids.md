@@ -1,19 +1,17 @@
 ---
 title: List VASP API
-excerpt: >
-  This API provides a list of VASPs registered with VerifyVASP.
-
-  The list is used during the withdrawal process to select the Beneficiary VASP.
-  After retrieving the VASP list through this API, the vaspId field of the
-  selected VASP can be used when initiating a verification request.
-
-
-  ### VASP Eligibility Criteria
-    The list includes your VASP and other VASPs that meet the following criteria:
-    - The VASP is a member of VerifyVASP or another Travel Rule protocol.
-    - The VASP is capable of handling asset transfers.
 api:
   file: TR_Enclave_API_Spec.yaml
   operationId: travelrule-list-Vasp-ids
 hidden: false
 ---
+Travel Rule 규제를 준수하는 모든 VASP 목록을 조회하기 위한 API입니다. 사용자 출금 요청 시 본 API를 호출하여 사용자가 수신 응답 목록 중 하나의 VASP를 선택하도록 한 뒤, 해당 VASP의 vaspId 값을 활용하여 검증을 요청할 수 있습니다.
+
+***
+
+## VASP 목록 포함 기준
+
+응답의 VASP 목록은 귀사의 VASP를 포함하여 다음 조건을 충족하는 다른 VASP들을 포함합니다.
+
+* 해당 VASP가 VerifyVASP 또는 타 Travel Rule 프로토콜의 회원일 것
+* 자산 전송 처리가 가능할 것
