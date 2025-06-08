@@ -482,7 +482,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 
       <td>
         Log level.\
-        사용 가능한 :값:`none`, `error`, `warn`, `info`, `debug`
+        **사용 가능한 값**:`none`, `error`, `warn`, `info`, `debug`
       </td>
     </tr>
 
@@ -496,7 +496,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        Cache duration for the counterparty VASP's public key (in ms). Default: 1800000 (30 min), Minimum: 600000 (10 min)
+        상대 VASP의 공개키 캐싱 TTL(ms).\
+        기본 1800000 (30분), 최소 600000 (10분)
       </td>
     </tr>
 
@@ -510,7 +511,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        Endpoint of external service for decrypting `VEGA_ENCRYPTION_KEY_BASE64`.
+        Enclave 데이터베이스 암호화 대칭키 조회를 위한 API Path.
       </td>
     </tr>
 
@@ -524,7 +525,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        Encryption key for personal data. Either used directly or sent to `VEGA_DECRYPT_API_ENDPOINT` to retrieve the actual key.
+        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.
       </td>
     </tr>
   </tbody>
