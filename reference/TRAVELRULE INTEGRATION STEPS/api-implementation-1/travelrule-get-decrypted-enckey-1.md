@@ -5,7 +5,7 @@ api:
   operationId: travelrule-get-Decrypted-EncKey
 hidden: false
 ---
-이 API는 Enclave 데이터베이스 암호화를 위한 대칭키를 Enclave로 동적으로 전달하기 위한 선택 구현 요구사항입니다. Enclave가 민감 데이터 저장을 위한 암복호화 과정에서 사용할 대칭키를 런타임에 안전하게 조회하고, 메모리 수준에서만 로드하여 안전하게 사용할 수 있도록 합니다.
+이 API는 Enclave 데이터베이스 암호화를 위한 대칭키를 Enclave로 동적으로 전달하기 위한 선택 구현 요구사항입니다.
 
 ***
 
@@ -45,6 +45,7 @@ VerifyVASP Enclave는 민감한 정보를 데이터베이스에 평문으로 저
 * AWS KMS와 같은 외부 키 관리 시스템과 연동하는 방식을 권장합니다.
 
   \[연동 예시]
+
   * `VEGA_ENCRYPTION_KEY_BASE64`: AWS KMS 키 ARN
   * `VEGA_DECRYPT_API_ENDPOINT`: 키 조회 및 복호화를 수행하는 자체 서버 API 주소
 
