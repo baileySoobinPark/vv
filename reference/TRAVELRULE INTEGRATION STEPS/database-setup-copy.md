@@ -75,7 +75,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>verifications</code></td>
       <td>
-        - 필수 생성 대상 테이블입니다. TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
+        - **필수 생성 대상 테이블입니다.** <br>
+        - TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
         - POST /verifications API 호출시 요청과 응답 데이터가 저장됩니다.<br>
         - 암호화 대상 필드: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<br><code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code><br>
         - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
@@ -85,7 +86,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>own_keys</code></td>
       <td>
-        - 필수 생성 대상 테이블입니다. 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
+        - **필수 생성 대상 테이블입니다.** <br>
+        - 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
         - 검증 중 상대 VASP의 공개키 요청시 본 테이블로부터 조회 및 반환됩니다.<br>
         - 암호화 대상 필드: <code>private_key</code><br>
         - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
@@ -95,7 +97,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>counter_party_keys</code></td>
       <td>
-        - 필수 생성 대상 테이블입니다. 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
+        - **필수 생성 대상 테이블입니다.** <br>
+        - 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
       <td>백업 또는 복원 정책 불필요</td>
@@ -103,7 +106,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>commands</code></td>
       <td>
-        - 필수 생성 대상 테이블입니다. Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
+        - **필수 생성 대상 테이블입니다.** <br>
+        - Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
         - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
       </td>
       <td>백업 또는 복원 정책 불필요</td>
