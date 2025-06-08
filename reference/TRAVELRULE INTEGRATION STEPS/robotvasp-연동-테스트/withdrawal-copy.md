@@ -169,7 +169,7 @@ metadata:
 
 <br />
 
-### 2. Verify the Beneficiary's account information
+### 2. 수신 주소 검
 
 * **Conditions**
   * Your VASP must use the User Account Verification API(Enclave API).
