@@ -12,3 +12,7 @@ hidden: false
 ## 비동기 API
 
 사용자 검증 프로세스의 복잡도를 고려하여 이 API는 비동기 방식으로 동작합니다. 요청의 응답은 오직 요청건에 대한 고유 식별자인 verificationUuid만을 포함하며, 실제 검증 결과는 일정 시간 이후 해당 UUID를 포함한 Callback API 호출을 통해 수신하거나 Get Verification Result API를 호출하여 확인할 수 있습니다.
+
+***
+
+## API 명세
