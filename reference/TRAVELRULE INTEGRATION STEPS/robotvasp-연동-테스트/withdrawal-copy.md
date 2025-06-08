@@ -93,46 +93,9 @@ metadata:
 
 <br />
 
-1. 테스트 대상 Robot VASP 식별
-2. 수취인 계정 정보 검증\
-   귀사의 VASP가 제공한 수취인 계정 정보를 Robot VASP가 검증합니다.
-3. 수취인 개인정보 검증\
-   귀사의 VASP가 제공한 수취인 개인정보를 Robot VASP가 검증합니다.
+## 테스트 데이터
 
-4-1. 가상자산 전송 트랜잭션 실행\
-귀사의 VASP가 블록체인 네트워크에서 가상자산 전송 트랜잭션을 실행합니다.
-•	Case 1: 트랜잭션 실행 후, 귀사의 VASP가 트랜잭션 해시(txHash) 또는 트랜잭션 ID(txId) 를 VV 중앙 서버에 전송함
-•	Case 2: 트랜잭션 실행 후, 귀사의 VASP가 트랜잭션 해시(txHash) 또는 트랜잭션 ID(txId) 를 VV 중앙 서버에 전송하지 않음
-
-4-2. 사용자 검증이 완료된 트랜잭션 취소 처리\
-•	Case 1: 전송이 중단된 경우, 귀사의 VASP가 오류 보고 API를 호출하여 VV 중앙 서버에 보고함
-•	Case 2: 전송이 중단된 경우, 귀사의 VASP가 오류 보고 API를 호출하지 않음
-
-## 출금 테스트 시나리오
-
-1. Identifying the Robot VASP to interact with your VASP
-
-2. The Robot VASP verifies the Beneficiary's **account information** provided by your VASP.
-
-3. The Robot VASP verifies the Beneficiary's **personal information** provided by your VASP.
-
-4-1. Your VASP executes a virtual asset transfer transaction on the blockchain network.
-
-Case 1: After executing the transaction, your VASP **sends the transaction hash** or transaction ID to the VV Central Server.
-
-Case 2: After executing the transaction, your VASP **does not send the transaction hash** or transaction ID to the VV Central Server.
-
-4-2. **Cancel the transaction that has completed user verification.**
-
-Case 1: For a halted virtual asset transfer, your VASP **sends an Error Report** to the VV Central Server.
-
-Case 2: For a halted virtual asset transfer, your VASP **does not send an Error Report** to the VV Central Server.
-
-<br />
-
-## Test User Informations of RobotVASP
-
-Here are virtual user informations that stored on Robot VASP for conducting test. Your VASP can conduct each case of withdrawal test using this information.
+테스트의 사용할 가상의 사용자 정보는 아래와 같습니다. 이 정보는 수신 VASP로 동작하는 Robot VASP에 미리 저장되어 있어 검증이 가능한 정보입니다.
 
 <Accordion title="User 1(Individual user who has completed KYC verification)">
   If all the information is entered correctly, the verification result must return `VERIFIED`.
