@@ -21,25 +21,24 @@ Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정�
 
 WCO API를 통해, 송신 VASP와 수신 VASP는 송신자 또는 수신자의 실명정보를 기반으로 한 리스크 평가를 진행하고 규제 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 합니다.
 
-##
+## 비동기 API
 
-송신 VASP 또는 수신 VASP는 상대방의 실명 정보 기반으로 위험 여부를 검토할 수 있습니다.\
-•	WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를 통해 전달됩니다.
+WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를 통해 전달됩니다.
 
-⸻
+## 사용 전 준비 사항
 
-사용 전 준비 사항
+1. Enclave 환경 변수 설정
 
-1. Enclave 환경 변수 설정\
-   •	VEGA\_REFINITIV\_WCO\_API\_KEY: Refinitiv 콘솔 사이트에서 발급받은 API Key
-   (경로: Admin Page > Users > \[본인 사용자])
-   •	VEGA\_REFINITIV\_WCO\_API\_SECRET: 위와 동일한 위치에서 확인 가능한 API Secret
-   •	VEGA\_REFINITIV\_WCO\_GROUP\_ID: 케이스를 분류하기 위한 Group ID
-   그룹은 콘솔 사이트의 Admin Page에서 생성 가능
-   ✅ Group ID 조회 방법:
-   •	Refinitiv WCO API Quick Start Postman Collection에서
-   Group Information > Get my top-level groups 요청 실행
-   •	이 요청 전, Postman 환경 변수에 API Key와 Secret을 설정해야 합니다
+* `VEGA_REFINITIV_WCO_API_KEY`: Refinitiv 콘솔에서 발급받은 API Key
+* `VEGA_REFINITIV_WCO_API_SECRET`: Refinitiv 콘솔에서 발급받은 API Secret
+* `VEGA_REFINITIV_WCO_GROUP_ID`: 케이스를 분류하기 위한 Group ID
+
+그룹은 콘솔 사이트의 Admin Page에서 생성 가능
+✅ Group ID 조회 방법:
+•	Refinitiv WCO API Quick Start Postman Collection에서
+Group Information > Get my top-level groups 요청 실행
+•	이 요청 전, Postman 환경 변수에 API Key와 Secret을 설정해야 합니다
+
 2. 데이터베이스 테이블 구성\
-   •	Refinitiv WCO API의 호출 결과는 Enclave DB에 저장됩니다.
+   Refinitiv WCO API의 호출 결과는 Enclave DB에 저장됩니다.
    •	별도의 테이블을 구성해야 하며, 테이블 명세는 Refinitiv WCO 결과 테이블 정의서를 참고하세요.
