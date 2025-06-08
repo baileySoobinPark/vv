@@ -162,9 +162,9 @@ metadata:
 
 ### 1. Robot VASP의 정보를 확인할 수 있다.
 
-* **Conditions**
-  * Your VASP must use the List VASP API(Enclave API).
-* **Expected Result**
+* **조건**
+  * STG Endpoint에 대해 Enclave API 중 List VASP API를 호출하여
+* **기대 결과**
   * Your VASP can identify the Robot VASP using List VASP API.
 
 <br />
