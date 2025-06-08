@@ -80,7 +80,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
-#### 2. VERIFICATION\_RESULT 처리
+#### 2. VERIFICATION\_RESULT 유형 콜백 처리
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
 
@@ -423,26 +423,26 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
-#### 3. TX\_REPORT 처리 (수신 VASP 역할)
+#### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
 콜백으로 수신한 트랜잭션 Hash가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 결과 및 이력을 데이터베이스에 기록합니다.
 
-#### 4. ERROR\_REPORT 처리 (수신 VASP 역할)
+#### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
 오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
 
-#### 5. CHAINALYSIS\_KYT\_RESULT 처리 (선택사항)
+#### 5. CHAINALYSIS\_KYT\_RESULT 유형 콜백 처리 (선택사항)
 
 콜백으로 수신한 Chainalysis KYT 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
 
-* Originator 또는 Beneficiary의 평가 데이터 갱신
+* 송신자 또는 수신자의 평가 데이터 갱신
 * 트랜잭션 허용 또는 차단 결정
 
-#### 6. REFINITIV\_WCO\_RESULT 처리 (선택사항)
+#### 6. REFINITIV\_WCO\_RESULT 유형 콜백 처리 (선택사항)
 
 콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
 
-* Originator 또는 Beneficiary의 평가 데이터 갱신
+* 송신자 또는 수신자의 평가 데이터 갱신
 * 트랜잭션 허용, 재개 또는 차단 결정
 
 <br />
@@ -450,7 +450,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 ### 제약 조건
 
 * 이 API는 1초 이내에 응답해야 합니다.
-* 응답의 HTTP 상태 코드는 200 OK만 허용됩니다.
+* 응답의 HTTP 상태 코드는 반드시 200 OK로 반환해야 합니다.
 * 동일한 콜백 요청이 여러 번 수신되어도 처리 결과가 동일하도록 멱등성을 보장해야 합니다.\
   (ex) 중복 요청 시 내부 처리 로직에서 무시하도록 구현
 
