@@ -82,51 +82,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 
 <br />
 
-#### 1. 서버 및 데이터베이스 설정 변수
-
-* 서버 실행 및 데이터베이스 접속을 위해 필요한 설정
-* (ex) 서버 엔드포인트/포트, DB 사용자명/비밀번호, DB 접속 설정 등
-
-#### 2. 인증 관련 변수
-
-* VerifyVASP 중앙 서버 및 3rd Party 서비스 연동을 위한 인증 정보
-* 예: Alliance access key/secret key, Chainalysis API key, Refinitiv API key 등
-
-#### 3. VASP API 엔드포인트
-
-* Enclave가 VASP API를 호출할 때 사용되는 API 엔드포인트
-* 예: 사용자 계정 검증 API, 사용자 정보 검증 API 등
-
-#### 4. 보안 및 설정 관련 변수
-
-* Enclave 서버의 보안 수준 및 운영 설정을 위한 변수
-* 예: 공개키 캐시 옵션 등
-
-#### 5. Enclave 모드 설정
-
-* Enclave 서버를 실행하는 목적에 따라 설정할 수 있는 Enclave의 구동 모드
-* TR
-* VN1\_CALL (곧 지원 종료 예정)
-* VN1\_RESPONSE (곧 지원 종료 예정)
-* VN2
-
-위 값들은 VEGA\_ENCLAVE\_MODE 환경 변수에 콤마(,)로 구분하여 입력할 수 있으며, 최소 한 개 이상을 지정해야 합니다.
-
-예시: VEGA\_ENCLAVE\_MODE=TR,VN2,VN1\_CALL,VN1\_RESPONSE
-
-TR만 설정된 경우: Travel Rule API 요청/응답 처리를 위한 Enclave 서버 운영을 의미합니다.
-
-VN1\_CALL만 설정된 경우: VerifyName V1 API 요청 처리를 위한 Enclave 서버 운영을 의미합니다.
-
-VN1\_RESPONSE만 설정된 경우: VerifyName V1 API 응답 처리를 위한 Enclave 서버 운영을 의미합니다.
-
-VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 Enclave 서버 운영을 의미합니다.
-
-둘 이상 설정된 경우: 복수 역할을 동시에 수행합니다.
-
-환경 변수에 대한 목적, 기본값, 설정 방법을 요약한 표는 다음과 같습니다. 환경 변수의 이름은 절대 변경되어서는 안 됩니다.
-
-<br />
+환경 변수에 대한 목적, 기본값, 설정 방법을 요약한 표는 다음과 같습니다. 환경 변수의 이름은 반드시 변경 없이 그대로 사용하십시오.
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -156,7 +112,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Enclave Server Port Number.
+        Enclave 서버 포트 번호.
       </td>
     </tr>
 
@@ -170,13 +126,14 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Configuration based on the purpose of using the Enclave server.
-        You can select either a single mode or multiple modes by separating them with commas from the available options.
+        Enclave의 구동모드.
+        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
 
-        <br />
+        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
 
-        Available modes:
-        `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
+        **사용 가능한 모드 값** : `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
+
+        `(ex) VEGA_ENCLAVE_MODE=TR,VN2`
       </td>
     </tr>
 
@@ -190,7 +147,10 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Public Endpoint URL for VASP's Enclave Server, accessible by VerifyVASP Central Server. Must use the HTTPS protocol. Example: `https://api.vasp.com/enclave`
+        Enclave 서버의 Public Endpoint URL.\
+        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
+
+        `https://api.vasp.com/enclave`
       </td>
     </tr>
 
@@ -204,7 +164,8 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        The API Access Key issued via VerifyVASP Console.
+        VerifyVASP API Access Key.\
+        온보딩 시 발급받은 값을 입력합니다.
       </td>
     </tr>
 
@@ -218,7 +179,8 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        The API Secret Key issued via VerifyVASP Console.
+        VerifyVASP API Secret Key.\
+        온보딩 시 발급받은 값을 입력합니다.
       </td>
     </tr>
 
@@ -232,7 +194,8 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Type of the database. Acceptable values: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`
+        Enclave 데이터베이스의 DBMS 유형.\
+        **사용 가능한 값**: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`
       </td>
     </tr>
 
@@ -274,7 +237,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Address to access the database.
+        데이터베이스 연동을 위한 Host URL.
       </td>
     </tr>
 
@@ -288,7 +251,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Port number to access the database.
+        데이터베이스 포트 번호.
       </td>
     </tr>
 
@@ -302,7 +265,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Database name that the Enclave server uses.
+        데이터베이스 DB 이름.
       </td>
     </tr>
 
@@ -316,7 +279,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Custom schema name for PostgreSQL.
+        Custom schema 이름(PostgreSQL 케이스에 한함).
       </td>
     </tr>
 
@@ -330,7 +293,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Minimum value of database connection pool.
+        최소 데이터베이스 Connection Pool 크기.
       </td>
     </tr>
 
@@ -344,7 +307,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Maximum value of database connection pool.
+        최대 데이터베이스 Connection Pool 크기.
       </td>
     </tr>
 
@@ -358,7 +321,8 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Enable or disable SSL connection to the database.
+        데이터베이스 SSL 연결 사용 여부\
+        (사용시 `true`로 설정)
       </td>
     </tr>
 
@@ -372,7 +336,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Path to CA Certificate File for Server Authentication.
+        데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치
       </td>
     </tr>
 
@@ -386,7 +350,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Path to Client Certificate Private Key File for SSL Connection.
+        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.
       </td>
     </tr>
 
@@ -400,7 +364,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Path to Client Public Certificate File for SSL Connection.
+        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.
       </td>
     </tr>
 
@@ -414,7 +378,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Directory path that stores CA certificates.
+        데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로
       </td>
     </tr>
 
@@ -428,7 +392,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Encryption algorithms for client-server communication.
+        데이터베이스 SSL 연결을 위한 암호화 방식
       </td>
     </tr>
 
@@ -442,7 +406,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Allow SSL connection even if the server certificate is untrusted.
+        데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)
       </td>
     </tr>
 
@@ -470,7 +434,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Authorization token value for Enclave-to-VASP Backend API calls. Sent in the header.
+        VASP API 호출시 사용할 인증 token 값.
       </td>
     </tr>
 
@@ -484,7 +448,7 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Header key used to deliver the authorization token. Defaults to `Authorization` if not set.
+        VASP API 호출시 인증 헤더 Key 값. 미설정시 `Authorization` 헤더 사용.
       </td>
     </tr>
 
@@ -498,14 +462,12 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        VerifyVASP Central API Server Address.
+        VerifyVASP Central API Server Endpoint.
 
         * PRD (KR): `https://api-kr.vega-protocol.com`
         * PRD (Global): `https://api.vega-protocol.com`
         * STG (KR): `https://api-kr.vega-protocol.xyz`
         * STG (Global): `https://api.vega-protocol.xyz`
-
-        <br />
       </td>
     </tr>
 
@@ -519,7 +481,8 @@ VN2만 설정된 경우: VerifyName V2 API 요청 및 응답 처리를 위한 En
       </td>
 
       <td>
-        Log level. Acceptable values: `none`, `error`, `warn`, `info`, `debug`
+        Log level.\
+        사용 가능한 :값:`none`, `error`, `warn`, `info`, `debug`
       </td>
     </tr>
 
