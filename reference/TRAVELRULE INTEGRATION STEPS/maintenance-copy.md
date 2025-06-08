@@ -1,5 +1,5 @@
 ---
-title: Maintenance (COPY)
+title: 운영
 excerpt: >-
   This document outlines the regulations that VASPs affiliated with the
   VerifyVASP Alliance must adhere to in order to ensure the smooth provision of
