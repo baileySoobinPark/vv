@@ -160,7 +160,7 @@ metadata:
 
 ## Test Cases
 
-### 1. Robot VASP의 정보를 확인할 수 있다.
+### 1. Robot VASP Identification Test
 
 * **조건**
   * STG Endpoint로 구동한 Enclave API 중 [List VASP API](ref:travelrule-list-vasp-ids-1)를 호출하여 Robot VASP 정보를 조회합니다.
@@ -169,13 +169,13 @@ metadata:
 
 <br />
 
-### 2. 수신 주소 검
+### 2. User Account Verification Test
 
-* **Conditions**
-  * Your VASP must use the User Account Verification API(Enclave API).
-  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
+* **조건**
+  * Enclave API 중 [User Verification API](ref:travelrule-encalve-request-user-verification-1)를 호출하여 진행합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
+  * 테스트 데이터 3건에 대한 검증 테스트를 각각 수행합니다.
 * **Expected Result**
-  * You can receive seven possible responses depending on how your VASP entered the test user information.
+  * 테스트 데이터를 기준으로 정상 검증(`VERIFIED`) 시나리오를 포함하여 발생 가능한 아래 모든 `DENIED` 케이스에 대해 기대한 사유 코드가 반환되는지 확인합니다. 예를 들어, 테스트 데이터 외의 임의의 데이터로 검증을 요청하여 `UNKNOWN-ADDRESS`가 발생하는지 확인할 수 있습니다.
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -187,14 +187,13 @@ metadata:
 
 <br />
 
-### 3. Verify the Beneficiary's personal information
+### 3. User Verification Test
 
-* **Conditions**
-  * Your VASP must receive VERIFIED as a result of the User Account Verification API in order to conduct this test case.
-  * Your VASP must use the User Verification API (Enclave API).
-  * Your VASP must set the Robot VASP as the Beneficiary VASP using the information returned from the List VASP API.
-* **Expected Result**
-  * You can receive seven possible responses depending on how your VASP entered the test user information.
+* **조건**
+  * 사용자 주소 검증에서 VERIFIED 응답을 받은 직후 이어서 진행합니다.
+  * Enclave API 중 [User Verification API](ref:travelrule-encalve-request-user-verification-1)을 호출하여 테스트합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
+* **기대 결과**
+  * 테스트 데이터를 기준으로 정상 검증(`VERIFIED`) 시나리오를 포함하여 발생 가능한 아래 모든 `DENIED` 케이스에 대해 기대한 사유 코드가 반환되는지 확인합니다. 예를 들어, 테스트 데이터 외의 임의의 데이터로 검증을 요청하여 `UNKNOWN-ADDRESS`가 발생하는지 확인할 수 있습니다.
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -204,7 +203,7 @@ metadata:
     * `LACK-OF-INFORMATIONBLACKLISTED`
     <br />
 
-### 4-1. Execute the transaction on the Blockchain Network
+### 4-1. 온체인 전송 트랜잭션 실행 Test
 
 > 💡 Please Note:
 >
@@ -214,7 +213,7 @@ metadata:
 >
 > If you send virtual assets to Robot VASP without receiving a VERIFIED response, the deposit test cannot be completed successfully.
 >
-> When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag. Instructions on how to provide the destination tag can be found in the \[IVMS Guide]\(링크 추가 필요)  // 링크 추가 필요
+> When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag. Instructions on how to provide the destination tag can be found in the [IVMS101 Guide](ref:ivms101-guide).
 
 **Case 1. Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
 
