@@ -5,22 +5,19 @@ api:
   operationId: travelrule-Refinitiv-WCO
 hidden: false
 ---
-이 API는 Refinitiv WCO(World-Check One) API를 활용하여 지갑 주소의 소유자 또는 거래 당사자의 리스크 수준을 평가합니다.
+이 API는 Refinitiv WCO(World-Check One) API를 활용한 지갑 주소 소유자 및 거래 당사자의 리스크 평가 용도로 사용됩니다. VASP는 잠재적 위험을 사전에 파악함으로서 고위험 거래를 방지할 수 있습니다.
 
-Refinitiv WCO API란?
+***
 
-Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정보를 기반으로 리스크 평가를 수행하는 유료 서비스입니다. 평가 요청은 “케이스(case)“로 생성되며, 각각은 Refinitiv에서 발급하는 caseSystemId로 식별됩니다. 또한, 각 케이스는 하나의 “그룹(group)“에 속하며, 그룹 단위로 케이스를 관리합니다. WCO API 연동 전에 그룹 구성을 미리 검토하고 체계화하는 것이 좋습니다.\
-•	WCO API 사용을 위해서는 Refinitiv 계정 생성과 라이선스 구매가 필요합니다.
-Refinitiv WCO 공식 페이지 또는 VerifyVASP팀을 통해 지원을 요청해 미팅을 주선받을 수 있습니다.
-•	라이선스를 구매한 후, WCO 콘솔 사이트에 로그인하여 API Key를 확인할 수 있습니다.
-“Admin Page > Users > \[본인 사용자]” 경로에서 API Key 및 Secret 값을 확인할 수 있습니다.
-•	Refinitiv WCO API의 기능 및 문서는 아래를 참고하세요:
-•	WCO API 개요
-•	WCO API 상세 문서
+## Refinitiv WCO API란?
 
-⸻
+Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정보를 기반으로 리스크 평가를 수행하는 유료 서비스입니다. 평가 요청은 “케이스(case)“로 생성되며, 각각은 Refinitiv에서 발급하는 caseSystemId로 식별됩니다. 또한, 각 케이스는 하나의 “그룹(group)“에 속하며, 그룹 단위로 케이스를 관리합니다. WCO API 연동 전에 그룹 구성을 미리 검토하고 체계화하는 것이 좋습니다.
 
-WCO API 사용 방법
+* WCO API 사용을 위해서는 Refinitiv 계정 생성과 라이선스 구매가 필요합니다.\
+  [Refinitiv WCO 공식 페이지](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) 또는 VerifyVASP팀에 지원을 요청해 미팅을 주선받을 수 있습니다.
+* 라이선스를 구매한 후, [WCO 콘솔 사이트](https://worldcheck.refinitiv.com/)에 로그인하여 API Key를 확인할 수 있습니다. Refinitiv WCO API의 자세한 사용법은 [WCO API 개요](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api) 및 [WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html) 문서를 확인하세요.
+
+## 구현 가이드
 
 WCO API 호출 전, 반드시 사용자 검증 API(POST /verifications)를 먼저 완료해야 합니다.\
 Refinitiv WCO API를 통해 송신자 또는 수신자의 실명 정보를 기반으로 고위험 인물 또는 단체 여부를 평가할 수 있습니다.
