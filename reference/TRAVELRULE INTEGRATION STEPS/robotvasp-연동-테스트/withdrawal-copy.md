@@ -1,5 +1,5 @@
 ---
-title: ' Withdrawal (COPY)'
+title: ' 출금 시나리오 테스트'
 excerpt: >-
   This guide provides the withdrawal test scenario, test cases and expected
   results for the withdrawal test.
