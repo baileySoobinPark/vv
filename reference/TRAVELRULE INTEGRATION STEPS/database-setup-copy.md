@@ -1,12 +1,12 @@
 ---
-title: Database Setup (COPY)
+title: Database Setup
 excerpt: >-
   The next step is to initiate the configuration of the Enclave server. Prior to
   setting up the Enclave server, ensure that the required database is fully
   configured and ready for use. This guide details the system requirements,
   policies, and definitions for configuring the database on the Enclave server.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
