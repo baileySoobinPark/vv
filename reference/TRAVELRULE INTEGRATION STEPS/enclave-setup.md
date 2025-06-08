@@ -19,6 +19,7 @@ VerifyVASP에서 개발한 Enclave 서버는 Private Docker Hub 레지스트리�
 Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니다.
 
 <HTMLBlock>{`
+<style>
 .enclave-env-table {
   width: 100%;
   background-color: white;
@@ -40,7 +41,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
   font-weight: bold;
   background-color: white;
 }
-
+</style>
 <table class="enclave-env-table">
   <thead>
     <tr>
