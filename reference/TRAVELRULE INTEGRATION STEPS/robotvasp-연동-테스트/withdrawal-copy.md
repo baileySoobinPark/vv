@@ -163,7 +163,7 @@ metadata:
 ### 1. Robot VASP의 정보를 확인할 수 있다.
 
 * **조건**
-  * STG Endpoint에 대해 Enclave API 중 [List VASP API](ref:travelrule-list-vasp-ids-1)를 호출하여 Robot VASP 정보를 조회합니다.
+  * STG Endpoint로 구동한 Enclave API 중 [List VASP API](ref:travelrule-list-vasp-ids-1)를 호출하여 Robot VASP 정보를 조회합니다.
 * **기대 결과**
   * API 호출 응답에서 Robot VASP 정보를 확인할 수 있습니다. (vaspId 포함)
 
