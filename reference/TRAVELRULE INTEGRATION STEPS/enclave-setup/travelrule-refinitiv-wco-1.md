@@ -19,11 +19,11 @@ Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정�
 
 ## 구현 가이드
 
-송신 VASP와 수신 VASP 모두 WCO API로 송신자 또는 수신자의 리스크 평가를 진행한 뒤 규제 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 하며 VASP의 포지션에 따라 API 호출 시점은 상이할 수 있습니다.
+WCO API를 통해, 송신 VASP와 수신 VASP는 송신자 또는 수신자의 실명정보를 기반으로 한 리스크 평가를 진행하고 규제 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 합니다.
 
-WCO API 호출 전, 반드시 사용자 검증 API(POST /verifications)를 먼저 완료해야 합니다.\
-Refinitiv WCO API를 통해 송신자 또는 수신자의 실명 정보를 기반으로 고위험 인물 또는 단체 여부를 평가할 수 있습니다.
-•	송신 VASP 또는 수신 VASP는 상대방의 실명 정보 기반으로 위험 여부를 검토할 수 있습니다.
+##
+
+송신 VASP 또는 수신 VASP는 상대방의 실명 정보 기반으로 위험 여부를 검토할 수 있습니다.\
 •	WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를 통해 전달됩니다.
 
 ⸻
