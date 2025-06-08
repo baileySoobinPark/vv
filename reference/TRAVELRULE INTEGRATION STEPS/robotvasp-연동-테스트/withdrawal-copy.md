@@ -8,11 +8,11 @@ metadata:
 ---
 > 💡 테스트 환경 제약사항
 >
-> 출금 테스트는 Ethereum Sepolia 및 Ripple Testnet에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 출금 계좌 등 필요한 정보를 미리 확인하십시오.
+> 출금 테스트는 **Ethereum Sepolia** 및 **Ripple Testnet**에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 출금 계좌 등 필요한 정보를 미리 확인하십시오.
 
 <br />
 
-## Withdrawal Test Scenario
+## 출금 테스트 시나리
 
 1. Identifying the Robot VASP to interact with your VASP
 
