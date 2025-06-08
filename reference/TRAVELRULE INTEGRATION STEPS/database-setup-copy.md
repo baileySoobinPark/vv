@@ -33,62 +33,33 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
 
 <HTMLBlock>{`
 <style>
-  .api-table {
-    width: 100%;
+  .custom-table {
     border-collapse: collapse;
-    background-color: #fff;
+    width: 100%;
     font-size: 14px;
-    margin-top: 24px;
   }
 
-  .api-table th, .api-table td {
+  .custom-table th,
+  .custom-table td {
     border: 1px solid #ddd;
-    padding: 12px 14px;
-    vertical-align: top;
+    padding: 12px;
     text-align: left;
-    background-color: #fff;
-    min-width: 220px;
+    vertical-align: top;
   }
 
-	.api-table th {
-    background-color: #f8f9fa;
-    color: #333;
-    font-weight: bold;
+  .custom-table th {
+    background-color: #ffffff;
+    font-weight: 600;
   }
 
-  .api-name a {
-    color: #1364FF;
-    text-decoration: none;
+  .custom-table td {
+    background-color: #ffffff;
   }
 
-  .api-name a:hover {
-    text-decoration: underline;
-  }
-
-  .api-role {
-    color: #555;
-    font-weight: 500;
-  }
-
-  .callback-events code {
-    background-color: #f4f4f4;
-    padding: 2px 6px;
-    border-radius: 4px;
+  .custom-table td.code-col {
+    min-width: 200px;
+    white-space: nowrap;
     font-family: monospace;
-    font-size: 13px;
-    display: inline-block;
-    margin: 2px 0;
-  }
-
-  .badge-key {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    color: #fff;
-    background-color: #1364FF;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-bottom: 6px;
   }
 </style>
 
