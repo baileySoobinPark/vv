@@ -79,3 +79,7 @@ hidden: false
   </tbody>
 </table>
 `}</HTMLBlock>
+
+***
+
+## API 명
