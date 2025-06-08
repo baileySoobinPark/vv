@@ -9,7 +9,7 @@ hidden: false
 metadata:
   robots: index
 ---
-## DBMS 선택 및 설치
+## Step 1. DBMS 선택 및 설치
 
 VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 로그, 상대 VASP의 공개 키 등 주요 정보를 저장하기 위해 사용됩니다. 아래 지원 DBMS 중 귀사의 인프라와 운영 환경에 적합한 DBMS를 선택하십시오.
 
@@ -23,7 +23,7 @@ VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 
 
 <br />
 
-## 테이블 목록
+## Step 2. 스키마 생성
 
 DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 합니다. 전체 스키마는 필수 테이블 4개와 선택 테이블 4개로 구성됩니다. 선택 테이블은 Chainalysis, Refinitiv 등 3rd Party를 통한 Screening 프로세스를 사용하는 경우에만 필요합니다. 각 테이블에 대한 상세 설명은 아래 표와 같습니다.
 
@@ -155,7 +155,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
 
 <br />
 
-## TravelRule/VerifyName 공통 필수 테이블 생성 쿼리
+### TravelRule/VerifyName 공통 필수 테이블 생성 쿼리
 
 TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜에 대해 공통으로 사용하는 필수 테이블들을 생성하기 위한 쿼리입니다. VerifyName을 연동하는 과정에서 아래 테이블들이 이미 생성 되었다면 이 단계를 건너뛸 수 있습니다.
 
@@ -354,7 +354,7 @@ TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜�
 
 <br />
 
-## TravelRule 필수 테이블 생성 쿼리
+### TravelRule 필수 테이블 생성 쿼리
 
 TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 TR 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
 
@@ -519,7 +519,7 @@ TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하�
 
 <br />
 
-## TravelRule 선택 테이블 생성 쿼리: Chainalysis Sanction 스크리닝
+### TravelRule 선택 테이블 생성 쿼리: Chainalysis Sanction 스크리닝
 
 Chainalysis의 Sanction API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
 
@@ -639,7 +639,7 @@ Chainalysis의 Sanction API를 사용하여 스크리닝 기능을 활성화하�
 
 <br />
 
-## TravelRule 선택 테이블 생성 쿼리: Chainalysis KYT 스크리닝 사용시
+### TravelRule 선택 테이블 생성 쿼리: Chainalysis KYT 스크리닝 사용시
 
 Chainalysis의 KYT 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오
 
@@ -899,7 +899,7 @@ Chainalysis의 KYT 사용하여 스크리닝 기능을 활성화하는 경우 �
 
 <br />
 
-## TravelRule 선택 테이블 생성 쿼리: Refinitiv WCO 스크리닝 사용시
+### TravelRule 선택 테이블 생성 쿼리: Refinitiv WCO 스크리닝 사용시
 
 Refinitiv의 WCO API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
 
