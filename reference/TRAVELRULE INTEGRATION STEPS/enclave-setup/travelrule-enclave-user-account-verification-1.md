@@ -1,5 +1,5 @@
 ---
-title: Request User Account Verification API
+title: User Account Verification API
 excerpt: >
   The Originating VASP can initiate verification flow by validating the
   beneficiary account by calling this Enclave API. The verification ensures that
