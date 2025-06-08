@@ -27,18 +27,11 @@ WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를
 
 ## 사용 전 준비 사항
 
-1. Enclave 환경 변수 설정
+1. **Enclave 환경 변수 설정**
 
-* `VEGA_REFINITIV_WCO_API_KEY`: Refinitiv 콘솔에서 발급받은 API Key
-* `VEGA_REFINITIV_WCO_API_SECRET`: Refinitiv 콘솔에서 발급받은 API Secret
-* `VEGA_REFINITIV_WCO_GROUP_ID`: 케이스를 분류하기 위한 Group ID
+* `VEGA_REFINITIV_WCO_API_KEY`: Refinitiv 콘솔에서 발급받은 API Key.
+* `VEGA_REFINITIV_WCO_API_SECRET`: Refinitiv 콘솔에서 발급받은 API Secret.
+* `VEGA_REFINITIV_WCO_GROUP_ID`: 케이스를 분류하기 위한 Group ID. Group은 Refinitiv 콘솔의 어드민 페이지에서 생성 가능하며 Group ID는 Refinitiv WCO API Quick Start Postman Collection의 Group Information > Get my top-level groups 요청을 실행하여 조회할 수 있습니다.
 
-그룹은 콘솔 사이트의 Admin Page에서 생성 가능
-✅ Group ID 조회 방법:
-•	Refinitiv WCO API Quick Start Postman Collection에서
-Group Information > Get my top-level groups 요청 실행
-•	이 요청 전, Postman 환경 변수에 API Key와 Secret을 설정해야 합니다
-
-2. 데이터베이스 테이블 구성\
-   Refinitiv WCO API의 호출 결과는 Enclave DB에 저장됩니다.
-   •	별도의 테이블을 구성해야 하며, 테이블 명세는 Refinitiv WCO 결과 테이블 정의서를 참고하세요.
+2. **데이터베이스 테이블 구성**\
+   Enclave DB에는 WCO API 결과를 저장하기 위한 전용 테이블이 구성되어야 합니다. [Enclave 데이터베이스 생성](ref:database-setup-copy)페이지를 참고하여 적절한 선택 테이블을 생성하십시오.
