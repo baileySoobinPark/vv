@@ -86,7 +86,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>own_keys</code></td>
       <td>
-        - **필수 생성 대상 테이블입니다.** <br>
+        - <b>필수 테이블입니다.</b> <br>
         - 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
         - 검증 중 상대 VASP의 공개키 요청시 본 테이블로부터 조회 및 반환됩니다.<br>
         - 암호화 대상 필드: <code>private_key</code><br>
@@ -97,7 +97,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>counter_party_keys</code></td>
       <td>
-        - **필수 생성 대상 테이블입니다.** <br>
+        - <b>필수 테이블입니다.</b> <br>
         - 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
@@ -106,7 +106,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>commands</code></td>
       <td>
-        - **필수 생성 대상 테이블입니다.** <br>
+        - <b>필수 테이블입니다.</b> <br>
         - Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
         - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
       </td>
