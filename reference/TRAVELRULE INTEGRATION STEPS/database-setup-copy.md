@@ -23,7 +23,7 @@ VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 
 
 <br />
 
-## 테이블 Schema
+## 테이블 목록
 
 DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 합니다. 전체 스키마는 필수 테이블 4개와 선택 테이블 4개로 구성됩니다. 선택 테이블은 Chainalysis, Refinitiv 등 3rd Party를 통한 Screening 프로세스를 사용하는 경우에만 필요합니다. 각 테이블에 대한 상세 설명은 아래 표와 같습니다.
 
@@ -47,7 +47,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 220px;
+    min-width: 150px;
   }
 
 	.api-table th {
