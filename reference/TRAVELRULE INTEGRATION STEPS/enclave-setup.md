@@ -12,6 +12,8 @@ metadata:
 
 VerifyVASP에서 개발한 Enclave 서버는 Private Docker Hub 레지스트리를 통해 Docker 이미지 형태로 배포됩니다. 레지스트리 접근 권한을 얻기 위해 본인의 Docker Hub ID를 [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com) 주소로 제출하십시오.
 
+<br />
+
 ## Step 2. Enclave 서버 실행 및 환경 변수 설정
 
 레지스트리 접근 권한이 부여되었다면, 이제 VASP 내부 인프라 환경에서 Enclave 서버를 다운로드 및 실행해야합니다. Enclave 서버와 관련 컴포넌트 간의 원활한 통신을 위해서는 서버를 실행하기에 앞서 필수 환경 변수들을 먼저 설정해야 합니다.
