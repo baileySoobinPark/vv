@@ -1,5 +1,5 @@
 ---
-title: Verify User Account API
+title: Request User Account Verification API
 api:
   file: TR_Enclave_API_KR_Spec.yaml
   operationId: travelrule-Enclave-User-Account-Verification
