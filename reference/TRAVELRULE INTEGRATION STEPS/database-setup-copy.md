@@ -75,7 +75,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>verifications</code></td>
       <td>
-        - <b>필수 생성 대상 테이블입니다.</b> <br>
+        - <b>필수 테이블입니다.</b> <br>
         - TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
         - POST /verifications API 호출시 요청과 응답 데이터가 저장됩니다.<br>
         - 암호화 대상 필드: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<br><code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code><br>
