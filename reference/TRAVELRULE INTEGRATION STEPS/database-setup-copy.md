@@ -23,7 +23,7 @@ VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 
 
 <br />
 
-## 테이블 명세
+## 테이블 Schema
 
 DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 합니다. 전체 스키마는 필수 테이블 4개와 선택 테이블 4개로 구성됩니다. 선택 테이블은 Chainalysis, Refinitiv 등 3rd Party를 통한 Screening 프로세스를 사용하는 경우에만 필요합니다. 각 테이블에 대한 상세 설명은 아래 표와 같습니다.
 
@@ -31,99 +31,178 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
 >
 > 각 테이블 설명에 포함된 예상 레코드 크기를 참고하여, 예상 요청량에 맞는 충분한 저장소를 사전에 확보하시기 바랍니다. 또한, 장기적인 데이터 무결성과 안정적인 운영을 위해 백업 및 복구 정책을 반드시 적용해 주십시오.
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<style>
+  .api-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 14px;
+    margin-top: 24px;
+  }
+
+  .api-table th, .api-table td {
+    border: 1px solid #ddd;
+    padding: 12px 14px;
+    vertical-align: top;
+    text-align: left;
+    background-color: #fff;
+    min-width: 220px;
+  }
+
+	.api-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .api-name a {
+    color: #1364FF;
+    text-decoration: none;
+  }
+
+  .api-name a:hover {
+    text-decoration: underline;
+  }
+
+  .api-role {
+    color: #555;
+    font-weight: 500;
+  }
+
+  .callback-events code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    display: inline-block;
+    margin: 2px 0;
+  }
+
+  .badge-key {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #1364FF;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+</style>
+
+<table class="custom-table">
   <thead>
     <tr>
-      <th>
-        Table Name
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Backup & Recovery
-      </th>
+      <th><code>Table</code></th>
+      <th>Description</th>
+      <th>Backup Policy</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
+      <td class="code-col"><code>verifications</code></td>
       <td>
-        **own\_keys**
+        - 필수 생성 대상 테이블입니다. TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
+        - POST /verifications API 호출시 요청과 응답 데이터가 저장됩니다.<br>
+        - 암호화 대상 필드: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code>
+        - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
       </td>
-
-      <td>
-        * A table for storing the public key of your VASP. The private key is saved as encrypted.
-        * When the other VASP requests a public key inquiry, the requested type of public key can be returned by being fetched from this table.
-        * The table stores the public key and private key of the Own VASP – the enclave VASP itself – both of which are used in personal information encryption during the verification process.
-        * Consider that each record in this table will consume approximately **1 KB per key**.
-      </td>
-
-      <td>
-        Regular backup is recommended.
-      </td>
+      <td>일일 백업 권장</td>
     </tr>
-
     <tr>
+      <td class="code-col"><code>own_keys</code></td>
       <td>
-        **counter\_party\_keys**
+        - 필수 생성 대상 테이블입니다. 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
+        - 검증 중 상대 VASP의 공개키 요청시 본 테이블로부터 조회 및 반환됩니다.<br>
+        - 암호화 대상 필드: <code>private_key</code>
+        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
-
-      <td>
-        * A table for storing the public key of the counterparty VASP. When `POST /verifications` API is called, it is checked whether the public key of the beneficiary VASP is being cached in this table. If not, an automatic request to the beneficiary VASP is sent and saved here.
-        * According to the key type determined by the originating VASP, the public key of the beneficiary VASP is recorded. \<br> - This table stores the public key of the beneficiary VASP, which is used to encrypt personal information in the verification process.
-        * Consider that each record in this table will consume approximately **1 KB per beneficiary address**.
-      </td>
-
-      <td>
-        No backup or restoration is necessary; this table is used exclusively for caching keys.
-      </td>
+      <td>주기적인 백업 권장</td>
     </tr>
-
     <tr>
+      <td class="code-col"><code>counter_party_keys</code></td>
       <td>
-        **commands**
+        - 필수 생성 대상 테이블입니다. 상대 VASP의 공개키를 캐싱하여 저장합니다.
+        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
-
+      <td>백업 또는 복원 정책 불필요</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>commands</code></td>
       <td>
-        * A table for storing intermediate requests for asynchronously called APIs. This table is only used inside the enclave, not by VASP.
-        * The intermediate requests in processing asynchronous APIs are stored here.
-        * Consider that each record in this table will consume approximately **1–5 KB per asynchronous request**.
+        - 필수 생성 대상 테이블입니다. Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다. 
+        - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
       </td>
-
+      <td>백업 또는 복원 정책 불필요</td>
+    </tr>
+		<tr>
+      <td class="code-col"><code>chainalysis_sanction_results</code></td>
       <td>
-        No backup or restoration is required; this table contains only temporary intermediate processing data.
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. Sanction API 호출 이력과 결과를 저장합니다.
+        - 레코드당 예상크키는 약 <strong>1-2 KB</strong>입니다.
       </td>
+      <td>주기적인 백업 권장</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>chainalysis_kyt_results</code></td>
+      <td>
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. KYT API 호출 이력과 결과를 저장합니다.
+        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
+      </td>
+      <td>주기적인 백업 권장</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>chainalysis_kyt_alerts</code></td>
+      <td>
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. KYT API 호출 이력과 결과를 저장합니다.
+        - <code>chainalysis_kyt_results</code>테이블 레코드과 1:n 대응 관계를 갖습니다.
+        - 레코드당 예상크키는 약 <strong>0-3 KB</strong>입니다.
+      </td>
+      <td>주기적인 백업 권장</td>
+    </tr>
+    <tr>
+      <td class="code-col"><code>refinitiv_wco_results</code></td>
+      <td>
+        - Refinitiv 통한 스크리닝 사용시에만 필요한 테이블입니다. WCO API 호출 이력과 결과를 저장합니다.
+        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
+      </td>
+      <td>주기적인 백업 권장</td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
-## Table Creation Query
+<br />
+
+## TravelRule/VerifyName 공통 필수 테이블 생성 쿼리
+
+TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜에 대해 공통으로 사용하는 필수 테이블들을 생성하기 위한 쿼리입니다. VerifyName을 연동하는 과정에서 아래 테이블들이 이미 생성 되었다면 이 단계를 건너뛸 수 있습니다.
+
+<br />
 
 <Tabs>
   <Tab title="MySQL">
-    ```sql
     CREATE TABLE `own_keys` (
-    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
+    `id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
     `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
     `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or type or public key)',
     `public_key` varchar(256) NOT NULL COMMENT 'Public Key',
     `private_key` varchar(256) NOT NULL COMMENT 'Private Key',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
     PRIMARY KEY (`id`),
     UNIQUE KEY `key_uniqueness` (`key_identifier`, `type`),
     INDEX `public_key` (`public_key`, `private_key`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
     CREATE TABLE `counter_party_keys` (
-    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Key ID',
+    `id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
     `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
     `vasp_id` bigint(20) unsigned NOT NULL COMMENT 'Counter party VASP ID',
     `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or vaspId)',
     `public_key` varchar(256) NOT NULL COMMENT 'Public Key of counter party',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
     PRIMARY KEY (`id`),
     UNIQUE KEY `key_uniqueness` (`vasp_id`, `key_identifier`, `type`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -133,7 +212,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     `command_type` varchar(32) NOT NULL COMMENT 'Command type',
     `command_body` text(65535) NOT NULL COMMENT 'Command body',
     `status` enum('CREATED', 'PROCESSING', 'DONE', 'ERROR') NOT NULL DEFAULT 'CREATED' COMMENT 'Command status',
-    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created at.',
+    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
     `fetched_at` datetime DEFAULT NULL COMMENT 'Fetched at.',
     `finished_at` datetime DEFAULT NULL COMMENT 'Finished at.',
     PRIMARY KEY (`command_id`),
@@ -141,276 +220,156 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     INDEX `status_finished_at` (`status`, `finished_at`),
     INDEX `status_fetched_at_created_at` (`status`, `fetched_at`, `created_at`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    ```
   </Tab>
 
   <Tab title="PostgreSQL">
-    ```sql
-    CREATE TABLE own_keys (
+    CREATE TABLE own\_keys (
     id SERIAL NOT NULL PRIMARY KEY,
-    type enum_key_types NOT NULL,
-    key_identifier varchar(256) NOT NULL,
-    UNIQUE(key_identifier, type),
-    public_key varchar(256) NOT NULL,
-    private_key varchar(256) NOT NULL,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    type enum\_key\_types NOT NULL,
+    key\_identifier varchar(256) NOT NULL,
+    UNIQUE(key\_identifier, type),
+    public\_key varchar(256) NOT NULL,
+    private\_key varchar(256) NOT NULL,
+    created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
     );
 
-    CREATE INDEX public_key ON own_keys(public_key, private_key);
+    CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
 
-    CREATE TYPE enum_key_types AS ENUM ('PerVasp', 'PerAddress', 'PerVerification');
+    CREATE TYPE enum\_key\_types AS ENUM ('PerVasp', 'PerAddress', 'PerVerification');
 
-    CREATE TABLE counter_party_keys (
+    CREATE TABLE counter\_party\_keys (
     id SERIAL NOT NULL PRIMARY KEY,
-    type enum_key_types NOT NULL,
-    vasp_id numeric(20) NOT NULL,
-    key_identifier varchar(256) NOT NULL,
-    UNIQUE(vasp_id, key_identifier, type),
-    public_key varchar(256) NOT NULL,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    type enum\_key\_types NOT NULL,
+    vasp\_id numeric(20) NOT NULL,
+    key\_identifier varchar(256) NOT NULL,
+    UNIQUE(vasp\_id, key\_identifier, type),
+    public\_key varchar(256) NOT NULL,
+    created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
     );
 
-    CREATE type enum_status as ENUM('CREATED', 'PROCESSING', 'DONE', 'ERROR');
+    CREATE type enum\_status as ENUM('CREATED', 'PROCESSING', 'DONE', 'ERROR');
 
     CREATE TABLE commands(
-    command_id numeric(20) NOT NULL PRIMARY KEY,
-    command_type varchar(32) NOT NULL,
-    command_body text NOT NULL,
-    status enum_status NOT NULL DEFAULT 'CREATED',
-    created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fetched_at timestamp DEFAULT NULL,
-    finished_at timestamp DEFAULT NULL
+    command\_id numeric(20) NOT NULL PRIMARY KEY,
+    command\_type varchar(32) NOT NULL,
+    command\_body text NOT NULL,
+    status enum\_status NOT NULL DEFAULT 'CREATED',
+    created\_at timestamp NOT NULL DEFAULT CURRENT\_TIMESTAMP,
+    fetched\_at timestamp DEFAULT NULL,
+    finished\_at timestamp DEFAULT NULL
     );
 
-    CREATE INDEX status_id ON commands(status, command_id);
-    CREATE INDEX status_finished_at ON  commands(status, finished_at);
-    CREATE INDEX status_fetched_at_created_at ON commands(status, fetched_at, created_at);
-    ```
+    CREATE INDEX status\_id ON commands(status, command\_id);
+    CREATE INDEX status\_finished\_at ON  commands(status, finished\_at);
+    CREATE INDEX status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
   </Tab>
 
   <Tab title="MSSQL">
-    ```sql
-    CREATE TABLE own_keys (
+    CREATE TABLE own\_keys (
     id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
-    key_identifier nvarchar(256) NOT NULL,
-    public_key nvarchar(256) NOT NULL,
-    private_key nvarchar(256) NOT NULL,
-    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT key_uniq_own_keys UNIQUE(key_identifier, type)
+    key\_identifier nvarchar(256) NOT NULL,
+    public\_key nvarchar(256) NOT NULL,
+    private\_key nvarchar(256) NOT NULL,
+    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+    CONSTRAINT key\_uniq\_own\_keys UNIQUE(key\_identifier, type)
     );
 
-    CREATE INDEX public_key ON own_keys(public_key, private_key);
+    CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
 
-    CREATE TABLE counter_party_keys (
+    CREATE TABLE counter\_party\_keys (
     id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
-    vasp_id BIGINT check (vasp_id > 0) NOT NULL,
-    key_identifier nvarchar(256) NOT NULL,
-    public_key nvarchar(256) NOT NULL,
-    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT key_uniq_counter_party_keys UNIQUE(vasp_id, key_identifier, type)
+    vasp\_id BIGINT check (vasp\_id > 0) NOT NULL,
+    key\_identifier nvarchar(256) NOT NULL,
+    public\_key nvarchar(256) NOT NULL,
+    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+    CONSTRAINT key\_uniq\_counter\_party\_keys UNIQUE(vasp\_id, key\_identifier, type)
     );
 
     CREATE TABLE commands (
-    command_id BIGINT NOT NULL PRIMARY KEY,
-    command_type nvarchar(32) NOT NULL,
-    command_body nvarchar(MAX) NOT NULL,
+    command\_id BIGINT NOT NULL PRIMARY KEY,
+    command\_type nvarchar(32) NOT NULL,
+    command\_body nvarchar(MAX) NOT NULL,
     status nvarchar(20) DEFAULT 'CREATED' NOT NULL check (status in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
-    created_at datetime2 DEFAULT CURRENT_TIMESTAMP,
-    fetched_at datetime2 DEFAULT NULL,
-    finished_at datetime2 DEFAULT NULL
+    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+    fetched\_at datetime2 DEFAULT NULL,
+    finished\_at datetime2 DEFAULT NULL
     );
 
-    CREATE INDEX idx_status_id ON commands(status, command_id);
-    CREATE INDEX idx_status_finished_at ON commands(status, finished_at);
-    CREATE INDEX idx_status_fetched_at_created_at ON commands(status, fetched_at, created_at);
-    ```
+    CREATE INDEX idx\_status\_id ON commands(status, command\_id);
+    CREATE INDEX idx\_status\_finished\_at ON commands(status, finished\_at);
+    CREATE INDEX idx\_status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
   </Tab>
 
   <Tab title="Oracle">
-    ```sql
-    CREATE TABLE "own_keys" (
+    CREATE TABLE "own\_keys" (
     "id" number(20) NOT NULL,
     "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
-    "key_identifier" varchar2(256) NOT NULL,
-    "public_key" varchar2(256) NOT NULL,
-    "private_key" varchar2(256) NOT NULL,
-    "created_at" date DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "pk_own_keys_id" PRIMARY KEY ("id"),
-    CONSTRAINT "key_uniq_own_keys" UNIQUE ("key_identifier", "type")
+    "key\_identifier" varchar2(256) NOT NULL,
+    "public\_key" varchar2(256) NOT NULL,
+    "private\_key" varchar2(256) NOT NULL,
+    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+    CONSTRAINT "pk\_own\_keys\_id" PRIMARY KEY ("id"),
+    CONSTRAINT "key\_uniq\_own\_keys" UNIQUE ("key\_identifier", "type")
     );
 
-    CREATE INDEX "idx_public_key" ON "own_keys"("public_key", "private_key");
-    CREATE SEQUENCE "own_keys_id_seq";
+    CREATE INDEX "idx\_public\_key" ON "own\_keys"("public\_key", "private\_key");
+    CREATE SEQUENCE "own\_keys\_id\_seq";
 
-    CREATE OR REPLACE TRIGGER own_keys_trigger
-    BEFORE INSERT ON "own_keys"
+    CREATE OR REPLACE TRIGGER own\_keys\_trigger
+    BEFORE INSERT ON "own\_keys"
     FOR EACH ROW
     BEGIN
-    SELECT "own_keys_id_seq".nextval
+    SELECT "own\_keys\_id\_seq".nextval
     INTO :new."id"
     FROM dual;
     END;
 
-    CREATE TABLE "counter_party_keys" (
+    CREATE TABLE "counter\_party\_keys" (
     "id" number(20) NOT NULL,
     "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
-    "vasp_id" varchar2(20) NOT NULL,
-    "key_identifier" varchar2(256) NOT NULL,
-    "public_key" varchar2(256) NOT NULL,
-    "created_at" date DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "pk_counter_party_keys_id" PRIMARY KEY ("id"),
-    CONSTRAINT "key_uniq_counter_party_keys" UNIQUE ("vasp_id", "key_identifier", "type")
+    "vasp\_id" varchar2(20) NOT NULL,
+    "key\_identifier" varchar2(256) NOT NULL,
+    "public\_key" varchar2(256) NOT NULL,
+    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+    CONSTRAINT "pk\_counter\_party\_keys\_id" PRIMARY KEY ("id"),
+    CONSTRAINT "key\_uniq\_counter\_party\_keys" UNIQUE ("vasp\_id", "key\_identifier", "type")
     );
 
-    CREATE SEQUENCE "counter_party_keys_id_seq";
+    CREATE SEQUENCE "counter\_party\_keys\_id\_seq";
 
-    CREATE OR REPLACE TRIGGER counter_party_keys_trigger
-    BEFORE INSERT ON "counter_party_keys"
+    CREATE OR REPLACE TRIGGER counter\_party\_keys\_trigger
+    BEFORE INSERT ON "counter\_party\_keys"
     FOR EACH ROW
     BEGIN
-    SELECT "counter_party_keys_id_seq".nextval
+    SELECT "counter\_party\_keys\_id\_seq".nextval
     INTO :new."id"
     FROM dual;
     END;
 
     CREATE TABLE "commands" (
-    "command_id" number(20) NOT NULL,
-    "command_type" varchar2(32) NOT NULL,
-    "command_body" clob NOT NULL,
+    "command\_id" number(20) NOT NULL,
+    "command\_type" varchar2(32) NOT NULL,
+    "command\_body" clob NOT NULL,
     "status" varchar2(20) DEFAULT 'CREATED' NOT NULL check ("status" in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
-    "created_at" date DEFAULT CURRENT_TIMESTAMP,
-    "fetched_at" date DEFAULT NULL,
-    "finished_at" date DEFAULT NULL,
-    CONSTRAINT "command_id" PRIMARY KEY ("command_id")
+    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+    "fetched\_at" date DEFAULT NULL,
+    "finished\_at" date DEFAULT NULL,
+    CONSTRAINT "command\_id" PRIMARY KEY ("command\_id")
     );
 
-    CREATE INDEX "idx_status_id" ON "commands"("status", "command_id");
-    CREATE INDEX "idx_status_finished_at" ON "commands"("status", "finished_at");
-    CREATE INDEX "idx_status_fetched_at_created_at" ON "commands"("status", "fetched_at", "created_at");
-    ```
+    CREATE INDEX "idx\_status\_id" ON "commands"("status", "command\_id");
+    CREATE INDEX "idx\_status\_finished\_at" ON "commands"("status", "finished\_at");
+    CREATE INDEX "idx\_status\_fetched\_at\_created\_at" ON "commands"("status", "fetched\_at", "created\_at");
   </Tab>
 </Tabs>
 
 <br />
 
-## Database Tables for Verification and Risk Assessment
+## TravelRule 필수 테이블 생성 쿼리
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Table Name
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Backup & Recovery
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        **verifications**
-      </td>
-
-      <td>
-        * A table for storing verification status and history. When `POST /verifications` API is called, the request/response result is recorded in the verifications table.
-        * The following columns are encrypted:
-          * `ivms101_originator`
-          * `ivms101_originating_vasp`
-          * `ivms101_beneficiary`
-          * `ivms101_beneficiary_vasp`
-        * Consider that each record in this table will consume approximately **4–5 KB per verification**.
-      </td>
-
-      <td>
-        **Daily backup is recommended**, as the table stores verification history.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **chainalysis\_sanction\_results**
-      </td>
-
-      <td>
-        * Optional
-        * Stores risk assessment history from Chainalysis Sanction API calls.
-        * Required only for VASPs using this API.
-        * Each record consumes approximately **1–2 KB**.
-      </td>
-
-      <td>
-        Regular backup is recommended.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **chainalysis\_kyt\_results**
-      </td>
-
-      <td>
-        * Optional
-        * A table for storing risk assessment history via Chainalysis KYT API call.
-        * This table is required only for VASPs utilizing the Chainalysis KYT API.
-        * Consider that each record in this table will consume approximately **2-3 KB per request**.
-      </td>
-
-      <td>
-        Regular backup is recommended.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **chainalysis\_kyt\_alerts**
-      </td>
-
-      <td>
-        * Optional
-        * A table for storing risk assessment history via Chainalysis KYT API call.
-        * This table is required only for VASPs utilizing the Chainalysis KYT API.
-        * 1:n correspondence with the record in `chainalysis_kyt_results` table.
-        * Consider that each record in this table will consume approximately **0-3 KB per request**.
-      </td>
-
-      <td>
-        Regular backup is recommended.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **refinitiv\_wco\_results**
-      </td>
-
-      <td>
-        * Optional
-        * A table for storing risk assessment history related to the `Refinitiv WCO API`.
-        * This table is required only for VASPs utilizing the `Refinitiv WCO API`.
-        * Consider that each record in this table will consume approximately **2-3 KB per request**.
-      </td>
-
-      <td>
-        Regular backup is recommended.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-<br />
-
-## Table Creation Query
-
-Enclave mode 를 TR 로 설정한 경우 데이터 베이스 유형에 적합한 테이블 생성 및 키 구성 쿼리를 실행하여 데이터 베이스 설정이 필요합니다.
+TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 TR 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
 
 <Tabs>
   <Tab title="MySQL">
@@ -573,9 +532,9 @@ Enclave mode 를 TR 로 설정한 경우 데이터 베이스 유형에 적합한
 
 <br />
 
-## Configuration Query for Optional Table: Chainalysis Sanction Related Tables
+## TravelRule 선택 테이블 생성 쿼리: Chainalysis Sanction 스크리닝
 
-If your VASP utilizes the Chainalysis Sanction feature, execute the following queries to set up the corresponding database.
+Chainalysis의 Sanction API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
 
 <Tabs>
   <Tab title="MySQL">
@@ -691,9 +650,11 @@ If your VASP utilizes the Chainalysis Sanction feature, execute the following qu
   </Tab>
 </Tabs>
 
-## Configuration Query for Optional Tables: Chainalysis KYT Related Tables
+<br />
 
-If your VASP utilizes the Chainalysis KYT feature, execute the following queries to set up the corresponding database.
+## TravelRule 선택 테이블 생성 쿼리: Chainalysis KYT 스크리닝 사용시
+
+Chainalysis의 KYT 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오
 
 <Tabs>
   <Tab title="MySQL">
@@ -949,9 +910,11 @@ If your VASP utilizes the Chainalysis KYT feature, execute the following queries
   </Tab>
 </Tabs>
 
-## Configuration Query for Optional Table: Refinitiv WCO Related Tables
+<br />
 
-If your VASP utilizes the Refinitiv WCO feature, execute the following queries to set up the corresponding database.
+## TravelRule 선택 테이블 생성 쿼리: Refinitiv WCO 스크리닝 사용시
+
+Refinitiv의 WCO API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
 
 <Tabs>
   <Tab title="MySQL">
