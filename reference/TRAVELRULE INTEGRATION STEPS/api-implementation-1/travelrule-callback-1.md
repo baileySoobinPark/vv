@@ -568,8 +568,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <br />
 
-<br />
-
 ### 제약 조건
 
 * 이 API는 1초 이내에 응답해야 합니다.
