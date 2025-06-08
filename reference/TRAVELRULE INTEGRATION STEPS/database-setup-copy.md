@@ -1,5 +1,5 @@
 ---
-title: Database Setup
+title: Enclave Database Setup
 excerpt: >-
   The next step is to initiate the configuration of the Enclave server. Prior to
   setting up the Enclave server, ensure that the required database is fully
