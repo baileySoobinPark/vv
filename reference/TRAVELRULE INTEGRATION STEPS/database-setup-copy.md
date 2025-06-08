@@ -182,188 +182,197 @@ TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜�
 
 <br />
 
-<Tabs>
-  <Tab title="MySQL">
-    CREATE TABLE `own_keys` (
-    `id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
-    `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
-    `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or type or public key)',
-    `public_key` varchar(256) NOT NULL COMMENT 'Public Key',
-    `private_key` varchar(256) NOT NULL COMMENT 'Private Key',
-    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `key_uniqueness` (`key_identifier`, `type`),
-    INDEX `public_key` (`public_key`, `private_key`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+\<Tabs>More actions
+&#x20; \<Tab title="MySQL">
+&#x20;   \`\`\`sql
+&#x20;   CREATE TABLE \`own\_keys\` (
+&#x20;   \`id\` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
+&#x20;   \`type\` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
+&#x20;   \`key\_identifier\` varchar(256) NOT NULL COMMENT 'Identifier of key (address or type or public key)',
+&#x20;   \`public\_key\` varchar(256) NOT NULL COMMENT 'Public Key',
+&#x20;   \`private\_key\` varchar(256) NOT NULL COMMENT 'Private Key',
+&#x20;   \`created\_at\` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
+&#x20;   PRIMARY KEY (\`id\`),
+&#x20;   UNIQUE KEY \`key\_uniqueness\` (\`key\_identifier\`, \`type\`),
+&#x20;   INDEX \`public\_key\` (\`public\_key\`, \`private\_key\`)
+&#x20;   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-    CREATE TABLE `counter_party_keys` (
-    `id` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
-    `type` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
-    `vasp_id` bigint(20) unsigned NOT NULL COMMENT 'Counter party VASP ID',
-    `key_identifier` varchar(256) NOT NULL COMMENT 'Identifier of key (address or vaspId)',
-    `public_key` varchar(256) NOT NULL COMMENT 'Public Key of counter party',
-    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `key_uniqueness` (`vasp_id`, `key_identifier`, `type`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+&#x20;   CREATE TABLE \`counter\_party\_keys\` (
+&#x20;   \`id\` bigint(20) unsigned NOT NULL AUTO\_INCREMENT COMMENT 'Key ID',
+&#x20;   \`type\` enum('PerVasp', 'PerAddress', 'PerVerification') NOT NULL COMMENT 'Key types',
+&#x20;   \`vasp\_id\` bigint(20) unsigned NOT NULL COMMENT 'Counter party VASP ID',
+&#x20;   \`key\_identifier\` varchar(256) NOT NULL COMMENT 'Identifier of key (address or vaspId)',
+&#x20;   \`public\_key\` varchar(256) NOT NULL COMMENT 'Public Key of counter party',
+&#x20;   \`created\_at\` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
+&#x20;   PRIMARY KEY (\`id\`),
+&#x20;   UNIQUE KEY \`key\_uniqueness\` (\`vasp\_id\`, \`key\_identifier\`, \`type\`)
+&#x20;   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-    CREATE TABLE `commands` (
-    `command_id` bigint(20) unsigned NOT NULL COMMENT 'Command ID',
-    `command_type` varchar(32) NOT NULL COMMENT 'Command type',
-    `command_body` text(65535) NOT NULL COMMENT 'Command body',
-    `status` enum('CREATED', 'PROCESSING', 'DONE', 'ERROR') NOT NULL DEFAULT 'CREATED' COMMENT 'Command status',
-    `created_at` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
-    `fetched_at` datetime DEFAULT NULL COMMENT 'Fetched at.',
-    `finished_at` datetime DEFAULT NULL COMMENT 'Finished at.',
-    PRIMARY KEY (`command_id`),
-    INDEX `status_id` (`status`, `command_id`),
-    INDEX `status_finished_at` (`status`, `finished_at`),
-    INDEX `status_fetched_at_created_at` (`status`, `fetched_at`, `created_at`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  </Tab>
+&#x20;   CREATE TABLE \`commands\` (
+&#x20;   \`command\_id\` bigint(20) unsigned NOT NULL COMMENT 'Command ID',
+&#x20;   \`command\_type\` varchar(32) NOT NULL COMMENT 'Command type',
+&#x20;   \`command\_body\` text(65535) NOT NULL COMMENT 'Command body',
+&#x20;   \`status\` enum('CREATED', 'PROCESSING', 'DONE', 'ERROR') NOT NULL DEFAULT 'CREATED' COMMENT 'Command status',
+&#x20;   \`created\_at\` datetime NOT NULL DEFAULT CURRENT\_TIMESTAMP COMMENT 'Created at.',
+&#x20;   \`fetched\_at\` datetime DEFAULT NULL COMMENT 'Fetched at.',
+&#x20;   \`finished\_at\` datetime DEFAULT NULL COMMENT 'Finished at.',
+&#x20;   PRIMARY KEY (\`command\_id\`),
+&#x20;   INDEX \`status\_id\` (\`status\`, \`command\_id\`),
+&#x20;   INDEX \`status\_finished\_at\` (\`status\`, \`finished\_at\`),
+&#x20;   INDEX \`status\_fetched\_at\_created\_at\` (\`status\`, \`fetched\_at\`, \`created\_at\`)
+&#x20;   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+&#x20;   \`\`\`
+&#x20; \</Tab>
 
-  <Tab title="PostgreSQL">
-    CREATE TABLE own\_keys (
-    id SERIAL NOT NULL PRIMARY KEY,
-    type enum\_key\_types NOT NULL,
-    key\_identifier varchar(256) NOT NULL,
-    UNIQUE(key\_identifier, type),
-    public\_key varchar(256) NOT NULL,
-    private\_key varchar(256) NOT NULL,
-    created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
-    );
+&#x20; \<Tab title="PostgreSQL">
+&#x20;   \`\`\`sql
+&#x20;   CREATE TABLE own\_keys (
+&#x20;   id SERIAL NOT NULL PRIMARY KEY,
+&#x20;   type enum\_key\_types NOT NULL,
+&#x20;   key\_identifier varchar(256) NOT NULL,
+&#x20;   UNIQUE(key\_identifier, type),
+&#x20;   public\_key varchar(256) NOT NULL,
+&#x20;   private\_key varchar(256) NOT NULL,
+&#x20;   created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
+&#x20;   );
 
-    CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
+&#x20;   CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
 
-    CREATE TYPE enum\_key\_types AS ENUM ('PerVasp', 'PerAddress', 'PerVerification');
+&#x20;   CREATE TYPE enum\_key\_types AS ENUM ('PerVasp', 'PerAddress', 'PerVerification');
 
-    CREATE TABLE counter\_party\_keys (
-    id SERIAL NOT NULL PRIMARY KEY,
-    type enum\_key\_types NOT NULL,
-    vasp\_id numeric(20) NOT NULL,
-    key\_identifier varchar(256) NOT NULL,
-    UNIQUE(vasp\_id, key\_identifier, type),
-    public\_key varchar(256) NOT NULL,
-    created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
-    );
+&#x20;   CREATE TABLE counter\_party\_keys (
+&#x20;   id SERIAL NOT NULL PRIMARY KEY,
+&#x20;   type enum\_key\_types NOT NULL,
+&#x20;   vasp\_id numeric(20) NOT NULL,
+&#x20;   key\_identifier varchar(256) NOT NULL,
+&#x20;   UNIQUE(vasp\_id, key\_identifier, type),
+&#x20;   public\_key varchar(256) NOT NULL,
+&#x20;   created\_at timestamp DEFAULT CURRENT\_TIMESTAMP
+&#x20;   );
 
-    CREATE type enum\_status as ENUM('CREATED', 'PROCESSING', 'DONE', 'ERROR');
+&#x20;   CREATE type enum\_status as ENUM('CREATED', 'PROCESSING', 'DONE', 'ERROR');
 
-    CREATE TABLE commands(
-    command\_id numeric(20) NOT NULL PRIMARY KEY,
-    command\_type varchar(32) NOT NULL,
-    command\_body text NOT NULL,
-    status enum\_status NOT NULL DEFAULT 'CREATED',
-    created\_at timestamp NOT NULL DEFAULT CURRENT\_TIMESTAMP,
-    fetched\_at timestamp DEFAULT NULL,
-    finished\_at timestamp DEFAULT NULL
-    );
+&#x20;   CREATE TABLE commands(
+&#x20;   command\_id numeric(20) NOT NULL PRIMARY KEY,
+&#x20;   command\_type varchar(32) NOT NULL,
+&#x20;   command\_body text NOT NULL,
+&#x20;   status enum\_status NOT NULL DEFAULT 'CREATED',
+&#x20;   created\_at timestamp NOT NULL DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   fetched\_at timestamp DEFAULT NULL,
+&#x20;   finished\_at timestamp DEFAULT NULL
+&#x20;   );
 
-    CREATE INDEX status\_id ON commands(status, command\_id);
-    CREATE INDEX status\_finished\_at ON  commands(status, finished\_at);
-    CREATE INDEX status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
-  </Tab>
+&#x20;   CREATE INDEX status\_id ON commands(status, command\_id);
+&#x20;   CREATE INDEX status\_finished\_at ON  commands(status, finished\_at);
+&#x20;   CREATE INDEX status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
+&#x20;   \`\`\`
+&#x20; \</Tab>
 
-  <Tab title="MSSQL">
-    CREATE TABLE own\_keys (
-    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
-    key\_identifier nvarchar(256) NOT NULL,
-    public\_key nvarchar(256) NOT NULL,
-    private\_key nvarchar(256) NOT NULL,
-    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
-    CONSTRAINT key\_uniq\_own\_keys UNIQUE(key\_identifier, type)
-    );
+&#x20; \<Tab title="MSSQL">
+&#x20;   \`\`\`sql
+&#x20;   CREATE TABLE own\_keys (
+&#x20;   id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+&#x20;   type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
+&#x20;   key\_identifier nvarchar(256) NOT NULL,
+&#x20;   public\_key nvarchar(256) NOT NULL,
+&#x20;   private\_key nvarchar(256) NOT NULL,
+&#x20;   created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   CONSTRAINT key\_uniq\_own\_keys UNIQUE(key\_identifier, type)
+&#x20;   );
 
-    CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
+&#x20;   CREATE INDEX public\_key ON own\_keys(public\_key, private\_key);
 
-    CREATE TABLE counter\_party\_keys (
-    id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
-    vasp\_id BIGINT check (vasp\_id > 0) NOT NULL,
-    key\_identifier nvarchar(256) NOT NULL,
-    public\_key nvarchar(256) NOT NULL,
-    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
-    CONSTRAINT key\_uniq\_counter\_party\_keys UNIQUE(vasp\_id, key\_identifier, type)
-    );
+&#x20;   CREATE TABLE counter\_party\_keys (
+&#x20;   id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+&#x20;   type nvarchar(20) NOT NULL check (type in ('PerVasp', 'PerAddress', 'PerVerification')),
+&#x20;   vasp\_id BIGINT check (vasp\_id > 0) NOT NULL,
+&#x20;   key\_identifier nvarchar(256) NOT NULL,
+&#x20;   public\_key nvarchar(256) NOT NULL,
+&#x20;   created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   CONSTRAINT key\_uniq\_counter\_party\_keys UNIQUE(vasp\_id, key\_identifier, type)
+&#x20;   );
 
-    CREATE TABLE commands (
-    command\_id BIGINT NOT NULL PRIMARY KEY,
-    command\_type nvarchar(32) NOT NULL,
-    command\_body nvarchar(MAX) NOT NULL,
-    status nvarchar(20) DEFAULT 'CREATED' NOT NULL check (status in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
-    created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
-    fetched\_at datetime2 DEFAULT NULL,
-    finished\_at datetime2 DEFAULT NULL
-    );
+&#x20;   CREATE TABLE commands (
+&#x20;   command\_id BIGINT NOT NULL PRIMARY KEY,
+&#x20;   command\_type nvarchar(32) NOT NULL,
+&#x20;   command\_body nvarchar(MAX) NOT NULL,
+&#x20;   status nvarchar(20) DEFAULT 'CREATED' NOT NULL check (status in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
+&#x20;   created\_at datetime2 DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   fetched\_at datetime2 DEFAULT NULL,
+&#x20;   finished\_at datetime2 DEFAULT NULL
+&#x20;   );
 
-    CREATE INDEX idx\_status\_id ON commands(status, command\_id);
-    CREATE INDEX idx\_status\_finished\_at ON commands(status, finished\_at);
-    CREATE INDEX idx\_status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
-  </Tab>
+&#x20;   CREATE INDEX idx\_status\_id ON commands(status, command\_id);
+&#x20;   CREATE INDEX idx\_status\_finished\_at ON commands(status, finished\_at);
+&#x20;   CREATE INDEX idx\_status\_fetched\_at\_created\_at ON commands(status, fetched\_at, created\_at);
+&#x20;   \`\`\`
+&#x20; \</Tab>
 
-  <Tab title="Oracle">
-    CREATE TABLE "own\_keys" (
-    "id" number(20) NOT NULL,
-    "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
-    "key\_identifier" varchar2(256) NOT NULL,
-    "public\_key" varchar2(256) NOT NULL,
-    "private\_key" varchar2(256) NOT NULL,
-    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
-    CONSTRAINT "pk\_own\_keys\_id" PRIMARY KEY ("id"),
-    CONSTRAINT "key\_uniq\_own\_keys" UNIQUE ("key\_identifier", "type")
-    );
+&#x20; \<Tab title="Oracle">
+&#x20;   \`\`\`sql
+&#x20;   CREATE TABLE "own\_keys" (
+&#x20;   "id" number(20) NOT NULL,
+&#x20;   "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
+&#x20;   "key\_identifier" varchar2(256) NOT NULL,
+&#x20;   "public\_key" varchar2(256) NOT NULL,
+&#x20;   "private\_key" varchar2(256) NOT NULL,
+&#x20;   "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   CONSTRAINT "pk\_own\_keys\_id" PRIMARY KEY ("id"),
+&#x20;   CONSTRAINT "key\_uniq\_own\_keys" UNIQUE ("key\_identifier", "type")
+&#x20;   );
 
-    CREATE INDEX "idx\_public\_key" ON "own\_keys"("public\_key", "private\_key");
-    CREATE SEQUENCE "own\_keys\_id\_seq";
+&#x20;   CREATE INDEX "idx\_public\_key" ON "own\_keys"("public\_key", "private\_key");
+&#x20;   CREATE SEQUENCE "own\_keys\_id\_seq";
 
-    CREATE OR REPLACE TRIGGER own\_keys\_trigger
-    BEFORE INSERT ON "own\_keys"
-    FOR EACH ROW
-    BEGIN
-    SELECT "own\_keys\_id\_seq".nextval
-    INTO :new."id"
-    FROM dual;
-    END;
+&#x20;   CREATE OR REPLACE TRIGGER own\_keys\_trigger
+&#x20;   BEFORE INSERT ON "own\_keys"
+&#x20;   FOR EACH ROW
+&#x20;   BEGIN
+&#x20;   SELECT "own\_keys\_id\_seq".nextval
+&#x20;   INTO :new."id"
+&#x20;   FROM dual;
+&#x20;   END;
 
-    CREATE TABLE "counter\_party\_keys" (
-    "id" number(20) NOT NULL,
-    "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
-    "vasp\_id" varchar2(20) NOT NULL,
-    "key\_identifier" varchar2(256) NOT NULL,
-    "public\_key" varchar2(256) NOT NULL,
-    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
-    CONSTRAINT "pk\_counter\_party\_keys\_id" PRIMARY KEY ("id"),
-    CONSTRAINT "key\_uniq\_counter\_party\_keys" UNIQUE ("vasp\_id", "key\_identifier", "type")
-    );
+&#x20;   CREATE TABLE "counter\_party\_keys" (
+&#x20;   "id" number(20) NOT NULL,
+&#x20;   "type" varchar2(20) NOT NULL check ("type" in ('PerVasp', 'PerAddress', 'PerVerification')),
+&#x20;   "vasp\_id" varchar2(20) NOT NULL,
+&#x20;   "key\_identifier" varchar2(256) NOT NULL,
+&#x20;   "public\_key" varchar2(256) NOT NULL,
+&#x20;   "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   CONSTRAINT "pk\_counter\_party\_keys\_id" PRIMARY KEY ("id"),
+&#x20;   CONSTRAINT "key\_uniq\_counter\_party\_keys" UNIQUE ("vasp\_id", "key\_identifier", "type")
+&#x20;   );
 
-    CREATE SEQUENCE "counter\_party\_keys\_id\_seq";
+&#x20;   CREATE SEQUENCE "counter\_party\_keys\_id\_seq";
 
-    CREATE OR REPLACE TRIGGER counter\_party\_keys\_trigger
-    BEFORE INSERT ON "counter\_party\_keys"
-    FOR EACH ROW
-    BEGIN
-    SELECT "counter\_party\_keys\_id\_seq".nextval
-    INTO :new."id"
-    FROM dual;
-    END;
+&#x20;   CREATE OR REPLACE TRIGGER counter\_party\_keys\_trigger
+&#x20;   BEFORE INSERT ON "counter\_party\_keys"
+&#x20;   FOR EACH ROW
+&#x20;   BEGIN
+&#x20;   SELECT "counter\_party\_keys\_id\_seq".nextval
+&#x20;   INTO :new."id"
+&#x20;   FROM dual;
+&#x20;   END;
 
-    CREATE TABLE "commands" (
-    "command\_id" number(20) NOT NULL,
-    "command\_type" varchar2(32) NOT NULL,
-    "command\_body" clob NOT NULL,
-    "status" varchar2(20) DEFAULT 'CREATED' NOT NULL check ("status" in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
-    "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
-    "fetched\_at" date DEFAULT NULL,
-    "finished\_at" date DEFAULT NULL,
-    CONSTRAINT "command\_id" PRIMARY KEY ("command\_id")
-    );
+&#x20;   CREATE TABLE "commands" (
+&#x20;   "command\_id" number(20) NOT NULL,
+&#x20;   "command\_type" varchar2(32) NOT NULL,
+&#x20;   "command\_body" clob NOT NULL,
+&#x20;   "status" varchar2(20) DEFAULT 'CREATED' NOT NULL check ("status" in ('CREATED', 'PROCESSING', 'DONE', 'ERROR')),
+&#x20;   "created\_at" date DEFAULT CURRENT\_TIMESTAMP,
+&#x20;   "fetched\_at" date DEFAULT NULL,
+&#x20;   "finished\_at" date DEFAULT NULL,
+&#x20;   CONSTRAINT "command\_id" PRIMARY KEY ("command\_id")
+&#x20;   );
 
-    CREATE INDEX "idx\_status\_id" ON "commands"("status", "command\_id");
-    CREATE INDEX "idx\_status\_finished\_at" ON "commands"("status", "finished\_at");
-    CREATE INDEX "idx\_status\_fetched\_at\_created\_at" ON "commands"("status", "fetched\_at", "created\_at");
-  </Tab>
-</Tabs>
+&#x20;   CREATE INDEX "idx\_status\_id" ON "commands"("status", "command\_id");
+&#x20;   CREATE INDEX "idx\_status\_finished\_at" ON "commands"("status", "finished\_at");
+&#x20;   CREATE INDEX "idx\_status\_fetched\_at\_created\_at" ON "commands"("status", "fetched\_at", "created\_at");
+&#x20;   \`\`\`
+&#x20; \</Tab>
+\</Tabs>
+
 
 <br />
 
