@@ -16,7 +16,7 @@ Chainalysis의 Know Your Transaction(KYT) API는 유료 서비스로, 가상자�
 * KYT API 사용을 위해서는 [Chainalysis KYT 소개 페이지](https://www.chainalysis.com/solution/crypto-compliance/)에서 라이선스 구매를 신청해야 합니다.
 * 라이선스 구매 후, [KYT 콘솔 사이트](https://kyt.chainalysis.com/)에 로그인하여 API 키를 발급받을 수 있습니다. 자세한 기능 및 구현 방법은 [API Reference 문서](https://docs.chainalysis.com/api/kyt/) 및 [공식 개발자 가이드 문서](https://docs.chainalysis.com/api/kyt/guides/#developer-portal)를 참고하십시오.
 
-## KYT API 사용 방법
+## 구현 가이
 
 KYT API 호출 전, 반드시 사용자 검증 API (POST /verifications)이 완료되어야 합니다. 트랜잭션 실행 시점을 기준으로, 다음과 같은 용도로 활용할 수 있습니다.
 
