@@ -47,7 +47,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 200px;
+    min-width: 220px;
   }
 
 	.api-table th {
