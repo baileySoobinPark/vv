@@ -137,7 +137,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   }
 </style>
 <details class="custom-accordion">
-  <summary>Example Callback Request Body: VERIFIED</summary>
+  <summary>Example of Callback Request Body: VERIFIED</summary>
 
   <pre><code class="language-json">
 {
@@ -200,7 +200,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   </code></pre>
 </details>
 <details class="custom-accordion">
-  <summary>Example Callback Request Body: DENIED</summary>
+  <summary>Example of Callback Request Body: DENIED</summary>
 
   <pre><code class="language-json">
 {
@@ -429,7 +429,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <HTMLBlock>{`
 <details class="custom-accordion">
-  <summary>Example Callback Request Body</summary>
+  <summary>Example of Callback Request Body</summary>
 
   <pre><code class="language-json">
 {
@@ -452,7 +452,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <HTMLBlock>{`
 <details class="custom-accordion">
-  <summary>Example Callback Request Body</summary>
+  <summary>Example of Callback Request Body</summary>
 
   <pre><code class="language-json">
 {
@@ -479,7 +479,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <HTMLBlock>{`
 <details class="custom-accordion">
-  <summary>Example Callback Request Body</summary>
+  <summary>Example of Callback Request Body</summary>
 
   <pre><code class="language-json">
 {
@@ -537,7 +537,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <HTMLBlock>{`
 <details class="custom-accordion">
-  <summary>Example Callback Request Body</summary>
+  <summary>Example of Callback Request Body</summary>
 
   <pre><code class="language-json">
 {
