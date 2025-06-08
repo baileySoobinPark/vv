@@ -5,4 +5,6 @@ api:
   operationId: travelrule-Chainalysis-KYT
 hidden: false
 ---
-이 API는 Chainalysis KYT API를 활용하여 지갑 주소 및 트랜잭션의 리스크 수준을 평가합니다. VASP는 이 API를 통해 다루는 지갑 주소와 트랜잭션의 잠재적 위험을 분석함으로써, 고위험 거래를 사전에 예방하고 탐지할 수 있습니다.
+이 API는 Chainalysis KYT API를 활용한 지갑 주소 및 트랜잭션의 리스크 평가 용도로 사용됩니다. VASP는 이 API를 통해 다루는 지갑 주소와 트랜잭션의 잠재적 위험을 분석함으로써, 고위험 거래를 사전에 예방하고 탐지할 수 있습니다.
+
+이 API는 Chainalysis Sanction API를 활용한 지갑 주소의 리스크 평가 용도로 사용될 수 있습니다. 응답 결과에 따라, VASP는 특정 주소의 잠재적 위험을 사전에 파악함으로서 비인가 또는 고위험 거래를 방지할 수 있습니다.
