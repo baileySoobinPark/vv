@@ -52,27 +52,27 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
   </thead>
   <tbody>
     <tr>
-      <td><strong>서버 및 데이터베이스 설정 변수</strong></td>
+      <td>서버 및 데이터베이스 설정 변수</td>
       <td>서버 실행 및 데이터베이스 접속을 위해 필요한 설정</td>
       <td>서버 엔드포인트/포트, DB 사용자명/비밀번호, DB 접속 설정 등</td>
     </tr>
     <tr>
-      <td><strong>인증 관련 변수</strong></td>
+      <td>인증 관련 변수</td>
       <td>VerifyVASP 중앙 서버 및 3rd Party 서비스 연동을 위한 인증 정보</td>
       <td>access key/secret key, Chainalysis API key, Refinitiv API key 등</td>
     </tr>
     <tr>
-      <td><strong>VASP API 엔드포인트</strong></td>
+      <td>VASP API 엔드포인트</td>
       <td>Enclave가 VASP API를 호출할 때 사용되는 API 엔드포인트</td>
       <td>사용자 계정 검증 API, 사용자 정보 검증 API 등</td>
     </tr>
     <tr>
-      <td><strong>보안 및 설정 관련 변수</strong></td>
+      <td>보안 및 설정 관련 변수</td>
       <td>Enclave 서버의 보안 수준 및 운영 설정을 위한 변수</td>
       <td>공개키 캐시 옵션 등</td>
     </tr>
     <tr>
-      <td><strong>Enclave 모드 설정</strong></td>
+      <td>Enclave 모드 설정</td>
       <td>Enclave의 구동 모드, 지원 프로토콜에 따라 복수 설정</td>
       <td>TR(TravelRule), VN1_CALL/VN1_RESPONSE(VerifyName 1.0), VN2 등</td>
     </tr>
