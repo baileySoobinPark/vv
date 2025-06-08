@@ -115,7 +115,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
 		<tr>
       <td class="code-col"><code>chainalysis_sanction_results</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. Sanction API 호출 이력과 결과를 저장합니다.<br>
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
+        - Sanction API 호출 이력과 결과를 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>1-2 KB</strong>입니다.
       </td>
       <td>주기적인 백업 권장</td>
@@ -123,7 +124,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>chainalysis_kyt_results</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. KYT API 호출 이력과 결과를 저장합니다.<br>
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. <br>
+        - KYT API 호출 이력과 결과를 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
       </td>
       <td>주기적인 백업 권장</td>
@@ -131,7 +133,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>chainalysis_kyt_alerts</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. KYT API 호출 이력과 결과를 저장합니다.<br>
+        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br> 
+        - KYT API 호출 이력과 결과를 저장합니다.<br>
         - <code>chainalysis_kyt_results</code>테이블 레코드과 1:n 대응 관계를 갖습니다.<br>
         - 레코드당 예상크키는 약 <strong>0-3 KB</strong>입니다.
       </td>
@@ -140,7 +143,8 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>refinitiv_wco_results</code></td>
       <td>
-        - Refinitiv 통한 스크리닝 사용시에만 필요한 테이블입니다. WCO API 호출 이력과 결과를 저장합니다.<br>
+        - Refinitiv 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
+        - WCO API 호출 이력과 결과를 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
       </td>
       <td>주기적인 백업 권장</td>
