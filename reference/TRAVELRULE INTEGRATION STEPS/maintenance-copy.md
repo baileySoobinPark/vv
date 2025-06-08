@@ -6,7 +6,7 @@ excerpt: >-
   TravelRule Protocol services. Adhering to these regulations helps reduce
   errors during communication and data exchange between VASPs.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
