@@ -160,9 +160,7 @@ metadata:
 
 ## Test Cases
 
-Your VASP must pass all test cases listed below.
-
-### 1. Identify the Robot VASP
+### 1. Robot VASP의 정보를 확인할 수 있다.
 
 * **Conditions**
   * Your VASP must use the List VASP API(Enclave API).
