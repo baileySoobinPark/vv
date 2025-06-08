@@ -18,7 +18,7 @@ Chainalysis의 Know Your Transaction(KYT) API는 유료 서비스로, 가상자�
 
 ## 구현 가이드
 
-송신 VASP와 수신 VASP 모두 KYT API로 사용자 계정의 추가 리스크 평가를 진행하여 규제 충족 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 하며 VASP의 포지션에 따라 API 호출 시점은 상이할 수 있습니다. 트랜잭션 실행 시점을 기준으로, 각 포지션의 VASP들은 다음과 같이 API를 활용할 수 있습니다.
+송신 VASP와 수신 VASP 모두 KYT API로 사용자 계정의 추가 리스크 평가를 진행하여 규제 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 하며 VASP의 포지션에 따라 API 호출 시점은 상이할 수 있습니다. 트랜잭션 실행 시점을 기준으로, 각 포지션의 VASP들은 다음과 같이 API를 활용할 수 있습니다.
 
 **\[트랜잭션 실행 전]**
 
