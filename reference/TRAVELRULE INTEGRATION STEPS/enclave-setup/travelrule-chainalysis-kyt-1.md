@@ -41,4 +41,4 @@ KYT API는 비동기 방식으로 동작합니다. 최종 평가 결과는 Callb
 2. **데이터베이스 테이블 구성**\
    Enclave DB에는 Chainalysis KYT API 결과를 저장하기 위한 전용 테이블이 구성되어야 합니다. [Enclave 데이터베이스 생성](ref:database-setup-copy)페이지를 참고하여 적절한 선택 테이블을 생성하십시오.
 
-## API 명
+## API 명세
