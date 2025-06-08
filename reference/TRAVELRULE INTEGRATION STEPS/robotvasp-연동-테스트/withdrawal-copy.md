@@ -12,7 +12,7 @@ metadata:
 
 <br />
 
-## 출금 테스트 시나리
+## 출금 테스트 시나리오
 
 1. Identifying the Robot VASP to interact with your VASP
 
