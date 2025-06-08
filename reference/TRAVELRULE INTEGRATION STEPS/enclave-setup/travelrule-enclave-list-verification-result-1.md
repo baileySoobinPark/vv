@@ -1,5 +1,5 @@
 ---
-title: List Verification Result API
+title: Lookup Verification Result API
 api:
   file: TR_Enclave_API_KR_Spec.yaml
   operationId: travelrule-enclave-list-Verification-Result
