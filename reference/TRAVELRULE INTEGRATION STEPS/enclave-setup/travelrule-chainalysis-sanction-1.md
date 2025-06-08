@@ -30,4 +30,4 @@ hidden: false
 2. **데이터베이스 테이블 구성**\
    Enclave 서버가 Chainalysis Sanction API 결과를 저장할 수 있도록 데이터베이스 내에 전용 테이블을 구성해야 합니다. 구현 세부사항은 [Enclave 데이터베이스 생성](ref:database-setup-copy) 페이지의 Chainalysis 관련 테이블 정의를 참조하세요.
 
-## API 명
+## API 명세
