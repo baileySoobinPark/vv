@@ -16,3 +16,7 @@ hidden: false
 3. 대기 시간 이후에도 트랜잭션 보고가 없는 경우, 수신 VASP는 Verification Result Lookup API를 다시 호출하여 후보 검증 건들을 조회할 수 있습니다.
 4. 후보 검증 건을 좁히기 위해 감지된 입금 트랜잭션의 출금 주소(from address)와 입금 주소(to address)를 각각 originatorAccountNumber, beneficiaryAccountNumber 필터로 사용합니다.
 5. 조회된 검증 후보들에 대해 수신 VASP는 각각 본 Check Transaction Status API를 호출하여 실제 트랜잭션 ID 정보와의 매칭 여부를 확인할 수 있습니다.
+
+***
+
+## API 명세
