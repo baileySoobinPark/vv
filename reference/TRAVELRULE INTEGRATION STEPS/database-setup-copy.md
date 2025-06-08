@@ -1,10 +1,9 @@
 ---
 title: Enclave Database Setup
 excerpt: >-
-  The next step is to initiate the configuration of the Enclave server. Prior to
-  setting up the Enclave server, ensure that the required database is fully
-  configured and ready for use. This guide details the system requirements,
-  policies, and definitions for configuring the database on the Enclave server.
+  VASP API 구현이 완료되었다면 Enclave 서버를 구동하기 위한 준비를 시작합니다. Enclave 서버를 구동하기에 앞서,
+  Enclave가 사용할 데이터베이스를 사용 가능한 상태로 사전 구성해야 합니다. 본 가이드는 Enclave 서버에서 사용할 데이터베이스
+  설정을 위한 시스템 요구사항, 운영 정책, 설정 항목들을 상세히 설명합니다.
 deprecated: false
 hidden: false
 metadata:
