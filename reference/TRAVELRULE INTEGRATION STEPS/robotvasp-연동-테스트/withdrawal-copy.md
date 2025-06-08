@@ -1,18 +1,14 @@
 ---
 title: ' 출금 시나리오 테스트'
-excerpt: >-
-  This guide provides the withdrawal test scenario, test cases and expected
-  results for the withdrawal test.
+excerpt: '본 문서 가이드를 통해 출금 시나리오를 확인하고 테스트 케이스와 기대 동작을 확인할 수 있습니다. '
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-> 💡 Please Note:
+> 💡 테스트 환경 제약사항
 >
-> The withdrawal test is supported only in the Ethereum Sepolia and Ripple Testnet environments.
->
-> Please double-check the environment before executing the virtual asset transfer transaction.
+> 출금 테스트는 Ethereum Sepolia 및 Ripple Testnet에서만 수행 가능합니다. 테스트를 시작하기에 앞서, VASP 출금 계좌 등 해당 환경에서의 자산 전송 테스트에 필요한 정보를 미리 확인하십시오.
 
 <br />
 
