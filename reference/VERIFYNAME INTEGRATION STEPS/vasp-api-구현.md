@@ -85,18 +85,9 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송신자-수신자 검
   </thead>
   <tbody>
     <tr>
-      <td class="api-name"><a href="#">Verify User Account API</a></td>
-      <td class="api-role">수신 VASP</td>
-      <td>수신 계정이 VASP에서 발급된 계정인지 여부를 검증합니다.</td>
-    </tr>
-    <tr>
-      <td class="api-name"><a href="#">Verify User API</a></td>
-      <td class="api-role">수신 VASP</td>
-      <td>
-        <span class="badge-key">핵심 API</span><br>
-        VASP의 자체 KYC/AML 데이터 및 정책을 기준으로 송신자가 입력한 수신자 정보를 검증합니다.
-        검증 결과를 반환하여 해당 자산 전송건을 허용 또는 반려(Deny)할 수 있습니다.
-      </td>
+      <td class="api-name"><a href="#">Verify Name API</a></td>
+      <td class="api-role">송신 VASP & 수신 VASP</td>
+      <td>수신 계좌의 소유주 정보가 송신자의 정보와 일치하는지 여부를 검증합니다.</td>
     </tr>
     <tr>
       <td class="api-name"><a href="#">Check Transaction Status API</a></td>
@@ -112,8 +103,6 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송신자-수신자 검
           <code>VERIFICATION_RESULT</code> : 검증 결과 수신<br>
           <code>TX_REPORT</code> : 트랜잭션 결과 수신<br>
           <code>ERROR_REPORT</code> : 프로토콜 처리 중 에러 수신<br>
-          <code>CHAINALYSIS_KYT_RESULT</code> : Chainalysis 연계 리스크 평가 결과 수신<br>
-          <code>REFINITIV_WCO_RESULT</code> : Refinitiv WCO 연계 리스크 평가 결과 수신
         </div>
       </td>
     </tr>
