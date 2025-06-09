@@ -6,7 +6,7 @@ excerpt: >-
   information that VASPs must exchange to meet the requirements of the Financial
   Action Task Force (FATF) Travel Rule.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
