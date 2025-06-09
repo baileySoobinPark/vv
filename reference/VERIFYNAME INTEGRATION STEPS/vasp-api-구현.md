@@ -98,9 +98,10 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송신자-수신자 검
       <td class="api-name"><a href="#">Callback API</a></td>
       <td class="api-role">송신 VASP & 수신 VASP</td>
       <td>
-        Enclave와의 비동기 통신을 위해 제공해야 하는 공통 인터페이스입니다. 검증 결과를 Callback 이벤트로 수신할 수 있습니다.
+        Enclave와의 비동기 통신을 위해 제공해야 하는 공통 인터페이스입니다. 아래 두가지 유형의 Callback 이벤트로 수신할 수 있습니다.
         <div class="callback-events">
-          <code>OWNER_VERIFICATION_RESULT_REPORT</code> : 검증 결과 수신<br>
+          <code>OWNER_VERIFICATION_RESULT_REPORT</code>: 검증 결과 수신<br>
+          <code>OWNER_VERIFICATION_TX_REPORT</code>: 트랜잭션 결과 수신
         </div>
       </td>
     </tr>
