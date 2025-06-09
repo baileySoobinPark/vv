@@ -25,6 +25,87 @@ metadata:
 
 3-2. **Cancel the transaction that has completed user verification.**
 
+<HTMLBlock>{`
+<style>
+  .vasp-step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .vasp-step-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .vasp-step-badge {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 13px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .vasp-step-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .vasp-step-title {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+</style>
+
+<ol class="vasp-step-list">
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">1</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">상대 VASP로 동작할 Robot VASP정보를 확인합니다.</div>
+    </div>
+  </li>
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">2</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">User Account Verification: 테스트용 수신 계정 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+    </div>
+  </li>
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">3</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">User Verification: 테스트용 수신자 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+    </div>
+  </li>
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">4-1</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">검증 이후 자산 전송 트랜잭션을 실행하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다.</div>
+      (Case 1)트랜잭션 Report 전송 (Case 2)트랜잭션 Report 미전송
+    </div>
+  </li>
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">4-2</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">검증 이후 트랜잭션을 취소하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다. </div>
+      (Case 1)Error Report 전송 (Case 2)Error Report 미전송
+    </div>
+  </li>
+</ol>
+`}</HTMLBlock>
+
+<br />
+
+<br />
+
 <br />
 
 ## Test User Informations of RobotVASP
