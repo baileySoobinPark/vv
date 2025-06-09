@@ -83,7 +83,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 `address` 또는 `tx_hash` 필드의 검증 결과가 `MATCHED`인 경우, 관련 계정의 소유주 정보를 응답에 포함하여 반환해야 합니다. 정보 제공 범위는 다음과 같습니다.
 
 <HTMLBlock>{`
-ㅇ<style>
+<style>
 .personal-info-table {
   width: 100%;
   border-collapse: collapse;
