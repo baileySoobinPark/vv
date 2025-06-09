@@ -9,7 +9,7 @@ metadata:
 > 💡 Please Note:
 >
 > 1. 입금 테스트는 **Ethereum Sepolia** 및 **Ripple Testnet**에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
-> 2. 입금 테스트를 진행하기 위해 출금 테스트가 선행되어야 합니다. 출금 테스트를 진행하지 않은 사용자는 [출금 테스트]() 를 먼저 진행한 후 입금 테스트를 진행해 주십시오.
+> 2. 입금 테스트를 진행하기 위해 출금 테스트가 선행되어야 합니다. 출금 테스트를 진행하지 않은 사용자는 [출금 테스트]()를 먼저 진행한 후 입금 테스트를 진행해 주십시오.
 > 3. 입금 테스트에서 당신의 VASP로 입금될 자산의 총량은 출금 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
 
 ## Deposit Test Scenario
@@ -19,9 +19,6 @@ metadata:
 2. **Verify the Beneficiary's Personal Information Provided by Robot VASP.**
 
 3-1. **Execute the transaction on the blockchain network.**
-
-* Case 1: Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction.
-* Case 2: Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.
 
 3-2. **Cancel the transaction that has completed user verification.**
 
@@ -70,33 +67,33 @@ metadata:
   <li class="vasp-step-item">
     <div class="vasp-step-badge">1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">상대 VASP로 동작할 Robot VASP정보를 확인합니다.</div>
+      <div class="vasp-step-title">User Account Verification: 테스트용 수신 계정 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">User Account Verification: 테스트용 수신 계정 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
-    </div>
-  </li>
-  <li class="vasp-step-item">
-    <div class="vasp-step-badge">3</div>
-    <div class="vasp-step-content">
       <div class="vasp-step-title">User Verification: 테스트용 수신자 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
     </div>
   </li>
   <li class="vasp-step-item">
-    <div class="vasp-step-badge">4-1</div>
+    <div class="vasp-step-badge">3-1</div>
     <div class="vasp-step-content">
       <div class="vasp-step-title">검증 이후 자산 전송 트랜잭션을 실행하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다.</div>
       (Case 1)트랜잭션 Report 전송 (Case 2)트랜잭션 Report 미전송
     </div>
   </li>
   <li class="vasp-step-item">
-    <div class="vasp-step-badge">4-2</div>
+    <div class="vasp-step-badge">3-2</div>
     <div class="vasp-step-content">
       <div class="vasp-step-title">검증 이후 트랜잭션을 취소하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다. </div>
       (Case 1)Error Report 전송 (Case 2)Error Report 미전송
+    </div>
+  </li>
+  <li class="vasp-step-item">
+    <div class="vasp-step-badge">4</div>
+    <div class="vasp-step-content">
+      <div class="vasp-step-title">트랜잭션의 상태를 조회하는 시나리오로 진행합니다.  </div>
     </div>
   </li>
 </ol>
