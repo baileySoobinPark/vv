@@ -8,7 +8,9 @@ hidden: false
 metadata:
   robots: index
 ---
-VASP API는 VerifyName 프로토콜 준수를 위한 핵심 구현 요소로, 각 VASP의 정책과 데이터를 기반으로 검증 및 입출금 관리에 필요한 비즈니스 로직을 실행하는 역할을 합니다. VASP 백엔드에 구현된 VASP API들은 Enclave 서버로부터 호출되어 계정 및 사용자 정보 검증, 트랜잭션 상태 조회, 결과 보고 수신 등의 주요 기능을 담당함으로서 규제 요구사항을 충족하고 프로토콜 흐름을 완성합니다.
+VerifyName 프로토콜 연동을 위해, 모든 VASP는 송신자-수신자 비교 검증 요청을 수신할 수 있는 핵심 API를 비롯한 필수 API들을 구현하여 Enclave가 호출할 수 있도록 제공해야 합니다.
+
+<br />
 
 API Implementation 섹션에서는 구현 대상 API 목록과 각 API의 명세, 호출 흐름, 구현 시 유의사항 등을 설명합니다.
 
