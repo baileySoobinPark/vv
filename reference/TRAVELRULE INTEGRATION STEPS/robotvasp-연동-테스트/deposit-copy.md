@@ -12,15 +12,7 @@ metadata:
 > 2. 입금 테스트를 진행하기 위해 출금 테스트가 선행되어야 합니다. 출금 테스트를 진행하지 않은 사용자는 [출금 테스트]()를 먼저 진행한 후 입금 테스트를 진행해 주십시오.
 > 3. 입금 테스트에서 당신의 VASP로 입금될 자산의 총량은 출금 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
 
-## Deposit Test Scenario
-
-1. **Verify the Beneficiary's Account Provided by Robot VASP.**
-
-2. **Verify the Beneficiary's Personal Information Provided by Robot VASP.**
-
-3-1. **Execute the transaction on the blockchain network.**
-
-3-2. **Cancel the transaction that has completed user verification.**
+## 입금 테스트 시나리
 
 <HTMLBlock>{`
 <style>
