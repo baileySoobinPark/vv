@@ -39,4 +39,4 @@ Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 
 
 ***
 
-## API 명
+## API 명세
