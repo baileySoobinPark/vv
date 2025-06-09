@@ -426,7 +426,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        VASP API 호출을 위한 Verify Name API Endpoint.\
+        `VerifyName`\
+        VASP API 호출을 위한 Verify Name API Endpoint.
         **관련 링크**:  [VerifyName API](ref:verifyname-request-verification-1)
       </td>
     </tr>
@@ -441,23 +442,9 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        VASP API 호출을 위한 VerifyName Check Transaction Status API Endpoint.\
+        `VerifyName`\
+        VASP API 호출을 위한 VerifyName Check Transaction Status API Endpoint.
         **관련 링크**: [Check Transaction Status API](ref:verifyname-transaction-1)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_TRANSACTION_API_PATH`
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-        VASP API 호출을 위한 Check Transaction Status API Endpoint.\
-        **관련 링크**: [Check Trasnaction Status API](ref:travelrule-check-transaction-status-1)
       </td>
     </tr>
 
@@ -564,7 +551,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 
       <td>
         Enclave 데이터베이스 암호화 대칭키 조회를 위한 API Path.\
-        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        관련 링크: [Database Management API](ref:verifyname-get-decrypted-enckey)
       </td>
     </tr>
 
@@ -579,7 +566,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 
       <td>
         Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
-        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        관련 링크: [Database Management API](ref:verifyname-get-decrypted-enckey)
       </td>
     </tr>
   </tbody>
