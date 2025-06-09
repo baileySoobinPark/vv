@@ -10,4 +10,4 @@ hidden: false
 ## 구현 정책
 
 * 소유자 검증 결과를 수신한 VASP는 반드시 최종 전송 실행 결과를 보고해야 합니다.
-* 최종 결과가 DENIED 또는 ERROR인 경우, `reason` 및 `message` 필드에 그 사유를 명확히 기재해야 합니다.
+* 최종 결과가 DENIED 또는 ERROR인 경우, `code` 및 `message` 필드에 그 사유를 명확히 기재해야 합니다.
