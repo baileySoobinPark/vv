@@ -100,7 +100,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 }
 
 .personal-info-table thead {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   font-weight: bold;
 }  
 </style>
