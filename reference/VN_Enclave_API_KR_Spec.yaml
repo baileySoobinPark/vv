@@ -525,7 +525,7 @@ paths:
                             - PerVasp
                             - PerAddress
                             - PerVerification
-                          description: "The type of Public Key to be used for encrypting personal information.\nThe default value is\_**PerVasp**. PerAddress and PerVerification can also be entered.\nThe Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.\nExplanation of allowed values: - **PerVasp**: A single key shared across all verifications for a VASP. - **PerAddress**: A unique key is generated for each beneficiary address. - **PerVerification**: A new key is generated for every verification request.\n"
+                          description: "The type of Public Key to be used for encrypting personal information.\n\nThe default value is\_**PerVasp**. PerAddress and PerVerification can also be entered.\n\nThe Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.\n\nExplanation of allowed values:\n- **PerVasp**: A single key shared across all verifications for a VASP.\n- **PerAddress**: A unique key is generated for each beneficiary address.\n- **PerVerification**: A new key is generated for every verification request.\n"
                           example: PerVasp
                         vasp_id:
                           type: string
