@@ -1,19 +1,14 @@
 ---
 title: Owner Verification Transaction Report API
-excerpt: >
-  This API is used by the Originating VASP to report the execution of a transfer
-  transaction.
-
-
-  The Beneficiary VASP can receives the result of the transaction via the
-  Callback API.
-
-
-  ### Implementation Policy
-    1. The Originating VASP must call this API immediately after executing the transaction and receiving the TxHash or TxId.
-    2. If the Originating VASP fails to call this API after executing the transaction, the Beneficiary VASP will call the Check Transaction Status API to confirm the current status of the transaction.
 api:
   file: VN_Enclave_API_KR_Spec.yaml
   operationId: verifyname-transaction-report
 hidden: false
 ---
+송신 VASP가 블록체인에서 자산 전송 트랜잭션을 실행한 후, 해당 트랜잭션의 txHash 또는 txId를 수신 VASP에 보고 할 때 사용되는 API입니다.
+
+## 구현 정책
+
+* 사용자 검증이 완료된 건에 대해서만 자산 전송 트랜잭션을 실행해야 하며, 실행 후 반드시 본 API를 통해 txHash 또는 txId를 보고해야 합니다.
+* 트랜잭션 해시가 생성되는 즉시 본 API를 호출하여 정보를 VerifyVASP 중앙 서버에 전달해야 합니다.
+* 트랜잭션 finality가 확보되지 않아 자산 전송이 실패할 경우, 즉시 오류 보고 API(Report Error API) 를 호출하여 중앙 서버에 오류 상황을 보고해야 합니다.
