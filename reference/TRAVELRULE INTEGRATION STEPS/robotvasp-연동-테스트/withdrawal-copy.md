@@ -97,16 +97,16 @@ metadata:
 
 테스트의 사용할 가상의 사용자 정보는 아래와 같습니다. 이 정보는 수신 VASP로 동작하는 Robot VASP에 미리 저장되어 있어 검증이 가능한 정보입니다.
 
-<Accordion title="User 1(Individual user who has completed KYC verification)">
-  If all the information is entered correctly, the verification result must return `VERIFIED`.
+<Accordion title="User 1(KYC 인증을 완료한 개인 사용자)">
+  아래의 정보를 정확하게 입력하였다면 Robot VASP가 `VERIFIED`를 반환합니다.
 
-  ### Individual Information
+  ### 개인 정보
 
-  * **Last Name**: Robbins
+  * **성**: Robbins
 
-  * **First Name**: Taylor
+  * **이름**: Taylor
 
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
@@ -115,16 +115,16 @@ metadata:
   **'XRP' destination tag**: `123456789`
 </Accordion>
 
-<Accordion title="User 2(Individual user who has not completed KYC verification)">
-  Even if all information is entered correctly, the verification result must return `DENIED`.
+<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)">
+  아래의 정보를 정확하게 입력하여도 Robot VASP가 `DENIED`를 반환합니다.
 
-  ### Individual Information
+  ### 개인 정보
 
-  * **Last Name**: Cook
+  * **성**: Cook
 
-  * **First Name**: Ethan
+  * **이름**: Ethan
 
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
 
@@ -133,21 +133,20 @@ metadata:
   **'XRP' destination tag**: `345678912`
 </Accordion>
 
-<Accordion title="User 3(Corporate user who has completed KYC verification)">
-  If all the information is entered correctly, including the representative's name, the verification result must return `VERIFIED`.
-  If the representative's name is missing or incorrect, the verification result should return `DENIED`, even if all other information is entered correctly.
+<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)">
+  대표 이름을 포함한 모든 정보를 정확하게 입력한 경우 'VERIFIED'를 반환합니다. 그러나 다른 모든 정보를 정확하게 입력하였어도 대표 이름 정보에 오류가 있는 경우, `DENIED`를 반환합니다.
 
-  ### Individual Information
+  ### 개인 정보
 
-  * **Corporate Name**: Garrit Studio
+  * **회사 이름**: Garrit Studio
 
-    ### Representative Name
+    ### 대표 이름
 
-  * **Last Name**: Clarke
+  * **성**: Clarke
 
-  * **First Name**: Jason
+  * **이름**: Jason
 
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
 
