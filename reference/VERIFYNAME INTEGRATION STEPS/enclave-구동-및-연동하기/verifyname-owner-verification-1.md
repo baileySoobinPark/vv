@@ -33,3 +33,7 @@ hidden: false
 * **Pre Verification**: 출금 트랜잭션 실행 전, 송신 VASP의 요청에 의해 송신자와 수신 주소의 소유자가 동일인인지 여부를 검증합니다.
 
 응답의 `verification_results` 객체 내 각 검증 항목 별 결과는 각각 MATCHED, MISMATCHED, SKIPPED 중 하나로 반환됩니다.
+
+***
+
+## API 명세
