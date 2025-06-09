@@ -2,7 +2,7 @@
 title: ' 출금 시나리오 테스트'
 excerpt: '본 문서 가이드를 통해 출금 시나리오를 확인하고 테스트 케이스와 기대 동작을 확인할 수 있습니다. '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
