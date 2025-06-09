@@ -6,7 +6,7 @@ excerpt: >-
   transactions. Established in 2004, it has been adopted or is under
   consideration for adoption by major national financial market infrastructures.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
