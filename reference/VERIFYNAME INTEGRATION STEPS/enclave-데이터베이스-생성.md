@@ -313,160 +313,158 @@ TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜�
 
 ### VerifyName 필수 테이블 생성 쿼리
 
-TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 TR 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
+VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 VN2 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
 
 <Tabs>
   <Tab title="MySQL">
     ```sql
-    CREATE TABLE `verifications` (
-    `verification_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Verification ID',
-    `verification_uuid` varchar(40) NOT NULL COMMENT 'Verification UUID',
-    `result` enum('WAIT', 'VERIFIED', 'DENIED', 'UNKNOWN', 'ERROR', 'PENDING', 'TRANSFER_ERROR') NOT NULL DEFAULT 'WAIT' COMMENT 'Verification Result',
-    `reason` varchar(256) DEFAULT NULL COMMENT 'Reason',
-    `message` varchar(1024) DEFAULT NULL COMMENT 'Additional information about the reason',
-    `network` varchar(128) DEFAULT NULL COMMENT 'Network for token transfer',
-    `symbol` varchar(16) DEFAULT NULL COMMENT 'Symbol',
-    `amount` varchar(128) DEFAULT NULL COMMENT 'Amount',
-    `trade_price` varchar(128) DEFAULT NULL COMMENT 'Trading Price',
-    `trade_currency` varchar(128) DEFAULT NULL COMMENT 'Trading Currency',
-    `trade_iso_datetime` datetime DEFAULT NULL COMMENT 'Trading time',
-    `is_exceeding_threshold` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Whether the threshold has been exceeded',
-    `tx_hash` varchar(128) DEFAULT NULL COMMENT 'Tx hash',
-    `vout` varchar(128) DEFAULT NULL COMMENT 'Vout',
-    `originating_vasp_id` bigint(20) unsigned DEFAULT NULL COMMENT 'Originating VASP ID',
-    `originator_account_number` varchar(256) DEFAULT NULL COMMENT 'Originator Account Address or ID',
-    `ivms101_originator` text(65535) DEFAULT NULL COMMENT 'Originator Information',
-    `ivms101_originating_vasp` text(65535) DEFAULT NULL COMMENT 'Originating VASP Information',
-    `beneficiary_vasp_id` bigint(20) unsigned DEFAULT NULL COMMENT 'Beneficiary Vasp ID',
-    `beneficiary_account_number` varchar(256) DEFAULT NULL COMMENT 'Beneficiary Account Address or ID',
-    `ivms101_beneficiary` text(65535) DEFAULT NULL COMMENT 'Beneficiary Information',
-    `ivms101_beneficiary_vasp` text(65535) DEFAULT NULL COMMENT 'Beneficiary VASP Information',
-    `verified_at` datetime(3) DEFAULT NULL COMMENT 'Verified at.',
-    `ordered_at` datetime(3) DEFAULT NULL COMMENT 'Ordered at.',
-    `created_at` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) COMMENT 'Created at.',
+      CREATE TABLE `owner_verifications` (
+    `verification_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `request_id` varchar(40) NOT NULL,
+    `type` varchar(40) NOT NULL,
+    `request_vasp_id` bigint(20) unsigned NOT NULL,
+    `response_vasp_id` bigint(20) unsigned NOT NULL,
+    `ticker` varchar(16) NOT NULL,
+    `tx_hash` varchar(256) DEFAULT NULL,
+    `network` varchar(256) DEFAULT NULL,
+    `address` varchar(512) DEFAULT NULL,
+    `tag` varchar(128) DEFAULT NULL,
+    `dti` varchar(16) DEFAULT NULL COMMENT 'Degital Token Identifier',
+    `vout` varchar(128) DEFAULT NULL,
+    `salt` varchar(128) DEFAULT NULL COMMENT 'Party Info Hash Salt',
+    `party_info` text(65535) DEFAULT NULL COMMENT 'Deptor or Creditor Information',
+    `party_info_hash` text(65535) DEFAULT NULL COMMENT 'Deptor or Creditor Information Hash',
+    `results` varchar(4000) DEFAULT NULL,
+    `result` varchar(128) DEFAULT NULL COMMENT 'Final Verification Result',
+    `status` varchar(40) NOT NULL,
+    `reason` varchar(256) DEFAULT NULL,
+    `message` varchar(1024) DEFAULT NULL,
+    `version` varchar(16) DEFAULT NULL,
+    `verified_at` datetime(3) DEFAULT NULL,
+    `ordered_at` datetime(3) DEFAULT NULL,
+    `updated_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    `created_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
     PRIMARY KEY (`verification_id`),
-    UNIQUE KEY `uk_verifications_verification_uuid` (`verification_uuid`),
-    INDEX `idx_verifications_originator_account` (`originator_account_number`),
-    INDEX `idx_verifications_beneficiary_account` (`beneficiary_account_number`)
+    UNIQUE KEY `uk_owner_verifications_request_id` (`request_id`),
+    KEY `idx_request_vasp_id_response_vasp_id` (`request_vasp_id`,`response_vasp_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ```
   </Tab>
 
   <Tab title="PostgreSQL">
     ```sql
-    CREATE TYPE enum_result AS ENUM ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR');
+    CREATE TYPE enum_owner_verifications_type AS ENUM('VerifyOriginator', 'VerifyBeneficiary');
 
-    CREATE TABLE verifications (
-    verification_id SERIAL NOT NULL PRIMARY KEY,
-    verification_uuid varchar(40) NOT NULL,
-    UNIQUE(verification_uuid),
-    result enum_result DEFAULT 'WAIT',
-    reason varchar(256) DEFAULT NULL,
-    message varchar(1024) DEFAULT NULL,
-    network varchar(256) DEFAULT NULL,
-    symbol varchar(16) DEFAULT NULL,
-    amount varchar(128) DEFAULT NULL,
-    trade_price varchar(128) DEFAULT NULL,
-    trade_currency varchar(128) DEFAULT NULL,
-    trade_iso_datetime timestamp DEFAULT NULL,
-    is_exceeding_threshold boolean DEFAULT true NOT NULL,
-    tx_hash varchar(128) DEFAULT NULL,
-    vout varchar(128) DEFAULT NULL,
-    originating_vasp_id numeric(20) DEFAULT NULL,
-    originator_account_number varchar(256) DEFAULT NULL,
-    ivms101_originator varchar(65535) DEFAULT NULL,
-    ivms101_originating_vasp varchar(65535) DEFAULT NULL,
-    beneficiary_vasp_id numeric(20) DEFAULT NULL,
-    beneficiary_account_number varchar(256) DEFAULT NULL,
-    ivms101_beneficiary varchar(65535) DEFAULT NULL,
-    ivms101_beneficiary_vasp varchar(65535) DEFAULT NULL,
-    verified_at timestamp DEFAULT NULL,
-    ordered_at timestamp DEFAULT NULL,
-    created_at timestamp DEFAULT CURRENT_TIMESTAMP
+    CREATE TABLE owner_verifications (
+      verification_id SERIAL NOT NULL PRIMARY KEY,
+      request_id varchar(40) NOT NULL,
+      type enum_owner_verifications_type NOT NULL,
+      request_vasp_id numeric(20) NOT NULL,
+      response_vasp_id numeric(20) NOT NULL,
+      ticker varchar(16) NOT NULL,
+      tx_hash varchar(256) DEFAULT NULL,
+      network varchar(256) DEFAULT NULL,
+      address varchar(512) DEFAULT NULL,
+      tag varchar(128) DEFAULT NULL,
+      dti varchar(16) DEFAULT NULL,
+      vout varchar(128) DEFAULT NULL,
+      salt varchar(128) DEFAULT NULL,
+      party_info text DEFAULT NULL,
+      party_info_hash text DEFAULT NULL,
+      results varchar(4000) DEFAULT NULL,
+      result varchar(128) DEFAULT NULL,
+      status varchar(40) NOT NULL,
+      reason varchar(256) DEFAULT NULL,
+      message varchar(1024) DEFAULT NULL,
+      version varchar(16) DEFAULT NULL,
+      verified_at timestamp DEFAULT NULL,
+      ordered_at timestamp DEFAULT NULL,
+      updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
+      created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT key_uniq_owner_verifications_request_id UNIQUE (request_id)
     );
 
-    CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
-    CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
+    CREATE INDEX idx_request_vasp_id_response_vasp_id ON owner_verifications(request_vasp_id, response_vasp_id);
     ```
   </Tab>
 
   <Tab title="MSSQL">
     ```sql
-    CREATE TABLE verifications (
+    CREATE TABLE owner_verifications (
     verification_id BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    verification_uuid nvarchar(40) NOT NULL UNIQUE,
-    result nvarchar(20) DEFAULT 'WAIT' NOT NULL check (result in ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR')),
+    request_id nvarchar(40) NOT NULL UNIQUE,
+    type nvarchar(40) NOT NULL check (type in ('VerifyOriginator', 'VerifyBeneficiary')),
+    request_vasp_id BIGINT NOT NULL,
+    response_vasp_id BIGINT NOT NULL,
+    ticker nvarchar(16) NOT NULL,
+    tx_hash nvarchar(256) DEFAULT NULL,
+    network nvarchar(256) DEFAULT NULL,
+    address nvarchar(512) DEFAULT NULL,
+    tag nvarchar(128) DEFAULT NULL,
+    dti nvarchar(16) DEFAULT NULL,
+    vout nvarchar(128) DEFAULT NULL,
+    salt nvarchar(128) DEFAULT NULL,
+    party_info nvarchar(max) DEFAULT NULL,
+    party_info_hash nvarchar(max) DEFAULT NULL,
+    results nvarchar(4000) DEFAULT NULL,
+    result nvarchar(128) DEFAULT NULL,
+    status nvarchar(40) NOT NULL,
     reason nvarchar(256) DEFAULT NULL,
     message nvarchar(1024) DEFAULT NULL,
-    network nvarchar(128) DEFAULT NULL,
-    symbol nvarchar(16) DEFAULT NULL,
-    amount nvarchar(128) DEFAULT NULL,
-    trade_price nvarchar(128) DEFAULT NULL,
-    trade_currency nvarchar(128) DEFAULT NULL,
-    trade_iso_datetime datetime2 DEFAULT NULL,
-    is_exceeding_threshold tinyint DEFAULT 1 NOT NULL,
-    tx_hash nvarchar(128) DEFAULT NULL,
-    vout nvarchar(128) DEFAULT NULL,
-    originating_vasp_id BIGINT check (originating_vasp_id > 0) DEFAULT NULL,
-    originator_account_number nvarchar(256) DEFAULT NULL,
-    ivms101_originator nvarchar(MAX) DEFAULT NULL,
-    ivms101_originating_vasp nvarchar(MAX) DEFAULT NULL,
-    beneficiary_vasp_id BIGINT check (beneficiary_vasp_id > 0) DEFAULT NULL,
-    beneficiary_account_number nvarchar(256) DEFAULT NULL,
-    ivms101_beneficiary nvarchar(MAX) DEFAULT NULL,
-    ivms101_beneficiary_vasp nvarchar(MAX) DEFAULT NULL,
+    version nvarchar(16) DEFAULT NULL,
     verified_at datetime2(3) DEFAULT NULL,
     ordered_at datetime2(3) DEFAULT NULL,
-    created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP
+    updated_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
+    created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
     );
 
-    CREATE INDEX idx_verifications_originator_account ON verifications(originator_account_number);
-    CREATE INDEX idx_verifications_beneficiary_account ON verifications(beneficiary_account_number);
+    CREATE INDEX idx_request_vasp_id_response_vasp_id ON owner_verifications(request_vasp_id, response_vasp_id);
     ```
   </Tab>
 
   <Tab title="Oracle">
     ```sql
-    CREATE TABLE "verifications" (
+    CREATE TABLE "owner_verifications" (
     "verification_id" number(20) NOT NULL,
-    "verification_uuid" varchar2(40) NOT NULL,
-    "result" varchar2(20) DEFAULT 'WAIT' NOT NULL check ("result" in ('WAIT', 'VERIFIED', 'UNKNOWN', 'DENIED', 'ERROR', 'PENDING', 'TRANSFER_ERROR')),
+    "request_id" varchar2(40) NOT NULL,
+    "type" varchar2(20) NOT NULL CHECK ("type" IN ('VerifyOriginator', 'VerifyBeneficiary')),
+    "request_vasp_id" varchar2(20) NOT NULL,
+    "response_vasp_id" varchar2(20) NOT NULL,
+    "ticker" varchar2(16) NOT NULL,
+    "tx_hash" varchar2(256) DEFAULT NULL,
+    "network" varchar2(256) DEFAULT NULL,
+    "address" varchar2(512) DEFAULT NULL,
+    "tag" varchar2(128) DEFAULT NULL,
+    "dti" varchar2(16) DEFAULT NULL,
+    "vout" varchar2(128) DEFAULT NULL,
+    "salt" varchar2(128) DEFAULT NULL,
+    "party_info" clob DEFAULT NULL,
+    "party_info_hash" clob DEFAULT NULL,
+    "results" varchar2(4000) DEFAULT NULL,
+    "result" varchar2(128) DEFAULT NULL,
+    "status" varchar2(40) NOT NULL,
     "reason" varchar2(256) DEFAULT NULL,
     "message" varchar2(1024) DEFAULT NULL,
-    "network" varchar2(128) DEFAULT NULL,
-    "symbol" varchar2(16) DEFAULT NULL,
-    "amount" varchar2(128) DEFAULT NULL,
-    "trade_price" varchar2(128) DEFAULT NULL,
-    "trade_currency" varchar2(128) DEFAULT NULL,
-    "trade_iso_datetime" date DEFAULT NULL,
-    "is_exceeding_threshold" number(1) DEFAULT 1,
-    "tx_hash" varchar2(128) DEFAULT NULL,
-    "vout" varchar2(128) DEFAULT NULL,
-    "originating_vasp_id" varchar2(20) DEFAULT NULL,
-    "originator_account_number" varchar2(256) DEFAULT NULL,
-    "ivms101_originator" clob DEFAULT NULL,
-    "ivms101_originating_vasp" clob DEFAULT NULL,
-    "beneficiary_vasp_id" varchar2(20) DEFAULT NULL,
-    "beneficiary_account_number" varchar2(256) DEFAULT NULL,
-    "ivms101_beneficiary" clob DEFAULT NULL,
-    "ivms101_beneficiary_vasp" clob DEFAULT NULL,
+    "version" varchar2(16) DEFAULT NULL,
     "verified_at" timestamp(3) DEFAULT NULL,
     "ordered_at" timestamp(3) DEFAULT NULL,
+    "updated_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
     "created_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "pk_verification_id" PRIMARY KEY ("verification_id"),
-    CONSTRAINT "uk_verification_uuid" UNIQUE("verification_uuid")
+    CONSTRAINT "owner_verifications_pk" PRIMARY KEY ("verification_id"),
+    CONSTRAINT "uniq_owner_verifications_request_id" UNIQUE ("request_id")
     );
 
-    CREATE INDEX "idx_originator_account" ON "verifications"("originator_account_number");
-    CREATE INDEX "idx_beneficiary_account" ON "verifications"("beneficiary_account_number");
+    CREATE INDEX "idx_owner_verifications_request_vasp_id_response_vasp_id" ON "owner_verifications" ("request_vasp_id", "response_vasp_id");
 
-    CREATE SEQUENCE "verifications_id_seq";
+    -- Create a sequence
+    CREATE SEQUENCE "owner_verifications_seq";
 
-    CREATE OR REPLACE TRIGGER verifications_trigger
-    BEFORE INSERT ON "verifications"
+    -- Create a trigger
+    CREATE OR REPLACE TRIGGER owner_verifications_trg
+    BEFORE INSERT ON "owner_verifications"
     FOR EACH ROW
     BEGIN
-    SELECT "verifications_id_seq".nextval
+    SELECT "owner_verifications_seq".NEXTVAL
     INTO :new."verification_id"
     FROM dual;
     END;
