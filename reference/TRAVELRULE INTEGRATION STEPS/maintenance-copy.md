@@ -24,26 +24,15 @@ VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채�
 
 <br />
 
-### 2. Inform the schedule to the VerifyVASP operation team via VerifyVASP console
+### 2. VerifyVASP 콘솔을 통한 일정 고지
 
-VerifyVASP also supports a way to notify the schedule of server maintenance via the VerifyVASP console.
+VerifyVASP 콘솔을 통한 서버 유지보수 일정 고지 또한 가능합니다.
 
-1. **Sign-in VerifyVASP console**
-
-Sign in to the VerifyVASP console to register your maintenance schedule and notify it.
-
-2. **Go to \[Members] menu**
-
-You can find the \[Members] menu on the left side of the website.
-
-3. **Click \[register] button**
-
-You can see the entire list of maintenance schedules for VASPs participating in the VerifyVASP Alliance. Click the \[Register] button to register your maintenance schedule.
-
-4. **Enter the date and the reason for notifying**
-
-Enter the date and the reason for notifying the maintenance.
-
-5. **publish the maintenance schedule**
-
-Every VASP participating in the VerifyVASP Alliance can access and check this information.
+1. **VerifyVASP 콘솔 내 \[Members] 메뉴 접속**\
+   Verify VASP 콘솔에 로그인 한 후 웹사이트 좌측 메뉴에서 \[Members] 항목을 선택합니다.
+2. **\[등록] 버튼 클릭**\
+   VerifyVASP Alliance에 참여 중인 모든 VASP의 유지보수 일정 목록이 표시됩니다. \[등록] 버튼을 클릭하여 일정을 등록합니다.
+3. **일정 및 사유 입력**\
+   유지보수 예정일과 고지 사유를 입력합니다.
+4. **일정 등록 완료 및 공개**\
+   등록된 일정은 VerifyVASP Alliance 전체 회원이 열람할 수 있습니다.
