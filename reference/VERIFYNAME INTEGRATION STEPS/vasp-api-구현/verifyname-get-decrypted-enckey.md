@@ -9,7 +9,7 @@ hidden: false
 
 ***
 
-> 💡 TravelRule과 VerifyName을 모두 구현하는 VASP
+<DatabaseAPI />
 
 ## Enclave의 민감 데이터 암호화를 위한 대칭 키 주입 방식
 
