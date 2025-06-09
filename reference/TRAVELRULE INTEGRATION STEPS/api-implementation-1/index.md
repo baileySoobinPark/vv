@@ -138,7 +138,7 @@ API Implementation 섹션에서는 구현 대상 API 목록과 각 API의 명세
 
 설정 방법은 다음과 같습니다.
 
-#### 인증 관련 Enclave 환경 변수 설정 방
+#### 인증 관련 Enclave 환경 변수 설정 방법
 
 * `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 인증 토큰 값(Value). 설정한 값이 Enclave의 모든 요청의 인증 헤더 값으로 포함되어 전달됩니다.
 * `VEGA_VERIFICATION_AUTHORIZATION_KEY`: 인증 토큰을 전달할 HTTP 헤더의 Key.
