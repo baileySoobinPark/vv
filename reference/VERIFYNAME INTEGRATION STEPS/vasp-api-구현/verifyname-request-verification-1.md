@@ -13,19 +13,23 @@ hidden: false
 
 ### 기능 요구사항
 
-#### 1. 검증 요청 처리
+#### 1. 검증 수행 및 사용자 정보 반환
 
-VerifyName 프로토콜은 트랜잭션 실행 시점을 기준으로 사전 검증과 사후 검증 시나리오를 모두 지원합니다. 시나리오별 검증 요청 처리에 대한 구현 요구사항은 아래과 같으며, VASP는 두 시나리오를 모두 지원해야 합니다.
+VerifyName 프로토콜은 트랜잭션 실행 시점을 기준으로 사전 검증과 사후 검증 시나리오를 모두 지원합니다. VASP는 두 시나리오를 모두 지원해야 하며, 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다. 세부 구현 요구사항은 아래와 같습니다.
 
 **사후 검증(Post-Verification) 구현 요구사항**
 
 * 요청 type이 `VerifyOriginator`인 경우로, 귀사의 VASP는 송신 VASP로서 검증 요청에 대응해야 합니다. 송신 VASP로부터 자산 전송 트랜잭션이 먼저 실행되어, 수신 VASP가 검증을 요청한 경우입니다.
-* 요청에 포함된 tx\_hash 값이 귀사의 VASP가 실행한 트랜잭션이 맞는지 검증하고, 결과를 `verification_results` 응답의 `tx_hash` 필드로 반환해야 합니다.
-* 해당 트랜잭션의 수신 주소가 API 요청에 포함된 `supplementary_data.envelope.address`의 주소와 일치하는지 검증하고, 결과를 `verification_results` 응답의 `address` 필드로 반환해야 합니다.
-* <br />
+* 요청에 포함된 tx\_hash 값이 귀사의 VASP가 실행한 트랜잭션이 맞는지 검증하고, 결과를 응답의 `verification_results` 객체 내 `tx_hash` 필드로 반환해야 합니다.
+* 해당 트랜잭션의 수신 주소가 API 요청에 포함된 `supplementary_data.envelope.address`의 주소와 일치하는지 검증하고, 결과를 응답의 `verification_results` 객체 내 `address` 필드로 반환해야 합니다.
+* 주소가 일치하는 경우, 해당 주소의 소유주 정보를 `debtor` 객체에 포함하여 반환합니다.
 
 **사전 검증(Pre-Verification) 구현 요구사항**
 
 * 요청 type이 `VerifyBeneficiary`인 경우로, 귀사의 VASP는 수신 VASP로서 검증 요청에 대응해야 합니다. 송신 VASP가 자산 전송을 실행하기에 앞서 수신 VASP로 검증을 요청한 경우입니다.
-* 요청의 `supplementary_data.envelope.address`의 주소가 귀사의 VASP에 등록된 수취인 주소 중 하나와 일치하는지 확인해야 합니다.
-* <br />
+* 요청의 `supplementary_data.envelope.address`의 주소가 귀사의 VASP에 등록된 수취인 주소 중 하나와 일치하는지 확인하고, 결과를 응답의 `verification_results` 객체 내 `address` 필드로 반환해야 합니다.
+* 일치하는 주소가 존재하는 경우, 해당 주소의 소유주 정보를 `crditor` 객체에 포함하여 반환합니다.
+
+#### 2. 검증 수행 결과 반환
+
+항목별 검증 수행 결과를 응답의 `verification_results` 객체 내 관련 필드에 명시하여 반환해야 합니다. 각 필드는 `MATCHED`, `MISMATCHED`, `SKIPPED` 중 하나의 값을 가질수 있으며, 검증을 수행하지 않은 항목의 경우에도 빈 값으로 반환 또는 키를 제외하지 않고 `SKIPPED`로 반드시 포함하여 반환합니다. 각 항목별 결과는 다음과 같은 정책에 따라 결정할 수 있습니다.
