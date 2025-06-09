@@ -106,8 +106,6 @@ hidden: false
 
 ***
 
-<Callback />
-
 ## 구현 가이드
 
 ### 기능 요구사항
@@ -166,6 +164,8 @@ hidden: false
   </tbody>
 </table>
 `}</HTMLBlock>
+
+<Callback />
 
 <br />
 
