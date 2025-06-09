@@ -149,7 +149,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 
 검증 요청 `type` 에 따른 소유주 정보 응답 예시는 다음과 같습니다.
 
-* `VerifyOriginator` 인 경우 해당 트랜잭션 송신 계좌 소유주 정보를 `debtor`에 다음과 같이 반환합니다.
+* `VerifyOriginator` 인 경우 해당 트랜잭션 송신 계좌 소유주 정보를 `debtor`객체에 다음과 같이 반환합니다.
   <HTMLBlock>{`
   <style>
     .custom-accordion {
@@ -212,16 +212,16 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
   	},
   	"debtor": {
   		"name": "HONG KIL DONG",
-  		"supplementary_data"?: {
+  		"supplementary_data": {
   			"envelope": {
-  				"name"?: {                  
+  				"name": {                  
   					"first_name": "GIL DONG",
-  					"last_name"?: "HONG",
+  					"last_name": "HONG",
   				},
   			}
   		},
   		"identification": {
-  			"private_identification"?: {
+  			"private_identification": {
   				"date_and_place_of_birth": {
   					"birth_date": "2025-01-01",
   				}
@@ -244,27 +244,27 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
   	  "tx_hash": "SKIPPED",      
   	  "dti": "SKIPPED",         
   	},
-  	"debtor"?: {
+  	"debtor": {
   		"name": "HONG KIL DONG",
-  		"supplementary_data"?: {
+  		"supplementary_data": {
   			"envelope": {
-  				"name"?: {                  
+  				"name": {                  
   					"first_name": "GIL DONG",
-  					"last_name"?: "HONG",
+  					"last_name": "HONG",
   				},
   			}
   		},
   		"identification": {
-  			"organisation_identification"?: {
+  			"organisation_identification": {
   				"supplementary_data": {
   					"envelope": {
-  						"date_of_incorporation"?: "2020-01-01",
+  						"date_of_incorporation": "2020-01-01",
   					}
   				},
   			},
-  			"lei"?: "506700GE1G29325QX363",
-  			"bic"?: "KRKRKR"
-  			"other"?: {
+  			"lei": "506700GE1G29325QX363",
+  			"bic": "KRKRKR"
+  			"other": {
   				"identification": "5493001KJTIIGC8Y1R12",
   				"issuer": "ISO17442",
   			},
@@ -274,4 +274,82 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
     </code></pre>
   </details>
   `}</HTMLBlock>
-* <br />
+* `VerifyBeneficiary` 인 경우 수신 계좌 소유주 정보를 `creditor`객체에 다음과 같이 반환합니다.
+  <HTMLBlock>{`
+  <details class="custom-accordion">
+    <summary>Example of Response Body: <code>VerifyBeneficiary</code> 타입, 개인 계정인 경우</summary>
+
+    <pre><code class="language-json">
+  {
+  	"verification_results": {
+  	  "ticker": "MATCHED",        
+  	  "network": "MISMATCHED",    
+  	  "address": "SKIPPED",       
+  	  "tag": "SKIPPED",
+  	  "tx_hash": "SKIPPED",      
+  	  "dti": "SKIPPED",         
+  	},
+  	"creditor": {
+  		"name": "HONG KIL DONG",
+  		"supplementary_data": {
+  			"envelope": {
+  				"name": {                  
+  					"first_name": "GIL DONG",
+  					"last_name": "HONG",
+  				},
+  			}
+  		},
+  		"identification": {
+  			"private_identification": {
+  				"date_and_place_of_birth": {
+  					"birth_date": "2025-01-01",
+  				}
+  			}
+  		}
+  	}
+  }
+    </code></pre>
+  </details>
+  <details class="custom-accordion">
+    <summary>Example of Response Body: <code>VerifyBeneficiary</code> 타입, 법인 계정인 경우</summary>
+
+    <pre><code class="language-json">
+  {
+  	"verification_results": {
+  	  "ticker": "MATCHED",        
+  	  "network": "MISMATCHED",    
+  	  "address": "SKIPPED",       
+  	  "tag": "SKIPPED",
+  	  "tx_hash": "SKIPPED",      
+  	  "dti": "SKIPPED",         
+  	},
+  	"creditor": {
+  		"name": "HONG KIL DONG",
+  		"supplementary_data": {
+  			"envelope": {
+  				"name": {                  
+  					"first_name": "GIL DONG",
+  					"last_name": "HONG",
+  				},
+  			}
+  		},
+  		"identification": {
+  			"organisation_identification": {
+  				"supplementary_data": {
+  					"envelope": {
+  						"date_of_incorporation": "2020-01-01",
+  					}
+  				},
+  			},
+  			"lei": "506700GE1G29325QX363",
+  			"bic": "KRKRKR"
+  			"other": {
+  				"identification": "5493001KJTIIGC8Y1R12",
+  				"issuer": "ISO17442",
+  			},
+  		}
+  	}
+  }
+    </code></pre>
+  </details>
+  `}</HTMLBlock>
