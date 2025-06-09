@@ -8,13 +8,36 @@ hidden: false
 metadata:
   robots: index
 ---
-## What is Robot VASP?
+## Robot VASP란?
 
-The Robot VASP is a virtual VASP designed to conduct deposit and withdrawal tests with your VASP. By interacting with Robot VASP, your VASP can verify the functionality of its implemented Enclave server and VASP APIs.
+Robot VASP란, VerifyVASP에서 제공하는 TravelRule 연동 테스트 환경 내 가상의 VASP입니다. VASP API와 Enclave 초도 연동이 완료된 VASP는 Robot VASP를 상대 VASP로 하는 가상 사용자 기반의 모의 입출금 테스트를 통해 구현의 완결성을 확인할 수 있습니다.
 
-In this test, your VASP can conduct tests listed below.
+Robot VASP를 활용하여 다음과 같은 시나리오들을 테스트 할 수 있습니다:
 
-Verifying information of natural person who has already completed KYC with the Robot VASP.\
-Verifying information of natural person who has not complete KYC with with the Robot VASP.
-Verifying information of legal person who has already completed KYC with the Robot VASP.
-AS the results of each test case, you can also conduct tests on Report Transaction or Report Error. Your VASP can experience the whole process of the VerifyVASP solution and test the functionality of your VASP API and Enclave server by conducting the Robot VASP test.
+1. **KYC를 완료한 개인 사용자에 대한 정보 검증**
+2. **KYC를 완료하지 않은 개인 사용자에 대한 정보 검증**
+3. **KYC를 완료한 법인 사용자에 대한 정보 검증**
+
+각 테스트 케이스의 결과에 따라 트랜잭션 결과 보고(Report Transaction) 또는 오류 보고(Report Error) 시나리오 또한 함께 테스트 할 수 있습니다.
+
+<br />
+
+## Robot VASP 연동 테스트 시 주의사항
+
+Robot VASP와 테스트넷을 이용해 실제 가상 자산을 전송하는 테스트 과정에서 다음과 같은 사항에 주의하십시오.
+
+**출금 테스트를 먼저 수행한 뒤에, 입금 테스트를 진행 할 수 있습니다.**
+
+출금 시나리오를 통해 Robot VASP에게 먼저 가상 자산을 전송한 뒤에, 해당 자산을 활용한 입금 테스트가 가능합니다.
+
+**Robot VASP의 가상 자산은 각 수신 주소별로 관리됩니다. (hot / cold wallet을 사용하지 않습니다.)**
+
+따라서 출금 테스트 시 전송한 자산을 입금 테스트를 통해 다시 받기 위해서는 입금 테스트 송신 주소에 반드시 출금 테스트 시 기재한 수신 주소를 사용하십시오. 또한 입금 테스트 시 전송할 수 있는 수량은 출금한 총 수량을 넘을 수 없습니다.
+
+**자산 전송 트랜잭션은 반드시 VERIFIED 된 사용자 검증 결과 수신 이후 진행하십시오. 출금과 입금 테스트 모두 마찬가지입니다.**
+
+VERIFIED 된 검증 결과를 받지 않고 수신 VASP인 Robot VASP로의 온체인 자산 전송 트랜잭션을 생성하는 경우, 해당 자산은 다시 돌려받을 수 없으므로 주의하십시오.
+
+**XRP 주소에 대해 입출금 테스트를 할 때에는 destination tag를 기재하는 것을 잊지 마십시오.**
+
+Destination tag를 ivms101 포맷으로 기재하는 방법은 IVMS101 정보 기입 가이드을 참고하세요.
