@@ -119,7 +119,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
       <td>필수</td>
     </tr>
     <tr>
-      <td>생년월일 <br><small>예: <code>2025-01-01</code></small></td>
+      <td>생년월일<small>(ex) <code>2025-01-01</code></small></td>
       <td>필수</td>
     </tr>
     <tr>
@@ -128,7 +128,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
       <td>필수</td>
     </tr>
     <tr>
-      <td>법인 설립일 <br><small>예: <code>2025-01-01</code></small></td>
+      <td>법인 설립일 <small>(ex) <code>2025-01-01</code></small></td>
       <td>필수</td>
     </tr>
     <tr>
