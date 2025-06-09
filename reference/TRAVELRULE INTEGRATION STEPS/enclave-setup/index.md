@@ -12,6 +12,10 @@ metadata:
 
 VerifyVASP에서 개발한 Enclave 서버는 Private Docker Hub 레지스트리를 통해 Docker 이미지 형태로 배포됩니다. 레지스트리 접근 권한을 얻기 위해 본인의 Docker Hub ID를 [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com) 주소로 제출하십시오.
 
+> 💡 TravelRule과 VerifyName을 모두 지원하는 경우
+>
+> VerifyVASP 솔루션은 연동 프로토콜과 상관 없이 단일 Enclave Docker를 기반으로 동작합니다. TravelRule과 VerifyName을 모두 지원하는 경우, 또는 새로운 프로토콜을 신규로 지원하는 경우, 최신 Enclave Docker 이미지를 사용하여 지원할 수 있습니다.
+
 <br />
 
 ## Step 2. Enclave 서버 실행 및 환경 변수 설정
