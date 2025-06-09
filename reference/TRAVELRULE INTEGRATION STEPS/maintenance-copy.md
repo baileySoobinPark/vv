@@ -26,7 +26,7 @@ VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채�
 
 ### 2. VerifyVASP 콘솔을 통한 일정 고지
 
-VerifyVASP 콘솔을 통해 서버 유지보수 일정을 공유할 수 있습니다.
+VerifyVASP 콘솔을 통해 서버 유지보수 일정을 회원사 VASP들과 공유할 수 있습니다.
 
 1. **VerifyVASP 콘솔 내 \[Members] 메뉴 접속**\
    Verify VASP 콘솔에 로그인 한 후 웹사이트 좌측 메뉴에서 \[Members] 항목을 선택합니다.
