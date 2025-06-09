@@ -482,10 +482,9 @@ paths:
                                   other:
                                     type: object
                                     description: >
-                                      MATCHED is returned only if both the
-                                      provided identification and issuer exactly
-                                      match the values stored in the Enclave
-                                      server.
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
                                     required:
                                       - identification
                                       - issuer
@@ -599,10 +598,9 @@ paths:
                                   other:
                                     type: object
                                     description: >
-                                      MATCHED is returned only if both the
-                                      provided identification and issuer exactly
-                                      match the values stored in the Enclave
-                                      server.
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
                                     required:
                                       - identification
                                       - issuer
