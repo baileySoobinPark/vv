@@ -9,18 +9,8 @@ paths:
     get:
       operationId: verifyName-List-VASP
       summary: List VASP API
-      description: >
-        This API provides a list of VASPs registered with VerifyVASP.
-
-        The list is used during the withdrawal process to select the Beneficiary
-        VASP. After retrieving the VASP list through this API, the vaspId field
-        of the selected VASP can be used when initiating a verification request.
-
-
-        ### VASP Eligibility Criteria
-          The list includes your VASP and other VASPs that meet the following criteria:
-          - The VASP is a member of VerifyVASP or another Travel Rule vendor.
-          - The VASP is capable of handling asset transfers.
+      tags:
+        - VASP Management API
       x-readme:
         explorer-enabled: false
       parameters:
@@ -43,93 +33,303 @@ paths:
               schema:
                 type: object
                 required:
-                  - providers
+                  - verification_results
                 properties:
-                  providers:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - vaspId
-                        - vaspName
-                        - protocol
-                        - legalName
-                        - jurisdiction
-                        - country
-                        - licensedStatus
-                      properties:
-                        vaspId:
-                          type: string
-                          description: >
-                            Unique identifier of VASP that supporting
-                            VerifyName.
-                          example: '15952089931162060684'
-                        vaspName:
-                          type: string
-                          description: |
-                            Name of the VASP.
-                          example: A Exchange
-                        protocol:
-                          type: array
-                          items:
-                            type: string
-                            enum:
-                              - TRAVEL-RULE
-                              - VERIFY-NAME
-                          description: |
-                            The protocol of the VASP.
-                        legalName:
-                          type: string
-                          description: |
-                            The legal entity name of the VASP.
-                          example: A Exchange
-                        jurisdiction:
-                          type: string
-                          description: >
-                            The country or region where the legal entity is
-                            established (jurisdiction of incorporation).
-                          example: Singapore
-                        country:
-                          type: string
-                          description: >
-                            The name of the country where the VASP is
-                            established.
-                          example: Singapore
-                        licensedStatus:
-                          type: string
-                          enum:
-                            - Regulated
-                            - Unregulated
-                          description: |
-                            The VA License acquisition status of the VASP.
-                          example: Regulated
+                  verification_results:
+                    type: object
+                    required:
+                      - ticker
+                      - network
+                      - address
+                      - tag
+                      - tx_hash
+                      - dti
+                    properties:
+                      ticker:
+                        type: string
+                        description: |
+                          The result of the Ticker verification.
+                        example: MATCHED
+                      network:
+                        type: string
+                        description: |
+                          The result of the Network verification.
+                        example: MATCHED
+                      address:
+                        type: string
+                        description: |
+                          The result of the Address verification.
+                        example: MATCHED
+                      tag:
+                        type: string
+                        description: >
+                          The wallet address tag(secondary address such as XRP,
+                          XLM, EOS, etc...), regardless VerifyOriginator or
+                          VerifyBeneficiary.
+                        example: '3256697931'
+                      tx_hash:
+                        type: string
+                        description: |
+                          The result of the Tx_Hash verification.
+                        example: MATCHED
+                      dti:
+                        type: string
+                        description: |
+                          The result of the DTI verification.
+                        example: MATCHED
+                  creditor:
+                    type: object
+                    description: >
+                      An object containing information about the Owner's
+                      information when the type is **VerifyBeneficiary**.
+                    required:
+                      - name
+                      - identification
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
+                        type: object
+                        required:
+                          - envelope
+                        properties:
+                          envelope:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: |
+                                      The first name of the Owner.
+                                    example: JHON
+                                  last_name:
+                                    type: string
+                                    description: |
+                                      The last name of the Owner.
+                                    example: DOE
+                          identification:
+                            type: object
+                            description: >
+                              An object containing information about the Owner's
+                              identification.
+                            properties:
+                              private_identification:
+                                type: object
+                                required:
+                                  - date_and_place_of_birth
+                                properties:
+                                  date_and_place_of_birth:
+                                    type: object
+                                    required:
+                                      - birth_date
+                                    properties:
+                                      birth_date:
+                                        type: string
+                                        description: |
+                                          Date of Birth.
+                                        example: '2025-01-01'
+                              organisation_identification:
+                                type: object
+                                description: >
+                                  An object containing information about the
+                                  legal organisation identification.
+                                required:
+                                  - supplementary_data
+                                properties:
+                                  supplementary_data:
+                                    type: object
+                                    required:
+                                      - envelope
+                                    properties:
+                                      envelope:
+                                        type: object
+                                        properties:
+                                          date_of_incorporation:
+                                            type: string
+                                            description: |
+                                              Date of incorporation.
+                                            example: '2025-01-01'
+                                  lei:
+                                    type: string
+                                    description: |
+                                      Legal Entity Identifier (LEI).
+                                    example: 506700GE1G29325QX363
+                                  bic:
+                                    type: string
+                                    description: >
+                                      Business Identifier Code (BIC). A code
+                                      defined in accordance with the ISO 9362
+                                      standard for identifying financial and
+                                      non-financial institutions.
+
+                                      - also known as a SWIFT code, is an 8-11
+                                      character code used to identify banks and
+                                      their branches globally.
+                                    example: HBUKGB4B
+                                  other:
+                                    type: object
+                                    description: >
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
+                                    required:
+                                      - identification
+                                      - issuer
+                                    properties:
+                                      identification:
+                                        type: string
+                                        description: |
+                                          Business Registration Number.
+                                        example: 5493001KJTIIGC8Y1R12
+                                      issuer:
+                                        type: string
+                                        description: >
+                                          Issuing Authority for the Business
+                                          Registration Number
+                                        example: ISO17442
+                  debtor:
+                    type: object
+                    description: >
+                      An object containing information about the Owner's
+                      information when the type is **VerifyOriginator**.
+                    required:
+                      - name
+                      - identification
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
+                        type: object
+                        required:
+                          - envelope
+                        properties:
+                          envelope:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: |
+                                      The first name of the Owner.
+                                    example: JHON
+                                  last_name:
+                                    type: string
+                                    description: |
+                                      The last name of the Owner.
+                                    example: DOE
+                          identification:
+                            type: object
+                            description: >
+                              An object containing information about the Owner's
+                              identification.
+                            properties:
+                              private_identification:
+                                type: object
+                                required:
+                                  - date_and_place_of_birth
+                                properties:
+                                  date_and_place_of_birth:
+                                    type: object
+                                    required:
+                                      - birth_date
+                                    properties:
+                                      birth_date:
+                                        type: string
+                                        description: |
+                                          Date of Birth.
+                                        example: '2025-01-01'
+                              organisation_identification:
+                                type: object
+                                description: >
+                                  An object containing information about the
+                                  legal organisation identification.
+                                required:
+                                  - supplementary_data
+                                properties:
+                                  supplementary_data:
+                                    type: object
+                                    required:
+                                      - envelope
+                                    properties:
+                                      envelope:
+                                        type: object
+                                        properties:
+                                          date_of_incorporation:
+                                            type: string
+                                            description: |
+                                              Date of incorporation.
+                                            example: '2025-01-01'
+                                  lei:
+                                    type: string
+                                    description: |
+                                      Legal Entity Identifier (LEI).
+                                    example: 506700GE1G29325QX363
+                                  bic:
+                                    type: string
+                                    description: >
+                                      Business Identifier Code (BIC). A code
+                                      defined in accordance with the ISO 9362
+                                      standard for identifying financial and
+                                      non-financial institutions.
+
+                                      - also known as a SWIFT code, is an 8-11
+                                      character code used to identify banks and
+                                      their branches globally.
+                                    example: HBUKGB4B
+                                  other:
+                                    type: object
+                                    description: >
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
+                                    required:
+                                      - identification
+                                      - issuer
+                                    properties:
+                                      identification:
+                                        type: string
+                                        description: |
+                                          Business Registration Number.
+                                        example: 5493001KJTIIGC8Y1R12
+                                      issuer:
+                                        type: string
+                                        description: >
+                                          Issuing Authority for the Business
+                                          Registration Number
+                                        example: ISO17442
               examples:
                 Successful Example:
                   value:
-                    vasps:
-                      - health: UP
-                        vaspId: '15952089931162060684'
-                        vaspName: A Exchange
-                        protocol:
-                          - TRAVEL-RULE
-                        legalName: A Exchange
-                        jurisdiction: Singapore
-                        country: Singapore
-                        licensedStatus: Processing
-                        countryCode: KR
-                        vendor: VERIFYVASP
-                        vaspStatus: INTEROPERATED
-                      - vaspId: '15952089931162060683'
-                        vaspName: B Exchange
-                        protocol:
-                          - VERIFY-NAME
-                        legalName: B Exchange
-                        jurisdiction: Singapore
-                        country: Singapore
-                        licensedStatus: Processing
-                        countryCode: SG
-                        vendor: CODE
-                        vaspStatus: INTEROPERATED
+                    verification_results:
+                      ticker: MATCHED
+                      network: MISMATCHED
+                      address: SKIPPED
+                      tag: SKIPPED
+                      tx_hash: SKIPPED
+                      dti: SKIPPED
+                    creditor:
+                      name: HONG KIL DONG
+                      supplementary_data:
+                        envelope:
+                          name:
+                            first_name: GIL DONG
+                            last_name: HONG
+                      identification:
+                        private_identification:
+                          date_and_place_of_birth:
+                            birth_date: '2025-01-01'
         '400':
           description: 400 Bad Request Error response
           content:
@@ -187,9 +387,9 @@ paths:
   /v1/vasps/self:
     get:
       summary: Get VASP ID API
-      description: |
-        This API returns your VASP's VASP ID.
       operationId: verifyname-get-Vasp-Id
+      tags:
+        - VASP Management API
       x-readme:
         explorer-enabled: false
       responses:
@@ -291,25 +491,9 @@ paths:
   /v2/owner-verifications:
     post:
       operationId: verifyname-owner-verification
+      tags:
+        - Verification API
       summary: Request Owner Verification API
-      description: >
-        VASPs can initiate the verification flow by calling this API to verify
-        both the Originator and the Beneficiary.
-
-
-        Owner verification is performed in the following two scenarios:
-          1. **Post Verification**: The Beneficiary VASP performs Owner Verification after the Originating VASP executes the withdrawal transaction. This process is initiated by the Beneficiary VASP to verify whether the Originator and the Beneficiary represent the same entity.
-          2. **Pre Verification**: Before executing the withdrawal transaction, the Originating VASP performs Owner Verification to confirm that the Beneficiary and the Originator represent the same entity.
-
-        ### Owner Verification Result
-
-        - The verification results for the following items — `ticker`,
-        `network`, `address`, `tx_hash`, `dti`, `name`, `birth_date`,
-        `date_of_incorporation`, and `organisation_identification` — can be
-        returned as one of the following values: 
-          - `MATCHED`
-          - `MISMATCHED`
-          - `SKIPPED`
       x-readme:
         explorer-enabled: false
       requestBody:
@@ -329,11 +513,20 @@ paths:
                     envelope:
                       type: object
                       required:
+                        - key_type
                         - vasp_id
                         - type
                         - ticker
                         - address
                       properties:
+                        key_type:
+                          type: string
+                          enum:
+                            - PerVasp
+                            - PerAddress
+                            - PerVerification
+                          description: "The type of Public Key to be used for encrypting personal information.\nThe default value is\_**PerVasp**. PerAddress and PerVerification can also be entered.\nThe Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.\nExplanation of allowed values: - **PerVasp**: A single key shared across all verifications for a VASP. - **PerAddress**: A unique key is generated for each beneficiary address. - **PerVerification**: A new key is generated for every verification request.\n"
+                          example: PerVasp
                         vasp_id:
                           type: string
                           description: >
@@ -776,20 +969,11 @@ paths:
                     message: timeout of 5000ms exceeded
     get:
       operationId: verifyname-list-owner-verification
+      tags:
+        - Verification API
+      x-readme:
+        explorer-enabled: false
       summary: List Owner Verification Result API
-      description: >
-        This API retrieves the history of all previously requested owner
-        verifications. 
-
-
-        ### Query with Filters
-
-        - This API supports a variety of query parameters, enabling you to
-        filter and retrieve owner verification records that match specific
-        criteria.
-
-        - All query parameters are optional, and any specified parameters are
-        applied using an AND operation to filter the results.
       parameters:
         - name: from_date
           in: query
@@ -1313,60 +1497,9 @@ paths:
   /v2/owner-verification/{request_id}:
     get:
       summary: Get Owner Verification Result API
-      description: >
-        This API retrieves the result of a specific owner verification request
-        using its unique `request_id`.
-
-
-        When the verification result is `DENIED` or `ERROR`, the `reason` field
-        in the response provides a code that explains the reason for the
-        verification result. The following table lists the codes available in
-        the `reason`  field along with their descriptions.
-
-
-        | Reason Code                              | Description |
-
-        |-------------------------------------------|-------------|
-
-        | `MISMATCH-TICKER`                           | Used with
-        verification_result:  DENIED` when the owner verification result for the
-        `ticker` field is `MISMATCHED`.|
-
-        | `MISMATCH-NETWORK`                          | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `network` field is `MISMATCHED`.|
-
-        | `MISMATCH-ADDRESS`                          | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `address` field is `MISMATCHED`.|
-
-        | `MISMATCH-NAME`                             | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `name` field is `MISMATCHED`.|
-
-        | `MISMATCH-DATE-OF-INCORPORATION`            | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `date_of_incorporation` field is `MISMATCHED`.|
-
-        | `MISMATCH-DTI`                              | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `dti` field is `MISMATCHED`.|
-
-        | `MISMATCH-BIRTH-DATE`                       | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `birth_date` field is `MISMATCHED`.|
-
-        | `MISMATCH-ORGANISATION-IDENTIFICATION`      | Used with
-        verification_result: `DENIED` when the owner verification result for the
-        `organisation_identification` field is `MISMATCHED`.|
-
-        | `TRANSFER-ERROR`                            | Used with
-        verification_result: `ERROR` when a transaction transfer fails. |
-
-        | `UNDEFINED-ERROR`                           | Used with
-        verification_result: `ERROR` when an unexpected error occurs that is not
-        covered by the above reason codes. |
       operationId: verifyname-get-owner-verification-result
+      tags:
+        - Verification API
       x-readme:
         explorer-enabled: false
       parameters:
@@ -1693,11 +1826,8 @@ paths:
   /v2/owner-verifications/{request_id}/tx/inquiry:
     post:
       summary: Check Transaction Status API
-      description: >
-        This API is used by the Beneficiary VASP to check the current status of
-        the transaction when the transaction result has not been reported by the
-        Originating VASP after the Owner Verification is completed.
-      operationId: verifyname-check-transaction-status
+      tags:
+        - Transaction API
       x-readme:
         explorer-enabled: false
       parameters:
@@ -1863,19 +1993,9 @@ paths:
   /v2/owner-verifications/{request_id}/result:
     post:
       summary: Owner Verification Result Report API
-      description: >
-        This API is used by the VASP that received the Owner Verification result
-        to report the final verification decision.
-
-
-        The VASP that performed the Owner Verification receives the final result
-        via the Callback API.
-
-
-        ### Implementation Policy
-          1. The VASP that receives the verification result must report the final verification result.
-          2. If the final verification result is `DENIED` or `ERROR`, you must provide an appropriate reason in both the `reason` and `message` fields.
       operationId: verifyname-owner-verification-result-report
+      tags:
+        - Report API
       x-readme:
         explorer-enabled: false
       parameters:
@@ -2010,19 +2130,9 @@ paths:
   /v2/owner-verifications/{request_id}/tx:
     post:
       summary: Owner Verification Transaction Report API
-      description: >
-        This API is used by the Originating VASP to report the execution of a
-        transfer transaction.
-
-
-        The Beneficiary VASP can receives the result of the transaction via the
-        Callback API.
-
-
-        ### Implementation Policy
-          1. The Originating VASP must call this API immediately after executing the transaction and receiving the TxHash or TxId.
-          2. If the Originating VASP fails to call this API after executing the transaction, the Beneficiary VASP will call the Check Transaction Status API to confirm the current status of the transaction.
       operationId: verifyname-transaction-report
+      tags:
+        - Report API
       x-readme:
         explorer-enabled: false
       parameters:

@@ -1,5 +1,5 @@
 ---
-title: Lookup Owner Verification Result API
+title: List Owner Verification Result API
 api:
   file: VN_Enclave_API_KR_Spec.yaml
   operationId: verifyname-list-owner-verification
