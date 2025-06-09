@@ -9,6 +9,10 @@ hidden: false
 metadata:
   robots: index
 ---
+<Common_database />
+
+<br />
+
 ## Step 1. DBMS 선택 및 설치
 
 VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 로그, 상대 VASP의 공개 키 등 주요 정보를 저장하기 위해 사용됩니다. 아래 지원 DBMS 중 귀사의 인프라와 운영 환경에 적합한 DBMS를 선택하십시오.
