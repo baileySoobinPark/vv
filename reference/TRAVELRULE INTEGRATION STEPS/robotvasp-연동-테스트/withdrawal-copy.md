@@ -221,7 +221,7 @@ metadata:
   **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-  * **요청 파라미터**
+  * **요청 쿼리 파라미터**
 
   | Parameter Name | Type   | Description    | Example                                    |
   | -------------- | ------ | -------------- | ------------------------------------------ |
