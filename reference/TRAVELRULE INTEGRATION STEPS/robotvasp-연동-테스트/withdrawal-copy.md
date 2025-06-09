@@ -189,7 +189,7 @@ metadata:
 ### 3. User Verification Test
 
 * **조건**
-  * 사용자 주소 검증에서 VERIFIED 응답을 받은 직후 이어서 진행합니다.
+  * 사용자 주소 검증에서 `VERIFIED` 응답을 받은 직후 이어서 진행합니다.
   * Enclave API 중 [User Verification API](ref:travelrule-encalve-request-user-verification-1)을 호출하여 테스트합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
 * **기대 결과**
   * 테스트 데이터를 기준으로 정상 검증(`VERIFIED`) 시나리오를 포함하여 발생 가능한 아래 모든 `DENIED` 케이스에 대해 기대한 사유 코드가 반환되는지 확인합니다. 예를 들어, 테스트 데이터 외의 임의의 데이터로 검증을 요청하여 `UNKNOWN-ADDRESS`가 발생하는지 확인할 수 있습니다.
@@ -204,36 +204,32 @@ metadata:
 
 ### 4-1. 온체인 전송 트랜잭션 실행 Test
 
-> 💡 Please Note:
+> 💡 참고 사항:
 >
-> Upon receiving a VERIFIED response from both User Account Verification and User Verification, you must transfer the virtual assets to the Beneficiary's wallet address.
+> User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 디지털 자산을 전송해야 합니다. 만약 디지털 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 디지털 자산을 전송할 경우 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
 >
-> If virtual assets are **not transferred** to the Robot VASP, **you will not be able to proceed with the deposit test.**
->
-> If you send virtual assets to Robot VASP without receiving a VERIFIED response, the deposit test cannot be completed successfully.
->
-> When conducting deposit and withdrawal tests for an XRP address, you must include the destination tag. Instructions on how to provide the destination tag can be found in the [IVMS101 Guide](ref:ivms101-guide).
+> XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드]() 에서 확인할 수 있습니다.
 
-**Case 1. Send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction**
+**Case 1. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 해시) 전송**
 
-* **Conditions**
-  * Your VASP must use the Report Transaction Result API to send the transaction hash to the VerifyVASP Central Server.
-* **Expected Result**
-  * Your VASP can confirm that the deposit has been reflected in the Robot VASP.
+* **조건**
+  * Enclave API 중 \[Report Transaction Result API]를 호출하여 테스트합니다.
+* **기대 결과**
+  * Robot VASP에 디지털 자산 입금이 반영된 것을 확인할 수 있습니다.
 
 <Accordion title="How to use the Deposit Reflection Inquery API">
   **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-  * **Request Query**
+  * **요청 파라미터**
 
-  | Parameter Name | Type   | Description                                       | Example                                    |
-  | -------------- | ------ | ------------------------------------------------- | ------------------------------------------ |
-  | `vaspId`       | string | Originating VASP ID                               | 15952089931162058999                       |
-  | `symbol`       | string | The symbol of the virtual asset to be transferred | ETH                                        |
-  | `address`      | string | The address that is receiving the virtual asset   | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+  | Parameter Name | Type   | Description    | Example                                    |
+  | -------------- | ------ | -------------- | ------------------------------------------ |
+  | `vaspId`       | string | 송신인 VASP의 ID   | 15952089931162058999                       |
+  | `symbol`       | string | 전송된 디지털 자산의 심볼 | ETH                                        |
+  | `address`      | string | 디지털 자산을 수신할 주소 | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
 
-  * **Request Example**
+  * **요청 예제**
 
   ```
   <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
@@ -242,13 +238,13 @@ metadata:
 
 <br />
 
-**Case 2. Do not send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+**Case 2. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 해시) 미전송**
 
-* Conditions
-  * Your VASP must not use the Report Transaction Result API after executing the virtual asset transfer transaction.
-* Expected Result
-  * Your VASP can receive a request regarding the Transaction Status Query API (VASP API) from the Robot VASP 10 minutes after executing the virtual asset transfer transaction.
-  * Alternatively, your VASP can use the API below to trigger the Robot VASP to call the Check Transaction Status Simulation API.
+* **조건**
+  * 디지털 자산 이전 트랜잭션 실행 후 실행 결과를 VV Central 서버에 보고하지 않아야 합니다.
+* **기대 결과**
+  * 트랜잭션 실행 후 10분 뒤에 Robot VASP가 송신 VASP의 [Transaction Status Query API]() 호출해 트랜잭션 상태를 문의합니다.
+  * 혹은 Robot VASP의 Check Transaction Status Simulation API를 호출해 즉시 Transaction Status Query API를 호출하도록 명령할 수 있습니다. Transaction Status Simulation API를 호출하는 방법은 아래와 같습니다.
 
 <Accordion title="How to use the Deposit Reflection Inquery API">
   **Method**: `POST`
