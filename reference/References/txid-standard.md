@@ -4,7 +4,7 @@ excerpt: >-
   This guide provides the standards and examples for Transaction IDs to
   effectively support data transportation between VASPs.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
