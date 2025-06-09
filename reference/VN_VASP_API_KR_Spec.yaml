@@ -340,10 +340,17 @@ paths:
               schema:
                 type: object
                 required:
-                  - verification_Results
+                  - verification_results
                 properties:
-                  verification_Results:
+                  verification_results:
                     type: object
+                    required:
+                      - ticker
+                      - network
+                      - address
+                      - tag
+                      - tx_hash
+                      - dti
                     properties:
                       ticker:
                         type: string
@@ -392,9 +399,13 @@ paths:
                           The name of the Owner.
                       supplementary_data:
                         type: object
+                        required:
+                          - name
                         properties:
                           name:
                             type: object
+                            required:
+                              - first_name
                             properties:
                               first_name:
                                 type: string
@@ -412,8 +423,26 @@ paths:
                           An object containing information about the Owner's
                           identification.
                         properties:
+                          organisation_identification:
+                            type: object
+                            required:
+                              - supplementary_data
+                            properties:
+                              supplementary_data:
+                                type: object
+                                required:
+                                  - envelope
+                                properties:
+                                  envelope:
+                                    type: object
+                                    properties:
+                                      date_of_incorporation:
+                                        type: string
+                                        example: '2020-01-01'
                           private_identification:
                             type: object
+                            required:
+                              - date_and_place_of_birth
                             properties:
                               date_and_place_of_birth:
                                 type: object
@@ -425,8 +454,49 @@ paths:
                                     description: |
                                       Date of Birth.
                                     example: '2025-01-01'
+                          lei:
+                            type: string
+                            description: |
+                              Legal Entity Identifier (LEI).
+                            example: 506700GE1G29325QX363
+                          bic:
+                            type: string
+                            description: >
+                              Business Identifier Code (BIC). A code defined in
+                              accordance with the ISO 9362 standard for
+                              identifying financial and non-financial
+                              institutions.
+
+                              - also known as a SWIFT code, is an 8-11 character
+                              code used to identify banks and their branches
+                              globally.
+                            example: HBUKGB4B
+                          other:
+                            type: object
+                            description: >
+                              MATCHED is returned only if both the provided
+                              identification and issuer exactly match the values
+                              stored in the Enclave server.
+                            required:
+                              - identification
+                              - issuer
+                            properties:
+                              identification:
+                                type: string
+                                description: |
+                                  Business Registration Number.
+                                example: 5493001KJTIIGC8Y1R12
+                              issuer:
+                                type: string
+                                description: >
+                                  Issuing Authority for the Business
+                                  Registration Number
+                                example: ISO17442
                   debtor:
                     type: object
+                    required:
+                      - name
+                      - identification
                     properties:
                       name:
                         type: string
@@ -434,12 +504,16 @@ paths:
                           The name of the Owner.
                       supplementary_data:
                         type: object
+                        required:
+                          - envelope
                         properties:
                           envelope:
                             type: object
                             properties:
                               name:
                                 type: object
+                                required:
+                                  - first_name
                                 properties:
                                   first_name:
                                     type: string
@@ -457,8 +531,26 @@ paths:
                           An object containing information about the Owner's
                           identification.
                         properties:
+                          organisation_identification:
+                            type: object
+                            required:
+                              - supplementary_data
+                            properties:
+                              supplementary_data:
+                                type: object
+                                required:
+                                  - envelope
+                                properties:
+                                  envelope:
+                                    type: object
+                                    properties:
+                                      date_of_incorporation:
+                                        type: string
+                                        example: '2020-01-01'
                           private_identification:
                             type: object
+                            required:
+                              - date_and_place_of_birth
                             properties:
                               date_and_place_of_birth:
                                 type: object
@@ -470,6 +562,44 @@ paths:
                                     description: |
                                       Date of Birth.
                                     example: '2025-01-01'
+                          lei:
+                            type: string
+                            description: |
+                              Legal Entity Identifier (LEI).
+                            example: 506700GE1G29325QX363
+                          bic:
+                            type: string
+                            description: >
+                              Business Identifier Code (BIC). A code defined in
+                              accordance with the ISO 9362 standard for
+                              identifying financial and non-financial
+                              institutions.
+
+                              - also known as a SWIFT code, is an 8-11 character
+                              code used to identify banks and their branches
+                              globally.
+                            example: HBUKGB4B
+                          other:
+                            type: object
+                            description: >
+                              MATCHED is returned only if both the provided
+                              identification and issuer exactly match the values
+                              stored in the Enclave server.
+                            required:
+                              - identification
+                              - issuer
+                            properties:
+                              identification:
+                                type: string
+                                description: |
+                                  Business Registration Number.
+                                example: 5493001KJTIIGC8Y1R12
+                              issuer:
+                                type: string
+                                description: >
+                                  Issuing Authority for the Business
+                                  Registration Number
+                                example: ISO17442
               examples:
                 Successful Example:
                   value:
