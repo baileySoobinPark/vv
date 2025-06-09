@@ -5,6 +5,6 @@ api:
   operationId: verifyname-check-transaction-status
 hidden: false
 ---
-이 API는 수신 VASP가 송신 VASP로 트랜잭션의 상태 조회를 질의하기 위해 사용되는 API입니다. 수신 VASP측에서 사용자 검증을 완료했음에도 일정 시간 내에 송신 VASP로부터 트랜잭션 결과 Report 또는 Error Report가 없는 경우 모니터링을 위해 전송 결과를 조회하는 경우에 호출할 수 있습니다.
+이 API는 수신 VASP가 송신 VASP로 트랜잭션의 상태 조회를 질의하기 위해 사용되는 API입니다. 수신 VASP측에서 검증을 완료했음에도 일정 시간 내에 송신 VASP로부터 트랜잭션 결과 Report 또는 Error Report가 없는 경우 모니터링을 위해 전송 결과를 조회하는 경우에 호출할 수 있습니다.
 
 ***
