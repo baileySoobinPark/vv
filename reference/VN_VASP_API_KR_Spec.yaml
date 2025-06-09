@@ -399,8 +399,6 @@ paths:
                           The name of the Owner.
                       supplementary_data:
                         type: object
-                        required:
-                          - name
                         properties:
                           name:
                             type: object
