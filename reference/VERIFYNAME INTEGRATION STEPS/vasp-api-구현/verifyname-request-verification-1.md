@@ -149,7 +149,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 
 검증 요청 `type` 에 따른 소유주 정보 응답 예시는 다음과 같습니다.
 
-* `VerifyOriginator` 인 경우 트랜잭션 송신 계좌 소유주 정보를 `debtor`객체로 반환합니다.
+* `VerifyOriginator` 인 경우 트랜잭션 송신 계좌의 소유주 정보를 `debtor`객체로 반환합니다.
   <HTMLBlock>{`
   <style>
     .custom-accordion {
@@ -274,7 +274,7 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
     </code></pre>
   </details>
   `}</HTMLBlock>
-* `VerifyBeneficiary` 인 경우 수신 계좌 소유주 정보를 `creditor`객체로 반환합니다.
+* `VerifyBeneficiary` 인 경우 수신 계좌의 소유주 정보를 `creditor`객체로 반환합니다.
   <HTMLBlock>{`
   <details class="custom-accordion">
     <summary>Example of Response Body: <code>VerifyBeneficiary</code> 타입, 개인 계정인 경우</summary>
