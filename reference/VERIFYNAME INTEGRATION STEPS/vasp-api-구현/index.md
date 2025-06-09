@@ -87,7 +87,7 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송신자-수신자 검
     <tr>
       <td class="api-name"><a href="#">Verify Name API</a></td>
       <td class="api-role">송신 VASP & 수신 VASP</td>
-      <td>수신 계좌의 소유주 정보가 송신자의 정보와 일치하는지 여부를 검증합니다.</td>
+      <td>전송 자산과 수신 계좌의 유효성을 검증하고 Enclave로 계좌 소유주의 성명과 생년월일 정보를 전달합니다.</td>
     </tr>
     <tr>
       <td class="api-name"><a href="#">Check Transaction Status API</a></td>
