@@ -5,3 +5,7 @@
 - verification-api-1
 - transaction-api-1
 - report-api-1
+- vasp-verification-api-3
+- vasp-transaction-api-3
+- vasp-callback-api-3
+- vasp-database-management-api-2

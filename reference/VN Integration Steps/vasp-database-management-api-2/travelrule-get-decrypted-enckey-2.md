@@ -1,0 +1,7 @@
+---
+title: Database Management API
+api:
+  file: VN_VASP_API_KR_Spec.yaml
+  operationId: travelrule-get-Decrypted-EncKey
+hidden: false
+---
