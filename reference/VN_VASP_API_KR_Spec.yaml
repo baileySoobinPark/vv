@@ -3,7 +3,7 @@ info:
   title: VN Integration Steps
   version: 1.0.0
 servers:
-  - url: https://{vasp-endpoint}
+  - url: /
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -340,71 +340,98 @@ paths:
               schema:
                 type: object
                 required:
-                  - verificationResult
+                  - verification_Results
                 properties:
-                  verificationResult:
+                  verification_Results:
                     type: object
                     required:
-                      - providers
+                      - verification_results
                     properties:
-                      providers:
-                        type: array
-                        items:
-                          type: object
-                          required:
-                            - vaspId
-                            - vaspName
-                            - protocol
-                            - legalName
-                            - jurisdiction
-                            - country
-                            - licensedStatus
-                          properties:
-                            vaspId:
-                              type: string
-                              description: >
-                                Unique identifier of VASP that supporting
-                                VerifyName.
-                              example: '15952089931162060684'
-                            vaspName:
-                              type: string
-                              description: |
-                                Name of the VASP.
-                              example: A Exchange
-                            protocol:
-                              type: array
-                              items:
-                                type: string
-                                enum:
-                                  - TRAVEL-RULE
-                                  - VERIFY-NAME
-                              description: |
-                                The protocol of the VASP.
-                            legalName:
-                              type: string
-                              description: |
-                                The legal entity name of the VASP.
-                              example: A Exchange
-                            jurisdiction:
-                              type: string
-                              description: >
-                                The country or region where the legal entity is
-                                established (jurisdiction of incorporation).
-                              example: Singapore
-                            country:
-                              type: string
-                              description: >
-                                The name of the country where the VASP is
-                                established.
-                              example: Singapore
-                            licensedStatus:
-                              type: string
-                              enum:
-                                - Regulated
-                                - Unregulated
-                              description: |
-                                The VA License acquisition status of the VASP.
-                              example: Regulated
+                      verification_results:
+                        type: object
+                        properties:
+                          ticker:
+                            type: string
+                            description: |
+                              The result of the Ticker verification.
+                            example: MATCHED
+                          network:
+                            type: string
+                            description: |
+                              The result of the Network verification.
+                            example: MATCHED
+                          address:
+                            type: string
+                            description: |
+                              The result of the Address verification.
+                            example: MATCHED
+                          tag:
+                            type: string
+                            description: >
+                              The wallet address tag(secondary address such as
+                              XRP, XLM, EOS, etc...), regardless
+                              VerifyOriginator or VerifyBeneficiary.
+                            example: '3256697931'
+                          tx_hash:
+                            type: string
+                            description: |
+                              The result of the Tx_Hash verification.
+                            example: MATCHED
+                          dti:
+                            type: string
+                            description: |
+                              The result of the DTI verification.
+                            example: MATCHED
+                      creditor:
+                        type: object
+                        description: >
+                          An object containing information about the Owner's
+                          information when the type is **VerifyBeneficiary**.
+                        required:
+                          - name
+                          - identification
+                        properties:
+                          name:
+                            type: string
+                            description: |
+                              The name of the Owner.
+                          supplementary_data:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: |
+                                      The first name of the Owner.
+                                    example: JHON
+                                  last_name:
+                                    type: string
+                                    description: |
+                                      The last name of the Owner.
+                                    example: DOE
+                      debtor:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: JHON DOE
+                          supplementary_data:
+                            type: object
+                        example:
+                          name: JHON DOE
+                          supplementary_data:
+                            envelope:
+                              name:
+                                first_name: JHON
+                                last_name: DOE
+                          identification:
+                            private_identification:
+                              date_and_place_of_birth:
+                                date_of_birth: '1990-01-01'
               examples:
                 Successful Example:
                   value:
@@ -786,10 +813,9 @@ paths:
   /VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY:
     post:
       summary: Database Management API
-      description: |
       security:
         - ApiKeyAuth: []
-      operationId: travelrule-get-Decrypted-EncKey
+      operationId: verifyName-get-Decrypted-EncKey
       tags:
         - VASP Database Management API
       x-readme:
