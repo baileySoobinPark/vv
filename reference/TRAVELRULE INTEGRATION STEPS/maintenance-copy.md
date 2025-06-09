@@ -1,28 +1,28 @@
 ---
 title: 운영
 excerpt: >-
-  This document outlines the regulations that VASPs affiliated with the
-  VerifyVASP Alliance must adhere to in order to ensure the smooth provision of
-  TravelRule Protocol services. Adhering to these regulations helps reduce
-  errors during communication and data exchange between VASPs.
+  Travel Rule Protocol을 안정적으로 운영하기 위한 VASP 운영 규정입니다. 본 문서의 규정을 준수함으로써 VASP 간 상호
+  검증과정에서 발생할 수 있는 오류를 최소화하여 안정적인 사용자 경험을 제공하십시오.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-> 💡 This document will be continuously updated.
+> 💡 본 문서는 지속적으로 업데이트됩니다.
 >
-> VASP operation managers are advised to periodically review the Maintenance Guide to ensure all necessary maintenance procedures are followed.
+> 각 VASP의 운영 담당자는 필요한 유지보수 절차를 누락 없이 수행하기 위해 본 가이드를 주기적으로 검토할 것을 권장합니다.
 
-## 1. Advance Notice Before VASP Server Maintenance
+## VASP 서버 유지보수 일정 사전 고지
 
-Each VASP must notify the VerifyVASP operations team before starting server maintenance at least one week in advance. Below are the ways to notify the VerifyVASP alliance of your VASP’s server maintenance.
+VASP는 서버 유지보수 진행 최소 1주일 전까지 VerifyVASP 운영팀에 해당 일정을 고지해야 합니다. 고지 방법은 아래와 같습니다.
 
-### 1. Inform the schedule to the VerifyVASP operation team via Slack channel or E-mail
+### 1. Slack 또는 이메일을 통한 일정 고지
 
-Every VASP that belongs to VerifyVASP has its own Slack channel to contact the VerifyVASP operations team. Your VASP must notify the VerifyVASP operation team of your server maintenance at least one week in advance via Slack. Alternatively, if your VASP prefers to notify the server maintenance via E-mail, please contact using the E-mail address below.
+VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채널을 통해 운영팀과 소통할 수 있습니다. 예정된 서버 유지보수 작업이 있다면, 최소 1주일 전 Slack 채널을 통해 운영팀에 일정을 고지해야 합니다. 이메일 고지를 선호하는 경우 아래 주소로 작업 내용을 전달해 주십시오.
 
-* Contact: [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)
+* 연락처: [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)
+
+<br />
 
 <br />
 
