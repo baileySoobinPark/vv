@@ -217,7 +217,7 @@ metadata:
 * **기대 결과**
   * Deposit Reflection Inquery API를 호출해 디지털 자산이 Robot VASP에 입금된 것을 확인할 수 있습니다.
 
-<Accordion title=" Deposit Reflection Inquery API 사용 방법">
+<Accordion title=" Deposit Reflection Inquery API 호출 방법">
   **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
