@@ -5,7 +5,7 @@ excerpt: >-
   must enter a suitable address that fits the scheme supported by the network
   for each verification request.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
