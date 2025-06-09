@@ -272,7 +272,7 @@ metadata:
 **Case 1. 디지털 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 보고**
 
 * **조건**
-  * 디지털 자산 전송 트랜잭션을 실행하지 않고 Report [Error API]() 를 호출해 VV Central 서버에 에러를 보고합니다.
+  * 디지털 자산 전송 트랜잭션을 실행하지 않고 [Report Error API]() 를 호출해 VV Central 서버에 에러를 보고합니다.
 * **기대 결과**
   * Robot VASP가 Transaction Status Query API 호출을 중지합니다.
   * Verification 결과가 `VERIFIED`에서 `ERROR`로 변경됩니다. 테스트를 진행하는 사용자는 Enclave API 중 [Get Verification Result API]()  혹은 [List Verification Result API]() 를 호출해 변경 사항을 확인할 수 있습니다.
