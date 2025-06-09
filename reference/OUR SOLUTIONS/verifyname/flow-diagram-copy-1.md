@@ -136,7 +136,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
     <li class="step-item"><div class="step-badge">26</div>
       <div class="step-content">수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 바탕으로 계정 소유주 검증 결과 및 이에 따른 입금 반영 여부를 확정합니다.</div></li>
     <li class="step-item"><div class="step-badge">27</div><div class="step-badge">28</div>
-      <div class="step-badge">29</div><div class="step-badge">30</div><div class="step-content">수신 VASP는 계정 소유주 검증 결과를 Enclave의 <code>Report Verification Result API</code>를 통해 송신 VASP로 전달해야 합니다. Report를 전달받은 송신 VASP의 Enclave는 송신 VASP 백엔드의 <code>Callback API</code>를 호출하여 해당 결과를 전달합니다.</div></li>
+      <div class="step-badge">29</div><div class="step-badge">30</div><div class="step-content">수신 VASP는 계정 소유주 검증 결과를 Enclave의 <code>Report Verification Result API</code>를 통해 송신 VASP로 전달해야 합니다. Report를 전달받은 송신 VASP의 Enclave는 송신 VASP 백엔드의 <code>Callback API(OWNER_VERIFICATION_RESULT_REPORT)</code>를 호출하여 해당 결과를 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">31</div>
       <div class="step-badge">32</div><div class="step-content"><strong>[선택]</strong> 공유된 최종 검증 결과에 따라 양쪽 VASP는 입출금 반영을 확정하고, 사용자에게 결과를 안내할 수 있습니다.</div></li>
   </ol>
@@ -194,7 +194,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
     <li class="step-item"><div class="step-badge">19</div>
       <div class="step-content">Enclave의 <code>Report Verification Result API</code>를 호출하여 결과를 수신 VASP에 공유합니다.</div></li>
     <li class="step-item"><div class="step-badge">20</div><div class="step-badge">21</div><div class="step-badge">22</div>
-      <div class="step-content">수신 VASP의 Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 Report 된 결과를 전달합니다.</div></li>
+      <div class="step-content">수신 VASP의 Enclave는 VASP 백엔드의 <code>Callback API(OWNER_VERIFICATION_RESULT_REPORT)</code>를 호출하여 Report 된 결과를 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">23</div>
       <div class="step-content"><strong>[선택]</strong> 송신 VASP의 검증 결과가 <code>실패</code>인 경우, 사용자에게 출금이 불가함을 출금 취소 사유와 함께 안내할 수 있습니다.</div></li>
     <li class="step-item"><div class="step-badge">24</div>
@@ -210,7 +210,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송
     <li class="step-item"><div class="step-badge">26</div>
       <div class="step-content"><code>Owner Verification Transaction Result API</code>를 호출하여 해당 트랜잭션 해시를 기반으로 실행 결과를 Report합니다.</div></li>
     <li class="step-item"><div class="step-badge">27</div><div class="step-badge">28</div><div class="step-badge">29</div>
-      <div class="step-content">수신 VASP Enclave는 백엔드의 <code>Callback API</code>를 통해 트랜잭션 실행 보고 결과를 전달합니다.</div></li>
+      <div class="step-content">수신 VASP Enclave는 백엔드의 <code>Callback API(OWNER_VERIFICATION_TX_REPORT)</code>를 통해 트랜잭션 실행 보고 결과를 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">30</div>
       <div class="step-content">결과를 전달받은 수신 VASP는 해당 결과를 바탕으로 입금 여부를 확정하고 사용자에게 안내할 수 있습니다.</div></li>
   </ol>
