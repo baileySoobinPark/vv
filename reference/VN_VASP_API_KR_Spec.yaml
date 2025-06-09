@@ -573,8 +573,6 @@ paths:
                                     properties:
                                       envelope:
                                         type: object
-                                        required:
-                                          - date_of_incorporation
                                         properties:
                                           date_of_incorporation:
                                             type: string
