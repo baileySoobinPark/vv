@@ -584,6 +584,8 @@ VASP의 Enclave 서버 IP를 [corporate@verifyvasp.com](mailto:corporate@verifyv
 
 VerifyVASP 중앙 서버가 VASP의 인프라에 접근할 수 있도록, VASP 인프라 네트워크 설정으로 VerifyVASP의 IP 주소를 허용 목록에 등록해야 합니다. 해당 IP 정보는 [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com) 또는 전용 Slack 채널을 통해 문의해 주세요.
 
+<br />
+
 ## Step 4. Enclave 통합 API 구성
 
 Enclave 서버가 정상적으로 구동되어 VerifyVASP 중앙 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 출금 프로세스에 VerifyName 기반 검증 프로세스를 추가할 수 있습니다.
