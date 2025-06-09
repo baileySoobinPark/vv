@@ -271,16 +271,16 @@ hidden: false
 
 #### 3. OWNER\_VERIFICATION\_TX\_REPORT 유형 콜백 처리
 
-콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
+트랜잭션 결과 Report를 수신한 경우, 다음과 같은 후속 작업을 진행할 수 있습니다.
 
-* 사전 검증 결과가 VERIFIED인 경우, 이어서 자산 전송 트랜잭션을 실행합니다.
-* 사전 검증 결과가 DENIED 또는 ERROR인 경우, 자산 전송을 중단하고 송신자(사용자)에게 결과를 통지합니다.
+* 보고된 온체인 트랜잭션 Hash가 실제 수신자 주소로의 입금 건과 일치하는지 확인합니다.
+* 자산 전송 요청이 이루어졌는지 여부를 확인하고 관련 정보를 기록합니다.
 
-`OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
+`OWNER_VERIFICATION_TX_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
 <HTMLBlock>{`
 <details class="custom-accordion">
-  <summary>Example of Callback Request Body: OWNER_VERIFICATION_RESULT_REPORT</summary>
+  <summary>Example of Callback Request Body: OWNER\_VERIFICATION\_TX\_REPORT</summary>
 
   <pre><code class="language-json">
  {
@@ -294,136 +294,7 @@ hidden: false
 </details>
 `}</HTMLBlock>
 
-#### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
-
-콜백으로 수신한 트랜잭션 Hash가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 결과 및 이력을 데이터베이스에 기록합니다.
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"TX_REPORT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-      "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-      "vout":"2"
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
-
-#### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
-
-오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-  {
-    "callbackType": "OWNER_VERIFICATION_TX_REPORT",
-    "data": {
-      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
-    }
-  }
-  </code></pre>
-</details>
-`}</HTMLBlock>
-
-#### 5. CHAINALYSIS\_KYT\_RESULT 유형 콜백 처리 (선택사항)
-
-콜백으로 수신한 Chainalysis KYT 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
-
-* 송신자 또는 수신자의 평가 데이터 갱신
-* 트랜잭션 허용 또는 차단 결정
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"CHAINALYSIS_KYT_RESULT",
-   "data":{
-      "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-      "riskAssessment":{
-         "chainalysisKYT":{
-            "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
-            "counterpartyVaspId":"15952089931162059995",
-            "apiType":"ATTEMPT",
-            "userId":"15952089931162059995",
-            "direction":"OUTGOING",
-            "network":"ETHEREUM",
-            "asset":"ETH",
-            "amount":"1",
-            "usdPrice":"1820.17",
-            "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-            "timestamp":"2023-05-18T12:39:44.000Z",
-            "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-            "status":"PROCESSED",
-            "alertCount":1,
-            "createdAt":"2023-05-18T12:39:46.000Z",
-            "assessedAt":"2023-05-18T12:39:45.263Z"
-         },
-         "chainalysisKYTAlerts":[
-            {
-               "counterpartyVaspId":"15952089931162059995",
-               "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-               "direction":"OUTGOING",
-               "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
-               "alertLevel":"MEDIUM",
-               "entityCategory":"high risk exchange",
-               "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-               "exposureType":"DIRECT",
-               "alertAmount":"1820.17",
-               "createdAt":"2023-05-18T12:39:52.461Z"
-            }
-         ]
-      }
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
-
-#### 6. REFINITIV\_WCO\_RESULT 유형 콜백 처리 (선택사항)
-
-콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
-
-* 송신자 또는 수신자의 평가 데이터 갱신
-* 트랜잭션 허용, 재개 또는 차단 결정
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"REFINITIV_WCO_RESULT",
-   "data":{
-      "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-      "riskAssessment":{
-         "refinitivWorldCheckOne":{
-            "counterpartyVaspId":"15952089931162058999",
-            "direction":"INCOMING",
-            "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
-            "status":"PROCESSED",
-            "matchStrength":"EXACT",
-            "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
-            "createdAt":"2023-05-18T12:39:48.000Z",
-            "assessedAt":"2023-05-18T12:39:57.834Z"
-         }
-      }
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
+<br />
 
 ### 제약 조건
 
