@@ -574,7 +574,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 
 ## Step 3. 네트워크 설정
 
-Enclave 서버가 정상적으로 실행된 이후, VerifyVASP 중앙 서버와의 안전한 통신을 위해 네트워크 Allowlist를 구성해야 합니다. 1.
+Enclave 서버가 정상적으로 실행된 이후, VerifyVASP 중앙 서버와의 안전한 통신을 위해 네트워크 Allowlist를 구성해야 합니다.
 
 ### Enclave 서버 IP를 VerifyVASP 중앙 서버에 등록
 
