@@ -243,7 +243,7 @@ metadata:
 * **조건**
   * 디지털 자산 이전 트랜잭션 실행 후 실행 결과를 VV Central 서버에 보고하지 않아야 합니다.
 * **기대 결과**
-  * 트랜잭션 실행 후 10분 뒤에 Robot VASP가 송신 VASP의 [Transaction Status Query API]() 호출해 트랜잭션 상태를 문의합니다.
+  * 트랜잭션 실행하고 10분 후 Robot VASP가 송신 VASP의 [Check Transaction Status API]() 호출해 트랜잭션 상태를 문의합니다.
   * 혹은 Robot VASP의 Check Transaction Status Simulation API를 호출해 즉시 Transaction Status Query API를 호출하도록 명령할 수 있습니다. Transaction Status Simulation API를 호출하는 방법은 아래와 같습니다.
 
 <Accordion title="How to use the Deposit Reflection Inquery API">
