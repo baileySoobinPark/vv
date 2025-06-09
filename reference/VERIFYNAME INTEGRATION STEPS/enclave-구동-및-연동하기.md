@@ -586,33 +586,6 @@ VerifyVASP 중앙 서버가 VASP의 인프라에 접근할 수 있도록, VASP �
 
 ## Step 4. Enclave 통합 API 구성
 
-Enclave 서버가 정상적으로 구동되어 VerifyVASP 중앙 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 출금 프로세스에 TravelRule 기반 검증 프로세스를 추가할 수 있습니다.
+Enclave 서버가 정상적으로 구동되어 VerifyVASP 중앙 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 출금 프로세스에 VerifyName 기반 검증 프로세스를 추가할 수 있습니다.
 
-TravelRule 주요 Flow와 이 문서 하위에 포함된 아래 API 명세를 확인하 Enclave API를 연동하십시오.
-
-#### VASP 조회 API
-
-* [Get VASP ID API](ref:travelrule-get-vasp-id-1)
-* [List VASP API](ref:travelrule-list-vasp-ids-1)
-
-#### 검증 API
-
-* [User Account Verification API](ref:travelrule-enclave-user-account-verification-1)
-* [User Verification API](ref:travelrule-encalve-request-user-verification-1)
-* [Lookup Verification Result API](ref:travelrule-enclave-list-verification-result-1)
-* [Get Verification Result API](ref:travelrule-enclave-get-verification-result-1)
-
-#### Report API
-
-* [Report Transaction Result API](ref:travelrule-enclave-report-transaction-result-1)
-* [Report Error API](ref:travelrule-enclave-report-error-1)
-
-#### Transaction API
-
-* [Check Transaction Status API](ref:travelrule-enclave-check-transaction-status-1)
-
-#### 3rd Party Risk Assessment API
-
-* [Risk Assessment Via Chainalysis Sanction API](ref:travelrule-chainalysis-sanction-1)
-* [Risk Assessment Via Chainalysis KYT API](ref:travelrule-chainalysis-kyt-1)
-* [Risk Assessment Via Refinitiv WCO API](ref:travelrule-refinitiv-wco-1)
+VerifyName 주요 Flow와 이 문서 하위에 포함된 아래 API 명세를 확인하여 Enclave API를 연동하십시오.
