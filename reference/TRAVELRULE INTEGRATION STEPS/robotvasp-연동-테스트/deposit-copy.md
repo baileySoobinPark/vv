@@ -10,7 +10,7 @@ metadata:
 >
 > 1. 입금 테스트는 **Ethereum Sepolia** 및 **Ripple Testnet**에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
 > 2. 입금 테스트를 진행하기 위해 출금 테스트가 선행되어야 합니다. 출금 테스트를 진행하지 않은 사용자는 [출금 테스트]()를 먼저 진행한 후 입금 테스트를 진행해 주십시오.
-> 3. 입금 테스트에서 당신의 VASP로 입금될 자산의 총량은 출금 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
+> 3. 입금 테스트에서 귀사의 VASP로 입금될 자산의 총량은 출금 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
 
 ## 테스트 순서
 
@@ -97,24 +97,18 @@ metadata:
 
 ## 테스트 데이터
 
-This test provides you to perform testing for the following three cases.
+테스트의 사용할 가상의 사용자 정보는 아래와 같습니다. 이 정보는 수신 VASP로 동작하는 Robot VASP에 미리 저장되어 있어 검증이 가능한 정보입니다.
 
-1. **Virtual asset transfer requested by an individual user who has completed KYC verification**
-2. **Virtual asset transfer requested by an individual user who has not completed KYC verification**
-3. **Virtual asset transfer requested by a corporate user who has completed KYC verification**
+<Accordion title="User 1(KYC 인증을 완료한 개인 사용자)">
+  아래의 정보를 정확하게 입력하였다면 Robot VASP가 VERIFIED를 반환합니다.
 
-You can find detailed user information for each case by expanding the toggle below. Based on this information, you can interact with Robot VASP to conduct the tests.
+  ### 개인 정보
 
-<Accordion title="User 1(Individual user who has completed KYC verification)">
-  If all the information is entered correctly, the verification result must return VERIFIED.
+  * **성**: Robbins
 
-  ### Individual Information
+  * **이름**: Taylor
 
-  * **Last Name**: Robbins
-
-  * **First Name**: Taylor
-
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
@@ -123,16 +117,16 @@ You can find detailed user information for each case by expanding the toggle bel
   **'XRP' destination tag**: `123456789`
 </Accordion>
 
-<Accordion title="User 2(Individual user who has not completed KYC verification)">
-  Even if all information is entered correctly, the verification result must return `DENIED`.
+<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)">
+  아래의 정보를 정확하게 입력하여도 Robot VASP가 DENIED를 반환합니다.
 
-  ### Individual Information
+  ### 개인 정보
 
-  * **Last Name**: Cook
+  * **성**: Cook
 
-  * **First Name**: Ethan
+  * **이름**: Ethan
 
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
 
@@ -141,21 +135,20 @@ You can find detailed user information for each case by expanding the toggle bel
   **'XRP' destination tag**: `345678912`
 </Accordion>
 
-<Accordion title="User 3(Corporate user who has completed KYC verification)">
-  If all the information is entered correctly, including the representative's name, the verification result must return `VERIFIED`.
-  If the representative's name is missing or incorrect, the verification result should return `DENIED`, even if all other information is entered correctly.
+<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)">
+  대표 이름을 포함한 모든 정보를 정확하게 입력한 경우 Robot VASP가 'VERIFIED'를 반환합니다. 그러나 다른 모든 정보를 정확하게 입력하였어도 대표 이름 정보에 오류가 있는 경우, DENIED를 반환합니다.
 
-  ### Individual Information
+  ### 개인 정보
 
-  * **Corporate Name**: Garrit Studio
+  * **기업 이름**: Garrit Studio
 
-    ### Representative Name
+    ### 대표 이름
 
-  * **Last Name**: Clarke
+  * **성**: Clarke
 
-  * **First Name**: Jason
+  * **이름**: Jason
 
-  ### Wallet Address
+  ### 지갑 주소
 
   **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
 
@@ -168,22 +161,20 @@ You can find detailed user information for each case by expanding the toggle bel
 
 ## Test Cases
 
-Your VASP must pass all test cases listed below.
+### 1. User Account Verification Test
 
-### 1. Your VASP verifies the Beneficiary's account provided by Robot VASP
+* **조건**
 
-* **Conditions**
-
-  * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Account Verification API.
+  * Robot VASP가 귀사의 VASP가 구현한 VASP API 중 User Account Verification API을 호출해야 합니다. User Account Verification Simulation API를 호출해 User Account Verification API를 호출하도록 명령할 수 있습니다.
 
   <br />
 
-  <Accordion title="How to use the User Account Verification Simulation API">
+  <Accordion title="User Account Verification Simulation API 호출 방법">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account`
 
-    * **Request Body Example**
+    * **요청 Body 예제**
 
     ```
     {
@@ -216,8 +207,8 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-* **Expected Result**
-  * As the information written in the Request of the Robot VASP API, the VASP API implemented by your VASP must return the result listed below.
+* **기대 결과**
+  * 테스트 데이터를 기준으로 정상 검증(VERIFIED) 시나리오를 포함하여 발생 가능한 아래 모든 DENIED 케이스에 대해 기대한 사유 코드를 반환해야 합니다.
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -228,21 +219,21 @@ Your VASP must pass all test cases listed below.
 
 <br />
 
-### 2. Your VASP verifies the Beneficiary's personal information provided by Robot VASP
+### 2. User Verification Test
 
-* **Conditions**
+* **조건**
 
-  * Your VASP must use the Robot VASP API to request that Robot VASP initiate the User Verification API.
-  * The Robot VASP must return `VERIFIED` as the result of User Account  Verification Simulation API before using User Verification Simulation API.
+  * Robot VASP가 귀사의 VASP가 구현한 VASP API 중 User Verification API을 호출해야 합니다. User Verification Simulation API를 호출해 User Verification API를 호출하도록 명령할 수 있습니다.
+  * Robot VASP는 User Verification Simulation API를 실행하기 전 User Account Verification Simulation API를 호출해야 하며 응답으로 `VERIFIED`를 받은 후 User Verification API를 실행해야 합니다.
 
   <br />
 
-  <Accordion title="How to use the User Verification Simulation API">
+  <Accordion title="User Verification Simulation API 호출 방법">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications`
 
-    * **Request Body Example**
+    * **요청 Body 예제**
 
     ```
     // copy and paste it in request body params
@@ -307,8 +298,8 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-* **Expected Result**
-  * You can receive seven possible responses depending on how your VASP entered the test user information.
+* **기대 결과**
+  * 귀사의 VASP가 진행한 검증 결과에 따라 아래의 값 중의 하나를 반환합니다.
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -320,30 +311,30 @@ Your VASP must pass all test cases listed below.
 
 <br />
 
-### 3-1. Execute the transaction on the blockchain network
+### 3-1. 온체인 전송 트랜잭션 실행 Test
 
-* **Conditions**
+* **조건**
 
-  * Only completed verifications can be used for the deposit test.
-  * In this test, the originator wallet address must same with the beneficiary wallet address in the withdrawal test.
-  * In this test, you cannot exceed the amount of virtual asset that your VASP has transferred in the withdrawal test for the deposit.
-  * Your VASP must use the Robot VASP API to request that Robot VASP initiate the virtual asset transfer transaction.
+  * Robot VASP가 실행한 User Verification의 결과가 `VERIFIED`여야 진행할 수 있습니다.
+  * Robot VASP에게 디지털 자산을 전송받을 수신인 주소는 출금 시나리오 테스트에서 디지털 자산을 Robot VASP에게 전송한 송신인 주소와 일치해야 합니다.
+  * 입금 시나리오 테스트에서 전송할 디지털 자산의 총량은 출금 시나리오 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
+  * Robot VASP Withdrawal Request API를 호출해 Robot VASP가 디지털 자산 전송 트랜잭션을 실행하도록 명령해야 합니다.
 
   <br />
 
-  <Accordion title="How to use the Robot VASP Withdrawal Request API">
+  <Accordion title="Robot VASP Withdrawal Request API 호출 방법">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal`
 
-    * **Request Query**
+    * **요청 쿼리 파라미터**
 
-    | Parameter Name     | Type    | Description                                                                                                                                                                                                                                          |
-    | ------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `verificationUuid` | string  | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API).                                                                                                    |
-    | `omitTxReport`     | boolean | Used to verify whether the transaction report is submitted after withdrawal. If this field is set to `true`, the transaction result will not be submitted. Your VASP can set this field to `true` to conduct test case 2 in 3-1. Default is `false`. |
+    | Parameter Name     | Type    | Description                                                                                              |
+    | ------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
+    | `verificationUuid` | string  | UUser Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다.                     |
+    | `omitTxReport`     | boolean | 출금 트랜잭션을 실행한 후 트랜잭션 결과 보고 수행 여부를 판단하는 값. `true`로 설정한 경우, 트랜잭션 실행 후 트랜잭션 결과를 보고하지 않습니다. 기본값은 `false` 입니다. |
 
-    * **Request Body Example**
+    * **요청 Body 에제**
 
     ```
     {
@@ -352,80 +343,78 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-* **Expected Result**
-  * Your VASP can confirm the deposit.
+* **기대 결과**
+  * 귀사의 VASP가 입금을 확인할 수 있습니다.
 
-**Case 1. Send the Transaction ID (Transaction Hash) to the VV Central Server after executing the transaction**
+**Case 1. 트랜잭션 실행 후 트랜잭션 결과 전송**
 
-* **Conditions**
-  * After the actual transaction is executed, the Robot VASP calls the Callback API (VASP API) implemented by your VASP to report the transaction within a few seconds.
-* **Expected Results**
-  * Your VASP can receive the transaction report through the callback API(VASP API).
-
-<br />
+* **조건**
+  * Robot VASP가 디지털 자산 전송 트랜잭션을 실행한 후 귀사의 VASP가 구현한 VASP API 중 Callback API 실행해 트랜잭션 결과를 전송합니다.
+* **기대 결과**
+  * 귀사의 VASP가 Callback API를 통해 트랜잭션 결과를 확인할 수 있습니다.
 
 <br />
 
-**Case 2. Do not send the Transaction ID(Transaction Hash) to the VV Central Server after executing the transaction.**
+**Case 2. 트랜잭션 실행 후 트랜잭션 결과 미전송**
 
-* **Conditions**
+* **조건**
 
-  * If you set the omitTxReport field to true when calling the Robot VASP's Withdrawal Request API, Robot VASP will not perform a transaction report after executing the transaction.
-  * Your VASP must check the transaction status using the Check Transaction Status API(Enclave API).
-  * For the VASP who want to conduct the transaction report API test without virtual asset transfer, the Robot VASP provides Transaction Reporting Simulation API.
+  * Robot VASP Withdrawal Request API를 호출할 때, `omixTxReport` 필드를 `true`로 설정하여 Robot VASP가 트랜잭션 실행 결과를 전송하지 않습니다.
+  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출하여 트랜잭션의 현재 상태를 조회합니다.
+  * 가상 자산 전송 트랜잭션 없이 Transaction Report API를 테스트 해보고 싶은 VASP를 위해 Transaction Reporting Simulation API를 지원합니다.
 
   <br />
 
-  <Accordion title="How to use the Transaction Reporting Simulation API">
+  <Accordion title="Transaction Reporting Simulation API 호출 방법">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx`
 
-    * **Request Query**
+    * **요청 바디 파라미터**
 
-    | Parameter Name     | Type   | Description                                                                                                                                       | Example                                        |
-    | ------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-    | `verificationUuid` | string | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | `"ecb457e3-2307-4e72-8a42-16a3774e154b"`       |
-    | `txHash`           | string | Identifier to distinguish transactions                                                                                                            | `"0xaaa042c0632f4d44c7cea978f22cd02e751a410e"` |
+    | Parameter Name     | Type   | Description                                                                         | Example                                        |
+    | ------------------ | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------------- |
+    | `verificationUuid` | string | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"`       |
+    | `txHash`           | string | 트랜잭션을 구분하는 고유 식별자.                                                                  | `"0xaaa042c0632f4d44c7cea978f22cd02e751a410e"` |
 
-    * **Request Body Example**
+    * **요청 Body 예제**
 
     ```
     {
     "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2",
-    "thrash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
+    "txhash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
     }
     ```
   </Accordion>
-* **Expected Results**
-  * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
+* **기대 결과**
+  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출해 트랜잭션의 현재 상태를 조회할 수 있습니다.
 
 <br />
 
-### 3-2. Cancel the transaction that has completed user verification
+### 3-2. 검증 완료 후 트랜잭션 취소 Test
 
-* **Conditions**
+* **조건**
 
-  * Robot VASP does not send an Error Report to the VV Central Server unless the virtual asset transfer fails.
-  * To test an error reporting scenario, you must call the Robot VASP Error Situation Reporting Simulation API to request an Error Report.
+  * Robot VASP가 가상 자산 전송 트랜잭션을 실패하지 않는 이상 VV Central 서버에 에러를 보고하지 않습니다.
+  * 테스트를 진행하기 위해, Error Situation Reporting Simulation API를 호출해 Robot VASP가 에러를 보고하도록 명령해야 합니다.
 
   <br />
 
-  <Accordion title="How to use the Error Situation Reporting Simulation API">
+  <Accordion title="Error Situation Reporting Simulation API 호출 방법">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error`
 
-    * **Request Query**
+    * **요청 쿼리 파라미터**
 
-    | Field Name         | Type   | Description                                                                                                                                       | Example                                  |
-    | ------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-    | `verificationUuid` | string | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | `"ecb457e3-2307-4e72-8a42-16a3774e154b"` |
-    | `result`           | string | The result of verification                                                                                                                        | `"DENIED"`                               |
-    | `reason`           | string | The reason code for the verification result being `DENIED`. This field is only shown when the value of the `result` field is `DENIED`.            | `"USER-CANCELED"`                        |
-    | `message`          | string | More details about the verification result being `DENIED`. This field is only shown when the value of the `result` field is `DENIED`.             | `"User canceled this transaction"`       |
+    | Field Name         | Type   | Description                                                                         | Example                                  |
+    | ------------------ | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------- |
+    | `verificationUuid` | string | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"` |
+    | `result`           | string | User Verification의 결과.                                                              | `"DENIED"`                               |
+    | `reason`           | string | `result`가 DENIED일 때 사유를 설명하는 필드. `DENIED`일 때에만 확인할 수 있는 필드 입니다.                     | `"USER-CANCELED"`                        |
+    | `message`          | string | `result`가 DENIED일 때 자세한 이유를 설명하는 필드. `DENIED`일 때에만 확인할 수 있는 필드 입니다.                 | `"User canceled this transaction"`       |
 
-    * **Request Body Example**
+    * **요청 Body 예제**
 
     ```
     {
@@ -436,5 +425,5 @@ Your VASP must pass all test cases listed below.
     }
     ```
   </Accordion>
-* **Expected Results**
-  * Your VASP can check the transaction status through the Check Transaction Status API(Enclave API).
+* **기대 결과**
+  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출해 트랜잭션의 현재 상태를 확인할 수 있습니다.
