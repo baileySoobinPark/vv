@@ -358,6 +358,13 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 
 이 API는 3초 이내에 응답해야 합니다.
 
+### 환경 변수 설정
+
+Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+
+* `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH`: 해당 API의 경로
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
+
 ***
 
 ## API 명세
