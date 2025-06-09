@@ -344,64 +344,102 @@ paths:
                 properties:
                   verification_Results:
                     type: object
-                    required:
-                      - verification_results
                     properties:
-                      verification_results:
+                      ticker:
+                        type: string
+                        description: |
+                          The result of the Ticker verification.
+                        example: MATCHED
+                      network:
+                        type: string
+                        description: |
+                          The result of the Network verification.
+                        example: MATCHED
+                      address:
+                        type: string
+                        description: |
+                          The result of the Address verification.
+                        example: MATCHED
+                      tag:
+                        type: string
+                        description: >
+                          The wallet address tag(secondary address such as XRP,
+                          XLM, EOS, etc...), regardless VerifyOriginator or
+                          VerifyBeneficiary.
+                        example: '3256697931'
+                      tx_hash:
+                        type: string
+                        description: |
+                          The result of the Tx_Hash verification.
+                        example: MATCHED
+                      dti:
+                        type: string
+                        description: |
+                          The result of the DTI verification.
+                        example: MATCHED
+                  creditor:
+                    type: object
+                    description: >
+                      An object containing information about the Owner's
+                      information when the type is **VerifyBeneficiary**.
+                    required:
+                      - name
+                      - identification
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
                         type: object
                         properties:
-                          ticker:
-                            type: string
-                            description: |
-                              The result of the Ticker verification.
-                            example: MATCHED
-                          network:
-                            type: string
-                            description: |
-                              The result of the Network verification.
-                            example: MATCHED
-                          address:
-                            type: string
-                            description: |
-                              The result of the Address verification.
-                            example: MATCHED
-                          tag:
-                            type: string
-                            description: >
-                              The wallet address tag(secondary address such as
-                              XRP, XLM, EOS, etc...), regardless
-                              VerifyOriginator or VerifyBeneficiary.
-                            example: '3256697931'
-                          tx_hash:
-                            type: string
-                            description: |
-                              The result of the Tx_Hash verification.
-                            example: MATCHED
-                          dti:
-                            type: string
-                            description: |
-                              The result of the DTI verification.
-                            example: MATCHED
-                      creditor:
+                          name:
+                            type: object
+                            properties:
+                              first_name:
+                                type: string
+                                description: |
+                                  The first name of the Owner.
+                                example: JHON
+                              last_name:
+                                type: string
+                                description: |
+                                  The last name of the Owner.
+                                example: DOE
+                      identification:
                         type: object
                         description: >
                           An object containing information about the Owner's
-                          information when the type is **VerifyBeneficiary**.
-                        required:
-                          - name
-                          - identification
+                          identification.
                         properties:
-                          name:
-                            type: string
-                            description: |
-                              The name of the Owner.
-                          supplementary_data:
+                          private_identification:
+                            type: object
+                            properties:
+                              date_and_place_of_birth:
+                                type: object
+                                required:
+                                  - birth_date
+                                properties:
+                                  birth_date:
+                                    type: string
+                                    description: |
+                                      Date of Birth.
+                                    example: '2025-01-01'
+                  debtor:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
+                        type: object
+                        properties:
+                          envelope:
                             type: object
                             properties:
                               name:
                                 type: object
-                                required:
-                                  - first_name
                                 properties:
                                   first_name:
                                     type: string
@@ -413,25 +451,25 @@ paths:
                                     description: |
                                       The last name of the Owner.
                                     example: DOE
-                      debtor:
+                      identification:
                         type: object
+                        description: >
+                          An object containing information about the Owner's
+                          identification.
                         properties:
-                          name:
-                            type: string
-                            example: JHON DOE
-                          supplementary_data:
+                          private_identification:
                             type: object
-                        example:
-                          name: JHON DOE
-                          supplementary_data:
-                            envelope:
-                              name:
-                                first_name: JHON
-                                last_name: DOE
-                          identification:
-                            private_identification:
+                            properties:
                               date_and_place_of_birth:
-                                date_of_birth: '1990-01-01'
+                                type: object
+                                required:
+                                  - birth_date
+                                properties:
+                                  birth_date:
+                                    type: string
+                                    description: |
+                                      Date of Birth.
+                                    example: '2025-01-01'
               examples:
                 Successful Example:
                   value:
