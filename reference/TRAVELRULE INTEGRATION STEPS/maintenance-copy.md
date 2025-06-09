@@ -24,8 +24,6 @@ VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채�
 
 <br />
 
-<br />
-
 ### 2. Inform the schedule to the VerifyVASP operation team via VerifyVASP console
 
 VerifyVASP also supports a way to notify the schedule of server maintenance via the VerifyVASP console.
