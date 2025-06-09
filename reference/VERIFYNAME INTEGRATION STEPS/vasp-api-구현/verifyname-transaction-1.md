@@ -27,4 +27,4 @@ VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`r
 * `CONFIRMED`: 블록 생성 완료 및 finality 확보된 상태
 * `CANCELED`: 제출 전 또는 후에 취소된 상태
 
-### 제약 사
+### 제약 사항
