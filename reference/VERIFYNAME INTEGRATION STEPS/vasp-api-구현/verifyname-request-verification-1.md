@@ -353,3 +353,9 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
     </code></pre>
   </details>
   `}</HTMLBlock>
+
+<br />
+
+***
+
+## API 명세
