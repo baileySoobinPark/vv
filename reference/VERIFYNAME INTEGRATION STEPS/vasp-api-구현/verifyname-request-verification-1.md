@@ -78,12 +78,12 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 </table>
 `}</HTMLBlock>
 
-#### 3. 주소 소유주 개인 정보 반환
+#### 3. 주소 소유주 정보 반환
 
-`address` 또는 `tx_hash` 필드의 검증 결과가 `MATCHED`인 경우, 관련 계정의 소유주 개인 정보를 응답에 포함하여 반환해야 합니다. 개인 정보 제공 범위는 다음과 같습니다.
+`address` 또는 `tx_hash` 필드의 검증 결과가 `MATCHED`인 경우, 관련 계정의 소유주 정보를 응답에 포함하여 반환해야 합니다. 정보 제공 범위는 다음과 같습니다.
 
 <HTMLBlock>{`
-<style>
+ㅇ<style>
 .personal-info-table {
   width: 100%;
   border-collapse: collapse;
@@ -147,6 +147,131 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과
 </table>
 `}</HTMLBlock>
 
-<br />
+검증 요청 `type` 에 따른 소유주 정보 응답 예시는 다음과 같습니다.
 
-* `type` 이 `VerifyOriginator` 인 경우 해당 트랜잭션 송신 계좌 소유주 정보를 `debtor`에 다음과 같이 반환합니다.
+* `VerifyOriginator` 인 경우 해당 트랜잭션 송신 계좌 소유주 정보를 `debtor`에 다음과 같이 반환합니다.
+  <HTMLBlock>{`
+  <style>
+    .custom-accordion {
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border 0.3s ease;
+    }
+
+    .custom-accordion[open] {
+      border: 2px solid #1d78ff;
+    }
+
+    .custom-accordion summary {
+      padding: 12px 16px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 500;
+      background-color: #f9f9f9;
+    }
+
+    .custom-accordion summary::marker,
+    .custom-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .custom-accordion summary::before {
+      content: "›";
+      display: inline-block;
+      margin-right: 8px;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+    }
+
+    .custom-accordion[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .custom-accordion pre {
+      background-color: #ffffff;
+      padding: 16px;
+      margin: 0;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+  </style>
+  <details class="custom-accordion">
+    <summary>Example of Response Body: <code>VerifyOriginator</code> 타입, 개인 계정인 경우</summary>
+
+    <pre><code class="language-json">
+  {
+  	"verification_results": {
+  	  "ticker": "MATCHED",        
+  	  "network": "MISMATCHED",    
+  	  "address": "SKIPPED",       
+  	  "tag": "SKIPPED",
+  	  "tx_hash": "SKIPPED",      
+  	  "dti": "SKIPPED",         
+  	},
+  	"debtor": {
+  		"name": "HONG KIL DONG",
+  		"supplementary_data"?: {
+  			"envelope": {
+  				"name"?: {                  
+  					"first_name": "GIL DONG",
+  					"last_name"?: "HONG",
+  				},
+  			}
+  		},
+  		"identification": {
+  			"private_identification"?: {
+  				"date_and_place_of_birth": {
+  					"birth_date": "2025-01-01",
+  				}
+  			}
+  		}
+  	}
+  }
+    </code></pre>
+  </details>
+  <details class="custom-accordion">
+    <summary>Example of Response Body: <code>VerifyOriginator</code> 타입, 법인 계정인 경우</summary>
+
+    <pre><code class="language-json">
+  {
+  	"verification_results": {
+  	  "ticker": "MATCHED",        
+  	  "network": "MISMATCHED",    
+  	  "address": "SKIPPED",       
+  	  "tag": "SKIPPED",
+  	  "tx_hash": "SKIPPED",      
+  	  "dti": "SKIPPED",         
+  	},
+  	"debtor"?: {
+  		"name": "HONG KIL DONG",
+  		"supplementary_data"?: {
+  			"envelope": {
+  				"name"?: {                  
+  					"first_name": "GIL DONG",
+  					"last_name"?: "HONG",
+  				},
+  			}
+  		},
+  		"identification": {
+  			"organisation_identification"?: {
+  				"supplementary_data": {
+  					"envelope": {
+  						"date_of_incorporation"?: "2020-01-01",
+  					}
+  				},
+  			},
+  			"lei"?: "506700GE1G29325QX363",
+  			"bic"?: "KRKRKR"
+  			"other"?: {
+  				"identification": "5493001KJTIIGC8Y1R12",
+  				"issuer": "ISO17442",
+  			},
+  		}
+  	}
+  }
+    </code></pre>
+  </details>
+  `}</HTMLBlock>
+* <br />
