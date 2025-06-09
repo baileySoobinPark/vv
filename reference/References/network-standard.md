@@ -7,7 +7,7 @@ excerpt: >-
   Additionally, you can check the list of networks that can be entered in the
   network field.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
