@@ -32,4 +32,48 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준으로 사전 검
 
 #### 2. 검증 수행 결과 반환
 
-항목별 검증 수행 결과를 응답의 `verification_results` 객체 내 관련 필드에 명시하여 반환해야 합니다. 각 필드는 `MATCHED`, `MISMATCHED`, `SKIPPED` 중 하나의 값을 가질수 있으며, 검증을 수행하지 않은 항목의 경우에도 빈 값으로 반환 또는 키를 제외하지 않고 `SKIPPED`로 반드시 포함하여 반환합니다. 각 항목별 결과는 다음과 같은 정책에 따라 결정할 수 있습니다.
+항목별 검증 수행 결과를 응답의 `verification_results` 객체 내 관련 필드에 명시하여 반환해야 합니다. 각 필드는 `MATCHED`, `MISMATCHED`, `SKIPPED` 중 하나의 값을 가질수 있으며, **검증을 수행하지 않은 항목의 경우(아래 표의 필수 검증 여부가 Optional인 경우)에도 빈 값으로 반환 또는 키를 제외하지 않고`SKIPPED`로 반드시 포함하여 반환**합니다. 각 항목별 결과는 다음과 같은 정책에 따라 결정할 수 있습니다.
+
+<HTMLBlock>{`
+<table class="verify-params">
+  <thead>
+    <tr>
+      <th>필드 명</th>
+      <th>필수 검증 여부</th>
+      <th>검증 정책</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ticker</td>
+      <td>Required</td>
+      <td>귀사 VASP가 해당 자산을 지원하는 경우 <strong>MATCHED</strong>, 그렇지 않으면 <strong>MISMATCHED</strong></td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td>Optional</td>
+      <td>귀사의 VASP가 해당 네트워크를 지원하면 <strong>MATCHED</strong>, 그렇지 않으면 <strong>MISMATCHED</strong><br>지원 여부를 알 수 없는 경우 또는 필드가 없는 경우 <strong>SKIPPED</strong></td>
+    </tr>
+    <tr>
+      <td>address</td>
+      <td>Required</td>
+      <td>Pre-verification의 경우, 요청 address가 등록된 수취인 주소인지 확인<br>Post-verification의 경우, 해당 트랜잭션에서 사용된 수취인 주소와 비교<br>일치하면 <strong>MATCHED</strong>, 다르면 <strong>MISMATCHED</strong></td>
+    </tr>
+    <tr>
+      <td>tag</td>
+      <td>Optional</td>
+      <td>요청 tag 값이 등록된 tag와 일치하면 <strong>MATCHED</strong>, 다르면 <strong>MISMATCHED</strong><br>비교 불가하거나 미제공 시 <strong>SKIPPED</strong></td>
+    </tr>
+    <tr>
+      <td>tx_hash</td>
+      <td>Optional</td>
+      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여<br>일치하면 <strong>MATCHED</strong>, 다르면 <strong>MISMATCHED</strong>, 정보 부족 시 <strong>SKIPPED</strong></td>
+    </tr>
+    <tr>
+      <td>dti</td>
+      <td>Optional</td>
+      <td>해당 디지털 자산 식별자(DTI)를 지원하면 <strong>MATCHED</strong>, 아니면 <strong>MISMATCHED</strong>, 정보 부족 시 <strong>SKIPPED</strong></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
