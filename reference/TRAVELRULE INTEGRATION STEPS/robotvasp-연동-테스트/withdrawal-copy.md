@@ -215,7 +215,7 @@ metadata:
 * **조건**
   * Enclave API 중 \[Report Transaction Result API]를 호출하여 테스트합니다.
 * **기대 결과**
-  * Robot VASP에 디지털 자산 입금이 반영된 것을 확인할 수 있습니다.
+  * Robot VASP에 디지털 자산이 입금된 것을 확인할 수 있습니다.
 
 <Accordion title="How to use the Deposit Reflection Inquery API">
   **Method**: `GET`
@@ -246,17 +246,17 @@ metadata:
   * 트랜잭션 실행하고 10분 후 Robot VASP가 송신 VASP의 [Check Transaction Status API]() 호출해 트랜잭션 상태를 문의합니다.
   * 혹은 Robot VASP의 Check Transaction Status Simulation API를 호출해 즉시 Transaction Status Query API를 호출하도록 명령할 수 있습니다. Transaction Status Simulation API를 호출하는 방법은 아래와 같습니다.
 
-<Accordion title="How to use the Deposit Reflection Inquery API">
+<Accordion title="Transaction Status Simulation API 호출 방법">
   **Method**: `POST`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry`
-  * **Request Query**
+  * **요청 쿼리 파라미터**
 
-  | Parameter Name     | Description                                                                                                                                       | Example                              |
-  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-  | `verificationUuid` | Identifier to distinguish User Verification. You can receive this identifier as a response after calling the User Verification API (Enclave API). | ecb457e3-2307-4e72-8a42-16a3774e154b |
+  | Parameter Name     | Description                                                                         | Example                              |
+  | ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------ |
+  | `verificationUuid` | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | ecb457e3-2307-4e72-8a42-16a3774e154b |
 
-  * **Request Body Example**
+  * **요청 body 예제**
 
   ```
   {
@@ -267,21 +267,21 @@ metadata:
 
 <br />
 
-### 4-2. Cancel the transaction that has completed user verification.
+### 4-2. 검증 완료 후 트랜잭션 취소 Test
 
-**Case 1. Send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+**Case 1. 디지털 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 보고**
 
-* **Conditions**
-  * Your VASP must use the Report Error API to send the canceled transaction to the VerifyVASP Central Server.
-* **Expected Result**
-  * The Robot VASP stops calling the Transaction Status Query API.
-  * The verification result will be changed from VERIFIED to ERROR. Your VASP can confirm the change in the state of verification by using the Get Verification Result API or the List Verification Result API.
+* **조건**
+  * 디지털 자산 전송 트랜잭션을 실행하지 않고 Report [Error API]() 를 호출해 VV Central 서버에 에러를 보고합니다.
+* **기대 결과**
+  * Robot VASP가 Transaction Status Query API 호출을 중지합니다.
+  * Verification 결과가 `VERIFIED`에서 `ERROR`로 변경됩니다. 테스트를 진행하는 사용자는 Enclave API 중 [Get Verification Result API]()  혹은 [List Verification Result API]() 를 호출해 변경 사항을 확인할 수 있습니다.
 
 <br />
 
-**Case 2. Do not send an error report to VV Central Server for a canceled virtual asset transfer transaction.**
+**Case 2. 디지털 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 미보고**
 
-* **Conditions**
-  * Your VASP must not use the Report Error API after canceling the execution of a transaction that has completed verification.
-* **Expected Result**
-  * Robot VASP periodically calls Transaction Status Query API (VASP API) implemented by your VASP  for the related transaction. (up to 1 hour)
+* **조건**
+  * 디지털 자산 전송 트랜잭션을 실행하지 않고 VV Central 서버에 에러를 보고하지 않습니다.
+* **기대 결과**
+  * Robot VASP가 사용자 VASP가 구현한 Transaction Status Query를 주기적으로 호출해 트랜잭션의 상태를 확인합니다. (최대 1시간)
