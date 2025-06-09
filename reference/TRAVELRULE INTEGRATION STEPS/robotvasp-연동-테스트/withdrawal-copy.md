@@ -213,11 +213,11 @@ metadata:
 **Case 1. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 해시) 전송**
 
 * **조건**
-  * Enclave API 중 \[Report Transaction Result API]를 호출하여 테스트합니다.
+  * Enclave API 중 [Report Transaction Result API]() 를 호출하여 VV Central 서버에 트랜잭션 결과를 보고합니다.
 * **기대 결과**
-  * Robot VASP에 디지털 자산이 입금된 것을 확인할 수 있습니다.
+  * Deposit Reflection Inquery API를 호출해 디지털 자산이 Robot VASP에 입금된 것을 확인할 수 있습니다.
 
-<Accordion title="How to use the Deposit Reflection Inquery API">
+<Accordion title=" Deposit Reflection Inquery API 사용 방법">
   **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
