@@ -5,7 +5,7 @@ api:
   operationId: verifyName-Request-Verification
 hidden: false
 ---
-VerifyName 프로토콜 검증 과정에서 Enclave에 의해 호출되는 API입니다. 요청에 포함된 전송 자산 정보와 수신 주소의 유효성을 검증하고, 해당 주소 소유자의 성명과 생년월일을 응답으로 반환합니다. 반환된 개인 정보는 Enclave 내부에서 송신자 정보와의 비교 검증에 사용됩니다. VerifyName을 지원하는 모든 VASP는 반드시 이 API를 구현하여 타 VASP들로부터의 소유자 검증 요청에 대응해야 합니다.
+VerifyName 프로토콜 검증 과정에서 Enclave에 의해 호출되는 API입니다. 전송 자산 정보와 수신 주소의 유효성을 검증하고, 해당 주소 소유자의 성명과 생년월일을 응답으로 반환합니다. 반환된 개인 정보는 Enclave 내부에서 송신자 정보와의 비교 검증에 사용됩니다. VerifyName을 지원하는 모든 VASP는 반드시 이 API를 구현하여 타 VASP들로부터의 소유자 검증 요청에 대응해야 합니다.
 
 ***
 
@@ -15,7 +15,7 @@ VerifyName 프로토콜 검증 과정에서 Enclave에 의해 호출되는 API�
 
 #### 1. 시나리오별 비즈니스 로직 구현
 
-VerifyName 프로토콜은 트랜잭션 실행 시점을 기준으로 사전 검증과 사후 검증 시나리오를 모두 지원합니다. VASP는 두 시나리오를 모두 지원해야 하며, 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다. 관련 구현 요구사항은 아래와 같습니다.
+VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과 사후 검증을 모두 지원합니다. VASP는 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다.
 
 **사후 검증(Post-Verification) 구현 요구사항**
 
@@ -79,3 +79,74 @@ VerifyName 프로토콜은 트랜잭션 실행 시점을 기준으로 사전 검
 `}</HTMLBlock>
 
 #### 3. 주소 소유주 개인 정보 반환
+
+`address` 또는 `tx_hash` 필드의 검증 결과가 `MATCHED`인 경우, 관련 계정의 소유주 개인 정보를 응답에 포함하여 반환해야 합니다. 개인 정보 제공 범위는 다음과 같습니다.
+
+<HTMLBlock>{`
+<style>
+.personal-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 14px;
+}
+
+.personal-info-table th,
+.personal-info-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.personal-info-table thead {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}  
+</style>
+<table class="personal-info-table">
+  <thead>
+    <tr>
+      <th>계정 유형</th>
+      <th>개인정보 제공 범위</th>
+      <th>필수 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">개인</td>
+      <td>이름</td>
+      <td>필수</td>
+    </tr>
+    <tr>
+      <td>생년월일 <br><small>예: <code>2025-01-01</code></small></td>
+      <td>필수</td>
+    </tr>
+    <tr>
+      <td rowspan="5">법인</td>
+      <td>이름</td>
+      <td>필수</td>
+    </tr>
+    <tr>
+      <td>법인 설립일 <br><small>예: <code>2025-01-01</code></small></td>
+      <td>필수</td>
+    </tr>
+    <tr>
+      <td>LEI</td>
+      <td>선택</td>
+    </tr>
+    <tr>
+      <td>BIC</td>
+      <td>선택</td>
+    </tr>
+    <tr>
+      <td>Identification &amp; Issuer</td>
+      <td>선택</td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
+
+* `type` 이 `VerifyOriginator` 인 경우 해당 트랜잭션 송신 계좌 소유주 정보를 `debtor`에 다음과 같이 반환합니다.
