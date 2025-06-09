@@ -426,14 +426,14 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        VASP API 호출을 위한 Verify Owner API Endpoint.\
-        **관련 링크**:  [Verify User API](ref:travelrule-user-verification-1)
+        VASP API 호출을 위한 Verify Name API Endpoint.\
+        **관련 링크**:  [VerifyName API](ref:verifyname-request-verification-1)
       </td>
     </tr>
 
     <tr>
       <td>
-        `VEGA_VERIFICATION_ACCOUNT_API_PATH`
+        `VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH`
       </td>
 
       <td>
@@ -441,8 +441,8 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
       </td>
 
       <td>
-        VASP API 호출을 위한 Verify User Account API Endpoint.\
-        **관련 링크**: [Verify User Account API](ref:travelrule-user-account-verification-1)
+        VASP API 호출을 위한 VerifyName Check Transaction Status API Endpoint.\
+        **관련 링크**: [Check Transaction Status API](ref:verifyname-transaction-1)
       </td>
     </tr>
 
