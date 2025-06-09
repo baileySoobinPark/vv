@@ -19,12 +19,12 @@ VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`r
 
 #### 2. 온체인 트랜잭션 상태 조회 및 응답
 
-요청 수신시 `request_id`와 맵핑된 트랜잭션 Hash를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 반환해야 합니다. 반환할 수 있는 상태 값은 다음과 같습니다.
+요청 수신시 `request_id`와 맵핑된 트랜잭션 Hash를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
 
-| `transaction_status` | Description           |
-| :------------------- | :-------------------- |
-| PENDING              | 블록체인 제출을 대기 중인 상태입니다. |
-| PROCESSING           | 블록체인에                 |
-| WAIT-CONFIRM         |                       |
-| CONFIRMED            |                       |
-| CANCELED             |                       |
+* `PENDING`: 아직 블록체인에 제출되지 않은 상태
+* `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
+* `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
+* `CONFIRMED`: 블록 생성 완료 및 finality 확보된 상태
+* `CANCELED`: 제출 전 또는 후에 취소된 상태
+
+### 제약 사
