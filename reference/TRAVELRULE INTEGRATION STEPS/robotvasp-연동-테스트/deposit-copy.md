@@ -8,10 +8,9 @@ metadata:
 ---
 > 💡 Please Note:
 >
-> 1. The deposit test is supported only in the Ethereum Sepolia and Ripple Testnet environments.\
->    Please double-check the environment before executing the virtual asset transfer transaction.
-> 2. To conduct the Deposit test, your VASP must perform the withdrawal test and deposit the virtual asset during it.
-> 3. The deposit amount cannot exceed the total amount of virtual assets transferred by your VASP to Robot VASP during the withdrawal test.
+> 1. 입금 테스트는 **Ethereum Sepolia** 및 **Ripple Testnet**에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
+> 2. 입금 테스트를 진행하기 위해 출금 테스트가 선행되어야 합니다. 출금 테스트를 진행하지 않은 사용자는 [출금 테스트]() 를 먼저 진행한 후 입금 테스트를 진행해 주십시오.
+> 3. 입금 테스트에서 당신의 VASP로 입금될 자산의 총량은 출금 테스트에서 Robot VASP에게 전송한 디지털 자산의 총량을 초과할 수 없습니다.
 
 ## Deposit Test Scenario
 
