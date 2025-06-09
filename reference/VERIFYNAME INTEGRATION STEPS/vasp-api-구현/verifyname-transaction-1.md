@@ -31,4 +31,8 @@ VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`r
 
 이 API는 1초 이내에 응답해야 합니다.
 
-### 환경변수 설
+### 환경 변수 설정
+
+Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+
+* `VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH`: 해당 API의 경로
