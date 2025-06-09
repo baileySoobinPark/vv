@@ -267,110 +267,31 @@ hidden: false
 </details>
 `}</HTMLBlock>
 
-`data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
+<br />
+
+#### 3. OWNER\_VERIFICATION\_TX\_REPORT 유형 콜백 처리
+
+콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
+
+* 사전 검증 결과가 VERIFIED인 경우, 이어서 자산 전송 트랜잭션을 실행합니다.
+* 사전 검증 결과가 DENIED 또는 ERROR인 경우, 자산 전송을 중단하고 송신자(사용자)에게 결과를 통지합니다.
+
+`OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
 <HTMLBlock>{`
-<style>
-  .custom-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 14px;
-  }
+<details class="custom-accordion">
+  <summary>Example of Callback Request Body: OWNER_VERIFICATION_RESULT_REPORT</summary>
 
-  .custom-table th,
-  .custom-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-    vertical-align: top;
+  <pre><code class="language-json">
+ {
+    "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+    }
   }
-
-  .custom-table th {
-    background-color: #f0f0f0;
-    font-weight: 600;
-  }
-
-  .custom-table td {
-    background-color: #ffffff;
-  }
-
-  .custom-table td.code-col {
-    min-width: 150px;
-    white-space: nowrap;
-  }
-</style>
-
-<table class="custom-table">
-  <thead>
-    <tr>
-      <th><code>reason</code></th>
-      <th><code>message</code></th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
-      <td>미지원 자산 심볼<br>(ex)"ETH"</td>
-      <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
-      <td>미지원 네트워크 이름<br>(ex)"Ethereum"</td>
-      <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>확인할 수 없는 지갑 주소</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>LACK-OF-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 누락 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>송신자 정보 부족</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>UNAVAILABLE-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 제공 불가 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>제공 불가한 수신자 정보</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>BLACKLISTED</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>제재 목록에 포함된 주소</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>UNVERIFIED-KYC</code></td>
-      <td>-</td>
-      <td>KYC 미완료</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>MISMATCHED-NAME</code></td>
-      <td>-</td>
-      <td>수신자 이름 불일치</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>NOT-ALLOWED</code></td>
-      <td>해당 사유<br>(ex) "This user is locked by internal policy."</td>
-      <td>내부 정책으로 인해 거부됨</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>UNDEFINED-ERROR</code></td>
-      <td>-</td>
-      <td>정의되지 않은 기타 오류</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>BENEFICIARY-ACCOUNT-NOT-MATCHED</code></td>
-      <td>-</td>
-      <td>수신 VASP가 송신 VASP가 전송한 주소를 변경하여 반환한 경우</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>REQUEST-TIMEOUT</code></td>
-      <td>-</td>
-      <td>검증 요청 후 대기시간이 초과한 경우</td>
-    </tr>
-  </tbody>
-</table>
+  </code></pre>
+</details>
 `}</HTMLBlock>
 
 #### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
@@ -403,15 +324,13 @@ hidden: false
   <summary>Example of Callback Request Body</summary>
 
   <pre><code class="language-json">
-{
-   "callbackType":"ERROR_REPORT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-      "result":"ERROR",
-      "reason":"BLACKLISTED",
-      "message":"Originator is included in the blacklist."
-   }
-}
+  {
+    "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+    }
+  }
   </code></pre>
 </details>
 `}</HTMLBlock>
