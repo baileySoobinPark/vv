@@ -80,6 +80,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
+<Callback />
+
 #### 2. VERIFICATION\_RESULT 유형 콜백 처리
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
