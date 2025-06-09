@@ -1,10 +1,8 @@
 ---
 title: RobotVASP 연동 통합 테스트
 excerpt: >-
-  VerifyVASP provides the Robot VASP to conduct tests of the functionality of
-  the VASP API and the Enclave server that your VASP has implemented. This
-  document provides the guide for withdrawal and deposit test and virtual test
-  user information.
+  주요 연동 작업이 완료되면 VerifyVASP가 제공하는 Robot VASP를 상대 VASP로 하여 모의 입출금을 테스트해볼 수 있습니다.
+  본 문서에서는 모의 테스트를 통해 주요 케이스에 대한 정상 연동 여부를 확인하는 방법을 안내합니다.
 deprecated: false
 hidden: false
 metadata:
