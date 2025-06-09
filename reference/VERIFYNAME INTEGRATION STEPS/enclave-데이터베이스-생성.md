@@ -73,17 +73,6 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
   </thead>
   <tbody>
     <tr>
-      <td class="code-col"><code>verifications</code></td>
-      <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
-        - POST /verifications API 호출시 요청과 응답 데이터가 저장됩니다.<br>
-        - 암호화 대상 필드: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<br><code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code><br>
-        - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
-      </td>
-      <td>일일 백업 권장</td>
-    </tr>
-    <tr>
       <td class="code-col"><code>own_keys</code></td>
       <td>
         - <b>필수 테이블입니다.</b> <br>
@@ -113,41 +102,15 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
       <td>백업 또는 복원 정책 불필요</td>
     </tr>
 		<tr>
-      <td class="code-col"><code>chainalysis_sanction_results</code></td>
+      <td class="code-col"><code>owner_verifications</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
-        - Sanction API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>1-2 KB</strong>입니다.
+        - <b>필수 테이블입니다.</b> <br>
+        - 계좌 소유주 검증 요청 및 결과 이력을 저장합니다.<br> 
+ 				- POST /v2/owner-verifications API 호출시 요청과 응답 데이터가 저장됩니다.
+        - 암호화 대상 필드:<code>party_info</code>,<code>party_info_hash</code>
+        - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
       </td>
-      <td>주기적인 백업 권장</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>chainalysis_kyt_results</code></td>
-      <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. <br>
-        - KYT API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
-      </td>
-      <td>주기적인 백업 권장</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>chainalysis_kyt_alerts</code></td>
-      <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br> 
-        - KYT API 호출 이력과 결과를 저장합니다.<br>
-        - <code>chainalysis_kyt_results</code>테이블 레코드과 1:n 대응 관계를 갖습니다.<br>
-        - 레코드당 예상크키는 약 <strong>0-3 KB</strong>입니다.
-      </td>
-      <td>주기적인 백업 권장</td>
-    </tr>
-    <tr>
-      <td class="code-col"><code>refinitiv_wco_results</code></td>
-      <td>
-        - Refinitiv 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
-        - WCO API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
-      </td>
-      <td>주기적인 백업 권장</td>
+      <td>일일 백업 권장</td>
     </tr>
   </tbody>
 </table>
@@ -348,7 +311,7 @@ TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜�
   </Tab>
 </Tabs>
 
-### TravelRule 필수 테이블 생성 쿼리
+### VerifyName 필수 테이블 생성 쿼리
 
 TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 TR 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
 
