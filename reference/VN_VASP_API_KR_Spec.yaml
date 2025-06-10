@@ -735,6 +735,15 @@ paths:
                     verification_result: DENIED
                     reason: MISMATCH-NAME
                     message: The Beneficiary name is mismatched.
+                New Example:
+                  summary: New Example
+                  value: {}
+                New Example 1:
+                  summary: New Example 1
+                  value: {}
+                New Example 2:
+                  summary: New Example 2
+                  value: {}
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       operationId: verifyName-Callback
