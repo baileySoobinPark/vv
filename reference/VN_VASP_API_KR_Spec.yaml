@@ -744,6 +744,12 @@ paths:
                 New Example 2:
                   summary: New Example 2
                   value: {}
+                New Example 3:
+                  summary: New Example 3
+                  value: {}
+                New Example 4:
+                  summary: New Example 4
+                  value: '{}'
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       operationId: verifyName-Callback
