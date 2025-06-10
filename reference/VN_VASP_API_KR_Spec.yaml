@@ -617,7 +617,7 @@ paths:
                                           Registration Number
                                         example: ISO17442
               examples:
-                Successful Example:
+                VerifyBeneficiary Example:
                   value:
                     verification_results:
                       ticker: MATCHED
@@ -637,6 +637,17 @@ paths:
                         private_identification:
                           date_and_place_of_birth:
                             birth_date: '2025-01-01'
+                  summary: VerifyBeneficiary Example
+                VerifyOriginator Example:
+                  summary: VerifyOriginator Example
+                  value: "{\n\t\"verification_results\": {\n\t  \"ticker\": \"MATCHED\",        \n\t  \"network\": \"MISMATCHED\",    \n\t  \"address\": \"SKIPPED\",       \n\t  \"tag\": \"SKIPPED\",\n\t  \"tx_hash\": \"SKIPPED\",      \n\t  \"dti\": \"SKIPPED\",         \n\t},\n\t\"debtor\": {\n\t\t\"name\": \"HONG KIL DONG\",\n\t\t\"supplementary_data\": {\n\t\t\t\"envelope\": {\n\t\t\t\t\"name\": {                  \n\t\t\t\t\t\"first_name\": \"GIL DONG\",\n\t\t\t\t\t\"last_name\": \"HONG\",\n\t\t\t\t},\n\t\t\t}\n\t\t},\n\t\t\"identification\": {\n\t\t\t\"private_identification\": {\n\t\t\t\t\"date_and_place_of_birth\": {\n\t\t\t\t\t\"birth_date\": \"2025-01-01\",\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              examples:
+                New Example:
+                  value: '{}'
   /VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK:
     post:
       operationId: verifyName-Transaction
