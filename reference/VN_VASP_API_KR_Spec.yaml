@@ -724,60 +724,17 @@ paths:
                   request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
       responses:
         '200':
-          description: 200 Response
+          description: OK
           content:
             application/json:
-              schema:
-                type: object
-                required:
-                  - transaction_status
-                properties:
-                  transaction_status:
-                    type: string
-                    enum:
-                      - PENDING
-                      - PROCESSING
-                      - WAIT-CONFIRM
-                      - CONFIRMED
-                      - CANCELED
-                    description: |
-                      The status of the transaction.
-                    example: PENDING
-                  verification_result:
-                    type: string
-                    enum:
-                      - VERIFIED
-                      - DENIED
-                      - ERROR
-                    description: >
-                      A field that indicates whether the transaction should be
-                      executed based on the result of the owner verification.
-
-                      - Return `VERIFIED` if the owner verification is
-                      successful.
-
-                      - Return `DENIED` if the verification is failed.
-
-                      - Return `ERROR` if an error occurs during the execution
-                      process.
-                    example: VERIFIED
-                  tx_hash:
-                    type: string
-                    description: >
-                      Unique identifier of the transaction.  
-
-                      If the value of `verification_result` is `VERIFIED`, this
-                      field must be required.
-                    example: >-
-                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                  vout:
-                    type: string
-                    description: >
-                      In cases where multiple transfers can be included in a
-                      single transaction, such as Bitcoin, an index value
-                      indicating which transfer corresponds to within a single
-                      transaction.
-                    example: '0'
+              examples:
+                DENIED Example:
+                  summary: DENIED Example
+                  value:
+                    transaction_status: CANCELED
+                    verification_result: DENIED
+                    reason: MISMATCH-NAME
+                    message: The Beneficiary name is mismatched.
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       operationId: verifyName-Callback
