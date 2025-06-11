@@ -1216,10 +1216,14 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400 Error Example:
+                Missing Mandatory Parameter Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
+                  summary: Missing Mandatory Parameter Example
+                Invalid Parameter Example:
+                  value: ''
+                  summary: Invalid Parameter Example
         '404':
           description: 404 Resource Not Found Error response
           content:
