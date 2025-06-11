@@ -1965,10 +1965,6 @@ paths:
                   value:
                     code: MISSING-VERIFICATION-UUID
                     message: '`verificationUuid` is required.'
-                Invalid Parameter Example:
-                  value:
-                    code: INVALID-RESULT
-                    message: '`result` should be one of `VERIFIED`, `DENIED`, `ERROR`.'
                 Invalid Verification UUID Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
@@ -2176,7 +2172,7 @@ paths:
                       8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                     vout: '2'
         '400':
-          description: Error Response of Check Transaction State API
+          description: Error Response of Check Transaction Status API
           content:
             application/json:
               schema:
@@ -2321,7 +2317,7 @@ paths:
                       status: NOHIT
                       createdAt: '2023-05-26T13:34:23.053Z'
         '400':
-          description: 400 Bad Request Error response
+          description: Error Response of Risk Assessment Sanction API
           content:
             application/json:
               schema:
@@ -2341,10 +2337,20 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400 Error Example:
+                Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-VERIFICATION-UUID
+                    message: '`verificationUuid` is required.'
+                Invalid Verification UUID Example:
+                  value:
+                    code: NOT-FOUND-VERIFICATION
+                    message: >-
+                      Verification(8d729bf4-38db-471d-b052-896f8660916a) is not
+                      found
+                Incorrect Request Example:
+                  value:
+                    code: BAD-REQUEST
+                    message: ...
         '401':
           description: 401 Unauthorized Error response
           content:
@@ -2370,62 +2376,6 @@ paths:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: Invalid API Key
-        '404':
-          description: 404 Resource Not Found Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      404 Error message.  
-
-                      It could be returned in the following cases:   - When
-                      request with a non-existent resources is provided.
-                    example: VERIFICATION-NOT-FOUND
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-              examples:
-                404 Error Example:
-                  value:
-                    code: VERIFICATION-NOT-FOUND
-                    message: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-        '408':
-          description: 408 Request Timeout Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      408 Error message.  
-
-                      It could be returned in the following cases:   When a
-                      timeout occurs during the processing of a request.
-                    example: REQUEST-TIMEOUT
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: timeout of 5000ms exceeded
-              examples:
-                408 Error Example:
-                  value:
-                    code: REQUEST-TIMEOUT
-                    message: timeout of 5000ms exceeded
   /v1/risk-assessment/chainalysis-kyt:
     post:
       summary: Risk Assessment Via Chainalysis KYT API
@@ -2892,7 +2842,7 @@ paths:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
-          description: 400 Bad Request Error response
+          description: Error Response of Risk Assessment Refinitiv WCO API
           content:
             application/json:
               schema:
@@ -2912,10 +2862,20 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400 Error Example:
+                Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-VERIFICATION-UUID
+                    message: '`verificationUuid` is required.'
+                Invalid Verification UUID Example:
+                  value:
+                    code: NOT-FOUND-VERIFICATION
+                    message: >-
+                      Verification(8d729bf4-38db-471d-b052-896f8660916a) is not
+                      found
+                Incorrect Request Example:
+                  value:
+                    code: BAD-REQUEST
+                    message: ...
         '401':
           description: 401 Unauthorized Error response
           content:
@@ -2940,7 +2900,10 @@ paths:
                 401 Error Example:
                   value:
                     code: UNKNOWN-ERROR-CODE
-                    message: Invalid API Key
+                    message: >-
+                      Failed to call POST Refinitiv
+                      API(https://api-worldcheck.refinitiv.com/v2/cases) for
+                      identifier(James Lim)
         '404':
           description: 404 Resource Not Found Error response
           content:
@@ -2967,36 +2930,10 @@ paths:
               examples:
                 404 Error Example:
                   value:
-                    code: VERIFICATION-NOT-FOUND
+                    code: GROUP_NOT_FOUND
                     message: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-        '408':
-          description: 408 Request Timeout Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      408 Error message.  
-
-                      It could be returned in the following cases:   When a
-                      timeout occurs during the processing of a request.
-                    example: REQUEST-TIMEOUT
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: timeout of 5000ms exceeded
-              examples:
-                408 Error Example:
-                  value:
-                    code: REQUEST-TIMEOUT
-                    message: timeout of 5000ms exceeded
+                      Access to the Group is denied or the Group ID is not
+                      found.
 components:
   securitySchemes:
     Authorization:
