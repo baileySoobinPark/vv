@@ -1,0 +1,647 @@
+openapi: 3.0.1
+info:
+  title: VN Integration Steps
+  version: 1.0.0
+servers:
+  - url: /
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
+paths:
+  /VASP_DEFINED_PATH_VERIFY_NAME:
+    post:
+      operationId: verifyName-Request-Verification
+      summary: VerifyName API
+      tags:
+        - VN VASP API
+      security:
+        - ApiKeyAuth: []
+      x-readme:
+        explorer-enabled: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - supplementary_data
+              properties:
+                supplementary_data:
+                  type: object
+                  required:
+                    - envelope
+                  properties:
+                    envelope:
+                      type: object
+                      required:
+                        - request_id
+                        - request_vasp_id
+                        - type
+                        - ticker
+                        - address
+                      properties:
+                        request_id:
+                          type: string
+                          description: |
+                            A unique identifier for the Owner Verification request.
+
+                            The format of `request_id` must follow the UUID v4 standard.
+                          example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                        request_vasp_id:
+                          type: string
+                          description: |
+                            The Vasp ID for the Onwer Verification request.
+                          example: "17624187478910414848"
+                        type:
+                          type: string
+                          enum:
+                            - VerifyOriginator
+                            - VerifyBeneficiary
+                          description: |
+                            Indication of verification type.
+                            Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                          example: VerifyOriginator
+                        ticker:
+                          type: string
+                          description: |
+                            The symbol of the virtual asset to be transferred.
+                          example: ETH
+                        network:
+                          type: string
+                          description: |
+                            The network of the virtual asset to be transferred. The network field can be implemented conditionally.
+                          example: ETHEREUM
+                        address:
+                          type: string
+                          description: |
+                            The address of the wallet.
+                          example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                        tag:
+                          type: string
+                          description: |
+                            The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
+                          example: "3256697931"
+                        dti:
+                          type: string
+                          description: |
+                            Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                          example: 4H95J0R2X
+                        tx_hash:
+                          type: string
+                          description: |
+                            Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
+                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+            examples:
+              requestExamples:
+                value:
+                  verificationType: VERIFIED
+                  txId: "0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9"
+                  symbol: ETH
+                  address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                  tag: null
+                  hashSalt: 04cc122f-97af-4630-a1cf-05e58ed37667
+                  dobHash: 9096a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                  nameHashes:
+                    - 1296a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                    - 4596a390ba4339afe391119fb3124412dc3786bf95b12cc2581bc67869cddcaf
+      responses:
+        "200":
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - verification_results
+                properties:
+                  verification_results:
+                    type: object
+                    required:
+                      - ticker
+                      - network
+                      - address
+                      - tag
+                      - tx_hash
+                      - dti
+                    properties:
+                      ticker:
+                        type: string
+                        description: |
+                          The result of the Ticker verification.
+                        example: MATCHED
+                      network:
+                        type: string
+                        description: |
+                          The result of the Network verification.
+                        example: MATCHED
+                      address:
+                        type: string
+                        description: |
+                          The result of the Address verification.
+                        example: MATCHED
+                      tag:
+                        type: string
+                        description: |
+                          The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
+                        example: "3256697931"
+                      tx_hash:
+                        type: string
+                        description: |
+                          The result of the Tx_Hash verification.
+                        example: MATCHED
+                      dti:
+                        type: string
+                        description: |
+                          The result of the DTI verification.
+                        example: MATCHED
+                  creditor:
+                    type: object
+                    description: |
+                      An object containing information about the Owner's information when the type is **VerifyBeneficiary**.
+                    required:
+                      - name
+                      - identification
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
+                        type: object
+                        required:
+                          - envelope
+                        properties:
+                          envelope:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: |
+                                      The first name of the Owner.
+                                    example: JHON
+                                  last_name:
+                                    type: string
+                                    description: |
+                                      The last name of the Owner.
+                                    example: DOE
+                          identification:
+                            type: object
+                            description: |
+                              An object containing information about the Owner's identification.
+                            properties:
+                              private_identification:
+                                type: object
+                                required:
+                                  - date_and_place_of_birth
+                                properties:
+                                  date_and_place_of_birth:
+                                    type: object
+                                    required:
+                                      - birth_date
+                                    properties:
+                                      birth_date:
+                                        type: string
+                                        description: |
+                                          Date of Birth.
+                                        example: 2025-01-01
+                              organisation_identification:
+                                type: object
+                                description: |
+                                  An object containing information about the legal organisation identification.
+                                required:
+                                  - supplementary_data
+                                properties:
+                                  supplementary_data:
+                                    type: object
+                                    required:
+                                      - envelope
+                                    properties:
+                                      envelope:
+                                        type: object
+                                        properties:
+                                          date_of_incorporation:
+                                            type: string
+                                            description: |
+                                              Date of incorporation.
+                                            example: 2025-01-01
+                                  lei:
+                                    type: string
+                                    description: |
+                                      Legal Entity Identifier (LEI).
+                                    example: 506700GE1G29325QX363
+                                  bic:
+                                    type: string
+                                    description: |
+                                      Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
+                                      - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                    example: HBUKGB4B
+                                  other:
+                                    type: object
+                                    description: |
+                                      An object containing additional information about Business Registration Number.
+                                    required:
+                                      - identification
+                                      - issuer
+                                    properties:
+                                      identification:
+                                        type: string
+                                        description: |
+                                          Business Registration Number.
+                                        example: 5493001KJTIIGC8Y1R12
+                                      issuer:
+                                        type: string
+                                        description: |
+                                          Issuing Authority for the Business Registration Number
+                                        example: ISO17442
+                  debtor:
+                    type: object
+                    description: |
+                      An object containing information about the Owner's information when the type is **VerifyOriginator**.
+                    required:
+                      - name
+                      - identification
+                    properties:
+                      name:
+                        type: string
+                        description: |
+                          The name of the Owner.
+                      supplementary_data:
+                        type: object
+                        required:
+                          - envelope
+                        properties:
+                          envelope:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: |
+                                      The first name of the Owner.
+                                    example: JHON
+                                  last_name:
+                                    type: string
+                                    description: |
+                                      The last name of the Owner.
+                                    example: DOE
+                          identification:
+                            type: object
+                            description: |
+                              An object containing information about the Owner's identification.
+                            properties:
+                              private_identification:
+                                type: object
+                                required:
+                                  - date_and_place_of_birth
+                                properties:
+                                  date_and_place_of_birth:
+                                    type: object
+                                    required:
+                                      - birth_date
+                                    properties:
+                                      birth_date:
+                                        type: string
+                                        description: |
+                                          Date of Birth.
+                                        example: 2025-01-01
+                              organisation_identification:
+                                type: object
+                                description: |
+                                  An object containing information about the legal organisation identification.
+                                required:
+                                  - supplementary_data
+                                properties:
+                                  supplementary_data:
+                                    type: object
+                                    required:
+                                      - envelope
+                                    properties:
+                                      envelope:
+                                        type: object
+                                        properties:
+                                          date_of_incorporation:
+                                            type: string
+                                            description: |
+                                              Date of incorporation.
+                                            example: 2025-01-01
+                                  lei:
+                                    type: string
+                                    description: |
+                                      Legal Entity Identifier (LEI).
+                                    example: 506700GE1G29325QX363
+                                  bic:
+                                    type: string
+                                    description: |
+                                      Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
+                                      - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                    example: HBUKGB4B
+                                  other:
+                                    type: object
+                                    description: |
+                                      An object containing additional information about Business Registration Number.
+                                    required:
+                                      - identification
+                                      - issuer
+                                    properties:
+                                      identification:
+                                        type: string
+                                        description: |
+                                          Business Registration Number.
+                                        example: 5493001KJTIIGC8Y1R12
+                                      issuer:
+                                        type: string
+                                        description: |
+                                          Issuing Authority for the Business Registration Number
+                                        example: ISO17442
+              examples:
+                Successful Example:
+                  value:
+                    verification_results:
+                      ticker: MATCHED
+                      network: MISMATCHED
+                      address: SKIPPED
+                      tag: SKIPPED
+                      tx_hash: SKIPPED
+                      dti: SKIPPED
+                    creditor:
+                      name: HONG KIL DONG
+                      supplementary_data:
+                        envelope:
+                          name:
+                            first_name: GIL DONG
+                            last_name: HONG
+                      identification:
+                        private_identification:
+                          date_and_place_of_birth:
+                            birth_date: 2025-01-01
+  /VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK:
+    post:
+      operationId: verifyName-Transaction
+      summary: Check Transaction Status API
+      tags:
+        - VN VASP API
+      security:
+        - ApiKeyAuth: []
+      x-readme:
+        explorer-enabled: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - request_id
+              properties:
+                request_id:
+                  type: string
+                  description: |
+                    A unique identifier for the Owner Verification request.
+
+                    The format of `request_id` must follow the UUID v4 standard.
+                  example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+            examples:
+              requestExamples:
+                value:
+                  request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
+      responses:
+        "200":
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - transaction_status
+                properties:
+                  transaction_status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - PROCESSING
+                      - WAIT-CONFIRM
+                      - CONFIRMED
+                      - CANCELED
+                    description: |
+                      The status of the transaction.
+                    example: PENDING
+                  verification_result:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                      - ERROR
+                    description: |
+                      A field that indicates whether the transaction should be executed based on the result of the owner verification.
+                      - Return `VERIFIED` if the owner verification is successful.
+                      - Return `DENIED` if the verification is failed.
+                      - Return `ERROR` if an error occurs during the execution process.
+                    example: VERIFIED
+                  tx_hash:
+                    type: string
+                    description: |
+                      Unique identifier of the transaction.  
+                      If the value of `verification_result` is `VERIFIED`, this field must be required.
+                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout:
+                    type: string
+                    description: |
+                      In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
+                    example: "0"
+                  reason:
+                    type: string
+                    enum:
+                      - MISMATCH-TICKER
+                      - MISMATCH-NETWORK
+                      - MISMATCH-ADDRESS
+                      - MISMATCH-NAME
+                      - MISMATCH-DTI
+                      - MISMATCH-DATE-OF-INCORPORATION
+                      - MISMATCH-BIRTH-DATE
+                      - MISMATCH-ORGANISATION-IDENTIFICATION
+                      - TRANSFER-ERROR
+                      - UNDEFINED-ERROR
+                    description: |
+                      This field provides the reason for verification failure.
+                      It's required when returning `DENIED` or `ERROR` as the `verification_result`.
+                    example: MISMATCH-TICKER
+                  message:
+                    type: string
+                    description: |
+                      This field provides a detailed explanation of the reason for verification failure.
+                    example: Transfer Error
+  /VASP_DEFINED_PATH_CALLBACK:
+    post:
+      operationId: verifyName-Callback
+      summary: Callback API
+      tags:
+        - VN VASP API
+      security:
+        - ApiKeyAuth: []
+      x-readme:
+        explorer-enabled: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - callbackType
+                - data
+              properties:
+                callbackType:
+                  type: string
+                  enum:
+                    - OWNER_VERIFICATION_TX_REPORT
+                    - OWNER_VERIFICATION_RESULT_REPORT
+                  description: |
+                    A type for identifying the callback request.
+                  example: OWNER_VERIFICATION_TX_REPORT
+                data:
+                  type: object
+                  required:
+                    - request_Id
+                    - reported_result
+                    - ordered_at
+                  description: |
+                    An object containing Callback Data.
+                  properties:
+                    request_Id:
+                      type: string
+                      description: |
+                        A unique identifier for the Owner Verification request.
+
+                        The format of `request_id` must follow the UUID v4 standard.
+                      example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                    reported_result:
+                      type: string
+                      enum:
+                        - VERIFIED
+                        - DENIED
+                        - ERROR
+                      description: |
+                        The result of the Owner Verification.
+                      example: VERIFIED
+                    ordered_at:
+                      type: string
+                      description: |
+                        Timestamp of the transaction hash report.
+                        This field must follow the UTC ISO 8601 datetime representation standard.
+                      example: 2025-04-21T04:16:01.339Z
+                    tx_hash:
+                      type: string
+                      description: |
+                        Unique identifier of the transaction. If the value of **reported_result** is **VERIFIED**, this field must be required.
+                      example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout:
+                      type: string
+                      description: |
+                        In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
+                      example: "0"
+                    reason:
+                      type: string
+                      enum:
+                        - MISMATCH-TICKER
+                        - MISMATCH-NETWORK
+                        - MISMATCH-ADDRESS
+                        - MISMATCH-NAME
+                        - MISMATCH-DTI
+                        - MISMATCH-DATE-OF-INCORPORATION
+                        - MISMATCH-BIRTH-DATE
+                        - MISMATCH-ORGANISATION-IDENTIFICATION
+                        - TRANSFER-ERROR
+                        - UNDEFINED-ERROR
+                      description: |
+                        This field provides the reason when the verification result is DENIED or ERROR.
+                      example: MISMATCH-TICKER
+                    message:
+                      type: string
+                      description: |
+                        This field provides a detailed explanation of the reason for verification failure.
+                      example: Transfer Error
+            examples:
+              requestExamples:
+                value:
+                  callbackType: OWNER_VERIFICATION_RESULT
+                  data:
+                    requestId: ac2ae3a1-2468-43c7-b881-75cf310b5a56
+                    verificationResult: VERIFIED
+                    verifiedAt: 2021-09-27T01:48:40.000Z
+      responses:
+        "200":
+          description: 200 Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - result
+                properties:
+                  result:
+                    type: string
+                    description: |
+                      Result of the callback.
+                    example: "true"
+              examples:
+                Successful Example:
+                  value:
+                    result: true
+  /VASP_DEFINED_PATH_DECRYPT_DB_ENCKEY:
+    post:
+      summary: Database Management API
+      tags:
+        - VN VASP API
+      security:
+        - ApiKeyAuth: []
+      operationId: verifyName-get-Decrypted-EncKey
+      x-readme:
+        explorer-enabled: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - inputKey
+              properties:
+                inputKey:
+                  type: string
+                  description: |
+                    The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**, as defined in the Enclave environment variables.
+                  example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
+            examples:
+              requestexamples:
+                value:
+                  inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
+      responses:
+        "200":
+          description: Successful Callback response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  outputKey:
+                    type: string
+                    description: |
+                      The Base64-encoded database encryption key.
+                    example: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
+              examples:
+                Successful Example:
+                  value:
+                    outputKey: d0odhtb/jD9qWWTA59koPGgw2jj0ptov56A3b3dfohY=
