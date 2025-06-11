@@ -1,4 +1,4 @@
 ---
 title: VASP API
-hidden: false
+hidden: true
 ---
