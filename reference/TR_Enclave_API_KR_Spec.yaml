@@ -659,6 +659,11 @@ paths:
                     code: MISSING-VASP
                     message: '`beneficiaryVaspId` is required.'
                   summary: Missing Mandatory Parameters Example 1
+                Invalid Parameter Example:
+                  value:
+                    code: INVALID-KEY-TYPE
+                    message: '`keyType` is invalid value.'
+                  summary: Invalid Parameter Example
         '404':
           description: 404 Resource Not Found Error response
           content:
