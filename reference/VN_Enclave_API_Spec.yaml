@@ -226,7 +226,6 @@ paths:
       summary: Get VASP ID API
       tags:
         - VN Enclave API
-      description: Get VASP ID API
       operationId: verifyname-get-Vasp-Id
       x-readme:
         explorer-enabled: false
