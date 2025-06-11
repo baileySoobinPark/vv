@@ -608,6 +608,16 @@ paths:
                       This field provides a detailed explanation of the reason
                       for verification failure.
                     example: Transfer Error
+              examples:
+                Successful Example:
+                  value:
+                    transaction_status: CANCELED
+                    verification_result: VERIFIED
+                    tx_hash: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout: '0'
+                    reason: MISMATCH-TICKER
+                    message: Transfer Error
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       operationId: verifyName-Callback
