@@ -699,7 +699,7 @@ paths:
                       organisation_identification: SKIPPED
                     verifiedAt: '2022-03-03T12:45:34.085Z'
         '400':
-          description: 400 Bad Request Error response
+          description: Error Response of Verification API
           content:
             application/json:
               schema:
@@ -721,10 +721,10 @@ paths:
                       `protocol` is invalid value. The allowed protocols
                       [TRAVEL-RULE, VERIFY-NAME]
               examples:
-                400 Error Example:
+                Invalid Parameter Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-ORG-OTHER-ISSUER
+                    message: organisation_identification.other.issuer is required.
         '408':
           description: 408 Request Timeout Error response
           content:
