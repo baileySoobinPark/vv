@@ -46,24 +46,25 @@ paths:
                       properties:
                         request_id:
                           type: string
-                          description: |
-                            A unique identifier for the Owner Verification request.
+                          description: >
+                            A unique identifier for the Owner Verification
+                            request.
 
-                            The format of `request_id` must follow the UUID v4 standard.
+
+                            The format of `request_id` must follow the UUID v4
+                            standard.
                           example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                         request_vasp_id:
                           type: string
                           description: |
                             The Vasp ID for the Onwer Verification request.
-                          example: "17624187478910414848"
+                          example: '17624187478910414848'
                         type:
                           type: string
                           enum:
                             - VerifyOriginator
                             - VerifyBeneficiary
-                          description: |
-                            Indication of verification type.
-                            Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                          description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
                           example: VerifyOriginator
                         ticker:
                           type: string
@@ -72,44 +73,55 @@ paths:
                           example: ETH
                         network:
                           type: string
-                          description: |
-                            The network of the virtual asset to be transferred. The network field can be implemented conditionally.
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
                           example: ETHEREUM
                         address:
                           type: string
                           description: |
                             The address of the wallet.
-                          example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
-                          description: |
-                            The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                          example: "3256697931"
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
                         dti:
                           type: string
-                          description: |
-                            Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
                           example: 4H95J0R2X
                         tx_hash:
                           type: string
-                          description: |
-                            Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **type** is **VerifyOriginator**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
             examples:
               requestExamples:
                 value:
                   verificationType: VERIFIED
-                  txId: "0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9"
+                  txId: >-
+                    0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
                   symbol: ETH
-                  address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                  address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                   tag: null
                   hashSalt: 04cc122f-97af-4630-a1cf-05e58ed37667
-                  dobHash: 9096a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                  dobHash: >-
+                    9096a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
                   nameHashes:
-                    - 1296a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
-                    - 4596a390ba4339afe391119fb3124412dc3786bf95b12cc2581bc67869cddcaf
+                    - >-
+                      1296a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
+                    - >-
+                      4596a390ba4339afe391119fb3124412dc3786bf95b12cc2581bc67869cddcaf
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -145,9 +157,11 @@ paths:
                         example: MATCHED
                       tag:
                         type: string
-                        description: |
-                          The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                        example: "3256697931"
+                        description: >
+                          The wallet address tag(secondary address such as XRP,
+                          XLM, EOS, etc...), regardless VerifyOriginator or
+                          VerifyBeneficiary.
+                        example: '3256697931'
                       tx_hash:
                         type: string
                         description: |
@@ -160,8 +174,9 @@ paths:
                         example: MATCHED
                   creditor:
                     type: object
-                    description: |
-                      An object containing information about the Owner's information when the type is **VerifyBeneficiary**.
+                    description: >
+                      An object containing information about the Owner's
+                      information when the type is **VerifyBeneficiary**.
                     required:
                       - name
                       - identification
@@ -195,8 +210,9 @@ paths:
                                     example: DOE
                           identification:
                             type: object
-                            description: |
-                              An object containing information about the Owner's identification.
+                            description: >
+                              An object containing information about the Owner's
+                              identification.
                             properties:
                               private_identification:
                                 type: object
@@ -212,11 +228,12 @@ paths:
                                         type: string
                                         description: |
                                           Date of Birth.
-                                        example: 2025-01-01
+                                        example: '2025-01-01'
                               organisation_identification:
                                 type: object
-                                description: |
-                                  An object containing information about the legal organisation identification.
+                                description: >
+                                  An object containing information about the
+                                  legal organisation identification.
                                 required:
                                   - supplementary_data
                                 properties:
@@ -232,7 +249,7 @@ paths:
                                             type: string
                                             description: |
                                               Date of incorporation.
-                                            example: 2025-01-01
+                                            example: '2025-01-01'
                                   lei:
                                     type: string
                                     description: |
@@ -240,14 +257,22 @@ paths:
                                     example: 506700GE1G29325QX363
                                   bic:
                                     type: string
-                                    description: |
-                                      Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
-                                      - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                    description: >
+                                      Business Identifier Code (BIC). A code
+                                      defined in accordance with the ISO 9362
+                                      standard for identifying financial and
+                                      non-financial institutions.
+
+                                      - also known as a SWIFT code, is an 8-11
+                                      character code used to identify banks and
+                                      their branches globally.
                                     example: HBUKGB4B
                                   other:
                                     type: object
-                                    description: |
-                                      An object containing additional information about Business Registration Number.
+                                    description: >
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
                                     required:
                                       - identification
                                       - issuer
@@ -259,13 +284,15 @@ paths:
                                         example: 5493001KJTIIGC8Y1R12
                                       issuer:
                                         type: string
-                                        description: |
-                                          Issuing Authority for the Business Registration Number
+                                        description: >
+                                          Issuing Authority for the Business
+                                          Registration Number
                                         example: ISO17442
                   debtor:
                     type: object
-                    description: |
-                      An object containing information about the Owner's information when the type is **VerifyOriginator**.
+                    description: >
+                      An object containing information about the Owner's
+                      information when the type is **VerifyOriginator**.
                     required:
                       - name
                       - identification
@@ -299,8 +326,9 @@ paths:
                                     example: DOE
                           identification:
                             type: object
-                            description: |
-                              An object containing information about the Owner's identification.
+                            description: >
+                              An object containing information about the Owner's
+                              identification.
                             properties:
                               private_identification:
                                 type: object
@@ -316,11 +344,12 @@ paths:
                                         type: string
                                         description: |
                                           Date of Birth.
-                                        example: 2025-01-01
+                                        example: '2025-01-01'
                               organisation_identification:
                                 type: object
-                                description: |
-                                  An object containing information about the legal organisation identification.
+                                description: >
+                                  An object containing information about the
+                                  legal organisation identification.
                                 required:
                                   - supplementary_data
                                 properties:
@@ -336,7 +365,7 @@ paths:
                                             type: string
                                             description: |
                                               Date of incorporation.
-                                            example: 2025-01-01
+                                            example: '2025-01-01'
                                   lei:
                                     type: string
                                     description: |
@@ -344,14 +373,22 @@ paths:
                                     example: 506700GE1G29325QX363
                                   bic:
                                     type: string
-                                    description: |
-                                      Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
-                                      - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                    description: >
+                                      Business Identifier Code (BIC). A code
+                                      defined in accordance with the ISO 9362
+                                      standard for identifying financial and
+                                      non-financial institutions.
+
+                                      - also known as a SWIFT code, is an 8-11
+                                      character code used to identify banks and
+                                      their branches globally.
                                     example: HBUKGB4B
                                   other:
                                     type: object
-                                    description: |
-                                      An object containing additional information about Business Registration Number.
+                                    description: >
+                                      An object containing additional
+                                      information about Business Registration
+                                      Number.
                                     required:
                                       - identification
                                       - issuer
@@ -363,8 +400,9 @@ paths:
                                         example: 5493001KJTIIGC8Y1R12
                                       issuer:
                                         type: string
-                                        description: |
-                                          Issuing Authority for the Business Registration Number
+                                        description: >
+                                          Issuing Authority for the Business
+                                          Registration Number
                                         example: ISO17442
               examples:
                 Successful Example:
@@ -386,7 +424,7 @@ paths:
                       identification:
                         private_identification:
                           date_and_place_of_birth:
-                            birth_date: 2025-01-01
+                            birth_date: '2025-01-01'
   /VASP_DEFINED_PATH_VERIFY_NAME_TRANSACTION_CHECK:
     post:
       operationId: verifyName-Transaction
@@ -418,7 +456,7 @@ paths:
                 value:
                   request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -444,23 +482,35 @@ paths:
                       - VERIFIED
                       - DENIED
                       - ERROR
-                    description: |
-                      A field that indicates whether the transaction should be executed based on the result of the owner verification.
-                      - Return `VERIFIED` if the owner verification is successful.
+                    description: >
+                      A field that indicates whether the transaction should be
+                      executed based on the result of the owner verification.
+
+                      - Return `VERIFIED` if the owner verification is
+                      successful.
+
                       - Return `DENIED` if the verification is failed.
-                      - Return `ERROR` if an error occurs during the execution process.
+
+                      - Return `ERROR` if an error occurs during the execution
+                      process.
                     example: VERIFIED
                   tx_hash:
                     type: string
-                    description: |
+                    description: >
                       Unique identifier of the transaction.  
-                      If the value of `verification_result` is `VERIFIED`, this field must be required.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+
+                      If the value of `verification_result` is `VERIFIED`, this
+                      field must be required.
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
-                    description: |
-                      In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                    example: "0"
+                    description: >
+                      In cases where multiple transfers can be included in a
+                      single transaction, such as Bitcoin, an index value
+                      indicating which transfer corresponds to within a single
+                      transaction.
+                    example: '0'
                   reason:
                     type: string
                     enum:
@@ -474,14 +524,17 @@ paths:
                       - MISMATCH-ORGANISATION-IDENTIFICATION
                       - TRANSFER-ERROR
                       - UNDEFINED-ERROR
-                    description: |
+                    description: >
                       This field provides the reason for verification failure.
-                      It's required when returning `DENIED` or `ERROR` as the `verification_result`.
+
+                      It's required when returning `DENIED` or `ERROR` as the
+                      `verification_result`.
                     example: MISMATCH-TICKER
                   message:
                     type: string
-                    description: |
-                      This field provides a detailed explanation of the reason for verification failure.
+                    description: >
+                      This field provides a detailed explanation of the reason
+                      for verification failure.
                     example: Transfer Error
   /VASP_DEFINED_PATH_CALLBACK:
     post:
@@ -522,10 +575,12 @@ paths:
                   properties:
                     request_Id:
                       type: string
-                      description: |
+                      description: >
                         A unique identifier for the Owner Verification request.
 
-                        The format of `request_id` must follow the UUID v4 standard.
+
+                        The format of `request_id` must follow the UUID v4
+                        standard.
                       example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                     reported_result:
                       type: string
@@ -538,20 +593,28 @@ paths:
                       example: VERIFIED
                     ordered_at:
                       type: string
-                      description: |
+                      description: >
                         Timestamp of the transaction hash report.
-                        This field must follow the UTC ISO 8601 datetime representation standard.
-                      example: 2025-04-21T04:16:01.339Z
+
+                        This field must follow the UTC ISO 8601 datetime
+                        representation standard.
+                      example: '2025-04-21T04:16:01.339Z'
                     tx_hash:
                       type: string
-                      description: |
-                        Unique identifier of the transaction. If the value of **reported_result** is **VERIFIED**, this field must be required.
-                      example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                      description: >
+                        Unique identifier of the transaction. If the value of
+                        **reported_result** is **VERIFIED**, this field must be
+                        required.
+                      example: >-
+                        8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                     vout:
                       type: string
-                      description: |
-                        In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                      example: "0"
+                      description: >
+                        In cases where multiple transfers can be included in a
+                        single transaction, such as Bitcoin, an index value
+                        indicating which transfer corresponds to within a single
+                        transaction.
+                      example: '0'
                     reason:
                       type: string
                       enum:
@@ -565,13 +628,15 @@ paths:
                         - MISMATCH-ORGANISATION-IDENTIFICATION
                         - TRANSFER-ERROR
                         - UNDEFINED-ERROR
-                      description: |
-                        This field provides the reason when the verification result is DENIED or ERROR.
+                      description: >
+                        This field provides the reason when the verification
+                        result is DENIED or ERROR.
                       example: MISMATCH-TICKER
                     message:
                       type: string
-                      description: |
-                        This field provides a detailed explanation of the reason for verification failure.
+                      description: >
+                        This field provides a detailed explanation of the reason
+                        for verification failure.
                       example: Transfer Error
             examples:
               requestExamples:
@@ -580,9 +645,9 @@ paths:
                   data:
                     requestId: ac2ae3a1-2468-43c7-b881-75cf310b5a56
                     verificationResult: VERIFIED
-                    verifiedAt: 2021-09-27T01:48:40.000Z
+                    verifiedAt: '2021-09-27T01:48:40.000Z'
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -595,7 +660,7 @@ paths:
                     type: string
                     description: |
                       Result of the callback.
-                    example: "true"
+                    example: 'true'
               examples:
                 Successful Example:
                   value:
@@ -621,15 +686,16 @@ paths:
               properties:
                 inputKey:
                   type: string
-                  description: |
-                    The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**, as defined in the Enclave environment variables.
+                  description: >
+                    The Base64-encoded value of **VEGA_ENCRYPTION_KEY_BASE64**,
+                    as defined in the Enclave environment variables.
                   example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
             examples:
               requestexamples:
                 value:
                   inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
       responses:
-        "200":
+        '200':
           description: Successful Callback response
           content:
             application/json:
