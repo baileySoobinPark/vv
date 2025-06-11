@@ -446,8 +446,6 @@ paths:
                           supplementary_data:
                             envelope:
                               date_of_incorporation: '2025-01-01'
-                          lei: 506700GE1G29325QX363
-                          bic: KRKRKR
                         lei: 506700GE1G29325QX363
                         bic: KRKRKR
                         other:
@@ -494,8 +492,6 @@ paths:
                           supplementary_data:
                             envelope:
                               date_of_incorporation: '2025-01-01'
-                          lei: 506700GE1G29325QX363
-                          bic: KRKRKR
                         lei: 506700GE1G29325QX363
                         bic: KRKRKR
                         other:
