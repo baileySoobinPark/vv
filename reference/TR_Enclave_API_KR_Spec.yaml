@@ -664,6 +664,16 @@ paths:
                     code: INVALID-KEY-TYPE
                     message: '`keyType` is invalid value.'
                   summary: Invalid Parameter Example
+                Non-Alliance Member VASP ID Example:
+                  value:
+                    code: ALLIANCE-NOT-FOUND
+                    message: Alliance is not found in given vendor
+                  summary: Non-Alliance Member VASP ID Example
+                Inactive Status Example:
+                  value:
+                    code: ALLIANCE-NOT-ACTIVE
+                    message: Alliance is not active now
+                  summary: Inactive Status Example
         '404':
           description: 404 Resource Not Found Error response
           content:
