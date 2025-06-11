@@ -1224,6 +1224,9 @@ paths:
                 Invalid Parameter Example:
                   value: ''
                   summary: Invalid Parameter Example
+                Invalid Parameter Example 1:
+                  value: ''
+                  summary: Invalid Parameter Example 1
         '404':
           description: 404 Resource Not Found Error response
           content:
