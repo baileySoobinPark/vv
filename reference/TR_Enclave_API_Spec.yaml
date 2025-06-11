@@ -453,7 +453,7 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-BENEFICIARY-VASP-ID
+                    code: MISSING-VASP
                     message: '`beneficiaryVaspId` is required.'
                 Invalid Parameter Example:
                   value:
@@ -977,7 +977,7 @@ paths:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     createdAt: '2022-03-03T12:45:34.085Z'
         '400':
-          description: Error Response of Verification Account API
+          description: Error Response of Verification API
           content:
             application/json:
               schema:
@@ -999,12 +999,12 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-BENEFICIARY-VASP-ID
-                    message: '`beneficiaryVaspId` is required.'
+                    code: MISSING-REQUIRED-BENEFICIARY-INFO
+                    message: '`requiredBeneficiaryInfo` is required.'
                 Invalid Parameter Example:
                   value:
-                    code: INVALID-KEY-TYPE
-                    message: '`keyType` is invalid value.'
+                    code: INVALID-REQUIRED-BENEFICIARY-INFO
+                    message: '`requiredBeneficiaryInfo` is required `ACCOUNT_NUMBER`'
                 Non Alliance Member Example:
                   value:
                     code: ALLIANCE-NOT-FOUND
