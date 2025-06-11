@@ -15,4 +15,4 @@ hidden: false
 
 <br />
 
-## API 명
+## API 명세
