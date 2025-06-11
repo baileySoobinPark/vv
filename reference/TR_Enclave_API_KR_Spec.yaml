@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: TR Integration Steps
-  version: "1.0"
+  version: '1.0'
   description: Management of VerifyVASP API Spec.
 servers:
   - url: https://<enclave-endpoint>
@@ -15,7 +15,7 @@ paths:
       x-readme:
         explorer-enabled: false
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -26,12 +26,12 @@ paths:
                     type: string
                     description: |
                       Unique identifier of VASP.
-                    example: "15952089931162060684"
+                    example: '15952089931162060684'
               examples:
                 Successful Example:
                   value:
-                    vaspId: "15952089931162058999"
-        "400":
+                    vaspId: '15952089931162058999'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -40,9 +40,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -53,8 +55,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -63,21 +65,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -86,14 +95,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -103,9 +115,13 @@ paths:
   /v1/vasps:
     get:
       summary: List VASP API
-      description: |
+      description: >
         This API provides a list of VASPs registered with VerifyVASP.
-        The list is used during the withdrawal process to select the Beneficiary VASP. After retrieving the VASP list through this API, the vaspId field of the selected VASP can be used when initiating a verification request.
+
+        The list is used during the withdrawal process to select the Beneficiary
+        VASP. After retrieving the VASP list through this API, the vaspId field
+        of the selected VASP can be used when initiating a verification request.
+
 
         ### VASP Eligibility Criteria
           The list includes your VASP and other VASPs that meet the following criteria:
@@ -123,11 +139,12 @@ paths:
               - VERIFYVASP
               - CODE
               - ALL
-            description: |
-              Name of the protocol.   "VERIFYVASP", "CODE", "ALL" can input in this field, Default is "ALL".
+            description: >
+              Name of the protocol.   "VERIFYVASP", "CODE", "ALL" can input in
+              this field, Default is "ALL".
             example: VERIFYVASP
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -156,14 +173,15 @@ paths:
                           enum:
                             - UP
                             - DOWN
-                          description: |
-                            Current operational health status of the VASP Enclave server.
+                          description: >
+                            Current operational health status of the VASP
+                            Enclave server.
                           example: UP
                         vaspId:
                           type: string
                           description: |
                             Unique identifier of VASP.
-                          example: "15952089931162060684"
+                          example: '15952089931162060684'
                         vaspName:
                           type: string
                           description: |
@@ -176,31 +194,36 @@ paths:
                           example: A Exchange
                         jurisdiction:
                           type: string
-                          description: |
-                            The country or region where the legal entity is incorporated (jurisdiction of incorporation).
+                          description: >
+                            The country or region where the legal entity is
+                            incorporated (jurisdiction of incorporation).
                           example: Singapore
                         isAlliance:
                           type: boolean
-                          description: |
-                            A boolean field indicating whether the entity is a member of VerifyVASP.
+                          description: >
+                            A boolean field indicating whether the entity is a
+                            member of VerifyVASP.
                           example: true
                         country:
                           type: string
-                          description: |
-                            The name of the country where the VASP is incorporated.
+                          description: >
+                            The name of the country where the VASP is
+                            incorporated.
                           example: Singapore
                         countryCode:
                           type: string
-                          description: |
-                            The ISO 3166-1 alpha-2 code of the country where the VASP is incorporated.
+                          description: >
+                            The ISO 3166-1 alpha-2 code of the country where the
+                            VASP is incorporated.
                           example: SG
                         protocol:
                           type: string
                           enum:
                             - VERIFYVASP
                             - CODE
-                          description: |
-                            The Travel Rule Protocol used by the VASP.   Allowed values:  
+                          description: >
+                            The Travel Rule Protocol used by the VASP.   Allowed
+                            values:  
                               1. VERIFYVASP: Indicates that the VASP is a member of VerifyVASP.  
                               2. CODE: Indicates that the VASP is a member of CODE.
                           example: VERIFYVASP
@@ -219,8 +242,9 @@ paths:
                             - VERIFIED
                             - VERIFIED-MEMBER
                             - INTEROPERATED
-                          description: |
-                            The status of the VASP on VerifyVASP.   Allowed values:  
+                          description: >
+                            The status of the VASP on VerifyVASP.   Allowed
+                            values:  
                               **VERIFIED-MEMBER**: A member of the VerifyVASP Alliance with the Enclave server properly running, enabling transactions.  
 
                               **VERIFIED**: Registered with VerifyVASP but not approved as an Alliance member, or an Alliance member without an installed Enclave server. 
@@ -231,32 +255,44 @@ paths:
                           example: VERIFIED-MEMBER
                         createdAt:
                           type: string
-                          description: |
-                            Timestamp of the VASP Information creation. This field must follow the UTC ISO 8601 datetime representation standard.  
+                          description: >
+                            Timestamp of the VASP Information creation. This
+                            field must follow the UTC ISO 8601 datetime
+                            representation standard.  
                               
-                            **Recommendations**:   To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+                            **Recommendations**:   To ensure consistency across
+                            systems, we strongly recommend using the extended
+                            format "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                            milliseconds and clearly specifies the UTC
+                            timezone.  
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                          example: 2024-11-25T15:30:00.000Z
+                          example: '2024-11-25T15:30:00.000Z'
                         updatedAt:
                           type: string
-                          description: |
-                            Timestamp of the last update to the VASP Information. This field must follow the UTC ISO 8601 datetime representation standard.  
+                          description: >
+                            Timestamp of the last update to the VASP
+                            Information. This field must follow the UTC ISO 8601
+                            datetime representation standard.  
                               
-                            **Recommendations**:   To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+                            **Recommendations**:   To ensure consistency across
+                            systems, we strongly recommend using the extended
+                            format "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                            milliseconds and clearly specifies the UTC
+                            timezone.  
                               
                             Other ISO 8601 Acceptable Formats:
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                          example: 2024-11-25T15:30:00.000Z
+                          example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
                     vasps:
                       - health: UP
-                        vaspId: "27372039731940770"
+                        vaspId: '27372039731940770'
                         vaspName: A Exchange
                         legalName: A Exchange
                         jurisdiction: Singapore
@@ -266,10 +302,10 @@ paths:
                         protocol: VERIFYVASP
                         licensedStatus: Regulated
                         vaspStatus: VERIFIED-MEMBER
-                        createdAt: 2021-09-27T01:48:38.000Z
-                        updatedAt: 2021-11-09T07:31:54.000Z
+                        createdAt: '2021-09-27T01:48:38.000Z'
+                        updatedAt: '2021-11-09T07:31:54.000Z'
                       - health: UP
-                        vaspId: "27372039731940165"
+                        vaspId: '27372039731940165'
                         vaspName: B Exchange
                         legalName: B Exchange
                         jurisdiction: The Republic of Korea
@@ -279,9 +315,9 @@ paths:
                         protocol: CODE
                         licensedStatus: null
                         vaspStatus: INTEROPERATED
-                        createdAt: 2021-09-27T01:48:38.000Z
-                        updatedAt: 2022-01-13T15:27:50.000Z
-        "400":
+                        createdAt: '2021-09-27T01:48:38.000Z'
+                        updatedAt: '2022-01-13T15:27:50.000Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -290,9 +326,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -303,8 +341,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -313,21 +351,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -336,14 +381,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -353,19 +401,51 @@ paths:
   /v1/verifications/account:
     post:
       summary: Request User Account Verification API
-      description: |
-        The Originating VASP can initiate verification flow by validating the beneficiary account by calling this Enclave API. The verification ensures that the specified wallet address belongs to the Beneficiary VASP.
+      description: >
+        The Originating VASP can initiate verification flow by validating the
+        beneficiary account by calling this Enclave API. The verification
+        ensures that the specified wallet address belongs to the Beneficiary
+        VASP.
+
         ### Verification Result Description
-        The verification result is provided in the accountVerificationResult field of the response. If the result is `DENIED`, the reason field specifies the reason for the rejection.
+
+        The verification result is provided in the accountVerificationResult
+        field of the response. If the result is `DENIED`, the reason field
+        specifies the reason for the rejection.
+
 
         | Reason Code         | Description |
+
         |---------------------|-------------|
-        | `UNKNOWN-SYMBOL`    | Error code returned when the symbol provided by the Originating VASP corresponds to an asset not supported by the Beneficiary VASP. |
-        | `UNKNOWN-NETWORK`   | The error code returned when the network provided by the Originating VASP is either not supported by the Beneficiary VASP or the network information is insufficient.<br><br>This error is also returned if the asset symbol provided by the Originating VASP matches a symbol supported by the Beneficiary VASP but corresponds to a different network.<br><br>Example: If the Originating VASP sends a symbol field with USDT and a network field with `Ethereum` to the Beneficiary VASP, but the Beneficiary VASP only supports USDT on the Tron network. |
-        | `UNKNOWN-ADDRESS`   | The error code returned when the Beneficiary's wallet address provided by the Originating VASP does not match any wallet address owned by the Beneficiary VASP or does not exist. |
-        | `MISMATCHED-NAME`   | The error code returned when the Beneficiary's name provided by the Originating VASP does not match the name registered with the wallet address owned by the Beneficiary VASP or does not exist. |
-        | `UNDEFINED-ERROR`   | The error code returned when an undefined error occurs outside of the four specified cases. |
-        | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not completed the KYC verification process with the Beneficiary VASP. |
+
+        | `UNKNOWN-SYMBOL`    | Error code returned when the symbol provided by
+        the Originating VASP corresponds to an asset not supported by the
+        Beneficiary VASP. |
+
+        | `UNKNOWN-NETWORK`   | The error code returned when the network
+        provided by the Originating VASP is either not supported by the
+        Beneficiary VASP or the network information is insufficient.<br><br>This
+        error is also returned if the asset symbol provided by the Originating
+        VASP matches a symbol supported by the Beneficiary VASP but corresponds
+        to a different network.<br><br>Example: If the Originating VASP sends a
+        symbol field with USDT and a network field with `Ethereum` to the
+        Beneficiary VASP, but the Beneficiary VASP only supports USDT on the
+        Tron network. |
+
+        | `UNKNOWN-ADDRESS`   | The error code returned when the Beneficiary's
+        wallet address provided by the Originating VASP does not match any
+        wallet address owned by the Beneficiary VASP or does not exist. |
+
+        | `MISMATCHED-NAME`   | The error code returned when the Beneficiary's
+        name provided by the Originating VASP does not match the name registered
+        with the wallet address owned by the Beneficiary VASP or does not exist.
+        |
+
+        | `UNDEFINED-ERROR`   | The error code returned when an undefined error
+        occurs outside of the four specified cases. |
+
+        | `UNVERIFIED-KYC`    | Error code returned when the Beneficiary has not
+        completed the KYC verification process with the Beneficiary VASP. |
       operationId: travelrule-Enclave-User-Account-Verification
       x-readme:
         explorer-enabled: false
@@ -388,22 +468,33 @@ paths:
                     - PerVasp
                     - PerAddress
                     - PerVerification
-                  description: |
-                    The type of Public Key to be used for encrypting personal information.  
-                    The default value is **PerVasp**. `PerAddress` and `PerVerification` can also be entered.  
-                    The Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.  
+                  description: >
+                    The type of Public Key to be used for encrypting personal
+                    information.  
+
+                    The default value is **PerVasp**. `PerAddress` and
+                    `PerVerification` can also be entered.  
+
+                    The Beneficiary VASP must provide the Public Key
+                    corresponding to the Key Type specified by the Originating
+                    VASP in this field.  
                       
                     Explanation of allowed values:  
                       
-                    **PerVasp**: A single key shared across all verifications for a VASP.  
-                    **PerAddress**: A unique key is generated for each beneficiary address.  
-                    **PerVerification**: A new key is generated for every verification request.
+                    **PerVasp**: A single key shared across all verifications
+                    for a VASP.  
+
+                    **PerAddress**: A unique key is generated for each
+                    beneficiary address.  
+
+                    **PerVerification**: A new key is generated for every
+                    verification request.
                   example: PerVasp
                 beneficiaryVaspId:
                   type: string
                   description: |
                     Unique identifier of Beneficiary VASP.
-                  example: "27372039731940770"
+                  example: '27372039731940770'
                 symbol:
                   type: string
                   description: |
@@ -411,8 +502,9 @@ paths:
                   example: ETH
                 network:
                   type: string
-                  description: |
-                    The network of the virtual asset.   The network field can be implemented conditionally. 
+                  description: >
+                    The network of the virtual asset.   The network field can be
+                    implemented conditionally. 
                       
                     **Conditional Use of 'network' Field:**  
                       1. If the network field is required by the Beneficiary VASP:  
@@ -430,13 +522,16 @@ paths:
                   properties:
                     version:
                       type: string
-                      description: |
-                        The version of the IVMS101 messaging protocol being used.
-                      example: "1.0"
+                      description: >
+                        The version of the IVMS101 messaging protocol being
+                        used.
+                      example: '1.0'
                     ivms101:
                       type: object
-                      description: |
-                        An object with IVMS101-formatted data containing information about the Originator, OriginatingVASP, Beneficiary, and BeneficiaryVASP.
+                      description: >
+                        An object with IVMS101-formatted data containing
+                        information about the Originator, OriginatingVASP,
+                        Beneficiary, and BeneficiaryVASP.
                       required:
                         - beneficiary
                       properties:
@@ -457,17 +552,17 @@ paths:
               requestexamples:
                 value:
                   keyType: PerVasp
-                  beneficiaryVaspId: "15952089931162060684"
+                  beneficiaryVaspId: '15952089931162060684'
                   symbol: ETH
                   network: Ethereum
                   payload:
-                    version: "1.0"
+                    version: '1.0'
                     ivms101:
                       beneficiary:
                         accountNumber:
-                          - "0x5811001506550d8356a215be229c15b6ef371a9b"
+                          - '0x5811001506550d8356a215be229c15b6ef371a9b'
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -483,9 +578,11 @@ paths:
                     enum:
                       - VERIFIED
                       - DENIED
-                    description: |
+                    description: >
                       Result of User Account Verification:  
-                      If the result is **DENIED**, the reason field should provide the specific reason.
+
+                      If the result is **DENIED**, the reason field should
+                      provide the specific reason.
                     example: VERIFIED
                   reason:
                     type: string
@@ -502,24 +599,35 @@ paths:
                     example: UNKNOWN-ADDRESS
                   verifiedAt:
                     type: string
-                    description: |
+                    description: >
                       The timestamp when the verification was completed.  
                         
-                      This field must follow the UTC ISO 8601 datetime representation standard.
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
                         
                       **Recommendations**  
                         
-                      To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                      To ensure consistency across systems, we strongly
+                      recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.   Other ISO 8601
+                      Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
               examples:
-                Successful Example:
+                DENIED Example:
                   value:
-                    accountVerificationResult: "DENIED"
-                    reason: "UNKNOWN-ADDRESS"
-                    verifiedAt: "2022-03-03T12:45:34.085Z"
-        "400":
+                    accountVerificationResult: DENIED
+                    reason: UNKNOWN-ADDRESS
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
+                  summary: DENIED Example
+                VERIFIED Example:
+                  summary: VERIFIED Example
+                  value:
+                    accountVerificationResult: VERIFIED
+                    verifiedAt: '2022-03-03T21:52:08.092Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -528,9 +636,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -538,11 +648,13 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400 Error Example:
-                  value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                Mssing mandatory parameters Example:
+                  value: ''
+                  summary: Mssing mandatory parameters Example
+                Missing Mandatory Parameters Example:
+                  value: ''
+                  summary: Missing Mandatory Parameters Example
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -551,21 +663,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -574,14 +693,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -591,10 +713,20 @@ paths:
   /v1/verifications:
     post:
       summary: Request User Verification API
-      description: |
-        The Originating VASP can request user verification by calling this Enclave API. This API verifies whether the personal information provided by the Originating VASP matches the account owner's information managed by the Beneficiary VASP.
+      description: >
+        The Originating VASP can request user verification by calling this
+        Enclave API. This API verifies whether the personal information provided
+        by the Originating VASP matches the account owner's information managed
+        by the Beneficiary VASP.
+
         ### Asynchronous Operation
-        This API operates asynchronously. Upon requesting a user verification, the response includes a verificationUuid, which uniquely identifies the requested verification. Once the Beneficiary VASP completes the user verification process, the result is delivered to the your VASP via the callback API, using the verificationUuid. The same UUID can also be used to retrieve the verification result at a later time if needed.
+
+        This API operates asynchronously. Upon requesting a user verification,
+        the response includes a verificationUuid, which uniquely identifies the
+        requested verification. Once the Beneficiary VASP completes the user
+        verification process, the result is delivered to the your VASP via the
+        callback API, using the verificationUuid. The same UUID can also be used
+        to retrieve the verification result at a later time if needed.
       operationId: travelrule-encalve-request-User-Verification
       x-readme:
         explorer-enabled: false
@@ -617,22 +749,33 @@ paths:
                     - PerVasp
                     - PerAddress
                     - PerVerification
-                  description: |
-                    The type of Public Key to be used for encrypting personal information.  
-                    The default value is **PerVasp**. `PerAddress` and `PerVerification` can also be entered.  
-                    The Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.  
+                  description: >
+                    The type of Public Key to be used for encrypting personal
+                    information.  
+
+                    The default value is **PerVasp**. `PerAddress` and
+                    `PerVerification` can also be entered.  
+
+                    The Beneficiary VASP must provide the Public Key
+                    corresponding to the Key Type specified by the Originating
+                    VASP in this field.  
                       
                     Explanation of allowed values:  
                       
-                    **PerVasp**: A single key shared across all verifications for a VASP.  
-                    **PerAddress**: A unique key is generated for each beneficiary address.  
-                    **PerVerification**: A new key is generated for every verification request.
+                    **PerVasp**: A single key shared across all verifications
+                    for a VASP.  
+
+                    **PerAddress**: A unique key is generated for each
+                    beneficiary address.  
+
+                    **PerVerification**: A new key is generated for every
+                    verification request.
                   example: PerVasp
                 beneficiaryVaspId:
                   type: string
                   description: |
                     Unique identifier of Beneficiary VASP.
-                  example: "27372039731940770"
+                  example: '27372039731940770'
                 assetInfo:
                   type: object
                   required:
@@ -651,8 +794,9 @@ paths:
                       example: ETH
                     network:
                       type: string
-                      description: |
-                        The network of the virtual asset.   The network field can be implemented conditionally. 
+                      description: >
+                        The network of the virtual asset.   The network field
+                        can be implemented conditionally. 
                           
                         **Conditional Use of 'network' Field:**  
                           1. If the network field is required by the Beneficiary VASP:  
@@ -665,39 +809,57 @@ paths:
                       type: string
                       description: |
                         The amount of the virtual asset to be transferred.
-                      example: "0.024"
+                      example: '0.024'
                     isExceedingThreshold:
                       type: boolean
-                      description: |
-                        A boolean field to check whether the fiat-converted amount of the virtual asset to be transferred exceeds the legal threshold.  
-                        If the value is false, User Verification for the transaction is not mandatory.   (Legal threshold: 1,000 USD or 1,000,000 KRW.)
+                      description: >
+                        A boolean field to check whether the fiat-converted
+                        amount of the virtual asset to be transferred exceeds
+                        the legal threshold.  
+
+                        If the value is false, User Verification for the
+                        transaction is not mandatory.   (Legal threshold: 1,000
+                        USD or 1,000,000 KRW.)
                       example: true
                     tradePrice:
                       type: string
-                      description: |
-                        The amount of virtual assets to be transferred, converted into fiat currency.
-                      example: "2439800"
+                      description: >
+                        The amount of virtual assets to be transferred,
+                        converted into fiat currency.
+                      example: '2439800'
                     tradeCurrency:
                       type: string
-                      description: |
-                        The code of the fiat currency into which the virtual asset is converted.
+                      description: >
+                        The code of the fiat currency into which the virtual
+                        asset is converted.
                       example: KRW
                     tradeISODateTime:
                       type: string
-                      description: |
-                        The timestamp used as the exchange rate reference when converting the virtual asset to fiat currency.   This field must follow the UTC ISO 8601 datetime representation standard.  
+                      description: >
+                        The timestamp used as the exchange rate reference when
+                        converting the virtual asset to fiat currency.   This
+                        field must follow the UTC ISO 8601 datetime
+                        representation standard.  
                           
                         **Recommendations**  
                           
-                        To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                        To ensure consistency across systems, we strongly
+                        recommend using the extended format
+                        "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                        and clearly specifies the UTC timezone.   Other ISO 8601
+                        Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
                           - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                      example: 2024-11-25T15:30:00.000Z
+                      example: '2024-11-25T15:30:00.000Z'
                 requiredBeneficiaryInfo:
                   type: string
-                  description: |
-                    The list of personal information codes required by the Originating VASP to verify the Beneficiary.  
-                    The Beneficiary VASP must return the requested Beneficiary personal information using the provided personal information codes in the IVMS101 format.
+                  description: >
+                    The list of personal information codes required by the
+                    Originating VASP to verify the Beneficiary.  
+
+                    The Beneficiary VASP must return the requested Beneficiary
+                    personal information using the provided personal information
+                    codes in the IVMS101 format.
                   example: NATURAL_PERSON_NAME,ACCOUNT_NUMBER
                 payload:
                   type: object
@@ -708,13 +870,17 @@ paths:
                   properties:
                     version:
                       type: string
-                      description: |
-                        The version of the IVMS101 messaging protocol being used.
-                      example: "1.0"
+                      description: >
+                        The version of the IVMS101 messaging protocol being
+                        used.
+                      example: '1.0'
                     ivms101:
                       type: object
-                      description: |
-                        An object with IVMS101-formatted data that may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP for sending the request.
+                      description: >
+                        An object with IVMS101-formatted data that may include
+                        information about the Originator, Originating VASP,
+                        Beneficiary, and Beneficiary VASP for sending the
+                        request.
                       required:
                         - originator
                         - beneficiary
@@ -729,21 +895,24 @@ paths:
                           properties:
                             originatorPersons:
                               type: array
-                              description: |
-                                An array containing the Originator's personal information.
+                              description: >
+                                An array containing the Originator's personal
+                                information.
                               items:
                                 type: object
                                 required:
                                   - naturalPerson
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   naturalPerson:
                                     type: object
                                     required:
                                       - name
-                                    description: |
-                                      An object containing details about the natural person.
+                                    description: >
+                                      An object containing details about the
+                                      natural person.
                                     properties:
                                       name:
                                         type: object
@@ -754,7 +923,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -763,15 +934,26 @@ paths:
                                               properties:
                                                 primaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a last name.  
-                                                    By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                  description: >
+                                                    The basic representation of a last
+                                                    name.  
+
+                                                    By default, this field is used to enter
+                                                    the last name. However, if separating
+                                                    the last name and first name is not
+                                                    feasible, the full name can be entered
+                                                    in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a first name.  
-                                                    This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                  description: >
+                                                    The basic representation of a first
+                                                    name.  
+
+                                                    This field is primarily used to enter
+                                                    the first name. If a middle name also
+                                                    needs to be included, it can be combined
+                                                    with the first name in this field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
                                                   type: string
@@ -781,10 +963,13 @@ paths:
                                                     - MAID
                                                     - LEGL
                                                     - MISC
-                                                  description: |
+                                                  description: >
                                                     The type of name identifier.  
                                                       
-                                                    Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -811,23 +996,27 @@ paths:
                           properties:
                             beneficiaryPersons:
                               type: array
-                              description: |
-                                An array for personal information of Beneficiary.  
+                              description: >
+                                An array for personal information of
+                                Beneficiary.  
                                   
-                                Name, address, etc. information for individuals or corporations are included.
+                                Name, address, etc. information for individuals
+                                or corporations are included.
                               items:
                                 type: object
                                 required:
                                   - naturalPerson
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   naturalPerson:
                                     type: object
                                     required:
                                       - name
-                                    description: |
-                                      An object containing details about the natural person.
+                                    description: >
+                                      An object containing details about the
+                                      natural person.
                                     properties:
                                       name:
                                         type: object
@@ -838,7 +1027,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -847,15 +1038,26 @@ paths:
                                               properties:
                                                 primaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a last name.  
-                                                    By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                  description: >
+                                                    The basic representation of a last
+                                                    name.  
+
+                                                    By default, this field is used to enter
+                                                    the last name. However, if separating
+                                                    the last name and first name is not
+                                                    feasible, the full name can be entered
+                                                    in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a first name.  
-                                                    This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                  description: >
+                                                    The basic representation of a first
+                                                    name.  
+
+                                                    This field is primarily used to enter
+                                                    the first name. If a middle name also
+                                                    needs to be included, it can be combined
+                                                    with the first name in this field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
                                                   type: string
@@ -865,10 +1067,13 @@ paths:
                                                     - MAID
                                                     - LEGL
                                                     - MISC
-                                                  description: |
+                                                  description: >
                                                     The type of name identifier.  
                                                       
-                                                    Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -888,23 +1093,25 @@ paths:
             examples:
               requestexamples:
                 summary: example of a verification request
-                description: |
-                  A complete example of a request for user account verification, including asset information, originating VASP details, and IVMS101 data.
+                description: >
+                  A complete example of a request for user account verification,
+                  including asset information, originating VASP details, and
+                  IVMS101 data.
                 value:
                   keyType: PreVasp
-                  beneficiaryVaspId: "15952089931162060684"
+                  beneficiaryVaspId: '15952089931162060684'
                   assetInfo:
                     symbol: ETH
                     network: Ethereum
-                    amount: "0.024"
+                    amount: '0.024'
                     isExceedingThreshold: true
-                    tradePrice: "2193200"
+                    tradePrice: '2193200'
                     tradeCurrency: KRW
-                    tradeISODatetime: 2022-02-06T23:13:43.513Z
+                    tradeISODatetime: '2022-02-06T23:13:43.513Z'
                   requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
-                  originatingVaspId: "123456789098765"
+                  originatingVaspId: '123456789098765'
                   payload:
-                    version: "1.0"
+                    version: '1.0'
                     ivms101:
                       originator:
                         originatorPersons:
@@ -915,7 +1122,7 @@ paths:
                                     secondaryIdentifier: Din
                                     nameIdentifierType: LEGL
                         accountNumber:
-                          - "0x5811001506550d8356a215be229c15b6ef371a9a"
+                          - '0x5811001506550d8356a215be229c15b6ef371a9a'
                       beneficiary:
                         beneficiaryPersons:
                           - naturalPerson:
@@ -924,9 +1131,9 @@ paths:
                                   - primaryIdentifier: James
                                     nameIdentifierType: LEGL
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -939,29 +1146,36 @@ paths:
                 properties:
                   verificationUuid:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the User Verification request.  
-                      The format of **verificationUuid** must follow the UUID v4 standard.
+
+                      The format of **verificationUuid** must follow the UUID v4
+                      standard.
                     example: 4bc03a8f-5679-4358-815c-906aae5557f4
                   createdAt:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the Owner Verification creation.
-                      This field must follow the UTC ISO 8601 datetime representation standard.  
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.  
                         
                       **Recommendations**  
-                      We strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+
+                      We strongly recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.  
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
-                    createdAt: 2022-03-03T12:45:34.085Z
-        "400":
+                    createdAt: '2022-03-03T12:45:34.085Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -970,9 +1184,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -983,8 +1199,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -993,21 +1209,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1016,14 +1239,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -1032,12 +1258,24 @@ paths:
                     message: timeout of 5000ms exceeded
     get:
       summary: List Verification Result API
-      description: |
-        This API retrieves the history of all previously requested verifications.
-        ### Query with Filters
-        This API supports a variety of query parameters, enabling you to filter and retrieve verification records that match specific criteria. Filters are particularly useful for managing verification requests based on their status, timestamp, asset type, or counterparty VASP. Additionally, you can identify a specific verification record matched with an on-chain transaction using these filters.
+      description: >
+        This API retrieves the history of all previously requested
+        verifications.
 
-        All query parameters are optional, and any specified parameters are applied using an AND operation to filter the results. For a detailed list of supported filters, refer to the Query Parameter section in the specification below.
+        ### Query with Filters
+
+        This API supports a variety of query parameters, enabling you to filter
+        and retrieve verification records that match specific criteria. Filters
+        are particularly useful for managing verification requests based on
+        their status, timestamp, asset type, or counterparty VASP. Additionally,
+        you can identify a specific verification record matched with an on-chain
+        transaction using these filters.
+
+
+        All query parameters are optional, and any specified parameters are
+        applied using an AND operation to filter the results. For a detailed
+        list of supported filters, refer to the Query Parameter section in the
+        specification below.
       operationId: travelrule-enclave-list-Verification-Result
       x-readme:
         explorer-enabled: false
@@ -1046,16 +1284,18 @@ paths:
           in: query
           schema:
             type: string
-            description: |
-              The start date for querying a specific point in time.   The format of formDate must follow ISO 8601(YYYY-MM-DD) standard.
-            example: 2022-01-01
+            description: >
+              The start date for querying a specific point in time.   The format
+              of formDate must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2022-01-01'
         - name: toDate
           in: query
           schema:
             type: string
-            description: |
-              The end date for querying a specific point in time.   The format of toDate must follow ISO 8601(YYYY-MM-DD) standard.
-            example: 2011-01-15
+            description: >
+              The end date for querying a specific point in time.   The format
+              of toDate must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2011-01-15'
         - name: symbol
           in: query
           schema:
@@ -1067,8 +1307,9 @@ paths:
           in: query
           schema:
             type: string
-            description: |
-              The network of the virtual asset.   The network field can be implemented conditionally. 
+            description: >
+              The network of the virtual asset.   The network field can be
+              implemented conditionally. 
                 
               **Conditional Use of 'network' Field:**  
                 1. If the network field is required by the Beneficiary VASP:  
@@ -1102,30 +1343,33 @@ paths:
             enum:
               - SEND
               - RECEIVE
-            description: |
-              A field that defines the transaction action of the VASP.   When the VASP sends virtual assets, the value is set to "SEND". When the VASP receives virtual assets, the value is set to "RECEIVE".
+            description: >
+              A field that defines the transaction action of the VASP.   When
+              the VASP sends virtual assets, the value is set to "SEND". When
+              the VASP receives virtual assets, the value is set to "RECEIVE".
             example: SEND
         - name: oppositeVaspId
           in: query
           schema:
             type: string
-            description: |
-              A unique identifier used to distinguish the counterpart VASP during user verification.
-            example: "27372039731940175"
+            description: >
+              A unique identifier used to distinguish the counterpart VASP
+              during user verification.
+            example: '27372039731940175'
         - name: originatorAccountNumber
           in: query
           schema:
             type: string
             description: |
               Wallet address of teh Originator.
-            example: "0x1234567890123456789012345678901234567890"
+            example: '0x1234567890123456789012345678901234567890'
         - name: beneficiaryAccountNumber
           in: query
           schema:
             type: string
             description: |
               Wallet address of teh Beneficiary.
-            example: "0x1234567890123456789012345678901234567890"
+            example: '0x1234567890123456789012345678901234567890'
         - name: page
           in: query
           schema:
@@ -1141,7 +1385,7 @@ paths:
               Number of the records.
             example: 10
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1192,12 +1436,15 @@ paths:
                           type: string
                           description: |
                             Unique Identifier of User Verification Result.
-                          example: "12345"
+                          example: '12345'
                         verificationUuid:
                           type: string
-                          description: |
-                            A unique identifier for the User Verification request.  
-                            The format of **verificationUuid** must follow the UUID v4 standard.
+                          description: >
+                            A unique identifier for the User Verification
+                            request.  
+
+                            The format of **verificationUuid** must follow the
+                            UUID v4 standard.
                           example: 4bc03a8f-5679-4358-815c-906aae5557f4
                         result:
                           type: string
@@ -1205,8 +1452,9 @@ paths:
                             - VERIFIED
                             - DENIED
                             - ERROR
-                          description: |
-                            Result of User Account Verification or User Verification.
+                          description: >
+                            Result of User Account Verification or User
+                            Verification.
                           example: VERIFIED
                         reason:
                           type: string
@@ -1218,8 +1466,9 @@ paths:
                             - UNDEFINED-ERROR
                             - BLACKLISTED
                             - UNVERIFIED-KYC
-                          description: |
-                            This field provides the reason for verification failure.
+                          description: >
+                            This field provides the reason for verification
+                            failure.
                           example: UNKNOWN-ADDRESS
                         assetInfo:
                           type: object
@@ -1239,8 +1488,9 @@ paths:
                               example: ETH
                             network:
                               type: string
-                              description: |
-                                The network of the virtual asset.   The network field can be implemented conditionally. 
+                              description: >
+                                The network of the virtual asset.   The network
+                                field can be implemented conditionally. 
                                   
                                 **Conditional Use of 'network' Field:**  
                                   1. If the network field is required by the Beneficiary VASP:  
@@ -1251,124 +1501,166 @@ paths:
                               example: Ethereum
                             amount:
                               type: string
-                              description: |
-                                The amount of the virtual asset to be transferred.
-                              example: "0.024"
+                              description: >
+                                The amount of the virtual asset to be
+                                transferred.
+                              example: '0.024'
                             isExceedingThreshold:
                               type: boolean
-                              description: |
-                                A boolean field to check whether the fiat-converted amount of the virtual asset to be transferred exceeds the legal threshold.  
-                                If the value is false, User Verification for the transaction is not mandatory.   (Legal threshold: 1,000 USD or 1,000,000 KRW.)
+                              description: >
+                                A boolean field to check whether the
+                                fiat-converted amount of the virtual asset to be
+                                transferred exceeds the legal threshold.  
+
+                                If the value is false, User Verification for the
+                                transaction is not mandatory.   (Legal
+                                threshold: 1,000 USD or 1,000,000 KRW.)
                               example: true
                             tradePrice:
                               type: string
-                              description: |
-                                The amount of virtual assets to be transferred, converted into fiat currency.
-                              example: "2439800"
+                              description: >
+                                The amount of virtual assets to be transferred,
+                                converted into fiat currency.
+                              example: '2439800'
                             tradeCurrency:
                               type: string
-                              description: |
-                                The code of the fiat currency into which the virtual asset is converted.
+                              description: >
+                                The code of the fiat currency into which the
+                                virtual asset is converted.
                               example: KRW
                             tradeISODateTime:
                               type: string
-                              description: |
-                                The timestamp used as the exchange rate reference when converting the virtual asset to fiat currency.   This field must follow the UTC ISO 8601 datetime representation standard.  
+                              description: >
+                                The timestamp used as the exchange rate
+                                reference when converting the virtual asset to
+                                fiat currency.   This field must follow the UTC
+                                ISO 8601 datetime representation standard.  
                                   
                                 **Recommendations**  
                                   
-                                To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                                To ensure consistency across systems, we
+                                strongly recommend using the extended format
+                                "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                                milliseconds and clearly specifies the UTC
+                                timezone.   Other ISO 8601 Acceptable Formats:  
                                   - Basic format("YYYYMMDDThhmmss.sssZ")    
                                   - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                              example: 2024-11-25T15:30:00.000Z
+                              example: '2024-11-25T15:30:00.000Z'
                         txHash:
                           type: string
                           description: |
                             Unique identifier of the transaction.
-                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                         vout:
                           type: string
-                          description: |
-                            Index of the output in a Bitcoin blockchain transaction.
-                          example: "2"
+                          description: >
+                            Index of the output in a Bitcoin blockchain
+                            transaction.
+                          example: '2'
                         originatingVaspId:
                           type: string
                           description: |
                             Unique identifier of Originating VASP.
-                          example: "123456789098765"
+                          example: '123456789098765'
                         originatorAccountNumber:
                           type: string
                           description: |
                             Account Address of Originator.
-                          example: "0x5811001506550d8356a215be229c15b6ef371a9a"
+                          example: '0x5811001506550d8356a215be229c15b6ef371a9a'
                         ivms101Originator:
                           type: string
                           description: |
                             Originator Type written in IVMS101 format.
-                          example: '{"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}'
+                          example: >-
+                            {"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}
                         ivms101OriginatingVasp:
                           type: string
                           description: |
                             OriginatingVASP Type written in IVMS101 format.
-                          example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu", "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}'
+                          example: >-
+                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
+                            "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}
                         beneficiaryVaspId:
                           type: string
                           description: |
                             Unique identifier of Beneficiary VASP.
-                          example: "27372039731940770"
+                          example: '27372039731940770'
                         beneficiaryAccountNumber:
                           type: string
                           description: |
                             Account Address of Beneficiary.
-                          example: "0x5811001506550d8356a215be229c15b6ef371a9a"
+                          example: '0x5811001506550d8356a215be229c15b6ef371a9a'
                         ivms101Beneficiary:
                           type: string
                           description: |
                             Beneficiary Type written in IVMS101 format.
-                          example: '{"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}'
+                          example: >-
+                            {"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}
                         ivms101BeneficiaryVasp:
                           type: string
                           description: |
                             BeneficiaryVASP Type written in IVMS101 format.
-                          example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14", "Teheran-ro", "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}'
+                          example: >-
+                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
+                            "Teheran-ro",
+                            "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}
                         verifiedAt:
                           type: string
-                          description: |
+                          description: >
                             The timestamp when the verification was completed.  
                               
-                            This field must follow the UTC ISO 8601 datetime representation standard.
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
                               
                             **Recommendations**  
                               
-                            To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                            To ensure consistency across systems, we strongly
+                            recommend using the extended format
+                            "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                            milliseconds and clearly specifies the UTC
+                            timezone.   Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                          example: 2024-11-25T15:30:00.000Z
+                          example: '2024-11-25T15:30:00.000Z'
                         orderedAt:
                           type: string
-                          description: |
-                            Timestamp of the transaction hash report. This field must follow the UTC ISO 8601 datetime representation standard.  
+                          description: >
+                            Timestamp of the transaction hash report. This field
+                            must follow the UTC ISO 8601 datetime representation
+                            standard.  
+
                             Recommendations:  
                               
-                            To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+                            To ensure consistency across systems, we strongly
+                            recommend using the extended format
+                            "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                            milliseconds and clearly specifies the UTC
+                            timezone.  
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                          example: 2024-11-25T15:30:00.000Z
+                          example: '2024-11-25T15:30:00.000Z'
                         createdAt:
                           type: string
-                          description: |
+                          description: >
                             Timestamp of the Owner Verification creation.
-                            This field must follow the UTC ISO 8601 datetime representation standard.  
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.  
                               
                             **Recommendations**  
-                            We strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+
+                            We strongly recommend using the extended format
+                            "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                            milliseconds and clearly specifies the UTC
+                            timezone.  
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
                               - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                          example: 2024-11-25T15:30:00.000Z
+                          example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
@@ -1376,32 +1668,41 @@ paths:
                     page: 1
                     rpp: 10
                     verification:
-                      - verificationId: "12345"
+                      - verificationId: '12345'
                         verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                         result: VERIFIED
                         reason: OK
                         assetInfo:
                           symbol: ETH
                           network: Ethereum
-                          amount: "0.024"
+                          amount: '0.024'
                           isExceedingThreshold: true
-                          tradePrice: "2193200"
+                          tradePrice: '2193200'
                           tradeCurrency: KRW
-                          tradeISODatetime: 2022-02-06T23:13:43.513Z
-                        txHash: "0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28"
-                        vout: "2"
-                        originatingVaspId: "123456789098765"
+                          tradeISODatetime: '2022-02-06T23:13:43.513Z'
+                        txHash: >-
+                          0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28
+                        vout: '2'
+                        originatingVaspId: '123456789098765'
                         originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
-                        ivms101Originator: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-                        ivms101OriginatingVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
-                        beneficaryVaspId: "15952089931162060684"
+                        ivms101Originator: >-
+                          {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+                        ivms101OriginatingVasp: >-
+                          {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
+                          Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+                          Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
+                        beneficaryVaspId: '15952089931162060684'
                         beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
-                        ivms101Beneficiary: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-                        ivms101BeneficiaryVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
-                        verifiedAt: 2022-03-03T12:45:34.085Z
-                        orderedAt: 2022-03-03T12:45:34.085Z
-                        createdAt: 2022-03-03T12:45:34.085Z
-        "400":
+                        ivms101Beneficiary: >-
+                          {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+                        ivms101BeneficiaryVasp: >-
+                          {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B
+                          Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+                          Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
+                        verifiedAt: '2022-03-03T12:45:34.085Z'
+                        orderedAt: '2022-03-03T12:45:34.085Z'
+                        createdAt: '2022-03-03T12:45:34.085Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1410,9 +1711,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -1423,8 +1726,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -1433,21 +1736,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1456,14 +1766,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -1473,8 +1786,9 @@ paths:
   /v1/verifications/{uuid}:
     get:
       summary: Get Verification Result API
-      description: |
-        This API retrieves the result of a specific verification request using its unique verification UUID.
+      description: >
+        This API retrieves the result of a specific verification request using
+        its unique verification UUID.
       operationId: travelrule-enclave-get-Verification-Result
       x-readme:
         explorer-enabled: false
@@ -1484,11 +1798,12 @@ paths:
           required: true
           schema:
             type: string
-            description: |
-              Unique identifier of User Verification.   The format of **uuid** must follow UUID V4 standard.
+            description: >
+              Unique identifier of User Verification.   The format of **uuid**
+              must follow UUID V4 standard.
             example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1512,9 +1827,11 @@ paths:
                 properties:
                   verificationUuid:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the User Verification request.  
-                      The format of **verificationUuid** must follow the UUID v4 standard.
+
+                      The format of **verificationUuid** must follow the UUID v4
+                      standard.
                     example: 4bc03a8f-5679-4358-815c-906aae5557f4
                   result:
                     type: string
@@ -1556,8 +1873,9 @@ paths:
                         example: ETH
                       network:
                         type: string
-                        description: |
-                          The network of the virtual asset.   The network field can be implemented conditionally. 
+                        description: >
+                          The network of the virtual asset.   The network field
+                          can be implemented conditionally. 
                             
                           **Conditional Use of 'network' Field:**  
                             1. If the network field is required by the Beneficiary VASP:  
@@ -1570,151 +1888,198 @@ paths:
                         type: string
                         description: |
                           The amount of the virtual asset to be transferred.
-                        example: "0.024"
+                        example: '0.024'
                       isExceedingThreshold:
                         type: boolean
-                        description: |
-                          A boolean field to check whether the fiat-converted amount of the virtual asset to be transferred exceeds the legal threshold.  
-                          If the value is false, User Verification for the transaction is not mandatory.   (Legal threshold: 1,000 USD or 1,000,000 KRW.)
+                        description: >
+                          A boolean field to check whether the fiat-converted
+                          amount of the virtual asset to be transferred exceeds
+                          the legal threshold.  
+
+                          If the value is false, User Verification for the
+                          transaction is not mandatory.   (Legal threshold:
+                          1,000 USD or 1,000,000 KRW.)
                         example: true
                       tradePrice:
                         type: string
-                        description: |
-                          The amount of virtual assets to be transferred, converted into fiat currency.
-                        example: "2439800"
+                        description: >
+                          The amount of virtual assets to be transferred,
+                          converted into fiat currency.
+                        example: '2439800'
                       tradeCurrency:
                         type: string
-                        description: |
-                          The code of the fiat currency into which the virtual asset is converted.
+                        description: >
+                          The code of the fiat currency into which the virtual
+                          asset is converted.
                         example: KRW
                       tradeISODateTime:
                         type: string
-                        description: |
-                          The timestamp used as the exchange rate reference when converting the virtual asset to fiat currency.   This field must follow the UTC ISO 8601 datetime representation standard.  
+                        description: >
+                          The timestamp used as the exchange rate reference when
+                          converting the virtual asset to fiat currency.   This
+                          field must follow the UTC ISO 8601 datetime
+                          representation standard.  
                             
                           **Recommendations**  
                             
-                          To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                          To ensure consistency across systems, we strongly
+                          recommend using the extended format
+                          "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                          milliseconds and clearly specifies the UTC timezone.  
+                          Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")    
                             - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                        example: 2024-11-25T15:30:00.000Z
+                        example: '2024-11-25T15:30:00.000Z'
                   txHash:
                     type: string
                     description: |
                       Unique identifier of the transaction.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
                     description: |
                       Index of the output in a Bitcoin blockchain transaction.
-                    example: "2"
+                    example: '2'
                   originatingVaspId:
                     type: string
                     description: |
                       Unique identifier of Originating VASP.
-                    example: "123456789098765"
+                    example: '123456789098765'
                   originatorAccountNumber:
                     type: string
                     description: |
                       Account Address of Originator.
-                    example: "0x5811001506550d8356a215be229c15b6ef371a9a"
+                    example: '0x5811001506550d8356a215be229c15b6ef371a9a'
                   ivms101Originator:
                     type: string
                     description: |
                       Originator Type written in IVMS101 format.
-                    example: '{"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}'
+                    example: >-
+                      {"originatorPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","nameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"test","buildingName":"123","townName":"Yeoksam-dong","country":"KR"}]}}]}
                   ivms101OriginatingVasp:
                     type: string
                     description: |
                       OriginatingVASP Type written in IVMS101 format.
-                    example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu", "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}'
+                    example: >-
+                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
+                      "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}
                   beneficiaryVaspId:
                     type: string
                     description: |
                       Unique identifier of Beneficiary VASP.
-                    example: "27372039731940770"
+                    example: '27372039731940770'
                   beneficiaryAccountNumber:
                     type: string
                     description: |
                       Account Address of Beneficiary.
-                    example: "0x5811001506550d8356a215be229c15b6ef371a9a"
+                    example: '0x5811001506550d8356a215be229c15b6ef371a9a'
                   ivms101Beneficiary:
                     type: string
                     description: |
                       Beneficiary Type written in IVMS101 format.
-                    example: '{"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}'
+                    example: >-
+                      {"beneficiaryPersons":[{"naturalPerson":{"name":{"nameIdentifier":[{"primaryIdentifier":"Taylor","secondaryIdentifier":"Robbins","nameIdentifierType":"LEGL"}]}}}],"accountNumber":["1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb"]}
                   ivms101BeneficiaryVasp:
                     type: string
                     description: |
                       BeneficiaryVASP Type written in IVMS101 format.
-                    example: '{"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14", "Teheran-ro", "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}'
+                    example: >-
+                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
+                      "Teheran-ro",
+                      "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}
                   verifiedAt:
                     type: string
-                    description: |
+                    description: >
                       The timestamp when the verification was completed.  
                         
-                      This field must follow the UTC ISO 8601 datetime representation standard.
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
                         
                       **Recommendations**  
                         
-                      To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.   Other ISO 8601 Acceptable Formats:  
+                      To ensure consistency across systems, we strongly
+                      recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.   Other ISO 8601
+                      Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
                   orderedAt:
                     type: string
-                    description: |
-                      Timestamp of the transaction hash report. This field must follow the UTC ISO 8601 datetime representation standard.  
+                    description: >
+                      Timestamp of the transaction hash report. This field must
+                      follow the UTC ISO 8601 datetime representation
+                      standard.  
+
                       Recommendations:  
                         
-                      To ensure consistency across systems, we strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+                      To ensure consistency across systems, we strongly
+                      recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.  
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
                   createdAt:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the Owner Verification creation.
-                      This field must follow the UTC ISO 8601 datetime representation standard.  
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.  
                         
                       **Recommendations**  
-                      We strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+
+                      We strongly recommend using the extended format
+                      "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds
+                      and clearly specifies the UTC timezone.  
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                    example: 2024-11-25T15:30:00.000Z
+                    example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
-                    verificationId: "12345"
+                    verificationId: '12345'
                     verificationUuid: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                     result: VERIFIED
                     reason: OK
                     assetInfo:
                       symbol: ETH
                       network: Ethereum
-                      amount: "0.024"
+                      amount: '0.024'
                       isExceedingThreshold: true
-                      tradePrice: "2193200"
+                      tradePrice: '2193200'
                       tradeCurrency: KRW
-                      tradeISODatetime: 2022-02-06T23:13:43.513Z
-                    txHash: "0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28"
-                    vout: "2"
-                    originatingVaspId: "123456789098765"
+                      tradeISODatetime: '2022-02-06T23:13:43.513Z'
+                    txHash: >-
+                      0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28
+                    vout: '2'
+                    originatingVaspId: '123456789098765'
                     originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
-                    ivms101Originator: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-                    ivms101OriginatingVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
-                    beneficaryVaspId: "15952089931162060684"
+                    ivms101Originator: >-
+                      {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+                    ivms101OriginatingVasp: >-
+                      {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
+                      Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+                      Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
+                    beneficaryVaspId: '15952089931162060684'
                     beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
-                    ivms101Beneficiary: "{'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}"
-                    ivms101BeneficiaryVasp: "{'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu, Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}"
-                    verifiedAt: 2022-03-03T12:45:34.085Z
-                    orderedAt: 2022-03-03T12:45:34.085Z
-                    createdAt: 2022-03-03T12:45:34.085Z
-        "400":
+                    ivms101Beneficiary: >-
+                      {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
+                    ivms101BeneficiaryVasp: >-
+                      {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'B
+                      Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
+                      Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR002','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
+                    orderedAt: '2022-03-03T12:45:34.085Z'
+                    createdAt: '2022-03-03T12:45:34.085Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1723,9 +2088,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -1736,8 +2103,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -1746,21 +2113,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1769,14 +2143,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -1786,8 +2163,11 @@ paths:
   /v1/verifications/tx:
     post:
       summary: Report Transaction Result API
-      description: |
-        This API is used by the Originating VASP to report the txHash or txId of a blockchain transaction to the Beneficiary VASP after executing the asset transfer transaction on the blockchain.
+      description: >
+        This API is used by the Originating VASP to report the txHash or txId of
+        a blockchain transaction to the Beneficiary VASP after executing the
+        asset transfer transaction on the blockchain.
+
         ### Implementation Policy
           1. Only transactions for which User Verification has been completed should be executed, and the txHash or txId must be reported via calling this API.
           2. As soon as the transaction hash is generated, this API must be called immediately to send the information to the VerifyVASP Central server.
@@ -1807,28 +2187,32 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 txHash:
                   type: string
                   description: |
                     Unique identifier of the transaction.
-                  example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  example: >-
+                    8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                 vout:
                   type: string
                   description: |
                     Index of the output in a Bitcoin blockchain transaction.
-                  example: "2"
+                  example: '2'
             examples:
               requestexamples:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
-                  txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                  vout: "2"
+                  txHash: >-
+                    8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout: '2'
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1848,7 +2232,7 @@ paths:
                 Successful Example:
                   value:
                     result: true
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1857,9 +2241,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -1870,8 +2256,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -1880,21 +2266,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1903,14 +2296,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -1920,8 +2316,12 @@ paths:
   /v1/verifications/error:
     post:
       summary: Report Error API
-      description: |
-        The Originating VASP calls this API to report a transaction that has been permanently canceled to the VerifyVASP Central server. Through this process, the Beneficiary VASP can acknowledge the failure of the virtual asset transfer.
+      description: >
+        The Originating VASP calls this API to report a transaction that has
+        been permanently canceled to the VerifyVASP Central server. Through this
+        process, the Beneficiary VASP can acknowledge the failure of the virtual
+        asset transfer.
+
 
         ### Implementation Policy
           1. Use this API to report error situations specifically for canceled virtual asset transfers that have already undergone user verification.
@@ -1970,9 +2370,11 @@ paths:
                   example: An unidentifiable wallet address.
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
               requestexamples:
@@ -1982,7 +2384,7 @@ paths:
                   message: The address is not found
                   verificationId: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -2002,7 +2404,7 @@ paths:
                 Successful Example:
                   value:
                     result: true
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -2011,9 +2413,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -2024,8 +2428,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -2034,21 +2438,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -2057,14 +2468,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -2074,8 +2488,11 @@ paths:
   /v1/verifications/tx/inquiry:
     post:
       summary: Check Transaction Status API
-      description: |
-        This API is called by the Beneficiary VASP when it cannot confirm the results of the Report Transaction Result or Report Error API for a verified user within a certain timeframe.
+      description: >
+        This API is called by the Beneficiary VASP when it cannot confirm the
+        results of the Report Transaction Result or Report Error API for a
+        verified user within a certain timeframe.
+
 
         **Implementation Guide**
           1. When the Beneficiary VASP detects an incoming deposit, it should first call the Verification Result Lookup API with the txHash filter to check for any matching verification records.
@@ -2097,16 +2514,18 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
               requestexamples:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -2118,9 +2537,11 @@ paths:
                 properties:
                   verificationUuid:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the User Verification request.  
-                      The format of **verificationUuid** must follow the UUID v4 standard.
+
+                      The format of **verificationUuid** must follow the UUID v4
+                      standard.
                     example: 4bc03a8f-5679-4358-815c-906aae5557f4
                   transactionStatus:
                     type: string
@@ -2148,20 +2569,22 @@ paths:
                     type: string
                     description: |
                       Unique identifier of the transaction.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
                     description: |
                       Index of the output in a Bitcoin blockchain transaction.
-                    example: "2"
+                    example: '2'
               examples:
                 Successful Example:
                   value:
                     verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                     transactionStatus: PROCESSING
-                    txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                    vout: "2"
-        "400":
+                    txHash: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    vout: '2'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -2170,9 +2593,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -2183,8 +2608,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -2193,21 +2618,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -2216,14 +2648,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -2233,8 +2668,12 @@ paths:
   /v1/risk-assessment/chainalysis-sanction:
     post:
       summary: Risk Assessment Via Chainalysis Sanction API
-      description: |
-        This API provides risk level assessment of wallet addresses by leveraging the Chainalysis Sanction API. It enables VASPs to evaluate the potential risks associated with the wallet addresses they handle, helping to prevent unauthorized or high-risk transactions.
+      description: >
+        This API provides risk level assessment of wallet addresses by
+        leveraging the Chainalysis Sanction API. It enables VASPs to evaluate
+        the potential risks associated with the wallet addresses they handle,
+        helping to prevent unauthorized or high-risk transactions.
+
 
         ### What is the Chainalysis Sanction API?
           The Chainalysis Sanction API is a free service provided by [Chainalysis](https://www.chainalysis.com/) that assesses the risk associated with cryptocurrency wallet addresses. It allows organizations, including VASPs, to quickly identify high-risk addresses, such as those flagged for sanctions or other regulatory concerns. This API supports efficient compliance with anti-money laundering (AML) and sanction screening requirements, enhancing the security and reliability of virtual asset transactions.
@@ -2247,7 +2686,11 @@ paths:
             * **By the Beneficiary VASP**: The Beneficiary VASP can assess the risk associated with the Originator's wallet address to identify potential threats and take necessary precautions.
 
         ### Perparation Requirements
-        1. **Enclave Environment Variable Configuration**: Set `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued during the registration process.
+
+        1. **Enclave Environment Variable Configuration**: Set
+        `VEGA_CHAINALYSIS_SANCTION_API_KEY` variable with the API key issued
+        during the registration process.
+
         2. **Database Table Setup**: 
           - The Enclave database must include a table to store Chainalysis Sanction API call results.
           - Refer to the Chainalysis Sanction Results Table definition for implementation details.
@@ -2265,16 +2708,18 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
               requestexamples:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -2295,28 +2740,32 @@ paths:
                     properties:
                       requestId:
                         type: string
-                        description: |
-                          A unique identifier used to distinguish the request for risk assessment.
+                        description: >
+                          A unique identifier used to distinguish the request
+                          for risk assessment.
                         example: 398ace46-6baf-4488-a9f2-ee43680b413e
                       counterpartyVaspId:
                         type: string
                         description: |
                           Unique identifer of the counterparty VASP.
-                        example: "15952089931162059995"
+                        example: '15952089931162059995'
                       direction:
                         type: string
                         enum:
                           - OUTGOING
                           - INCOMING
-                        description: |
-                          A field indicating the direction of virtual asset movement.  
-                          **OUTGOING** is used for withdrawals, and INCOMING is used for deposits.
+                        description: >
+                          A field indicating the direction of virtual asset
+                          movement.  
+
+                          **OUTGOING** is used for withdrawals, and INCOMING is
+                          used for deposits.
                         example: OUTGOING
                       address:
                         type: string
                         description: |
                           Account address.
-                        example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                        example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       status:
                         type: string
                         description: |
@@ -2324,28 +2773,33 @@ paths:
                         example: NOHIT
                       createdAt:
                         type: string
-                        description: |
+                        description: >
                           Timestamp of the Owner Verification creation.
-                          This field must follow the UTC ISO 8601 datetime representation standard.  
+
+                          This field must follow the UTC ISO 8601 datetime
+                          representation standard.  
                             
                           **Recommendations**  
-                          We strongly recommend using the extended format "YYYY-MM-DDThh:mm:ss.sssZ", which includes milliseconds and clearly specifies the UTC timezone.  
+
+                          We strongly recommend using the extended format
+                          "YYYY-MM-DDThh:mm:ss.sssZ", which includes
+                          milliseconds and clearly specifies the UTC timezone.  
                             
                           Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")  
                             - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
-                        example: 2024-11-25T15:30:00.000Z
+                        example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
                   value:
                     chainalysisSanction:
                       requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
-                      counterpartyVaspId: "15952089931162059995"
+                      counterpartyVaspId: '15952089931162059995'
                       direction: OUTGOING
-                      address: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                      address: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       status: NOHIT
-                      createdAt: 2023-05-26T13:34:23.053Z
-        "400":
+                      createdAt: '2023-05-26T13:34:23.053Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -2354,9 +2808,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -2367,8 +2823,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "401":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '401':
           description: 401 Unauthorized Error response
           content:
             application/json:
@@ -2377,9 +2833,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       401 Error message.  
-                      It could be returned in the following case   - Invalid API Key(Unauthorized)
+
+                      It could be returned in the following case   - Invalid API
+                      Key(Unauthorized)
                     example: UNKNOWN-ERROR-CODE
                   message:
                     type: string
@@ -2391,7 +2849,7 @@ paths:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: Invalid API Key
-        "404":
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -2400,21 +2858,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -2423,14 +2888,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -2440,8 +2908,13 @@ paths:
   /v1/risk-assessment/chainalysis-kyt:
     post:
       summary: Risk Assessment Via Chainalysis KYT API
-      description: |
-        This API provides risk level assessment of wallet addresses and transactions by leveraging the Chainalysis KYT API. It enables VASPs to evaluate the potential risks associated with the wallet addresses and transactions they handle, helping to prevent and detect high-risk transactions.
+      description: >
+        This API provides risk level assessment of wallet addresses and
+        transactions by leveraging the Chainalysis KYT API. It enables VASPs to
+        evaluate the potential risks associated with the wallet addresses and
+        transactions they handle, helping to prevent and detect high-risk
+        transactions.
+
 
         ### What is the Chainalysis KYT API?
           The Chainalysis Know Your Transaction (KYT) API is a paid service that provides advanced risk assessment capabilities for cryptocurrency transactions. The KYT API offers more detailed and accurate risk analysis compared to the Chainalysis Sanction API, with capabilities tailored to specific use cases such as:
@@ -2457,6 +2930,7 @@ paths:
           Before calling the KYT API, the User Verification API (POST /verifications) must be completed. The behavior and results of the KYT API vary depending on whether the Transaction Report has been performed:
 
         **Before Submitting a Transaction Report**
+
         1. **Originatig VASP**
           * Evaluates the risk level of the Beneficiary’s wallet address.
           * This helps assess the potential risk of the recipient’s wallet address before initiating a withdrawal.
@@ -2466,6 +2940,7 @@ paths:
           * Attempts to call the API will result in an UNSUPPORTED-RISK-ASSESSMENT error.
 
         **After Submitting a Transaction Report**
+
         1. **Originatig VASP**
           * Evaluates the risk level of the withdrawal transaction.
           * This provides insight into the potential risk associated with the transaction being sent.
@@ -2474,12 +2949,25 @@ paths:
           * Assesses the risk level of the deposit transaction.
           * This enables the evaluation of the incoming transaction's risk and allows for appropriate risk management actions.
 
-        By utilizing the Chainalysis KYT API, VASPs can enhance the security of virtual asset transactions. The Originating VASP can proactively assess the risk level of the Beneficiary's wallet address, while the Beneficiary VASP can evaluate the transaction's risk and take necessary actions accordingly.
+        By utilizing the Chainalysis KYT API, VASPs can enhance the security of
+        virtual asset transactions. The Originating VASP can proactively assess
+        the risk level of the Beneficiary's wallet address, while the
+        Beneficiary VASP can evaluate the transaction's risk and take necessary
+        actions accordingly.
 
-        The KYT API operates asynchronously. You first register a target (such as a withdrawal attempt or transfer) for risk assessment with Chainalysis. The results of the risk evaluation are then delivered through the Callback API.
+
+        The KYT API operates asynchronously. You first register a target (such
+        as a withdrawal attempt or transfer) for risk assessment with
+        Chainalysis. The results of the risk evaluation are then delivered
+        through the Callback API.
+
 
         ### Preparation Requirements
-        1. **Enclave Environment Variable Configuration**: Set VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the registration process.
+
+        1. **Enclave Environment Variable Configuration**: Set
+        VEGA_CHAINALYSIS_KYT_API_KEY variable with the API key issued during the
+        registration process.
+
         2. **Database Table Setup**:
           - The Enclave database must include a table to store Chainalysis KYT API call results.
           - Refer to the Chainalysis KYT Results table and the Chainalysis KYT Alerts table for table definitions.
@@ -2497,14 +2985,17 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 network:
                   type: string
-                  description: |
-                    The network of the virtual asset.   The network field can be implemented conditionally. 
+                  description: >
+                    The network of the virtual asset.   The network field can be
+                    implemented conditionally. 
                       
                     **Conditional Use of 'network' Field:**  
                       1. If the network field is required by the Beneficiary VASP:  
@@ -2519,7 +3010,7 @@ paths:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                   network: Ethereum
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -2530,14 +3021,15 @@ paths:
                 properties:
                   requestId:
                     type: string
-                    description: |
-                      A unique identifier used to distinguish the request for risk assessment.
+                    description: >
+                      A unique identifier used to distinguish the request for
+                      risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
                 Successful Example:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -2546,9 +3038,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -2559,8 +3053,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "403":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '403':
           description: 403 Forbidden Error response
           content:
             application/json:
@@ -2569,9 +3063,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       403 Error message.  
-                      It could be returned in the following cases:   - Access Denied(API Key)
+
+                      It could be returned in the following cases:   - Access
+                      Denied(API Key)
                     example: UNKNOWN-ERROR-CODE
                   message:
                     type: string
@@ -2583,7 +3079,7 @@ paths:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: AccessDenied
-        "404":
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -2592,21 +3088,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -2615,14 +3118,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
@@ -2632,8 +3138,10 @@ paths:
   /v1/risk-assessment/refinitiv-wco:
     post:
       summary: Risk Assessment Via Refinitiv WCO API
-      description: |
-        This API provides risk level assessment of wallet addresses and transactions by leveraging the Refinitiv WCO API.
+      description: >
+        This API provides risk level assessment of wallet addresses and
+        transactions by leveraging the Refinitiv WCO API.
+
         ### What is the Refinitiv WCO API?
           The Refinitiv World-Check One (WCO) API is a paid service designed for conducting risk assessments on individuals or entities using personal identification information. Risk assessment requests are referred to as 'case', which are uniquely identified by a caseSystemId assigned by Refinitiv. Additionally, the concept of 'groups' is used to manage case assignments, with each case belonging to a specific group. Reviewing and structuring these groups effectively is recommended before integrating the Refinitiv WCO API into your workflows.
           - To use the WCO API, you must create an account with Refinitiv and purchase a license. For inquiries or assistance in scheduling a meeting with the Refinitiv team, contact [Refinitiv World Check One](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) directly or reach out to the VerifyVASP team for support.
@@ -2646,12 +3154,18 @@ paths:
           Before calling the WCO API, the User Verification API (POST /verifications) must be completed. The Refinitiv WCO API allows VASPs to evaluate the risk level of the Originator/Beneficiary of a transaction. This enables VASP to perform additional risk assessments on whether the Beneficiary or Originator is a risky individual or organization. The WCO API also operates asynchronously, the results of the risk evaluation are delivered through the Callback API.
 
         ### Preparation Requirements
+
         1. **Enclave Environment Variable Configuration**:
           - Set `VEGA_REFINITIV_WCO_API_KEY` variable with the API key issued from the Refinitiv WCO Console Site. Navigate to Admin Page > Users > [Your User] to find the key in the user's details.
           - Set `VEGA_REFINITIV_WCO_API_SECRET` variable with the API secret retrieved from the same location as the API Key (Admin Page > Users > [Your User]).
           - Set `VEGA_REFINITIV_WCO_GROUP_ID` variable with the group ID. Create a group for managing cases in the Admin Page of the Refinitiv WCO Console Site. To retrieve the Group ID:
-        2. **Use the SEQ-pre-groups**: Get my top-level groups request from the Group Information folder in the [Refinitiv WCO API Quick Start Postman Collection](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start).
-        3. **Set the API Key and API Secret as environment variables in Postman before making the request**.
+        2. **Use the SEQ-pre-groups**: Get my top-level groups request from the
+        Group Information folder in the [Refinitiv WCO API Quick Start Postman
+        Collection](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start).
+
+        3. **Set the API Key and API Secret as environment variables in Postman
+        before making the request**.
+
         4. **Database Table Setup**:
           - All Refinitiv WCO API call logs are stored in the Enclave database.
           - You must create a dedicated table to store these records. Refer to the Refinitiv WCO Results Table definition for implementation details.
@@ -2669,22 +3183,28 @@ paths:
               properties:
                 verificationUuid:
                   type: string
-                  description: |
+                  description: >
                     A unique identifier for the User Verification request.  
-                    The format of **verificationUuid** must follow the UUID v4 standard.
+
+                    The format of **verificationUuid** must follow the UUID v4
+                    standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 payload:
                   type: object
                   properties:
                     version:
                       type: string
-                      description: |
-                        The version of the IVMS101 messaging protocol being used.
-                      example: "1.0"
+                      description: >
+                        The version of the IVMS101 messaging protocol being
+                        used.
+                      example: '1.0'
                     ivms101:
                       type: object
-                      description: |
-                        An object with IVMS101-formatted data that may include information about the Originator, Originating VASP, Beneficiary, and Beneficiary VASP for sending the request.
+                      description: >
+                        An object with IVMS101-formatted data that may include
+                        information about the Originator, Originating VASP,
+                        Beneficiary, and Beneficiary VASP for sending the
+                        request.
                       required:
                         - originator
                         - beneficiary
@@ -2699,21 +3219,24 @@ paths:
                           properties:
                             originatorPersons:
                               type: array
-                              description: |
-                                An array containing the Originator's personal information.
+                              description: >
+                                An array containing the Originator's personal
+                                information.
                               items:
                                 type: object
                                 required:
                                   - naturalPerson
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   naturalPerson:
                                     type: object
                                     required:
                                       - name
-                                    description: |
-                                      An object containing details about the natural person.
+                                    description: >
+                                      An object containing details about the
+                                      natural person.
                                     properties:
                                       name:
                                         type: object
@@ -2724,7 +3247,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -2733,15 +3258,26 @@ paths:
                                               properties:
                                                 primaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a last name.  
-                                                    By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                  description: >
+                                                    The basic representation of a last
+                                                    name.  
+
+                                                    By default, this field is used to enter
+                                                    the last name. However, if separating
+                                                    the last name and first name is not
+                                                    feasible, the full name can be entered
+                                                    in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a first name.  
-                                                    This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                  description: >
+                                                    The basic representation of a first
+                                                    name.  
+
+                                                    This field is primarily used to enter
+                                                    the first name. If a middle name also
+                                                    needs to be included, it can be combined
+                                                    with the first name in this field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
                                                   type: string
@@ -2751,10 +3287,13 @@ paths:
                                                     - MAID
                                                     - LEGL
                                                     - MISC
-                                                  description: |
+                                                  description: >
                                                     The type of name identifier.  
                                                       
-                                                    Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -2781,23 +3320,27 @@ paths:
                           properties:
                             beneficiaryPersons:
                               type: array
-                              description: |
-                                An array for personal information of Beneficiary.  
+                              description: >
+                                An array for personal information of
+                                Beneficiary.  
                                   
-                                Name, address, etc. information for individuals or corporations are included.
+                                Name, address, etc. information for individuals
+                                or corporations are included.
                               items:
                                 type: object
                                 required:
                                   - naturalPerson
-                                description: |
-                                  An object containing details about the natural person.
+                                description: >
+                                  An object containing details about the natural
+                                  person.
                                 properties:
                                   naturalPerson:
                                     type: object
                                     required:
                                       - name
-                                    description: |
-                                      An object containing details about the natural person.
+                                    description: >
+                                      An object containing details about the
+                                      natural person.
                                     properties:
                                       name:
                                         type: object
@@ -2808,7 +3351,9 @@ paths:
                                         properties:
                                           nameIdentifier:
                                             type: array
-                                            description: An array containing the name information.
+                                            description: >-
+                                              An array containing the name
+                                              information.
                                             items:
                                               type: object
                                               required:
@@ -2817,15 +3362,26 @@ paths:
                                               properties:
                                                 primaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a last name.  
-                                                    By default, this field is used to enter the last name. However, if separating the last name and first name is not feasible, the full name can be entered in this field.
+                                                  description: >
+                                                    The basic representation of a last
+                                                    name.  
+
+                                                    By default, this field is used to enter
+                                                    the last name. However, if separating
+                                                    the last name and first name is not
+                                                    feasible, the full name can be entered
+                                                    in this field.
                                                   example: James
                                                 secondaryIdentifier:
                                                   type: string
-                                                  description: |
-                                                    The basic representation of a first name.  
-                                                    This field is primarily used to enter the first name. If a middle name also needs to be included, it can be combined with the first name in this field.
+                                                  description: >
+                                                    The basic representation of a first
+                                                    name.  
+
+                                                    This field is primarily used to enter
+                                                    the first name. If a middle name also
+                                                    needs to be included, it can be combined
+                                                    with the first name in this field.
                                                   example: James || Jeffry James
                                                 nameIdentifierType:
                                                   type: string
@@ -2835,10 +3391,13 @@ paths:
                                                     - MAID
                                                     - LEGL
                                                     - MISC
-                                                  description: |
+                                                  description: >
                                                     The type of name identifier.  
                                                       
-                                                    Refer to the details below for information about each type of name identifier:   The following values can be included:  
+                                                    Refer to the details below for
+                                                    information about each type of name
+                                                    identifier:   The following values can
+                                                    be included:  
                                                       **ALIA**: An alias name, commonly known apart from the legal name.  
 
                                                       **BIRT**: A birth name.  
@@ -2860,7 +3419,7 @@ paths:
                 value:
                   verificationUuid: d63398e3-c806-4300-bd99-170b54642080
                   payload:
-                    version: "1.0"
+                    version: '1.0'
                     ivms101:
                       originator:
                         originatorPersons:
@@ -2871,7 +3430,7 @@ paths:
                                     secondaryIdentifier: Din
                                     nameIdentifierType: LEGL
                         accountNumber:
-                          - "0x5811001506550d8356a215be229c15b6ef371a9a"
+                          - '0x5811001506550d8356a215be229c15b6ef371a9a'
                       beneficiary:
                         beneficiaryPersons:
                           - naturalPerson:
@@ -2880,9 +3439,9 @@ paths:
                                   - primaryIdentifier: James
                                     nameIdentifierType: LEGL
                         accountNumber:
-                          - "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -2893,14 +3452,15 @@ paths:
                 properties:
                   requestId:
                     type: string
-                    description: |
-                      A unique identifier used to distinguish the request for risk assessment.
+                    description: >
+                      A unique identifier used to distinguish the request for
+                      risk assessment.
                     example: 398ace46-6baf-4488-a9f2-ee43680b413e
               examples:
                 Successful Example:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -2909,9 +3469,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       400 Error message.  
-                      - Invalid input parameters - Missing Required Parameters - Inactive VASP
+
+                      - Invalid input parameters - Missing Required Parameters -
+                      Inactive VASP
                     example: MISSING-VERIFICATION-UUID
                   message:
                     type: string
@@ -2922,8 +3484,8 @@ paths:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "401":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '401':
           description: 401 Unauthorized Error response
           content:
             application/json:
@@ -2932,9 +3494,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       401 Error message.  
-                      It could be returned in the following case   - Invalid API Key(Unauthorized)
+
+                      It could be returned in the following case   - Invalid API
+                      Key(Unauthorized)
                     example: UNKNOWN-ERROR-CODE
                   message:
                     type: string
@@ -2946,7 +3510,7 @@ paths:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: Invalid API Key
-        "404":
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -2955,21 +3519,28 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.  
-                      It could be returned in the following cases:   - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases:   - When
+                      request with a non-existent resources is provided.
                     example: VERIFICATION-NOT-FOUND
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
-                    example: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
+                    example: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
               examples:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -2978,14 +3549,17 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases:   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases:   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
-                    description: |
-                      Explanation about the error that is returned in the code field.
+                    description: >
+                      Explanation about the error that is returned in the code
+                      field.
                     example: timeout of 5000ms exceeded
               examples:
                 408 Error Example:
