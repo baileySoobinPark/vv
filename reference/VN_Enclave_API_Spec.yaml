@@ -21,11 +21,12 @@ paths:
             enum:
               - TRAVEL-RULE
               - VERIFY-NAME
-            description: |
-              Name of the protocol. "TRAVEL-RULE", "VERIFY-NAME" can input in this field.
+            description: >
+              Name of the protocol. "TRAVEL-RULE", "VERIFY-NAME" can input in
+              this field.
             example: VERIFY-NAME
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -49,14 +50,16 @@ paths:
                           enum:
                             - UP
                             - DOWN
-                          description: |
-                            Current operational health status of the VASP Enclave server.
+                          description: >
+                            Current operational health status of the VASP
+                            Enclave server.
                           example: UP
                         vaspId:
                           type: string
-                          description: |
-                            Unique identifier of VASP that supporting VerifyName.
-                          example: "15952089931162060684"
+                          description: >
+                            Unique identifier of VASP that supporting
+                            VerifyName.
+                          example: '15952089931162060684'
                         vaspName:
                           type: string
                           description: |
@@ -78,30 +81,38 @@ paths:
                           example: A Exchange
                         jurisdiction:
                           type: string
-                          description: |
-                            The country or region where the legal entity is established (jurisdiction of incorporation).
+                          description: >
+                            The country or region where the legal entity is
+                            established (jurisdiction of incorporation).
                           example: Singapore
                         country:
                           type: string
-                          description: |
-                            The name of the country where the VASP is established.
+                          description: >
+                            The name of the country where the VASP is
+                            established.
                           example: Singapore
                         countryCode:
                           type: string
-                          description: |
-                            The ISO 3166-1 alpha-2 code of the country where the VASP is incorporated.
+                          description: >
+                            The ISO 3166-1 alpha-2 code of the country where the
+                            VASP is incorporated.
                           example: SG
                         vendor:
                           type: string
                           enum:
                             - VERIFYVASP
                             - CODE
-                          description: |
+                          description: >
                             The TravelRule Protocol used by the VASP. 
 
+
                             Allowed values:
-                            - **VERIFYVASP**: Indicates that the VASP is a member of the VerifyVASP Alliance.
-                            - **CODE**: Indicates that the VASP is a member of the CODE Alliance.
+
+                            - **VERIFYVASP**: Indicates that the VASP is a
+                            member of the VerifyVASP Alliance.
+
+                            - **CODE**: Indicates that the VASP is a member of
+                            the CODE Alliance.
                           example: VERIFYVASP
                         licensedStatus:
                           type: string
@@ -118,8 +129,9 @@ paths:
                             - VERIFIED
                             - VERIFIED-MEMBER
                             - INTEROPERATED
-                          description: |
-                            The status of the VASP on VerifyVASP.   Allowed values:  
+                          description: >
+                            The status of the VASP on VerifyVASP.   Allowed
+                            values:  
                               **VERIFIED-MEMBER**: A member of the VerifyVASP Alliance with the Enclave server properly running, enabling transactions.  
 
                               **VERIFIED**: Registered with VerifyVASP but not approved as an Alliance member, or an Alliance member without an installed Enclave server. 
@@ -133,7 +145,7 @@ paths:
                   value:
                     vasps:
                       - health: UP
-                        vaspId: "15952089931162060684"
+                        vaspId: '15952089931162060684'
                         vaspName: A Exchange
                         protocol:
                           - TRAVEL-RULE
@@ -144,7 +156,7 @@ paths:
                         countryCode: KR
                         vendor: VERIFYVASP
                         vaspStatus: INTEROPERATED
-                      - vaspId: "15952089931162060683"
+                      - vaspId: '15952089931162060683'
                         vaspName: B Exchange
                         protocol:
                           - VERIFY-NAME
@@ -155,7 +167,7 @@ paths:
                         countryCode: SG
                         vendor: CODE
                         vaspStatus: INTEROPERATED
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -174,13 +186,17 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: INVALID-PROTOCOL
-                    message: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
-        "408":
+                    message: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -189,9 +205,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -212,7 +230,7 @@ paths:
       x-readme:
         explorer-enabled: false
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -223,12 +241,12 @@ paths:
                     type: string
                     description: |
                       Unique identifier of VASP that supporting VerifyName.
-                    example: "15952089931162060684"
+                    example: '15952089931162060684'
               examples:
                 Successful Example:
                   value:
-                    vaspId: "15952089931162058999"
-        "400":
+                    vaspId: '15952089931162058999'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -247,13 +265,15 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "404":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -262,9 +282,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.
-                      It could be returned in the following cases: - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases: - When
+                      request with a non-existent resources is provided.
                     example: OWNER-VERIFICATION-NOT-FOUND
                   message:
                     type: string
@@ -275,8 +297,10 @@ paths:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
-        "408":
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -285,9 +309,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -336,31 +362,20 @@ paths:
                             - PerVasp
                             - PerAddress
                             - PerVerification
-                          description: |
-                            The type of Public Key to be used for encrypting personal information.
-
-                            The default value is **PerVasp**. PerAddress and PerVerification can also be entered.
-
-                            The Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.
-
-                            Explanation of allowed values:
-                            - **PerVasp**: A single key shared across all verifications for a VASP.
-                            - **PerAddress**: A unique key is generated for each beneficiary address.
-                            - **PerVerification**: A new key is generated for every verification request.
+                          description: "The type of Public Key to be used for encrypting personal information.\n\nThe default value is\_**PerVasp**. PerAddress and PerVerification can also be entered.\n\nThe Beneficiary VASP must provide the Public Key corresponding to the Key Type specified by the Originating VASP in this field.\n\nExplanation of allowed values:\n- **PerVasp**: A single key shared across all verifications for a VASP.\n- **PerAddress**: A unique key is generated for each beneficiary address.\n- **PerVerification**: A new key is generated for every verification request.\n"
                           example: PerVasp
                         vasp_id:
                           type: string
-                          description: |
-                            Unique identifier of Originator or Beneficiary VASP..
-                          example: "15952089931162060684"
+                          description: >
+                            Unique identifier of Originator or Beneficiary
+                            VASP..
+                          example: '15952089931162060684'
                         type:
                           type: string
                           enum:
                             - VerifyOriginator
                             - VerifyBeneficiary
-                          description: |
-                            Indication of verification type.
-                            Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                          description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
                           example: VerifyOriginator
                         ticker:
                           type: string
@@ -369,33 +384,41 @@ paths:
                           example: ETH
                         network:
                           type: string
-                          description: |
-                            The network of the virtual asset to be transferred. The network field can be implemented conditionally.
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
                           example: ETHEREUM
                         address:
                           type: string
                           description: |
                             The address of the wallet.
-                          example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
-                          description: |
-                            The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                          example: "3256697931"
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
                         dti:
                           type: string
-                          description: |
-                            Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
                           example: 4H95J0R2X
                         tx_hash:
                           type: string
-                          description: |
-                            Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **type** is **VerifyOriginator**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                         creditor:
                           type: object
-                          description: |
-                            An object containing information about the Owner's information when the type is **VerifyBeneficiary**.
+                          description: >
+                            An object containing information about the Owner's
+                            information when the type is **VerifyBeneficiary**.
                           required:
                             - name
                             - identification
@@ -424,8 +447,9 @@ paths:
                                       example: DOE
                             identification:
                               type: object
-                              description: |
-                                An object containing information about the Owner's identification.
+                              description: >
+                                An object containing information about the
+                                Owner's identification.
                               properties:
                                 private_identification:
                                   type: object
@@ -439,11 +463,12 @@ paths:
                                           type: string
                                           description: |
                                             Date of Birth.
-                                          example: 2025-01-01
+                                          example: '2025-01-01'
                                 organisation_identification:
                                   type: object
-                                  description: |
-                                    An object containing information about the legal organisation identification.
+                                  description: >
+                                    An object containing information about the
+                                    legal organisation identification.
                                   required:
                                     - supplementary_data
                                   properties:
@@ -461,7 +486,7 @@ paths:
                                               type: string
                                               description: |
                                                 Date of incorporation.
-                                              example: 2025-01-01
+                                              example: '2025-01-01'
                                     lei:
                                       type: string
                                       description: |
@@ -469,14 +494,23 @@ paths:
                                       example: 506700GE1G29325QX363
                                     bic:
                                       type: string
-                                      description: |
-                                        Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
-                                        - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                      description: >
+                                        Business Identifier Code (BIC). A code
+                                        defined in accordance with the ISO 9362
+                                        standard for identifying financial and
+                                        non-financial institutions.
+
+                                        - also known as a SWIFT code, is an 8-11
+                                        character code used to identify banks
+                                        and their branches globally.
                                       example: HBUKGB4B
                                     other:
                                       type: object
-                                      description: |
-                                        MATCHED is returned only if both the provided identification and issuer exactly match the values stored in the Enclave server.
+                                      description: >
+                                        MATCHED is returned only if both the
+                                        provided identification and issuer
+                                        exactly match the values stored in the
+                                        Enclave server.
                                       required:
                                         - identification
                                         - issuer
@@ -488,13 +522,15 @@ paths:
                                           example: 5493001KJTIIGC8Y1R12
                                         issuer:
                                           type: string
-                                          description: |
-                                            Issuing Authority for the Business Registration Number
+                                          description: >
+                                            Issuing Authority for the Business
+                                            Registration Number
                                           example: ISO17442
                         debtor:
                           type: object
-                          description: |
-                            An object containing information about the Owner's information when the type is **VerifyOriginator**.
+                          description: >
+                            An object containing information about the Owner's
+                            information when the type is **VerifyOriginator**.
                           required:
                             - name
                             - identification
@@ -523,8 +559,9 @@ paths:
                                       example: DOE
                             identification:
                               type: object
-                              description: |
-                                An object containing information about the Owner's identification.
+                              description: >
+                                An object containing information about the
+                                Owner's identification.
                               properties:
                                 private_identification:
                                   type: object
@@ -538,11 +575,12 @@ paths:
                                           type: string
                                           description: |
                                             Date of Birth.
-                                          example: 2025-01-01
+                                          example: '2025-01-01'
                                 organisation_identification:
                                   type: object
-                                  description: |
-                                    An object containing information about the legal organisation identification.
+                                  description: >
+                                    An object containing information about the
+                                    legal organisation identification.
                                   required:
                                     - supplementary_data
                                   properties:
@@ -560,7 +598,7 @@ paths:
                                               type: string
                                               description: |
                                                 Date of incorporation.
-                                              example: 2025-01-01
+                                              example: '2025-01-01'
                                     lei:
                                       type: string
                                       description: |
@@ -568,14 +606,23 @@ paths:
                                       example: 506700GE1G29325QX363
                                     bic:
                                       type: string
-                                      description: |
-                                        Business Identifier Code (BIC). A code defined in accordance with the ISO 9362 standard for identifying financial and non-financial institutions.
-                                        - also known as a SWIFT code, is an 8-11 character code used to identify banks and their branches globally.
+                                      description: >
+                                        Business Identifier Code (BIC). A code
+                                        defined in accordance with the ISO 9362
+                                        standard for identifying financial and
+                                        non-financial institutions.
+
+                                        - also known as a SWIFT code, is an 8-11
+                                        character code used to identify banks
+                                        and their branches globally.
                                       example: HBUKGB4B
                                     other:
                                       type: object
-                                      description: |
-                                        MATCHED is returned only if both the provided identification and issuer exactly match the values stored in the Enclave server.
+                                      description: >
+                                        MATCHED is returned only if both the
+                                        provided identification and issuer
+                                        exactly match the values stored in the
+                                        Enclave server.
                                       required:
                                         - identification
                                         - issuer
@@ -587,19 +634,20 @@ paths:
                                           example: 5493001KJTIIGC8Y1R12
                                         issuer:
                                           type: string
-                                          description: |
-                                            Issuing Authority for the Business Registration Number
+                                          description: >
+                                            Issuing Authority for the Business
+                                            Registration Number
                                           example: ISO17442
             examples:
               requestExamples:
                 value:
                   supplementarty_data:
                     envelope:
-                      vasp_id: "15952089931162060684"
+                      vasp_id: '15952089931162060684'
                       type: VerifyBeneficiary
                       ticker: ETH
                       network: ETH
-                      address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                      address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                   creditor:
                     name: HONG KIL DONG
                     supplementary_data:
@@ -610,9 +658,9 @@ paths:
                         identification:
                           private_identification:
                             date_and_place_of_birth:
-                              birth_date: 2025-01-01
+                              birth_date: '2025-01-01'
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -625,10 +673,12 @@ paths:
                 properties:
                   request_id:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the Owner Verification request.
 
-                      The format of `request_id` must follow the UUID v4 standard.
+
+                      The format of `request_id` must follow the UUID v4
+                      standard.
                     example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                   verification_results:
                     type: object
@@ -675,15 +725,18 @@ paths:
                         example: SKIPPED
                       organisation_identification:
                         type: string
-                        description: |
-                          The result of the Organisation Identification verification.
-                        example: "SKIPPED "
+                        description: >
+                          The result of the Organisation Identification
+                          verification.
+                        example: 'SKIPPED '
                   verified_at:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the completion of the Owner Verification.
-                      This field must follow the UTC ISO 8601 datetime representation standard.
-                    example: 2025-04-21T04:16:01.339Z
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
               examples:
                 Successful Example:
                   value:
@@ -698,8 +751,8 @@ paths:
                       birth_date: MATCHED
                       date_of_incorporation: SKIPPED
                       organisation_identification: SKIPPED
-                    verifiedAt: 2022-03-03T12:45:34.085Z
-        "400":
+                    verifiedAt: '2022-03-03T12:45:34.085Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -718,13 +771,15 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "408":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -733,9 +788,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -760,17 +817,19 @@ paths:
           required: false
           schema:
             type: string
-            description: |
-              The start date for querying a specific point in time.   The format of from_date must follow ISO 8601(YYYY-MM-DD) standard.
-            example: 2022-01-01
+            description: >
+              The start date for querying a specific point in time.   The format
+              of from_date must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2022-01-01'
         - name: end_date
           in: query
           required: false
           schema:
             type: string
-            description: |
-              The end date for querying a specific point in time.   The format of from_date must follow ISO 8601(YYYY-MM-DD) standard.
-            example: 2022-01-01
+            description: >
+              The end date for querying a specific point in time.   The format
+              of from_date must follow ISO 8601(YYYY-MM-DD) standard.
+            example: '2022-01-01'
         - name: ticker
           in: query
           schema:
@@ -782,15 +841,18 @@ paths:
           in: query
           schema:
             type: string
-            description: |
-              The network of the virtual asset to be transferred. The network field can be implemented conditionally. Valid values for this field can be found [here]().
+            description: >
+              The network of the virtual asset to be transferred. The network
+              field can be implemented conditionally. Valid values for this
+              field can be found [here]().
             example: ETHEREUM
         - name: tx_hash
           in: query
           schema:
             type: string
-            description: |
-              Unique identifier of the transaction. If the value of **VerifyOriginator** is **type**, this field must be required.
+            description: >
+              Unique identifier of the transaction. If the value of
+              **VerifyOriginator** is **type**, this field must be required.
             example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
         - name: address
           in: query
@@ -798,7 +860,7 @@ paths:
             type: string
             description: |
               The address of the wallet storing the virtual asset.
-            example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+            example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
         - name: request_vasp_id
           in: query
           required: false
@@ -806,7 +868,7 @@ paths:
             type: string
             description: |
               The Vasp ID for the Onwer Verification request.
-            example: "17624187478910414848"
+            example: '17624187478910414848'
         - name: response_vasp_id
           in: query
           required: false
@@ -814,7 +876,7 @@ paths:
             type: string
             description: |
               The Vasp ID for the Onwer Verification response.
-            example: "17624187478910414848"
+            example: '17624187478910414848'
         - name: request_id
           in: query
           schema:
@@ -827,9 +889,10 @@ paths:
           in: query
           schema:
             type: string
-            description: |
-              The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-            example: "3256697931"
+            description: >
+              The wallet address tag(secondary address such as XRP, XLM, EOS,
+              etc...), regardless VerifyOriginator or VerifyBeneficiary.
+            example: '3256697931'
         - name: dti
           in: query
           schema:
@@ -841,9 +904,11 @@ paths:
           in: query
           schema:
             type: string
-            description: |
-              In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction
-            example: "0"
+            description: >
+              In cases where multiple transfers can be included in a single
+              transaction, such as Bitcoin, an index value indicating which
+              transfer corresponds to within a single transaction
+            example: '0'
         - name: reported_result
           in: query
           required: false
@@ -863,9 +928,7 @@ paths:
             enum:
               - VerifyOriginator
               - VerifyBeneficiary
-            description: |
-              Indication of verification type.
-              Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+            description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
             example: VerifyOriginator
         - name: status
           in: query
@@ -897,7 +960,7 @@ paths:
               The number of records per page.   The default value is 10.
             example: 10
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -954,40 +1017,49 @@ paths:
                       properties:
                         request_Id:
                           type: string
-                          description: |
-                            A unique identifier for the Owner Verification request.
+                          description: >
+                            A unique identifier for the Owner Verification
+                            request.
 
-                            The format of `request_id` must follow the UUID v4 standard.
+
+                            The format of `request_id` must follow the UUID v4
+                            standard.
                           example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                         type:
                           type: string
                           enum:
                             - VerifyOriginator
                             - VerifyBeneficiary
-                          description: |
-                            Indication of verification type.
-                            Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                          description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
                           example: VerifyOriginator
                         request_vasp_id:
                           type: string
                           description: |
                             The Vasp ID for the Onwer Verification request.
-                          example: "17624187478910414848"
+                          example: '17624187478910414848'
                         response_vasp_id:
                           type: string
                           description: |
                             The Vasp ID for the Onwer Verification response.
-                          example: "17624187471232452134"
+                          example: '17624187471232452134'
                         results:
                           type: object
-                          description: |
+                          description: >
                             Result of the Owner Verification.
 
-                            Each field in this object must have one of the following values.
 
-                            - **MATCHED**: Returned when the value received for comparison matches the actual value.
-                            - **MISMATCHED**: Returned when the value received for comparison mismatches the actual value.
-                            - **SKIPPED**: Returned when no value is provided for verification or the information is insufficient.
+                            Each field in this object must have one of the
+                            following values.
+
+
+                            - **MATCHED**: Returned when the value received for
+                            comparison matches the actual value.
+
+                            - **MISMATCHED**: Returned when the value received
+                            for comparison mismatches the actual value.
+
+                            - **SKIPPED**: Returned when no value is provided
+                            for verification or the information is insufficient.
                           required:
                             - ticker
                             - network
@@ -1036,14 +1108,16 @@ paths:
                               example: SKIPPED
                             date_of_incorporation:
                               type: string
-                              description: |
-                                The result of the Date of Incorporation verification.
+                              description: >
+                                The result of the Date of Incorporation
+                                verification.
                               example: SKIPPED
                             organisation_identification:
                               type: string
-                              description: |
-                                The result of the Organisation Identification verification.
-                              example: "SKIPPED "
+                              description: >
+                                The result of the Organisation Identification
+                                verification.
+                              example: 'SKIPPED '
                         reported_result:
                           type: string
                           enum:
@@ -1066,25 +1140,35 @@ paths:
                             - MISMATCH-ORGANISATION-IDENTIFICATION
                             - TRANSFER-ERROR
                             - UNDEFINED-ERROR
-                          description: |
-                            This field provides the reason for verification failure.
-                            It's required when returning `DENIED` or `ERROR` as the `verification_result`.
+                          description: >
+                            This field provides the reason for verification
+                            failure.
+
+                            It's required when returning `DENIED` or `ERROR` as
+                            the `verification_result`.
                           example: MISMATCH-TICKER
                         message:
                           type: string
-                          description: |
-                            This field provides a detailed explanation of the reason for verification failure.
+                          description: >
+                            This field provides a detailed explanation of the
+                            reason for verification failure.
                           example: Transfer Error
                         tx_hash:
                           type: string
-                          description: |
-                            Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                          example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                          description: >
+                            Unique identifier of the transaction. If the value
+                            of **type** is **VerifyOriginator**, this field must
+                            be required.
+                          example: >-
+                            8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                         vout:
                           type: string
-                          description: |
-                            In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                          example: "0"
+                          description: >
+                            In cases where multiple transfers can be included in
+                            a single transaction, such as Bitcoin, an index
+                            value indicating which transfer corresponds to
+                            within a single transaction.
+                          example: '0'
                         ticker:
                           type: string
                           description: |
@@ -1092,23 +1176,27 @@ paths:
                           example: ETH
                         network:
                           type: string
-                          description: |
-                            The network of the virtual asset to be transferred. The network field can be implemented conditionally.
+                          description: >
+                            The network of the virtual asset to be transferred.
+                            The network field can be implemented conditionally.
                           example: ETHEREUM
                         address:
                           type: string
                           description: |
                             The address of the wallet.
-                          example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                          example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                         tag:
                           type: string
-                          description: |
-                            The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                          example: "3256697931"
+                          description: >
+                            The wallet address tag(secondary address such as
+                            XRP, XLM, EOS, etc...), regardless VerifyOriginator
+                            or VerifyBeneficiary.
+                          example: '3256697931'
                         dti:
                           type: string
-                          description: |
-                            Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                          description: >
+                            Digital Token Identifier (DTI) based on the ISO
+                            24165 standard.
                           example: 4H95J0R2X
                         status:
                           type: string
@@ -1122,28 +1210,38 @@ paths:
                           example: REQUESTED
                         verified_at:
                           type: string
-                          description: |
-                            Timestamp of the completion of the Owner Verification.
-                            This field must follow the UTC ISO 8601 datetime representation standard.
-                          example: 2025-04-21T04:16:01.339Z
+                          description: >
+                            Timestamp of the completion of the Owner
+                            Verification.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
                         ordered_at:
                           type: string
-                          description: |
+                          description: >
                             Timestamp of the transaction hash report.
-                            This field must follow the UTC ISO 8601 datetime representation standard.
-                          example: 2025-04-21T04:16:01.339Z
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
                         updated_at:
                           type: string
-                          description: |
-                            Timestamp of the last update to the Owner Verification.
-                            This field must follow the UTC ISO 8601 datetime representation standard.
-                          example: 2025-04-21T04:16:01.339Z
+                          description: >
+                            Timestamp of the last update to the Owner
+                            Verification.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
                         created_at:
                           type: string
-                          description: |
+                          description: >
                             Timestamp of the Owner Verification creation.
-                            This field must follow the UTC ISO 8601 datetime representation standard.
-                          example: 2025-04-21T04:16:01.339Z
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
               examples:
                 Successful Example:
                   value:
@@ -1153,8 +1251,8 @@ paths:
                     owner_verifications:
                       - request_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
                         type: VerifyBeneficiary
-                        request_vasp_id: "15952089931162060684"
-                        response_vasp_id: "15952089931162054534"
+                        request_vasp_id: '15952089931162060684'
+                        response_vasp_id: '15952089931162054534'
                         results:
                           ticker: MATCHED
                           network: MATCHED
@@ -1168,19 +1266,20 @@ paths:
                         reported_result: VERIFIED
                         reason: null
                         message: null
-                        tx_hash: "0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9"
+                        tx_hash: >-
+                          0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
                         vout: null
                         ticker: ETH
                         network: ETH
-                        address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                        address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                         tag: null
                         dti: null
                         status: REPORTED
-                        verified_at: 2022-03-03T12:45:34.085Z
-                        ordered_at: 2022-03-03T12:45:34.085Z
-                        created_at: 2022-03-03T12:45:34.085Z
-                        updated_at: 2022-03-03T12:45:34.085Z
-        "400":
+                        verified_at: '2022-03-03T12:45:34.085Z'
+                        ordered_at: '2022-03-03T12:45:34.085Z'
+                        created_at: '2022-03-03T12:45:34.085Z'
+                        updated_at: '2022-03-03T12:45:34.085Z'
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1199,13 +1298,15 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "408":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1214,9 +1315,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -1247,7 +1350,7 @@ paths:
               The format of `request_id` must follow the UUID v4 standard.
             example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
       responses:
-        "200":
+        '200':
           description: 200 Response
           content:
             application/json:
@@ -1277,40 +1380,48 @@ paths:
                 properties:
                   request_Id:
                     type: string
-                    description: |
+                    description: >
                       A unique identifier for the Owner Verification request.
 
-                      The format of `request_id` must follow the UUID v4 standard.
+
+                      The format of `request_id` must follow the UUID v4
+                      standard.
                     example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                   type:
                     type: string
                     enum:
                       - VerifyOriginator
                       - VerifyBeneficiary
-                    description: |
-                      Indication of verification type.
-                      Acceptable type values are one of **VerifyOriginator**, **VerifyBeneficiary**.
+                    description: "Indication of verification type.\nAcceptable type values are one of\_**VerifyOriginator**,\_**VerifyBeneficiary**.\n"
                     example: VerifyOriginator
                   request_vasp_id:
                     type: string
                     description: |
                       The Vasp ID for the Onwer Verification request.
-                    example: "17624187478910414848"
+                    example: '17624187478910414848'
                   response_vasp_id:
                     type: string
                     description: |
                       The Vasp ID for the Onwer Verification response.
-                    example: "17624187471232452134"
+                    example: '17624187471232452134'
                   results:
                     type: object
-                    description: |
+                    description: >
                       Result of the Owner Verification.
 
-                      Each field in this object must have one of the following values.
 
-                      - **MATCHED**: Returned when the value received for comparison matches the actual value.
-                      - **MISMATCHED**: Returned when the value received for comparison mismatches the actual value.
-                      - **SKIPPED**: Returned when no value is provided for verification or the information is insufficient.
+                      Each field in this object must have one of the following
+                      values.
+
+
+                      - **MATCHED**: Returned when the value received for
+                      comparison matches the actual value.
+
+                      - **MISMATCHED**: Returned when the value received for
+                      comparison mismatches the actual value.
+
+                      - **SKIPPED**: Returned when no value is provided for
+                      verification or the information is insufficient.
                     required:
                       - ticker
                       - network
@@ -1364,9 +1475,10 @@ paths:
                         example: SKIPPED
                       organisation_identification:
                         type: string
-                        description: |
-                          The result of the Organisation Identification verification.
-                        example: "SKIPPED "
+                        description: >
+                          The result of the Organisation Identification
+                          verification.
+                        example: 'SKIPPED '
                   reported_result:
                     type: string
                     enum:
@@ -1389,25 +1501,34 @@ paths:
                       - MISMATCH-ORGANISATION-IDENTIFICATION
                       - TRANSFER-ERROR
                       - UNDEFINED-ERROR
-                    description: |
+                    description: >
                       This field provides the reason for verification failure.
-                      It's required when returning `DENIED` or `ERROR` as the `verification_result`.
+
+                      It's required when returning `DENIED` or `ERROR` as the
+                      `verification_result`.
                     example: MISMATCH-TICKER
                   message:
                     type: string
-                    description: |
-                      This field provides a detailed explanation of the reason for verification failure.
+                    description: >
+                      This field provides a detailed explanation of the reason
+                      for verification failure.
                     example: Transfer Error
                   tx_hash:
                     type: string
-                    description: |
-                      Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    description: >
+                      Unique identifier of the transaction. If the value of
+                      **type** is **VerifyOriginator**, this field must be
+                      required.
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
                     type: string
-                    description: |
-                      In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                    example: "0"
+                    description: >
+                      In cases where multiple transfers can be included in a
+                      single transaction, such as Bitcoin, an index value
+                      indicating which transfer corresponds to within a single
+                      transaction.
+                    example: '0'
                   ticker:
                     type: string
                     description: |
@@ -1415,23 +1536,27 @@ paths:
                     example: ETH
                   network:
                     type: string
-                    description: |
-                      The network of the virtual asset to be transferred. The network field can be implemented conditionally.
+                    description: >
+                      The network of the virtual asset to be transferred. The
+                      network field can be implemented conditionally.
                     example: ETHEREUM
                   address:
                     type: string
                     description: |
                       The address of the wallet.
-                    example: "0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF"
+                    example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                   tag:
                     type: string
-                    description: |
-                      The wallet address tag(secondary address such as XRP, XLM, EOS, etc...), regardless VerifyOriginator or VerifyBeneficiary.
-                    example: "3256697931"
+                    description: >
+                      The wallet address tag(secondary address such as XRP, XLM,
+                      EOS, etc...), regardless VerifyOriginator or
+                      VerifyBeneficiary.
+                    example: '3256697931'
                   dti:
                     type: string
-                    description: |
-                      Digital Token Identifier (DTI) based on the ISO 24165 standard.
+                    description: >
+                      Digital Token Identifier (DTI) based on the ISO 24165
+                      standard.
                     example: 4H95J0R2X
                   status:
                     type: string
@@ -1445,35 +1570,43 @@ paths:
                     example: REQUESTED
                   verified_at:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the completion of the Owner Verification.
-                      This field must follow the UTC ISO 8601 datetime representation standard.
-                    example: 2025-04-21T04:16:01.339Z
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
                   ordered_at:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the transaction hash report.
-                      This field must follow the UTC ISO 8601 datetime representation standard.
-                    example: 2025-04-21T04:16:01.339Z
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
                   updated_at:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the last update to the Owner Verification.
-                      This field must follow the UTC ISO 8601 datetime representation standard.
-                    example: 2025-04-21T04:16:01.339Z
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
                   created_at:
                     type: string
-                    description: |
+                    description: >
                       Timestamp of the Owner Verification creation.
-                      This field must follow the UTC ISO 8601 datetime representation standard.
-                    example: 2025-04-21T04:16:01.339Z
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
               examples:
                 Successful Example:
                   value:
                     request_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
                     type: VerifyBeneficiary
-                    request_vasp_id: "15952089931162060684"
-                    response_vasp_id: "15952089931162054534"
+                    request_vasp_id: '15952089931162060684'
+                    response_vasp_id: '15952089931162054534'
                     results:
                       ticker: MATCHED
                       network: MATCHED
@@ -1487,19 +1620,20 @@ paths:
                     reported_result: VERIFIED
                     reason: null
                     message: null
-                    tx_hash: "0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9"
+                    tx_hash: >-
+                      0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
                     vout: null
                     ticker: ETH
                     network: ETH
-                    address: "0x5811001506550d8356a215be229c15b6ef371a9b"
+                    address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                     tag: null
                     dti: null
                     status: REPORTED
-                    verified_at: 2022-03-03T12:45:34.085Z
-                    ordered_at: 2022-03-03T12:45:34.085Z
-                    created_at: 2022-03-03T12:45:34.085Z
-                    updated_at: 2022-03-03T12:45:34.085Z
-        "404":
+                    verified_at: '2022-03-03T12:45:34.085Z'
+                    ordered_at: '2022-03-03T12:45:34.085Z'
+                    created_at: '2022-03-03T12:45:34.085Z'
+                    updated_at: '2022-03-03T12:45:34.085Z'
+        '404':
           description: 404 Resource Not Found Error response
           content:
             application/json:
@@ -1508,9 +1642,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       404 Error message.
-                      It could be returned in the following cases: - When request with a non-existent resources is provided.
+
+                      It could be returned in the following cases: - When
+                      request with a non-existent resources is provided.
                     example: OWNER-VERIFICATION-NOT-FOUND
                   message:
                     type: string
@@ -1521,7 +1657,9 @@ paths:
                 404 Error Example:
                   value:
                     code: VERIFICATION-NOT-FOUND
-                    message: Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not found
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
   /v2/owner-verifications/{request_id}/tx/inquiry:
     post:
       summary: Check Transaction Status API
@@ -1540,7 +1678,7 @@ paths:
               The format of `request_id` must follow the UUID v4 standard.
             example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1560,22 +1698,37 @@ paths:
                           - WAIT-CONFIRM
                           - CONFIRMED
                           - CALCENED
-                        description: |
+                        description: >
                           Current status of the virtual asset transaction.
 
+
                           Details of each state:
-                          - **PENDING**: The Originating VASP has not yet executed the virtual asset transaction.
-                          - **PROCESSING**:The virtual asset transaction has been initiated and is awaiting mining.
-                          - **WAIT-CONFIRM**: The transaction has been mined but the block containing it has not achieved finality.
-                          - **CONFIRMED**: The virtual asset transaction has been mined, and the block containing the transaction has achieved finality.
-                          - **CANCELED**: The Originating VASP has permanently canceled the transaction for a specific reason.
+
+                          - **PENDING**: The Originating VASP has not yet
+                          executed the virtual asset transaction.
+
+                          - **PROCESSING**:The virtual asset transaction has
+                          been initiated and is awaiting mining.
+
+                          - **WAIT-CONFIRM**: The transaction has been mined but
+                          the block containing it has not achieved finality.
+
+                          - **CONFIRMED**: The virtual asset transaction has
+                          been mined, and the block containing the transaction
+                          has achieved finality.
+
+                          - **CANCELED**: The Originating VASP has permanently
+                          canceled the transaction for a specific reason.
                         example: PROCESSING
                       request_id:
                         type: string
-                        description: |
-                          A unique identifier for the Owner Verification request.
+                        description: >
+                          A unique identifier for the Owner Verification
+                          request.
 
-                          The format of `request_id` must follow the UUID v4 standard.
+
+                          The format of `request_id` must follow the UUID v4
+                          standard.
                         example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
                       result:
                         type: string
@@ -1588,20 +1741,28 @@ paths:
                         example: VERIFIED
                       ordered_at:
                         type: string
-                        description: |
+                        description: >
                           Timestamp of the transaction hash report.
-                          This field must follow the UTC ISO 8601 datetime representation standard.
-                        example: 2025-04-21T04:16:01.339Z
+
+                          This field must follow the UTC ISO 8601 datetime
+                          representation standard.
+                        example: '2025-04-21T04:16:01.339Z'
                       tx_hash:
                         type: string
-                        description: |
-                          Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                        example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                        description: >
+                          Unique identifier of the transaction. If the value of
+                          **type** is **VerifyOriginator**, this field must be
+                          required.
+                        example: >-
+                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                       vout:
                         type: string
-                        description: |
-                          In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                        example: "0"
+                        description: >
+                          In cases where multiple transfers can be included in a
+                          single transaction, such as Bitcoin, an index value
+                          indicating which transfer corresponds to within a
+                          single transaction.
+                        example: '0'
                       reason:
                         type: string
                         enum:
@@ -1615,14 +1776,18 @@ paths:
                           - MISMATCH-ORGANISATION-IDENTIFICATION
                           - TRANSFER-ERROR
                           - UNDEFINED-ERROR
-                        description: |
-                          This field provides the reason for verification failure.
-                          It's required when returning `DENIED` or `ERROR` as the `verification_result`.
+                        description: >
+                          This field provides the reason for verification
+                          failure.
+
+                          It's required when returning `DENIED` or `ERROR` as
+                          the `verification_result`.
                         example: MISMATCH-TICKER
                       message:
                         type: string
-                        description: |
-                          This field provides a detailed explanation of the reason for verification failure.
+                        description: >
+                          This field provides a detailed explanation of the
+                          reason for verification failure.
                         example: Transfer Error
               examples:
                 Successful Example:
@@ -1630,9 +1795,10 @@ paths:
                     transaction_status: CONFIRMED
                     request_id: ecbacf57-f813-4670-934a-5c4537fec869
                     result: VERIFIED
-                    ordered_at: 2025-04-22T08:35:24.760Z
-                    tx_hash: "0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58"
-        "408":
+                    ordered_at: '2025-04-22T08:35:24.760Z'
+                    tx_hash: >-
+                      0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1641,9 +1807,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -1689,8 +1857,9 @@ paths:
                     - VERIFIED
                     - DENIED
                     - ERROR
-                  description: |
-                    The result of the owner verification with the type VerifyBeneficiary.
+                  description: >
+                    The result of the owner verification with the type
+                    VerifyBeneficiary.
                   example: VERIFIED
                 reason:
                   type: string
@@ -1705,21 +1874,26 @@ paths:
                     - MISMATCH-ORGANISATION-IDENTIFICATION
                     - TRANSFER-ERROR
                     - UNDEFINED-ERROR
-                  description: |
-                    This field provides the reason when the verification result is DENIED or ERROR.
-                    This field is mandatory when a VASP that requested owner verification of type VerifyBeneficiary reports a result of DENIED or ERROR.
+                  description: >
+                    This field provides the reason when the verification result
+                    is DENIED or ERROR.
+
+                    This field is mandatory when a VASP that requested owner
+                    verification of type VerifyBeneficiary reports a result of
+                    DENIED or ERROR.
                   example: MISMATCH-TICKER
                 message:
                   type: string
-                  description: |
-                    This field provides a detailed explanation corresponding to the reason field.
+                  description: >
+                    This field provides a detailed explanation corresponding to
+                    the reason field.
                   example: Transfer Error
             examples:
               requestExamples:
                 value:
                   verification_result: VERIFIED
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1728,15 +1902,13 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: |
-                      - A boolean indicating the reporting result.
-                      - It always returns **true**.
+                    description: "- A boolean indicating the reporting result.\n- It always returns\_**true**.\n"
                     example: true
               examples:
                 Successful Example:
                   value:
                     result: true
-        "400":
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1755,13 +1927,15 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "408":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1770,9 +1944,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
@@ -1813,21 +1989,28 @@ paths:
               properties:
                 tx_hash:
                   type: string
-                  description: |
-                    Unique identifier of the transaction. If the value of **type** is **VerifyOriginator**, this field must be required.
-                  example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  description: >
+                    Unique identifier of the transaction. If the value of
+                    **type** is **VerifyOriginator**, this field must be
+                    required.
+                  example: >-
+                    8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                 vout:
                   type: string
-                  description: |
-                    In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction.
-                  example: "0"
+                  description: >
+                    In cases where multiple transfers can be included in a
+                    single transaction, such as Bitcoin, an index value
+                    indicating which transfer corresponds to within a single
+                    transaction.
+                  example: '0'
             examples:
               requestExamples:
                 value:
-                  txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  txHash: >-
+                    8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout: 0
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json:
@@ -1838,12 +2021,14 @@ paths:
                     type: string
                     description: |
                       Unique identifier of the transaction.
-                    example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
               examples:
                 Successful Example:
                   value:
-                    txHash: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-        "400":
+                    txHash: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+        '400':
           description: 400 Bad Request Error response
           content:
             application/json:
@@ -1862,13 +2047,15 @@ paths:
                     type: string
                     description: |
                       Explanation about the error that is returned in **code**.
-                    example: "`protocol` is invalid value. The allowed protocols [TRAVEL-RULE, VERIFY-NAME]"
+                    example: >-
+                      `protocol` is invalid value. The allowed protocols
+                      [TRAVEL-RULE, VERIFY-NAME]
               examples:
                 400 Error Example:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: "`requiredBeneficiaryInfo` is required."
-        "408":
+                    message: '`requiredBeneficiaryInfo` is required.'
+        '408':
           description: 408 Request Timeout Error response
           content:
             application/json:
@@ -1877,9 +2064,11 @@ paths:
                 properties:
                   code:
                     type: string
-                    description: |
+                    description: >
                       408 Error message.  
-                      It could be returned in the following cases.   When a timeout occurs during the processing of a request.
+
+                      It could be returned in the following cases.   When a
+                      timeout occurs during the processing of a request.
                     example: REQUEST-TIMEOUT
                   message:
                     type: string
