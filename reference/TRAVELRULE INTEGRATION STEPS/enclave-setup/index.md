@@ -586,6 +586,90 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
         관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
       </td>
     </tr>
+
+    <tr>
+      <td>
+        `VEGA_DECRYPT_API_ENDPOINT`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        `VEGA_ENCRYPTION_KEY_BASE64`에 설정된 암호화 키를 복호화하기 위한 외부 서비스의 엔드포인트입니다. 이 엔드포인트는 HSM(하드웨어 보안 모듈)과 같은 암호화 관련 외부 서비스를 사용하도록 설정되어 있습니다.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `VEGA_CHAINALYSIS_SANCTION_API_KEY`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        Chainalysis Sanction API를 통해 상대방의 지갑 주소를 스크리닝하고자 하는 경우, Chainalysis Sanction API Key를 설정하십시오.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `VEGA_CHAINALYSIS_KYT_API_KEY`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        상대방의 지갑 주소나 전송 거래에 대한 리스크 평가를 위해 Chainalysis KYT API를 이용하고자 하는 경우, Chainalysis KYT API Key를 설정하십시오.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `VEGA_REFINITIV_WCO_API_KEY`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, Refinitiv World Check One API Key를 설정하십시오.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `VEGA_REFINITIV_WCO_API_SECRET`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, API Key와 함께 발급된 Secret 값을 설정하십시오.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `VEGA_REFINITIV_WCO_GROUP_ID`
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, Refinitiv 콘솔 사이트에서 생성된 그룹 ID를 설정하십시오.
+      </td>
+    </tr>
   </tbody>
 </Table>
 
