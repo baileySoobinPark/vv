@@ -1,8 +1,8 @@
 - verifyname-get-vasp-id
 - verifyname-list-vasp
 - verifyname-owner-verification
-- verifyname-transaction-report
 - verifyname-list-owner-verification
 - verifyname-get-owner-verification-result
 - post_v2-owner-verifications-request-id-tx-inquiry
+- verifyname-transaction-report
 - verifyname-owner-verification-result-report
