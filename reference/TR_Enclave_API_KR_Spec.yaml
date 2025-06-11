@@ -654,6 +654,11 @@ paths:
                 Missing Mandatory Parameters Example:
                   value: ''
                   summary: Missing Mandatory Parameters Example
+                Missing Mandatory Parameters Example 1:
+                  value:
+                    code: MISSING-VASP
+                    message: '`beneficiaryVaspId` is required.'
+                  summary: Missing Mandatory Parameters Example 1
         '404':
           description: 404 Resource Not Found Error response
           content:
