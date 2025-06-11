@@ -829,7 +829,6 @@ paths:
                     result: VERIFIED
                     reason: OK
                     message: ''
-                    version: '1.0'
                     ivms101:
                       beneficiary:
                         beneficiaryPersons:
