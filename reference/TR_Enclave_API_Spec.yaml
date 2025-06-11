@@ -453,8 +453,8 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-BENEFICIARY-VASP-ID
+                    message: '`beneficiaryVaspId` is required.'
                 Invalid Parameter Example:
                   value:
                     code: INVALID-KEY-TYPE
@@ -999,8 +999,8 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-BENEFICIARY-VASP-ID
+                    message: '`beneficiaryVaspId` is required.'
                 Invalid Parameter Example:
                   value:
                     code: INVALID-KEY-TYPE
@@ -1963,8 +1963,8 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-RESULT
-                    message: '`result` is required.'
+                    code: MISSING-VERIFICATION-UUID
+                    message: '`verificationUuid` is required.'
                 Invalid Parameter Example:
                   value:
                     code: INVALID-RESULT
@@ -2080,12 +2080,12 @@ paths:
               examples:
                 Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-RESULT
+                    message: '`result` is required.'
                 Invalid Parameter Example:
                   value:
-                    code: INVALID-KEY-TYPE
-                    message: '`keyType` is invalid value.'
+                    code: INVALID-RESULT
+                    message: '`result` should be one of `VERIFIED`, `DENIED`, `ERROR`.'
   /v1/verifications/tx/inquiry:
     post:
       summary: Check Transaction Status API
@@ -2202,8 +2202,10 @@ paths:
                     message: '`verificationUuid` is required.'
                 Invalid Verification UUID Example:
                   value:
-                    code: INVALID-RESULT
-                    message: '`result` should be one of `VERIFIED`, `DENIED`, `ERROR`.'
+                    code: VERIFICATION-NOT-FOUND
+                    message: >-
+                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
+                      found
                 Mismatched VASP Example:
                   value:
                     code: VASP-NOT-MATCHED
