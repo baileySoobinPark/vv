@@ -1,12 +1,1 @@
-- travelrule-list-vasp-ids-1
-- travelrule-get-vasp-id-1
-- travelrule-enclave-user-account-verification-1
-- travelrule-encalve-request-user-verification-1
-- travelrule-enclave-list-verification-result-1
-- travelrule-enclave-get-verification-result-1
-- travelrule-enclave-report-transaction-result-1
-- travelrule-enclave-report-error-1
-- travelrule-enclave-check-transaction-status-1
-- travelrule-chainalysis-sanction-1
-- travelrule-chainalysis-kyt-1
-- travelrule-refinitiv-wco-1
+[]
