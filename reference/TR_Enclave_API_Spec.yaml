@@ -2440,7 +2440,7 @@ paths:
                   value:
                     requestId: 398ace46-6baf-4488-a9f2-ee43680b413e
         '400':
-          description: 400 Bad Request Error response
+          description: Error Response of Risk Assessment KYT API
           content:
             application/json:
               schema:
@@ -2460,10 +2460,26 @@ paths:
                       Explanation about the error that is returned in code
                     example: verificationUuid is required.
               examples:
-                400 Error Example:
+                Missing Mandatory Field Example:
                   value:
-                    code: MISSING-REQUIRED-BENEFICIARY-INFO
-                    message: '`requiredBeneficiaryInfo` is required.'
+                    code: MISSING-VERIFICATION-UUID
+                    message: '`verificationUuid` is required.'
+                Invalid Verification UUID Example:
+                  value:
+                    code: NOT-FOUND-VERIFICATION
+                    message: >-
+                      Verification(8d729bf4-38db-471d-b052-896f8660916a) is not
+                      found
+                Incorrect Request Example:
+                  value:
+                    code: BAD-REQUEST
+                    message: ...
+                Unsupported Risk Assessment Example:
+                  value:
+                    code: UNSUPPORTED-RISK-ASSESSMENT
+                    message: >-
+                      Chainalysis KYT API for received transfer should be called
+                      after txHash is reported
         '403':
           description: 403 Forbidden Error response
           content:
@@ -2489,62 +2505,6 @@ paths:
                   value:
                     code: UNKNOWN-ERROR-CODE
                     message: AccessDenied
-        '404':
-          description: 404 Resource Not Found Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      404 Error message.  
-
-                      It could be returned in the following cases:   - When
-                      request with a non-existent resources is provided.
-                    example: VERIFICATION-NOT-FOUND
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-              examples:
-                404 Error Example:
-                  value:
-                    code: VERIFICATION-NOT-FOUND
-                    message: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-        '408':
-          description: 408 Request Timeout Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      408 Error message.  
-
-                      It could be returned in the following cases:   When a
-                      timeout occurs during the processing of a request.
-                    example: REQUEST-TIMEOUT
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: timeout of 5000ms exceeded
-              examples:
-                408 Error Example:
-                  value:
-                    code: REQUEST-TIMEOUT
-                    message: timeout of 5000ms exceeded
   /v1/risk-assessment/refinitiv-wco:
     post:
       summary: Risk Assessment Via Refinitiv WCO API
