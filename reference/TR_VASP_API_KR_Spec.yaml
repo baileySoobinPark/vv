@@ -828,8 +828,45 @@ paths:
                             items:
                               type: string
               examples:
-                Successful Example:
-                  summary: example of a successful verification response
+                Legal Person Example:
+                  summary: Legal Person Example
+                  value:
+                    result: VERIFIED
+                    reason: OK
+                    message: ''
+                    ivms101:
+                      beneficiary:
+                        beneficiaryPersons:
+                          - legalPerson:
+                              name:
+                                nameIdentifier:
+                                  - legalPersonName: VerifyVASP Pte. Ltd.,
+                                    legalPersonNameIdentifierType: LEGL
+                                localNameIdentifier:
+                                  - legalPersonName: VerifyVASP Pte. Ltd.,
+                                    legalPersonNameIdentifierType: LEGL
+                              geographicAddress:
+                                - addressType: GEOG
+                                  townName: MAPLETREE ANSON
+                                  addressLine:
+                                    - 60 Anson Rd
+                                    - '#17-00'
+                                  country: SG
+                              nationalIdentification:
+                                nationalIdentifier: 458978-458756
+                                nationalIdentifierType: RAID
+                              customerIdentification: '145864658'
+                              countryOfRegistration: SG
+                              dateOfBirth: '2010-03-02'
+                        accountNumber:
+                          - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
+                DENIED Example:
+                  summary: DENIED Example
+                  value:
+                    result: DENIED
+                    reason: UNVERIFIED-KYC
+                Natural Person Example:
+                  summary: Natural Person Example
                   description: >
                     A complete example of a successful verification response
                     including IVMS101 beneficiary data.
@@ -866,11 +903,6 @@ paths:
                               countryOfResidence: KR
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
-                Example of DENIED case:
-                  summary: Example of DENIED case
-                  value:
-                    result: DENIED
-                    reason: UNVERIFIED-KYC
   /VASP_CUSTOM_PATH_TRANSACTION_CHECK:
     post:
       summary: Check Trasnaction Status API
