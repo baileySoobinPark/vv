@@ -1,4 +1,4 @@
 ---
 title: VN Enclave API
-hidden: false
+hidden: true
 ---
