@@ -825,10 +825,6 @@ paths:
                               type: string
               examples:
                 Natural Person Example:
-                  summary: example of a successful verification response
-                  description: >
-                    A complete example of a successful verification response
-                    including IVMS101 beneficiary data.
                   value:
                     result: VERIFIED
                     reason: OK
@@ -863,10 +859,6 @@ paths:
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
                 Legal Person Example:
-                  summary: example of a successful verification response
-                  description: >
-                    A complete example of a successful verification response
-                    including IVMS101 beneficiary data.
                   value:
                     result: VERIFIED
                     reason: OK
