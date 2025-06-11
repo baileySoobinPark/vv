@@ -150,10 +150,17 @@ paths:
                         - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
               examples:
-                Successful Example:
+                DENIED Example:
+                  summary: DENIED Example
+                  value:
+                    accountVerificationResult: DENIED
+                    reason: UNKNOWN-SYMBOL
+                    verifiedAt: '2022-03-03T21:52:08.092Z'
+                VERIFIED Example:
                   value:
                     accountVerificationResult: VERIFIED
                     verifiedAt: '2022-03-03T12:45:34.085Z'
+                  summary: VERIFIED Example
   /VASP_CUSTOM_PATH_VERIFY_USER:
     post:
       summary: Verify User API
