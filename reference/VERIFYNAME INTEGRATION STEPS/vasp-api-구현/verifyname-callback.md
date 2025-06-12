@@ -13,6 +13,12 @@ hidden: false
 
 ### 기능 요구사항
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
 #### 1. 콜백 타입 분기 처리
 
 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원해야 하는 콜백 유형은 아래와 같으며, `OWNER_VERIFICATION_RESULT_REPORT`, `OWNER_VERIFICATION_TX_REPORT` 모두 필수 구현 대상입니다.
