@@ -14,7 +14,7 @@ hidden: false
 ### 기능 요구사항
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
-  ```
+  ```json
   // VERIFIED
   {
     "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
