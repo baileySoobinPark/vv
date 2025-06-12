@@ -13,45 +13,6 @@ hidden: false
 
 ### 기능 요구사항
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  ```json
-  // VERIFIED
-  {
-    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-    "data": {
-      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "VERIFIED",
-    }
-  }
-
-  or
-
-  // DENIED
-  {
-    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-    "data": {
-      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "DENIED",
-      "reason": "MISMATCH-TICKER"
-      "message": "Ticker is mismatched."
-    }
-  }
-
-  or
-
-  // ERROR
-  {
-    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-    "data": {
-      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "ERROR",
-      "reason": "TRANSFER-ERROR",
-      "message": "Transfer is failed."
-    }
-  }
-  ```
-</Accordion>
-
 #### 1. 콜백 타입 분기 처리
 
 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원해야 하는 콜백 유형은 아래와 같으며, `OWNER_VERIFICATION_RESULT_REPORT`, `OWNER_VERIFICATION_TX_REPORT` 모두 필수 구현 대상입니다.
@@ -119,6 +80,45 @@ hidden: false
 * 사전 검증 결과가 DENIED 또는 ERROR인 경우, 자산 전송을 중단하고 송신자(사용자)에게 결과를 통지합니다.
 
 `OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
+
+<Accordion title="Example of Callback Request Body: OWNER_VERIFICATION_RESULT_REPORT" icon="fa-info-circle">
+  ```json
+  // VERIFIED
+    {
+      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+      "data": {
+        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+        "reported_result": "VERIFIED",
+      }
+    }
+
+    or
+
+    // DENIED
+    {
+      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+      "data": {
+        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+        "reported_result": "DENIED",
+        "reason": "MISMATCH-TICKER"
+        "message": "Ticker is mismatched."
+      }
+    }
+
+    or
+
+    // ERROR
+    {
+      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+      "data": {
+        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+        "reported_result": "ERROR",
+        "reason": "TRANSFER-ERROR",
+        "message": "Transfer is failed."
+      }
+    }
+  ```
+</Accordion>
 
 <HTMLBlock>{`
 <style>
