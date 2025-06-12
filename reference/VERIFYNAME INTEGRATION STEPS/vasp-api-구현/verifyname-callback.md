@@ -14,9 +14,42 @@ hidden: false
 ### 기능 요구사항
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  ```
+  // VERIFIED
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "VERIFIED",
+    }
+  }
+
+  or
+
+  // DENIED
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "DENIED",
+      "reason": "MISMATCH-TICKER"
+      "message": "Ticker is mismatched."
+    }
+  }
+
+  or
+
+  // ERROR
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "ERROR",
+      "reason": "TRANSFER-ERROR",
+      "message": "Transfer is failed."
+    }
+  }
+  ```
 </Accordion>
 
 #### 1. 콜백 타입 분기 처리
