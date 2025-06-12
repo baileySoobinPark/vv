@@ -81,7 +81,7 @@ hidden: false
 
 `OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
-<Accordion title="Example of Callback Request Body: OWNER_VERIFICATION_RESULT_REPORT" icon="fa-info-circle">
+<Accordion title="Example of Callback: OWNER_VERIFICATION_RESULT_REPORT" icon="fa-info-circle">
   ```json
   // VERIFIED
     {
