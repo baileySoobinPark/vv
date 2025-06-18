@@ -18,7 +18,7 @@ Robot VASP를 활용하여 다음과 같은 시나리오들을 테스트 할 수
 2. **KYC를 완료하지 않은 개인 사용자에 대한 정보 검증**
 3. **KYC를 완료한 법인 사용자에 대한 정보 검증**
 
-각 테스트 케이스의 결과에 따라 트랜잭션 결과 보고(Report Transaction) 또는 오류 보고(Report Error) 시나리오 또한 함께 테스트 할 수 있습니다.
+각 테스트 케이스의 결과에 따라 최종 검증 결과 보고(Verification Report), 트랜잭션 ID(트랜잭션 Hash) 보고 (Transaction Hash Report) 시나리오 또한 함께 테스트 할 수 있습니다.
 
 <br />
 
