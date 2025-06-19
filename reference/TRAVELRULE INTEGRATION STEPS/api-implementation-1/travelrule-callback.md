@@ -389,23 +389,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   ```
 </Accordion>
 
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"TX_REPORT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-      "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-      "vout":"2"
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
-
 #### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
 오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
@@ -425,24 +408,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </Accordion>
 
 <br />
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"ERROR_REPORT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-      "result":"ERROR",
-      "reason":"BLACKLISTED",
-      "message":"Originator is included in the blacklist."
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
 
 #### 5. CHAINALYSIS\_KYT\_RESULT 유형 콜백 처리 (선택사항)
 
@@ -498,55 +463,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <br />
 
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"CHAINALYSIS_KYT_RESULT",
-   "data":{
-      "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-      "riskAssessment":{
-         "chainalysisKYT":{
-            "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
-            "counterpartyVaspId":"15952089931162059995",
-            "apiType":"ATTEMPT",
-            "userId":"15952089931162059995",
-            "direction":"OUTGOING",
-            "network":"ETHEREUM",
-            "asset":"ETH",
-            "amount":"1",
-            "usdPrice":"1820.17",
-            "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-            "timestamp":"2023-05-18T12:39:44.000Z",
-            "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-            "status":"PROCESSED",
-            "alertCount":1,
-            "createdAt":"2023-05-18T12:39:46.000Z",
-            "assessedAt":"2023-05-18T12:39:45.263Z"
-         },
-         "chainalysisKYTAlerts":[
-            {
-               "counterpartyVaspId":"15952089931162059995",
-               "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-               "direction":"OUTGOING",
-               "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
-               "alertLevel":"MEDIUM",
-               "entityCategory":"high risk exchange",
-               "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-               "exposureType":"DIRECT",
-               "alertAmount":"1820.17",
-               "createdAt":"2023-05-18T12:39:52.461Z"
-            }
-         ]
-      }
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
-
 #### 6. REFINITIV\_WCO\_RESULT 유형 콜백 처리 (선택사항)
 
 콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
@@ -576,33 +492,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   }
   ```
 </Accordion>
-
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body</summary>
-
-  <pre><code class="language-json">
-{
-   "callbackType":"REFINITIV_WCO_RESULT",
-   "data":{
-      "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-      "riskAssessment":{
-         "refinitivWorldCheckOne":{
-            "counterpartyVaspId":"15952089931162058999",
-            "direction":"INCOMING",
-            "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
-            "status":"PROCESSED",
-            "matchStrength":"EXACT",
-            "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
-            "createdAt":"2023-05-18T12:39:48.000Z",
-            "assessedAt":"2023-05-18T12:39:57.834Z"
-         }
-      }
-   }
-}
-  </code></pre>
-</details>
-`}</HTMLBlock>
 
 ### 제약 조건
 
