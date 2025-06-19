@@ -129,21 +129,17 @@ hidden: false
 
 `OWNER_VERIFICATION_TX_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
-<HTMLBlock>{`
-<details class="custom-accordion">
-  <summary>Example of Callback Request Body: OWNER\_VERIFICATION\_TX\_REPORT</summary>
-
-  <pre><code class="language-json">
- {
-    "callbackType": "OWNER_VERIFICATION_TX_REPORT",
-    "data": {
-      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+<Accordion title="Example of Callback Request Body: OWNER_VERIFICATION_TX_REPORT" icon="fa-info-circle">
+  ```json
+     {
+      "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+      "data": {
+        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+        "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
+      }
     }
-  }
-  </code></pre>
-</details>
-`}</HTMLBlock>
+  ```
+</Accordion>
 
 <br />
 
