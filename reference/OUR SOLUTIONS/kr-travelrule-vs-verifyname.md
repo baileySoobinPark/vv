@@ -12,7 +12,7 @@ metadata:
 
 **TravelRule** 은 Travel Rule **규제 의무가 있는 VASP간** 가상자산 전송 과정에서 송.수신인 개인정보의 안전한 교환과 상호 검증을 지원합니다. TravelRule을 지원하는 VASP간 송금 시 송신인과 수신인이 같거나 다른 경우 모두 송금이 가능합니다.
 
-반면 **VerifyName**은, Travel Rule 규제 의무가 있는 VASP와 의무가 없는 VASP 간 가상자산 송·수신시 규제 의무 VASP측의 단독 정보 검증을 통한 최소 컴플라이언스 요건 충족을 지원합니다. VerifyName 프로토콜은 송.수신인이 동일한 경우에만 자산 이동을 허용하며, 개인정보를 직접 주고받는 대신 송.수신인의 이름과 생년월일의 Hash값 을 교환하여 일치 여부를 비교함으로서 동일인 여부를 검증합니다.
+반면 **VerifyName**은, Travel Rule 규제 의무가 있는 VASP와 의무가 없는 VASP 간 가상자산 송·수신시 사용되며, 규제 의무가 있는 VASP측에서 규제 의무가 없는 VASP에 일방향 검증을 통해 컴플라이언스 요건 충족을 지원합니다. VerifyName 프로토콜은 송.수신인이 동일한 경우에만 자산 이동을 허용하며, 개인정보를 직접 주고받는 대신 송.수신인의 이름과 생년월일의 Hash값 을 교환하여 일치 여부를 비교함으로서 동일인 여부를 검증합니다.
 
 <Image align="center" src="https://files.readme.io/060b94af81c9aa3dcfa8c7b767af2789fe1fd743c59c79d2a58a21e3394925c8-travelrule_vs_verifyName.png" />
 
