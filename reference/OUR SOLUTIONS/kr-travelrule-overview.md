@@ -255,10 +255,10 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
      </span>
     </p>
     <p>
-     <b>송신 VASP</b>는 송신자의 이름과 생년월일의 Hash값과 수신 주소를 수신 VASP로 전달하여 검증을 요청합니다.
+     <b>송신 VASP</b>는 송신자의 이름과 생년월일의 Hash값과 입금 주소를 수신 VASP로 전달하여 검증을 요청합니다.
     </p>
     <p>
-     <b>수신 VASP</b>는 주소의 유효성과 수신 주소 소유주 정보를 검증합니다.
+     <b>수신 VASP</b>는 주소의 유효성과 입금 주소 소유주 정보를 검증합니다.
     </p>
    </div>
   </div>
@@ -292,7 +292,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     <b>수신 VASP</b>는 블록체인 상에서 VASP에서 발급한 수신 주소로의 입금 트랜잭션을 감지합니다.
+     <b>수신 VASP</b>는 블록체인 상에서 입금 주소로의 입금 트랜잭션을 감지합니다.
     </p>
    </div>
   </div>
@@ -311,10 +311,10 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
      </span>
     </p>
     <p>
-     <b>수신 VASP</b>는 송신 VASP에게 트랜잭션 유효성 및 송신자 정보 검증을 요청합니다.
+     <b>수신 VASP</b>는 송신 VASP에게 TXID 유효성 및 송신자 정보 검증을 요청합니다.
     </p>
     <p>
-     <b>송신 VASP</b>는 송신자 이름 및 생년월일의 Hash값을 비교하여 동일인 여부를 판단합니다.
+     <b>송신 VASP</b>는 TXID에 해당하는 송신자 이름 및 생년월일의 Hash값을 비교하여 동일인 여부를 판단합니다.
     </p>
    </div>
   </div>
