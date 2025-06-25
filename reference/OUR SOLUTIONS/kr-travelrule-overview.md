@@ -420,11 +420,11 @@ VerifyVASP 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
       </ul>
     </li>
     <li class="step-item">
-      <strong>공개 키 전달 및 서명 검증 (Ordering VASP → Beneficiary VASP)</strong>
+      <strong>공유 키 유도 및 공개 키 전달 (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
         <li class="step-subitem">송신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.</li>
-        <li class="step-subitem">송신 VASP Enclave는 검증 요청을 서명한 뒤 중앙 서버를 통해 수신 VASP로 전달합니다.</li>
-        <li class="step-subitem">수신 VASP는 요청 데이터 서명에 포함된 송신 VASP의 공개키를 사용하여 서명을 검증하고 서명이 유효한 경우 해당 키를 Caching 정책에 따라 저장합니다.</li>
+        <li class="step-subitem">데이터 암복호화에 사용되는 공유 키는 상대방 VASP 의 공개 키와 자신의 VASP의 비밀 키로부터 키 교환 알고리즘을 이용해 유도됩니다.</li>
+        <li class="step-subitem">송신 VASP의 공개키는 검증 요청이 수신 VASP로 전달될 때 암호화된 개인 정보와 함께 전달됩니다.</li>
       </ul>
     </li>
   </ul>
@@ -435,24 +435,23 @@ VerifyVASP 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
     <li class="step-item">
       <strong>개인 정보 암호화 및 요청 전송 (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">송신 VASP Enclave는 검증 요청을 보내기 전 키 교환 과정에서 획득한 수신 VASP 공개키로 개인 정보 필드를 암호화합니다.</li>
+        <li class="step-subitem">송신 VASP Enclave는 검증 요청을 보내기 전 키 교환 과정에서 획득한 공유 키로 개인 정보 필드를 암호화합니다.</li>
         <li class="step-subitem">암호화된 개인 정보 필드를 포함한 검증 요청이 송신 VASP의 공개키와 함께 수신 VASP로 전달됩니다.</li>
       </ul>
     </li>
     <li class="step-item">
       <strong>검증 요청 내 개인 정보 복호화 및 결과 내 개인 정보 암호화(Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">검증 요청을 받은 수신 VASP Enclave는 암호화에 사용된 공개키와 쌍인 비밀키를 조회하여 복호화를 수행합니다.</li>
+        <li class="step-subitem">검증 요청을 받은 수신 VASP Enclave는 암호화에 사용된 공개키와 한 쌍인 비밀키를 조회하여 복호화를 수행합니다.</li>
         <li class="step-subitem">개인정보 원문(Plaintext) 중 필요한 정보를 Enclave 데이터베이스에 저장하고, 백엔드로 전달하여 검증을 수행합니다.</li>
-        <li class="step-subitem">검증 결과에 포함되는 개인 정보를 송신 VASP의 공개키로 암호화합니다.</li>
+        <li class="step-subitem">검증 결과에 포함되는 개인 정보를 키 교환 과정에서 획득한 공유 키로 암호화합니다.</li>
       </ul>
     </li>
     <li class="step-item">
       <strong>검증 결과 내 개인 정보 복호화 (Ordering VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">송신 VASP Encalve는 검증 결과를 수신한 뒤, 암호화된 개인 정보 필드를 자신의 비밀키로 복호화합니다.</li>
+        <li class="step-subitem">송신 VASP Encalve는 검증 결과를 수신한 뒤, 암호화된 개인 정보 필드를 키 교환 과정에서 획득한 공유 키로 복호화합니다.</li>
         <li class="step-subitem">개인정보 원문에 대해 필요한 정보를 Enclave 데이터베이스에 저장하고, 검증 결과를 송신 VASP 백엔드로 전달합니다.</li>
-       
       </ul>
     </li>
   </ul>
