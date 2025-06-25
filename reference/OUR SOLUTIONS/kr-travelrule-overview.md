@@ -20,7 +20,7 @@ Diagram 1은 VerifyVASP 서비스의 구성 요소와 요소 간의 통신 구�
 
 #### VerifyVASP Central Server 기반 VASP 간 통신
 
-VASP 간 TravelRule 및 VerifyName 2.0 통신은 중앙 서버인 VerifyVASP Central Server를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 Central Server를 거쳐 전달됩니다.
+VASP 간 TravelRule 및 VerifyName 통신은 중앙 서버인 VerifyVASP Central Server를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 Central Server를 거쳐 전달됩니다.
 
 #### Enclave 설치 및 연동
 
@@ -186,7 +186,7 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
     <div class="step-title">4. 검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
     <div class="step-content">
       <p>수신자 검증 결과가 수신 VASP의 Enclave와 VerifyVASP 중앙 서버를 지나 송신 VASP로 전달됩니다.</p>
-      <p>이 과정은 동기 또는 비동기 방식으로 처리될 수 있으며, 각 Flow 및 API 명세는 관련 문서를 통해 확인할 수 있습니다.</p>
+      <p>이 과정은 비동기 방식으로 처리되며, 각 Flow 및 API 명세는 관련 문서를 통해 확인할 수 있습니다.</p>
     </div>
   </div>
   <div class="step-box">
