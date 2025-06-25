@@ -263,7 +263,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
   </div>
   <div class="step-box">
    <div class="step-title">
-    3. 트랜잭션 실행
+    3. 결과 Report 및 트랜잭션 실행
     <br/>
     <span class="subtitle">
      (Ordering VASP)
@@ -271,10 +271,13 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
+     송신 VASP는 검증 결과를 기반으로 최종 출금 여부를 확정하고 상대 VASP로 Report해야 합니다. 
+    </p>
+    <p>
      검증 결과가 정상인 경우 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
     </p>
     <p>
-     송신 VASP가 Unregulated VASP인 경우 별도의 검증 없이 즉시 출금 트랜잭션을 실행할 수 있습니다.  
+     송신 VASP가 Unregulated VASP인 경우 별도의 사전 검증 없이 즉시 출금 트랜잭션을 실행할 수 있습니다.  
     </p>
    </div>
   </div>
@@ -327,7 +330,7 @@ VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 
    </div>
    <div class="step-content">
     <p>
-     Regulated VASP는 검증 결과를 기반으로 입금/출금의 최종 반영 여부를 확정하고 상대 VASP로 Report해야 합니다. 
+     Regulated VASP는 검증 결과를 기반으로 입금 최종 반영 여부를 확정하고 상대 VASP로 Report해야 합니다. 
     </p>
     <p>
      필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
