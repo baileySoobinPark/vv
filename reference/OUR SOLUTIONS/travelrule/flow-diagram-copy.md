@@ -376,7 +376,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
 
 ## Screening (Optional)
 
-리스크 기반 자산 이동 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 스크리닝 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 점수를 제공하여 이를 위험도 평가 기준으로 활용 가능합니다. 대표적인 3rd Party API로는 Chainalysis의 Sanction API, Chainalysis의 KYT API, Refinitiv의 World-Check One(WCO) API가 있습니다.
+리스크 기반 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 스크리닝 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 점수를 제공하여 이를 위험도 평가 기준으로 활용 가능합니다. 대표적인 3rd Party API로는 Chainalysis의 Sanction API, Chainalysis의 KYT API, Refinitiv의 World-Check One(WCO) API가 있습니다.
 
 각 API는 리스크 평가의 대상과 목적이 다르므로, VASP는 자사 컴플라이언스 및 운영 요건에 따라 적합한 서비스를 선택하여 연동할 수 있습니다. VerifyVASP Enclave는 검증 UUID를 기반으로 외부 리스크 평가 API를 요청하기 위한 인터페이스를 제공하여 검증 완료 트랜잭션에 대한 추가 리스크 평가를 간소화하고 데이터 이중 관리를 방지합니다.
 
@@ -386,7 +386,7 @@ For detailed instructions on using each API, refer to the [enclave screening API
 
 <Image align="center" border={false} caption="Sequence Diagram 2. Chainalysis Sanction API integration flow for risk assessment" src="https://files.readme.io/6c2f368995602e6a646743e3e28ee61a067a9aff95941a7315a9afebe1e87947-tr_solution_2.webp" />
 
-Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 트랜잭션 실행 전에 사전 스크리닝 용도로 활용하는 것을 권장합니다. 세부 절차는 아래와 같습니다.
+Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 자산을 이전하기 전에 위험도 평가에 활용할 것을 권장합니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <style>
@@ -501,7 +501,7 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
 
 Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연동하여 위험도 평가를 수행하는 절차를 보여줍니다. KYT API는 특정 주소 또는 트랜잭션을 대상으로 한 위험도 평가를 지원합니다.
 
-송신 VASP는 트랜잭션 실행에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 트랜잭션을 실행한 후에는 해당 트랜잭션 식별자를 제출하여 트랜잭션 자체의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다. 세부 절차는 아래와 같습니다.
+송신 VASP는 자산 이전에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 자산을 이전한 후에는 Txhash를 제출하여 트랜잭션의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
