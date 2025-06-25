@@ -591,7 +591,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Refinitiv WCO API integration flow for risk assessment" src="https://files.readme.io/e20fb9a58375cd5403148ec1a6ea7d4f462964c57fd23f3c576893f81391fe22-tr_solution_4.webp" />
 
-Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 활용하여 위험도 평가를 수행하는 과정을 보여줍니다. WCO API는 개인 식별 정보(PII)를 기반으로 송신자 및 수신자와 같은 개인에 대한 위험도를 평가할 수 있도록 지원합니다. 세부 절차는 아래와 같습니다.
+Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 활용하여 위험도 평가를 수행하는 과정을 보여줍니다. WCO API는 개인 식별 정보(PII)를 기반으로 송수신인 개인에 대한 위험도를 평가할 수 있도록 지원합니다. 세부 절차는 아래와 같습니다.
 
 <HTMLBlock>{`
 <div class="scenario-section">
