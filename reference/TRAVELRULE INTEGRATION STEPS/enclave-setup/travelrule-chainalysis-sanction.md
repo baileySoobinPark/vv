@@ -5,13 +5,13 @@ api:
   operationId: travelrule-Chainalysis-Sanction
 hidden: false
 ---
-이 API는 Chainalysis Sanction API를 활용한 지갑 주소의 리스크 평가 용도로 사용됩니. 응답 결과에 따라, VASP는 특정 주소의 잠재적 위험을 사전에 파악함으로서 비인가 또는 고위험 거래를 방지할 수 있습니다.
+이 API는 Chainalysis Sanction API를 활용하여 지갑 주소의 리스크를 사전에 평가하는데 사용됩니다. 응답 결과를 바탕으로, VASP는 특정 주소의 잠재적 위험을 식별하고 비인가 또는 고위험 거래를 사전에 차단할 수 있습니다.
 
 ***
 
 ## Chainalysis Sanction API란?
 
-[Chainalysis](https://www.chainalysis.com/)에서 무료로 제공하는 공개 API로, 가상자산 지갑 주소의 제재 여부 및 위험 수준을 평가합니다. VASP를 포함한 기관은 이 API를 통해 제재 대상 주소나 규제상 문제가 있는 주소를 신속하게 식별할 수 있습니다. 해당 API는 자금세탁방지(AML) 및 제재 스크리닝 요구사항을 보다 효율적으로 충족하도록 지원하여, 가상자산 거래의 보안성과 신뢰성을 높입니다.
+[Chainalysis](https://www.chainalysis.com/)에서 무료로 제공하는 API로, 가상자산 지갑 주소의 제재 여부 및 위험 수준을 평가하는데 사용됩니다. VASP를 포함한 기관은 이를 통해 제재 대상 주소나 규제상 문제가 있는 주소를 신속하게 식별할 수 있습니다. 해당 API는 자금세탁방지(AML) 및 제재 스크리닝 요구사항을 보다 효율적으로 충족하도록 지원하며, 가상자산 거래의 보안성과 신뢰성을 높입니다.
 
 * API 사용을 위해서는 먼저 Chainalysis [Sign-Up 링크](https://go.chainalysis.com/crypto-sanctions-screening.html)를 통해 API 키를 발급받아야 합니다.
 * 사용 가이드 등 상세한 정보는 [공식 문서](https://public.chainalysis.com/docs/index.html)를 참조하십시오.
