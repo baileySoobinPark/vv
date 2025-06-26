@@ -13,7 +13,7 @@ VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할�
 
 ### 기능 요구사항
 
-#### 1. verificationUuid와 트랜잭션 해시 쌍 저장 (상시)
+#### 1. verificationUuid와 트랜잭션 해시 값 저장 (상시)
 
 * 송신 VASP는 검증 요청 시 응답으로 발급받은 `verificationUuid`와, 해당 검증 응답에 따른 후속조치로 실행한 트랜잭션의 해시 값을 연결할 수 있어야 합니다.
 
