@@ -610,13 +610,13 @@ Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 
     </li>
     <li class="step-item">
       <div class="step-badge">6</div><div class="step-badge">7</div>
-      <div class="step-content">Enclave가 VASP 백엔드의 Callback API를 호출하여 결과를 전달합니다.</div>
+      <div class="step-content">Enclave가 VASP 백엔드의 <code>Callback API</code>를 호출하여 결과를 전달합니다.</div>
     </li>
   </ol>
 
   <div class="info-note">
     📘 <strong>참고:</strong><br>
-    WCO API가 수신자의 PII를 고위험군으로 판단한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 전송 취소시 송신 VASP는 오류 보고(ERROR REPORT)를 통해 수신 VASP에 취소 사실을 반드시 통지해야 합니다.
+    WCO API가 수신자의 PII를 고위험군으로 판단한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 전송 취소시 송신 VASP는 오류 보고(Error Report)를 통해 수신 VASP에 취소 사실을 반드시 통지해야 합니다.
   </div>
 
   <div class="sub-section-title">수신 VASP 측 위험도 평가 - 송신자 PII</div>
