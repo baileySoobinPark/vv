@@ -14,7 +14,7 @@ hidden: false
 1. 수신 VASP가 확인되지 않는 입금 건을 감지한 경우, Lookup Verification Result API를 통해 특정 트랜잭션 해시와 관련된 검증 이력을 조회할 수 있습니다.
 2. 해당 트랜잭션과 관련된 검증 이력이 없는 경우, 일정 시간 동안 송신 VASP의 Transaction Report API호출을 기다리며 대기합니다.
 3. 대기 시간 이후에도 트랜잭션 리포트가 없는 경우, 수신 VASP는 Verification Result Lookup API를 다시 호출하여 후보 검증 건들을 조회할 수 있습니다.
-4. 후보 범위를 좁히기 위해 감지된 입금 트랜잭션의 출금 주소(from address)와 입금 주소(to address)를 각각 originatorAccountNumber, beneficiaryAccountNumber 필터로 지정하여 조회합니다.
+4. 후보 범위를 좁히기 위해 감지된 입금 트랜잭션의 입금 주소(beneficiaryAccountNumber)와 자산의 수량(amount), 자산의 종류(symbol) 등을 필터로 지정하여 조회합니다.
 5. 검증 후보 건들에 대해, 수신 VASP는 Check Transaction Status API를 각각 호출하여 실제 트랜잭션 해시와의 매칭 여부를 확인합니다.
 
 ***
