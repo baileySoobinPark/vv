@@ -19,7 +19,7 @@ VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할�
 
 #### 2. 트랜잭션 상태 조회 및 응답 (API 호출 시)
 
-* 트랜잭션 상태 조회 요청을 받게 되면 요청에 포함된 트랜잭션 해시를 이용해 트랜잭션의 블록체인 상의 상태를 확인한 후, `transactionStatus` 필드에 아래에 정의된 상태 중 하나로 응답해야 합니다:
+* 트랜잭션 상태 조회 요청을 받게 되면 요청에 포함된 `verificationUuid`에 대응하는 트랜잭션을 식별하고 트랜잭션 해시를 이용해 트랜잭션의 블록체인 상의 상태를 확인한 후, `transactionStatus` 필드에 아래에 정의된 상태 중 하나로 응답해야 합니다:
   * `PENDING`: 아직 블록체인에 제출되지 않은 상태
   * `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
   * `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
@@ -34,7 +34,7 @@ VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할�
 
 다음과 같이 Enclave API들을 활용하여 별도의 데이터베이스 테이블 구축 없이도 `verificationUuid`와 트랜잭션 해시 값 쌍 데이터를 관리할 수 있습니다.
 
-* **Report Transaction Result API**: 트랜잭션 수행 직후 호출하여 트랜잭션 해시를 Enclave 데이터베이스에 저장하고 수신 VASP에 보고
+* **Report Transaction Result API**: 트랜잭션 전송 직후 호출하여 트랜잭션 해시를 Enclave 데이터베이스에 저장하고 수신 VASP에 보고
 * **Get Verification Result API**: 트랜잭션 상태 조회 요청 인입 시 `verificationUuid`로 Enclave 데이터베이스에 저장된 트랜잭션 해시를 조회하여 실시간 온체인 상태 확인에 사용
 
 ### Enclave 연동 설정
