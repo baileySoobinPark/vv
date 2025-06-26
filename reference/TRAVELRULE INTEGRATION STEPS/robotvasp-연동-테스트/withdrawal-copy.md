@@ -206,7 +206,7 @@ metadata:
 
 > 💡 참고 사항:
 >
-> User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 가상 자산을 전송해야 합니다. 만약 가상 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 가상 자산을 전송할 경우 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
+> User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 가상 자산을 전송해야 합니다. 만약 가상 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 가상 자산을 전송할 경우, 출금 건이 반영되지 않기 때문에 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
 >
 > XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드]() 에서 확인할 수 있습니다.
 
@@ -215,7 +215,7 @@ metadata:
 * **조건**
   * Enclave API 중 [Report Transaction Result API]() 를 호출하여 VV Central 서버에 트랜잭션 결과를 보고합니다.
 * **기대 결과**
-  * Deposit Reflection Inquery API를 호출해 가상 자산이 Robot VASP에 입금된 것을 확인할 수 있습니다.
+  * Deposit Reflection Inquiry API를 호출해 가상 자산이 Robot VASP에 입금된 것을 확인할 수 있습니다.
 
 <Accordion title=" Deposit Reflection Inquery API 호출 방법">
   **Method**: `GET`
@@ -282,6 +282,6 @@ metadata:
 **Case 2. 가상 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 미보고**
 
 * **조건**
-  * 가 자산 전송 트랜잭션을 실행하지 않고 VV Central 서버에 에러를 보고하지 않습니다.
+  * Robot VASP가 자산 전송 트랜잭션을 실행하지 않고 VV Central 서버에 에러를 보고하지 않습니다.
 * **기대 결과**
   * Robot VASP가 사용자 VASP가 구현한 Transaction Status Query API를 주기적으로 호출해 트랜잭션의 상태를 확인합니다. Robot VASP는 최대 1시간 까지 Transaction Status Query API를 호출합니다.
