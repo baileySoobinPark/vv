@@ -282,7 +282,6 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   .custom-table td {
     border: 1px solid #ddd;
     padding: 10px;
-    margin: 2px;
     text-align: left;
     vertical-align: top;
   }
