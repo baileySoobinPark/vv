@@ -374,7 +374,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
-콜백으로 수신한 트랜잭션 Hash가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고 결과 및 이력을 데이터베이스에 기록합니다.
+콜백으로 수신한 트랜잭션 해시(Txhash)가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고, 그 결과 및 검증 이력을 데이터베이스에 기록해야 합니다.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
