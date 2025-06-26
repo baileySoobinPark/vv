@@ -14,7 +14,7 @@ Travel Rule 검증을 지원하는 모든 VASP 목록을 조회하기 위한 API
 응답의 VASP 목록은 귀사의 VASP를 포함하여 다음 조건을 충족하는 다른 VASP들을 포함합니다.
 
 * 해당 VASP가 VerifyVASP 또는 타 Travel Rule 프로토콜의 회원일 것
-* 자산 이전 처리가 가능할 것
+* 양사가 서로를 자산 이전 처리가 가능한 VASP로 설정할 것
 
 ***
 
