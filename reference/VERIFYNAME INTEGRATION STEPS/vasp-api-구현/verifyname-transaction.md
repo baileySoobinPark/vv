@@ -15,11 +15,11 @@ hidden: false
 
 #### 1. 요청 ID와 트랜잭션 Hash 맵핑
 
-VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`request_id`)와, 해당 검증과 관련된 자산 전송 트랜잭션의 Hash값을 쌍으로 맵핑하여 저장 및 관리해야 합니다.
+VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`request_id`)와, 관련된 트랜잭션의 해시값을 쌍으로 맵핑하여 저장 및 관리해야 합니다.
 
 #### 2. 온체인 트랜잭션 상태 조회 및 응답
 
-요청 수신시 `request_id`와 맵핑된 트랜잭션 Hash를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
+요청을 받을 시 `request_id`와 맵핑된 트랜잭션 해시를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
 
 * `PENDING`: 아직 블록체인에 제출되지 않은 상태
 * `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
