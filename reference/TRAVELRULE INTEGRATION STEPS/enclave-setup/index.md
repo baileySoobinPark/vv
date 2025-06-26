@@ -43,7 +43,7 @@ Enclave에서 사용하는 환경 변수는 아래 다섯가지 주요 그룹으
 .enclave-env-table th {
   text-align: left;
   font-weight: bold;
-  background-color: white;
+  background-color: #f0f0f0;
 }
 </style>
 <table class="enclave-env-table">
