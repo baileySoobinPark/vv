@@ -5,7 +5,7 @@ api:
   operationId: verifyName-Request-Verification
 hidden: false
 ---
-본 API는 VerifyName 프로토콜의 검증 과정 중 Enclave에 의해 호출됩니다. 이 API는 전송 자산 정보와 수신인 지갑 주소의 유효성을 검증하고, 해당 주소 소유자의 성명과 생년월일을 각각 해시한 값을 기준으로 비교한 결과를 반환합니다. VerifyName을 지원하는 모든 VASP는 반드시 이 API를 구현하여 타 VASP들로부터의 소유자 검증 요청에 대응해야 합니다.
+VerifyName 프로토콜 검증 과정에서 Enclave에 의해 호출되는 API입니다. 전송 자산 정보와 수신인 지갑 주소의 유효성을 검증하고, 해당 주소 소유자의 성명과 생년월일 값을 응답으로 반환합니다. 반환된 개인 정보는 Enclave 내부에서 송신자 정보와의 비교 검증에 사용됩니다. VerifyName을 지원하는 모든 VASP는 반드시 이 API를 구현하여 타 VASP들로부터의 소유자 검증 요청에 대응해야 합니다.
 
 ***
 
@@ -15,7 +15,7 @@ hidden: false
 
 #### 1. 시나리오별 비즈니스 로직 구현
 
-VerifyName 프로토콜은 트랜잭션 실행 시점을 기준 사전 검증과 사후 검증을 모두 지원합니다. VASP는 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다.
+VerifyName 프로토콜은 트랜잭션 수행 시점을 기준 사전 검증과 사후 검증을 모두 지원합니다. VASP는 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다.
 
 **사후 검증(Post-Verification) 구현 요구사항**
 
