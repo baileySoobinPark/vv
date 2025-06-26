@@ -5,7 +5,7 @@ api:
   operationId: travelrule-Enclave-User-Account-Verification
 hidden: false
 ---
-이 API는 송신 VASP가 수신 VASP에게 특정 지갑 주소의 소유 여부를 검증 요청하는데 사용됩니다. 지정된 지갑 주소가 수신 VASP 소유임을 검증한 결과가 응답으로 반환됩니다.
+송신 VASP가 수신 VASP에게 특정 지갑 주소의 소유 여부를 검증 요청하는데 사용되는 API입니다. 지정된 지갑 주소가 수신 VASP 소유임을 검증한 결과가 응답으로 반환됩니다.
 
 ***
 
