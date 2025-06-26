@@ -281,11 +281,11 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     <div class="subsection-title">취소 및 오류 처리</div>
     <li class="step-item">
       <div class="step-badge">48</div>
-      <div class="step-content">검증 결과가 <code>DENIED</code>이거나, 송신 VASP가 절차를 중단하기로 결정한 경우 사용자에게 안내 후 절차를 종료합니다.</div>
+      <div class="step-content">검증 결과가 <code>DENIED</code>이거나, 송신 VASP가 절차를 중단하기로 결정한 경우 사용자에게 안내 후 절차를 종료합니다. 검증이 <code>VERIFIED</code>된 경우에도, 송신자가 중단을 원하거나 내부 오류 또는 고위험 사유로 인해 절차를 종료할 수 있습니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">49</div>
-      <div class="step-content">검증이 <code>VERIFIED</code>된 경우에도, 송신자가 중단을 원하거나 내부 오류 또는 고위험 사유로 인해 절차를 종료할 수 있습니다.</div>
+      <div class="step-content">출금 절차를 중단한 경우, 송신 VASP는 Enclave의 <code>Report Error API</code>를 호출하여 절차가 중단되었음을 통보해야 합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">50</div>
