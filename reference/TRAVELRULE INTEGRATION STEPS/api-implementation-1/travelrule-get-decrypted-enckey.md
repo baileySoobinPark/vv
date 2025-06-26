@@ -21,7 +21,7 @@ VerifyVASP Enclave는 고객 정보를 데이터베이스에 평문으로 저장
 
 * 환경 변수를 통해 직접 대칭 키를 주입하고자 하는 경우,`VEGA_ENCRYPTION_KEY_BASE64`변수에 키 값을 설정합니다. Enclave는 해당 값을 그대로 사용하여 데이터 암/복호화를 수행합니다.
 
-* API를 통해 키를 주입하고자 하는 경우, `VEGA_ENCRYPTION_KEY_BASE64` 에는 해당 키에 대한 참조값(요청의 `inputKey`필드에 사용)을, `VEGA_DECRYPT_API_ENDPOINT`에는 본 API의 구현 경로를 설정합니다. Enclave는 설정된 참조값을 사용하여 이 API를 호출하고, 응답으로 받은 `outputKey` 값을 암호화에 사용합니다.
+* API를 통해 키를 주입하는 경우, `VEGA_ENCRYPTION_KEY_BASE64` 에는 해당 키에 대한 참조값(요청의 `inputKey`필드에 사용)을, `VEGA_DECRYPT_API_ENDPOINT`에는 본 API의 구현 경로를 설정합니다. Enclave는 설정된 참조값을 사용하여 API를 호출하고, 응답으로 받은 `outputKey` 값을 암호화에 사용합니다.
 
 ## 구현 가이드
 
