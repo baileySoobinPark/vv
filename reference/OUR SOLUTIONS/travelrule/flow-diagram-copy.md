@@ -299,15 +299,11 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
       <div class="step-badge">52</div>
       <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 절차 중단을 통지합니다.</div>
     </li>
-    <li class="step-item">
-      <div class="step-badge">53</div>
-      <div class="step-content">Enclave는 Callback API를 호출하여 수신 VASP에 검증 실패를 통지합니다.</div>
-    </li>
 
     <!-- 프로세스 완료 -->
     <div class="subsection-title">프로세스 완료</div>
     <li class="step-item">
-      <div class="step-badge">54</div>
+      <div class="step-badge">53</div>
       <div class="step-content">모든 검증이 성공하면 송신 VASP는 사용자에게 통보하고 트랜잭션 실행 단계로 넘어갑니다.</div>
     </li>
   </ol>
