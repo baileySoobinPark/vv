@@ -114,7 +114,7 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
 </table>
 `}</HTMLBlock>
 
-## VASP API 인증 구현 (선택)
+## VASP API 인증 (선택)
 
 인증 기능 구현을 통해 VASP API를 오직 Enclave만 호출할 수 있도록 접근을 제한하고 보안을 강화할 수 있습니다. 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 추가 구현한 뒤 Enclave 환경 변수를 설정하여 모든 Enclave 발 VASP API 요청이 인증 헤더를 포함하도록 설정하세요.
 
