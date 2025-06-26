@@ -289,15 +289,15 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     </li>
     <li class="step-item">
       <div class="step-badge">50</div>
-      <div class="step-content">송신 VASP는 이 사실을 수신 VASP에 통보해야 합니다.</div>
-    </li>
-    <li class="step-item">
-      <div class="step-badge">51</div>
       <div class="step-content">송신 VASP Enclave는 오류 보고서를 중앙 서버로 전송합니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">52</div>
+      <div class="step-badge">51</div>
       <div class="step-content">중앙 서버는 해당 보고를 수신 VASP Enclave로 전달합니다.</div>
+    </li>
+    <li class="step-item">
+      <div class="step-badge">52</div>
+      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 절차 중단을 통지합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">53</div>
