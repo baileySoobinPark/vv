@@ -497,8 +497,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 * 이 API는 1초 이내에 응답해야 합니다.
 * 응답의 HTTP 상태 코드는 반드시 200 OK로 반환해야 합니다.
-* 동일한 콜백 요청이 여러 번 수신되어도 처리 결과가 동일하도록 멱등성을 보장해야 합니다.\
-  (ex) 중복 요청 시 내부 처리 로직에서 무시하도록 구현
+* 동일한 콜백 요청이 반복 수신되더라도 처리 결과가 변하지 않도록 멱등성을 반드시 보장해야 합니다.\
+  (ex) 중복 요청인 경우, 내부 처리 로직에서 이미 처리된 요청으로 간주하고 무시하도록 구현합니다.
 
 ### 구현 권장사항
 
@@ -506,10 +506,10 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 ### Enclave 연동 설정
 
-Enclave와의 정상 연동을 위해 아래 환경 변수를 설정해야 합니다.
+Enclave와의 연동을 위해 아래 환경 변수를 설정해야 합니다.
 
 * `VEGA_VERIFICATION_CALLBACK_API_PATH`: 해당 API 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 이후 발급받은 API Key
 
 ***
 
