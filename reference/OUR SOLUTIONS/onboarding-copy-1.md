@@ -46,7 +46,7 @@ VerifyVASP 온보딩을 위해 필수 기업 정보를 모두 입력해야 합�
 
 ## VerifyVASP API Key 발급
 
-VerifyVASP 회원가입이 승인된 VASP는 VerifyVASP 콘솔에서 API Key를 발급받아 Enclave API 호출 시 사용할 수 있습니다. API Key 발급 절차에 대한 자세한 내용은 아래 첨부된 안내 영상을 참고해주세요.
+VerifyVASP 회원가입이 승인된 VASP는 VerifyVASP 콘솔에서 API Key를 발급받아 Enclave 구동 시 사용할 수 있습니다. 발급된 API Key는 Enclave 서버가 중앙 서버와 API 호출을 주고 받을 때 인증 수단으로 사용됩니다. API Key 발급 절차에 대한 자세한 내용은 아래 첨부된 안내 영상을 참고해주세요.
 
 <Embed typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=VK8DT12orSA" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FVK8DT12orSA%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DVK8DT12orSA%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FVK8DT12orSA%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" href="https://www.youtube.com/watch?v=VK8DT12orSA" providerUrl="https://www.youtube.com/" providerName="YouTube" />
 
