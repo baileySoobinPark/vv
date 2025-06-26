@@ -512,7 +512,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
     </li>
     <li class="step-item">
       <div class="step-badge">4</div>
-      <div class="step-content">Chainalysis 서비스로부터 수신자 주소에 대한 위험도 평가 결과를 조회합니다. 다이어그램에서서는 평가 요청에 대한 동기 응답으로 표현되어 있으나, 실제로는 Enclave의 결과 조회 API 호출을 통한 비동기 조회 방식으로 동작합니다.</div>
+      <div class="step-content">Chainalysis 서비스로부터 수신자 주소에 대한 위험도 평가 결과를 조회합니다. 다이어그램에서는 평가 요청에 대한 동기 응답으로 표현되어 있으나, 실제로는 Enclave가 주기적으로 결과 조회 API를 호출하는 방식으로 동작합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">5</div>
@@ -520,7 +520,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
     </li>
     <li class="step-item">
       <div class="step-badge">6</div>
-      <div class="step-content">Enclave는 VASP의 Callback API를 호출하여 위험도 평가 결과를 전달합니다.</div>
+      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 위험도 평가 결과를 전달합니다.</div>
     </li>
   </ol>
 
