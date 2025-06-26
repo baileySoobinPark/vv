@@ -457,15 +457,8 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">1</div><div class="step-content">수신 VASP는 Enclave API를 호출하여 송신자 주소에 대한 Sanction API 기반 리스크 평가를 요청할 수 있습니다. 요청에는 Verification UUID가 포함되어야 합니다.</div></li>
     <li class="step-item"><div class="step-badge">2</div><div class="step-content">Enclave는 requestId 및 Chainalysis API 요청 본문(Body)을 생성합니다.</div></li>
-    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료한 뒤 결과를 수신하여 안전하게 저장합니다.</div></li>
+    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료한 뒤 결과를 수신합니다.</div></li>
     <li class="step-item"><div class="step-badge">4</div><div class="step-content">Enclave가 결과를 VASP백엔드로 전달합니다.</div></li>
-  </ol>
-
-  <div class="info-note">
-    📘 참고: 이 API는 수신 VASP가 송신 VASP로부터 사용자 검증 요청을 수신한 이후 호출됩니다. Sanction API 결과에 따라 송신자 주소가 고위험으로 판단되면, 수신 VASP는 해당 사용자 검증 결과를 DENIED로 응답할 수 있습니다.
-  </div>
-
-  <ol class="step-list">
     <li class="step-item"><div class="step-badge">5</div><div class="step-content">Enclave는 평가 결과를 Enclave 데이터베이스의 <b>Sanction Results Table</b>에 저장합니다.</div></li>
   </ol>
 
@@ -476,7 +469,7 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
   </ol>
 
   <div class="info-note">
-    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 단, 자산 출금 취소시 반드시 수신 VASP에게 ERROR REPORT를 전송하여 취소 사실을 알려야 합니다.
+    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 단, 자산 출금 취소시 반드시 수신 VASP에게 Error Report를 전송하여 취소 사실을 알려야 합니다.
   </div>
 
   <div class="sub-section-title">트랜잭션 실행</div>
