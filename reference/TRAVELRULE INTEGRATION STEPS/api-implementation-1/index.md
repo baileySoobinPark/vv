@@ -34,7 +34,7 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 200px;
+    min-width: 180px;
   }
 
 	.api-table th {
