@@ -14,12 +14,12 @@ hidden: false
 Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정보를 기반으로 리스크 평가를 수행하는 유료 서비스입니다. 평가 요청은 “케이스(case)“로 생성되며, 각각은 Refinitiv에서 발급하는 caseSystemId로 식별됩니다. 또한, 각 케이스는 하나의 “그룹(group)“에 속하며, 그룹 단위로 케이스를 관리합니다. WCO API 연동 전에 그룹 구성을 미리 검토하고 체계화하는 것이 좋습니다.
 
 * WCO API 사용을 위해서는 Refinitiv 계정 생성과 라이선스 구매가 필요합니다.\
-  [Refinitiv WCO 공식 페이지](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) 또는 VerifyVASP팀에 지원을 요청해 미팅을 주선받을 수 있습니다.
+  [Refinitiv WCO 공식 페이지](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) 또는 VerifyVASP팀을 통해 미팅을 진행할 수 있습니다.
 * 라이선스를 구매한 후, [WCO 콘솔 사이트](https://worldcheck.refinitiv.com/)에 로그인하여 API Key를 확인할 수 있습니다. Refinitiv WCO API의 자세한 사용법은 [WCO API 개요](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api) 및 [WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html) 문서를 확인하세요.
 
 ## 구현 가이드
 
-WCO API를 통해, 송신 VASP와 수신 VASP는 송신자 또는 수신자의 실명정보를 기반으로 한 리스크 평가를 진행하고 규제 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 합니다.
+WCO API를 통해, 송신 VASP와 수신 VASP는 송신인 또는 수신인의 실명 정보를 기반으로 한 리스크 평가를 진행하고 규제 준수 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 합니다.
 
 ## 비동기 API
 
