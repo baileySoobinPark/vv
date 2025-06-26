@@ -2,8 +2,8 @@
 title: Scenarios and Flows
 excerpt: >-
   본 문서에서는 VerifyName 2.0 프로토콜을 사용한 사후 검증(Post-Verification) 및 사전
-  검증(Pre-Verification) 시나리오와 Flow를 소개합니다. 각 VASP는 상대 VASP의 요건에 따라 적절한 시나리오를 선택하여
-  수행할 수 있습니다.
+  검증(Pre-Verification) 시나리오와 API Flow를 소개합니다. 각 VASP는 상대 VASP의 규제 의무 요건에 따라 적절한
+  시나리오를 선택하여 수행할 수 있습니다.
 deprecated: false
 hidden: false
 metadata:
@@ -11,7 +11,7 @@ metadata:
 ---
 ## Post-Verification - From Non-Obliged VASP to Travel Rule Obliged VASP
 
-VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 송금을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 경우 발생합니다. 주로 송금 VASP가 Travel Rule 규제 대상 VASP가 아닌 경우 별도의 검증 없이 송금을 실행하는 경우에 해당합니다. 수신 VASP는 컴플라이언스 준수를 위해 미확인 입금건에 대해 송신자가 수신 계정 소유주와 일치하는지 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
+VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자산 이전을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 경우입니다. 즉 Travel Rule 규제 의무가 없는 VASP가 사전 검증 없이 자산을 이전하는 경우에 해당합니다. 수신 VASP는 Travel Rule 규제 준수를 위해 미확인 입금건에 대하여 송신인과 수신인의 계정이 일치하는지 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
 
 <br />
 
