@@ -316,7 +316,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
   <div class="scenario-title">4. 트랜잭션 실행</div>
   <ol class="step-list">
 
-    <div class="subgroup-title">트랜잭션 생성 및 제출</div>
+    <div class="subsection-title">트랜잭션 생성 및 제출</div>
     <li class="step-item">
       <div class="step-badge">54</div>
       <div class="step-content">송신 VASP는 송신자 계정의 자산을 수신자에게 전송하는 블록체인 트랜잭션을 생성하고 제출합니다.</div>
@@ -346,7 +346,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
       <div class="step-content">수신 VASP가 <code>200 OK</code> 응답을 반환하면 트랜잭션 프로세스는 완료됩니다.</div>
     </li>
 
-    <div class="subgroup-title">예외 처리: 트랜잭션 보고 누락</div>
+    <div class="subsection-title">예외 처리: 트랜잭션 보고 누락</div>
     <li class="step-item">
       <div class="step-badge">62</div>
       <div class="step-content">수신 VASP가 온체인 입금을 감지했으나 관련 트랜잭션 보고를 받지 못한 경우, Enclave의<code>Check Transaction Result</code> API를 호출합니다.</div>
