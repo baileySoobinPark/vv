@@ -327,7 +327,7 @@ Enclave에서 사용하는 환경 변수는 아래 다섯가지 주요 그룹으
       </td>
 
       <td>
-        `true / false`
+        `false`
       </td>
 
       <td>
@@ -412,7 +412,7 @@ Enclave에서 사용하는 환경 변수는 아래 다섯가지 주요 그룹으
       </td>
 
       <td>
-        `true / false`
+        `true`
       </td>
 
       <td>
