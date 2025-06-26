@@ -131,7 +131,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">검증 결과 Report</div>
+  <div class="scenario-title">3. 검증 결과 Report</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">26</div>
       <div class="step-content">수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 바탕으로 계정 소유주 검증 결과 및 이에 따른 입금 반영 여부를 확정합니다.</div></li>
