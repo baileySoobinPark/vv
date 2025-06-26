@@ -82,6 +82,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <Callback />
 
+<br />
+
 #### 2. VERIFICATION\_RESULT 유형 콜백 처리
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
@@ -279,7 +281,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   .custom-table th,
   .custom-table td {
     border: 1px solid #ddd;
-    padding: 12px;
+    padding: 10px;
     text-align: left;
     vertical-align: top;
   }
@@ -303,7 +305,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   <thead>
     <tr>
       <th><code>reason</code></th>
-      <th><code>message</code></th>
+      <th width=200px><code>message</code></th>
       <th>Description</th>
     </tr>
   </thead>
@@ -372,6 +374,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 </table>
 `}</HTMLBlock>
 
+<br />
+
 #### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
 콜백으로 수신한 트랜잭션 해시(Txhash)가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고, 그 결과 및 검증 이력을 데이터베이스에 기록해야 합니다.
@@ -388,6 +392,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   }
   ```
 </Accordion>
+
+<br />
 
 #### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
@@ -492,6 +498,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   }
   ```
 </Accordion>
+
+<br />
 
 ### 제약 조건
 
