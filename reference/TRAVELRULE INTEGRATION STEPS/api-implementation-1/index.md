@@ -34,7 +34,7 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 220px;
+    min-width: 180px;
   }
 
 	.api-table th {
@@ -134,7 +134,7 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
 
 ## VASP API 인증 기능 (선택)
 
-인증 기능을 통해 VASP API를 오직 Enclave에서만 호출되도록 접근을 제한할 수 있으며, 이를 통해 보안을 강화할 수 있습니다. VASP는 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 백엔드에 구현해야 합니다. 이후 Enclave 환경 변수를 설정하여 모든 Enclave에서 발생한 VASP API 요청에 인증 헤더가 포함하도록 구성하세요.
+인증 기능을 통해 VASP API를 오직 Enclave에서만 호출되도록 접근을 제한할 수 있으며, 이를 통해 보안을 강화할 수 있습니다. VASP는 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 백엔드에 구현해야 합니다. 이후 Enclave 환경 변수를 설정하여 Enclave에서 발생한 모든 VASP API 요청에 인증 헤더를 포함하도록 구성하세요.
 
 설정 방법은 다음과 같습니다.
 
