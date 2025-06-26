@@ -9,13 +9,13 @@ hidden: false
 
 ## API 활용 예제
 
-본 API는 검증을 이미 수행한 건에 대한 상태 조회 목적 외에도, 미확인 입금건에 대한 추적 용도로 다음과 같이 활용할 수 있습니다.
+본 API는 기존에 검증이 수행된 건의 상태를 조회하는 용도 외, 미확인 입금건에 대한 추적 절차에서도 다음과 같이 활용할 수 있습니다.
 
-1. 확인할 수 없는 입금을 감지한 경우, 수신 VASP는 Lookup Verification Result API를 해당 트랜잭션 hash와 관련된 검증 이력을 조회할 수 있습니다.
+1. 수신 VASP가 확인되지 않는 입금 건을 감지한 경우, Lookup Verification Result API를 통해 특정 트랜잭션 해시와 관련된 검증 이력을 조회할 수 있습니다.
 2. 해당 트랜잭션과 관련된 검증 이력이 없는 경우, 일정 시간 동안 송신 VASP의 Transaction Report API호출을 기다리며 대기합니다.
-3. 대기 시간 이후에도 트랜잭션 보고가 없는 경우, 수신 VASP는 Verification Result Lookup API를 다시 호출하여 후보 검증 건들을 조회할 수 있습니다.
-4. 후보 검증 건을 좁히기 위해 감지된 입금 트랜잭션의 출금 주소(from address)와 입금 주소(to address)를 각각 originatorAccountNumber, beneficiaryAccountNumber 필터로 사용합니다.
-5. 조회된 검증 후보들에 대해 수신 VASP는 각각 본 Check Transaction Status API를 호출하여 실제 트랜잭션 ID 정보와의 매칭 여부를 확인할 수 있습니다.
+3. 대기 시간 이후에도 트랜잭션 리포트가 없는 경우, 수신 VASP는 Verification Result Lookup API를 다시 호출하여 후보 검증 건들을 조회할 수 있습니다.
+4. 후보 범위를 좁히기 위해 감지된 입금 트랜잭션의 출금 주소(from address)와 입금 주소(to address)를 각각 originatorAccountNumber, beneficiaryAccountNumber 필터로 지정하여 조회합니다.
+5. 검증 후보 건들에 대해, 수신 VASP는 Check Transaction Status API를 각각 호출하여 실제 트랜잭션 해시와의 매칭 여부를 확인합니다.
 
 ***
 
