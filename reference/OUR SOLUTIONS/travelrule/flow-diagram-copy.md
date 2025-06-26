@@ -208,7 +208,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     <div class="subsection-title">정보 암호화 및 요청</div>
     <li class="step-item">
       <div class="step-badge">29</div>
-      <div class="step-content">계정이 검증되면, 송신 VASP는 사용자 검증 API 절차를 시작합니다.</div>
+      <div class="step-content">계정이 검증되면, 송신 VASP는 Enclave의 <code>User Verification API</code>를 호출하여 사용자 검증 절차를 시작합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">30</div>
@@ -239,7 +239,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     <div class="subsection-title">검증</div>
     <li class="step-item">
       <div class="step-badge">38</div>
-      <div class="step-content">수신 VASP Enclave는 백엔드의 <code>Verify User API</code>를 호출하여 사용자 정보를 검증합니다.</div>
+      <div class="step-content">수신 VASP Enclave는 VASP 백엔드의 <code>Verify User API</code>를 호출하여 사용자 정보를 검증합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">39</div>
@@ -266,7 +266,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     <div class="subsection-title">콜백 및 추가 확인</div>
     <li class="step-item">
       <div class="step-badge">45</div>
-      <div class="step-content">송신 VASP Enclave는 Callback API를 호출하여 검증 결과와 추가 정보를 전달합니다.</div>
+      <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 검증 결과와 추가 정보를 전달합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">46</div>
