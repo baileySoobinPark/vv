@@ -137,7 +137,7 @@ Enclave에서 사용하는 환경 변수는 아래 다섯가지 주요 그룹으
 
         **사용 가능한 모드 값** : `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
 
-        `(ex) VEGA_ENCLAVE_MODE=TR,VN2`
+        (ex) `VEGA_ENCLAVE_MODE=TR,VN2`
       </td>
     </tr>
 
