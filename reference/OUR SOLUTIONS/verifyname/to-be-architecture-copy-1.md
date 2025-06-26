@@ -1,6 +1,6 @@
 ---
 title: To-Be Architecture
-excerpt: 이 페이지에서는 VerifyName 2.0 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
+excerpt: 본 문서에서는 VerifyName 2.0 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
 deprecated: false
 hidden: false
 metadata:
@@ -8,17 +8,17 @@ metadata:
 ---
 ## VASP Backend To-Be Architecture
 
-Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. 각 VASP는 Travel Rule 규제 의무 여부에 따라 다음과 같이 프로세스 연동 및 API 구현을 진행해야 합니다.
+Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. 각 VASP는 Travel Rule 규제 의무 여부에 따라 다음과 같은 프로세스 및 API 구현을 진행해야 합니다.
 
 #### 입출금 검증 프로세스 통합
 
-Travel Rule 규제 준수 의무가 있는 VASP는 자산의 출금 과정에 송/수신자 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현하여 연동해야 합니다. 또한 규제 의무 대상이 아닌 VASP로부터의 입금건이 확인되는 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다.
+Travel Rule 규제 준수 의무가 있는 VASP는 자산 이전 시 송/수신인 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현해야 합니다. 또한 규제 의무가 없는 VASP로부터의 입금이 발생한 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다.
 
 <br />
 
 #### 필수 API 구현 (Implementing Required APIs)
 
-VASP는 VerifyName 연동을 위해 Travel Rule 규제 준수 의무 여부에 따라 Diagram 1에 표시된 필수 API들을 백엔드에 구현해야 합니다. 이들 API는 VerifyName 프로토콜을 통한 검증 및 Report 절차를 수행하는 데 필수적입니다. 특히 VerifyName API의 경우 VASP의 규제 준수 의무 여부와 상관없이 반드시 구현되어야합니다.
+VASP는 Travel Rule 규제 준수 의무 여부에 따른 VerifyName 연동을 위해 Diagram 1에 표시된 필수 API들을 백엔드에 구현해야 합니다. 이 중 VerifyName 프로토콜을 활용한 검증 및 Report 절차를 위해 아래 API들이 필수적으로 요구됩니다. 특히 규제 준수 여부와 관계 없이 VerifyName API는 반드시 구현되어야합니다.
 
 각 API의 세부 사양은 아래 VerifyName VASP API 문서 목록에서 확인할 수 있습니다.
 
