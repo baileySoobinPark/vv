@@ -1,5 +1,5 @@
 ---
-title: Check Trasnaction Status API
+title: Check Transaction Status API
 api:
   file: TR_VASP_API_Spec.yaml
   operationId: travelrule-check-Transaction-Status
