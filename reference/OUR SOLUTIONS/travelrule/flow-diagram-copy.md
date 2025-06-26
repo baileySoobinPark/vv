@@ -526,7 +526,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
 
   <div class="info-note">
     📘 <strong>참고:</strong><br>
-    KYT API 결과로 수신자 주소가 고위험(high-risk)으로 판단될 경우, Originating VASP는 자산 이전을 취소할 수 있습니다. 이 경우, 반드시 Beneficiary VASP에 ERROR REPORT를 전송하여 취소 사실을 통보해야 합니다.
+    KYT API 결과로 수신자 주소가 고위험(high-risk)으로 판단될 경우, Originating VASP는 자산 이전을 취소할 수 있습니다. 이 경우, 반드시 Beneficiary VASP에 Error Report를 전송하여 취소 사실을 통보해야 합니다.
   </div>
 
   <ol class="step-list">
@@ -560,7 +560,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
     </li>
     <li class="step-item">
       <div class="step-badge">20</div>
-      <div class="step-content">Enclave는 VASP의 Callback API를 호출하여 평가 결과를 전달하고, 리스크 평가 절차를 종료합니다.</div>
+      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 평가 결과를 전달하고, 리스크 평가 절차를 종료합니다.</div>
     </li>
   </ol>
 
