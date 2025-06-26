@@ -82,7 +82,7 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
 <table class="api-table">
   <thead>
     <tr>
-      <th>API 이름</th>
+      <th width=200px>API 이름</th>
       <th>VASP 포지션</th>
       <th>API의 역할</th>
     </tr>
