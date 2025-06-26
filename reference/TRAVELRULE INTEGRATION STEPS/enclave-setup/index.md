@@ -677,7 +677,7 @@ Enclave에서 사용하는 환경 변수는 아래 다섯가지 주요 그룹으
 
 ## Step 3. 네트워크 설정
 
-Enclave 서버가 정상적으로 실행된 이후, VerifyVASP Central Server와의 통신을 위해 네트워크 Allowlist를 구성해야 합니다.
+Enclave 서버가 정상적으로 실행된 이후, VerifyVASP Central 서버와의 통신을 위해 네트워크 Allowlist를 구성해야 합니다.
 
 ### Enclave 서버 IP를 VerifyVASP 중앙 서버에 등록
 
@@ -685,13 +685,13 @@ VASP의 Enclave 서버 IP를 [support@verifyvasp.com](mailto:corporate@verifyvas
 
 ### VerifyVASP Central Server의 IP를 VASP 측에 등록
 
-VerifyVASP Central Server가 VASP의 인프라에 접근할 수 있도록, VASP 인프라 네트워크 설정으로 VerifyVASP의 IP 주소를 허용 목록에 등록해야 합니다. 해당 IP 정보는 [support@verifyvasp.com](mailto:corporate@verifyvasp.com) 또는 전용 Slack 채널을 통해 문의해 주세요.
+VerifyVASP Central 서버가 VASP의 인프라에 접근할 수 있도록, VASP 인프라 네트워크 설정으로 VerifyVASP의 IP 주소를 허용 목록에 등록해야 합니다. 해당 IP 정보는 [support@verifyvasp.com](mailto:corporate@verifyvasp.com) 또는 전용 Slack 채널을 통해 문의해 주세요.
 
 <br />
 
 ## Step 4. Enclave 통합 API 구성
 
-Enclave 서버가 정상적으로 구동되어 VerifyVASP Central Server와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 입출금 프로세스에 TravelRule을 이용한 검증 프로세스를 추가할 수 있습니다.
+Enclave 서버가 정상적으로 구동되어 VerifyVASP Central 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 입출금 프로세스에 TravelRule을 이용한 검증 프로세스를 추가할 수 있습니다.
 
 TravelRule 의 API Flow와 이 문서 하위에 포함된 아래 API 명세를 확인하여 Enclave API를 구현하십시오.
 
