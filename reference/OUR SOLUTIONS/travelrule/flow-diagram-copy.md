@@ -323,7 +323,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     </li>
     <li class="step-item">
       <div class="step-badge">56</div>
-      <div class="step-content">트랜잭션 해시를 확보한 직후, 송신 VASP는 <code>Report Transaction Result</code> API를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div>
+      <div class="step-content">트랜잭션 해시를 확보한 직후, 송신 VASP는 Enclave의 <code>Report Transaction Result</code> API를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">57</div>
@@ -335,7 +335,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     </li>
     <li class="step-item">
       <div class="step-badge">60</div>
-      <div class="step-content">수신 VASP Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 저장하고, <code>Callback API</code>를 호출하여 트랜잭션 정보를 수신 VASP에 전달합니다.</div>
+      <div class="step-content">수신 VASP Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 저장하고, VASP 백엔드의 <code>Callback API</code>를 호출하여 트랜잭션 정보를 수신 VASP에 전달합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">61</div>
@@ -345,7 +345,7 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     <div class="subsection-title">예외 처리: 트랜잭션 보고 누락</div>
     <li class="step-item">
       <div class="step-badge">62</div>
-      <div class="step-content">수신 VASP가 온체인 입금을 감지했으나 관련 트랜잭션 보고를 받지 못한 경우, Enclave의<code>Check Transaction Result</code> API를 호출합니다.</div>
+      <div class="step-content">수신 VASP가 온체인 입금을 감지했으나 관련 트랜잭션 보고를 받지 못한 경우, Enclave의<code>Check Transaction Status</code> API를 호출합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">63</div><div class="step-badge">64</div>
@@ -353,11 +353,11 @@ Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 �
     </li>
     <li class="step-item">
       <div class="step-badge">65</div>
-      <div class="step-content">송신 VASP Enclave는 검증 UUID에 매핑된 트랜잭션 해시를 조회한 뒤 백엔드로 전달하여 온체인 상태를 확인합니다.</div>
+      <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>Check Transaction Status API</code>를 호출하여 검증 UUID에 매핑된 트랜잭션의 온체인 상태를 확인합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">66</div>
-      <div class="step-content">송신 VASP는 보고된 트랜잭션 해시의 온체인 처리 상태를 확인합니다.</div>
+      <div class="step-content">송신 VASP는 검증 UUID에 대응되는 트랜잭션을 식별하고 온체인 처리 상태를 확인합니다.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">67</div><div class="step-badge">68</div><div class="step-badge">69</div><div class="step-badge">70</div>
