@@ -413,7 +413,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 콜백으로 수신한 Chainalysis KYT 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
 
-* 송신자 또는 수신자의 평가 데이터 갱신
+* 송신자 또는 수신자의 리스크 평가 데이터 갱신
 * 트랜잭션 허용 또는 차단 결정
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
@@ -467,7 +467,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
 
-* 송신자 또는 수신자의 평가 데이터 갱신
+* 송신자 또는 수신자의 리스크 평가 데이터 갱신
 * 트랜잭션 허용, 재개 또는 차단 결정
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
