@@ -627,7 +627,7 @@ Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 
     </li>
     <li class="step-item">
       <div class="step-badge">9</div>~ <div class="step-badge">14</div>
-      <div class="step-content">위험도 평가는 수신 VASP가 사용자 검증 요청을 수신한 이후, 사용자 검증 결과를 반환하기 이전에 수행되어야 합니다.</div>
+      <div class="step-content">위험도 평가는 수신 VASP가 사용자 검증 결과를 반환한 이후 수행되어야 합니다.</div>
     </li>
   </ol>
 
@@ -642,11 +642,11 @@ Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 
       <div class="step-content">블록체인 상에서 실제 자산 전송 트랜잭션을 실행합니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">17</div>
+      <div class="step-badge">17</div> ~ <div class="step-badge">20</div>
       <div class="step-content">송신 VASP는 트랜잭션 결과 Report API를 호출하여 수신 VASP에 트랜잭션 결과를 전달합니다.</div>
     </li>
     <li class="step-item">
-      <div class="step-badge">18</div>
+      <div class="step-badge">21</div>
       <div class="step-content">수신 VASP는 보고된 트랜잭션 해시를 확인 후 VASP 정책에 따라 필요한 확인 절차들을 수행합니다.</div>
     </li>
   </ol>
