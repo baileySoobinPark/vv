@@ -465,7 +465,7 @@ Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 
   <div class="sub-section-title">송신 VASP 측 리스크 평가</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">6</div><div class="step-content">송신 VASP도 수신자 주소에 대해 동일한 방식으로 리스크 평가를 수행할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">7</div><div class="step-badge">8</div><div class="step-badge">9</div><div class="step-badge">10</div><div class="step-content">평가 대상이 수신자 주소로 변경될 뿐 전체 흐름은 수신 VASP 측 시나리오와 동일한 Flow를 통해 진행됩니다.</div></li>
+    <li class="step-item"><div class="step-badge">7</div> ~ <div class="step-badge">10</div><div class="step-content">평가 대상이 수신자 주소로 변경될 뿐 전체 흐름은 수신 VASP 측 시나리오와 동일한 Flow를 통해 진행됩니다.</div></li>
   </ol>
 
   <div class="info-note">
@@ -567,7 +567,7 @@ Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연�
   <div class="sub-section-title">입금 VASP 측 리스크 평가 - 입금 트랜잭션</div>
   <ol class="step-list">
     <li class="step-item">
-      <div class="step-badge">21</div> ~<div class="step-badge">28</div>
+      <div class="step-badge">21</div> ~ <div class="step-badge">28</div>
       <div class="step-content">수신 VASP 측에서도 트랜잭션 Report를 수신하거나 온체인 입금을 감지한 후 해당 트랜잭션에 대한 위험도 평가를 수행할 수 있습니다. Flow는 송신 VASP측 트랜잭션 위험도 평가와 동일합니다. 트랜잭션 위험도 평가를 통해 자산 이전 과정의 보안성과 규제 대응 능력을 향상시킬 수 있습니다.</div>
     </li>
   </ol>
