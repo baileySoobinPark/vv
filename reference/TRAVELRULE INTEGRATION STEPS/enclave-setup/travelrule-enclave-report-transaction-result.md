@@ -5,7 +5,7 @@ api:
   operationId: travelrule-enclave-report-Transaction-Result
 hidden: false
 ---
-송신 VASP가 블록체인에서 자산 전송 트랜잭션을 실행한 후, 해당 트랜잭션의 txHash 또는 txId를 수신 VASP에 보고 할 때 사용되는 API입니다.
+송신 VASP가 블록체인에서 자산 이전을 위한 트랜잭션을 실행한 후, 해당 트랜잭션의 해시(Txhash 또는 TxId)를 수신 VASP에 보고할 때 사용되는 API입니다.
 
 ***
 
