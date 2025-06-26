@@ -391,7 +391,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
 
-오류 보고 내용을 확인한 뒤 해당 전송을 취소한 뒤, 트랜잭션 추적을 중단하고 로그 기록을 남깁니다.
+오류 보고 내용을 확인한 후, 자산 이전을 중단하고 트랜잭션 추적을 종료한 뒤 관련 로그를 기록해야 합니다.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
