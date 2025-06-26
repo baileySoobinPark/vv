@@ -20,7 +20,7 @@ VASP는 서버 유지보수 진행 최소 1주일 전까지 VerifyVASP 운영팀
 
 VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채널을 통해 운영팀과 소통할 수 있습니다. 예정된 서버 유지보수 작업이 있다면, 최소 1주일 전 Slack 채널을 통해 운영팀에 일정을 고지해야 합니다. 이메일 고지를 선호하는 경우 아래 주소로 작업 내용을 전달해 주십시오.
 
-* 연락처: [corporate@verifyvasp.com](mailto:corporate@verifyvasp.com)
+* 연락처: [support@verifyvasp.com](mailto:support@verifyvasp.com)
 
 <br />
 
@@ -33,6 +33,6 @@ VerifyVASP 콘솔을 통해 서버 유지보수 일정을 회원사 VASP들과 �
 2. **\[등록] 버튼 클릭**\
    VerifyVASP Alliance에 참여 중인 모든 VASP의 유지보수 일정 목록이 표시됩니다. \[등록] 버튼을 클릭하여 일정을 등록합니다.
 3. **일정 및 사유 입력**\
-   유지보수 예정일과 고지 사유를 입력합니다.
+   유지보수 예정일과 사유를 입력합니다.
 4. **일정 등록 완료 및 공개**\
    등록된 일정은 VerifyVASP Alliance 전체 회원이 열람할 수 있습니다.
