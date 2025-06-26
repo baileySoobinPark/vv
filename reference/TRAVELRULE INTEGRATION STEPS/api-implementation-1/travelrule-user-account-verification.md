@@ -15,7 +15,7 @@ VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할�
 
 #### 1. VASP의 주소 소유 여부 검증
 
-요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인하고, 결과를 응답해야 합니다.
+API 요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP로부터 발급된 주소인지를 데이터베이스와 대조하여 확인한 후, 그 결과를 반환해야 합니다.
 
 #### 2. 검증 결과 응답
 
@@ -102,10 +102,10 @@ VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할�
 
 ### 환경 변수 설정
 
-Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+Enclave와의 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
 
 * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: 해당 API의 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API Key
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 이후 발급받은 API Key
 
 ### 관련 링크
 
