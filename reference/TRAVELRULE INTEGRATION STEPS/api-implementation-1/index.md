@@ -1,7 +1,7 @@
 ---
 title: VASP API 구현
 excerpt: >-
-  TravelRule 연동을 위한 첫번째 단계인 VASP API 구현 단계입니다. 본 문서를 통해 VASP 백엔드에 구현해야 하는 REST
+  TravelRule 연동을 위한 첫 번째 단계인 VASP API 구현 단계입니다. 본 문서를 통해 VASP 백엔드에 구현해야 하는 REST
   API의 명세와 요구사항을 확인할 수 있습니다.
 deprecated: false
 hidden: false
@@ -14,9 +14,9 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
 
 <br />
 
-## 구현 대상 VASP API 목록
+## 구현해야 할 VASP API 목록
 
-각 VASP는 자산 전송 시 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위해 VASP가 필수 구현해야 하는 API 목록과 해당 API가 호출되는 시점의 VASP의 포지션(송신 또는 수신 VASP), 그리고 해당 API에서 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 구체적인 구현 요구사항 및 명세는 각 API Specficiation 문서를 확인하세요.
+각 VASP는 자산 이전 과정에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위해 요구되는 필수 API 목록과 각 API가 호출되는 시점의 VASP의 역할(송신 또는 수신), 그리고 해당 API에서 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 상세한 구현 요구사항 및 명세는 별도의 API Specficiation 문서를 참고하시기 바랍니다.
 
 <HTMLBlock>{`
 <style>
@@ -132,9 +132,9 @@ VASP API는 TravelRule 프로토콜 준수를 위한 핵심 구현 요소로, �
 
 <br />
 
-## VASP API 인증 구현 (선택)
+## VASP API 인증 기능 (선택)
 
-인증 기능 구현을 통해 VASP API를 오직 Enclave만 호출할 수 있도록 접근을 제한하고 보안을 강화할 수 있습니다. 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 추가 구현한 뒤 Enclave 환경 변수를 설정하여 모든 Enclave 발 VASP API 요청이 인증 헤더를 포함하도록 설정하세요.
+인증 기능을 통해 VASP API를 오직 Enclave에서만 호출되도록 접근을 제한할 수 있으며, 이를 통해 보안을 강화할 수 있습니다. VASP는 적절한 인증 헤더를 정의하고 전달된 인증 토큰을 검증하는 로직을 백엔드에 구현해야 합니다. 이후 Enclave 환경 변수를 설정하여 모든 Enclave에서 발생한 VASP API 요청에 인증 헤더가 포함하도록 구성하세요.
 
 설정 방법은 다음과 같습니다.
 
