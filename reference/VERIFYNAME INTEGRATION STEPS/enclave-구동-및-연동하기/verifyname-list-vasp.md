@@ -13,7 +13,7 @@ hidden: false
 
 응답의 VASP 목록은 귀사의 VASP를 포함하여 다음 조건을 충족하는 다른 VASP들을 포함합니다.
 
-* 해당 VASP가 VerifyVASP 또는 타 Travel Rule 프로토콜의 회원일 것
+* 해당 VASP가 VerifyVASP\~\~ 또는 타 Travel Rule 프로토콜의 \~\~회원일 것
 * 자산 이전 처리가 가능할 것
 
 ***
