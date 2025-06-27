@@ -8,7 +8,7 @@ hidden: false
 metadata:
   robots: index
 ---
-VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 API를 비롯한 필수 VASP API들을 구현하고, Enclave가 호출 가능하도록 제공해야 합니다. 본 섹션에서는 구현 대상 API 목록과 각 API의 명세, 호출 흐름, 구현 시 유의사항 등을 설명합니다.
+VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 API를 비롯한 필수 VASP API들을 구현하고, Enclave가 호출 할 수 있도 제공해야 합니다. 본 섹션에서는 구현 대상 API 목록과 각 API의 명세, 호출 흐름, 구현 시 유의사항 등을 설명합니다.
 
 ## 구현 대상 VASP API 목록
 
