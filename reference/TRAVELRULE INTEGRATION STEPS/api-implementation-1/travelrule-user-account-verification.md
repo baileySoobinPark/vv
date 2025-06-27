@@ -105,7 +105,8 @@ API 요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP�
 Enclave와의 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
 
 * `VEGA_VERIFICATION_ACCOUNT_API_PATH`: 해당 API의 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 이후 발급받은 API Key
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
 
 ### 관련 링크
 
