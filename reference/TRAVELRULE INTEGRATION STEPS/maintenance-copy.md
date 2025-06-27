@@ -28,8 +28,8 @@ VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채�
 
 VerifyVASP 콘솔을 통해 서버 유지보수 일정을 회원사 VASP들과 공유할 수 있습니다.
 
-1. **VerifyVASP 콘솔 내 \[Members] 메뉴 접속**\
-   VerifyVASP 콘솔에 로그인 한 후 웹사이트 좌측 메뉴에서 \[Members] 항목을 선택합니다.
+1. **VerifyVASP 콘솔 내 \[Members] > \[My Schedule] 메뉴 접속**\
+   VerifyVASP 콘솔에 로그인 한 후 웹사이트 좌측 메뉴에서 \[Members] > \[My Schedule] 항목을 선택합니다.
 2. **\[등록] 버튼 클릭**\
    VerifyVASP Alliance에 참여 중인 모든 VASP의 유지보수 일정 목록이 표시됩니다. \[등록] 버튼을 클릭하여 일정을 등록합니다.
 3. **일정 및 사유 입력**\
