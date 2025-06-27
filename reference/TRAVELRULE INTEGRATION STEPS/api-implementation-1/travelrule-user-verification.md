@@ -5,7 +5,7 @@ api:
   operationId: travelrule-User-Verification
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 본 API는 수신 VASP 역할에 해당하는 구현 요구사항으로, 송신 VASP의 요청에 따라 Enclave가 호출합니다. 수신VASP는 이 API를 통해 수신인 정보와 규제 요건 충족 여부를 검증하여 그 결과에 따라 자산 이전을 허가할 수 있습니다.
+VASP는 TravelRule 프로토콜 상에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 본 API는 수신 VASP 역할 수행시 호출되는 API로, 송신 VASP의 요청을 받은 수신 VASP측 Enclave에 의해 호출됩니다. 수신VASP는 이 API로 수신인 정보와 규제 요건 충족 여부를 검증하고 그 결과에 따라 자산 이전을 허가할 수 있습니다.
 
 ***
 
