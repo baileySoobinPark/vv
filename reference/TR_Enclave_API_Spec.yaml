@@ -406,8 +406,7 @@ paths:
               examples:
                 Verified Example:
                   value:
-                    accountVerificationResult: DENIED
-                    reason: UNKNOWN-ADDRESS
+                    accountVerificationResult: VERIFIED
                     verifiedAt: '2022-03-03T12:45:34.085Z'
                 Unknown Symbol Example:
                   value:
@@ -910,7 +909,6 @@ paths:
                     tradeCurrency: KRW
                     tradeISODatetime: '2022-02-06T23:13:43.513Z'
                   requiredBeneficiaryInfo: ACCOUNT_NUMBER,NATURAL_PERSON_NAME
-                  originatingVaspId: '123456789098765'
                   payload:
                     version: '1.0'
                     ivms101:
@@ -956,7 +954,7 @@ paths:
                   createdAt:
                     type: string
                     description: >
-                      Timestamp of the Owner Verification creation.
+                      Timestamp of the User Verification creation.
 
                       This field must follow the UTC ISO 8601 datetime
                       representation standard.  
@@ -1412,7 +1410,7 @@ paths:
                         createdAt:
                           type: string
                           description: >
-                            Timestamp of the Owner Verification creation.
+                            Timestamp of the User Verification creation.
 
                             This field must follow the UTC ISO 8601 datetime
                             representation standard.  
@@ -1451,15 +1449,15 @@ paths:
                           0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28
                         vout: '2'
                         originatingVaspId: '123456789098765'
-                        originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
+                        originatorAccountNumber: '0x001506550d8356a215be229c15b6ef371a9a'
                         ivms101Originator: >-
                           {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                         ivms101OriginatingVasp: >-
                           {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
                           Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
                           Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
-                        beneficaryVaspId: '15952089931162060684'
-                        beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+                        beneficiaryVaspId: '15952089931162060684'
+                        beneficiaryAccountNumber: '0x001506550d8356a215be229c15b6ef371a9b'
                         ivms101Beneficiary: >-
                           {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                         ivms101BeneficiaryVasp: >-
@@ -1494,36 +1492,6 @@ paths:
                   value:
                     code: MISSING-REQUIRED-BENEFICIARY-INFO
                     message: '`requiredBeneficiaryInfo` is required.'
-        '404':
-          description: 404 Resource Not Found Error response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: string
-                    description: >
-                      404 Error message.  
-
-                      It could be returned in the following cases:   - When
-                      request with a non-existent resources is provided.
-                    example: VERIFICATION-NOT-FOUND
-                  message:
-                    type: string
-                    description: >
-                      Explanation about the error that is returned in the code
-                      field.
-                    example: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
-              examples:
-                404 Error Example:
-                  value:
-                    code: VERIFICATION-NOT-FOUND
-                    message: >-
-                      Verification(9faab87c-54a6-4145-baa9-7a3a42d7410c) is not
-                      found
         '408':
           description: 408 Request Timeout Error response
           content:
@@ -1793,7 +1761,7 @@ paths:
                   createdAt:
                     type: string
                     description: >
-                      Timestamp of the Owner Verification creation.
+                      Timestamp of the User Verification creation.
 
                       This field must follow the UTC ISO 8601 datetime
                       representation standard.  
@@ -1827,15 +1795,15 @@ paths:
                       0x9fd7bfd46e4402c7197b4d8deb0199fcf7c1f57ef70c339f403a1cb060c31c28
                     vout: '2'
                     originatingVaspId: '123456789098765'
-                    originatorAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9a
+                    originatorAccountNumber: '0x001506550d8356a215be229c15b6ef371a9a'
                     ivms101Originator: >-
                       {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'Taylor','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                     ivms101OriginatingVasp: >-
                       {'legalPerson':{'name':{'nameIdentifier':[{'legalPersonName':'A
                       Exchange','legalPersonNameIdentifierType':'LEGL'}]},'geographicAddress':[{'addressType':'GEOG','postcode':'12345','townName':'Yeoksam-dong','addressLine':['Gangnam-gu,
                       Gangbuck-do'],'country':'KR'}],'nationalIdentification':{'nationalIdentifier':'KR001','nationalIdentifierType':'RAID','registrationAuthority':'RA001'}}}
-                    beneficaryVaspId: '15952089931162060684'
-                    beneficaryAccountNumber: 0xtest001506550d8356a215be229c15b6ef371a9b
+                    beneficiaryVaspId: '15952089931162060684'
+                    beneficiaryAccountNumber: '0x001506550d8356a215be229c15b6ef371a9b'
                     ivms101Beneficiary: >-
                       {'originatorPersons':[{'naturalPerson':{'name':{'nameIdentifier':[{'primaryIdentifier':'James','nameIdentifierType':'LEGL'}]},'accountNumber':['1G3qCGKP5dQtQ7secCPTCDPU9Wfjp9x3Hb']}
                     ivms101BeneficiaryVasp: >-
@@ -1931,10 +1899,9 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: |
-                      A boolean indicating the verification result.  
-                        
-                      true represents that the result is **VERIFIED**.
+                    description: >-
+                      A boolean indicating the reporting status.  Always it is
+                      true.
                     example: true
               examples:
                 Successful Example:
@@ -2031,7 +1998,7 @@ paths:
                   result: DENIED
                   reason: UNKNOWN-ADDRESS
                   message: The address is not found
-                  verificationId: 8557f2b2-985e-431f-8d52-75c2e5a01e46
+                  verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
         '200':
           description: Successful response
@@ -2044,10 +2011,9 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: |
-                      A boolean indicating the verification result.  
-                        
-                      true represents that the result is **VERIFIED**.
+                    description: >-
+                      A boolean indicating the reporting status.  Always it is
+                      true.
                     example: true
               examples:
                 Successful Example:
@@ -2285,13 +2251,15 @@ paths:
                         example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       status:
                         type: string
-                        description: |
+                        description: |-
                           Result of risk assessment.
+                            - NOHIT : The address is not subject to sanction.
+                            - SANCTION : The address is subject to sanction.
                         example: NOHIT
                       createdAt:
                         type: string
                         description: >
-                          Timestamp of the Owner Verification creation.
+                          Timestamp of the sanction check request.
 
                           This field must follow the UTC ISO 8601 datetime
                           representation standard.  
@@ -2403,16 +2371,9 @@ paths:
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 network:
                   type: string
-                  description: >
-                    The network of the virtual asset.   The network field can be
-                    implemented conditionally. 
-                      
-                    **Conditional Use of 'network' Field:**  
-                      1. If the network field is required by the Beneficiary VASP:  
-                      If the Originating VASP does not provide a network value in the request, it could be returned as **DENIED** and **UNKNOWN-NETWORK**.  
-                        
-                      2. If the network field is optional by the Beneficiary VASP:  
-                      if the Originating VASP omits the network value, the Beneficiary VASP can infer the network based on the symbol and return the verification result.
+                  description: >-
+                    The network of the virtual asset to be transferred.   The
+                    network field can be implemented conditionally.
                   example: Ethereum
             examples:
               requestexamples:
@@ -2532,6 +2493,10 @@ paths:
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 payload:
                   type: object
+                  description: >-
+                    If your VASP obtains additional information about the
+                    originator or beneficiary, it can be entered in the IVMS101
+                    format.
                   properties:
                     version:
                       type: string
@@ -2543,9 +2508,8 @@ paths:
                       type: object
                       description: >
                         An object with IVMS101-formatted data that may include
-                        information about the Originator, Originating VASP,
-                        Beneficiary, and Beneficiary VASP for sending the
-                        request.
+                        information about the Originator or Beneficiary for
+                        sending the request.
                       required:
                         - originator
                         - beneficiary
@@ -2762,16 +2726,6 @@ paths:
                   payload:
                     version: '1.0'
                     ivms101:
-                      originator:
-                        originatorPersons:
-                          - naturalPerson:
-                              name:
-                                nameIdentifier:
-                                  - primaryIdentifier: James
-                                    secondaryIdentifier: Din
-                                    nameIdentifierType: LEGL
-                        accountNumber:
-                          - '0x5811001506550d8356a215be229c15b6ef371a9a'
                       beneficiary:
                         beneficiaryPersons:
                           - naturalPerson:
@@ -2779,6 +2733,9 @@ paths:
                                 nameIdentifier:
                                   - primaryIdentifier: James
                                     nameIdentifierType: LEGL
+                              dateAndPlaceOfBirth:
+                                dateOfBirth: '1981-04-23'
+                                placeOfBirth: Tokyo
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
