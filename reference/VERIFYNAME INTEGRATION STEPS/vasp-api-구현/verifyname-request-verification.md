@@ -162,10 +162,10 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   {
     "verification_results": {
       "ticker": "MATCHED",
-      "network": "MISMATCHED",
-      "address": "SKIPPED",
+      "network": "SKIPPED",
+      "address": "MATCHED",
       "tag": "SKIPPED",
-      "tx_hash": "SKIPPED",
+      "tx_hash": "MATCHED",
       "dti": "SKIPPED"
     },
     "debtor": {
@@ -196,22 +196,14 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   {
     "verification_results": {
       "ticker": "MATCHED",
-      "network": "MISMATCHED",
-      "address": "SKIPPED",
+      "network": "SKIPPED",
+      "address": "MATCHED",
       "tag": "SKIPPED",
-      "tx_hash": "SKIPPED",
+      "tx_hash": "MATCHED",
       "dti": "SKIPPED"
     },
     "debtor": {
-      "name": "HONG KIL DONG",
-      "supplementary_data": {
-        "envelope": {
-          "name": {
-            "first_name": "GIL DONG",
-            "last_name": "HONG"
-          }
-        }
-      },
+      "name": "Apple",
       "identification": {
         "organisation_identification": {
           "supplementary_data": {
@@ -240,8 +232,8 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   {
     "verification_results": {
       "ticker": "MATCHED",
-      "network": "MISMATCHED",
-      "address": "SKIPPED",
+      "network": "SKIPPED",
+      "address": "MATCHED",
       "tag": "SKIPPED",
       "tx_hash": "SKIPPED",
       "dti": "SKIPPED"
@@ -273,22 +265,14 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   {
     "verification_results": {
       "ticker": "MATCHED",
-      "network": "MISMATCHED",
-      "address": "SKIPPED",
-      "tag": "SKIPPED",
+      "network": "SKIPPED",
+      "address": "MATCHED",
+      "tag": "MATCHED",
       "tx_hash": "SKIPPED",
       "dti": "SKIPPED"
     },
     "creditor": {
-      "name": "HONG KIL DONG",
-      "supplementary_data": {
-        "envelope": {
-          "name": {
-            "first_name": "GIL DONG",
-            "last_name": "HONG"
-          }
-        }
-      },
+      "name": "Apple",
       "identification": {
         "organisation_identification": {
           "supplementary_data": {
