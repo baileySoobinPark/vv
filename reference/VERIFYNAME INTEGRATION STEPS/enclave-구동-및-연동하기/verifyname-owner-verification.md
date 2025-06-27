@@ -5,7 +5,7 @@ api:
   operationId: verifyname-owner-verification
 hidden: false
 ---
-이 API를 호출하여 요청한 지갑 주소의 소유자 정보와 귀사 VASP가 확보한 사용자 정보를 비교 검증하여 송신자와 수신자의 동일인 여부를 확인할 수 있습니다.
+이 API를 호출하여 요청한 지갑 주소의 소유자 정보와 귀사 VASP가 확보한 사용자 정보를 비교 검증함으로써 송신자와 수신자의 동일인 여부를 확인할 수 있습니다.
 
 ***
 
