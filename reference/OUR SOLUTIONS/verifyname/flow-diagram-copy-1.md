@@ -11,7 +11,7 @@ metadata:
 ---
 ## Post-Verification - From Non-Obliged VASP to Travel Rule Obliged VASP
 
-VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자산 이전을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 경우입니다. 즉 Travel Rule 규제 의무가 없는 VASP가 사전 검증 없이 자산을 이전하는 경우에 해당합니다. 수신 VASP는 Travel Rule 규제 준수를 위해 미확인 입금건에 대하여 송신인과 수신인의 계정이 일치하는지 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
+VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자산 이전을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 시나리오입니다. 이는 주로 Travel Rule 규제 의무가 없는 VASP가 사전 검증 없이 자산을 이전하는 경우에 해당합니다. 수신 VASP는 Travel Rule 규제 준수를 위해 미확인 입금건의 송신인과 수신인 계정의 일치 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
 
 <br />
 
