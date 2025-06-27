@@ -97,55 +97,55 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   ```json
   {
    "callbackType":"VERIFICATION_RESULT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-      "verificationResult":"VERIFIED",
-      "reason":"OK",
-      "message":"",
-      "ivms101":{
-         "beneficiary":{
-            "beneficiaryPersons":[
+   "data": {
+      "verificationUuid": "64ab871b-14a3-47df-9b80-368e29fe8180",
+      "verificationResult": "VERIFIED",
+      "reason": "OK",
+      "message": "",
+      "ivms101": {
+         "beneficiary": {
+            "beneficiaryPersons": [
                {
-                  "naturalPerson":{
-                     "name":{
-                        "nameIdentifier":[
+                  "naturalPerson": {
+                     "name": {
+                        "nameIdentifier": [
                            {
-                              "primaryIdentifier":"James",
-                              "nameIdentifierType":"LEGL"
+                              "primaryIdentifier": "James",
+                              "nameIdentifierType": "LEGL"
                            }
                         ],
-                        "localNameIdentifier":[
+                        "localNameIdentifier": [
                            {
-                              "primaryIdentifier":"김재원",
-                              "nameIdentifierType":"LEGL"
+                              "primaryIdentifier": "김재원",
+                              "nameIdentifierType": "LEGL"
                            }
                         ]
                      },
-                     "geographicAddress":[
+                     "geographicAddress": [
                         {
-                           "addressType":"GEOG",
-                           "townName":"Yeoksam-dong",
-                           "addressLine":[
+                           "addressType": "GEOG",
+                           "townName": "Yeoksam-dong",
+                           "addressLine": [
                               "14 Teheran-ro 4-gil, Gangnam-gu",
                               "4th floor"
                            ],
-                           "country":"KR"
+                           "country": "KR"
                         }
                      ],
-                     "nationalIdentification":{
-                        "nationalIdentifier":"12345-67890",
-                        "nationalIdentifierType":"IDCD"
+                     "nationalIdentification": {
+                        "nationalIdentifier": "12345-67890",
+                        "nationalIdentifierType": "IDCD"
                      },
-                     "customerIdentification":"1234569999",
-                     "dateAndPlaceOfBirth":{
-                        "dateOfBirth":"1985-03-14",
-                        "placeOfBirth":"Nonsan"
+                     "customerIdentification": "1234569999",
+                     "dateAndPlaceOfBirth": {
+                        "dateOfBirth": "1985-03-14",
+                        "placeOfBirth": "Nonsan"
                      },
-                     "countryOfResidence":"KR"
+                     "countryOfResidence": "KR"
                   }
                }
             ],
-            "accountNumber":[
+            "accountNumber": [
                "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
             ]
          }
@@ -158,107 +158,107 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 <Accordion title="Example of Callback Request Body: DENIED" icon="fa-info-circle">
   ```json
   {
-   "callbackType":"VERIFICATION_RESULT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8180",
-      "verificationResult":"DENIED",
-      "reason":"UNKNOWN-ADDRESS",
-      "ivms101":{
-         "originator":{
-            "originatorPersons":[
+   "callbackType": "VERIFICATION_RESULT",
+   "data": {
+      "verificationUuid": "64ab871b-14a3-47df-9b80-368e29fe8180",
+      "verificationResult": "DENIED",
+      "reason": "UNKNOWN-ADDRESS",
+      "ivms101": {
+         "originator": {
+            "originatorPersons": [
                {
-                  "naturalPerson":{
-                     "name":{
-                        "nameIdentifier":[
+                  "naturalPerson": {
+                     "name": {
+                        "nameIdentifier": [
                            {
-                              "primaryIdentifier":"James",
-                              "secondaryIdentifier":"Din",
-                              "nameIdentifierType":"LEGL"
+                              "primaryIdentifier": "James",
+                              "secondaryIdentifier": "Din",
+                              "nameIdentifierType": "LEGL"
                            }
                         ]
                      }
                   }
                }
             ],
-            "accountNumber":[
+            "accountNumber": [
                "0x5811001506550d8356a215be229c15b6ef371a9a"
             ]
          },
-         "beneficiary":{
-            "beneficiaryPersons":[
+         "beneficiary": {
+            "beneficiaryPersons": [
                {
-                  "naturalPerson":{
-                     "name":{
-                        "nameIdentifier":[
+                  "naturalPerson": {
+                     "name": {
+                        "nameIdentifier": [
                            {
-                              "primaryIdentifier":"Taylor",
-                              "secondaryIdentifier":"Robbins",
-                              "nameIdentifierType":"LEGL"
+                              "primaryIdentifier": "Taylor",
+                              "secondaryIdentifier": "Robbins",
+                              "nameIdentifierType": "LEGL"
                            }
                         ]
                      }
                   }
                }
             ],
-            "accountNumber":[
+            "accountNumber": [
                "0xb0bFf9721871e22653358956cf59a5FdBF3D752F"
             ]
          },
-         "originatingVASP":{
-            "legalPerson":{
-               "name":{
-                  "nameIdentifier":[
+         "originatingVASP": {
+            "legalPerson": {
+               "name": {
+                  "nameIdentifier": [
                      {
-                        "legalPersonName":"Lambda256",
-                        "legalPersonNameIdentifierType":"LEGL"
+                        "legalPersonName": "Lambda256",
+                        "legalPersonNameIdentifierType": "LEGL"
                      }
                   ]
                },
-               "geographicAddress":[
+               "geographicAddress": [
                   {
-                     "addressType":"GEOG",
-                     "postcode":"123123c",
-                     "townName":"Yeoksam-dong",
-                     "addressLine":[
+                     "addressType": "GEOG",
+                     "postcode": "123123c",
+                     "townName": "Yeoksam-dong",
+                     "addressLine": [
                         "sechogu street",
                         "100-100"
                      ],
-                     "country":"KR"
+                     "country": "KR"
                   }
                ],
-               "nationalIdentification":{
-                  "nationalIdentifier":"KR0001",
-                  "nationalIdentifierType":"RAID",
-                  "registrationAuthority":"RA000151"
+               "nationalIdentification": {
+                  "nationalIdentifier": "KR0001",
+                  "nationalIdentifierType": "RAID",
+                  "registrationAuthority": "RA000151"
                }
             }
          },
-         "beneficiaryVASP":{
-            "legalPerson":{
-               "name":{
-                  "nameIdentifier":[
+         "beneficiaryVASP": {
+            "legalPerson": {
+               "name": {
+                  "nameIdentifier": [
                      {
-                        "legalPersonName":"Lambda256 Exchange",
-                        "legalPersonNameIdentifierType":"LEGL"
+                        "legalPersonName": "Lambda256 Exchange",
+                        "legalPersonNameIdentifierType": "LEGL"
                      }
                   ]
                },
-               "geographicAddress":[
+               "geographicAddress": [
                   {
-                     "addressType":"GEOG",
-                     "postcode":"234234",
-                     "townName":"Yeoksam-dong",
-                     "addressLine":[
+                     "addressType": "GEOG",
+                     "postcode": "234234",
+                     "townName": "Yeoksam-dong",
+                     "addressLine": [
                         "sechogu street",
                         "100-100"
                      ],
-                     "country":"KR"
+                     "country": "KR"
                   }
                ],
-               "nationalIdentification":{
-                  "nationalIdentifier":"123456",
-                  "nationalIdentifierType":"RAID",
-                  "registrationAuthority":"RA000677"
+               "nationalIdentification": {
+                  "nationalIdentifier": "123456",
+                  "nationalIdentifierType": "RAID",
+                  "registrationAuthority": "RA000677"
                }
             }
          }
@@ -382,13 +382,13 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
-    {
-     "callbackType":"TX_REPORT",
-     "data":{
-        "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8181",
-        "txHash":"8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
-        "vout":"2"
-     }
+  {
+  "callbackType": "TX_REPORT",
+  "data": {
+    "verificationUuid": "64ab871b-14a3-47df-9b80-368e29fe8181",
+    "txHash": "8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042",
+    "vout": "2"
+  }
   }
   ```
 </Accordion>
@@ -402,12 +402,12 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
   {
-   "callbackType":"ERROR_REPORT",
-   "data":{
-      "verificationUuid":"64ab871b-14a3-47df-9b80-368e29fe8182",
-      "result":"ERROR",
-      "reason":"BLACKLISTED",
-      "message":"Originator is included in the blacklist."
+   "callbackType": "ERROR_REPORT",
+   "data": {
+      "verificationUuid": "64ab871b-14a3-47df-9b80-368e29fe8182",
+      "result": "ERROR",
+      "reason": "BLACKLISTED",
+      "message": "Originator is included in the blacklist."
    }
   }
   ```
@@ -425,40 +425,40 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
   {
-   "callbackType":"CHAINALYSIS_KYT_RESULT",
-   "data":{
-      "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-      "riskAssessment":{
-         "chainalysisKYT":{
-            "requestId":"f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
-            "counterpartyVaspId":"15952089931162059995",
-            "apiType":"ATTEMPT",
-            "userId":"15952089931162059995",
-            "direction":"OUTGOING",
-            "network":"ETHEREUM",
-            "asset":"ETH",
-            "amount":"1",
-            "usdPrice":"1820.17",
-            "outputAddress":"bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-            "timestamp":"2023-05-18T12:39:44.000Z",
-            "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-            "status":"PROCESSED",
-            "alertCount":1,
-            "createdAt":"2023-05-18T12:39:46.000Z",
-            "assessedAt":"2023-05-18T12:39:45.263Z"
+   "callbackType": "CHAINALYSIS_KYT_RESULT",
+   "data": {
+      "verificationUuid": "69a310e6-810f-4a31-83d1-bcdafccf5304",
+      "riskAssessment": {
+         "chainalysisKYT": {
+            "requestId": "f7231c6f-f1e7-4ae7-b143-2c87cd38abe9",
+            "counterpartyVaspId": "15952089931162059995",
+            "apiType": "ATTEMPT",
+            "userId": "15952089931162059995",
+            "direction": "OUTGOING",
+            "network": "ETHEREUM",
+            "asset": "ETH",
+            "amount": "1",
+            "usdPrice": "1820.17",
+            "outputAddress": "bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+            "timestamp": "2023-05-18T12:39:44.000Z",
+            "externalId": "79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+            "status": "PROCESSED",
+            "alertCount": 1,
+            "createdAt": "2023-05-18T12:39:46.000Z",
+            "assessedAt": "2023-05-18T12:39:45.263Z"
          },
-         "chainalysisKYTAlerts":[
+         "chainalysisKYTAlerts": [
             {
-               "counterpartyVaspId":"15952089931162059995",
-               "externalId":"79382ac9-c7be-3fab-ad56-8c61c654e2fc",
-               "direction":"OUTGOING",
-               "alertId":"118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
-               "alertLevel":"MEDIUM",
-               "entityCategory":"high risk exchange",
-               "serviceName":"HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
-               "exposureType":"DIRECT",
-               "alertAmount":"1820.17",
-               "createdAt":"2023-05-18T12:39:52.461Z"
+               "counterpartyVaspId": "15952089931162059995",
+               "externalId": "79382ac9-c7be-3fab-ad56-8c61c654e2fc",
+               "direction": "OUTGOING",
+               "alertId": "118b8cc8-f579-11ed-b86d-a3210c6ca9b8",
+               "alertLevel": "MEDIUM",
+               "entityCategory": "high risk exchange",
+               "serviceName": "HIGH RISK EXCHANGE: SimpleSwap.io bb3fd383d1c5540e52ef0a7bcb9433375793aeaf",
+               "exposureType": "DIRECT",
+               "alertAmount": "1820.17",
+               "createdAt": "2023-05-18T12:39:52.461Z"
             }
          ]
       }
@@ -479,20 +479,20 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
   {
-  "callbackType":"REFINITIV_WCO_RESULT",
-  "data":{
-    "verificationUuid":"69a310e6-810f-4a31-83d1-bcdafccf5304",
-    "riskAssessment":{
-       "refinitivWorldCheckOne":{
-          "counterpartyVaspId":"15952089931162058999",
-          "direction":"INCOMING",
-          "caseSystemId":"5jb7r2c9xjfk1hoc95gfayv6m",
-          "status":"PROCESSED",
-          "matchStrength":"EXACT",
-          "aggregatedSummaryResult":"{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
-          "createdAt":"2023-05-18T12:39:48.000Z",
-          "assessedAt":"2023-05-18T12:39:57.834Z"
-       }
+  "callbackType": "REFINITIV_WCO_RESULT",
+  "data": {
+    "verificationUuid": "69a310e6-810f-4a31-83d1-bcdafccf5304",
+    "riskAssessment": {
+      "refinitivWorldCheckOne": {
+        "counterpartyVaspId": "15952089931162058999",
+        "direction": "INCOMING",
+        "caseSystemId": "5jb7r2c9xjfk1hoc95gfayv6m",
+        "status": "PROCESSED",
+        "matchStrength": "EXACT",
+        "aggregatedSummaryResult": "{\"caseId\":\"69a310e6-810f-4a31-83d1-bcdafccf5304-INCOMING-1684413585757\", ... }}}",
+        "createdAt": "2023-05-18T12:39:48.000Z",
+        "assessedAt": "2023-05-18T12:39:57.834Z"
+      }
     }
   }
   }
