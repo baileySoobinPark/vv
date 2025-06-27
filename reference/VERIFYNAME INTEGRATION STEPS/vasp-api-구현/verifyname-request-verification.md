@@ -41,7 +41,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   <thead>
     <tr>
       <th>필드 명</th>
-      <th>검증 필수여부</th>
+      <th width=100px>검증 필수여부</th>
       <th>결과 반환 정책</th>
     </tr>
   </thead>
