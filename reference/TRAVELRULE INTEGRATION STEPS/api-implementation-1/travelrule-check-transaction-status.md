@@ -5,7 +5,7 @@ api:
   operationId: travelrule-check-Transaction-Status
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 송신 VASP 역할에 해당하는 구현 요구사항입니다. 수신 VASP가 사전에 확인되지 않은 입금을 인지했을 때(Transaction Report 누락 등으로 인해 사전에 입금 고지가 이루어지지 않은 경우), 해당 트랜잭션의 상태를 조회하고자 송신 VASP에 조회를 요청합니다.
+VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 송신 VASP 역할에 해당하는 구현 요구사항입니다. 수신 VASP가 사전에 확인되지 않은 입금을 인지했을 때(Transaction Report 누락 등으로 인해 사전에 입금 고지가 이루어지지 않은 경우), 해당 트랜잭션의 상태를 조회하고자 송신 VASP측에 구현된 본 API를 호출할 수 있습니다.
 
 ***
 
