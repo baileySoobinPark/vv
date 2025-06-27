@@ -10,6 +10,8 @@ metadata:
 ---
 VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 API를 비롯한 필수 VASP API들을 구현하고, Enclave가 호출 할 수 있도 제공해야 합니다. 본 섹션에서는 구현 대상 API 목록과 각 API의 명세, 호출 흐름, 구현 시 유의사항 등을 설명합니다.
 
+<br />
+
 ## 구현 대상 VASP API 목록
 
 각 VASP는 자산 이전 과정에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위한 필수 구현 API 목록과, 각 API Endpoint를 제공하는 VASP의 역할(송신 또는 수신), 그리고 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 구체적인 구현 요구사항 및 명세는 각 API Specficiation 문서를 참고하시기 바랍니다.
