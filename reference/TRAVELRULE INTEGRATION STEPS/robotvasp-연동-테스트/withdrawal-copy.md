@@ -171,7 +171,7 @@ metadata:
 ### 2. User Account Verification Test
 
 * **조건**
-  * Enclave API 중 [User Account Verification API](ref:travelrule-encalve-request-user-account-verification-1)를 호출하여 진행합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
+  * Enclave API 중 [User Account Verification API](ref:travelrule-enclave-user-account-verification)를 호출하여 진행합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
   * 테스트 데이터 3건에 대한 검증 테스트를 각각 수행합니다.
 * **Expected Result**
   * 테스트 데이터를 기준으로 정상 검증(`VERIFIED`) 시나리오를 포함하여 발생 가능한 아래 모든 `DENIED` 케이스에 대해 기대한 사유 코드가 반환되는지 확인합니다. 예를 들어, 테스트 데이터 외의 임의의 데이터로 검증을 요청하여 `UNKNOWN-ADDRESS`가 발생하는지 확인할 수 있습니다.
