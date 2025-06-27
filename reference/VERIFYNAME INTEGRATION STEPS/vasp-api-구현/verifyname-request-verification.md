@@ -159,33 +159,33 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 <Accordion title="Example of Response Body: VerifyOriginator 타입, 개인 계정인 경우" icon="fa-info-circle">
   ```json
-    {
-  	"verification_results": {
-  	  "ticker": "MATCHED",        
-  	  "network": "MISMATCHED",    
-  	  "address": "SKIPPED",       
-  	  "tag": "SKIPPED",
-  	  "tx_hash": "SKIPPED",      
-  	  "dti": "SKIPPED",         
-  	},
-  	"debtor": {
-  		"name": "HONG KIL DONG",
-  		"supplementary_data": {
-  			"envelope": {
-  				"name": {                  
-  					"first_name": "GIL DONG",
-  					"last_name": "HONG",
-  				},
-  			}
-  		},
-  		"identification": {
-  			"private_identification": {
-  				"date_and_place_of_birth": {
-  					"birth_date": "2025-01-01",
-  				}
-  			}
-  		}
-  	}
+  {
+    "verification_results": {
+      "ticker": "MATCHED",
+      "network": "MISMATCHED",
+      "address": "SKIPPED",
+      "tag": "SKIPPED",
+      "tx_hash": "SKIPPED",
+      "dti": "SKIPPED"
+    },
+    "debtor": {
+      "name": "HONG KIL DONG",
+      "supplementary_data": {
+        "envelope": {
+          "name": {
+            "first_name": "GIL DONG",
+            "last_name": "HONG"
+          }
+        }
+      },
+      "identification": {
+        "private_identification": {
+          "date_and_place_of_birth": {
+            "birth_date": "2025-01-01"
+          }
+        }
+      }
+    }
   }
     
   ```
@@ -193,42 +193,43 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 <Accordion title="Example of Response Body: VerifyOriginator 타입, 법인 계정인 경우" icon="fa-info-circle">
   ```json
-    {
-  	"verification_results": {
-  	  "ticker": "MATCHED",        
-  	  "network": "MISMATCHED",    
-  	  "address": "SKIPPED",       
-  	  "tag": "SKIPPED",
-  	  "tx_hash": "SKIPPED",      
-  	  "dti": "SKIPPED",         
-  	},
-  	"debtor": {
-  		"name": "HONG KIL DONG",
-  		"supplementary_data": {
-  			"envelope": {
-  				"name": {                  
-  					"first_name": "GIL DONG",
-  					"last_name": "HONG",
-  				},
-  			}
-  		},
-  		"identification": {
-  			"organisation_identification": {
-  				"supplementary_data": {
-  					"envelope": {
-  						"date_of_incorporation": "2020-01-01",
-  					}
-  				},
-  			},
-  			"lei": "506700GE1G29325QX363",
-  			"bic": "KRKRKR"
-  			"other": {
-  				"identification": "5493001KJTIIGC8Y1R12",
-  				"issuer": "ISO17442",
-  			},
-  		}
-  	}
+  {
+    "verification_results": {
+      "ticker": "MATCHED",
+      "network": "MISMATCHED",
+      "address": "SKIPPED",
+      "tag": "SKIPPED",
+      "tx_hash": "SKIPPED",
+      "dti": "SKIPPED"
+    },
+    "debtor": {
+      "name": "HONG KIL DONG",
+      "supplementary_data": {
+        "envelope": {
+          "name": {
+            "first_name": "GIL DONG",
+            "last_name": "HONG"
+          }
+        }
+      },
+      "identification": {
+        "organisation_identification": {
+          "supplementary_data": {
+            "envelope": {
+              "date_of_incorporation": "2020-01-01"
+            }
+          }
+        },
+        "lei": "506700GE1G29325QX363",
+        "bic": "KRKRKR",
+        "other": {
+          "identification": "5493001KJTIIGC8Y1R12",
+          "issuer": "ISO17442"
+        }
+      }
+    }
   }
+
   ```
 </Accordion>
 
@@ -236,74 +237,74 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 <Accordion title="Example of Response Body: VerifyBeneficiary 타입, 개인 계정인 경우" icon="fa-info-circle">
   ```json
-    {
-  	"verification_results": {
-  	  "ticker": "MATCHED",        
-  	  "network": "MISMATCHED",    
-  	  "address": "SKIPPED",       
-  	  "tag": "SKIPPED",
-  	  "tx_hash": "SKIPPED",      
-  	  "dti": "SKIPPED",         
-  	},
-  	"creditor": {
-  		"name": "HONG KIL DONG",
-  		"supplementary_data": {
-  			"envelope": {
-  				"name": {                  
-  					"first_name": "GIL DONG",
-  					"last_name": "HONG",
-  				},
-  			}
-  		},
-  		"identification": {
-  			"private_identification": {
-  				"date_and_place_of_birth": {
-  					"birth_date": "2025-01-01",
-  				}
-  			}
-  		}
-  	}
+  {
+    "verification_results": {
+      "ticker": "MATCHED",
+      "network": "MISMATCHED",
+      "address": "SKIPPED",
+      "tag": "SKIPPED",
+      "tx_hash": "SKIPPED",
+      "dti": "SKIPPED"
+    },
+    "creditor": {
+      "name": "HONG KIL DONG",
+      "supplementary_data": {
+        "envelope": {
+          "name": {
+            "first_name": "GIL DONG",
+            "last_name": "HONG"
+          }
+        }
+      },
+      "identification": {
+        "private_identification": {
+          "date_and_place_of_birth": {
+            "birth_date": "2025-01-01"
+          }
+        }
+      }
+    }
   }
   ```
 </Accordion>
 
 <Accordion title="Example of Response Body: VerifyBeneficiary 타입, 법인 계정인 경우" icon="fa-info-circle">
   ```json
-    {
-  	"verification_results": {
-  	  "ticker": "MATCHED",        
-  	  "network": "MISMATCHED",    
-  	  "address": "SKIPPED",       
-  	  "tag": "SKIPPED",
-  	  "tx_hash": "SKIPPED",      
-  	  "dti": "SKIPPED",         
-  	},
-  	"creditor": {
-  		"name": "HONG KIL DONG",
-  		"supplementary_data": {
-  			"envelope": {
-  				"name": {                  
-  					"first_name": "GIL DONG",
-  					"last_name": "HONG",
-  				},
-  			}
-  		},
-  		"identification": {
-  			"organisation_identification": {
-  				"supplementary_data": {
-  					"envelope": {
-  						"date_of_incorporation": "2020-01-01",
-  					}
-  				},
-  			},
-  			"lei": "506700GE1G29325QX363",
-  			"bic": "KRKRKR"
-  			"other": {
-  				"identification": "5493001KJTIIGC8Y1R12",
-  				"issuer": "ISO17442",
-  			},
-  		}
-  	}
+  {
+    "verification_results": {
+      "ticker": "MATCHED",
+      "network": "MISMATCHED",
+      "address": "SKIPPED",
+      "tag": "SKIPPED",
+      "tx_hash": "SKIPPED",
+      "dti": "SKIPPED"
+    },
+    "creditor": {
+      "name": "HONG KIL DONG",
+      "supplementary_data": {
+        "envelope": {
+          "name": {
+            "first_name": "GIL DONG",
+            "last_name": "HONG"
+          }
+        }
+      },
+      "identification": {
+        "organisation_identification": {
+          "supplementary_data": {
+            "envelope": {
+              "date_of_incorporation": "2020-01-01"
+            }
+          }
+        },
+        "lei": "506700GE1G29325QX363",
+        "bic": "KRKRKR",
+        "other": {
+          "identification": "5493001KJTIIGC8Y1R12",
+          "issuer": "ISO17442"
+        }
+      }
+    }
   }
   ```
 </Accordion>
