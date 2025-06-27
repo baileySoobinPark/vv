@@ -178,32 +178,32 @@ metadata:
 
     ```
     {
-    "keyType": "PerVasp",
-    "beneficiaryVaspId": "16384656509591635927", // your VASP ID
-    "symbol": "ETH",
-    "payload": {
-      "version": "1.0",
-      "ivms101": {
-        "beneficiary": {
-          "beneficiaryPersons": [
-            {
-              "naturalPerson": {
-                "name": {
-                  "nameIdentifier": [
-                    {
-                      "primaryIdentifier": "last name",
-                      "secondaryIdentifier": "first name",
-                      "nameIdentifierType": "LEGL"
-                    }
-                  ]
+      "keyType": "PerVasp",
+      "beneficiaryVaspId": "16384656509591635927", // your VASP ID
+      "symbol": "ETH",
+      "payload": {
+        "version": "1.0",
+        "ivms101": {
+          "beneficiary": {
+            "beneficiaryPersons": [
+              {
+                "naturalPerson": {
+                  "name": {
+                    "nameIdentifier": [
+                      {
+                        "primaryIdentifier": "last name",
+                        "secondaryIdentifier": "first name",
+                        "nameIdentifierType": "LEGL"
+                      }
+                    ]
+                  }
                 }
               }
-            }
-          ],
-          "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+            ],
+            "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+          }
         }
       }
-    }
     }
     ```
   </Accordion>
@@ -239,62 +239,62 @@ metadata:
     // copy and paste it in request body params
 
     {
-    "keyType": "PerVasp",
-    "beneficiaryVaspId": "16384656509591635927", // your VASP ID
-    "assetInfo": {
-      "symbol": "ETH",
-      "amount": "231.0",
-      "isExceedingThreshold": true,
-      "tradeCurrency": "KRW",
-      "tradePrice": "87681287",
-      "tradeISODatetime": "2022-02-08T13:02:57.824Z"
-    },
-    "requiredBeneficiaryInfo": "NATURAL_PERSON_NAME,ACCOUNT_NUMBER",
-    "payload": {
-      "version": "1.0",
-      "ivms101": {
-        "originator": {
-          "originatorPersons": [
-            {
-              "naturalPerson": {
-                "name": {
-                  "nameIdentifier": [
-                    {
-                      "primaryIdentifier": "Robbins",
-                      "secondaryIdentifier": "Taylor",
-                      "nameIdentifierType": "LEGL"
-                    }
-                  ]
-                },
-                "dateAndPlaceOfBirth": {
-                  "dateOfBirth": "1991-05-03",
-                  "placeOfBirth": "Seoul"
+      "keyType": "PerVasp",
+      "beneficiaryVaspId": "16384656509591635927", // your VASP ID
+      "assetInfo": {
+        "symbol": "ETH",
+        "amount": "231.0",
+        "isExceedingThreshold": true,
+        "tradeCurrency": "KRW",
+        "tradePrice": "87681287",
+        "tradeISODatetime": "2022-02-08T13:02:57.824Z"
+      },
+      "requiredBeneficiaryInfo": "NATURAL_PERSON_NAME,ACCOUNT_NUMBER",
+      "payload": {
+        "version": "1.0",
+        "ivms101": {
+          "originator": {
+            "originatorPersons": [
+              {
+                "naturalPerson": {
+                  "name": {
+                    "nameIdentifier": [
+                      {
+                        "primaryIdentifier": "Robbins",
+                        "secondaryIdentifier": "Taylor",
+                        "nameIdentifierType": "LEGL"
+                      }
+                    ]
+                  },
+                  "dateAndPlaceOfBirth": {
+                    "dateOfBirth": "1991-05-03",
+                    "placeOfBirth": "Seoul"
+                  }
                 }
               }
-            }
-          ],
-          "accountNumber": ["0x5811001506550d8356a215be229c15b6ef371a9a"]
-        },
-        "beneficiary": {
-          "beneficiaryPersons": [
-            {
-              "naturalPerson": {
-                "name": {
-                  "nameIdentifier": [
-                    {
-                      "primaryIdentifier": "last name",
-                      "secondaryIdentifier": "first name",
-                      "nameIdentifierType": "LEGL"
-                    }
-                  ]
+            ],
+            "accountNumber": ["0x5811001506550d8356a215be229c15b6ef371a9a"]
+          },
+          "beneficiary": {
+            "beneficiaryPersons": [
+              {
+                "naturalPerson": {
+                  "name": {
+                    "nameIdentifier": [
+                      {
+                        "primaryIdentifier": "last name",
+                        "secondaryIdentifier": "first name",
+                        "nameIdentifierType": "LEGL"
+                      }
+                    ]
+                  }
                 }
               }
-            }
-          ],
-          "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+            ],
+            "accountNumber": ["0xb0bFf9721871e22653358956cf59a5FdBF3D752F"]
+          }
         }
       }
-    }
     }
     ```
   </Accordion>
@@ -336,8 +336,8 @@ metadata:
 
     ```
     {
-    "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b", 
-    "omitTxReport": false 
+      "verificationUuid": "ecb457e3-2307-4e72-8a42-16a3774e154b", 
+      "omitTxReport": false 
     }
     ```
   </Accordion>
@@ -379,8 +379,8 @@ metadata:
 
     ```
     {
-    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2",
-    "txhash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
+      "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2",
+      "txhash": "0xaaa042c0632f4d44c7cea978f22cd02e751a410e"
     }
     ```
   </Accordion>
@@ -416,10 +416,10 @@ metadata:
 
     ```
     {
-    "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2", // previous successful verification
-    "result": "DENIED",
-    "reason": "USER-CANCELED",
-    "message": "User canceled this transaction"
+      "verificationUuid": "f02081b4-1837-41c0-a96c-221399db46d2", // previous successful verification
+      "result": "DENIED",
+      "reason": "USER-CANCELED",
+      "message": "User canceled this transaction"
     }
     ```
   </Accordion>
