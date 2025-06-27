@@ -165,7 +165,7 @@ metadata:
 
 * **조건**
 
-  * Robot VASP가 귀사의 VASP가 구현한 VASP API 중 User Account Verification API을 호출해야 합니다. User Account Verification Simulation API를 호출해 User Account Verification API를 호출하도록 명령할 수 있습니다.
+  * Robot VASP가 귀사의 VASP에게 User Account Verification을 요청하도록 해야 합니다. User Account Verification Simulation API를 호출해 User Account Verification을 요청하도록 명령할 수 있습니다.
 
   <br />
 
@@ -213,9 +213,7 @@ metadata:
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
     * `UNVERIFIED-KYC`
-    * `UNAVAILABLE-INFORMATION`
-    * `LACK-OF-INFORMATION`
-    * `BLACKLISTED`
+    * `MISMATCHED-NAME`
 
 <br />
 
@@ -223,8 +221,10 @@ metadata:
 
 * **조건**
 
-  * Robot VASP가 귀사의 VASP가 구현한 VASP API 중 User Verification API을 호출해야 합니다. User Verification Simulation API를 호출해 User Verification API를 호출하도록 명령할 수 있습니다.
-  * Robot VASP는 User Verification Simulation API를 실행하기 전 User Account Verification Simulation API를 호출해야 하며 응답으로 `VERIFIED`를 받은 후 User Verification API를 실행해야 합니다.
+  * Robot VASP가 귀사의 VASP에게 User Verification을 요청하도록 해야 합니다. User Verification Simulation API를 호출해 User Verification을 요청하도록 명령할 수 있습니다.
+  * Robot VASP에서 가상 자산을 전송할 송신인 주소(Originator's Account Number)는 출금 시나리오 테스트에서 가상 자산을 받은 Robot VASP의 수신인 주소와 일치해야 합니다.
+  * 입금 시나리오 테스트에서 전송할 가상 자산의 총량은 출금 시나리오 테스트에서 Robot VASP에게 전송한 가상 자산의 총량을 초과할 수 없습니다.
+  * User Verification Simulation API를 실행하기 전 User Account Verification Simulation API를 호출해야 하며 응답으로 `VERIFIED`를 받은 후 User Verification을 요청하도록 해야 합니다.
 
   <br />
 
@@ -316,8 +316,6 @@ metadata:
 * **조건**
 
   * Robot VASP가 실행한 User Verification의 결과가 `VERIFIED`여야 진행할 수 있습니다.
-  * Robot VASP에게 가상 자산을 전송받을 수신인 주소는 출금 시나리오 테스트에서 가상 자산을 Robot VASP에게 전송한 송신인 주소와 일치해야 합니다.
-  * 입금 시나리오 테스트에서 전송할 가상 자산의 총량은 출금 시나리오 테스트에서 Robot VASP에게 전송한 가상 자산의 총량을 초과할 수 없습니다.
   * Robot VASP Withdrawal Request API를 호출해 Robot VASP가 가상 자산 전송 트랜잭션을 실행하도록 명령해야 합니다.
 
   <br />
@@ -346,22 +344,22 @@ metadata:
 * **기대 결과**
   * 귀사의 VASP가 입금을 확인할 수 있습니다.
 
-**Case 1. 트랜잭션 실행 후 트랜잭션 결과 전송**
+**Case 1. 트랜잭션 실행 후 트랜잭션 결과 전송 (omitTxReport = false)**
 
 * **조건**
-  * Robot VASP가 가상 자산 전송 트랜잭션을 실행한 후 귀사의 VASP가 구현한 VASP API 중 Callback API 실행해 트랜잭션 결과를 전송합니다.
+  * Robot VASP가 가상 자산 전송 트랜잭션을 실행한 후 귀사의 VASP에게 Transaction Result Report 를 전송합니다.
 * **기대 결과**
   * 귀사의 VASP가 Callback API를 통해 트랜잭션 결과를 확인할 수 있습니다.
 
 <br />
 
-**Case 2. 트랜잭션 실행 후 트랜잭션 결과 미전송**
+**Case 2. 트랜잭션 실행 후 트랜잭션 결과 미전송 (omitTxReport = true)**
 
 * **조건**
 
-  * Robot VASP Withdrawal Request API를 호출할 때, `omixTxReport` 필드를 `true`로 설정하여 Robot VASP가 트랜잭션 실행 결과를 전송하지 않습니다.
+  * Robot VASP Withdrawal Request API를 호출할 때, `omixTxReport` 필드를 `true`로 설정하여 Robot VASP가 트랜잭션 실행 결과를 전송하지 않도록 합니다.
   * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출하여 트랜잭션의 현재 상태를 조회합니다.
-  * 가상 자산 전송 트랜잭션 없이 Transaction Report API를 테스트 해보고 싶은 VASP를 위해 Transaction Reporting Simulation API를 지원합니다.
+  * 실제 가상 자산 전송 없이 Robot VASP가 Transaction Report를 전송하도록 하고 싶으면 Transaction Reporting Simulation API를 호출하십시오.
 
   <br />
 
