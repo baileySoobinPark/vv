@@ -61,26 +61,26 @@ metadata:
   <li class="vasp-step-item">
     <div class="vasp-step-badge">1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">User Account Verification: 테스트용 수신 계정 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+      <div class="vasp-step-title">User Account Verification: Robot VASP에게 테스트용 수신 계정 정보에 대한 검증 요청을 전송하도록 명령한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">User Verification: 테스트용 수신자 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+      <div class="vasp-step-title">User Verification: Robot VASP에게 테스트용 수신자 정보에 대한 검증 요청을 전송하도록 명령한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">3-1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">검증 이후 자산 전송 트랜잭션을 실행하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다.</div>
+      <div class="vasp-step-title">검증 이후 Robot VASP가 자산 전송 트랜잭션을 실행하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다.</div>
       (Case 1)트랜잭션 Report 전송 (Case 2)트랜잭션 Report 미전송
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">3-2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">검증 이후 트랜잭션을 취소하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다. </div>
+      <div class="vasp-step-title">검증 이후 Robot VASP가 트랜잭션을 취소하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다. </div>
       (Case 1)Error Report 전송 (Case 2)Error Report 미전송
     </div>
   </li>
