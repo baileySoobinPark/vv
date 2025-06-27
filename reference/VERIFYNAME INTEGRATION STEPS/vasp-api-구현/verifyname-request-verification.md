@@ -47,16 +47,6 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   </thead>
   <tbody>
     <tr>
-      <td><code>ticker</code></td>
-      <td>Required</td>
-      <td>귀사 VASP가 해당 자산을 지원하는 경우 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code></td>
-    </tr>
-    <tr>
-      <td><code>network</code></td>
-      <td>Optional</td>
-      <td>귀사의 VASP가 해당 네트워크를 지원하면 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
-    </tr>
-    <tr>
       <td><code>address</code></td>
       <td>Required</td>
       <td>Pre-verification의 경우, 요청 address가 등록된 수취인 주소인지 확인<br>Post-verification의 경우, 해당 트랜잭션에서 사용된 수취인 주소와 비교<br>일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code></td>
@@ -64,17 +54,27 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
     <tr>
       <td><code>tag</code></td>
       <td>Optional</td>
-      <td>요청 tag 값이 등록된 tag와 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>요청 tag 값이 등록된 tag와 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code><br>검증 항목이 아니거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>tx_hash</code></td>
       <td>Optional</td>
-      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code>, 검증 항목이 아니거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+    </tr>
+    <tr>
+      <td><code>ticker</code></td>
+      <td>Required</td>
+      <td>앞서 찾은 address 혹은 tx_hash가 해당 자산에 관한 것이면 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code></td>
+    </tr>
+    <tr>
+      <td><code>network</code></td>
+      <td>Optional</td>
+      <td>앞서 찾은 address 혹은 tx_hash가 해당 네트워크에 관한 것이면 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>dti</code></td>
       <td>Optional</td>
-      <td>해당 디지털 자산 식별자(DTI)를 지원하면 <code>MATCHED</code>, 아니면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>앞서 찾은 address 혹은 tx_hash가 해당 디지털 자산 식별자(DTI)에 관한 것이면 <code>MATCHED</code>, 아니면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
     </tr>
   </tbody>
 </table>
