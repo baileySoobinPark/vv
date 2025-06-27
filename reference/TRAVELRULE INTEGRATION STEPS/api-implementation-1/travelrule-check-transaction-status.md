@@ -42,7 +42,8 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 Enclave와의 연동을 위해 아래 환경 변수를 설정해야 합니다.
 
 * `VEGA_VERIFICATION_TRANSACTION_API_PATH`: 해당 API 구현 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: VerifyVASP 온보딩 시 발급받은 API 키
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
 
 ***
 
