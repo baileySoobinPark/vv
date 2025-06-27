@@ -15,7 +15,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 1. VASP의 주소 소유 여부 검증
 
-API 요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP로부터 발급된 주소인지를 데이터베이스와 대조하여 확인한 후, 그 결과를 반환해야 합니다.
+API 요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인한 후, 그 결과를 반환해야 합니다.
 
 #### 2. 검증 결과 응답
 
