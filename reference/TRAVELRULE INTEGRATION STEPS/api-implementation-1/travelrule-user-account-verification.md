@@ -5,7 +5,7 @@ api:
   operationId: travelrule-User-Account-Verification
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 **수신 VASP** 역할에 해당되는 구현 요구사항입니다. 송신인이 입력한 수신자 지갑 주소가 수신 VASP 소유 주소인지를 검증하고 그 결과를 반환합니다.
+VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 **수신 VASP** 역할 수행시 호출되는 API입니다. 송신인이 입력한 수신자 지갑 주소가 수신 VASP 소유 주소인지를 검증하고 그 결과를 반환합니다.
 
 ***
 
