@@ -162,7 +162,7 @@ metadata:
 ### 1. Robot VASP Identification Test
 
 * **조건**
-  * STG Endpoint로 구동한 Enclave API 중 [VASP List API](ref:travelrule-list-vasp-ids-1)를 호출하여 Robot VASP 정보를 조회합니다.
+  * STG Endpoint로 구동한 Enclave API 중 [VASP List API](ref:travelrule-list-vasp-ids)를 호출하여 Robot VASP 정보를 조회합니다.
 * **기대 결과**
   * API 호출 응답에서 Robot VASP 정보를 확인할 수 있습니다. (vaspId 포함)
 
@@ -180,9 +180,6 @@ metadata:
     * `UNKNOWN-ADDRESS`
     * `UNVERIFIED-KYC`
     * `MISMATCHED-NAME`
-    * `UNAVAILABLE-INFORMATION`
-    * `LACK-OF-INFORMATION`
-    * `BLACKLISTED`
 
 <br />
 
@@ -190,7 +187,7 @@ metadata:
 
 * **조건**
   * 사용자 주소 검증에서 `VERIFIED` 응답을 받은 직후 이어서 진행합니다.
-  * Enclave API 중 [User Verification API](ref:travelrule-encalve-request-user-verification-1)을 호출하여 테스트합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
+  * Enclave API 중 [User Verification API](ref:travelrule-encalve-request-user-verification)을 호출하여 테스트합니다. 수신 VASP로 반드시 Robot VASP를 설정합니다.
 * **기대 결과**
   * 테스트 데이터를 기준으로 정상 검증(`VERIFIED`) 시나리오를 포함하여 발생 가능한 아래 모든 `DENIED` 케이스에 대해 기대한 사유 코드가 반환되는지 확인합니다. 예를 들어, 테스트 데이터 외의 임의의 데이터로 검증을 요청하여 `UNKNOWN-ADDRESS`가 발생하는지 확인할 수 있습니다.
     * `VERIFIED`
@@ -199,7 +196,8 @@ metadata:
     * `UNVERIFIED-KYC`
     * `MISMATCHED-NAME`
     * `UNAVAILABLE-INFORMATION`
-    * `LACK-OF-INFORMATIONBLACKLISTED`
+    * `LACK-OF-INFORMATION`
+    * `BLACKLISTED`
     <br />
 
 ### 4-1. 온체인 전송 트랜잭션 실행 Test
@@ -208,7 +206,7 @@ metadata:
 >
 > User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 가상 자산을 전송해야 합니다. 만약 가상 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 가상 자산을 전송할 경우, 출금 건이 반영되지 않기 때문에 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
 >
-> XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드]() 에서 확인할 수 있습니다.
+> XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드](ivms101-guide#guidelines-for-wallet-address-entry) 에서 확인할 수 있습니다.
 
 **Case 1. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 Hash) 전송**
 
