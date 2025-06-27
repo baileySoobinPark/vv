@@ -32,6 +32,8 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 * 그 밖에 해당 주소의 `ticker`, `network`, `dti` 등의 정보가 일치하는지 검증하고, 결과를 `verification_results` 객체 내 각 필드로 반환해야 합니다.
 * 일치하는 주소가 존재하는 경우, 해당 주소의 소유주 정보를 `creditor` 객체에 포함하여 반환합니다.
 
+<br />
+
 #### 2. 검증 수행 결과 반환
 
 항목별 검증 수행 결과를 응답의 `verification_results` 객체 내 관련 필드에 명시하여 반환해야 합니다. 각 필드는 `MATCHED`, `MISMATCHED`, `SKIPPED` 중 하나의 값을 가질수 있습니다. **요청에 값이 입력되지 않아서 검증을 수행하지 않았거나, VASP에 해당 정보가 없어서 검증을 수행하지 않은 항목의 경우(아래 표의 필수 검증 여부가 Optional인 경우)에도 빈 값으로 반환하거나 또는 키를 제외하여 반환하지 않고`SKIPPED`로 반드시 항목을 포함하여 반환해야**합니다. 각 항목별 결과는 다음과 같은 정책에 따라 결정할 수 있습니다.
@@ -59,7 +61,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
     <tr>
       <td><code>tx_hash</code></td>
       <td>Optional</td>
-      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code>, 검증 항목이 아니거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code><br>검증 항목이 아니거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>ticker</code></td>
@@ -74,11 +76,13 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
     <tr>
       <td><code>dti</code></td>
       <td>Optional</td>
-      <td>앞서 찾은 address 혹은 tx_hash가 해당 디지털 자산 식별자(DTI)에 관한 것이면 <code>MATCHED</code>, 아니면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
+      <td>앞서 찾은 address 혹은 tx_hash가 해당 디지털 자산 식별자(DTI)에 관한 것이면 <code>MATCHED</code>, 아니면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
 
 #### 3. 주소 소유주 정보 반환
 
@@ -303,6 +307,8 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   }
   ```
 </Accordion>
+
+<br />
 
 ### 제약 사항
 
