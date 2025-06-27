@@ -69,7 +69,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
     <tr>
       <td><code>tx_hash</code></td>
       <td>Optional</td>
-      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여<br>일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code>, 검증 미요청 항목이거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>dti</code></td>
