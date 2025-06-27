@@ -30,7 +30,7 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
     vertical-align: top;
     text-align: left;
     background-color: #fff;
-    min-width: 220px;
+    min-width: 180px;
   }
 
 	.api-table th {
@@ -79,8 +79,8 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
   <thead>
     <tr>
       <th>API 이름</th>
-      <th>API를 제공하는<br>VASP의 포지션</th>
-      <th>API의 역할</th>
+      <th>VASP의 역할</th>
+      <th>API 설명</th>
     </tr>
   </thead>
   <tbody>
