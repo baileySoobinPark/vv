@@ -79,7 +79,7 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
   <thead>
     <tr>
       <th>API 이름</th>
-      <th>VASP 포지션</th>
+      <th>API를 제공하는<br>VASP의 포지션</th>
       <th>API의 역할</th>
     </tr>
   </thead>
