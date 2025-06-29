@@ -47,8 +47,8 @@ VerifyVASP Enclave는 민감 정보를 데이터베이스에 평문으로 저장
 
   \[연동 예시]
 
-  * `VEGA_ENCRYPTION_KEY_BASE64`: AWS KMS 키 ARN
-  * `VEGA_DECRYPT_API_ENDPOINT`: 키 조회 및 복호화를 수행하는 자체 서버 API 주소
+  * `VEGA_ENCRYPTION_KEY_BASE64`: AWS KMS로 암호화한 대칭 키
+  * `VEGA_DECRYPT_API_ENDPOINT`: AWS KMS 복호화를 수행하는 자체 서버 API 주소
 
 ### Enclave 연동 설정
 
