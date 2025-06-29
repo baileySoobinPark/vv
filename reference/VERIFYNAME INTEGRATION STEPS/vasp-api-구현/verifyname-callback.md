@@ -135,8 +135,9 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
     "callbackType": "OWNER_VERIFICATION_TX_REPORT",
     "data": {
       "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
-    }
+      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128",
+      "ordered_at": "2021-09-27T01:48:40.000Z"
+      }
   }
   ```
 </Accordion>
