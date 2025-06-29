@@ -21,14 +21,14 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 * 요청 type이 `VerifyOriginator`인 경우로, 귀사의 VASP는 송신 VASP로서 검증 요청에 응답해야 합니다. 송신 VASP로부터 자산 이전 트랜잭션이 먼저 실행되어, 수신 VASP가 검증을 요청한 경우입니다.
 * 요청에 포함된 tx\_hash 값이 귀사의 VASP가 실행한 트랜잭션이 맞는지 검증하고, 결과를 응답의 `verification_results` 객체 내 `tx_hash` 필드로 반환해야 합니다.
-* 해당 트랜잭션의 수신인 지갑 주소가 API 요청에 포함된 `supplementary_data.envelope.address`의 주소와 일치하는지 검증하고, 결과를 응답의 `verification_results` 객체 내 `address` 필드로 반환해야 합니다.
+* 해당 트랜잭션의 수신인 지갑 주소가 API 요청에 포함된 `supplementary_data.envelope.address`의 주소와 일치하는지 검증하고, 결과를 응답 객체의 `verification_results.address` 필드에 포함해야 합니다. 또한 요청에`supplementary_data.envelope.tag` 정보가 포함되어 있는 경우, tag 비교 결과도 함께 `address` 필드에 포함해야 합니다.
 * 그 밖에 `ticker`, `network`, `dti` 등의 정보가 일치하는지 검증하고, 결과를 `verification_results` 객체 내 각 필드로 반환해야 합니다.
 * 송신자를 특정할 수 있는 경우, 해당 송신자의 개인 정보를 `debtor` 객체에 포함하여 반환합니다.
 
 **사전 검증(Pre-Verification) 구현 요구사항**
 
 * 요청 type이 `VerifyBeneficiary`인 경우로, 귀사의 VASP는 수신 VASP로서 검증 요청에 응답해야 합니다. 송신 VASP가 자산 이전을 실행하기에 앞서 수신 VASP로 검증을 요청한 경우입니다.
-* 요청의 `supplementary_data.envelope.address`의 주소가 귀사의 VASP에 등록된 수취인 입금 주소 중 하나와 일치하는지 확인하고, 결과를 응답의 `verification_results` 객체 내 `address` 필드로 반환해야 합니다.
+* 요청의 `supplementary_data.envelope.address`의 주소가 귀사의 VASP에 등록된 수취인 입금 주소 중 하나와 일치하는지 확인하고, 결과를 응답 객체의 `verification_results.address` 필드에 포함해야 합니다. 또한 요청에 `supplementary_data.envelope.tag` 정보가 포함되어 있는 경우, tag 비교 결과도 함께 `address` 필드에 포함해야 합니다.
 * 그 밖에 해당 주소의 `ticker`, `network`, `dti` 등의 정보가 일치하는지 검증하고, 결과를 `verification_results` 객체 내 각 필드로 반환해야 합니다.
 * 일치하는 주소가 존재하는 경우, 해당 주소의 소유주 정보를 `creditor` 객체에 포함하여 반환합니다.
 
