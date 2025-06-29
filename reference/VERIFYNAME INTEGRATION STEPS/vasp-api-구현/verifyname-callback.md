@@ -76,47 +76,47 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
 
-* 사전 검증 결과가 VERIFIED인 경우, 이어서 자산 전송 트랜잭션을 수행합니다.
-* 사전 검증 결과가 DENIED 또는 ERROR인 경우, 자산 전송을 중단하고 고객(송신인)에게 결과를 안내합니다.
+* 사전 검증 결과가 VERIFIED인 경우, 상대 VASP에서 자산 전송 트랜잭션을 수행할 것입니다.
+* 사전 검증 결과가 DENIED 또는 ERROR인 경우, 상대 VASP에서 자산 전송을 중단한 것입니다.
 
 `OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
 <Accordion title="Example of Callback: OWNER_VERIFICATION_RESULT_REPORT" icon="fa-info-circle">
   ```json
   // VERIFIED
-    {
-      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-      "data": {
-        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-        "reported_result": "VERIFIED",
-      }
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "VERIFIED",
     }
+  }
 
-    or
+  or
 
-    // DENIED
-    {
-      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-      "data": {
-        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-        "reported_result": "DENIED",
-        "reason": "MISMATCH-TICKER"
-        "message": "Ticker is mismatched."
-      }
+  // DENIED
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "DENIED",
+      "reason": "MISMATCH-TICKER"
+      "message": "Ticker is mismatched."
     }
+  }
 
-    or
+  or
 
-    // ERROR
-    {
-      "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
-      "data": {
-        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-        "reported_result": "ERROR",
-        "reason": "TRANSFER-ERROR",
-        "message": "Transfer is failed."
-      }
+  // ERROR
+  {
+    "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "reported_result": "ERROR",
+      "reason": "UNDEFINED-ERROR",
+      "message": "An internal error occurred during asset transfer."
     }
+  }
   ```
 </Accordion>
 
@@ -131,13 +131,13 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 <Accordion title="Example of Callback Request Body: OWNER_VERIFICATION_TX_REPORT" icon="fa-info-circle">
   ```json
-     {
-      "callbackType": "OWNER_VERIFICATION_TX_REPORT",
-      "data": {
-        "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-        "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
-      }
+  {
+    "callbackType": "OWNER_VERIFICATION_TX_REPORT",
+    "data": {
+      "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
+      "tx_hash": "0xd231a7c7ff1edba061e3fbde26fe0e567fde0d2c40ff40ad1a9f3bffd999f128"
     }
+  }
   ```
 </Accordion>
 
