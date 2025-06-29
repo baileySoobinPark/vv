@@ -129,7 +129,7 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 `OWNER_VERIFICATION_TX_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
-<Accordion title="Example of Callback Request Body: OWNER_VERIFICATION_TX_REPORT" icon="fa-info-circle">
+<Accordion title="Example of Callback: OWNER_VERIFICATION_TX_REPORT" icon="fa-info-circle">
   ```json
   {
     "callbackType": "OWNER_VERIFICATION_TX_REPORT",
