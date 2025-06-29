@@ -69,6 +69,10 @@ hidden: false
       <td>수신자 이름 불일치</td>
     </tr>
     <tr>
+      <td class="code-col"><code>BLACKLISTED</code></td>
+      <td>수신 계정이 블랙리스트에 포함됨</td>
+    </tr>
+    <tr>
       <td class="code-col"><code>UNVERIFIED-KYC</code></td>
       <td>KYC 미완료 사용자</td>
     </tr>
