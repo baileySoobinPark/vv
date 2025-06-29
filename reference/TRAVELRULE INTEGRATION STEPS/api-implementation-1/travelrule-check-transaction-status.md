@@ -23,7 +23,7 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   * `PENDING`: 아직 블록체인에 제출되지 않은 상태
   * `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
   * `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
-  * `CONFIRMED`: 블록 생성 완료 및 finality 확보된 상태
+  * `CONFIRMED`: 채굴 완료 및 finality 확보된 상태
   * `CANCELED`: 제출 전 또는 후에 취소된 상태
 
 ### 제약 조건
