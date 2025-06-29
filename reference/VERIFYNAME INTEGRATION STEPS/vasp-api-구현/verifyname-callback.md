@@ -88,7 +88,8 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
     "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
     "data": {
       "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "VERIFIED",
+      "result": "VERIFIED",
+      "result_reported_at": "2025-04-21T04:16:01.339Z"
     }
   }
 
@@ -99,9 +100,10 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
     "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
     "data": {
       "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "DENIED",
+      "result": "DENIED",
       "reason": "MISMATCH-TICKER",
-      "message": "Ticker is mismatched."
+      "message": "Ticker is mismatched.",
+      "result_reported_at": "2025-04-21T04:16:01.339Z"
     }
   }
 
@@ -112,9 +114,10 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
     "callbackType": "OWNER_VERIFICATION_RESULT_REPORT",
     "data": {
       "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
-      "reported_result": "ERROR",
+      "result": "ERROR",
       "reason": "UNDEFINED-ERROR",
-      "message": "An internal error occurred during asset transfer."
+      "message": "An internal error occurred during asset transfer.",
+      "result_reported_at": "2025-04-21T04:16:01.339Z"
     }
   }
   ```
