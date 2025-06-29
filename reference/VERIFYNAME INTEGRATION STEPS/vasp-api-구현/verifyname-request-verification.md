@@ -51,7 +51,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
     <tr>
       <td><code>address</code></td>
       <td>Required</td>
-      <td>Pre-verification의 경우, 요청 address가 등록된 수취인 주소인지 확인<br>Post-verification의 경우, 해당 트랜잭션에서 사용된 수취인 주소와 비교<br>tag가 입력된 경우, tag 일치 여부도 검사하여 결과에 반영해야 함<br><code>MATCHED</code>, 다르면 <code>MISMATCHED</code></td>
+      <td>Pre-verification의 경우, 요청 address가 등록된 수취인 주소인지 확인<br>Post-verification의 경우, 해당 트랜잭션에서 사용된 수취인 주소와 비교<br>tag가 입력된 경우, tag 일치 여부도 결과에 반영해야 함<br>일치하면<code>MATCHED</code>, 다르면 <code>MISMATCHED</code></td>
     </tr>
     <tr>
       <td><code>tx_hash</code></td>
