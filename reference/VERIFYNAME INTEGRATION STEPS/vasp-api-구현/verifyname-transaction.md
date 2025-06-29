@@ -5,7 +5,7 @@ api:
   operationId: verifyName-Transaction
 hidden: false
 ---
-VASP는 VerifyName 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 이 API는 **송신 VASP** 역할을 위한 구현 요구사항입니다. 특정 트랜잭션의 현재 상태를 조회하여 반환합니다. 트랜잭션 상태에 대한 비동기 업데이트가 지연되거나 누락된 경우 수신 VASP에 의해 호출됩니다.
+VASP는 VerifyName 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 이 API는 **송신 VASP** 역할을 위한 구현 요구사항입니다. 특정 트랜잭션의 현재 상태를 조회하여 반환합니다. 트랜잭션 전송 후 해시 값에 대한 보고가 지연되거나 누락된 경우 수신 VASP에 의해 호출됩니다.
 
 ***
 
@@ -15,16 +15,16 @@ VASP는 VerifyName 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
 
 #### 1. 요청 ID와 트랜잭션 Hash 맵핑
 
-VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증건의 요청 ID(`request_id`)와, 관련된 트랜잭션의 해시값을 쌍으로 맵핑하여 저장 및 관리해야 합니다.
+VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증 건의 요청 ID(`request_id`)와, 관련된 트랜잭션의 해시값을 쌍으로 맵핑하여 저장 및 관리해야 합니다.
 
 #### 2. 온체인 트랜잭션 상태 조회 및 응답
 
-요청을 받을 시 `request_id`와 맵핑된 트랜잭션 해시를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
+API 호출을 받았을 경우 `request_id`와 맵핑된 트랜잭션 해시를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
 
 * `PENDING`: 아직 블록체인에 제출되지 않은 상태
 * `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
 * `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
-* `CONFIRMED`: 블록 생성 완료 및 finality 확보된 상태
+* `CONFIRMED`: 채굴 완료 및 finality 확보된 상태
 * `CANCELED`: 제출 전 또는 후에 취소된 상태
 
 ### 제약 사항
