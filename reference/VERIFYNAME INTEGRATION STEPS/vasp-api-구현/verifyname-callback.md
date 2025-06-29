@@ -100,7 +100,7 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
     "data": {
       "request_id": "64ab871b-14a3-47df-9b80-368e29fe8181",
       "reported_result": "DENIED",
-      "reason": "MISMATCH-TICKER"
+      "reason": "MISMATCH-TICKER",
       "message": "Ticker is mismatched."
     }
   }
