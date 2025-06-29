@@ -159,7 +159,6 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
       "ticker": "MATCHED",
       "network": "SKIPPED",
       "address": "MATCHED",
-      "tag": "SKIPPED",
       "tx_hash": "MATCHED",
       "dti": "SKIPPED"
     },
@@ -193,7 +192,6 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
       "ticker": "MATCHED",
       "network": "SKIPPED",
       "address": "MATCHED",
-      "tag": "SKIPPED",
       "tx_hash": "MATCHED",
       "dti": "SKIPPED"
     },
@@ -229,7 +227,6 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
       "ticker": "MATCHED",
       "network": "SKIPPED",
       "address": "MATCHED",
-      "tag": "SKIPPED",
       "tx_hash": "SKIPPED",
       "dti": "SKIPPED"
     },
@@ -262,7 +259,6 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
       "ticker": "MATCHED",
       "network": "SKIPPED",
       "address": "MATCHED",
-      "tag": "MATCHED",
       "tx_hash": "SKIPPED",
       "dti": "SKIPPED"
     },
