@@ -182,7 +182,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         VerifyVASP API Access Key.<br>
         온보딩 시 발급받은 값을 입력합니다.<br><br>
 
-        <b>관련 링크</b>: [Onboarding](ref:onboarding-copy)
+        <b>관련 링크</b>: <a href="ref:onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -736,7 +736,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                                                                                                                                                                                                                TRANSACTION_API_PATH`
+                                                                                                                                                                                                                        TRANSACTION_API_PATH`
       </td>
 
       <td>
