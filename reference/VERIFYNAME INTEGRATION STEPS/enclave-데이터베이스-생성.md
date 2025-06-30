@@ -68,7 +68,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <th width=185px>Table</th>
       <th>Description</th>
-      <th width=120px>Backup Policy</th>
+      <th width=130px>Backup Policy</th>
     </tr>
   </thead>
   <tbody>
