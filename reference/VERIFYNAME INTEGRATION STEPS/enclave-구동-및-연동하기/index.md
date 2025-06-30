@@ -182,7 +182,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         VerifyVASP API Access Key.<br>
         온보딩 시 발급받은 값을 입력합니다.<br><br>
 
-        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>관련 링크</b>: <a href="ref:onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -193,7 +193,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         VerifyVASP API Secret Key.<br>
         온보딩 시 발급받은 값을 입력합니다.<br><br>
 
-        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>관련 링크</b>: [Onboarding](ref:onboarding-copy)
       </td>
     </tr>
 
@@ -204,7 +204,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         Enclave 데이터베이스의 DBMS 유형.<br>
         <b>사용 가능한 값</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br><br>
 
-        <b>관련 링크</b>: <a href="/reference/enclave-데이터베이스-생성">Enclave Database Setup</a>
+        <b>관련 링크</b>: [Enclave Database Setup](ref:enclave-데이터베이스-생성)
       </td>
     </tr>
 
@@ -305,7 +305,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-request-verification">Verify Name API</a> Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
       </td>
     </tr>
 
@@ -313,14 +313,14 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-transaction">Check Transaction Status API</a> Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
       </td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_CALLBACK_API_PATH</code></td>
       <td>–</td>
-      <td><a href="/reference/verifyname-callback">Callback API</a> Endpoint.</td>
+      <td>[Callback API](ref:verifyname-callback) Endpoint.</td>
     </tr>
 
     <tr>
@@ -369,7 +369,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td class="code-col"><code>VEGA_DECRYPT_API_ENDPOINT</code></td>
       <td>–</td>
-      <td>Enclave 데이터베이스 암호화 <a href="/reference/verifyname-get-decrypted-enckey">대칭키 조회를 위한 API</a> Path.</td>
+      <td>Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.</td>
     </tr>
 
     <tr>
@@ -377,499 +377,12 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td>–</td>
       <td>
         Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.<br>
-        <b>관련 링크</b>: <a href="/reference/verifyname-get-decrypted-enckey">Database Management API</a>
+        <b>관련 링크</b>: [Database Management API](ref:verifyname-get-decrypted-enckey)
       </td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Variable Name
-      </th>
-
-      <th>
-        Default Value
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `VEGA_SERVER_PORT`
-      </td>
-
-      <td>
-        21117
-      </td>
-
-      <td>
-        Enclave 서버 포트 번호.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_ENCLAVE_MODE`
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-        Enclave의 구동모드.
-        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
-
-        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
-
-        **사용 가능한 모드 값** : `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
-
-        (ex) `VEGA_ENCLAVE_MODE=TR,VN2`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_ENCLAVE_PUBLIC_ENDPOINT`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        Enclave 서버의 Public Endpoint URL.\
-        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
-
-        `https://api.vasp.com/enclave`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_ALLIANCE_ACCESS_KEY`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        VerifyVASP API Access Key.\
-        온보딩 시 발급받은 값을 입력합니다.
-
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_ALLIANCE_SECRET_KEY`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        VerifyVASP API Secret Key.\
-        온보딩 시 발급받은 값을 입력합니다.
-
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_CLIENT`
-      </td>
-
-      <td>
-        `mysql2`
-      </td>
-
-      <td>
-        Enclave 데이터베이스의 DBMS 유형.\
-        **사용 가능한 값**: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`
-
-        **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_USERNAME`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        Database user name.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_PASSWORD`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        Database password.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_HOST`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 연동을 위한 Host URL.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_PORT`
-      </td>
-
-      <td>
-        `3306`
-      </td>
-
-      <td>
-        데이터베이스 포트 번호.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_DB`
-      </td>
-
-      <td>
-        `verifyvasp`
-      </td>
-
-      <td>
-        데이터베이스 DB 이름.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SEARCH_PATH`
-      </td>
-
-      <td>
-        `enclave`
-      </td>
-
-      <td>
-        Custom schema 이름(PostgreSQL 케이스에 한함).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_POOL_MIN`
-      </td>
-
-      <td>
-        `0`
-      </td>
-
-      <td>
-        최소 데이터베이스 Connection Pool 크기.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_POOL_MAX`
-      </td>
-
-      <td>
-        `5`
-      </td>
-
-      <td>
-        최대 데이터베이스 Connection Pool 크기.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL`
-      </td>
-
-      <td>
-        `false`
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결 사용 여부\
-        (사용시 `true`로 설정)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_CA`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_KEY`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_CERT`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_CAPATH`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_CIPHER`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결을 위한 암호화 방식
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED`
-      </td>
-
-      <td>
-        `true`
-      </td>
-
-      <td>
-        데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH`
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-        `VerifyName`\
-        VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_VERIFY_NAME_  
-                                                                                                                                                                                                                                TRANSACTION_API_PATH`
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-        `VerifyName`\
-        VASP API 호출을 위한 VerifyName [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_CALLBACK_API_PATH`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        [Callback API](ref:verifyname-callback) Endpoint.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        VASP API 호출시 사용할 인증 token 값.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_VERIFICATION_AUTHORIZATION_KEY`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        VASP API 호출시 인증 헤더 Key 값. 미설정시 `Authorization` 헤더 사용.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_API_ENDPOINT`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        VerifyVASP Central API Server Endpoint.
-
-        * PRD (KR): `https://api-kr.vega-protocol.com`
-        * PRD (Global): `https://api.vega-protocol.com`
-        * STG (KR): `https://api-kr.vega-protocol.xyz`
-        * STG (Global): `https://api.vega-protocol.xyz`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_LOG_LEVEL`
-      </td>
-
-      <td>
-        `info`
-      </td>
-
-      <td>
-        Log level.\
-        **사용 가능한 값**:`none`, `error`, `warn`, `info`, `debug`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_PUBLIC_KEY_TTL`
-      </td>
-
-      <td>
-        `1800000`
-      </td>
-
-      <td>
-        상대 VASP의 공개키 캐싱 TTL(ms).\
-        기본 1800000 (30분), 최소 600000 (10분)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_DECRYPT_API_ENDPOINT`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `VEGA_ENCRYPTION_KEY_BASE64`
-      </td>
-
-      <td>
-        –
-      </td>
-
-      <td>
-        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
-        **관련 링크**: [Database Management API](ref:verifyname-get-decrypted-enckey)
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 <br />
 
