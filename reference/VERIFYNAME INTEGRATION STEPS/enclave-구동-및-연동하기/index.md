@@ -110,20 +110,12 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
   background-color: #f0f0f0;
 }
 </style>
-<Table align={["left","left","left"]} class="enclave-env-table">
+<table class="enclave-env-table">
   <thead>
     <tr>
-      <th style={{ textAlign: "left" }}>
-        Variable Name
-      </th>
-
-      <th style={{ textAlign: "left" }}>
-        Default Value
-      </th>
-
-      <th style={{ textAlign: "left" }}>
-        Description
-      </th>
+      <th width=400px>Variable Name</th>
+      <th width=180px>Default Value</th>
+      <th>Description</th>
     </tr>
   </thead>
 
@@ -948,7 +940,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                TRANSACTION_API_PATH`
+                        TRANSACTION_API_PATH`
       </td>
 
       <td>
