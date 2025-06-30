@@ -119,8 +119,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 }
 
 .enclave-env-table td.code-col code.long-var {
-  letter-spacing: -0.5px;
-  transform: scaleX(0.85);
+  letter-spacing: -0.55px;
+  transform: scaleX(0.83);
   transform-origin: left center;
   display: inline-block;
   vertical-align: baseline;
@@ -141,8 +141,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 <table class="enclave-env-table">
   <thead>
     <tr>
-      <th width=360px>Variable Name</th>
-      <th width=120px>Default Value</th>
+      <th>Variable Name</th>
+      <th>Default Value</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -738,7 +738,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                                                                                                                        TRANSACTION_API_PATH`
+                                                                                                                                TRANSACTION_API_PATH`
       </td>
 
       <td>
