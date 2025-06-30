@@ -99,7 +99,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 .enclave-env-table td {
   background-color: white;
   border: 1px solid #ddd;
-  padding: 6px 8px;
+  padding: 8px;
   vertical-align: top;
   word-break: break-word;
 }
@@ -141,8 +141,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 <table class="enclave-env-table">
   <thead>
     <tr>
-      <th>Variable Name</th>
-      <th>Default Value</th>
+      <th width=360px>Variable Name</th>
+      <th width=120px>Default Value</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -343,10 +343,10 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td>
         VerifyVASP Central API Server Endpoint.<br>
 
-        * PRD (KR): <code>https://api-kr.vega-protocol.com</code>
-        * PRD (Global): <code>https://api.vega-protocol.com</code>
-        * STG (KR): <code>https://api-kr.vega-protocol.xyz</code>
-        * STG (Global): <code>https://api.vega-protocol.xyz</code>
+        <li>PRD (KR): <code>https://api-kr.vega-protocol.com</code></li>
+        <li>PRD (Global): <code>https://api.vega-protocol.com</code></li>
+        <li>STG (KR): <code>https://api-kr.vega-protocol.xyz</code></li>
+        <li>STG (Global): <code>https://api.vega-protocol.xyz</code></li>
       </td>
     </tr>
 
