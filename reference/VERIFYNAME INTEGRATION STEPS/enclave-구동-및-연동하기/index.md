@@ -44,7 +44,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
   text-align: left;
   font-weight: bold;
   background-color: #f0f0f0;
-}
+} 
 </style>
 <table class="enclave-env-table">
   <thead>
@@ -109,6 +109,18 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
   font-weight: bold;
   background-color: #f0f0f0;
 }
+  
+.enclave-env-table td.code-col {
+  min-width: 250px;
+  white-space: nowrap;
+}
+
+.enclave-env-table td.code-col code.long-var {
+  font-size: 0.85em;
+  letter-spacing: -0.5px;
+  transform: scaleX(0.9);
+  display: inline-block;
+}
 </style>
 <table class="enclave-env-table">
   <thead>
@@ -121,67 +133,41 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 
   <tbody>
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_SERVER_PORT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        21117
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Enclave 서버 포트 번호.
-      </td>
+      <td class="code-col"><code>VEGA_SERVER_PORT</code></td>
+      <td>21117</td>
+      <td>Enclave 서버 포트 번호.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_ENCLAVE_MODE\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_ENCLAVE_MODE</code></td>
+      <td></td>
+      <td>
         Enclave의 구동모드.
         Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
 
         단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
 
-        **사용 가능한 모드 값** : \`TR\`, \`VN2\`, \`VN1_CALL\`, \`VN1_RESPONSE\`
+        **사용 가능한 모드 값** : <code>TR</code>, <code>VN2</code>, <code>VN1_CALL</code>, <code>VN1_RESPONSE</code>
 
-        (ex) \`VEGA_ENCLAVE_MODE=TR,VN2\`
+        (ex) <code>VEGA_ENCLAVE_MODE=TR,VN2</code>
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_ENCLAVE_PUBLIC_ENDPOINT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_ENCLAVE_PUBLIC_ENDPOINT</code></td>
+      <td>–</td>
+      <td>
         Enclave 서버의 Public Endpoint URL.\
         VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
 
-        \`https://api.vasp.com/enclave\`
+        <code>https://api.vasp.com/enclave</code>
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_ALLIANCE_ACCESS_KEY\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_ALLIANCE_ACCESS_KEY</code></td>
+      <td>–</td>
+      <td>
         VerifyVASP API Access Key.\
         온보딩 시 발급받은 값을 입력합니다.
 
@@ -190,15 +176,9 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_ALLIANCE_SECRET_KEY\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_ALLIANCE_SECRET_KEY</code></td>
+      <td>–</td>
+      <td>
         VerifyVASP API Secret Key.\
         온보딩 시 발급받은 값을 입력합니다.
 
@@ -207,385 +187,192 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_CLIENT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`mysql2\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_DATABASE_CLIENT</code></td>
+      <td><code>mysql2</code></td>
+      <td>
         Enclave 데이터베이스의 DBMS 유형.\
-        **사용 가능한 값**: \`pg\`, \`mysql\`, \`mysql2\`, \`oracledb\`, \`mssql\`
+        **사용 가능한 값**: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code>
 
         **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_USERNAME\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Database user name.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_USERNAME</code></td>
+      <td>–</td>
+      <td>Database user name.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_PASSWORD\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Database password.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_PASSWORD</code></td>
+      <td>–</td>
+      <td>Database password.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_HOST\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 연동을 위한 Host URL.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_HOST</code></td>
+      <td>–</td>
+      <td>데이터베이스 연동을 위한 Host URL.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_PORT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`3306\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 포트 번호.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_PORT</code></td>
+      <td><code>3306</code></td>
+      <td>데이터베이스 포트 번호.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_DB\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`verifyvasp\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 DB 이름.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_DB</code></td>
+      <td><code>verifyvasp</code></td>
+      <td>데이터베이스 DB 이름.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SEARCH_PATH\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`enclave\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Custom schema 이름(PostgreSQL 케이스에 한함).
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SEARCH_PATH</code></td>
+      <td><code>enclave</code></td>
+      <td>Custom schema 이름(PostgreSQL 케이스에 한함).</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_POOL_MIN\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`0\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        최소 데이터베이스 Connection Pool 크기.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_POOL_MIN</code></td>
+      <td><code>0</code></td>
+      <td>최소 데이터베이스 Connection Pool 크기.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_POOL_MAX\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`5\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        최대 데이터베이스 Connection Pool 크기.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_POOL_MAX</code></td>
+      <td><code>5</code></td>
+      <td>최대 데이터베이스 Connection Pool 크기.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`false\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_DATABASE_SSL</code></td>
+      <td><code>false</code></td>
+      <td>
         데이터베이스 SSL 연결 사용 여부\
-        (사용시 \`true\`로 설정)
+        (사용시 <code>true</code>로 설정)
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_CA\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_CA</code></td>
+      <td>–</td>
+      <td>데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_KEY\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_KEY</code></td>
+      <td>–</td>
+      <td>데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_CERT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_CERT</code></td>
+      <td>–</td>
+      <td>데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_CAPATH\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_CAPATH</code></td>
+      <td>–</td>
+      <td>데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_CIPHER\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결을 위한 암호화 방식
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_CIPHER</code></td>
+      <td>–</td>
+      <td>데이터베이스 SSL 연결을 위한 암호화 방식</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`true\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)
-      </td>
+      <td class="code-col"><code>VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED</code></td>
+      <td><code>true</code></td>
+      <td>데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`VerifyName\`\
+      <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
+      <td></td>
+      <td>
+        <code>VerifyName</code>\
         VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_VERIFICATION_VERIFY_NAME_  
-                TRANSACTION_API_PATH\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`VerifyName\`\
+      <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH</code></td>
+      <td></td>
+      <td>
+        <code>VerifyName</code>\
         VASP API 호출을 위한 VerifyName [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_VERIFICATION_CALLBACK_API_PATH\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        [Callback API](ref:verifyname-callback) Endpoint.
-      </td>
+      <td class="code-col"><code>VEGA_VERIFICATION_CALLBACK_API_PATH</code></td>
+      <td>–</td>
+      <td>[Callback API](ref:verifyname-callback) Endpoint.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_VERIFICATION_AUTHORIZATION_TOKEN\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        VASP API 호출시 사용할 인증 token 값.
-      </td>
+      <td class="code-col"><code>VEGA_VERIFICATION_AUTHORIZATION_TOKEN</code></td>
+      <td>–</td>
+      <td>VASP API 호출시 사용할 인증 token 값.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_VERIFICATION_AUTHORIZATION_KEY\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        VASP API 호출시 인증 헤더 Key 값. 미설정시 \`Authorization\` 헤더 사용.
-      </td>
+      <td class="code-col"><code>VEGA_VERIFICATION_AUTHORIZATION_KEY</code></td>
+      <td>–</td>
+      <td>VASP API 호출시 인증 헤더 Key 값. 미설정시 <code>Authorization</code> 헤더 사용.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_API_ENDPOINT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_API_ENDPOINT</code></td>
+      <td>–</td>
+      <td>
         VerifyVASP Central API Server Endpoint.
 
-        * PRD (KR): \`https://api-kr.vega-protocol.com\`
-        * PRD (Global): \`https://api.vega-protocol.com\`
-        * STG (KR): \`https://api-kr.vega-protocol.xyz\`
-        * STG (Global): \`https://api.vega-protocol.xyz\`
+        * PRD (KR): <code>https://api-kr.vega-protocol.com</code>
+        * PRD (Global): <code>https://api.vega-protocol.com</code>
+        * STG (KR): <code>https://api-kr.vega-protocol.xyz</code>
+        * STG (Global): <code>https://api.vega-protocol.xyz</code>
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_LOG_LEVEL\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`info\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_LOG_LEVEL</code></td>
+      <td><code>info</code></td>
+      <td>
         Log level.\
-        **사용 가능한 값**:\`none\`, \`error\`, \`warn\`, \`info\`, \`debug\`
+        **사용 가능한 값**:<code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_PUBLIC_KEY_TTL\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        \`1800000\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_PUBLIC_KEY_TTL</code></td>
+      <td><code>1800000</code></td>
+      <td>
         상대 VASP의 공개키 캐싱 TTL(ms).\
         기본 1800000 (30분), 최소 600000 (10분)
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_DECRYPT_API_ENDPOINT\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.
-      </td>
+      <td class="code-col"><code>VEGA_DECRYPT_API_ENDPOINT</code></td>
+      <td>–</td>
+      <td>Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.</td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        \`VEGA_ENCRYPTION_KEY_BASE64\`
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        –
-      </td>
-
-      <td style={{ textAlign: "left" }}>
+      <td class="code-col"><code>VEGA_ENCRYPTION_KEY_BASE64</code></td>
+      <td>–</td>
+      <td>
         Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
         **관련 링크**: [Database Management API](ref:verifyname-get-decrypted-enckey)
       </td>
     </tr>
   </tbody>
-</Table>
+</table>
 `}</HTMLBlock>
 
 <br />
@@ -940,7 +727,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                        TRANSACTION_API_PATH`
+                                TRANSACTION_API_PATH`
       </td>
 
       <td>
