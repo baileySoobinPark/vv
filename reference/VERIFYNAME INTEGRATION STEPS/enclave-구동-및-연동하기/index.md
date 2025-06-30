@@ -127,11 +127,21 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
   margin: 0;
   padding: 1;
 }
+
+.enclave-env-table td.code-col code.long-var2 {
+  letter-spacing: -0.4px;
+  transform: scaleX(0.9);
+  transform-origin: left center;
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 1;
+}
 </style>
 <table class="enclave-env-table">
   <thead>
     <tr>
-      <th width=370px>Variable Name</th>
+      <th width=360px>Variable Name</th>
       <th width=120px>Default Value</th>
       <th>Description</th>
     </tr>
@@ -149,9 +159,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td></td>
       <td>
         Enclave의 구동모드.
-        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
-
-        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
+        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.<br>
+        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.<br>
 
         **사용 가능한 모드 값** : <code>TR</code>, <code>VN2</code>, <code>VN1_CALL</code>, <code>VN1_RESPONSE</code>
 
@@ -297,7 +306,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     </tr>
 
     <tr>
-      <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
+      <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
         <code>VerifyName</code>\
@@ -733,7 +742,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                                                                                TRANSACTION_API_PATH`
+                                                                                        TRANSACTION_API_PATH`
       </td>
 
       <td>
