@@ -63,7 +63,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
     <tr>
       <td>인증 관련 변수</td>
       <td>VerifyVASP 중앙 서버 및 3rd Party 서비스 연동을 위한 인증 정보</td>
-      <td>access key/secret key 등</td>
+      <td>access key / secret key 등</td>
     </tr>
     <tr>
       <td>VASP API 엔드포인트</td>
