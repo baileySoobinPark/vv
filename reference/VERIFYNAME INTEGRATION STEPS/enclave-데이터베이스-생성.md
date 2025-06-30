@@ -342,6 +342,7 @@ VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하�
     `version` varchar(16) DEFAULT NULL,
     `verified_at` datetime(3) DEFAULT NULL,
     `ordered_at` datetime(3) DEFAULT NULL,
+    `result_reported_at` datetime(3) DEFAULT NULL,
     `updated_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     `created_at` datetime(3) DEFAULT CURRENT_TIMESTAMP(3),
     PRIMARY KEY (`verification_id`),
@@ -379,6 +380,7 @@ VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하�
       version varchar(16) DEFAULT NULL,
       verified_at timestamp DEFAULT NULL,
       ordered_at timestamp DEFAULT NULL,
+      result_reported_at timestamp DEFAULT NULL,
       updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
       created_at timestamp DEFAULT CURRENT_TIMESTAMP,
       CONSTRAINT key_uniq_owner_verifications_request_id UNIQUE (request_id)
@@ -414,6 +416,7 @@ VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하�
     version nvarchar(16) DEFAULT NULL,
     verified_at datetime2(3) DEFAULT NULL,
     ordered_at datetime2(3) DEFAULT NULL,
+    result_reported_at datetime2(3) DEFAULT NULL,
     updated_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
     created_at datetime2(3) DEFAULT CURRENT_TIMESTAMP,
     );
@@ -448,6 +451,7 @@ VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하�
     "version" varchar2(16) DEFAULT NULL,
     "verified_at" timestamp(3) DEFAULT NULL,
     "ordered_at" timestamp(3) DEFAULT NULL,
+    "result_reported_at" timestamp(3) DEFAULT NULL,
     "updated_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
     "created_at" timestamp(3) DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "owner_verifications_pk" PRIMARY KEY ("verification_id"),
