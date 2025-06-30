@@ -48,7 +48,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
   }
 
   .custom-table th {
-    background-color: #ffffff;
+    background-color: #f0f0f0;
     font-weight: 600;
   }
 
@@ -81,7 +81,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
         - 암호화 대상 필드: <code>private_key</code><br>
         - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
-      <td>주기적인 백업 권장</td>
+      <td>주기적인<br>백업 권장</td>
     </tr>
     <tr>
       <td class="code-col"><code>counter_party_keys</code></td>
@@ -90,7 +90,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
         - 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
         - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
       </td>
-      <td>백업 또는 복원 정책 불필요</td>
+      <td>백업 또는<br>복원 정책<br>불필요</td>
     </tr>
     <tr>
       <td class="code-col"><code>commands</code></td>
@@ -99,7 +99,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
         - Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
         - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
       </td>
-      <td>백업 또는 복원 정책 불필요</td>
+      <td>백업 또는<br>복원 정책<br>불필요</td>
     </tr>
 		<tr>
       <td class="code-col"><code>owner_verifications</code></td>
@@ -110,7 +110,7 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
         - 암호화 대상 필드:<code>party_info</code>,<code>party_info_hash</code>
         - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
       </td>
-      <td>일일 백업 권장</td>
+      <td>일일 백업<br>권장</td>
     </tr>
   </tbody>
 </table>
