@@ -182,7 +182,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         VerifyVASP API Access Key.<br>
         온보딩 시 발급받은 값을 입력합니다.<br><br>
 
-        <b>관련 링크</b>: <a href="ref:onboarding-copy">Onboarding</a>
+        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -193,7 +193,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         VerifyVASP API Secret Key.<br>
         온보딩 시 발급받은 값을 입력합니다.<br><br>
 
-        <b>관련 링크</b>: [Onboarding](ref:onboarding-copy)
+        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -204,7 +204,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
         Enclave 데이터베이스의 DBMS 유형.<br>
         <b>사용 가능한 값</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br><br>
 
-        <b>관련 링크</b>: [Enclave Database Setup](ref:enclave-데이터베이스-생성)
+        <b>관련 링크</b>: <a href="/reference/enclave-데이터베이스-생성">Enclave Database Setup</a>
       </td>
     </tr>
 
@@ -305,7 +305,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code> VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-request-verification">Verify Name API</a> Endpoint.
       </td>
     </tr>
 
@@ -313,14 +313,14 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code> VASP API 호출을 위한 [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-transaction">Check Transaction Status API</a> Endpoint.
       </td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_CALLBACK_API_PATH</code></td>
       <td>–</td>
-      <td>[Callback API](ref:verifyname-callback) Endpoint.</td>
+      <td><a href="/reference/verifyname-callback">Callback API</a> Endpoint.</td>
     </tr>
 
     <tr>
@@ -369,7 +369,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td class="code-col"><code>VEGA_DECRYPT_API_ENDPOINT</code></td>
       <td>–</td>
-      <td>Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.</td>
+      <td>Enclave 데이터베이스 암호화 <a href="/reference/verifyname-get-decrypted-enckey">대칭키 조회를 위한 API</a> Path.</td>
     </tr>
 
     <tr>
@@ -377,7 +377,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td>–</td>
       <td>
         Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.<br>
-        <b>관련 링크</b>: [Database Management API](ref:verifyname-get-decrypted-enckey)
+        <b>관련 링크</b>: <a href="/reference/verifyname-get-decrypted-enckey">Database Management API</a>
       </td>
     </tr>
   </tbody>
