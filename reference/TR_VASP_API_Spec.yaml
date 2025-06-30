@@ -85,7 +85,7 @@ paths:
                           items:
                             type: string
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   originatingVaspId: '15952089931162060684'
                   symbol: ETH
@@ -125,7 +125,6 @@ paths:
                       - UNKNOWN-ADDRESS
                       - MISMATCHED-NAME
                       - UNDEFINED-ERROR
-                      - BLACKLISTED
                       - UNVERIFIED-KYC
                     description: |
                       This field provides the reason for verification failure.
@@ -146,7 +145,7 @@ paths:
                       and clearly specifies the UTC timezone.   Other ISO 8601
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -263,7 +262,7 @@ paths:
                         and clearly specifies the UTC timezone.   Other ISO 8601
                         Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
-                          - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                          - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                       example: '2024-11-25T15:30:00.000Z'
                 requiredBeneficiaryInfo:
                   type: string
@@ -500,7 +499,7 @@ paths:
                           items:
                             type: string
             examples:
-              requestexamples:
+              Request Example:
                 summary: example of a verification request
                 description: >
                   A complete example of a request for user account verification,
@@ -701,7 +700,7 @@ paths:
                                         To use this field, at least one of the
                                         following conditions must be met:  
                                         Required conditions  
-                                          1. At least one addressLinemust be present.  
+                                          1. At least one addressLine must be present.  
                                           
                                           2. Both streetName and buildingName must be present.  
                                           
@@ -921,7 +920,7 @@ paths:
                     standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: 4bc03a8f-5679-4358-815c-906aae5557f4
       responses:
@@ -959,7 +958,7 @@ paths:
                         
                         **PROCESSING**:The virtual asset transaction has been initiated and is awaiting mining.  
                                       
-                        **WAIT-CONFIR**: The transaction has been mined but the block containing it has not achieved finality.  
+                        **WAIT-CONFIRM**: The transaction has been mined but the block containing it has not achieved finality.  
                         
                         **CONFIRMED**: The virtual asset transaction has been mined, and the block containing the transaction has achieved finality.  
                         
@@ -1178,7 +1177,7 @@ paths:
                                           To use this field, at least one of the
                                           following conditions must be met:  
                                           Required conditions  
-                                            1. At least one addressLinemust be present.  
+                                            1. At least one addressLine must be present.  
                                             
                                             2. Both streetName and buildingName must be present.  
                                             
@@ -1301,7 +1300,7 @@ paths:
                               items:
                                 type: string
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   callbackType: VERIFICATION_RESULT
                   data:
@@ -1384,7 +1383,7 @@ paths:
                     as defined in the Enclave environment variables.
                   example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
       responses:
