@@ -14,6 +14,8 @@ VerifyVASP Enclave 서버는 AWS ECR 레지스트리를 통해 Docker 이미지 
 
 <Enclave />
 
+<br />
+
 ## Step 2. Enclave 서버 실행 및 환경 변수 설정
 
 접근 권한이 부여되었다면, 이제 VASP 내부 인프라 환경에서 Enclave 서버를 다운로드하고 실행해야 합니다. 다만 Enclave 서버와 관련 컴포넌트 간의 원활한 통신을 위해, 서버를 실행하기 전 필수 환경 변수들을 먼저 설정해야 합니다.
@@ -41,7 +43,7 @@ Enclave의 환경 변수는 아래 다섯가지 주요 그룹으로 분류됩니
 .enclave-env-table th {
   text-align: left;
   font-weight: bold;
-  background-color: white;
+  background-color: #f0f0f0;
 }
 </style>
 <table class="enclave-env-table">
