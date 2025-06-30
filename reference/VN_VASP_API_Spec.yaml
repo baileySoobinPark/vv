@@ -57,7 +57,7 @@ paths:
                         request_vasp_id:
                           type: string
                           description: |
-                            The Vasp ID for the Onwer Verification request.
+                            The Vasp ID for the Owner Verification request.
                           example: '17624187478910414848'
                         type:
                           type: string
@@ -76,7 +76,7 @@ paths:
                           description: >
                             The network of the virtual asset to be transferred.
                             The network field can be implemented conditionally.
-                          example: ETHEREUM
+                          example: Ethereum
                         address:
                           type: string
                           description: |
@@ -104,22 +104,19 @@ paths:
                           example: >-
                             8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
             examples:
-              requestExamples:
+              Request Example:
                 value:
-                  verificationType: VERIFIED
-                  txId: >-
-                    0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
-                  symbol: ETH
-                  address: '0x5811001506550d8356a215be229c15b6ef371a9b'
-                  tag: null
-                  hashSalt: 04cc122f-97af-4630-a1cf-05e58ed37667
-                  dobHash: >-
-                    9096a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
-                  nameHashes:
-                    - >-
-                      1296a390ba4339afe391119fb3d7788e1e3786bf95b12cc2581bc67fedbedc5b
-                    - >-
-                      4596a390ba4339afe391119fb3124412dc3786bf95b12cc2581bc67869cddcaf
+                  supplementary_data:
+                    envelope:
+                      type: VerifyOriginator
+                      request_id: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                      request_vasp_id: '17624187478910414848'
+                      ticker: ETH
+                      network: Ethereum
+                      address: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
+                      tx_hash: >-
+                        8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                      dti: 4H95J0R2X
       responses:
         '200':
           description: 200 Response
@@ -136,36 +133,28 @@ paths:
                       - ticker
                       - network
                       - address
-                      - tag
                       - tx_hash
                       - dti
                     properties:
                       ticker:
                         type: string
                         description: |
-                          The result of the Ticker verification.
+                          The result of the ticker verification.
                         example: MATCHED
                       network:
                         type: string
                         description: |
-                          The result of the Network verification.
+                          The result of the network verification.
                         example: MATCHED
                       address:
                         type: string
                         description: |
-                          The result of the Address verification.
+                          The result of the address and tag verification.
                         example: MATCHED
-                      tag:
-                        type: string
-                        description: >
-                          The wallet address tag(secondary address such as XRP,
-                          XLM, EOS, etc...), regardless VerifyOriginator or
-                          VerifyBeneficiary.
-                        example: '3256697931'
                       tx_hash:
                         type: string
                         description: |
-                          The result of the Tx_Hash verification.
+                          The result of the tx_Hash verification.
                         example: MATCHED
                       dti:
                         type: string
@@ -175,7 +164,7 @@ paths:
                   creditor:
                     type: object
                     description: >
-                      An object containing information about the Owner's
+                      An object containing information about the Beneficiary's
                       information when the type is **VerifyBeneficiary**.
                     required:
                       - name
@@ -202,7 +191,7 @@ paths:
                                     type: string
                                     description: |
                                       The first name of the Owner.
-                                    example: JHON
+                                    example: JOHN
                                   last_name:
                                     type: string
                                     description: |
@@ -228,7 +217,7 @@ paths:
                                         type: string
                                         description: |
                                           Date of Birth.
-                                        example: '2025-01-01'
+                                        example: '2005-01-01'
                               organisation_identification:
                                 type: object
                                 description: >
@@ -291,7 +280,7 @@ paths:
                   debtor:
                     type: object
                     description: >
-                      An object containing information about the Owner's
+                      An object containing information about the Originator's
                       information when the type is **VerifyOriginator**.
                     required:
                       - name
@@ -318,7 +307,7 @@ paths:
                                     type: string
                                     description: |
                                       The first name of the Owner.
-                                    example: JHON
+                                    example: JOHN
                                   last_name:
                                     type: string
                                     description: |
@@ -344,7 +333,7 @@ paths:
                                         type: string
                                         description: |
                                           Date of Birth.
-                                        example: '2025-01-01'
+                                        example: '2005-01-01'
                               organisation_identification:
                                 type: object
                                 description: >
@@ -409,10 +398,9 @@ paths:
                   value:
                     verification_results:
                       ticker: MATCHED
-                      network: MISMATCHED
-                      address: SKIPPED
-                      tag: SKIPPED
-                      tx_hash: SKIPPED
+                      network: SKIPPED
+                      address: MATCHED
+                      tx_hash: MATCHED
                       dti: SKIPPED
                     debtor:
                       name: HONG KIL DONG
@@ -424,30 +412,24 @@ paths:
                       identification:
                         private_identification:
                           date_and_place_of_birth:
-                            birth_date: '2025-01-01'
+                            birth_date: '2005-01-01'
                 VerifyOriginator Legal Person Example:
                   value:
                     verification_results:
                       ticker: MATCHED
-                      network: MISMATCHED
-                      address: SKIPPED
-                      tag: SKIPPED
-                      tx_hash: SKIPPED
+                      network: SKIPPED
+                      address: MATCHED
+                      tx_hash: MATCHED
                       dti: SKIPPED
                     debtor:
-                      name: HONG KIL DONG
-                      supplementary_data:
-                        envelope:
-                          name:
-                            first_name: GIL DONG
-                            last_name: HONG
+                      name: Apple
                       identification:
-                        orgainsation_identification:
+                        organisation_identification:
                           supplementary_data:
                             envelope:
                               date_of_incorporation: '2025-01-01'
                         lei: 506700GE1G29325QX363
-                        bic: KRKRKR
+                        bic: HBUKGB4B
                         other:
                           identification: 5493001KJTIIGC8Y1R12
                           issuer: ISO17442
@@ -455,11 +437,10 @@ paths:
                   value:
                     verification_results:
                       ticker: MATCHED
-                      network: MISMATCHED
-                      address: SKIPPED
-                      tag: SKIPPED
+                      network: SKIPPED
+                      address: MATCHED
                       tx_hash: SKIPPED
-                      dti: SKIPPED
+                      dti: MATCHED
                     creditor:
                       name: HONG KIL DONG
                       supplementary_data:
@@ -470,30 +451,24 @@ paths:
                       identification:
                         private_identification:
                           date_and_place_of_birth:
-                            birth_date: '2025-01-01'
+                            birth_date: '2005-01-01'
                 VerifyBeneficiary Legal Person Example:
                   value:
                     verification_results:
                       ticker: MATCHED
-                      network: MISMATCHED
-                      address: SKIPPED
-                      tag: SKIPPED
+                      network: MATCHED
+                      address: MATCHED
                       tx_hash: SKIPPED
                       dti: SKIPPED
                     creditor:
-                      name: HONG KIL DONG
-                      supplementary_data:
-                        envelope:
-                          name:
-                            first_name: GIL DONG
-                            last_name: HONG
+                      name: Apple
                       identification:
-                        orgainsation_identification:
+                        organisation_identification:
                           supplementary_data:
                             envelope:
                               date_of_incorporation: '2025-01-01'
                         lei: 506700GE1G29325QX363
-                        bic: KRKRKR
+                        bic: HBUKGB4B
                         other:
                           identification: 5493001KJTIIGC8Y1R12
                           issuer: ISO17442
@@ -524,7 +499,7 @@ paths:
                     The format of `request_id` must follow the UUID v4 standard.
                   example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
             examples:
-              requestExamples:
+              Request Example:
                 value:
                   request_id: 4bc03a8f-5679-4358-815c-906aae5557f4
       responses:
@@ -571,8 +546,8 @@ paths:
                     description: >
                       Unique identifier of the transaction.  
 
-                      If the value of `verification_result` is `VERIFIED`, this
-                      field must be required.
+                      If the value of `verification_result` is `VERIFIED` and
+                      transaction was sent, this field must be required.
                     example: >-
                       8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                   vout:
@@ -615,9 +590,8 @@ paths:
                     verification_result: VERIFIED
                     tx_hash: >-
                       8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                    vout: '0'
-                    reason: MISMATCH-TICKER
-                    message: Transfer Error
+                    reason: UNDEFINED-ERROR
+                    message: User cancel the withdrawal
   /VASP_DEFINED_PATH_CALLBACK:
     post:
       operationId: verifyName-Callback
@@ -650,12 +624,10 @@ paths:
                   type: object
                   required:
                     - request_Id
-                    - reported_result
-                    - ordered_at
                   description: |
                     An object containing Callback Data.
                   properties:
-                    request_Id:
+                    request_id:
                       type: string
                       description: >
                         A unique identifier for the Owner Verification request.
@@ -664,7 +636,7 @@ paths:
                         The format of `request_id` must follow the UUID v4
                         standard.
                       example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                    reported_result:
+                    result:
                       type: string
                       enum:
                         - VERIFIED
@@ -673,20 +645,10 @@ paths:
                       description: |
                         The result of the Owner Verification.
                       example: VERIFIED
-                    ordered_at:
-                      type: string
-                      description: >
-                        Timestamp of the transaction hash report.
-
-                        This field must follow the UTC ISO 8601 datetime
-                        representation standard.
-                      example: '2025-04-21T04:16:01.339Z'
                     tx_hash:
                       type: string
-                      description: >
-                        Unique identifier of the transaction. If the value of
-                        **reported_result** is **VERIFIED**, this field must be
-                        required.
+                      description: |
+                        Unique identifier of the transaction.
                       example: >-
                         8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                     vout:
@@ -720,14 +682,30 @@ paths:
                         This field provides a detailed explanation of the reason
                         for verification failure.
                       example: Transfer Error
+                    ordered_at:
+                      type: string
+                      description: >
+                        Timestamp of the transaction hash report.
+
+                        This field must follow the UTC ISO 8601 datetime
+                        representation standard.
+                      example: '2025-04-21T04:16:01.339Z'
+                    result_reported_at:
+                      type: string
+                      description: >
+                        Timestamp of the verification result report.
+
+                        This field must follow the UTC ISO 8601 datetime
+                        representation standard.
+                      example: '2025-04-21T04:16:01.339Z'
             examples:
-              requestExamples:
+              Request Example:
                 value:
-                  callbackType: OWNER_VERIFICATION_RESULT
+                  callbackType: OWNER_VERIFICATION_RESULT_REPORT
                   data:
-                    requestId: ac2ae3a1-2468-43c7-b881-75cf310b5a56
-                    verificationResult: VERIFIED
-                    verifiedAt: '2021-09-27T01:48:40.000Z'
+                    request_id: ac2ae3a1-2468-43c7-b881-75cf310b5a56
+                    result: VERIFIED
+                    result_reported_at: '2021-09-27T01:48:40.000Z'
       responses:
         '200':
           description: 200 Response
@@ -773,7 +751,7 @@ paths:
                     as defined in the Enclave environment variables.
                   example: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   inputKey: Y9uIJCLAkzVi2XYZrUDmBYJp3szXlJIUwfLfbLsVeHU=
       responses:
