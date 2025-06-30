@@ -180,7 +180,7 @@ paths:
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                              - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                           example: '2024-11-25T15:30:00.000Z'
                         updatedAt:
                           type: string
@@ -197,7 +197,7 @@ paths:
                               
                             Other ISO 8601 Acceptable Formats:
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                              - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                           example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -337,7 +337,7 @@ paths:
                               items:
                                 type: string
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   keyType: PerVasp
                   beneficiaryVaspId: '15952089931162060684'
@@ -401,7 +401,7 @@ paths:
                       and clearly specifies the UTC timezone.   Other ISO 8601
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
               examples:
                 Verified Example:
@@ -649,7 +649,7 @@ paths:
                         and clearly specifies the UTC timezone.   Other ISO 8601
                         Acceptable Formats:  
                           - Basic format("YYYYMMDDThhmmss.sssZ")    
-                          - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                          - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                       example: '2024-11-25T15:30:00.000Z'
                 requiredBeneficiaryInfo:
                   type: string
@@ -891,7 +891,7 @@ paths:
                               items:
                                 type: string
             examples:
-              requestexamples:
+              Request Example:
                 summary: example of a verification request
                 description: >
                   A complete example of a request for user account verification,
@@ -967,7 +967,7 @@ paths:
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -1228,9 +1228,14 @@ paths:
                             - UNKNOWN-NETWORK
                             - UNKNOWN-ADDRESS
                             - MISMATCHED-NAME
-                            - UNDEFINED-ERROR
+                            - LACK-OF-INFORMATION
+                            - UNAVAILABLE-INFORMATION
                             - BLACKLISTED
                             - UNVERIFIED-KYC
+                            - NOT-ALLOWED
+                            - BENEFICIARY-ACCOUNT-NOT-MATCHED
+                            - REQUEST-TIMEOUT
+                            - UNDEFINED-ERROR
                           description: >
                             This field provides the reason for verification
                             failure.
@@ -1309,7 +1314,7 @@ paths:
                                 milliseconds and clearly specifies the UTC
                                 timezone.   Other ISO 8601 Acceptable Formats:  
                                   - Basic format("YYYYMMDDThhmmss.sssZ")    
-                                  - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                                  - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                               example: '2024-11-25T15:30:00.000Z'
                         txHash:
                           type: string
@@ -1344,7 +1349,8 @@ paths:
                           description: |
                             OriginatingVASP Type written in IVMS101 format.
                           example: >-
-                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
+                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"Test
+                            VASP","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
                             "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}
                         beneficiaryVaspId:
                           type: string
@@ -1367,7 +1373,8 @@ paths:
                           description: |
                             BeneficiaryVASP Type written in IVMS101 format.
                           example: >-
-                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
+                            {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"Test
+                            VASP","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
                             "Teheran-ro",
                             "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}
                         verifiedAt:
@@ -1386,7 +1393,7 @@ paths:
                             milliseconds and clearly specifies the UTC
                             timezone.   Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                              - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                           example: '2024-11-25T15:30:00.000Z'
                         orderedAt:
                           type: string
@@ -1405,7 +1412,7 @@ paths:
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                              - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                           example: '2024-11-25T15:30:00.000Z'
                         createdAt:
                           type: string
@@ -1424,7 +1431,7 @@ paths:
                               
                             Other ISO 8601 Acceptable Formats:  
                               - Basic format("YYYYMMDDThhmmss.sssZ")  
-                              - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                              - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                           example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -1583,9 +1590,14 @@ paths:
                       - UNKNOWN-NETWORK
                       - UNKNOWN-ADDRESS
                       - MISMATCHED-NAME
-                      - UNDEFINED-ERROR
+                      - LACK-OF-INFORMATION
+                      - UNAVAILABLE-INFORMATION
                       - BLACKLISTED
                       - UNVERIFIED-KYC
+                      - NOT-ALLOWED
+                      - BENEFICIARY-ACCOUNT-NOT-MATCHED
+                      - REQUEST-TIMEOUT
+                      - UNDEFINED-ERROR
                     description: |
                       This field provides the reason for verification failure.
                     example: UNKNOWN-ADDRESS
@@ -1662,7 +1674,7 @@ paths:
                           milliseconds and clearly specifies the UTC timezone.  
                           Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")    
-                            - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                            - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                         example: '2024-11-25T15:30:00.000Z'
                   txHash:
                     type: string
@@ -1696,7 +1708,8 @@ paths:
                     description: |
                       OriginatingVASP Type written in IVMS101 format.
                     example: >-
-                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest1","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
+                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"Test
+                      VASP","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["Gangnam-gu",
                       "Gangbuck-do","abc"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"983746561","nationalIdentifierType":"RAID","registrationAuthority":"RA000025"}}}
                   beneficiaryVaspId:
                     type: string
@@ -1719,7 +1732,8 @@ paths:
                     description: |
                       BeneficiaryVASP Type written in IVMS101 format.
                     example: >-
-                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"perftest2","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
+                      {"legalPerson":{"name":{"nameIdentifier":[{"legalPersonName":"Test
+                      VASP","legalPersonNameIdentifierType":"LEGL"}]},"geographicAddress":[{"addressType":"GEOG","postcode":"13525","townName":"Yeoksam-dong","addressLine":["14",
                       "Teheran-ro",
                       "4-gil","Gangnam-gu"],"country":"AF"}],"nationalIdentification":{"nationalIdentifier":"7612873123","nationalIdentifierType":"RAID","registrationAuthority":"RA000073"}}}
                   verifiedAt:
@@ -1738,7 +1752,7 @@ paths:
                       and clearly specifies the UTC timezone.   Other ISO 8601
                       Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
                   orderedAt:
                     type: string
@@ -1756,7 +1770,7 @@ paths:
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
                   createdAt:
                     type: string
@@ -1774,7 +1788,7 @@ paths:
                         
                       Other ISO 8601 Acceptable Formats:  
                         - Basic format("YYYYMMDDThhmmss.sssZ")  
-                        - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                        - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                     example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -1881,7 +1895,7 @@ paths:
                     Index of the output in a Bitcoin blockchain transaction.
                   example: '2'
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                   txHash: >-
@@ -1899,8 +1913,8 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: >-
-                      A boolean indicating the reporting status.  Always it is
+                    description: >
+                      A boolean indicating the reporting status. Always it is
                       true.
                     example: true
               examples:
@@ -1973,9 +1987,12 @@ paths:
                     - UNKNOWN-NETWORK
                     - UNKNOWN-ADDRESS
                     - MISMATCHED-NAME
-                    - UNDEFINED-ERROR
+                    - LACK-OF-INFORMATION
+                    - UNAVAILABLE-INFORMATION
                     - BLACKLISTED
                     - UNVERIFIED-KYC
+                    - NOT-ALLOWED
+                    - UNDEFINED-ERROR
                   description: |
                     This field provides the reason for verification failure.
                   example: UNKNOWN-ADDRESS
@@ -1993,7 +2010,7 @@ paths:
                     standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   result: DENIED
                   reason: UNKNOWN-ADDRESS
@@ -2011,8 +2028,8 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: >-
-                      A boolean indicating the reporting status.  Always it is
+                    description: >
+                      A boolean indicating the reporting status. Always it is
                       true.
                     example: true
               examples:
@@ -2074,7 +2091,7 @@ paths:
                     standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
@@ -2112,7 +2129,7 @@ paths:
                         
                         **PROCESSING**:The virtual asset transaction has been initiated and is awaiting mining.  
                                       
-                        **WAIT-CONFIR**: The transaction has been mined but the block containing it has not achieved finality.  
+                        **WAIT-CONFIRM**: The transaction has been mined but the block containing it has not achieved finality.  
                         
                         **CONFIRMED**: The virtual asset transaction has been mined, and the block containing the transaction has achieved finality.  
                         
@@ -2198,7 +2215,7 @@ paths:
                     standard.
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
       responses:
@@ -2230,7 +2247,7 @@ paths:
                       counterpartyVaspId:
                         type: string
                         description: |
-                          Unique identifer of the counterparty VASP.
+                          Unique identifier of the counterparty VASP.
                         example: '15952089931162059995'
                       direction:
                         type: string
@@ -2251,10 +2268,10 @@ paths:
                         example: '0xBb3fd383d1C5540E52EF0A7bcb9433375793aEAF'
                       status:
                         type: string
-                        description: |-
+                        description: |
                           Result of risk assessment.
                             - NOHIT : The address is not subject to sanction.
-                            - SANCTION : The address is subject to sanction.
+                            - SANCTION : The address is subject to sanctions.
                         example: NOHIT
                       createdAt:
                         type: string
@@ -2272,7 +2289,7 @@ paths:
                             
                           Other ISO 8601 Acceptable Formats:  
                             - Basic format("YYYYMMDDThhmmss.sssZ")  
-                            - Format with desiganted timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
+                            - Format with designated timezone("YYYY-MM-DDThh:mm:ss±hh:mm")
                         example: '2024-11-25T15:30:00.000Z'
               examples:
                 Successful Example:
@@ -2371,12 +2388,12 @@ paths:
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 network:
                   type: string
-                  description: >-
+                  description: >
                     The network of the virtual asset to be transferred.   The
-                    network field can be implemented conditionally.
+                    network field can be implemented conditionally. 
                   example: Ethereum
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: 8557f2b2-985e-431f-8d52-75c2e5a01e46
                   network: Ethereum
@@ -2493,7 +2510,7 @@ paths:
                   example: 4bc03a8f-5679-4358-815c-906aae5557f4
                 payload:
                   type: object
-                  description: >-
+                  description: >
                     If your VASP obtains additional information about the
                     originator or beneficiary, it can be entered in the IVMS101
                     format.
@@ -2720,7 +2737,7 @@ paths:
                               items:
                                 type: string
             examples:
-              requestexamples:
+              Request Example:
                 value:
                   verificationUuid: d63398e3-c806-4300-bd99-170b54642080
                   payload:
@@ -2734,8 +2751,8 @@ paths:
                                   - primaryIdentifier: James
                                     nameIdentifierType: LEGL
                               dateAndPlaceOfBirth:
-                                dateOfBirth: '1981-04-23'
-                                placeOfBirth: Tokyo
+                                - dateOfBirth: '1981-04-23'
+                                  placeOfBirth: Tokyo
                         accountNumber:
                           - '0xb0bFf9721871e22653358956cf59a5FdBF3D752F'
       responses:
