@@ -86,6 +86,518 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 
 환경 변수에 대한 목적, 기본값, 설정 방법을 요약한 표는 다음과 같습니다. 환경 변수의 이름은 **반드시 변경 없이 그대로** 사용하십시오.
 
+<HTMLBlock>{`
+<style>
+.enclave-env-table {
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.enclave-env-table th,
+.enclave-env-table td {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 12px;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.enclave-env-table th {
+  text-align: left;
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+</style>
+<Table align={["left","left","left"]} class="enclave-env-table">
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Variable Name
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Default Value
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_SERVER_PORT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        21117
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave 서버 포트 번호.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_ENCLAVE_MODE\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave의 구동모드.
+        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
+
+        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
+
+        **사용 가능한 모드 값** : \`TR\`, \`VN2\`, \`VN1_CALL\`, \`VN1_RESPONSE\`
+
+        (ex) \`VEGA_ENCLAVE_MODE=TR,VN2\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_ENCLAVE_PUBLIC_ENDPOINT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave 서버의 Public Endpoint URL.\
+        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
+
+        \`https://api.vasp.com/enclave\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_ALLIANCE_ACCESS_KEY\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        VerifyVASP API Access Key.\
+        온보딩 시 발급받은 값을 입력합니다.
+
+        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_ALLIANCE_SECRET_KEY\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        VerifyVASP API Secret Key.\
+        온보딩 시 발급받은 값을 입력합니다.
+
+        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_CLIENT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`mysql2\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave 데이터베이스의 DBMS 유형.\
+        **사용 가능한 값**: \`pg\`, \`mysql\`, \`mysql2\`, \`oracledb\`, \`mssql\`
+
+        **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_USERNAME\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Database user name.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_PASSWORD\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Database password.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_HOST\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 연동을 위한 Host URL.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_PORT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`3306\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 포트 번호.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_DB\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`verifyvasp\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 DB 이름.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SEARCH_PATH\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`enclave\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Custom schema 이름(PostgreSQL 케이스에 한함).
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_POOL_MIN\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`0\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        최소 데이터베이스 Connection Pool 크기.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_POOL_MAX\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`5\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        최대 데이터베이스 Connection Pool 크기.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`false\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결 사용 여부\
+        (사용시 \`true\`로 설정)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_CA\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_KEY\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_CERT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_CAPATH\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_CIPHER\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결을 위한 암호화 방식
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`true\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`VerifyName\`\
+        VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_VERIFICATION_VERIFY_NAME_  
+                TRANSACTION_API_PATH\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`VerifyName\`\
+        VASP API 호출을 위한 VerifyName [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_VERIFICATION_CALLBACK_API_PATH\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        [Callback API](ref:verifyname-callback) Endpoint.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_VERIFICATION_AUTHORIZATION_TOKEN\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        VASP API 호출시 사용할 인증 token 값.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_VERIFICATION_AUTHORIZATION_KEY\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        VASP API 호출시 인증 헤더 Key 값. 미설정시 \`Authorization\` 헤더 사용.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_API_ENDPOINT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        VerifyVASP Central API Server Endpoint.
+
+        * PRD (KR): \`https://api-kr.vega-protocol.com\`
+        * PRD (Global): \`https://api.vega-protocol.com\`
+        * STG (KR): \`https://api-kr.vega-protocol.xyz\`
+        * STG (Global): \`https://api.vega-protocol.xyz\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_LOG_LEVEL\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`info\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Log level.\
+        **사용 가능한 값**:\`none\`, \`error\`, \`warn\`, \`info\`, \`debug\`
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_PUBLIC_KEY_TTL\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \`1800000\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        상대 VASP의 공개키 캐싱 TTL(ms).\
+        기본 1800000 (30분), 최소 600000 (10분)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_DECRYPT_API_ENDPOINT\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave 데이터베이스 암호화 [대칭키 조회를 위한 API](ref:verifyname-get-decrypted-enckey) Path.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        \`VEGA_ENCRYPTION_KEY_BASE64\`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        –
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
+        **관련 링크**: [Database Management API](ref:verifyname-get-decrypted-enckey)
+      </td>
+    </tr>
+  </tbody>
+</Table>
+`}</HTMLBlock>
+
+<br />
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -436,7 +948,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-        TRANSACTION_API_PATH`
+                TRANSACTION_API_PATH`
       </td>
 
       <td>
