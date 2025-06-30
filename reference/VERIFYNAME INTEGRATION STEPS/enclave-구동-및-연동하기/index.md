@@ -130,7 +130,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 
 .enclave-env-table td.code-col code.long-var2 {
   letter-spacing: -0.4px;
-  transform: scaleX(0.9);
+  transform: scaleX(0.92);
   transform-origin: left center;
   display: inline-block;
   vertical-align: baseline;
@@ -158,12 +158,10 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_ENCLAVE_MODE</code></td>
       <td></td>
       <td>
-        Enclave의 구동모드.
+        Enclave의 구동모드.<br>
         Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.<br>
         단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.<br>
-
-        **사용 가능한 모드 값** : <code>TR</code>, <code>VN2</code>, <code>VN1_CALL</code>, <code>VN1_RESPONSE</code>
-
+        <b>사용 가능한 모드 값</b> : <code>TR</code>, <code>VN2</code>, <code>VN1_CALL</code>, <code>VN1_RESPONSE</code><br>
         (ex) <code>VEGA_ENCLAVE_MODE=TR,VN2</code>
       </td>
     </tr>
@@ -172,8 +170,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_ENCLAVE_PUBLIC_ENDPOINT</code></td>
       <td>–</td>
       <td>
-        Enclave 서버의 Public Endpoint URL.\
-        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
+        Enclave 서버의 Public Endpoint URL.<br>
+        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.<br>
 
         <code>https://api.vasp.com/enclave</code>
       </td>
@@ -183,10 +181,10 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_ALLIANCE_ACCESS_KEY</code></td>
       <td>–</td>
       <td>
-        VerifyVASP API Access Key.\
-        온보딩 시 발급받은 값을 입력합니다.
+        VerifyVASP API Access Key.<br>
+        온보딩 시 발급받은 값을 입력합니다.<br>
 
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+        <b>관련 링크</b>: [Onboarding](ref:onboarding-copy)
       </td>
     </tr>
 
@@ -194,10 +192,10 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_ALLIANCE_SECRET_KEY</code></td>
       <td>–</td>
       <td>
-        VerifyVASP API Secret Key.\
-        온보딩 시 발급받은 값을 입력합니다.
+        VerifyVASP API Secret Key.<br>
+        온보딩 시 발급받은 값을 입력합니다.<br>
 
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+        <b>관련 링크</b>: [Onboarding](ref:onboarding-copy)
       </td>
     </tr>
 
@@ -205,10 +203,10 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_DATABASE_CLIENT</code></td>
       <td><code>mysql2</code></td>
       <td>
-        Enclave 데이터베이스의 DBMS 유형.\
-        **사용 가능한 값**: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code>
+        Enclave 데이터베이스의 DBMS 유형.<br>
+        <b>사용 가능한 값</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br>
 
-        **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
+        <b>관련 링크</b>: [Enclave Database Setup](ref:enclave-데이터베이스-생성)
       </td>
     </tr>
 
@@ -264,7 +262,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_DATABASE_SSL</code></td>
       <td><code>false</code></td>
       <td>
-        데이터베이스 SSL 연결 사용 여부\
+        데이터베이스 SSL 연결 사용 여부<br>
         (사용시 <code>true</code>로 설정)
       </td>
     </tr>
@@ -309,8 +307,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code>\
-        VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 [Verify Name API](ref:verifyname-request-verification) Endpoint.
       </td>
     </tr>
 
@@ -318,8 +315,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code>\
-        VASP API 호출을 위한 VerifyName [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
+        <code>VerifyName</code> VASP API 호출을 위한 [Check Transaction Status API](ref:verifyname-transaction) Endpoint.
       </td>
     </tr>
 
@@ -345,7 +341,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_API_ENDPOINT</code></td>
       <td>–</td>
       <td>
-        VerifyVASP Central API Server Endpoint.
+        VerifyVASP Central API Server Endpoint.<br>
 
         * PRD (KR): <code>https://api-kr.vega-protocol.com</code>
         * PRD (Global): <code>https://api.vega-protocol.com</code>
@@ -358,8 +354,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_LOG_LEVEL</code></td>
       <td><code>info</code></td>
       <td>
-        Log level.\
-        **사용 가능한 값**:<code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>
+        Log level.<br>
+        <b>사용 가능한 값</b>:<code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>
       </td>
     </tr>
 
@@ -367,7 +363,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_PUBLIC_KEY_TTL</code></td>
       <td><code>1800000</code></td>
       <td>
-        상대 VASP의 공개키 캐싱 TTL(ms).\
+        상대 VASP의 공개키 캐싱 TTL(ms).<br>
         기본 1800000 (30분), 최소 600000 (10분)
       </td>
     </tr>
@@ -382,8 +378,8 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
       <td class="code-col"><code>VEGA_ENCRYPTION_KEY_BASE64</code></td>
       <td>–</td>
       <td>
-        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
-        **관련 링크**: [Database Management API](ref:verifyname-get-decrypted-enckey)
+        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.<br>
+        <b>관련 링크</b>: [Database Management API](ref:verifyname-get-decrypted-enckey)
       </td>
     </tr>
   </tbody>
@@ -742,7 +738,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     <tr>
       <td>
         `VEGA_VERIFICATION_VERIFY_NAME_  
-                                                                                        TRANSACTION_API_PATH`
+                                                                                                TRANSACTION_API_PATH`
       </td>
 
       <td>
