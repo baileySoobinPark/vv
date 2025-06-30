@@ -111,7 +111,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
 }
   
 .enclave-env-table td.code-col {
-  width: 355px;
+  width: 300px;
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,7 +142,7 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
   <thead>
     <tr>
       <th>Variable Name</th>
-      <th>Default Value</th>
+      <th width=120px>Default Value</th>
       <th>Description</th>
     </tr>
   </thead>
