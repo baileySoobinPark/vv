@@ -43,6 +43,6 @@ Robot VASP와 테스트넷을 이용해 실제 가상 자산을 전송하는 테
 
 <br />
 
-#### 5. 자산 전송 테스트는 Ethereum Sepolia 및 Ripple Testnet에서만 수행 가능합니다.
+#### 5. 자산 전송 테스트는 Ethereum Sepolia, Ethereum Holesky 및 Ripple Testnet에서만 수행 가능합니다.
 
 * 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
