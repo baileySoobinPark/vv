@@ -111,7 +111,7 @@ metadata:
   * **testnet**: Ethereum Sepolia, Ripple testnet
 </Accordion>
 
-<Accordion title="RobotVASP SG" icon="fa-info-circle">
+<Accordion title="RobotVASP Global" icon="fa-info-circle">
   Global 지역의 RobotVASP 입니다.
 
   ### 정보
