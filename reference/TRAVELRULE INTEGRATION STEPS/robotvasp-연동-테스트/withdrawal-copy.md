@@ -97,6 +97,34 @@ metadata:
 
 테스트의 사용할 가상의 사용자 정보는 아래와 같습니다. 이 정보는 수신 VASP로 동작하는 Robot VASP에 미리 저장되어 있어 검증이 가능한 정보입니다.
 
+<Accordion title="RobotVASP KR" icon="fa-info-circle">
+  KR 지역의 RobotVASP 입니다.
+
+  ### 정보
+
+  * **url**: [https://api-kr.verifyvasp.xyz/vega/robot](https://api-kr.verifyvasp.xyz/vega/robot)
+
+  * **이름**: RobotVASP KR
+
+  * **vaspId**: 4855741808338010592
+
+  * **testnet**: Ethereum Sepolia, Ripple testnet
+</Accordion>
+
+<Accordion title="RobotVASP SG" icon="fa-info-circle">
+  Global 지역의 RobotVASP 입니다.
+
+  ### 정보
+
+  * **url**: [https://api.verifyvasp.xyz/vega/robot](https://api.verifyvasp.xyz/vega/robot)
+
+  * **이름**: RobotVASP
+
+  * **vaspId**: 17104899575711300402
+
+  * **testnet**: Ethereum Holesky, Ripple testnet
+</Accordion>
+
 <Accordion title="User 1(KYC 인증을 완료한 개인 사용자)">
   아래의 정보를 정확하게 입력하였다면 Robot VASP가 `VERIFIED`를 반환합니다.
 
@@ -164,7 +192,7 @@ metadata:
 * **조건**
   * STG Endpoint로 구동한 Enclave API 중 [VASP List API](ref:travelrule-list-vasp-ids)를 호출하여 Robot VASP 정보를 조회합니다.
 * **기대 결과**
-  * API 호출 응답에서 Robot VASP 정보를 확인할 수 있습니다. (vaspId 포함)
+  * API 호출 응답에서 vaspId를 포함한 Robot VASP 정보를 확인할 수 있습니다.
 
 <br />
 
