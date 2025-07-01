@@ -623,7 +623,7 @@ paths:
                 data:
                   type: object
                   required:
-                    - request_Id
+                    - request_id
                   description: |
                     An object containing Callback Data.
                   properties:
