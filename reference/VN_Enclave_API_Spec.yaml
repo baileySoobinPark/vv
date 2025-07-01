@@ -150,12 +150,12 @@ paths:
                         protocol:
                           - TRAVEL-RULE
                         legalName: A Exchange
-                        jurisdiction: Singapore
-                        country: Singapore
+                        jurisdiction: Republic Of Korea
+                        country: Republic Of Korea
                         licensedStatus: Regulated
                         countryCode: KR
                         vendor: VERIFYVASP
-                        vaspStatus: INTEROPERATED
+                        vaspStatus: VERIFIED-MEMBER
                       - vaspId: '15952089931162060683'
                         vaspName: B Exchange
                         protocol:
@@ -312,9 +312,8 @@ paths:
                           example: PerVasp
                         vasp_id:
                           type: string
-                          description: >
-                            Unique identifier of Originator or Beneficiary
-                            VASP..
+                          description: |
+                            Unique identifier of counterparty VASP.
                           example: '15952089931162060684'
                         type:
                           type: string
@@ -385,7 +384,7 @@ paths:
                                       type: string
                                       description: |
                                         The first name of the Owner.
-                                      example: JHON
+                                      example: JOHN
                                     last_name:
                                       type: string
                                       description: |
@@ -497,7 +496,7 @@ paths:
                                       type: string
                                       description: |
                                         The first name of the Owner.
-                                      example: JHON
+                                      example: JOHN
                                     last_name:
                                       type: string
                                       description: |
@@ -585,9 +584,9 @@ paths:
                                             Registration Number
                                           example: ISO17442
             examples:
-              requestExamples:
+              Request Example:
                 value:
-                  supplementarty_data:
+                  supplementary_data:
                     envelope:
                       vasp_id: '15952089931162060684'
                       type: VerifyBeneficiary
@@ -686,7 +685,7 @@ paths:
               examples:
                 Successful Example:
                   value:
-                    requset_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
+                    request_id: 5be3c01e-2f3f-4536-a662-6c58f0465c57
                     verification_results:
                       ticker: MATCHED
                       network: MATCHED
@@ -697,7 +696,7 @@ paths:
                       birth_date: MATCHED
                       date_of_incorporation: SKIPPED
                       organisation_identification: SKIPPED
-                    verifiedAt: '2022-03-03T12:45:34.085Z'
+                    verified_at: '2022-03-03T12:45:34.085Z'
         '400':
           description: Error Response of Verification API
           content:
@@ -796,9 +795,8 @@ paths:
           in: query
           schema:
             type: string
-            description: >
-              Unique identifier of the transaction. If the value of
-              **VerifyOriginator** is **type**, this field must be required.
+            description: |
+              Unique identifier of the transaction.
             example: 8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
         - name: address
           in: query
@@ -813,7 +811,7 @@ paths:
           schema:
             type: string
             description: |
-              The Vasp ID for the Onwer Verification request.
+              The Vasp ID for the Owner Verification request.
             example: '17624187478910414848'
         - name: response_vasp_id
           in: query
@@ -821,7 +819,7 @@ paths:
           schema:
             type: string
             description: |
-              The Vasp ID for the Onwer Verification response.
+              The Vasp ID for the Owner Verification response.
             example: '17624187478910414848'
         - name: request_id
           in: query
@@ -855,13 +853,13 @@ paths:
               transaction, such as Bitcoin, an index value indicating which
               transfer corresponds to within a single transaction
             example: '0'
-        - name: reported_result
+        - name: result
           in: query
           required: false
           schema:
             type: string
             description: |
-              The result of the verification.   The default value is "VERIFIED".
+              The result of the verification.
             enum:
               - VERIFIED
               - DENIED
@@ -940,7 +938,7 @@ paths:
                     items:
                       type: object
                       required:
-                        - request_Id
+                        - request_id
                         - type
                         - request_vasp_id
                         - response_vasp_id
@@ -961,7 +959,7 @@ paths:
                         - updated_at
                         - created_at
                       properties:
-                        request_Id:
+                        request_id:
                           type: string
                           description: >
                             A unique identifier for the Owner Verification
@@ -981,12 +979,12 @@ paths:
                         request_vasp_id:
                           type: string
                           description: |
-                            The Vasp ID for the Onwer Verification request.
+                            The Vasp ID for the Owner Verification request.
                           example: '17624187478910414848'
                         response_vasp_id:
                           type: string
                           description: |
-                            The Vasp ID for the Onwer Verification response.
+                            The Vasp ID for the Owner Verification response.
                           example: '17624187471232452134'
                         results:
                           type: object
@@ -1064,14 +1062,14 @@ paths:
                                 The result of the Organisation Identification
                                 verification.
                               example: 'SKIPPED '
-                        reported_result:
+                        result:
                           type: string
                           enum:
                             - VERIFIED
                             - DENIED
                             - ERROR
                           description: |
-                            The result of the Owner Verification.
+                            The final result of the Owner Verification.
                           example: VERIFIED
                         reason:
                           type: string
@@ -1091,7 +1089,7 @@ paths:
                             failure.
 
                             It's required when returning `DENIED` or `ERROR` as
-                            the `verification_result`.
+                            the `result`.
                           example: MISMATCH-TICKER
                         message:
                           type: string
@@ -1153,6 +1151,7 @@ paths:
                             - REPORTED
                             - INQUIRED
                             - ERROR
+                            - DONE
                           example: REQUESTED
                         verified_at:
                           type: string
@@ -1167,6 +1166,14 @@ paths:
                           type: string
                           description: >
                             Timestamp of the transaction hash report.
+
+                            This field must follow the UTC ISO 8601 datetime
+                            representation standard.
+                          example: '2025-04-21T04:16:01.339Z'
+                        result_reported_at:
+                          type: string
+                          description: >
+                            Timestamp of the final result report.
 
                             This field must follow the UTC ISO 8601 datetime
                             representation standard.
@@ -1223,6 +1230,7 @@ paths:
                         status: REPORTED
                         verified_at: '2022-03-03T12:45:34.085Z'
                         ordered_at: '2022-03-03T12:45:34.085Z'
+                        result_reported_at: '2022-03-03T12:45:34.085Z'
                         created_at: '2022-03-03T12:45:34.085Z'
                         updated_at: '2022-03-03T12:45:34.085Z'
         '408':
@@ -1276,7 +1284,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - request_Id
+                  - request_id
                   - type
                   - request_vasp_id
                   - response_vasp_id
@@ -1297,7 +1305,7 @@ paths:
                   - updated_at
                   - created_at
                 properties:
-                  request_Id:
+                  request_id:
                     type: string
                     description: >
                       A unique identifier for the Owner Verification request.
@@ -1316,12 +1324,12 @@ paths:
                   request_vasp_id:
                     type: string
                     description: |
-                      The Vasp ID for the Onwer Verification request.
+                      The Vasp ID for the Owner Verification request.
                     example: '17624187478910414848'
                   response_vasp_id:
                     type: string
                     description: |
-                      The Vasp ID for the Onwer Verification response.
+                      The Vasp ID for the Owner Verification response.
                     example: '17624187471232452134'
                   results:
                     type: object
@@ -1398,14 +1406,14 @@ paths:
                           The result of the Organisation Identification
                           verification.
                         example: 'SKIPPED '
-                  reported_result:
+                  result:
                     type: string
                     enum:
                       - VERIFIED
                       - DENIED
                       - ERROR
                     description: |
-                      The result of the Owner Verification.
+                      The final result of the Owner Verification.
                     example: VERIFIED
                   reason:
                     type: string
@@ -1424,7 +1432,7 @@ paths:
                       This field provides the reason for verification failure.
 
                       It's required when returning `DENIED` or `ERROR` as the
-                      `verification_result`.
+                      `result`.
                     example: MISMATCH-TICKER
                   message:
                     type: string
@@ -1486,6 +1494,7 @@ paths:
                       - REPORTED
                       - INQUIRED
                       - ERROR
+                      - DONE
                     example: REQUESTED
                   verified_at:
                     type: string
@@ -1499,6 +1508,14 @@ paths:
                     type: string
                     description: >
                       Timestamp of the transaction hash report.
+
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+                  result_reported_at:
+                    type: string
+                    description: >
+                      Timestamp of the final result report.
 
                       This field must follow the UTC ISO 8601 datetime
                       representation standard.
@@ -1550,6 +1567,7 @@ paths:
                     status: REPORTED
                     verified_at: '2022-03-03T12:45:34.085Z'
                     ordered_at: '2022-03-03T12:45:34.085Z'
+                    result_reported_at: '2022-03-03T12:45:34.085Z'
                     created_at: '2022-03-03T12:45:34.085Z'
                     updated_at: '2022-03-03T12:45:34.085Z'
         '404':
@@ -1605,110 +1623,101 @@ paths:
               schema:
                 type: object
                 properties:
-                  vaspId:
-                    type: object
-                    required:
-                      - transaction_status
-                    properties:
-                      transaction_status:
-                        type: string
-                        enum:
-                          - PENDING
-                          - PROCESSING
-                          - WAIT-CONFIRM
-                          - CONFIRMED
-                          - CALCENED
-                        description: >
-                          Current status of the virtual asset transaction.
+                  transaction_status:
+                    type: string
+                    enum:
+                      - PENDING
+                      - PROCESSING
+                      - WAIT-CONFIRM
+                      - CONFIRMED
+                      - CANCELED
+                    description: >
+                      Current status of the virtual asset transaction.
 
 
-                          Details of each state:
+                      Details of each state:
 
-                          - **PENDING**: The Originating VASP has not yet
-                          executed the virtual asset transaction.
+                      - **PENDING**: The Originating VASP has not yet executed
+                      the virtual asset transaction.
 
-                          - **PROCESSING**:The virtual asset transaction has
-                          been initiated and is awaiting mining.
+                      - **PROCESSING**:The virtual asset transaction has been
+                      initiated and is awaiting mining.
 
-                          - **WAIT-CONFIRM**: The transaction has been mined but
-                          the block containing it has not achieved finality.
+                      - **WAIT-CONFIRM**: The transaction has been mined but the
+                      block containing it has not achieved finality.
 
-                          - **CONFIRMED**: The virtual asset transaction has
-                          been mined, and the block containing the transaction
-                          has achieved finality.
+                      - **CONFIRMED**: The virtual asset transaction has been
+                      mined, and the block containing the transaction has
+                      achieved finality.
 
-                          - **CANCELED**: The Originating VASP has permanently
-                          canceled the transaction for a specific reason.
-                        example: PROCESSING
-                      request_id:
-                        type: string
-                        description: >
-                          A unique identifier for the Owner Verification
-                          request.
+                      - **CANCELED**: The Originating VASP has permanently
+                      canceled the transaction for a specific reason.
+                    example: PROCESSING
+                  request_id:
+                    type: string
+                    description: >
+                      A unique identifier for the Owner Verification request.
 
 
-                          The format of `request_id` must follow the UUID v4
-                          standard.
-                        example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                      result:
-                        type: string
-                        enum:
-                          - VERIFIED
-                          - DENIED
-                          - ERROR
-                        description: |
-                          The result of the Owner Verification.
-                        example: VERIFIED
-                      ordered_at:
-                        type: string
-                        description: >
-                          Timestamp of the transaction hash report.
+                      The format of `request_id` must follow the UUID v4
+                      standard.
+                    example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
+                  result:
+                    type: string
+                    enum:
+                      - VERIFIED
+                      - DENIED
+                      - ERROR
+                    description: |
+                      The final result of the Owner Verification.
+                    example: VERIFIED
+                  ordered_at:
+                    type: string
+                    description: >
+                      Timestamp of the transaction hash report.
 
-                          This field must follow the UTC ISO 8601 datetime
-                          representation standard.
-                        example: '2025-04-21T04:16:01.339Z'
-                      tx_hash:
-                        type: string
-                        description: >
-                          Unique identifier of the transaction. If the value of
-                          **type** is **VerifyOriginator**, this field must be
-                          required.
-                        example: >-
-                          8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                      vout:
-                        type: string
-                        description: >
-                          In cases where multiple transfers can be included in a
-                          single transaction, such as Bitcoin, an index value
-                          indicating which transfer corresponds to within a
-                          single transaction.
-                        example: '0'
-                      reason:
-                        type: string
-                        enum:
-                          - MISMATCH-TICKER
-                          - MISMATCH-NETWORK
-                          - MISMATCH-ADDRESS
-                          - MISMATCH-NAME
-                          - MISMATCH-DTI
-                          - MISMATCH-DATE-OF-INCORPORATION
-                          - MISMATCH-BIRTH-DATE
-                          - MISMATCH-ORGANISATION-IDENTIFICATION
-                          - TRANSFER-ERROR
-                          - UNDEFINED-ERROR
-                        description: >
-                          This field provides the reason for verification
-                          failure.
+                      This field must follow the UTC ISO 8601 datetime
+                      representation standard.
+                    example: '2025-04-21T04:16:01.339Z'
+                  tx_hash:
+                    type: string
+                    description: |
+                      Unique identifier of the transaction.
+                    example: >-
+                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  vout:
+                    type: string
+                    description: >
+                      In cases where multiple transfers can be included in a
+                      single transaction, such as Bitcoin, an index value
+                      indicating which transfer corresponds to within a single
+                      transaction.
+                    example: '0'
+                  reason:
+                    type: string
+                    enum:
+                      - MISMATCH-TICKER
+                      - MISMATCH-NETWORK
+                      - MISMATCH-ADDRESS
+                      - MISMATCH-NAME
+                      - MISMATCH-DTI
+                      - MISMATCH-DATE-OF-INCORPORATION
+                      - MISMATCH-BIRTH-DATE
+                      - MISMATCH-ORGANISATION-IDENTIFICATION
+                      - TRANSFER-ERROR
+                      - UNDEFINED-ERROR
+                    description: >
+                      This field provides the reason for verification failure.
 
-                          It's required when returning `DENIED` or `ERROR` as
-                          the `verification_result`.
-                        example: MISMATCH-TICKER
-                      message:
-                        type: string
-                        description: >
-                          This field provides a detailed explanation of the
-                          reason for verification failure.
-                        example: Transfer Error
+                      It's required when returning `DENIED` or `ERROR` as the
+                      `result`.
+                    example: MISMATCH-TICKER
+                  message:
+                    type: string
+                    description: >
+                      This field provides a detailed explanation of the reason
+                      for verification failure.
+                    example: Transfer Error
               examples:
                 Successful Example:
                   value:
@@ -1777,9 +1786,8 @@ paths:
                     - VERIFIED
                     - DENIED
                     - ERROR
-                  description: >
-                    The result of the owner verification with the type
-                    VerifyBeneficiary.
+                  description: |
+                    The final result of the owner verification.
                   example: VERIFIED
                 reason:
                   type: string
@@ -1798,9 +1806,8 @@ paths:
                     This field provides the reason when the verification result
                     is DENIED or ERROR.
 
-                    This field is mandatory when a VASP that requested owner
-                    verification of type VerifyBeneficiary reports a result of
-                    DENIED or ERROR.
+                    This field is mandatory if the verification result is DENIED
+                    or ERROR.
                   example: MISMATCH-TICKER
                 message:
                   type: string
@@ -1809,7 +1816,7 @@ paths:
                     the reason field.
                   example: Transfer Error
             examples:
-              requestExamples:
+              Request Example:
                 value:
                   verification_result: VERIFIED
       responses:
@@ -1823,7 +1830,7 @@ paths:
                   result:
                     type: boolean
                     description: "- A boolean indicating the reporting result.\n- It always returns\_**true**.\n"
-                    example: true
+                    example: 'true'
               examples:
                 Successful Example:
                   value:
@@ -1909,10 +1916,8 @@ paths:
               properties:
                 tx_hash:
                   type: string
-                  description: >
-                    Unique identifier of the transaction. If the value of
-                    **type** is **VerifyOriginator**, this field must be
-                    required.
+                  description: |
+                    Unique identifier of the transaction.
                   example: >-
                     8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
                 vout:
@@ -1924,11 +1929,10 @@ paths:
                     transaction.
                   example: '0'
             examples:
-              requestExamples:
+              Request Example:
                 value:
-                  txHash: >-
+                  tx_hash: >-
                     8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                  vout: 0
       responses:
         '200':
           description: Successful response
@@ -1937,17 +1941,14 @@ paths:
               schema:
                 type: object
                 properties:
-                  txHash:
-                    type: string
-                    description: |
-                      Unique identifier of the transaction.
-                    example: >-
-                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                  result:
+                    type: boolean
+                    description: "- A boolean indicating the reporting result.\n- It always returns\_**true**.\n"
+                    example: 'true'
               examples:
                 Successful Example:
                   value:
-                    txHash: >-
-                      8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
+                    result: true
         '400':
           description: Error Response of Transaction Result Report API
           content:
