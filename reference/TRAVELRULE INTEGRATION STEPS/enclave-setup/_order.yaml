@@ -3,9 +3,9 @@
 - travelrule-enclave-user-account-verification
 - travelrule-encalve-request-user-verification
 - travelrule-enclave-report-transaction-result
+- travelrule-enclave-report-error
 - travelrule-enclave-list-verification-result
 - travelrule-enclave-get-verification-result
-- travelrule-enclave-report-error
 - travelrule-enclave-check-transaction-status
 - travelrule-chainalysis-sanction
 - travelrule-chainalysis-kyt
