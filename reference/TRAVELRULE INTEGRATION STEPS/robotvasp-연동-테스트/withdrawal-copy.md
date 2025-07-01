@@ -125,7 +125,7 @@ metadata:
   * **testnet**: Ethereum Holesky, Ripple testnet
 </Accordion>
 
-<Accordion title="User 1(KYC 인증을 완료한 개인 사용자)">
+<Accordion title="User 1(KYC 인증을 완료한 개인 사용자)" icon="fa-info-circle">
   아래의 정보를 정확하게 입력하였다면 Robot VASP가 `VERIFIED`를 반환합니다.
 
   ### 개인 정보
@@ -143,7 +143,7 @@ metadata:
   **'XRP' destination tag**: `123456789`
 </Accordion>
 
-<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)">
+<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)" icon="fa-info-circle">
   아래의 정보를 정확하게 입력하여도 Robot VASP가 `DENIED`를 반환합니다.
 
   ### 개인 정보
@@ -161,7 +161,7 @@ metadata:
   **'XRP' destination tag**: `345678912`
 </Accordion>
 
-<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)">
+<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)" icon="fa-info-circle">
   대표 이름을 포함한 모든 정보를 정확하게 입력한 경우 Robot VASP가 'VERIFIED'를 반환합니다. 그러나 다른 모든 정보를 정확하게 입력하였어도 대표 이름 정보에 오류가 있는 경우, `DENIED`를 반환합니다.
 
   ### 개인 정보
