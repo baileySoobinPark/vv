@@ -123,6 +123,8 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
   ```
 </Accordion>
 
+<br />
+
 #### 3. OWNER\_VERIFICATION\_TX\_REPORT 유형 콜백 처리
 
 트랜잭션 결과 Report를 수신한 경우, 다음과 같은 후속 작업을 진행할 수 있습니다.
