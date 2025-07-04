@@ -35,8 +35,8 @@ API 호출을 받았을 경우 `request_id`와 맵핑된 트랜잭션 해시를 
 
 * 반드시 `transaction_status` 필드에 값을 반환해야 합니다.
 * 최종 판단이 결정된 경우에는 반드시 `verification_result` 필드에 그 결과 값을 반환해야 합니다.
-* 아직 최종 판단이 결정되지 않은 경우에는 `transaction status` 필드를 `PENDING`으로 반환해야 합니다.
-* 최종 판단 결과가 DENIED 혹은 ERROR로 트랜잭션을 전송하지 않기로 결정했다면 `transaction status` 필드를 `CANCELED`로 반환해야 합니다.
+* 아직 최종 판단이 결정되지 않은 경우에는 `transaction_status` 필드를 `PENDING`으로 반환해야 합니다.
+* 최종 판단 결과가 DENIED 혹은 ERROR로 트랜잭션을 전송하지 않기로 결정했다면 `transaction_status` 필드를 `CANCELED`로 반환해야 합니다.
 
 ### 환경 변수 설정
 
