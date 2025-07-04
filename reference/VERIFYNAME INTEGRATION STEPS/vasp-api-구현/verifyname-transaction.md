@@ -31,6 +31,12 @@ API 호출을 받았을 경우 `request_id`와 맵핑된 트랜잭션 해시를 
 
 이 API는 1초 이내에 응답해야 합니다.
 
+반드시 `transaction_status` 필드에 값을 반환해야 합니다.
+
+최종 판단이 결정된 경우에는 반드시 `verification_result` 필드에 그 결과값을 반환해야 합니다.
+
+아직 최종 판단이 결정되지 않은 경우에는 `transaction status` 필드를 `PENDING`으로 반환해야 합니다.
+
 ### 환경 변수 설정
 
 Enclave와의 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
