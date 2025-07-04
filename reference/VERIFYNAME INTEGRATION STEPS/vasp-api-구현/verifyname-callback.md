@@ -76,8 +76,8 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
 
-* 사전 검증 결과가 VERIFIED인 경우, 상대 VASP에서 자산 전송 트랜잭션을 수행할 것입니다.
-* 사전 검증 결과가 DENIED 또는 ERROR인 경우, 상대 VASP에서 자산 전송을 중단한 것입니다.
+* 최종 검증 결과가 VERIFIED인 경우, 상대 VASP에서 자산 전송 트랜잭션을 수행할 것입니다.
+* 최종 검증 결과가 DENIED 또는 ERROR인 경우, 상대 VASP에서 자산 전송을 중단한 것입니다.
 
 `OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
 
