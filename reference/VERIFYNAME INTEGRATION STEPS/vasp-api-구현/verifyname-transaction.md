@@ -19,13 +19,13 @@ VASP는 송신 VASP 역할을 수행할 때 VerifyName 검증 건의 요청 ID(`
 
 #### 2. 온체인 트랜잭션 상태 조회 및 응답
 
-API 호출을 받았을 경우 `request_id`와 맵핑된 트랜잭션 해시를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 결과를 `transaction_status` 필드에 아래 값 중 하나로 응답해야 합니다:
+API 호출을 받았을 경우 `request_id`와 맵핑된 트랜잭션 해시를 기준으로 온체인 트랜잭션의 실시간 상태를 조회하여 그 결과를 `transaction_status` 필드에 반드시 아래 값 중 하나로 응답해야 합니다:
 
-* `PENDING`: 아직 블록체인에 제출되지 않은 상태
-* `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
+* `PENDING`: 아직 블록체인에 트랜잭션이 제출되지 않은 상태
+* `PROCESSING`: 트랜잭션이 제출되었지만 아직 블록에 포함되지 않은 상태
 * `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
-* `CONFIRMED`: 채굴 완료 및 finality 확보된 상태
-* `CANCELED`: 제출 전 또는 후에 취소된 상태
+* `CONFIRMED`: 트랜잭션 채굴 완료 및 finality 확보된 상태
+* `CANCELED`: 트랜잭션 전송을 하지 않기로 결정했거나 영구히 취소된 상태
 
 ### 제약 사항
 
