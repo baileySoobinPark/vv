@@ -883,10 +883,12 @@ paths:
               The status of the Owner Verification.
             enum:
               - REQUESTED
-              - REPORTED
+              - RESULT-REPORTED
+              - TX-REPORTED
               - INQUIRED
+              - DONE
               - ERROR
-            example: PENDING
+            example: RESULT-REPORTED
         - name: page
           in: query
           required: false
@@ -1148,10 +1150,11 @@ paths:
                             The status of the Owner Verification.
                           enum:
                             - REQUESTED
-                            - REPORTED
+                            - RESULT-REPORTED
+                            - TX-REPORTED
                             - INQUIRED
-                            - ERROR
                             - DONE
+                            - ERROR
                           example: REQUESTED
                         verified_at:
                           type: string
@@ -1227,7 +1230,7 @@ paths:
                         address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                         tag: null
                         dti: null
-                        status: REPORTED
+                        status: TX-REPORTED
                         verified_at: '2022-03-03T12:45:34.085Z'
                         ordered_at: '2022-03-03T12:45:34.085Z'
                         result_reported_at: '2022-03-03T12:45:34.085Z'
@@ -1491,10 +1494,11 @@ paths:
                       The status of the Owner Verification.
                     enum:
                       - REQUESTED
-                      - REPORTED
+                      - RESULT-REPORTED
+                      - TX-REPORTED
                       - INQUIRED
-                      - ERROR
                       - DONE
+                      - ERROR
                     example: REQUESTED
                   verified_at:
                     type: string
@@ -1564,7 +1568,7 @@ paths:
                     address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                     tag: null
                     dti: null
-                    status: REPORTED
+                    status: TX-REPORTED
                     verified_at: '2022-03-03T12:45:34.085Z'
                     ordered_at: '2022-03-03T12:45:34.085Z'
                     result_reported_at: '2022-03-03T12:45:34.085Z'
