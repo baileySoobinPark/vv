@@ -332,7 +332,7 @@ paths:
                           description: >
                             The network of the virtual asset to be transferred.
                             The network field can be implemented conditionally.
-                          example: ETHEREUM
+                          example: Ethereum
                         address:
                           type: string
                           description: |
@@ -591,7 +591,7 @@ paths:
                       vasp_id: '15952089931162060684'
                       type: VerifyBeneficiary
                       ticker: ETH
-                      network: ETH
+                      network: Ethereum
                       address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                   creditor:
                     name: HONG KIL DONG
@@ -1125,7 +1125,7 @@ paths:
                           description: >
                             The network of the virtual asset to be transferred.
                             The network field can be implemented conditionally.
-                          example: ETHEREUM
+                          example: Ethereum
                         address:
                           type: string
                           description: |
@@ -1226,7 +1226,7 @@ paths:
                           0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
                         vout: null
                         ticker: ETH
-                        network: ETH
+                        network: Ethereum
                         address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                         tag: null
                         dti: null
@@ -1469,7 +1469,7 @@ paths:
                     description: >
                       The network of the virtual asset to be transferred. The
                       network field can be implemented conditionally.
-                    example: ETHEREUM
+                    example: Ethereum
                   address:
                     type: string
                     description: |
@@ -1564,7 +1564,7 @@ paths:
                       0x7d9e62f65468caa7023967835c760913e881a6484498d1f021b46f9b26f07df9
                     vout: null
                     ticker: ETH
-                    network: ETH
+                    network: Ethereum
                     address: '0x5811001506550d8356a215be229c15b6ef371a9b'
                     tag: null
                     dti: null
