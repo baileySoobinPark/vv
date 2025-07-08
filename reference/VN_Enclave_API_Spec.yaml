@@ -856,10 +856,17 @@ paths:
         - name: verification_result
           in: query
           required: false
-          description: ''
           schema:
             type: string
+            description: |
+              The result of the verification.
+            enum:
+              - VERIFIED
+              - DENIED
+              - ERROR
+            example: VERIFIED
             default: ''
+          description: ''
         - name: type
           in: query
           schema:
