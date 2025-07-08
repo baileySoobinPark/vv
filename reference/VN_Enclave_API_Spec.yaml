@@ -1547,7 +1547,7 @@ paths:
                     type: VerifyBeneficiary
                     request_vasp_id: '15952089931162060684'
                     response_vasp_id: '15952089931162054534'
-                    results:
+                    verification_results:
                       ticker: MATCHED
                       network: MATCHED
                       address: MATCHED
@@ -1557,7 +1557,7 @@ paths:
                       birth_date: MATCHED
                       date_of_incorporation: SKIPPED
                       organisation_identification: SKIPPED
-                    reported_result: VERIFIED
+                    verification_result: VERIFIED
                     reason: null
                     message: null
                     tx_hash: >-
