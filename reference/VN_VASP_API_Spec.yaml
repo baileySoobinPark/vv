@@ -636,7 +636,7 @@ paths:
                         The format of `request_id` must follow the UUID v4
                         standard.
                       example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                    result:
+                    verification_result:
                       type: string
                       enum:
                         - VERIFIED
