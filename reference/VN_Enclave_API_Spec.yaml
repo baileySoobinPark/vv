@@ -1211,17 +1211,6 @@ paths:
                         type: VerifyBeneficiary
                         request_vasp_id: '15952089931162060684'
                         response_vasp_id: '15952089931162054534'
-                        verification_results:
-                          ticker: MATCHED
-                          network: MATCHED
-                          address: MATCHED
-                          tx_hash: MATCHED
-                          dti: SKIPPED
-                          name: MATCHED
-                          birth_date: MATCHED
-                          date_of_incorporation: SKIPPED
-                          organisation_identification: SKIPPED
-                        verification_result: VERIFIED
                         reason: null
                         message: null
                         tx_hash: >-
@@ -1238,6 +1227,17 @@ paths:
                         result_reported_at: '2022-03-03T12:45:34.085Z'
                         created_at: '2022-03-03T12:45:34.085Z'
                         updated_at: '2022-03-03T12:45:34.085Z'
+                        verification_results:
+                          ticker: MATCHED
+                          network: MATCHED
+                          address: MATCHED
+                          tx_hash: MATCHED
+                          dti: SKIPPED
+                          name: MATCHED
+                          birth_date: MATCHED
+                          date_of_incorporation: SKIPPED
+                          organisation_identification: SKIPPED
+                        verification_result: VERIFIED
         '408':
           description: 408 Request Timeout Error response
           content:
