@@ -1732,10 +1732,10 @@ paths:
                   value:
                     transaction_status: CONFIRMED
                     request_id: ecbacf57-f813-4670-934a-5c4537fec869
-                    verification_result: VERIFIED
                     ordered_at: '2025-04-22T08:35:24.760Z'
                     tx_hash: >-
                       0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58
+                    verification_result: VERIFIED
         '408':
           description: 408 Request Timeout Error response
           content:
