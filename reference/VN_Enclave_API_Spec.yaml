@@ -853,18 +853,13 @@ paths:
               transaction, such as Bitcoin, an index value indicating which
               transfer corresponds to within a single transaction
             example: '0'
-        - name: result
+        - name: verification_result
           in: query
           required: false
+          description: ''
           schema:
             type: string
-            description: |
-              The result of the verification.
-            enum:
-              - VERIFIED
-              - DENIED
-              - ERROR
-            example: VERIFIED
+            default: ''
         - name: type
           in: query
           schema:
@@ -1209,7 +1204,7 @@ paths:
                         type: VerifyBeneficiary
                         request_vasp_id: '15952089931162060684'
                         response_vasp_id: '15952089931162054534'
-                        results:
+                        verification_results:
                           ticker: MATCHED
                           network: MATCHED
                           address: MATCHED
@@ -1219,7 +1214,7 @@ paths:
                           birth_date: MATCHED
                           date_of_incorporation: SKIPPED
                           organisation_identification: SKIPPED
-                        reported_result: VERIFIED
+                        verification_result: VERIFIED
                         reason: null
                         message: null
                         tx_hash: >-
