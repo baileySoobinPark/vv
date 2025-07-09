@@ -23,7 +23,7 @@ metadata:
 
 # 환경 변수 설정
 
-* (BREAKING CHANGE) 필수 환경변수
+* **(BREAKING CHANGE) 필수 환경변수**
   * VEGA\_ENCLAVE\_MODE=TR,VN2
     * Enclave Mode 설정이 추가되었습니다.
     * mode 는 TR, VN1\_CALL, VN1\_RESPONSE, VN2 중 하나 이상을 콤마로 연결해서 설정해야 합니다.
