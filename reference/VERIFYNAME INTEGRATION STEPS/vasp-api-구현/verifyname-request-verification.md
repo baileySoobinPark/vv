@@ -169,7 +169,11 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
           "name": {
             "first_name": "GIL DONG",
             "last_name": "HONG"
-          }
+          },
+    				"local_name": {
+          	"first_name": "길동",
+          	"last_name": "홍"
+        	}
         }
       },
       "identification": {
@@ -237,7 +241,11 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
           "name": {
             "first_name": "GIL DONG",
             "last_name": "HONG"
-          }
+          },
+    				"local_name": {
+          	"first_name": "길동",
+          	"last_name": "홍"
+        	}
         }
       },
       "identification": {
