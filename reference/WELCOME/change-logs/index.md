@@ -20,6 +20,9 @@ metadata:
   * VEGA\_ENCLAVE\_MODE=TR,VN2
     * Added support for Enclave mode configuration.
     * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
+* Added database table
+  * owner\_verifications
+    * This table is required when VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
 
 <br />
 
@@ -51,9 +54,11 @@ metadata:
 
 <br />
 
-* Added: Database Table
-  * owner\_verifications
-    * This table is required when VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
+## Version 1.5.8
+
+### Enclave
+
+* Upgraded to Node.js version 22 for increased stability and security
 
 <br />
 
