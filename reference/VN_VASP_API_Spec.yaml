@@ -409,6 +409,9 @@ paths:
                           name:
                             first_name: GIL DONG
                             last_name: HONG
+                          local_name:
+                            first_name: 길동
+                            last_name: 홍
                       identification:
                         private_identification:
                           date_and_place_of_birth:
