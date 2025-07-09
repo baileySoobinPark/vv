@@ -33,7 +33,7 @@ metadata:
     Please set VEGA_ENCLAVE_MODE. For example, TR,VN1_CALL,VN1_RESPONSE,VN2 or any combination of these.
     ```
 * “[Verify Name V2 를 위한 VASP API 구현](https://www.notion.so/Verify-Name-V2-VASP-API-22a644f6c0fe804a872bfd105980205c?pvs=21) “ 에서 VASP API 를 구현한 경우 아래 환경변수에 endpoint url 을 설정해야 합니다.
-  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://127.0.0.1:40003/vega/robot/v2.0/verify-name)"
+  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://xxx/verify-name)"
     * VN2 응답을 위한 VASP API PATH
-  * VEGA\_VERIFICATION\_VERIFY\_NAME\_TRANSACTION\_API\_PATH="[http://xxx/verify-name/tx/inquiry](http://127.0.0.1:40003/vega/robot/v2.0/verify-name/tx/inquiry)"
+  * VEGA\_VERIFICATION\_VERIFY\_NAME\_TRANSACTION\_API\_PATH="[http://xxx/verify-name/tx/inquiry](http://xxx/verify-name/tx/inquiry)"
     * VN2 check transaction status 응답을 위한 VASP API PATH
