@@ -14,6 +14,47 @@ metadata:
 
 <br />
 
+### Major changes
+
+* Added: Verify Name V2 API Endpoints
+  * POST /v2/owner-verifications
+    * [https://verifyvasp.readme.io/reference/verifyname-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification#/)
+  * POST /v2/owner-verifications/:requestId/result
+    * [https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/)
+  * POST /v2/owner-verifications/:requestId/tx
+    * [https://verifyvasp.readme.io/reference/verifyname-transaction-report#/](https://verifyvasp.readme.io/reference/verifyname-transaction-report#/)
+  * POST /v2/owner-verifications/:requestId/tx/inquiry
+    * [https://verifyvasp.readme.io/reference/post\_v2-owner-verifications-request-id-tx-inquiry#/](https://verifyvasp.readme.io/reference/post_v2-owner-verifications-request-id-tx-inquiry#/)
+  * GET /v2/owner-verifications
+    * [https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/)
+  * GET /v2/owner-verifications/:requestId
+    * [https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/](https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/)
+  * GET /v2/vasps
+    * [https://verifyvasp.readme.io/reference/verifyname-list-vasp#/](https://verifyvasp.readme.io/reference/verifyname-list-vasp#/)
+
+<br />
+
+* Breaking Change: Required Environment Variable
+  * VEGA\_ENCLAVE\_MODE=TR,VN2
+    * Added support for Enclave mode configuration.
+    * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
+
+<br />
+
+* Added: Environment Variables for Verify Name V2
+  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://xxx/verify-name)"
+    * API path used by VASP to respond to Verify Name V2 requests.
+  * VEGA\_VERIFICATION\_VERIFY\_NAME\_TRANSACTION\_API\_PATH="[http://xxx/verify-name/tx/inquiry](http://xxx/verify-name/tx/inquiry)"
+    * API path used by VASP to respond to transaction inquiry requests.
+
+<br />
+
+* Added: Database Table
+  * owner\_verifications
+    * This table is required when VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
+
+<br />
+
 ## Version 1.5.7
 
 ### Enclave
