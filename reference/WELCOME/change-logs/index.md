@@ -14,6 +14,15 @@ metadata:
 
 <br />
 
+### Breaking Changes
+
+* Added required environment variable
+  * VEGA\_ENCLAVE\_MODE=TR,VN2
+    * Added support for Enclave mode configuration.
+    * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
+
+<br />
+
 ### Major changes
 
 * Added: Verify Name V2 API Endpoints
@@ -31,13 +40,6 @@ metadata:
     * [https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/](https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/)
   * GET /v2/vasps
     * [https://verifyvasp.readme.io/reference/verifyname-list-vasp#/](https://verifyvasp.readme.io/reference/verifyname-list-vasp#/)
-
-<br />
-
-* Breaking Change: Required Environment Variable
-  * VEGA\_ENCLAVE\_MODE=TR,VN2
-    * Added support for Enclave mode configuration.
-    * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
 
 <br />
 
