@@ -7,10 +7,13 @@ metadata:
 ---
 # Database Table 추가
 
-* Verify Name V2 API 를 사용하기 위해서 owner\_verifications 테이블이 추가되었습니다.
-* 아래 환경 변수 설정에서 VEGA\_ENCLAVE\_MODE 에 VN2 를 넣을 경우 사전에 owner\_verifications 테이블이 추가되어 있어야 합니다.
+* **(BREAKING CHANGE) owner\_verifications 테이블 추가**
+  * VerifyName API를 사용하기 위해서 owner\_verifications 테이블이 추가되었습니다.
+  * VerifyName API의 버전과 상관없이 VerifyName 프로토콜을 사용하려면 반드시 해당 테이블이 생성되어야 합니다.
 * Create Table SQL
   * [https://verifyvasp.readme.io/reference/enclave-데이터베이스-생성#/verifyname-필수-테이블-생성-쿼리](https://verifyvasp.readme.io/reference/enclave-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%83%9D%EC%84%B1#/verifyname-%ED%95%84%EC%88%98-%ED%85%8C%EC%9D%B4%EB%B8%94-%EC%83%9D%EC%84%B1-%EC%BF%BC%EB%A6%AC)
+
+<br />
 
 # Verify Name V2 를 위한 VASP API 구현
 
@@ -20,6 +23,8 @@ metadata:
   * [https://verifyvasp.readme.io/reference/verifyname-transaction#/](https://verifyvasp.readme.io/reference/verifyname-transaction#/)
 * VASP backend 에 구현하신 Callback API 에서 VN2 를 위해 추가된 callbackType “OWNER\_VERIFICATION\_RESULT\_REPORT” 와 “OWNER\_VERIFICATION\_TX\_REPORT” 에 대한 처리 로직을 구현하셔야 합니다.
   * [https://verifyvasp.readme.io/reference/verifyname-callback#/](https://verifyvasp.readme.io/reference/verifyname-callback#/)
+
+<br />
 
 # 환경 변수 설정
 
