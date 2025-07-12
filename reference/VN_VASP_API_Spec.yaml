@@ -409,9 +409,6 @@ paths:
                           name:
                             first_name: GIL DONG
                             last_name: HONG
-                          local_name:
-                            first_name: 길동
-                            last_name: 홍
                       identification:
                         private_identification:
                           date_and_place_of_birth:
@@ -707,7 +704,7 @@ paths:
                   callbackType: OWNER_VERIFICATION_RESULT_REPORT
                   data:
                     request_id: ac2ae3a1-2468-43c7-b881-75cf310b5a56
-                    result: VERIFIED
+                    verification_result: VERIFIED
                     result_reported_at: '2021-09-27T01:48:40.000Z'
       responses:
         '200':
