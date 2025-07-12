@@ -197,6 +197,23 @@ paths:
                                     description: |
                                       The last name of the Owner.
                                     example: DOE
+                              local_name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: >
+                                      The first name of the Owner in local
+                                      language.
+                                    example: 길동
+                                  last_name:
+                                    type: string
+                                    description: >
+                                      The last name of the Owner in local
+                                      language.
+                                    example: 홍
                           identification:
                             type: object
                             description: >
@@ -313,6 +330,23 @@ paths:
                                     description: |
                                       The last name of the Owner.
                                     example: DOE
+                              local_name:
+                                type: object
+                                required:
+                                  - first_name
+                                properties:
+                                  first_name:
+                                    type: string
+                                    description: >
+                                      The first name of the Owner in local
+                                      language.
+                                    example: 길동
+                                  last_name:
+                                    type: string
+                                    description: >
+                                      The last name of the Owner in local
+                                      language.
+                                    example: 홍
                           identification:
                             type: object
                             description: >
@@ -409,6 +443,9 @@ paths:
                           name:
                             first_name: GIL DONG
                             last_name: HONG
+                          local_name:
+                            first_name: 길동
+                            last_name: 홍
                       identification:
                         private_identification:
                           date_and_place_of_birth:
@@ -448,6 +485,9 @@ paths:
                           name:
                             first_name: GIL DONG
                             last_name: HONG
+                          local_name:
+                            first_name: 길동
+                            last_name: 홍
                       identification:
                         private_identification:
                           date_and_place_of_birth:
