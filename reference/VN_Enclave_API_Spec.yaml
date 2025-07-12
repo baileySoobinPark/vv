@@ -865,8 +865,6 @@ paths:
               - DENIED
               - ERROR
             example: VERIFIED
-            default: ''
-          description: ''
         - name: type
           in: query
           schema:
@@ -946,8 +944,8 @@ paths:
                         - type
                         - request_vasp_id
                         - response_vasp_id
-                        - results
-                        - reported_result
+                        - verification_results
+                        - verification_result
                         - reason
                         - message
                         - tx_hash
@@ -990,7 +988,7 @@ paths:
                           description: |
                             The Vasp ID for the Owner Verification response.
                           example: '17624187471232452134'
-                        results:
+                        verification_results:
                           type: object
                           description: >
                             Result of the Owner Verification.
@@ -1066,7 +1064,7 @@ paths:
                                 The result of the Organisation Identification
                                 verification.
                               example: 'SKIPPED '
-                        result:
+                        verification_result:
                           type: string
                           enum:
                             - VERIFIED
@@ -1093,7 +1091,7 @@ paths:
                             failure.
 
                             It's required when returning `DENIED` or `ERROR` as
-                            the `result`.
+                            the `verification_result`.
                           example: MISMATCH-TICKER
                         message:
                           type: string
@@ -1211,6 +1209,17 @@ paths:
                         type: VerifyBeneficiary
                         request_vasp_id: '15952089931162060684'
                         response_vasp_id: '15952089931162054534'
+                        verification_results:
+                          ticker: MATCHED
+                          network: MATCHED
+                          address: MATCHED
+                          tx_hash: MATCHED
+                          dti: SKIPPED
+                          name: MATCHED
+                          birth_date: MATCHED
+                          date_of_incorporation: SKIPPED
+                          organisation_identification: SKIPPED
+                        verification_result: VERIFIED
                         reason: null
                         message: null
                         tx_hash: >-
@@ -1227,17 +1236,6 @@ paths:
                         result_reported_at: '2022-03-03T12:45:34.085Z'
                         created_at: '2022-03-03T12:45:34.085Z'
                         updated_at: '2022-03-03T12:45:34.085Z'
-                        verification_results:
-                          ticker: MATCHED
-                          network: MATCHED
-                          address: MATCHED
-                          tx_hash: MATCHED
-                          dti: SKIPPED
-                          name: MATCHED
-                          birth_date: MATCHED
-                          date_of_incorporation: SKIPPED
-                          organisation_identification: SKIPPED
-                        verification_result: VERIFIED
         '408':
           description: 408 Request Timeout Error response
           content:
@@ -1293,8 +1291,8 @@ paths:
                   - type
                   - request_vasp_id
                   - response_vasp_id
-                  - results
-                  - reported_result
+                  - verification_results
+                  - verification_result
                   - reason
                   - message
                   - tx_hash
@@ -1336,7 +1334,7 @@ paths:
                     description: |
                       The Vasp ID for the Owner Verification response.
                     example: '17624187471232452134'
-                  results:
+                  verification_results:
                     type: object
                     description: >
                       Result of the Owner Verification.
@@ -1411,7 +1409,7 @@ paths:
                           The result of the Organisation Identification
                           verification.
                         example: 'SKIPPED '
-                  result:
+                  verification_result:
                     type: string
                     enum:
                       - VERIFIED
@@ -1437,7 +1435,7 @@ paths:
                       This field provides the reason for verification failure.
 
                       It's required when returning `DENIED` or `ERROR` as the
-                      `result`.
+                      `verification_result`.
                     example: MISMATCH-TICKER
                   message:
                     type: string
@@ -1671,7 +1669,7 @@ paths:
                       The format of `request_id` must follow the UUID v4
                       standard.
                     example: 4615aa9d-ac64-4997-a9e6-0e772c57c7ef
-                  result:
+                  verification_result:
                     type: string
                     enum:
                       - VERIFIED
@@ -1719,7 +1717,7 @@ paths:
                       This field provides the reason for verification failure.
 
                       It's required when returning `DENIED` or `ERROR` as the
-                      `result`.
+                      `verification_result`.
                     example: MISMATCH-TICKER
                   message:
                     type: string
@@ -1732,10 +1730,10 @@ paths:
                   value:
                     transaction_status: CONFIRMED
                     request_id: ecbacf57-f813-4670-934a-5c4537fec869
+                    verification_result: VERIFIED
                     ordered_at: '2025-04-22T08:35:24.760Z'
                     tx_hash: >-
                       0x43d572dac0b423ba7eda81dff9be92ecb90e0ff26d6c1d45bdfd5f7c2e30cf58
-                    verification_result: VERIFIED
         '408':
           description: 408 Request Timeout Error response
           content:
