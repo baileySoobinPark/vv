@@ -151,7 +151,7 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자
 
 사후 검증 시나리오와 반대로, VerifyName 프로토콜의 사전 검증(Pre-Verification) 시나리오는 송신 VASP가 Travel Rule 규제를 준수하는 VASP인 경우에 해당됩니다. 송신 VASP는 자산 이전을 위한 블록체인 트랜잭션을 실행하기에 앞서, 수신인이 송신인 정보와 일치하는지 검증을 선제적으로 진행한 뒤 그 결과에 따라 출금 여부를 판단할 수 있습니다.
 
-<Image align="center" border={false} caption="The Beneficiary VASP can confirm the deposit and notify the user based on the transaction status." src="https://files.readme.io/0446271b8557cb4007d6f656d8972440b023a65d5ea6871e346744775979198b-Pre_Verification.svg" />
+<Image align="center" border={false} caption="The Beneficiary VASP can confirm the deposit and notify the user based on the transaction status." src="https://files.readme.io/704a1473f6993c17679876446ed395a7b6985a1ff3cdf303fdd318ecf6be619d-sequence_diagram_2-Pre_Verification.drawio.svg" />
 
 <HTMLBlock>{`
 <div class="scenario-section">
@@ -213,20 +213,6 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자
       <div class="step-content">수신 VASP Enclave는 백엔드의 <code>Callback API(OWNER_VERIFICATION_TX_REPORT)</code>를 통해 트랜잭션 실행 보고 결과를 전달합니다.</div></li>
     <li class="step-item"><div class="step-badge">30</div>
       <div class="step-content">결과를 전달받은 수신 VASP는 해당 결과를 바탕으로 입금 여부를 확정하고 사용자에게 안내할 수 있습니다.</div></li>
-  </ol>
-</div>
-
-<div class="scenario-section">
-  <div class="scenario-title">4. Report 누락에 따른 상태 조회</div>
-  <ol class="step-list">
-    <li class="step-item"><div class="step-badge">31</div>
-      <div class="step-content">만약 별도의 트랜잭션 실행 Report를 수신하지 못했음에도 입금이 탐지된 경우, 수신 VASP는 <code>Check Transaction Status API</code>를 호출하여 트랜잭션 상태를 조회할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">32</div><div class="step-badge">33</div><div class="step-badge">34</div>
-      <div class="step-content">해당 요청은 중앙서버와 송신 VASP의 Enclave를 통해 송신 VASP 백엔드의  <code>Check Transaction Status API</code>를 통해 전달됩니다.</div></li>
-    <li class="step-item"><div class="step-badge">35</div><div class="step-badge">36</div><div class="step-badge">37</div><div class="step-badge">38</div>
-      <div class="step-content">송신 VASP는 전달받은 검증 ID(Reqeust ID) 에 대응되는 트랜잭션의 온체인 상태를 확인한 후, 결과를 반환합니다.</div></li>
-    <li class="step-item"><div class="step-badge">39</div>
-      <div class="step-content">수신 VASP는 해당 결과를 바탕으로 입금 반영 여부를 판단하고 사용자에게 안내할 수 있습니다.</div></li>
   </ol>
 </div>
 `}</HTMLBlock>
