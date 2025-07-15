@@ -35,8 +35,6 @@ metadata:
     * [https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/)
   * POST /v2/owner-verifications/:requestId/tx
     * [https://verifyvasp.readme.io/reference/verifyname-transaction-report#/](https://verifyvasp.readme.io/reference/verifyname-transaction-report#/)
-  * POST /v2/owner-verifications/:requestId/tx/inquiry
-    * [https://verifyvasp.readme.io/reference/post\_v2-owner-verifications-request-id-tx-inquiry#/](https://verifyvasp.readme.io/reference/post_v2-owner-verifications-request-id-tx-inquiry#/)
   * GET /v2/owner-verifications
     * [https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/)
   * GET /v2/owner-verifications/:requestId
@@ -49,8 +47,6 @@ metadata:
 * Added: Environment Variables for Verify Name V2
   * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://xxx/verify-name)"
     * API path used by VASP to respond to Verify Name V2 requests.
-  * VEGA\_VERIFICATION\_VERIFY\_NAME\_TRANSACTION\_API\_PATH="[http://xxx/verify-name/tx/inquiry](http://xxx/verify-name/tx/inquiry)"
-    * API path used by VASP to respond to transaction inquiry requests.
 
 <br />
 
