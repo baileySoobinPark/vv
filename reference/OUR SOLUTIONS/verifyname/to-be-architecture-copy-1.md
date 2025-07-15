@@ -23,7 +23,6 @@ VASP는 Travel Rule 규제 준수 의무 여부에 따른 VerifyName 연동을 �
 각 API의 세부 사양은 아래 VerifyName VASP API 문서 목록에서 확인할 수 있습니다.
 
 * [VerifyName API](ref:verifyname-request-verification)
-* [Check Transaction Status API](ref:verifyname-transaction)
 * [Callback API](ref:verifyname-callback)
 
 <br />
