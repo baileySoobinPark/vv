@@ -15,26 +15,26 @@ metadata:
 
 <br />
 
-# Verify Name V2 를 위한 VASP API 구현
+# VerifyName V2 를 위한 VASP API 구현
 
-* VN2 응답을 위한 API 의 구현이 필요합니다.
+* VerifyName V2를 사용하고 싶은 경우 VN2 응답을 위한 API 구현이 필요합니다.
   * [https://verifyvasp.readme.io/reference/verifyname-request-verification#/](https://verifyvasp.readme.io/reference/verifyname-request-verification#/)
-* VASP backend 에 구현하신 Callback API 에서 VN2 를 위해 추가된 callbackType “OWNER\_VERIFICATION\_RESULT\_REPORT” 와 “OWNER\_VERIFICATION\_TX\_REPORT” 에 대한 처리 로직을 구현하셔야 합니다.
+* VASP backend 에 구현했던 Callback API 에서 VerifyName V2 를 위해 추가된 callbackType `OWNER_VERIFICATION_RESULT_REPORT` 와 `OWNER_VERIFICATION_TX_REPORT` 에 대한 처리 로직을 구현해야 합니다.
   * [https://verifyvasp.readme.io/reference/verifyname-callback#/](https://verifyvasp.readme.io/reference/verifyname-callback#/)
 
 <br />
 
 # 환경 변수 설정
 
-* **(BREAKING CHANGE) 필수 환경변수**
+* **(BREAKING CHANGE) 필수 환경변수 설정**
   * VEGA\_ENCLAVE\_MODE=TR,VN2
     * Enclave Mode 설정이 추가되었습니다.
     * mode 는 TR, VN1\_CALL, VN1\_RESPONSE, VN2 중 하나 이상을 콤마로 연결해서 설정해야 합니다.
     * 설정하지 않고 실행한 경우 아래와 같은 에러를 출력하고 enclave 가 종료 됩니다.
-    ```jsx
+    ```text
     No valid enclave acceptable mode provided.
     Please set VEGA_ENCLAVE_MODE. For example, TR,VN1_CALL,VN1_RESPONSE,VN2 or any combination of these.
     ```
-* “[Verify Name V2 를 위한 VASP API 구현](https://verifyvasp.readme.io/reference/how-to-migrate-enclave-15x-to-200#verify-name-v2-%EB%A5%BC-%EC%9C%84%ED%95%9C-vasp-api-%EA%B5%AC%ED%98%84) “ 에서 VASP API 를 구현한 경우 아래 환경변수에 endpoint url 을 설정해야 합니다.
+* 상기한 `VerifyName V2 를 위한 VASP API 구현` 단계에서 VASP API 를 구현한 경우 아래 환경변수에 endpoint url 을 설정해야 합니다.
   * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://xxx/verify-name)"
     * VN2 응답을 위한 VASP API PATH
