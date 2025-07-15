@@ -16,19 +16,19 @@ metadata:
 
 ### Breaking Changes
 
-* Added required environment variable
-  * VEGA\_ENCLAVE\_MODE=TR,VN2
+* Added required enclave environment variable
+  * **VEGA\_ENCLAVE\_MODE**
     * Added support for Enclave mode configuration.
     * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
 * Added database table
-  * owner\_verifications
-    * This table is required when VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
+  * **owner\_verifications**
+    * This table is required when one of VN1\_CALL, VN1\_RESPONSE, VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
 
 <br />
 
 ### Major changes
 
-* Added: Verify Name V2 API Endpoints
+* Added: New owner verification (VerifyName V2) APIs
   * POST /v2/owner-verifications
     * [https://verifyvasp.readme.io/reference/verifyname-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification#/)
   * POST /v2/owner-verifications/:requestId/result
@@ -44,9 +44,14 @@ metadata:
 
 <br />
 
-* Added: Environment Variables for Verify Name V2
-  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH="[http://xxx/verify-name](http://xxx/verify-name)"
-    * API path used by VASP to respond to Verify Name V2 requests.
+* Added: New Enclave environment variables for new owner verification (VerifyName V2) VASP API
+  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH
+    * API path implemented by VASP to respond to VerifyName V2 requests.
+
+<br />
+
+* Added: New result code for legacy owner verification (VerifyName) API
+  * MISMATCH-SYMBOL : the specified symbol is not supported by counterparty VASP
 
 <br />
 
