@@ -310,14 +310,6 @@ Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩�
     </tr>
 
     <tr>
-      <td class="code-col"><code class="long-var">VEGA_VERIFICATION_VERIFY_NAME_TRANSACTION_API_PATH</code></td>
-      <td></td>
-      <td>
-        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-transaction">Check Transaction Status API</a> Endpoint.
-      </td>
-    </tr>
-
-    <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_CALLBACK_API_PATH</code></td>
       <td>–</td>
       <td><a href="/reference/verifyname-callback">Callback API</a> Endpoint.</td>
