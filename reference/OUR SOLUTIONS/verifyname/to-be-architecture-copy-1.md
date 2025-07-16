@@ -37,7 +37,7 @@ Diagram 2와 Diagram 3은 각각 Travel Rule 규제 의무가 없는 VASP와 규
 
 <br />
 
-<Image align="center" border={false} caption="Diagram 2: To-Be Architecture of Unregulated VASPs" src="https://files.readme.io/4f92bffd7c1f3756ff1b5c9637a9c84e24da9c8162aa5018169874d4f44192f7-unregulated_1.png" />
+<Image align="center" border={false} caption="Diagram 2: To-Be Architecture of Unregulated VASPs" src="https://files.readme.io/f489061b51295fc62ad7f4600bc8573bdb81087d42f547b79cb2ee70c85b6230-vn_tobe_architecture.png" />
 
 Diagram 2와 같이 Travel Rule 규제 의무가 없는 VASP들은 주로 중앙 서버와 Enclave로부터 검증 요청 및 결과 Report를 받아 처리하는 방식으로 VerifyName 프로토콜을 지원합니다.
 
