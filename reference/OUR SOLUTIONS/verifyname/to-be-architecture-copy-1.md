@@ -27,7 +27,7 @@ VASP는 Travel Rule 규제 준수 의무 여부에 따른 VerifyName 연동을 �
 
 <br />
 
-<Image align="center" border={false} caption="Diagram 1. To-Be Backend Architecture of Unregulated and Regulated VASPs" src="https://files.readme.io/ff67d2fd245bd827451cc3177516a45c1f07e83f5e5f9218e013ad306900b59c-future-state-VN.png" />
+<Image align="center" border={false} caption="Diagram 1. To-Be Backend Architecture of Unregulated and Regulated VASPs" src="https://files.readme.io/785a094359175dbe0cf82c29b8d7636bb432cca76f33477725c7ccaf1a3208ab-future_state_vn.png" />
 
 <br />
 
