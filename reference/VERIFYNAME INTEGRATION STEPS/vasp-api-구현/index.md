@@ -92,11 +92,6 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
       <td>전송 자산과 수신 계좌의 유효성을 검증하고 Enclave로 계좌 소유주의 성명과 생년월일 정보를 반환합니다.</td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Check Transaction Status API</a></td>
-      <td class="api-role">송신 VASP</td>
-      <td>온체인 송금 트랜잭션의 현재 처리 상태를 조회하여 반환합니다.</td>
-    </tr>
-    <tr>
       <td class="api-name"><a href="#">Callback API</a></td>
       <td class="api-role">송신 VASP & 수신 VASP</td>
       <td>
