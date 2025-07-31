@@ -1,8 +1,10 @@
 ---
 title: Overview
 excerpt: >-
-  본 문서에서는 VerifyVASP의 아키텍처와 TravelRule, VerifyName 프로토콜 기반 검증 프로세스 개요를 제공합니다.
-  연동을 시작하기에 앞서, 지원하는 보안 옵션들을 살펴보고 VASP 측 연동 순서를 확인하여 작업 계획을 수립할 수 있습니다. 
+  This document provides an overview of VerifyVASP’s architecture and the
+  verification processes based on the TravelRule and VerifyName protocols.
+  Before beginning integration, review the available security options and the
+  integration sequence on the VASP side to plan your implementation.
 deprecated: false
 hidden: false
 metadata:
@@ -10,27 +12,35 @@ metadata:
 next:
   description: Flow Diagram을 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인하고 TravelRule 프로토콜을 이해할 수 있습니다.
 ---
-## 아키텍처 개요
+## Architecture Overview
 
-Diagram 1은 VerifyVASP 서비스의 구성 요소와 요소 간의 통신 구조를 요약한 아키텍처 개요입니다. VerifyVASP 아키텍쳐의 주요 특징은 다음과 같습니다.
+Diagram 1 illustrates the components of the VerifyVASP service and the communication flow between them. Key features include:
 
 <Image align="center" border={false} caption="Diagram 1. VerifyVASP Solution Architecture Overview" src="https://files.readme.io/8d27021ec8f83d7f4cc31b17bccc04e96360c65217d142e4733739024c89930b-tr_solution_1.png" />
 
 <br />
 
-#### VerifyVASP Central Server 기반 VASP 간 통신
+#### Communication via VerifyVASP Central Server
 
-VASP 간 TravelRule 및 VerifyName 통신은 중앙 서버인 VerifyVASP Central Server를 통해 중계됩니다. 각 VASP는 입출금 시나리오에 따라 송신자 또는 수신자로 역할을 전환하며, 모든 요청과 응답은 Central Server를 거쳐 전달됩니다.
-
-#### Enclave 설치 및 연동
-
-Enclave는 VerifyVASP Central Server와의 통신 인터페이스를 제공하는 사전 구축된 서버 모듈입니다. Enclave는 Docker 이미지 형태로 배포되며, 모든 VASP는 인프라 내에 Enclave 서버와 Enclave용 데이터베이스를 반드시 설치해야 합니다. 각 VASP의 백엔드는 Enclave 서버와 상호 API 호출을 통해 통신하며, VerifyVASP Central Server API와 직접 통신하지 않습니다.
-
-#### 데이터 보안 및 개인정보 보호
-
-Enclave 전용 데이터베이스는 Enclave만 접근할 수 있도록 구성되므로 데이터의 무결성과 격리성을 보장합니다. VASP와 Central Server 간의 모든 통신은 HTTPS 프로토콜을 사용하며, 민감정보를 포함한 모든 데이터는 종단간 암호화됩니다.
+* All TravelRule and VerifyName communications between VASPs are relayed through the **VerifyVASP Central Server**.
+* Depending on the transaction scenario, each VASP may act as either the **Ordering VASP** (originator’s VASP) or the **Beneficiary VASP** (beneficiary’s VASP).
+* All requests and responses are routed through the Central Server.
 
 <br />
+
+#### Enclave Installation and Integration
+
+**Enclave** is a pre-built server module that provides a communication interface with the VerifyVASP Central Server.
+
+* Distributed as a **Docker image**, the Enclave server and its dedicated database must be installed within each VASP’s infrastructure.
+* The VASP backend communicates with the Enclave server via API calls and **never communicates directly** with the VerifyVASP Central Server API.
+
+<br />
+
+#### Data Security and Privacy
+
+* The Enclave’s dedicated database is accessible **only** by the Enclave server, ensuring data integrity and isolation.
+* All communications between VASPs and the Central Server use **HTTPS**, and all sensitive information is **end-to-end encrypted (E2EE)**.
 
 ***
 
