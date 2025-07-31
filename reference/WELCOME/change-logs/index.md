@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-## Version 2.0.0
+# Version 2.0.0
 
 * New version of docs released
   * A comprehensive guide for implementing and understanding VerifyName has been included.
@@ -55,7 +55,9 @@ metadata:
 
 <br />
 
-## Version 1.5.8
+# Version 1.5.8
+
+Update: 2025-03-05
 
 ### Enclave
 
@@ -63,7 +65,7 @@ metadata:
 
 <br />
 
-## Version 1.5.7
+# Version 1.5.7
 
 ### Enclave
 
@@ -71,7 +73,7 @@ metadata:
 
 <br />
 
-## Version 1.5.6
+# Version 1.5.6
 
 ### Enclave
 
@@ -80,7 +82,7 @@ metadata:
 
 <br />
 
-## Version 1.5.5
+# Version 1.5.5
 
 ## Enclave
 
@@ -88,7 +90,7 @@ metadata:
 
 <br />
 
-## Version 1.5.4
+# Version 1.5.4
 
 ### Enclave
 
@@ -98,7 +100,9 @@ metadata:
 * In the geographic address data type in [IVMS101 Standard](ref:ivms101-guide) , `townName` is no longer a required field.
 * (Bugfix) Fixed a bug where `buildingNumber` and `buildingName` were transposed when saving personal information with a geographic address.
 
-## Version 1.5.3
+<br />
+
+# Version 1.5.3
 
 ### Major changes
 
@@ -114,7 +118,7 @@ metadata:
 
 <br />
 
-## Version 1.5.2
+# Version 1.5.2
 
 ### Major changes
 
@@ -130,7 +134,7 @@ metadata:
 
 <br />
 
-## Version 1.5.1
+# Version 1.5.1
 
 ### Enclave Bugfix
 
@@ -138,7 +142,7 @@ metadata:
 
 <br />
 
-## Version 1.5.0
+# Version 1.5.0
 
 ### Major changes
 
@@ -161,7 +165,7 @@ metadata:
 
 <br />
 
-## Version 1.4.1
+# Version 1.4.1
 
 ### Enclave Bugfix
 
@@ -169,7 +173,7 @@ metadata:
 
 <br />
 
-## Version 1.4.0
+# Version 1.4.0
 
 ### Major change
 
@@ -183,7 +187,7 @@ metadata:
 
 <br />
 
-## Version 1.3.9
+# Version 1.3.9
 
 ### Enclave Bugfix
 
@@ -191,7 +195,7 @@ metadata:
 
 <br />
 
-## Version 1.3.6
+# Version 1.3.6
 
 ### Enclave Bugfix
 
@@ -199,7 +203,7 @@ metadata:
 
 <br />
 
-## Version 1.3.4
+# Version 1.3.4
 
 ### Enclave Bugfix
 
@@ -207,7 +211,7 @@ metadata:
 
 <br />
 
-## Version 1.3.2
+# Version 1.3.2
 
 ### Enclave Bugfix
 
@@ -216,7 +220,7 @@ metadata:
 
 <br />
 
-## Version 1.3.0
+# Version 1.3.0
 
 ### Major changes
 
@@ -254,7 +258,7 @@ metadata:
 
 <br />
 
-## Version 1.2.0
+# Version 1.2.0
 
 ### Major changes
 
@@ -342,7 +346,7 @@ metadata:
 
 <br />
 
-## Version 1.1.0
+# Version 1.1.0
 
 ### Consol Site
 
