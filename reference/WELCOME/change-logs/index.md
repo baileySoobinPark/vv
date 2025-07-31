@@ -67,6 +67,8 @@ Update: 2025-03-05
 
 # Version 1.5.7
 
+Update: 2024-11-22
+
 ### Enclave
 
 * (Bugfix) Fixed a hashing error during legal person verification
@@ -74,6 +76,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.5.6
+
+Update: 2024-09-24
 
 ### Enclave
 
@@ -84,6 +88,8 @@ Update: 2025-03-05
 
 # Version 1.5.5
 
+Update: 2024-07-04
+
 ## Enclave
 
 * Fixed to not throw INVALID-FORMAT error
@@ -91,6 +97,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.5.4
+
+Update: 2024-01-29
 
 ### Enclave
 
@@ -103,6 +111,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.5.3
+
+Update: 2023-12-22
 
 ### Major changes
 
@@ -120,6 +130,8 @@ Update: 2025-03-05
 
 # Version 1.5.2
 
+Update: 2023-09-27
+
 ### Major changes
 
 * Added the vout field.
@@ -136,6 +148,8 @@ Update: 2025-03-05
 
 # Version 1.5.1
 
+Update: 2023-08-17
+
 ### Enclave Bugfix
 
 * Fixed a bug where changing the connection state with other VASPs through the 'Vasp Connect' feature did not immediately apply the connection state.
@@ -143,6 +157,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.5.0
+
+Update: 2023-06-20
 
 ### Major changes
 
@@ -167,6 +183,8 @@ Update: 2025-03-05
 
 # Version 1.4.1
 
+Update: 2022-06-15
+
 ### Enclave Bugfix
 
 * Fixed: low probability that user verification result not stored properly in the enclave DB.
@@ -174,6 +192,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.4.0
+
+Update: 2022-04-22
 
 ### Major change
 
@@ -189,6 +209,8 @@ Update: 2025-03-05
 
 # Version 1.3.9
 
+Update: 2022-04-15
+
 ### Enclave Bugfix
 
 * Fixed a bug in the logic to remove information from the enclave when the user-verified VASP API returned information that was not in requiredBeneficiaryInfo .
@@ -196,6 +218,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.3.6
+
+Update: 2022-03-22
 
 ### Enclave Bugfix
 
@@ -205,6 +229,8 @@ Update: 2025-03-05
 
 # Version 1.3.4
 
+Update: 2022-03-17
+
 ### Enclave Bugfix
 
 * An error occurrence from `commands` table on the Oracle database has been removed.
@@ -212,6 +238,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.3.2
+
+Update: 2022-03-08
 
 ### Enclave Bugfix
 
@@ -221,6 +249,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.3.0
+
+Update: 2022-03-80
 
 ### Major changes
 
@@ -259,6 +289,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.2.0
+
+Update: 2022-02-23
 
 ### Major changes
 
@@ -347,6 +379,8 @@ Update: 2025-03-05
 <br />
 
 # Version 1.1.0
+
+Update: 2022-02-08
 
 ### Consol Site
 
