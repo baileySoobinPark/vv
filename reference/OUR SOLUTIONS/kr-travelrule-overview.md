@@ -543,7 +543,7 @@ To integrate with VerifyVASP’s TravelRule and VerifyName 2.0 solutions, VASPs 
     <div class="vasp-step-badge">1</div>
     <div class="vasp-step-content">
       <div class="vasp-step-title">Review key scenarios and flows</div>
-      Beo구현에 앞서 <a href="ref:travelrule-flow-diagram">Best Practice</a> 를 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인합니다.
+      Before implementation, review the <a href="ref:travelrule-flow-diagram">Best Practice</a> guide to understand the request sequence and communication flow for deposit and withdrawal scenarios.
     </div>
   </li>
   <li class="vasp-step-item">
