@@ -251,7 +251,7 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
   </div>
   <div class="step-box">
    <div class="step-title">
-    2. 
+    2. Pre-Verification Request
     <br/>
     <span class="subtitle">
      (Ordering VASP → Beneficiary VASP)
@@ -260,20 +260,20 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    <div class="step-content">
     <p>
      <span style="color:#ff4d4f; font-weight:600;">
-      송신 VASP가 Regulated VASP인 경우 수행
+      Performed only when the Ordering VASP is a regulated VASP.
      </span>
     </p>
     <p>
-     <b>송신 VASP</b>는 송신자의 이름과 생년월일의 Hash값과 입금 주소를 수신 VASP로 전달하여 검증을 요청합니다.
+     The Ordering VASP sends the hashed name and DOB of the Originator, along with the deposit address, to Beneficiary VASP for verification.
     </p>
     <p>
-     <b>수신 VASP</b>는 주소의 유효성과 입금 주소 소유주 정보를 검증합니다.
+     The Beneficiary VASP verifies the validity of the deposit address and the ownership information.
     </p>
    </div>
   </div>
   <div class="step-box">
    <div class="step-title">
-    3. 결과 Report 및 트랜잭션 실행
+    3. Report Result & Execute Transaction
     <br/>
     <span class="subtitle">
      (Ordering VASP)
@@ -281,13 +281,13 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    </div>
    <div class="step-content">
     <p>
-     송신 VASP는 검증 결과를 기반으로 최종 출금 여부를 확정하고 상대 VASP로 Report해야 합니다. 
+     The Ordering VASP finalizes the withdrawal decision based on the verification result and sends a Report to the counterparty VASP. 
     </p>
     <p>
-     검증 결과가 정상인 경우 송신 VASP는 블록체인 상에서 출금 트랜잭션을 실행합니다.
+     If verification is successful, the Ordering VASP executes the withdrawal on the blockchain.
     </p>
     <p>
-     송신 VASP가 Unregulated VASP인 경우 별도의 사전 검증 없이 즉시 출금 트랜잭션을 실행할 수 있습니다.  
+     If the Ordering VASP is unregulated, it may execute the withdrawal immediately without pre-verification.
     </p>
    </div>
   </div>
@@ -296,7 +296,7 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
  <div class="row">
   <div class="step-box">
    <div class="step-title">
-    4. 입금 트랜잭션 감지
+    4. Detect Deposit
     <br/>
     <span class="subtitle">
      (Beneficiary VASP)
@@ -304,13 +304,13 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    </div>
    <div class="step-content">
     <p>
-     <b>수신 VASP</b>는 블록체인 상에서 입금 주소로의 입금 트랜잭션을 감지합니다.
+     The Beneficiary VASP monitors the blockchain for an incoming transaction to the specified deposit address.
     </p>
    </div>
   </div>
   <div class="step-box">
    <div class="step-title">
-    5. 사후 검증 요청
+    5. Post-Verification Request
     <br/>
     <span class="subtitle">
      (Beneficiary VASP → Ordering VASP)
@@ -319,20 +319,20 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    <div class="step-content">
     <p>
      <span style="color:#ff4d4f; font-weight:600;">
-      수신 VASP가 Regulated VASP인 경우 수행
+      Performed only when the Beneficiary VASP is a regulated VASP.
      </span>
     </p>
     <p>
-     <b>수신 VASP</b>는 송신 VASP에게 TXID 유효성 및 송신자 정보 검증을 요청합니다.
+     The Beneficiary VASP requests TXID validation and the Originator information verification from the Ordering VASP.
     </p>
     <p>
-     <b>송신 VASP</b>는 TXID에 해당하는 송신자 이름 및 생년월일의 Hash값을 비교하여 동일인 여부를 판단합니다.
+     The Ordering VASP compares the hashed name and DOB of the Originator with the provided TXID to confirm identity.
     </p>
    </div>
   </div>
   <div class="step-box">
    <div class="step-title">
-    6. 결과 Report
+    6. Report Result
     <br/>
     <span class="subtitle">
       (Regluated VASP)
@@ -340,10 +340,10 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    </div>
    <div class="step-content">
     <p>
-     Regulated VASP는 검증 결과를 기반으로 입금 최종 반영 여부를 확정하고 상대 VASP로 Report해야 합니다. 
+     The regulated VASP confirms the final deposit decision based on the verification result and sends a Report to the counterparty VASP.
     </p>
     <p>
-     필요 시 사용자에게 입금 실패 또는 보류 사유를 안내할 수 있습니다.
+     If necessary, the Beneficiary VASP may inform the user of a deposit failure or hold reason.
     </p>
    </div>
   </div>
