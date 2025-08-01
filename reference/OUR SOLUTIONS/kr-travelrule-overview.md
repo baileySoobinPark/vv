@@ -357,15 +357,18 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
 
 <br />
 
-## 보안 고려사항
+## Security Considerations
 
-### VASP 간 End-to-End 암호화
+### End-to-End Encryption Between VASPs
 
-VerifyVASP 솔루션은 송,수신인 검증 과정에서 교환되는 개인정보의 무결성과 프라이버시를 보호하기 위해 송신 VASP와 수신 VASP 사이 통신 구간에 End-to-End 암호화(E2EE)를 적용합니다. 오직 송신 VASP와 수신 VASP만이 데이터를 복호화 할 수 있으며, VerifyVASP 중앙 서버는 데이터를 복호화하거나 저장하지 않습니다.
+VerifyVASP applies end-to-end encryption (E2EE) to protect the integrity and privacy of personal data exchanged during the verification process.\
+Only the Ordering VASP and the Beneficiary VASP can decrypt the data. The VerifyVASP Central Server never decrypts or stores it.
 
-VerifyVASP 프로토콜은 비대칭키 기반 암호화를 채택하고 있으며, 각 VASP에 설치된 Enclave 서버는 자체적으로 비대칭 키 쌍을 생성하고 이를 Enclave 전용 데이터베이스에 안전하게 저장합니다. 생성된 키 쌍은 공개키와 개인키로 구성되며, 개인키는 외부 노출 없이 Enclave 내부에서만 암복호화 작업에 사용됩니다.
+Each Enclave generates its own asymmetric key pair and securely stores it in its dedicated database. The private key never leaves the Enclave and is used only for encryption and decryption inside the Enclave.
 
-모든 키 관리 절차(생성, 저장, 갱신)는 Enclave 내에서 자동화된 방식으로 처리되므로, 각 VASP는 키 관리 기능을 별도로 구현할 필요 없이 표준화된 방식으로 End-to-End 암호화를 적용하여 안전하게 검증을 수행할 수 있습니다. 프로토콜의 수행 단계는 다음과 같습니다.
+Key management (generation, storage, rotation) is fully automated within the Enclave. VASPs do not need to implement their own key handling logic.
+
+<br />
 
 <HTMLBlock>{`
 <style>
@@ -413,12 +416,12 @@ VerifyVASP 프로토콜은 비대칭키 기반 암호화를 채택하고 있으�
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">키 교환 (Key Exchange)</div>
+  <div class="scenario-title">Key Exchange</div>
   <ul class="step-list">
     <li class="step-item">
-      <strong>공개 키 요청 (Ordering VASP → Beneficiary VASP)</strong>
+      <strong>Check for existing public key (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">데이터 암호화를 수행하기에 앞서, 송신 VASP의 Enclave는 저장된 수신 VASP의 공개키가 있는지 확인합니다.</li>
+        <li class="step-subitem">If </li>
         <li class="step-subitem">사용 가능한 공개키가 없는 경우 송신 VASP Enclave는 중앙 서버를 통해 수신 VASP Enclave로 공개키를 요청합니다.</li>
       </ul>
     </li>
