@@ -465,109 +465,29 @@ Key management (generation, storage, rotation) is fully automated within the Enc
 
 <br />
 
-### 보안 옵션
+### Security Options
 
-Enclave 서버는 암호화 처리를 전자동으로 수행하지만, 구성 유연성을 위해 일부 설정 옵션을 제공합니다. 적절한 설정을 통해 우수한 보안 수준을 유지하면서 보다 효율적으로 VASP간에 데이터를 교환 할 수 있습니다.
+#### Public Key Caching
 
-<br />
-
-#### 공개키 Caching 설정
-
-효율적인 공개키 관리를 위해 Enclave 서버는 상대 VASP의 공개키를 설정한 시간 동안 Caching할 수 있습니다. 적절한 Caching을 통해 키 교환을 위한 반복 요청을 줄임으로써 검증 시간을 최소화 할 수 있습니다.
-
-> Enclave 환경 변수 - `VEGA_PUBLIC_KEY_TTL`에 Caching 유효시간(TTL, Time-to-Live)을 밀리초 단위로 설정합니다.
->
-> 캐싱 유효시간 기본값은 1800000(30분)이며 최소값은 600000(10분)입니다.
+> * Configure caching duration via VEGA\_PUBLIC\_KEY\_TTL (milliseconds).
+> * Default: 1800000 (30 min)
+> * Minimum: 600000 (10 min)
 
 <br />
 
-#### 공개키 타입(keyType) 설정
+#### Public Key Types (keyType)
 
-Enclave 서버는 다양한 공개키 타입을 지원합니다. 검증 요청 시 원하는 keyType을 지정하여 상대 VASP와 동일한 암호화 키 갱신 주기를 사용할 수 있습니다. 지원하는 keyType은 다음과 같습니다.
+| keyType           | Description                           | Pros                    | Cons                     |
+| :---------------- | :------------------------------------ | :---------------------- | :----------------------- |
+| `PerVasp`         | One key pair per VASP                 | High caching efficiency | Lower security           |
+| `PerAddress`      | One key pair per beneficiary address  | Higher security         | Lower caching efficiency |
+| `PerVerification` | New key pair per verification request | Highest security        | No caching               |
 
-<Table align={["left","left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        keyType
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Pros
-      </th>
-
-      <th>
-        Cons
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        `PerVasp`
-      </td>
-
-      <td>
-        동일 VASP에 대해 하나의 키 쌍을 사용
-      </td>
-
-      <td>
-        높은 Caching 효율성
-      </td>
-
-      <td>
-        모든 요청에 같은 키를 사용,
-        상대적으로 낮은 보안성
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `PerAddress`
-      </td>
-
-      <td>
-        수신자 주소별로 서로 다른 키 쌍을 사용
-      </td>
-
-      <td>
-        PerVasp 대비
-        높은 보안성
-      </td>
-
-      <td>
-        Caching 효율성 낮음
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        `PerVerification`
-      </td>
-
-      <td>
-        매 검증 요청마다 새로운 키 쌍을 사용
-      </td>
-
-      <td>
-        가장 높은 보안성 제공
-      </td>
-
-      <td>
-        Caching 사용 불가대
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> ⚠️ VerifyName 프로토콜의 `keyType` 옵션은 VerifyName 2.0부터 지원됩니다.
+> ⚠️ Note:
 >
-> Enclave API의 `keyType` 옵션은 TravelRule과 VerifyName 2.0 프로토콜에서 모두 지원됩니다. 단, VerifyName 프로토콜에서는 요청을 처리하는 상대 VASP도 VerifyName 2.0 프로토콜을 지원하는 경우에만 지정한 `keyType`에 따른 키 생성 주기가 반영됩니다. 상대 VASP가 VerifyName 1.0 프로토콜을 사용하는 경우 상대 VASP에서 암호화 키는 항상 `PerVasp` 타입으로 생성 및 관리됩니다.
+> * `keyType` option is upported in TravelRule and VerifyName 2.0..
+> * For Verifyname, the setting applies only when both parties use VerifyName 2.0.
+> * If the counterparty uses VerifyName 1.0, keys are always generated as `PerVASP`.
 
 ***
 
