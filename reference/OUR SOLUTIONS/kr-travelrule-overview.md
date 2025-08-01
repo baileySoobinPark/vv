@@ -184,9 +184,9 @@ The process typically involves six steps, as outlined below. Detailed API specif
     </div>
   </div>
   <div class="step-box">
-    <div class="step-title">3. 수신 VASP 검증 수행<br><span class="subtitle">(Beneficiary VASP)</span></div>
+    <div class="step-title">3. Perform Verification<br><span class="subtitle">(Beneficiary VASP)</span></div>
     <div class="step-content">
-      <p>검증 요청을 수신한 <b>수신 VASP</b>는 보유하고 있는 사용자 데이터를 기반으로 수신자 정보를 검증합니다.</p>
+      <p>The Beneficiary VASP verifies the beneficiary information against its own customer records</p>
     </div>
   </div>
 </div>
@@ -194,22 +194,22 @@ The process typically involves six steps, as outlined below. Detailed API specif
 <!-- 아래쪽 3단계 -->
 <div class="row">
   <div class="step-box">
-    <div class="step-title">4. 검증 결과 반환<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
+    <div class="step-title">4. Return Verification Result<br><span class="subtitle">(Beneficiary VASP → Ordering VASP)</span></div>
     <div class="step-content">
-      <p>수신자 검증 결과가 수신 VASP의 Enclave와 VerifyVASP 중앙 서버를 지나 송신 VASP로 전달됩니다.</p>
-      <p>이 과정은 비동기 방식으로 처리되며, 각 Flow 및 API 명세는 관련 문서를 통해 확인할 수 있습니다.</p>
+      <p>The verification result is sent from the Beneficary VASP's Enclave, through the VerifyVASP Central Server, to the Ordering VASP.</p>
+      <p>This process is handled asynchronously. See the relevant flow and API specifications for details.</p>
     </div>
   </div>
   <div class="step-box">
-    <div class="step-title">5. 트랜잭션 실행<br><span class="subtitle">(Ordering VASP)</span></div>
+    <div class="step-title">5. Excute Transaction<br><span class="subtitle">(Ordering VASP)</span></div>
     <div class="step-content">
-      <p>검증 결과가 정상인 경우 <b>송신 VASP</b>가 블록체인에서 출금 트랜잭션을 실행합니다.</p>
+      <p>If the verification result is valid, the Ordering VASP executes the withdrawal on the blockchain.</p>
     </div>
   </div>
   <div class="step-box">
-    <div class="step-title">6. 트랜잭션 실행 결과 리포트<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
+    <div class="step-title">6. Report Transaction Result<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
     <div class="step-content">
-      <p><b>송신 VASP</b>는 Report 프로토콜을 통해 실행한 트랜잭션의 ID(Tx Hash)를 수신 VASP에게 전달하여 송금이 완료되었음을 고지합니다.</p>
+      <p>The Ordering VASP sends a Report message containing the executed transaction’s TxHash to the Beneficiary VASP, confirming the transfer’s completion.</p>
     </div>
   </div>
 </div>
