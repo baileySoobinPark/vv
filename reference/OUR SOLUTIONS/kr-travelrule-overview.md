@@ -179,8 +179,7 @@ The process typically involves six steps, as outlined below. Detailed API specif
   <div class="step-box">
     <div class="step-title">2. Send Verification Request<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
     <div class="step-content">
-      <p>Using the collected information, the Ordering VASP sends a verification request to the Beneficiary VASP.</p>
-      <p>The request is transmitted via the Enclave server to the VerifyVASP Central Server, which relays it to the Beneficiary VASP</p>
+      <p>Using the collected information, the Ordering VASP sends a verification request via the Enclave server to the VerifyVASP Central Server, which then relays it to the Beneficiary VASP.</p>
       <p>All request data is protected with end-to-end encryption.</p>
     </div>
   </div>
