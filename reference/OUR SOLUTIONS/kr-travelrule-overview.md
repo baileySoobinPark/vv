@@ -421,23 +421,19 @@ Key management (generation, storage, rotation) is fully automated within the Enc
     <li class="step-item">
       <strong>Check for existing public key (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">If </li>
-        <li class="step-subitem">사용 가능한 공개키가 없는 경우 송신 VASP Enclave는 중앙 서버를 통해 수신 VASP Enclave로 공개키를 요청합니다.</li>
+        <li class="step-subitem">If the Ordering VASP does not have the Beneficiary VASP's public key, it requests one via the Central Server.</li>
       </ul>
     </li>
     <li class="step-item">
-      <strong>키 쌍 생성 및 공개키 반환 (Beneficiary VASP → Ordering VASP)</strong>
+      <strong>Generate key pair (Beneficiary VASP → Ordering VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">수신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.</li>
-        <li class="step-subitem">공개키가 VerifyVASP 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.</li>
+        <li class="step-subitem">The Beneficiary VASP either retrieves an existing public key or generates a new key pair and sends the public key back via the Central Server.</li>
       </ul>
     </li>
     <li class="step-item">
-      <strong>공유 키 유도 및 공개 키 전달 (Ordering VASP → Beneficiary VASP)</strong>
+      <strong>Derive shared key (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">송신 VASP Enclave는 키 생성 정책에 따라 적절한 공개키를 조회하거나 새로운 키 쌍을 생성한 뒤 저장합니다.</li>
-        <li class="step-subitem">데이터 암복호화에 사용되는 공유 키는 상대방 VASP 의 공개 키와 자신의 VASP의 비밀 키로부터 키 교환 알고리즘을 이용해 유도됩니다.</li>
-        <li class="step-subitem">송신 VASP의 공개키는 검증 요청이 수신 VASP로 전달될 때 암호화된 개인 정보와 함께 전달됩니다.</li>
+        <li class="step-subitem">The Ordering VASP uses the Beneficiary's public key and its own private key to derive a shared key, and includes its own public key with the encrypted request.</li>
       </ul>
     </li>
   </ul>
