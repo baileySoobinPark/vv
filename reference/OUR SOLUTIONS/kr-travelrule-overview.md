@@ -46,13 +46,14 @@ Diagram 1 illustrates the components of the VerifyVASP service and the communica
 
 <br />
 
-## 검증 프로세스 개요
+## Verification Overview
 
 <br />
 
-### TravelRule 검증 프로세스
+### TravelRule Verification Process
 
-TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크게 아래 6개 단계를 통해 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Scenarios and Flows 문서 및 Integration Guide에서 확인할 수 있습니다.
+The TravelRule verification process ensures that the beneficiary and their account are validated before asset transfers.\
+The process typically involves six steps, as outlined below. Detailed API specifications and integration flows can be found in the Scenarios and Flows and Integration Guide documents.
 
 <HTMLBlock>{`
 <!DOCTYPE html>
@@ -169,9 +170,9 @@ TravelRule 프로토콜을 통한 수신자 및 수신자 계정 검증은 크�
 <!-- 위쪽 3단계 -->
 <div class="row">
   <div class="step-box">
-    <div class="step-title">1. 자산 전송 요청<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
+    <div class="step-title">1. Asset Transfer Request<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
     <div class="step-content">
-      <p><b>송신 VASP</b>의 사용자(송신자, Originator)가 자산 전송을 요청합니다.</p>
+      <p>The <b>Originator<b> requests a virtual asset transfer from their <b>Ordering VASP<b>.</p>
       <p><b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.</p>
     </div>
   </div>
