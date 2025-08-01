@@ -439,28 +439,24 @@ Key management (generation, storage, rotation) is fully automated within the Enc
   </ul>
 </div>
 <div class="scenario-section">
-  <div class="scenario-title">데이터 암호화 및 복호화(Encryption & Decryption)</div>
+  <div class="scenario-title">Encryption & Decryption</div>
   <ul class="step-list">
     <li class="step-item">
-      <strong>개인 정보 암호화 및 요청 전송 (Ordering VASP → Beneficiary VASP)</strong>
+      <strong>Encrypt request data (Ordering VASP → Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">송신 VASP Enclave는 검증 요청을 보내기 전 키 교환 과정에서 획득한 공유 키로 개인 정보 필드를 암호화합니다.</li>
-        <li class="step-subitem">암호화된 개인 정보 필드를 포함한 검증 요청이 송신 VASP의 공개키와 함께 수신 VASP로 전달됩니다.</li>
+        <li class="step-subitem">Personal data is encrypted with the shared key before sending the verification request.</li>
       </ul>
     </li>
     <li class="step-item">
-      <strong>검증 요청 내 개인 정보 복호화 및 결과 내 개인 정보 암호화(Beneficiary VASP)</strong>
+      <strong>Decrypt request and encrypt response (Beneficiary VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">검증 요청을 받은 수신 VASP Enclave는 암호화에 사용된 공개키와 한 쌍인 비밀키를 조회하여 복호화를 수행합니다.</li>
-        <li class="step-subitem">개인정보 원문(Plaintext) 중 필요한 정보를 Enclave 데이터베이스에 저장하고, 백엔드로 전달하여 검증을 수행합니다.</li>
-        <li class="step-subitem">검증 결과에 포함되는 개인 정보를 키 교환 과정에서 획득한 공유 키로 암호화합니다.</li>
+        <li class="step-subitem">The Beneficary VASP decrypts the request, verifies the data, and encrypts the verification result.</li>
       </ul>
     </li>
     <li class="step-item">
-      <strong>검증 결과 내 개인 정보 복호화 (Ordering VASP)</strong>
+      <strong>Decrypt verification result (Ordering VASP)</strong>
       <ul class="step-sublist">
-        <li class="step-subitem">송신 VASP Encalve는 검증 결과를 수신한 뒤, 암호화된 개인 정보 필드를 키 교환 과정에서 획득한 공유 키로 복호화합니다.</li>
-        <li class="step-subitem">개인정보 원문에 대해 필요한 정보를 Enclave 데이터베이스에 저장하고, 검증 결과를 송신 VASP 백엔드로 전달합니다.</li>
+        <li class="step-subitem">The Ordering VASP decrypts the result using the shared key and passes it to its backend.</li>
       </ul>
     </li>
   </ul>
