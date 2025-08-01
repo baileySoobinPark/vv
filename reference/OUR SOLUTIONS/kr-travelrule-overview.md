@@ -234,7 +234,7 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
  <div class="row">
   <div class="step-box">
    <div class="step-title">
-    1. 자산 전송 요청
+    1. Asset Transfer Request
     <br/>
     <span class="subtitle">
      (Originator → Ordering VASP)
@@ -242,19 +242,16 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
    </div>
    <div class="step-content">
     <p>
-     <b>송신 VASP의 사용자(송신자, Originator)</b>가 자산 전송을 요청합니다.
+     The Originator requests a virtual asset transfer from the Ordering VASP.
     </p>
     <p>
-     <b>
-      송신 VASP
-     </b>
-     는 수신 계좌 정보를 사용자로부터 수집합니다.
+     The Ordering VASP collects the beneficiary account information from the user.
     </p>
    </div>
   </div>
   <div class="step-box">
    <div class="step-title">
-    2. 사전 검증 요청
+    2. 
     <br/>
     <span class="subtitle">
      (Ordering VASP → Beneficiary VASP)
