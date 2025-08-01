@@ -173,7 +173,7 @@ The process typically involves six steps, as outlined below. Detailed API specif
     <div class="step-title">1. Asset Transfer Request<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
     <div class="step-content">
       <p>The Originator requests a virtual asset transfer from their Ordering VASP.</p>
-      <p><b>송신 VASP</b>는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.</p>
+      <p>송신 VASP는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.</p>
     </div>
   </div>
   <div class="step-box">
