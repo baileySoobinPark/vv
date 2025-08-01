@@ -173,14 +173,15 @@ The process typically involves six steps, as outlined below. Detailed API specif
     <div class="step-title">1. Asset Transfer Request<br><span class="subtitle">(Originator → Ordering VASP)</span></div>
     <div class="step-content">
       <p>The Originator requests a virtual asset transfer from their Ordering VASP.</p>
-      <p>송신 VASP는 TravelRule 프로토콜에서 요구하는 송신자 정보와 수신자(Beneficiary) 정보를 사용자로부터 수집합니다.</p>
+      <p>The Ordering VASP collects the required Originator and Beneficiary information as specified by the TravelRule protocol.</p>
     </div>
   </div>
   <div class="step-box">
-    <div class="step-title">2. 검증 요청 전송<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
+    <div class="step-title">2. Send Verification Request<br><span class="subtitle">(Ordering VASP → Beneficiary VASP)</span></div>
     <div class="step-content">
-      <p><b>송신 VASP</b>는 수집된 정보를 기반으로 수신자 검증을 요청합니다. 검증 요청은 Enclave 서버를 통해 VerifyVASP 중앙서버로 전송되어 수신 VASP로 전달됩니다.</p>
-      <p>요청 데이터는 End-to-End 암호화(E2EE)로 보호됩니다.</p>
+      <p>Using the collected information, the Ordering VASP sends a verification request to the Beneficiary VASP.</p>
+      <p>The request is transmitted via the Enclave server to the VerifyVASP Central Server, which relays it to the Beneficiary VASP</p>
+      <p>All request data is protected with end-to-end encryption.</p>
     </div>
   </div>
   <div class="step-box">
