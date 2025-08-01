@@ -493,9 +493,9 @@ Key management (generation, storage, rotation) is fully automated within the Enc
 
 <br />
 
-## VASP 작업 요구사항
+## VASP Implementation Requirements
 
-VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위해 VASP는 다음의 절차를 순차적으로 수행해야 합니다. 각 항목에 대한 세부 내용은 관련 문서를 참조하세요.
+To integrate with VerifyVASP’s TravelRule and VerifyName 2.0 solutions, VASPs must complete the following steps in sequence. For detailed instructions, refer to the corresponding sections in the related documentation.
 
 <HTMLBlock>{`
 <style>
@@ -542,8 +542,8 @@ VerifyVASP가 제공하는 TravelRule과 VerifyName 2.0 솔루션 연동을 위�
   <li class="vasp-step-item">
     <div class="vasp-step-badge">1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">주요 시나리오 및 흐름 검토</div>
-      구현에 앞서 <a href="ref:travelrule-flow-diagram">Best Practice</a> 를 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인합니다.
+      <div class="vasp-step-title">Review key scenarios and flows</div>
+      Beo구현에 앞서 <a href="ref:travelrule-flow-diagram">Best Practice</a> 를 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인합니다.
     </div>
   </li>
   <li class="vasp-step-item">
