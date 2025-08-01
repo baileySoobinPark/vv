@@ -222,9 +222,11 @@ The process typically involves six steps, as outlined below. Detailed API specif
 
 <br />
 
-### VerifyName 검증 프로세스
+### VerifyName Verification Process
 
-VerifyName 프로토콜의 경우 TravelRule 프로토콜과 달리 Travel Rule 규제 의무가 있는 VASP와 규제 의무가 없는 VASP간 수행될 수 있습니다. 송신 VASP와 수신 VASP의 규제 준수 여부에 따라 사전 검증 또는 사후 검증 형태로 진행됩니다. 각 단계별로 호출되는 API 명세 및 기술 연동 과정은 Scenarios and Flows 문서 및 Integration Guide에서 확인할 수 있습니다.
+The VerifyName protocol can be used between a regulated VASP and an unregulated VASP.\
+Depending on their regulatory status, the process may involve pre-verification or post-verification.
+See the Scenarios and Flows and Integration Guide for detailed API specs and integration steps.
 
 <HTMLBlock>{`
 <div class="flow-container">
