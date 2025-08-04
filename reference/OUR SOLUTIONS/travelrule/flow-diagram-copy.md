@@ -12,11 +12,12 @@ metadata:
 ---
 ## TravelRule Best Practice
 
-Sequence Diagram 1 illustrates the recommended Best Practice Flow for implementing the TravelRule protocol. The process consists of four main stages:
+Sequence Diagram 1 illustrates the Best Practice flow for implementing the TravelRule protocol.\
+The TravelRule process consists of four main stages:
 
 1. Select Beneficiary VASP
 2. Verify Beneficiary Account
-3. Perform Beneficiary Verification
+3. Verify Beneficiary Information
 4. Transfer Assets
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
@@ -80,129 +81,129 @@ Sequence Diagram 1 illustrates the recommended Best Practice Flow for implementi
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">1. 송신자의 자산 출금 신청 및 수신 VASP 선택</div>
+  <div class="scenario-title">1. Originator Requests Withdrawal & Selects Beneficiary VASP</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
-      <div class="step-content">사용자(송신자)가 송신 VASP에 출금을 요청합니다.</div>
+      <div class="step-content">The Originator requests a withdrawal from the Ordering VASP.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">2</div>
-      <div class="step-content">송신 VASP는 사용자에게 수신 VASP를 선택하도록 하기 위해 Enclave의 <code>List VASP </code> API를 호출합니다.</div>
+      <div class="step-content">The Ordering VASP calls the List VASP API in the Enclave to retrieve a list of available beneficiary VASPs.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">3</div>
-      <div class="step-content">송신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave requests the beneficiary VASP list from the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">4</div>
-      <div class="step-content">중앙 서버는 사용 가능한 수신 VASP 목록을 반환합니다.</div>
+      <div class="step-content">The Central Server returns the list of available beneficiary VASPs.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">5</div>
-      <div class="step-content">Enclave는 목록을 수신한 후 VASP 백엔드로 전달합니다.</div>
+      <div class="step-content">The Enclave forwards the list to the Ordering VASP backend.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">6</div><div class="step-badge">7</div>
-      <div class="step-content">사용자에게 수신 VASP 목록을 표시한 후 사용자가 수신 VASP를 선택합니다.</div>
+      <div class="step-content">The list of beneficiary VASPs is displayed to the user, and the user selects one.</div>
     </li>
   </ol>
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">2. 계정 검증 (Account Verification)</div>
+  <div class="scenario-title">2. Account Verification</div>
   <ol class="step-list">
     
     <!-- 정보 수집 -->
-    <div class="subsection-title">수신 계정 및 수신자 정보 수집</div>
+    <div class="subsection-title">Collect Beneficiary Account & User Information</div>
     <li class="step-item">
       <div class="step-badge">8</div>
-      <div class="step-content">사용자는 Travel Rule 준수를 위해 송신 VASP가 요청하는 정보를 입력합니다.</div>
+      <div class="step-content">To comply with the Travel Rule, the Originator enters the required beneficiary information requested by the Ordering VASP.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">9</div>
-      <div class="step-content">송신 VASP는 사용자 입력과 내부 정보를 조합하여 Enclave의 <code>User Account Verification API</code>를 호출합니다. 요청에는 수신 VASP ID, 키 유형, 티커, 전송 정보, 수신자 주소 등이 포함됩니다.</div>
+      <div class="step-content">The Ordering VASP combines the user input with internal information and calls the <code>User Account Verification API<code> in the Enclave. The request includes: beneficiary VASP ID, key type, ticker, transfer information, and beneficiary address.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">10</div>
-      <div class="step-content">Enclave는 요청된 키 유형에 해당하는 공개키가 캐시에 존재하는지 확인합니다. 유효한 키가 없으면 키 교환 절차(11–16단계)를 진행합니다.</div>
+      <div class="step-content">The Enclave checks if a valid public key for the specified key type is already cached. If no valid key exists, the Key Exchange procedure (Steps 11–16) is executed.</div>
     </li>
 
     <!-- 키 교환 (선택적) -->
-    <div class="subsection-title">키 교환 (공개키가 캐시에 존재하지 않는 경우 수행)</div>
+    <div class="subsection-title">Key Exchange (Performed only if the public key is not cached)</div>
     <li class="step-item">
       <div class="step-badge">11</div>
-      <div class="step-content">송신 VASP의 Enclave는 중앙 서버를 통해 수신 VASP의 공개키를 요청합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave requests the beneficiary VASP’s public key from the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">12</div>
-      <div class="step-content">중앙 서버는 해당 요청을 수신 VASP Enclave로 전달합니다.</div>
+      <div class="step-content">The Central Server forwards this request to the beneficiary VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">13</div>
-      <div class="step-content">수신 VASP Enclave는 캐시된 공개키가 없다면 새 키 쌍을 생성합니다.</div>
+      <div class="step-content">If no public key is cached, the beneficiary VASP’s Enclave generates a new key pair.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">14</div>
-      <div class="step-content">수신 VASP는 생성된 공개키를 중앙 서버를 통해 송신 VASP로 전달합니다.</div>
+      <div class="step-content">The beneficiary VASP sends the generated public key to the Ordering VASP via the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">15</div><div class="step-badge">16</div>
-      <div class="step-content">송신 VASP Enclave는 공개키를 수신한 뒤 키 유형에 따라 캐싱합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave receives the public key and caches it according to the key type policy.</div>
     </li>
 
     <!-- 검증 요청 -->
-    <div class="subsection-title">검증 요청</div>
+    <div class="subsection-title">Send Verification Request</div>
     <li class="step-item">
       <div class="step-badge">17</div>
-      <div class="step-content">송신 VASP Enclave는 수신 VASP의 공개키로 민감 정보를 암호화합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave encrypts sensitive information using the beneficiary VASP’s public key.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">18</div>
-      <div class="step-content">요청 서명을 위해 Enclave는 키 쌍을 생성하거나 기존 키를 조회합니다.</div>
+      <div class="step-content">For request signing, the Enclave generates or retrieves an existing key pair.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">19</div>
-      <div class="step-content">암호화된 수신자 주소 및 관련 정보가 중앙 서버를 통해 수신 VASP로 전송됩니다.</div>
+      <div class="step-content">The encrypted beneficiary address and related information are sent to the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">20</div>
-      <div class="step-content">중앙 서버는 요청을 수신 VASP Enclave로 전달합니다.</div>
+      <div class="step-content">The Central Server forwards the request to the beneficiary VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">21</div>
-      <div class="step-content">수신 VASP Enclave는 비공개키로 요청 데이터를 복호화합니다.</div>
+      <div class="step-content">The beneficiary VASP’s Enclave decrypts the request data using its private key.</div>
     </li>
 
     <!-- 계정 검증 로직 -->
-    <div class="subsection-title">수신 계정 검증 로직</div>
+    <div class="subsection-title">Beneficiary Account Verification Logic</div>
     <li class="step-item">
       <div class="step-badge">22</div>
-      <div class="step-content">수신 VASP Enclave는 VASP 백엔드의 <code>Verify User Account API</code>를 호출하여 주소 소유 여부를 확인합니다.</div>
+      <div class="step-content">The beneficiary VASP’s Enclave calls the backend’s <code>Verify User Account API<code> to check address ownership.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">23</div>
-      <div class="step-content">수신 VASP는 해당 주소가 VASP 소유 주소인지 여부를 검증합니다.</div>
+      <div class="step-content">The beneficiary VASP verifies whether the address belongs to the VASP.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">24</div>
-      <div class="step-content">검증 결과가 수신 VASP Enclave에 반환됩니다.</div>
+      <div class="step-content">The verification result is returned to the beneficiary VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">25</div>
-      <div class="step-content">수신 VASP Enclave는 결과를 중앙 서버에 전달합니다.</div>
+      <div class="step-content">The beneficiary VASP’s Enclave sends the result to the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">26</div>
-      <div class="step-content">중앙 서버는 결과를 송신 VASP Enclave로 전달합니다.</div>
+      <div class="step-content">The Central Server forwards the result to the Ordering VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">27</div>
-      <div class="step-content">송신 VASP Enclave는 결과를 송신 VASP 백엔드로 전달합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave passes the result to the Ordering VASP backend.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">28</div>
-      <div class="step-content">검증 결과가 <code>DENIED</code>인 경우 사용자는 안내를 받고 절차가 종료되며, <code>VERIFIED</code>인 경우 사용자 검증 단계로 진행됩니다.</div>
+      <div class="step-content">If the result is <code>DENIED<code>, the user is notified and the process ends. If the result is <code>VERIFIED<code>, the process continues to the Beneficiary Information Verification stage.</div>
     </li>
   </ol>
 </div>
