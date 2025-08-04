@@ -243,132 +243,132 @@ The TravelRule process consists of four main stages:
     </li>
 
     <!-- 검증 처리 -->
-    <div class="subsection-title">verification</div>
+    <div class="subsection-title">Verification</div>
     <li class="step-item">
       <div class="step-badge">38</div>
-      <div class="step-content">수신 VASP Enclave는 VASP 백엔드의 <code>Verify User API</code>를 호출하여 사용자 정보를 검증합니다.</div>
+      <div class="step-content">The Beneficiary VASP’s Enclave calls the backend’s <code>Verify User API</code> to validate the user information.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">39</div>
-      <div class="step-content">수신 VASP는 비즈니스 로직에 따라 사용자를 검증합니다. 이 과정에서 컴플라이언스 또는 리스크 스크리닝 등 선택적 절차가 포함될 수 있습니다.</div>
+      <div class="step-content">The Beneficiary VASP verifies the user according to its policy, optionally including compliance or risk screening procedures.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">40</div>
-      <div class="step-content">검증이 완료되면 Enclave로 검증 결과와 추가 정보 또는 오류 메시지를 반환합니다.</div>
+      <div class="step-content">Once verification is complete, the backend returns the result with any additional information or error messages to the Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">41</div><div class="step-badge">42</div>
-      <div class="step-content">Enclave는 데이터베이스에 UUID와 연관된 기록을 갱신하고, 송신 VASP의 공개키로 결과를 암호화 한 뒤 중앙 서버로 결과를 반환합니다.</div>
+      <div class="step-content">The Enclave updates the database record associated with the UUID, encrypts the result using the Ordering VASP’s public key, and sends it to the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">43</div>
-      <div class="step-content">중앙 서버는 송신 VASP Enclave에 결과를 전달합니다.(비동기 방식)</div>
+      <div class="step-content">The Central Server forwards the result to the Ordering VASP’s Enclave asynchronously.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">44</div>
-      <div class="step-content">송신 VASP Enclave는 결과를 복호화하여 데이터베이스에 저장합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave decrypts the result and stores it in the database.</div>
     </li>
 
     <!-- 콜백 및 추가 확인 -->
-    <div class="subsection-title">콜백 및 추가 확인</div>
+    <div class="subsection-title">Callback and Additional Checks</div>
     <li class="step-item">
       <div class="step-badge">45</div>
-      <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 검증 결과와 추가 정보를 전달합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave calls the backend’s <code>Callback API</code> to deliver the verification result and any additional information.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">46</div>
-      <div class="step-content">송신 VASP는 해당 정보를 바탕으로 추가적인 확인 절차(선택적 스크리닝 등)를 수행할 수 있습니다.</div>
+      <div class="step-content">The Ordering VASP may perform additional checks (e.g., optional screening) based on the received information.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">47</div>
-      <div class="step-content">Callback API 수신 시, 송신 VASP는 항상 <code>200 OK</code> 응답을 반환하여 수신 완료를 명시해야 합니다.</div>
+      <div class="step-content">When receiving a Callback API request, the Ordering VASP must always return <code>200 OK</code> to confirm receipt.</div>
     </li>
 
     <!-- 취소 및 오류 처리 -->
-    <div class="subsection-title">취소 및 오류 처리</div>
+    <div class="subsection-title">Cancellation and Error Handling</div>
     <li class="step-item">
       <div class="step-badge">48</div>
-      <div class="step-content">검증 결과가 <code>DENIED</code>이거나, 송신 VASP가 절차를 중단하기로 결정한 경우 사용자에게 안내 후 절차를 종료합니다. 검증이 <code>VERIFIED</code>된 경우에도, 송신자가 중단을 원하거나 내부 오류 또는 고위험 사유로 인해 절차를 종료할 수 있습니다.</div>
+      <div class="step-content">If the verification result is <code>DENIED</code>, or if the Ordering VASP decides to terminate the process, the user is notified and the process ends. Even if the result is <code>VERIFIED</code>, the process can still be terminated at the sender’s request, or due to internal errors or high-risk conditions.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">49</div>
-      <div class="step-content">출금 절차를 중단한 경우, 송신 VASP는 Enclave의 <code>Report Error API</code>를 호출하여 절차가 중단되었음을 통보해야 합니다.</div>
+      <div class="step-content">If the withdrawal process is stopped, the Ordering VASP calls the Enclave’s <code>Report Error API</code> to notify the counterparty.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">50</div>
-      <div class="step-content">송신 VASP Enclave는 오류 보고서를 중앙 서버로 전송합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave sends the error report to the Central Server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">51</div>
-      <div class="step-content">중앙 서버는 해당 보고를 수신 VASP Enclave로 전달합니다.</div>
+      <div class="step-content">The Central Server forwards the report to the Beneficiary VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">52</div>
-      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 절차 중단을 통지합니다.</div>
+      <div class="step-content">The Enclave calls the backend’s <code>Callback API</code> to notify that the process has been terminated.</div>
     </li>
 
     <!-- 프로세스 완료 -->
-    <div class="subsection-title">프로세스 완료</div>
+    <div class="subsection-title">Process Completion</div>
     <li class="step-item">
       <div class="step-badge">53</div>
-      <div class="step-content">모든 검증이 성공하면 송신 VASP는 사용자에게 통보하고 트랜잭션 실행 단계로 넘어갑니다.</div>
+      <div class="step-content">If all verifications are successful, the Ordering VASP notifies the user and proceeds to the transaction execution stage.</div>
     </li>
   </ol>
 </div>
 <div class="scenario-section">
-  <div class="scenario-title">4. 트랜잭션 실행</div>
+  <div class="scenario-title">4. Transaction Execution</div>
   <ol class="step-list">
 
-    <div class="subsection-title">트랜잭션 생성 및 제출</div>
+    <div class="subsection-title">Create and Submit Transaction</div>
     <li class="step-item">
       <div class="step-badge">54</div>
-      <div class="step-content">송신 VASP는 송신자 계정의 자산을 수신자에게 전송하는 블록체인 트랜잭션을 생성하고 제출합니다.</div>
+      <div class="step-content">The Ordering VASP creates and submits a blockchain transaction to transfer the assets from the originator to the beneficiary.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">55</div>
-      <div class="step-content">필요한 경우, 블록체인 특성에 따라 트랜잭션의 finality를 추적하는 기능을 구현할 수 있습니다.</div>
+      <div class="step-content">If required, implement logic to track transaction finality depending on the blockchain’s characteristics.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">56</div>
-      <div class="step-content">트랜잭션 해시를 확보한 직후, 송신 VASP는 Enclave의 <code>Report Transaction Result</code> API를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div>
+      <div class="step-content">Once the transaction hash is obtained, the Ordering VASP calls the Enclave’s <code>Report Transaction Result API</code> to send the transaction hash to the Beneficiary VASP.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">57</div>
-      <div class="step-content">Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 내부 데이터베이스를 갱신합니다.</div>
+      <div class="step-content">The Enclave maps the transaction hash to the verification UUID and updates its internal database.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">58</div><div class="step-badge">59</div>
-      <div class="step-content">Report 데이터가 중앙 서버를 통해 수신 VASP Enclave로 전달됩니다.</div>
+      <div class="step-content">The report data is sent via the Central Server to the Beneficiary VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">60</div>
-      <div class="step-content">수신 VASP Enclave는 트랜잭션 해시를 검증 UUID에 매핑하여 저장하고, VASP 백엔드의 <code>Callback API</code>를 호출하여 트랜잭션 정보를 수신 VASP에 전달합니다.</div>
+      <div class="step-content">The Beneficiary VASP’s Enclave maps the transaction hash to the verification UUID, stores it, and calls the backend’s <code>Callback API</code> to deliver the transaction information.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">61</div>
-      <div class="step-content">수신 VASP가 <code>200 OK</code> 응답을 반환하면 트랜잭션 프로세스는 완료됩니다.</div>
+      <div class="step-content">Once the Beneficiary VASP returns <code>200 OK</code>, the transaction process is complete.</div>
     </li>
 
-    <div class="subsection-title">예외 처리: 트랜잭션 보고 누락</div>
+    <div class="subsection-title">Exception: Missing Transaction Report</div>
     <li class="step-item">
       <div class="step-badge">62</div>
-      <div class="step-content">수신 VASP가 온체인 입금을 감지했으나 관련 트랜잭션 보고를 받지 못한 경우, Enclave의<code>Check Transaction Status</code> API를 호출합니다.</div>
+      <div class="step-content">If the Beneficiary VASP detects an on-chain deposit but has not received the corresponding transaction report, it calls the Enclave’s <code>Check Transaction Status API</code>.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">63</div><div class="step-badge">64</div>
-      <div class="step-content">요청은 중앙 서버를 통해 송신 VASP Enclave로 전달됩니다.</div>
+      <div class="step-content">The request is sent via the Central Server to the Ordering VASP’s Enclave.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">65</div>
-      <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>Check Transaction Status API</code>를 호출하여 검증 UUID에 매핑된 트랜잭션의 온체인 상태를 확인합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave calls the backend’s <code>Check Transaction Status API</code> to confirm the on-chain status of the transaction mapped to the verification UUID.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">66</div>
-      <div class="step-content">송신 VASP는 검증 UUID에 대응되는 트랜잭션을 식별하고 온체인 처리 상태를 확인합니다.</div>
+      <div class="step-content">The Ordering VASP identifies the transaction corresponding to the UUID and checks its on-chain processing status.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">67</div><div class="step-badge">68</div><div class="step-badge">69</div><div class="step-badge">70</div>
-      <div class="step-content">트랜잭션의 처리 상태를 Enclave를 통해 수신 VASP에게 반환합니다.</div>
+      <div class="step-content">The transaction status is returned to the Beneficiary VASP via the Enclave.</div>
     </li>
 
   </ol>
