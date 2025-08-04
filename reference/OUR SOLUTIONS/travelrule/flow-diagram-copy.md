@@ -609,64 +609,64 @@ Sequence Diagram 4 illustrates how the Ordering VASP and Beneficiary VASP each u
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
-      <div class="step-content">송신 VASP 백엔드가 수신자의 PII에 대해 위험도 평가를 수행하기 위해 Enclave의 Refinitiv WCO API를 호출합니다.</div>
+      <div class="step-content">The Ordering VASP backend calls the Enclave’s Refinitiv WCO API to perform a risk assessment on the beneficiary’s PII.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">2</div>
-      <div class="step-content">Enclave가 WCO API 요청에 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+      <div class="step-content">The Enclave generates the requestId and RequestBody required for the WCO API request.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">3</div>
-      <div class="step-content">Enclave는 수신자의 PII를 포함한 위험도 평가 요청을 Refinitiv 서버에 전송합니다. 다이어그램에서는 단일 요청처럼 보이지만, 실제로는 여러 단계의 API 호출로 이루어진 비동기 방식으로 동작합니다.</div>
+      <div class="step-content">The Enclave sends the risk assessment request, including the beneficiary’s PII, to the Refinitiv server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">4</div>
-      <div class="step-content">Refinitiv 서버가 수신자 PII의 위험도를 평가하고 결과를 반환합니다.</div>
+      <div class="step-content">The Refinitiv server evaluates the risk level of the beneficiary’s PII and returns the result.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">5</div>
-      <div class="step-content">Enclave는 위험도 평가 결과를 데이터베이스에 저장합니다.</div>
+      <div class="step-content">The Enclave stores the risk assessment result in the database.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">6</div><div class="step-badge">7</div>
-      <div class="step-content">Enclave가 VASP 백엔드의 <code>Callback API</code>를 호출하여 결과를 전달합니다.</div>
+      <div class="step-content">The Enclave calls the VASP backend’s <code>Callback API</code> to deliver the result..</div>
     </li>
   </ol>
 
   <div class="info-note">
-    📘 <strong>참고:</strong><br>
-    WCO API가 수신자의 PII를 고위험군으로 판단한 경우, 송신 VASP는 자산 전송을 취소할 수 있습니다. 전송 취소시 송신 VASP는 오류 보고(Error Report)를 통해 수신 VASP에 취소 사실을 반드시 통지해야 합니다.
+    📘 <strong>Note:</strong><br>
+    If the WCO API determines the beneficiary’s PII to be high-risk, the Ordering VASP may cancel the asset transfer. In this case, the Ordering VASP must send an Error Report to the Beneficiary VASP to notify the cancellation.
   </div>
 
-  <div class="sub-section-title">수신 VASP 측 위험도 평가 - 송신자 PII</div>
+  <div class="sub-section-title">Beneficiary VASP-Side Risk Assessment – Originator PII</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">8</div>
-      <div class="step-content">수신 VASP도 송신자의 PII를 대상으로 WCO API 기반 위험도 평가를 수행할 수 있습니다.</div>
+      <div class="step-content">The Beneficiary VASP can also perform a WCO API-based risk assessment on the originator’s PII.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">9</div>~ <div class="step-badge">14</div>
-      <div class="step-content">위험도 평가는 수신 VASP가 사용자 검증 결과를 반환한 이후 수행되어야 합니다.</div>
+      <div class="step-content">The risk assessment must be performed after the Beneficiary VASP has returned the user verification result.</div>
     </li>
   </ol>
 
-  <div class="sub-section-title">트랜잭션 실행</div>
+  <div class="sub-section-title">Transaction Execution</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">15</div>
-      <div class="step-content">WCO의 위험도 판단 결과 저위험군으로 분류된 경우, 송신 VASP는 Best Practice와 같이 자산 전송 프로세스를 재개합니다.</div>
+      <div class="step-content">If the WCO risk assessment result categorizes the account as low-risk, the Ordering VASP resumes the asset transfer process according to the <b>Best Practice</b> flow.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">16</div>
-      <div class="step-content">블록체인 상에서 실제 자산 전송 트랜잭션을 실행합니다.</div>
+      <div class="step-content">The Ordering VASP executes the blockchain transaction for the asset transfer.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">17</div> ~ <div class="step-badge">20</div>
-      <div class="step-content">송신 VASP는 트랜잭션 결과 Report API를 호출하여 수신 VASP에 트랜잭션 결과를 전달합니다.</div>
+      <div class="step-content">The Ordering VASP calls the Report Transaction Result API to send the transaction result to the Beneficiary VASP.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">21</div>
-      <div class="step-content">수신 VASP는 보고된 트랜잭션 해시를 확인 후 VASP 정책에 따라 필요한 확인 절차들을 수행합니다.</div>
+      <div class="step-content">The Beneficiary VASP verifies the reported transaction hash and performs any required confirmation procedures according to its internal policies.</div>
     </li>
   </ol>
 </div>
