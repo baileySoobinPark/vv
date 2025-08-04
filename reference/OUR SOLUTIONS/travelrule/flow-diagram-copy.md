@@ -505,9 +505,7 @@ Sequence Diagram 2 shows how an Ordering VASP and a Beneficiary VASP integrate t
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Chainalysis KYT API integration flow for risk assessment" src="https://files.readme.io/2ac080e6cc5469ea7f1d6769eceb099cb13cb44aaed4b95becc9f69d38e42b2c-tr_solution_3.avif" />
 
-Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate the Chainalysis KYT API to perform risk assessments.
-
-The KYT API supports risk evaluation for a specific address or transaction.
+Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate the Chainalysis KYT API to perform risk assessments. The KYT API supports risk evaluation for a specific address or transaction.
 
 * The **Ordering VASP** can call the KYT API before an asset transfer to evaluate the beneficiary address.
 * After the transfer, the Ordering VASP can submit the **TxHash** to evaluate the transaction risk.
