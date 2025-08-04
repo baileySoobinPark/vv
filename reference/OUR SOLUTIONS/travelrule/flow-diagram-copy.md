@@ -219,31 +219,31 @@ The TravelRule process consists of four main stages:
     </li>
     <li class="step-item">
       <div class="step-badge">30</div>
-      <div class="step-content">Enclave는 수신 VASP의 공개키를 사용하여 민감한 사용자 정보를 암호화합니다.</div>
+      <div class="step-content">The Enclave encrypts sensitive user information using the Beneficiary VASP’s public key.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">31</div><div class="step-badge">32</div>
-      <div class="step-content">암호화된 요청은 중앙 서버로 전송됩니다. 중앙 서버는 비동기 처리를 위해 해당 요청건에 대한 고유한 검증 UUID를 발급하고 비동기 처리를 위해 요청을 큐에 등록합니다.</div>
+      <div class="step-content">The encrypted request is sent to the Central Server. The Central Server issues a unique verification UUID for asynchronous processing and adds the request to the queue.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">33</div><div class="step-badge">34</div>
-      <div class="step-content">송신 VASP Enclave는 중앙 서버로부터 반환된 UUID를 데이터베이스에 저장합니다.</div>
+      <div class="step-content">The Ordering VASP’s Enclave stores the UUID in its database.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">35</div>
-      <div class="step-content">Enclave는 백엔드의 검증 요청 응답으로 UUID를 반환합니다.</div>
+      <div class="step-content">The Enclave returns the UUID to the Ordering VASP backend in the verification request response.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">36</div>
-      <div class="step-content">중앙 서버는 검증 요청을 수신 VASP로 전달합니다.(비동기 방식)</div>
+      <div class="step-content">The Central Server forwards the verification request to the Beneficiary VASP asynchronously.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">37</div>
-      <div class="step-content">수신 VASP Enclave는 개인키로 요청내 암호화 필드들을 복호화합니다.</div>
+      <div class="step-content">The Beneficiary VASP’s Enclave decrypts the encrypted fields in the request using its private key.</div>
     </li>
 
     <!-- 검증 처리 -->
-    <div class="subsection-title">검증</div>
+    <div class="subsection-title">verification</div>
     <li class="step-item">
       <div class="step-badge">38</div>
       <div class="step-content">수신 VASP Enclave는 VASP 백엔드의 <code>Verify User API</code>를 호출하여 사용자 정보를 검증합니다.</div>
