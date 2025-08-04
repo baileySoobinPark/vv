@@ -379,17 +379,27 @@ The TravelRule process consists of four main stages:
 
 ## Screening (Optional)
 
-리스크 기반 검증을 수행하고자 하는 경우 VASP는 필요에 따라 3rd Party 스크리닝 서비스를 연동할 수 있습니다. 스크리닝 서비스는 특정 지갑 주소, 트랜잭션 또는 개인에 대한 리스크 점수를 제공하여 이를 위험도 평가 기준으로 활용 가능합니다. 대표적인 3rd Party API로는 Chainalysis의 Sanction API, Chainalysis의 KYT API, Refinitiv의 World-Check One(WCO) API가 있습니다.
+If a VASP chooses to perform risk-based verification, it can integrate with third-party screening services. These services provide a risk score for specific wallet addresses, transactions, or individuals, which can be used as part of a risk assessment framework.
 
-각 API는 리스크 평가의 대상과 목적이 다르므로, VASP는 자사 컴플라이언스 및 운영 요건에 따라 적합한 서비스를 선택하여 연동할 수 있습니다. VerifyVASP Enclave는 검증 UUID를 기반으로 외부 리스크 평가 API를 요청하기 위한 인터페이스를 제공하여 검증 완료 트랜잭션에 대한 추가 리스크 평가를 간소화하고 데이터 이중 관리를 방지합니다.
+Common third-party APIs include:
 
-For detailed instructions on using each API, refer to the [enclave screening API documentation](ref:travelrule-Chainalysis-Sanction) .
+* Chainalysis Sanction API
+* Chainalysis KYT API
+* Refinitiv World-Check One (WCO) API
+
+Each API has a different target and purpose for risk assessment. VASPs should select and integrate the service that best fits their compliance and operational requirements.
+
+The **VerifyVASP Enclave** provides an interface to call external risk assessment APIs using a **verification UUID**, simplifying additional risk assessments for completed verification transactions and preventing duplicate data management.
+
+For detailed usage instructions, refer to the [enclave screening API documentation](ref:travelrule-Chainalysis-Sanction) .
+
+<br />
 
 ### 1. Chainalysis Sanction API Integration
 
 <Image align="center" border={false} caption="Sequence Diagram 2. Chainalysis Sanction API integration flow for risk assessment" src="https://files.readme.io/6c2f368995602e6a646743e3e28ee61a067a9aff95941a7315a9afebe1e87947-tr_solution_2.webp" />
 
-Sequence Diagram 2는 송신 VASP와 수신 VASP가 Chainalysis Sanction API를 연동하여 리스크 평가를 수행하는 과정을 보여줍니다. Sanction API는 사용자 검증 요청 이후에 호출되어야 하며, 자산을 이전하기 전에 위험도 평가에 활용할 것을 권장합니다. 세부 절차는 아래와 같습니다.
+Sequence Diagram 2 shows how an Ordering VASP and a Beneficiary VASP integrate the Chainalysis Sanction API to perform risk assessments. The Sanction API should be called after the user verification request and is recommended for use before asset transfers to evaluate risk.
 
 <HTMLBlock>{`
 <style>
