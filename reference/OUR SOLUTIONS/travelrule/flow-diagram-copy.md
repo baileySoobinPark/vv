@@ -1,9 +1,10 @@
 ---
 title: Scenarios and Flows
 excerpt: >-
-  본 문서에서는 TravelRule 구현을 위한 필수 연동 과정을 포함하는 Best Practice 시나리오와 선택 구현사항인
-  Screening 시나리오 및 세부 Flow를 소개합니다. 시나리오별 Flow를 참고하여 VASP 요구사항에 따른 TravelRule 연동
-  프로세스를 완수하세요.
+  This section introduces the Best Practice scenario required for TravelRule
+  implementation, along with optional Screening scenarios and detailed flows.
+  Follow the flow diagrams to complete the TravelRule integration process
+  according to your VASP’s requirements.
 deprecated: false
 hidden: false
 metadata:
@@ -11,7 +12,12 @@ metadata:
 ---
 ## TravelRule Best Practice
 
-Sequence Diagram 1은 TravelRule 프로토콜 구현의 Best Practice Flow를 나타냅니다. TravelRule 프로토콜은 크게 다음 4개의 단계로 진행됩니다: (1)수신 VASP 선택 (2)수신자 계정 검증 (3)수신자 검증 (4)자산 이전. Sequence Diagram 1은 각 단계를 점선 박스로 구분하여 표시합니다.
+Sequence Diagram 1 illustrates the recommended Best Practice Flow for implementing the TravelRule protocol. The process consists of four main stages:
+
+1. Select Beneficiary VASP
+2. Verify Beneficiary Account
+3. Perform Beneficiary Verification
+4. Transfer Assets
 
 <Image align="center" border={false} caption="Sequence Diagram 1. TravelRule Best practice" src="https://files.readme.io/125494277f7e9aa4eec30651b9de394e590c20766dece1100861095183930c7f-tr_flow_diagram.png" />
 
