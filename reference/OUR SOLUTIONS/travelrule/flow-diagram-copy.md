@@ -535,59 +535,59 @@ Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate t
     </li>
     <li class="step-item">
       <div class="step-badge">5</div>
-      <div class="step-content">Enclave가 조회한 평가 결과를 데이터베이스에 저장합니다.</div>
+      <div class="step-content">The Enclave stores the retrieved assessment result in the database.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">6</div>
-      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 위험도 평가 결과를 전달합니다.</div>
+      <div class="step-content">The Enclave calls the VASP backend’s <code>Callback API</code> to deliver the risk assessment result.</div>
     </li>
   </ol>
 
   <div class="info-note">
     📘 <strong>참고:</strong><br>
-    KYT API 결과로 수신자 주소가 고위험(high-risk)으로 판단될 경우, Originating VASP는 자산 이전을 취소할 수 있습니다. 이 경우, 반드시 Beneficiary VASP에 Error Report를 전송하여 취소 사실을 통보해야 합니다.
+    If the KYT API result determines the beneficiary address to be high-risk, the Originating VASP may cancel the asset transfer. In this case, the Ordering VASP must send an Error Report to the Beneficiary VASP to notify the cancellation.
   </div>
 
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">7</div>~ <div class="step-badge">14</div>
-      <div class="step-content"> 수신 주소가 리스크가 낮다고 판단된 경우, 송신 VASP는 Best Practice Flow와 같이 자산 이전 및 결과 보고 절차를 재개합니다.</div>
+      <div class="step-content"> If the beneficiary address is determined to be low-risk, the Ordering VASP resumes the asset transfer and reporting procedures according to the <b>Best Practice</b> Flow.</div>
     </li>
   </ol>
 
-  <div class="sub-section-title">송신 VASP 측 리스크 평가 - 출금 트랜잭션</div>
+  <div class="sub-section-title">Ordering VASP-Side Risk Assessment – Withdrawal Transaction</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">15</div>
-      <div class="step-content">자산 이전 후 트랜잭션 해시가 확보되면, 송신 VASP는 Enclave API를 호출하여 해당 트랜잭션에 대한 위험도 평가를 요청할 수 있습니다.<br>※ 호출 전 반드시 Report Transaction Result API가 선행되어야 합니다.</div>
+      <div class="step-content">After the asset transfer and once the transaction hash is obtained, the Ordering VASP may call the Enclave API to request a risk assessment for that transaction.<br>※ The Report Transaction Result API must be called before initiating the KYT API request.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">16</div>
-      <div class="step-content">Enclave는 Chainalysis API 요청에 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+      <div class="step-content">The Enclave generates the requestId and RequestBody required for the Chainalysis API request.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">17</div>
-      <div class="step-content">Enclave가 Chainalysis 트랜잭션 위험도 평가 API 요청을 전송합니다.</div>
+      <div class="step-content">The Enclave sends the transaction risk assessment request to the Chainalysis API.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">18</div>
-      <div class="step-content">Chainalysis 서버는 트랜잭션에 대한 평가 결과를 반환합니다. 주소 위험도 평가와 마찬가지로, 다이어그램에는 동기 응답으로 표현되어 있으나 실제로는 Enclave의 결과 조회 API 호출을 통한 비동기 방식으로 결과를 확인합니다.</div>
+      <div class="step-content">The Chainalysis server returns the transaction risk result. Similar to the address risk assessment, the diagram shows a synchronous response, but the actual process uses the Enclave’s asynchronous result retrieval API.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">19</div>
-      <div class="step-content">Enclave가 조회환 결과를 데이터베이스에 저장합니다.</div>
+      <div class="step-content">The Enclave stores the retrieved result in the database.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">20</div>
-      <div class="step-content">Enclave는 VASP 백엔드의 <code>Callback API</code>를 호출하여 평가 결과를 전달하고, 리스크 평가 절차를 종료합니다.</div>
+      <div class="step-content">The Enclave calls the VASP backend’s <code>Callback API</code> to deliver the result and completes the risk assessment procedure.</div>
     </li>
   </ol>
 
-  <div class="sub-section-title">입금 VASP 측 리스크 평가 - 입금 트랜잭션</div>
+  <div class="sub-section-title">Beneficiary VASP-Side Risk Assessment – Deposit Transaction</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">21</div> ~ <div class="step-badge">28</div>
-      <div class="step-content">수신 VASP 측에서도 트랜잭션 Report를 수신하거나 온체인 입금을 감지한 후 해당 트랜잭션에 대한 위험도 평가를 수행할 수 있습니다. Flow는 송신 VASP측 트랜잭션 위험도 평가와 동일합니다. 트랜잭션 위험도 평가를 통해 자산 이전 과정의 보안성과 규제 대응 능력을 향상시킬 수 있습니다.</div>
+      <div class="step-content">The Beneficiary VASP can also perform a transaction risk assessment after receiving the transaction report or detecting the on-chain deposit.The process flow is identical to the Ordering VASP’s transaction risk assessment flow. This assessment improves the security and regulatory compliance of the asset transfer process.</div>
     </li>
   </ol>
 </div>
@@ -599,13 +599,13 @@ Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate t
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Refinitiv WCO API integration flow for risk assessment" src="https://files.readme.io/e20fb9a58375cd5403148ec1a6ea7d4f462964c57fd23f3c576893f81391fe22-tr_solution_4.webp" />
 
-Sequence Diagram 4는 송신 VASP와 수신 VASP가 각각 Refinitiv WCO API를 활용하여 위험도 평가를 수행하는 과정을 보여줍니다. WCO API는 개인 식별 정보(PII)를 기반으로 송수신인 개인에 대한 위험도를 평가할 수 있도록 지원합니다. 세부 절차는 아래와 같습니다.
+Sequence Diagram 4 illustrates how the Ordering VASP and Beneficiary VASP each use the Refinitiv WCO API to perform risk assessments. The WCO API enables risk evaluation of senders and recipients based on personally identifiable information (PII).
 
 <HTMLBlock>{`
 <div class="scenario-section">
-  <div class="scenario-title">WCO API를 활용한 PII 기반 위험도 평가</div>
+  <div class="scenario-title">WCO API-Based PII Risk Assessment</div>
 
-  <div class="sub-section-title">송신 VASP 측 위험도 평가 - 수신자 PII</div>
+  <div class="sub-section-title">Ordering VASP-Side Risk Assessment – Beneficiary PII</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
