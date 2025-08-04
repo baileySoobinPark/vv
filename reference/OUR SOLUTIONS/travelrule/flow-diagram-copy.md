@@ -122,7 +122,7 @@ The TravelRule process consists of four main stages:
     </li>
     <li class="step-item">
       <div class="step-badge">9</div>
-      <div class="step-content">The Ordering VASP combines the user input with internal information and calls the <code>User Account Verification API<code> in the Enclave. The request includes: beneficiary VASP ID, key type, ticker, transfer information, and beneficiary address.</div>
+      <div class="step-content">The Ordering VASP combines the user input with internal information and calls the <code>User Account Verification API</code> in the Enclave. The request includes: beneficiary VASP ID, key type, ticker, transfer information, and beneficiary address.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">10</div>
@@ -179,7 +179,7 @@ The TravelRule process consists of four main stages:
     <div class="subsection-title">Beneficiary Account Verification Logic</div>
     <li class="step-item">
       <div class="step-badge">22</div>
-      <div class="step-content">The beneficiary VASP’s Enclave calls the backend’s <code>Verify User Account API<code> to check address ownership.</div>
+      <div class="step-content">The beneficiary VASP’s Enclave calls the backend’s <code>Verify User Account API</code> to check address ownership.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">23</div>
@@ -203,19 +203,19 @@ The TravelRule process consists of four main stages:
     </li>
     <li class="step-item">
       <div class="step-badge">28</div>
-      <div class="step-content">If the result is <code>DENIED<code>, the user is notified and the process ends. If the result is <code>VERIFIED<code>, the process continues to the Beneficiary Information Verification stage.</div>
+      <div class="step-content">If the result is <code>DENIED</code>, the user is notified and the process ends. If the result is <code>VERIFIED</code>, the process continues to the Beneficiary Information Verification stage.</div>
     </li>
   </ol>
 </div>
 <div class="scenario-section">
-  <div class="scenario-title">3. 사용자 검증 (User Verification)</div>
+  <div class="scenario-title">3. User Verification</div>
   <ol class="step-list">
 
     <!-- 정보 암호화 및 요청 -->
-    <div class="subsection-title">정보 암호화 및 요청</div>
+    <div class="subsection-title">Encrypt Information and Send Request</div>
     <li class="step-item">
       <div class="step-badge">29</div>
-      <div class="step-content">계정이 검증되면, 송신 VASP는 Enclave의 <code>User Verification API</code>를 호출하여 사용자 검증 절차를 시작합니다.</div>
+      <div class="step-content">Once the account is verified, the Ordering VASP calls the <code>User Verification API</code> in the Enclave to start user verification.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">30</div>
