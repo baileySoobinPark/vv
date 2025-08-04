@@ -468,31 +468,31 @@ Sequence Diagram 2 shows how an Ordering VASP and a Beneficiary VASP integrate t
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">Sanction API 기반 리스크 평가</div>
+  <div class="scenario-title">Sanction API-Based Risk Assessment</div>
 
-  <div class="sub-section-title">수신 VASP 측 리스크 평가</div>
+  <div class="sub-section-title">Beneficiary VASP-Side Risk Assessment</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">1</div><div class="step-content">수신 VASP는 Enclave API를 호출하여 송신자 주소에 대한 Sanction API 기반 리스크 평가를 요청할 수 있습니다. 요청에는 Verification UUID가 포함되어야 합니다.</div></li>
-    <li class="step-item"><div class="step-badge">2</div><div class="step-content">Enclave는 requestId 및 Chainalysis API 요청 본문(Body)을 생성합니다.</div></li>
-    <li class="step-item"><div class="step-badge">3</div><div class="step-content">Enclave는 Chainalysis 서버와 통신하여 스크리닝을 완료한 뒤 결과를 수신합니다.</div></li>
-    <li class="step-item"><div class="step-badge">4</div><div class="step-content">Enclave가 결과를 VASP백엔드로 전달합니다.</div></li>
-    <li class="step-item"><div class="step-badge">5</div><div class="step-content">Enclave는 평가 결과를 Enclave 데이터베이스의 <b>Sanction Results Table</b>에 저장합니다.</div></li>
+    <li class="step-item"><div class="step-badge">1</div><div class="step-content">The Beneficiary VASP calls the Enclave API to request a Sanction API-based risk assessment for the originator’s address. The request must include the verification UUID.</div></li>
+    <li class="step-item"><div class="step-badge">2</div><div class="step-content">The Enclave generates a requestId and the Chainalysis API request body.</div></li>
+    <li class="step-item"><div class="step-badge">3</div><div class="step-content">The Enclave communicates with the Chainalysis server to complete the screening and receives the result.</div></li>
+    <li class="step-item"><div class="step-badge">4</div><div class="step-content">The Enclave delivers the result to the VASP backend.</div></li>
+    <li class="step-item"><div class="step-badge">5</div><div class="step-content">The Enclave stores the assessment result in the <b>Sanction Results Table</b> of the Enclave database.</div></li>
   </ol>
 
-  <div class="sub-section-title">송신 VASP 측 리스크 평가</div>
+  <div class="sub-section-title">Ordering VASP-Side Risk Assessment</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">6</div><div class="step-content">송신 VASP도 수신자 주소에 대해 동일한 방식으로 리스크 평가를 수행할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">7</div> ~ <div class="step-badge">10</div><div class="step-content">평가 대상이 수신자 주소로 변경될 뿐 전체 흐름은 수신 VASP 측 시나리오와 동일한 Flow를 통해 진행됩니다.</div></li>
+    <li class="step-item"><div class="step-badge">6</div><div class="step-content">The Ordering VASP can perform the same risk assessment for the beneficiary’s address.</div></li>
+    <li class="step-item"><div class="step-badge">7</div> ~ <div class="step-badge">10</div><div class="step-content">The process flow is identical to the Beneficiary VASP scenario, except that the assessment target is the beneficiary address.</div></li>
   </ol>
 
   <div class="info-note">
-    📘 참고: 수신자 주소가 고위험으로 판단될 경우, 송신 VASP는 자산 출금을 중단하거나 취소할 수 있습니다. 단, 자산 출금 취소시 반드시 수신 VASP에게 Error Report를 전송하여 취소 사실을 알려야 합니다.
+    📘 Note: If the beneficiary address is determined to be high-risk, the Ordering VASP may stop or cancel the asset withdrawal. If canceled, the Ordering VASP must send an Error Report to the Beneficiary VASP to notify the cancellation.
   </div>
 
-  <div class="sub-section-title">트랜잭션 실행</div>
+  <div class="sub-section-title">Transaction Execution After Sanction Assessment</div>
   <ol class="step-list">
-    <li class="step-item"><div class="step-badge">11</div><div class="step-content">Sanction 결과에 따라 각 계정이 고위험 계정으로 판단되지 않는 경우 송신 VASP는 Best Practice와 같이 블록체인 트랜잭션을 실행 단계로 진입할 수 있습니다.</div></li>
-    <li class="step-item"><div class="step-badge">12</div><div class="step-content">블록체인 상에서 자산 전송을 완료한 후, 송신 VASP는 <b>Report Transaction Result API</b>를 호출하여 트랜잭션 해시를 수신 VASP에 전달합니다.</div></li>
+    <li class="step-item"><div class="step-badge">11</div><div class="step-content">If neither account is determined to be high-risk, the Ordering VASP proceeds with the blockchain transaction execution as described in the <b>Best Practice</b> flow.</div></li>
+    <li class="step-item"><div class="step-badge">12</div><div class="step-content">After completing the on-chain transfer, the Ordering VASP calls the <b>Report Transaction Result API</b> to send the transaction hash to the Beneficiary VASP.</div></li>
   </ol>
 </div>
 `}</HTMLBlock>
@@ -505,9 +505,13 @@ Sequence Diagram 2 shows how an Ordering VASP and a Beneficiary VASP integrate t
 
 <Image align="center" border={false} caption="Sequence Diagram 3. Chainalysis KYT API integration flow for risk assessment" src="https://files.readme.io/2ac080e6cc5469ea7f1d6769eceb099cb13cb44aaed4b95becc9f69d38e42b2c-tr_solution_3.avif" />
 
-Sequence Diagram 3은 송신 VASP와 수신 VASP가 Chainalysis KYT API를 연동하여 위험도 평가를 수행하는 절차를 보여줍니다. KYT API는 특정 주소 또는 트랜잭션을 대상으로 한 위험도 평가를 지원합니다.
+Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate the Chainalysis KYT API to perform risk assessments.
 
-송신 VASP는 자산 이전에 앞서 KYT API를 호출하여 수신 주소의 위험도를 평가할 수 있습니다. 또한 자산을 이전한 후에는 Txhash를 제출하여 트랜잭션의 위험도를 평가할 수 있습니다. 수신 VASP는 트랜잭션 결과 Report를 수신하거나 입금 트랜잭션을 감지한 후 트랜잭션 위험도 평가를 수행하기 위해 KYT API를 호출할 수 있습니다. 세부 절차는 아래와 같습니다.
+The KYT API supports risk evaluation for a specific address or transaction.
+
+* The **Ordering VASP** can call the KYT API before an asset transfer to evaluate the beneficiary address.
+* After the transfer, the Ordering VASP can submit the **TxHash** to evaluate the transaction risk.
+* The **Beneficiary VASP** can call the KYT API after receiving the transaction result report or detecting an incoming deposit transaction to evaluate its risk level.
 
 <HTMLBlock>{`
 <div class="scenario-section">
