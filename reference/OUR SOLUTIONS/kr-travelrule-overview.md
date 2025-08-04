@@ -549,50 +549,50 @@ To integrate with VerifyVASP’s TravelRule and VerifyName 2.0 solutions, VASPs 
   <li class="vasp-step-item">
     <div class="vasp-step-badge">2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">구현 범위 확인 및 계획 수립</div>
-      To-Be 아키텍처를 기반으로 실제 구현 범위를 확인하고 연동 계획을 수립합니다.
+      <div class="vasp-step-title">Define Scope and Implementation Plan</div>
+      Based on the To-Be Architecture, determine the exact implementation scope and establish an integration plan.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">3</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">VerifyVASP 온보딩</div>
-      VerifyVASP Alliance에 가입하고 인증 절차를 완료하여 연동에 필요한 자격 증명(Credential)을 발급받습니다.
+      <div class="vasp-step-title">Complete VerifyVASP Onboarding</div>
+      Join the VerifyVASP Alliance and complete the certification process to receive the required credentials for integration.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">4</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">VASP API 개발</div>
-      검증을 처리하기 위한 VASP 자체 API를 구현하고, Enclave 서버가 해당 API를 호출할 수 있도록 연동합니다.
+      <div class="vasp-step-title">Develop VASP APIs</div>
+      Implement the VASP-side APIs required to handle verification requests and ensure that the Enclave server can communicate with them.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">5</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">Enclave 데이터베이스 구성</div>
-      Enclave 설치에 앞서, 검증 및 규제 대응 데이터를 안전하게 저장할 수 있는 전용 데이터베이스를 구축합니다.
+      <div class="vasp-step-title">Prepare the Enclave Database</div>
+      Before installing the Enclave, set up a dedicated database to securely store verification and regulatory compliance data.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">6</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">Enclave 설치</div>
-      VASP 인프라 내에 Enclave 서버를 Docker 환경으로 설치하고, VASP 백엔드와 연결하여 VerifyVASP 중앙 서버와의 통신을 준비합니다.
+      <div class="vasp-step-title">Install the Enclave</div>
+      Deploy the Enclave server as a Docker container within your infrastructure, connect it to your backend, and prepare it to communicate with the VerifyVASP Central Server.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">7</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">Robot VASP를 통한 시나리오 테스트</div>
-      Robot VASP를 활용한 시나리오 기반 테스트를 통해 구현 결과를 검증하고 프로토콜 준수 여부를 확인합니다.
+      <div class="vasp-step-title">Run Scenario Tests with Robot VASP</div>
+      Use the Robot VASP tool to perform scenario-based testing, verifying both implementation results and protocol compliance.
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">8</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">지속적 유지관리 계획 수립</div>
-      규제 변경 및 프로토콜 업데이트에 대응할 수 있도록 유지관리 계획을 마련합니다.
+      <div class="vasp-step-title">Establish an Ongoing Maintenance Plan</div>
+      Prepare a plan to keep your integration updated in line with regulatory changes and protocol updates.
     </div>
   </li>
 </ol>
