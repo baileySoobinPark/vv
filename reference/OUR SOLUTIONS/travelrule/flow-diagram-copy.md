@@ -513,25 +513,25 @@ Sequence Diagram 3 shows how an Ordering VASP and a Beneficiary VASP integrate t
 
 <HTMLBlock>{`
 <div class="scenario-section">
-  <div class="scenario-title">KYT API 기반 리스크 평가</div>
+  <div class="scenario-title">KYT API-Based Risk Assessment</div>
 
-  <div class="sub-section-title">송신 VASP 측 리스크 평가 - 수신자 주소</div>
+  <div class="sub-section-title">Ordering VASP-Side Risk Assessment – Beneficiary Address</div>
   <ol class="step-list">
     <li class="step-item">
       <div class="step-badge">1</div>
-      <div class="step-content">송신 VASP는 사용자 검증 요청을 보낸 이후, Enclave API를 호출하여 수신자 주소에 대한 위험도 평가를 요청합니다.</div>
+      <div class="step-content">After sending the user verification request, the Ordering VASP calls the Enclave API to request a risk assessment for the beneficiary address.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">2</div>
-      <div class="step-content">Enclave는 Chainalysis의 KYT API 호출 시 필요한 RequestId 및 RequestBody를 생성합니다.</div>
+      <div class="step-content">The Enclave generates a requestId and RequestBody for the Chainalysis KYT API call.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">3</div>
-      <div class="step-content">Enclave가 Chainalysis 서버에 평가 요청을 전송합니다.</div>
+      <div class="step-content">The Enclave sends the risk assessment request to the Chainalysis server.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">4</div>
-      <div class="step-content">Chainalysis 서비스로부터 수신자 주소에 대한 위험도 평가 결과를 조회합니다. 다이어그램에서는 평가 요청에 대한 동기 응답으로 표현되어 있으나, 실제로는 Enclave가 주기적으로 결과 조회 API를 호출하는 방식으로 동작합니다.</div>
+      <div class="step-content">The Ordering VASP retrieves the risk assessment result for the beneficiary address from the Chainalysis service.</div>
     </li>
     <li class="step-item">
       <div class="step-badge">5</div>
