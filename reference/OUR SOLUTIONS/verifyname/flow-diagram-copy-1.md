@@ -1,9 +1,10 @@
 ---
 title: Scenarios and Flows
 excerpt: >-
-  본 문서에서는 VerifyName 2.0 프로토콜을 사용한 사후 검증(Post-Verification) 및 사전
-  검증(Pre-Verification) 시나리오와 API Flow를 소개합니다. 각 VASP는 상대 VASP의 규제 의무 요건에 따라 적절한
-  시나리오를 선택하여 수행할 수 있습니다.
+  This section introduces the Post-Verification and Pre-Verification scenarios
+  for the VerifyName 2.0 protocol, along with the related API flows. Each VASP
+  can choose the appropriate scenario based on the counterparty VASP’s Travel
+  Rule regulatory obligations.
 deprecated: false
 hidden: false
 metadata:
@@ -11,7 +12,9 @@ metadata:
 ---
 ## Post-Verification - From Non-Obliged VASP to Travel Rule Obliged VASP
 
-VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자산 이전을 위한 블록체인 트랜잭션이 먼저 실행된 후 이를 감지한 수신 VASP 측에서 검증을 요청하는 시나리오입니다. 이는 주로 Travel Rule 규제 의무가 없는 VASP가 사전 검증 없이 자산을 이전하는 경우에 해당합니다. 수신 VASP는 Travel Rule 규제 준수를 위해 미확인 입금건의 송신인과 수신인 계정의 일치 여부를 VerifyName 프로토콜을 사용하여 검증할 수 있습니다.
+In a **Post-Verification** scenario, the blockchain transaction is executed first, and the Beneficiary VASP detects the incoming transaction before requesting verification.\
+This scenario typically occurs when a non-obliged VASP sends assets without pre-verification.
+The Beneficiary VASP can use the VerifyName protocol to confirm whether the originator and beneficiary account owners are the same before crediting the deposit.
 
 <br />
 
@@ -76,34 +79,34 @@ VerifyName 프로토콜의 사후 검증(Post-Verification) 시나리오는, 자
 </style>
 
 <div class="scenario-section">
-  <div class="scenario-title">1. 출금 신청 및 트랜잭션 실행</div>
+  <div class="scenario-title">1. Withdrawal Request & Transaction Execution</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">1</div>
-      <div class="step-content">사용자(송신자)가 송신 VASP에 출금을 요청합니다.</div></li>
+      <div class="step-content">The originator requests a withdrawal from the Ordering VASP.</div></li>
     <li class="step-item"><div class="step-badge">2</div>
-      <div class="step-content">Travel Rule 규제 대상이 아닌 송신 VASP는 별도의 수신자/수신자 계좌 검증 없이 출금 트랜잭션을 불록체인 상에 실행하여 자산을 전송합니다.</div></li>
+      <div class="step-content">The non-obliged Ordering VASP executes the withdrawal transaction on the blockchain without performing beneficiary/account verification.</div></li>
   </ol>
 </div>
 <div class="scenario-section">
-  <div class="scenario-title">2. 수신 VASP 측 사후 검증(Post-Verification) 요청</div>
+  <div class="scenario-title">2. Post-Verification Request by Beneficiary VASP</div>
   <ol>
     <li class="step-item"><div class="step-badge">3</div>
-      <div class="step-content">트랜잭션이 확정(Confirmed)되면 수신 VASP가 수신자 주소로의 입금을 감지합니다.</div></li>
-    <div class="subsection-title">송신 VASP 확인</div>
+      <div class="step-content">Once the transaction is confirmed, the Beneficiary VASP detects the incoming deposit to the beneficiary address.</div></li>
+    <div class="subsection-title">Identify the Ordering VASP</div>
     <li class="step-item"><div class="step-badge">4</div>
-      <div class="step-content">Travel Rule 규제 대상인 수신 VASP는 입금을 반영하기에 앞서 송신자와 수신자의 일치 여부를 사후 검증을 통해 확인할 수 있습니다. 가장 먼저, 송신 VASP 확인을 위해 Enclave의 <code>List VASP API</code>를 호출합니다.</div></li>
+      <div class="step-content">The obliged Beneficiary VASP calls the Enclave’s <code>List VASP API</code> to identify the Ordering VASP before applying the deposit.</div></li>
     <li class="step-item"><div class="step-badge">5</div>
-      <div class="step-content">수신 VASP의 Enclave는 중앙 서버에 수신 VASP 목록 조회를 요청합니다.</div></li>
+      <div class="step-content">The Beneficiary VASP’s Enclave requests the VASP list from the Central Server.</div></li>
     <li class="step-item"><div class="step-badge">6</div>
-      <div class="step-content">중앙 서버는 VASP 목록을 반환합니다.</div></li>
+      <div class="step-content">The Central Server returns the list of VASPs.</div></li>
     <li class="step-item"><div class="step-badge">7</div>
-      <div class="step-content">Enclave는 목록을 수신한 후 송신 VASP 백엔드로 전달합니다.</div></li>
+      <div class="step-content">The Enclave forwards the list to the Beneficiary VASP backend.</div></li>
     <li class="step-item"><div class="step-badge">8</div><div class="step-badge">9</div>
-      <div class="step-content">사용자(수신자)는 수신 VASP가 제시한 목록으로부터 해당 입금건의 송신 VASP를 선택합니다. </div></li>
+      <div class="step-content">The beneficiary (user) selects the Ordering VASP from the list provided by the Beneficiary VASP.</div></li>
     
-    <div class="subsection-title">수신 VASP의 검증 요청</div>
+    <div class="subsection-title">Send Verification Request</div>
     <li class="step-item"><div class="step-badge">10</div>
-      <div class="step-content">수신 VASP는 <code>Owner Verification API</code>를 호출하여 송신 VASP측으로 송신자의 이름과 생년월일이 수신 계좌 소유주의 것과 일치하는지에 대한 검증을 요청합니다. 요청은 자산 정보와 수신자의 이름, 생년월일을 포함합니다.</div></li>
+      <div class="step-content">The Beneficiary VASP calls the Owner Verification API to request that the Ordering VASP confirm whether the originator’s name and date of birth match the beneficiary account owner’s.</div></li>
     <li class="step-item"><div class="step-badge">11</div><div class="step-badge">12</div>
       <div class="step-content">수신 VASP의 Enclave는 랜덤 Salt를 생성한 뒤 VerifyName 프로토콜에 따라 Salt와 송신자의 이름, 생년월일 정보를 입력값으로 하는 Hash를 생성합니다.</div></li>
     <li class="step-item"><div class="step-badge">13</div>
