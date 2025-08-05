@@ -106,42 +106,42 @@ The Beneficiary VASP can use the VerifyName protocol to confirm whether the orig
     
     <div class="subsection-title">Send Verification Request</div>
     <li class="step-item"><div class="step-badge">10</div>
-      <div class="step-content">The Beneficiary VASP calls the Owner Verification API to request that the Ordering VASP confirm whether the originator’s name and date of birth match the beneficiary account owner’s.</div></li>
+      <div class="step-content">The Beneficiary VASP calls the <code>Owner Verification API</code> to request that the Ordering VASP confirm whether the originator’s name and date of birth match the beneficiary account owner’s.</div></li>
     <li class="step-item"><div class="step-badge">11</div><div class="step-badge">12</div>
-      <div class="step-content">수신 VASP의 Enclave는 랜덤 Salt를 생성한 뒤 VerifyName 프로토콜에 따라 Salt와 송신자의 이름, 생년월일 정보를 입력값으로 하는 Hash를 생성합니다.</div></li>
+      <div class="step-content">The Beneficiary VASP’s Enclave generates a random salt and, per the VerifyName protocol, creates a hash using the salt, name, and DOB.</div></li>
     <li class="step-item"><div class="step-badge">13</div>
-      <div class="step-content">수신 VASP의 Enclave는 Hash 생성에 사용한 Salt를 송신 VASP의 공개키로 암호화합니다. 이때 만약 송신 VASP의 공개키가 캐싱되어있지 않거나 사용할 수 없는 상태인 경우, <a href="https://verifyvasp.readme.io/reference/flow-diagram-copy#/travelrule-best-practice"> TravelRule 프로토콜과 같은 방식 </a> 으로 Enclave간 키 교환 및 캐싱을 진행합니다. </div></li>
+      <div class="step-content">The Enclave encrypts the salt with the Ordering VASP’s public key. If the public key is not cached or is unavailable, the Enclave performs key exchange and caching as in the <a href="https://verifyvasp.readme.io/reference/flow-diagram-copy#/travelrule-best-practice"> TravelRule 프로토콜과 같은 방식 </a> TravelRule protocol.</div></li>
     <li class="step-item"><div class="step-badge">14</div>
-      <div class="step-badge">15</div><div class="step-content"> 11번 Step에서 생성된 해시값을 포함한 검증 요청이 중앙 서버를 통해 송신 VASP의 Enclave로 전달됩니다.</div></li>
+      <div class="step-badge">15</div><div class="step-content"> The verification request, including the generated hash, is sent via the Central Server to the Ordering VASP’s Enclave.</div></li>
     
-    <div class="subsection-title">트랜잭션 및 송신자 정보 비교 검증</div>
+    <div class="subsection-title">Transaction and Originator Data Matching</div>
     <li class="step-item"><div class="step-badge">16</div>
-      <div class="step-content">송신 VASP Enclave는 VASP 백엔드의 <code>VerifyName API</code>를 호출하여 트랜잭션 검증을 요청합니다. 트랜잭션 검증 요청은 수신자의 개인정보를 포함하지 않으며 오직 트랜잭션 해시, 자산 티커, 네트워크 정보만을 포함합니다.</div></li>
+      <div class="step-content"> The Ordering VASP’s Enclave calls the backend’s <code>VerifyName API</code> to request transaction verification. The request does not include personal data—only the transaction hash, asset ticker, and network information.</div></li>
     <li class="step-item"><div class="step-badge">17</div>
-      <div class="step-content">송신 VASP는 요청에 포함된 정보들로부터 해당 트랜잭션과 관련된 전송 이력의 존재 여부를 데이터베이스와 대조하여 확인합니다.</div></li>
+      <div class="step-content">The Ordering VASP checks its database for a matching transaction record.</div></li>
     <li class="step-item"><div class="step-badge">18</div>
-      <div class="step-content">전송건이 특정되는 경우, 해당 전송건의 송신자를 식별하고 해당 사용자의 이름과 생년월일을 데이터베이스로부터 조회합니다.</div></li>
+      <div class="step-content">If found, the Ordering VASP identifies the originator and retrieves their name and DOB from the database.</div></li>
     <li class="step-item"><div class="step-badge">19</div>
-      <div class="step-content">송신 VASP는 트랜잭션 조회 결과 및 송신자 이름, 생년월일 정보를 API 응답으로 Enclave에 전달합니다.</div></li>
+      <div class="step-content">The Ordering VASP returns the transaction details and originator information to the Enclave.</div></li>
     <li class="step-item"><div class="step-badge">20</div><div class="step-badge">21</div>
-      <div class="step-content">Enclave는 송신 VASP의 개인키로 암호화된 Salt를 복호화 한 뒤, VerifyName 프로토콜에 따라 Salt와 송신자의 이름, 생년월일 정보를 입력값으로 하는 Hash를 생성합니다.</div></li>
+      <div class="step-content">The Enclave decrypts the salt using the Ordering VASP’s private key and generates a hash from the salt, name, and DOB.</div></li>
     <li class="step-item"><div class="step-badge">22</div>
-      <div class="step-content">생성된 Hash값이 수신 VASP로부터 받은 Hash값과 일치하는지 여부를 비교합니다.</div></li>
+      <div class="step-content">The hash is compared with the one received from the Beneficiary VASP..</div></li>
     <li class="step-item"><div class="step-badge">23</div>
       <div class="step-badge">24</div><div class="step-badge">25</div>
-      <div class="step-content">송신 VASP의 Enclave가 트랜잭션 검증 결과와 Hash 비교 결과를 중앙 서버를 통해 수신 VASP로 반환합니다.</div></li>
+      <div class="step-content">The transaction verification result and hash comparison result are returned via the Central Server to the Beneficiary VASP.</div></li>
 	</ol>
 </div>
 
 <div class="scenario-section">
-  <div class="scenario-title">3. 검증 결과 Report</div>
+  <div class="scenario-title">3. Verification Result Report</div>
   <ol class="step-list">
     <li class="step-item"><div class="step-badge">26</div>
-      <div class="step-content">수신 VASP는 송신 VASP로부터 전달받은 검증 결과를 바탕으로 계정 소유주 검증 결과 및 이에 따른 입금 반영 여부를 확정합니다.</div></li>
+      <div class="step-content">The Beneficiary VASP determines the account ownership verification result and whether to credit the deposit.</div></li>
     <li class="step-item"><div class="step-badge">27</div><div class="step-badge">28</div>
-      <div class="step-badge">29</div><div class="step-badge">30</div><div class="step-content">수신 VASP는 계정 소유주 검증 결과를 Enclave의 <code>Owner Verification Result Report API</code>를 통해 송신 VASP로 전달해야 합니다. Report를 전달받은 송신 VASP의 Enclave는 송신 VASP 백엔드의 <code>Callback API(OWNER_VERIFICATION_RESULT_REPORT)</code>를 호출하여 해당 결과를 전달합니다.</div></li>
+      <div class="step-badge">29</div><div class="step-badge">30</div><div class="step-content">The Beneficiary VASP sends the result via the Enclave’s <code>Owner Verification Result Report API</code> to the Ordering VASP. The Ordering VASP’s Enclave calls the backend’s <code>Callback API(OWNER_VERIFICATION_RESULT_REPORT)</code> to deliver the result.</div></li>
     <li class="step-item"><div class="step-badge">31</div>
-      <div class="step-badge">32</div><div class="step-content"><strong>[선택]</strong> 공유된 최종 검증 결과에 따라 양쪽 VASP는 입출금 반영을 확정하고, 사용자에게 결과를 안내할 수 있습니다.</div></li>
+      <div class="step-badge">32</div><div class="step-content"><strong>[dd]</strong> 공유된 최종 검증 결과에 따라 양쪽 VASP는 입출금 반영을 확정하고, 사용자에게 결과를 안내할 수 있습니다.</div></li>
   </ol>
 </div>
 `}</HTMLBlock>
