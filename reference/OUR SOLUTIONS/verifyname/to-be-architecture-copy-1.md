@@ -1,6 +1,8 @@
 ---
 title: To-Be Architecture
-excerpt: 본 문서에서는 VerifyName 2.0 연동을 위한 VASP Backend의 To-Be Architecture와 구현 범위를 안내합니다.
+excerpt: >-
+  This section describes the To-Be Architecture of a VASP backend for VerifyName
+  2.0 integration, along with the required implementation scope.
 deprecated: false
 hidden: false
 metadata:
@@ -8,19 +10,19 @@ metadata:
 ---
 ## VASP Backend To-Be Architecture
 
-Diagram 1은 VerifyName 연동이 완료된 VASP Backend의 To-Be 아키텍처입니다. 각 VASP는 Travel Rule 규제 의무 여부에 따라 다음과 같은 프로세스 및 API 구현을 진행해야 합니다.
+Diagram 1 shows the To-Be Architecture of a VASP backend after integrating the VerifyName protocol.\
+Each VASP must implement the processes and APIs outlined in the diagram according to its Travel Rule regulatory obligation status.
 
-#### 입출금 검증 프로세스 통합
+#### Integrating Deposit and Withdrawal Verification Processes
 
-Travel Rule 규제 준수 의무가 있는 VASP는 자산 이전 시 송/수신인 일치 여부를 검증하기 위한 사전 검증(Pre-Verification) 프로세스를 구현해야 합니다. 또한 규제 의무가 없는 VASP로부터의 입금이 발생한 경우 해당 VASP와의 사후 검증(Post-Verification)을 수행해야 합니다.
+* Travel Rule–obliged VASPs must implement Pre-Verification to verify that the originator and beneficiary are the same person before executing an asset transfer.
+* They must also perform Post-Verification for deposits received from non-obliged VASPs to ensure compliance.
 
 <br />
 
-#### 필수 API 구현 (Implementing Required APIs)
+#### Implementing Required APIs
 
-VASP는 Travel Rule 규제 준수 의무 여부에 따른 VerifyName 연동을 위해 Diagram 1에 표시된 필수 API들을 백엔드에 구현해야 합니다. 이 중 VerifyName 프로토콜을 활용한 검증 및 Report 절차를 위해 아래 API들이 필수적으로 요구됩니다. 특히 규제 준수 여부와 관계 없이 VerifyName API는 반드시 구현되어야합니다.
-
-각 API의 세부 사양은 아래 VerifyName VASP API 문서 목록에서 확인할 수 있습니다.
+For VerifyName integration, VASPs must implement the APIs indicated in Diagram 1. The following APIs are required for all VASPs, regardless of Travel Rule obligation status. Refer to the VerifyName VASP API documentation for detailed specifications.
 
 * [VerifyName API](ref:verifyname-request-verification)
 * [Callback API](ref:verifyname-callback)
@@ -31,20 +33,28 @@ VASP는 Travel Rule 규제 준수 의무 여부에 따른 VerifyName 연동을 �
 
 <br />
 
-## 전체 시스템 To-Be Architecture
+## Full System To-Be Architecture
 
-Diagram 2와 Diagram 3은 각각 Travel Rule 규제 의무가 없는 VASP와 규제 의무가 있는 VASP의 인프라 전체와 VerifyVASP 중앙 서버를 포함한 전체 To-Be 아키텍처입니다. 규제 의무 여부와 상관 없이, VerifyName 2.0 프로토콜을 지원하는 **모든 VASP는 VerifyVASP Enclave를 VASP 인프라 내에 필수적으로 설치하여 연동**해야합니다. 또한 **Enclave 전용 데이터베이스를 설정**하여 Enclave로부터의 연동 이력 및 관련 데이터를 저장하고 조회할 수 있도록 구성해야 합니다.
+Diagram 2 and Diagram 3 show the complete infrastructure architecture, including the VASP backend, the **VerifyVASP Central Server**, and the **Enclave**.
+
+* All VASPs supporting the VerifyName 2.0 protocol — regardless of Travel Rule obligation status — must install the VerifyVASP Enclave within their infrastructure.
+* A dedicated Enclave database must be configured to store and retrieve integration logs and related data from the Enclave.
 
 <br />
 
 <Image align="center" border={false} caption="Diagram 2: To-Be Architecture of Unregulated VASPs" src="https://files.readme.io/09e36f2ab357cb5d7dcfd546ec94d3676502b7aae6c85d84583d6e8fd02d0067-vn_tobe_architecture1.png" />
 
-Diagram 2와 같이 Travel Rule 규제 의무가 없는 VASP들은 주로 중앙 서버와 Enclave로부터 검증 요청 및 결과 Report를 받아 처리하는 방식으로 VerifyName 프로토콜을 지원합니다.
+**Non-obliged VASPs (Diagram 2)**
+
+* Primarily support the VerifyName protocol by receiving verification requests and result reports from the Central Server and Enclave.
 
 <br />
 
 <Image align="center" border={false} caption="Diagram 3: To-Be Architecture of Regulated VASPs" src="https://files.readme.io/1d4058a963ff58389a93ef0a4a15335ba14cb5145c4ceb4ab8a690d73e08b9f3-vn_tobe_architecture2.png" />
 
-Travel Rule 규제 준수 의무가 있는 VASP는 Diagram 3과 같이 입/출금시 Enclave의 Verification API를 호출하여 사전 또는 사후 검증을 진행해야 합니다. 또한 검증 결과에 따라  입/출금 진행 여부를 확정하는 경우 그 결과를 Enclave의 Report API들을 호출하여 상대 VASP에게 공유해야 하는 의무를 갖습니다.
+<br />
 
-These diagrams provide a comprehensive overview of your VASP’s TO-BE architecture. Use it as a reference to plan your development scope and align your implementation with the expected workflows.
+**Travel Rule–obliged VASPs (Diagram 3)**
+
+* Must call the Enclave’s Verification APIs during deposits and withdrawals to perform pre- or post-verification.
+* If the decision to proceed with a deposit or withdrawal is based on verification results, the VASP must call the Enclave’s Report APIs to share the outcome with the counterparty VASP.
