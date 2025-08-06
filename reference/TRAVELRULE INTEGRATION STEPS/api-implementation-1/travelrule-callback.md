@@ -513,7 +513,7 @@ Response speed is critical.
 
 * Perform heavy or time-consuming processing asynchronously after returning the API response.
 
-### Enclave 연동 설정
+### Enclave Integration Settings
 
 Set the following Enclave environment variables for integration:
 
