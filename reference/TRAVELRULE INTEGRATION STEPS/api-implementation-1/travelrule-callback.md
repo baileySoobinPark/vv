@@ -5,17 +5,18 @@ api:
   operationId: travelrule-callback
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 이 API는 두 역할 모두에서 비동기적 콜백 상황을 처리하기 위한 공통 인터페이스입니다. Enclave는 상대 VASP로부터 Report API가 호출되었을 때 이 API를 실행합니다.
+The Callback API is a common interface used by both Ordering VASP and Beneficiary VASP roles in the TravelRule protocol. It is executed by the Enclave when a counterparty VASP calls a Report API.
 
 ***
 
-## 구현 가이드
+## Implementation Guide
 
-### 기능 요구사항
+### Functional Requirements
 
-#### 1. 콜백 타입 분기 처리
+#### 1. Callback Type Routing
 
-요청의 `callbackType` 필드값을 기준으로, 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원되는 콜백 유형은 아래와 같으며, `VERIFICATION_RESULT`, `TX_REPORT`, `ERROR_REPORT`는 필수로 구현해야 합니다.
+* Branch your business logic based on the <code>callbackType</code> field in the request.
+* Supported callback types:
 
 <HTMLBlock>{`
 <style>
@@ -52,29 +53,29 @@ VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할�
   <thead>
     <tr>
       <th><code>callbackType</code></th>
-      <th>설명</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="code-col"><code>VERIFICATION_RESULT</code></td>
-      <td>송신 VASP 역할에서 사용됩니다. 수신자 검증이 종료되어 결과가 비동기적으로 전달될 때 호출됩니다.</td>
+      <td class="code-col"><code>VERIFICATION_RESULT (Required)</code></td>
+      <td>Used in the Ordering VASP role. Called when the beneficiary verification result is delivered asynchronously.</td>
     </tr>
     <tr>
-      <td class="code-col"><code>TX_REPORT</code></td>
-      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 트랜잭션 결과를 Report할 때 호출됩니다.</td>
+      <td class="code-col"><code>TX_REPORT (Required)</code></td>
+      <td>Used in the Beneficiary VASP role. Called when the Ordering VASP reports the transaction result.</td>
     </tr>
     <tr>
-      <td class="code-col"><code>ERROR_REPORT</code></td>
-      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 오류를 Report할 때 호출됩니다.</td>
+      <td class="code-col"><code>ERROR_REPORT (Required)</code></td>
+      <td>Used in the Beneficiary VASP role. Called when the Ordering VASP reports an error.</td>
     </tr>
     <tr>
-      <td class="code-col"><code>CHAINALYSIS_KYT_RESULT</code></td>
-      <td>Chainalysis KYT 결과를 비동기 방식으로 전달할 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+      <td class="code-col"><code>CHAINALYSIS_KYT_RESULT (Optional)</code></td>
+      <td>Called when Chainalysis KYT results are delivered asynchronously.</td>
     </tr>
     <tr>
-      <td class="code-col"><code>REFINITIV_WCO_RESULT</code></td>
-      <td>Refinitiv WCO 결과를 비동기 방식으로 전달할 때 호출됩니다. 선택적으로 구현 가능합니다.</td>
+      <td class="code-col"><code>REFINITIV_WCO_RESULT (Optional)</code></td>
+      <td>Called when Refinitiv WCO results are delivered asynchronously.</td>
     </tr>
   </tbody>
 </table>
