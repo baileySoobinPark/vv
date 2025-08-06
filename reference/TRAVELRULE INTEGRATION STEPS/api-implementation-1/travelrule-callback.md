@@ -377,9 +377,10 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 3. TX\_REPORT 유형 콜백 처리 (수신 VASP 역할)
+#### 3. TX\_REPORT Handling (Beneficiary VASP role)
 
-콜백으로 수신한 트랜잭션 해시(Txhash)가 수신자의 실제 입금 주소로 발생한 트랜잭션인지 확인하고, 그 결과 및 검증 이력을 데이터베이스에 기록해야 합니다.
+* Verify that the reported transaction hash (txHash) corresponds to a transaction sent to the beneficiary’s actual deposit address.
+* Record the result and verification history in your database.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
@@ -396,9 +397,10 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 4. ERROR\_REPORT 유형 콜백 처리 (수신 VASP 역할)
+#### 4. ERROR\_REPORT Handling (Beneficiary VASP role)
 
-오류 보고 내용을 확인한 후, 자산 이전을 중단하고 트랜잭션 추적을 종료한 뒤 관련 로그를 기록해야 합니다.
+* Review the reported error details.
+* Stop the transfer process, end any ongoing transaction tracking, and log the error.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
@@ -416,12 +418,10 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 5. CHAINALYSIS\_KYT\_RESULT 유형 콜백 처리 (선택사항)
+#### 5. CHAINALYSIS\_KYT\_RESULT Handling (Optional)
 
-콜백으로 수신한 Chainalysis KYT 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
-
-* 송신자 또는 수신자의 리스크 평가 데이터 갱신
-* 트랜잭션 허용 또는 차단 결정
+* Update sender or beneficiary risk assessment data based on the KYT results.
+* Decide whether to allow or block the transaction.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
@@ -470,12 +470,10 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 6. REFINITIV\_WCO\_RESULT 유형 콜백 처리 (선택사항)
+#### 6. REFINITIV\_WCO\_RESULT Handling (Optional)
 
-콜백으로 수신한 Refinitiv WCO 리스크 평가 결과에 따라 다음과 같은 작업을 수행할 수 있습니다.
-
-* 송신자 또는 수신자의 리스크 평가 데이터 갱신
-* 트랜잭션 허용, 재개 또는 차단 결정
+* Update sender or beneficiary risk assessment data based on the WCO results.
+* Decide whether to allow, resume, or block the transaction.
 
 <Accordion title="Example of Callback Request Body" icon="fa-info-circle">
   ```json
@@ -502,25 +500,27 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-### 제약 조건
+### Constraints
 
-* 이 API는 1초 이내에 응답해야 합니다.
-* 응답의 HTTP 상태 코드는 반드시 '200 OK'로 반환해야 합니다.
-* 동일한 콜백 요청이 반복 수신되더라도 처리 결과가 변하지 않도록 멱등성을 반드시 보장해야 합니다.\
-  (ex) 중복 요청인 경우, 내부 처리 로직에서 이미 처리된 요청으로 간주하고 무시하도록 구현합니다.
+* Must respond **within 1 second**.
+* The HTTP status code in the response must be <code>200 OK</code>.
+* Idempotency is required – repeated delivery of the same callback must not change the outcome.
+  * Example: Ignore duplicate requests if they have already been processed.
 
-### 구현 권장사항
+### Recommended Implementation
 
-* 콜백 API의 경우 응답 속도가 중요하므로, 시간 소모가 큰 작업은 응답 이후 비동기 방식으로 처리하는 것을 권장합니다.
+Response speed is critical.
+
+* Perform heavy or time-consuming processing asynchronously after returning the API response.
 
 ### Enclave 연동 설정
 
-Enclave와의 연동을 위해 아래 환경 변수를 설정해야 합니다.
+Set the following Enclave environment variables for integration:
 
-* `VEGA_VERIFICATION_CALLBACK_API_PATH`: 해당 API 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
+* `VEGA_VERIFICATION_CALLBACK_API_PATH`: API endpoint path
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API authentication token value
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: HTTP header key for passing the authentication token
 
 ***
 
-## API 명세
+## API Specification
