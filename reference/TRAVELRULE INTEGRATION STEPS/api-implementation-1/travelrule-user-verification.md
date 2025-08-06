@@ -39,7 +39,7 @@ If the Ordering VASP specifies <code>requiredBeneficiaryInfo</code>, the request
 * Return the wallet address exactly as provided in the request.
   * If the address is invalid, set <code>verificationResult</code> to <code>DENIED</code>.
 
-#### 4. 검증 결과 응답
+#### 4. Return Verification Result
 
 Return the final result in the <code>result</code> field:
 
