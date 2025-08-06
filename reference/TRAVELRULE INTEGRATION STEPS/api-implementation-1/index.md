@@ -1,8 +1,9 @@
 ---
-title: VASP API 구현
+title: VASP API Implementation
 excerpt: >-
-  TravelRule 연동을 위한 첫 번째 단계인 VASP API 구현 단계입니다. 본 문서를 통해 VASP 백엔드에 구현해야 하는 REST
-  API의 명세와 요구사항을 확인할 수 있습니다.
+  The first step for TravelRule integration is implementing the VASP APIs. This
+  section describes the API specifications and requirements for the REST APIs
+  that must be implemented in your VASP backend.
 deprecated: false
 hidden: false
 metadata:
@@ -14,9 +15,26 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
 
 <br />
 
-## 구현해야 할 VASP API 목록
+VASP APIs are essential for the TravelRule protocol. They execute business logic for verification and transaction management based on the VASP’s policies and data. These APIs are implemented in the VASP backend and are called by the Enclave server to:
 
-각 VASP는 자산 이전 과정에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위해 요구되는 필수 API 목록과 각 API가 호출되는 시점의 VASP의 역할(송신 또는 수신), 그리고 해당 API에서 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 상세한 구현 요구사항 및 명세는 별도의 API Specficiation 문서를 참고하시기 바랍니다.
+* Verify accounts and users
+* Check transaction status
+* Receive result reports
+
+By implementing these APIs, you ensure compliance with regulatory requirements and complete the overall protocol flow. This section covers:
+
+* List of required APIs
+* API specifications
+* API call flows
+* Implementation considerations
+
+<br />
+
+<br />
+
+## Required VASP APIs
+
+Each VASP must be capable of acting as both Ordering VASP and Beneficiary VASP. The table below lists the required APIs, when they are called, and their primary business logic. For detailed implementation requirements, refer to the API Specification document.
 
 <HTMLBlock>{`
 <style>
@@ -82,9 +100,9 @@ VASP API는 TravelRule 프로토콜 연동의 필수 요소로, 각 VASP의 정�
 <table class="api-table">
   <thead>
     <tr>
-      <th width=220px>API 이름</th>
-      <th>API를 제공하는<br>VASP의 포지션</th>
-      <th>API의 기능</th>
+      <th width=220px>API</th>
+      <th>Role</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
