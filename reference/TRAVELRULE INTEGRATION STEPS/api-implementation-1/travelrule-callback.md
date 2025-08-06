@@ -85,14 +85,14 @@ The Callback API is a common interface used by both Ordering VASP and Beneficiar
 
 <br />
 
-#### 2. VERIFICATION\_RESULT 유형 콜백 처리
+#### 2. VERIFICATION\_RESULT Handling
 
-콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
+Perform follow-up actions based on the verification result:
 
-* 검증 성공 시, 이어서 송신 VASP측 수신자 검증을 진행하거나 트랜잭션을 실행합니다.
-* 검증 실패 시, 자산 이전을 중단하고 고객에게 자산 이전에 불가하다는 내용을 안내 메시지로 고지해야 합니다. 이때 `data.reason`필드값을 활용하여 실패 사유를 안내 메세지에 포함시킬 수 있습니다.
+* If **verified**, proceed to the next verification step or execute the transaction.
+* If **denied**, stop the transfer and notify the customer. Use <code>data.reason</code> to include the failure reason in the message.
 
-`VERIFICATION_RESULT` 유형 콜백 메시지 예시는 아래와 같습니다.
+`VERIFICATION_RESULT` callback example.
 
 <Accordion title="Example of Callback Request Body: VERIFIED" icon="fa-info-circle">
   ```json
@@ -269,7 +269,7 @@ The Callback API is a common interface used by both Ordering VASP and Beneficiar
   ```
 </Accordion>
 
-`data.result`가 DENIED 또는 ERROR인 경우 전달될 수 있는 실패 사유 코드는 아래와 같습니다.
+Possible failure reason codes when <code>data.result</code> is <code>DENIED</code> or <code>ERROR</code>:
 
 <HTMLBlock>{`
 <style>
@@ -313,63 +313,63 @@ The Callback API is a common interface used by both Ordering VASP and Beneficiar
   <tbody>
     <tr>
       <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
-      <td>미지원 자산 심볼<br>(ex)"ETH"</td>
-      <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
+      <td>Unsupported asset symbol<br>(e.g., "ETH")</td>
+      <td>A virtual asset not supported by the VASP (e.g., an asset not listed on the exchange)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
-      <td>미지원 네트워크 이름<br>(ex)"Ethereum"</td>
-      <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
+      <td>Unsupported network name<br>(e.g., "Ethereum")</td>
+      <td>A network not supported by the VASP (e.g., USDT-Ethereum requested but only USDT-Tron supported)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>확인할 수 없는 지갑 주소</td>
+      <td>Target address<br>(e.g., "0xasd...")</td>
+      <td>Unrecognized wallet address</td>
     </tr>
     <tr>
       <td class="code-col"><code>LACK-OF-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 누락 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>송신자 정보 부족</td>
+      <td>Missing fields separated by commas<br>(e.g.,"ACCOUNT_NUMBER")</td>
+      <td>Insufficient originator information</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNAVAILABLE-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 제공 불가 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>제공 불가한 수신자 정보</td>
+      <td>Unavailable fields separated by commas<br>(e.g., "ACCOUNT_NUMBER")</td>
+      <td>Beneficiary information unavailable</td>
     </tr>
     <tr>
       <td class="code-col"><code>BLACKLISTED</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>제재 목록에 포함된 주소</td>
+      <td>Target address<br>(e.g., "0xasd...")</td>
+      <td>Address is on a sanctions list</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNVERIFIED-KYC</code></td>
       <td>-</td>
-      <td>KYC 미완료</td>
+      <td>KYC not completed</td>
     </tr>
     <tr>
       <td class="code-col"><code>MISMATCHED-NAME</code></td>
       <td>-</td>
-      <td>수신자 이름 불일치</td>
+      <td>Beneficiary name mismatch</td>
     </tr>
     <tr>
       <td class="code-col"><code>NOT-ALLOWED</code></td>
-      <td>해당 사유<br>(ex) "This user is locked by internal policy."</td>
-      <td>내부 정책으로 인해 거부됨</td>
+      <td>Reason<br>(e.g., "This user is locked by internal policy.")</td>
+      <td>Blocked due to internal policy</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNDEFINED-ERROR</code></td>
       <td>-</td>
-      <td>정의되지 않은 기타 오류</td>
+      <td>Undefined or other error</td>
     </tr>
     <tr>
       <td class="code-col"><code>BENEFICIARY-ACCOUNT-NOT-MATCHED</code></td>
       <td>-</td>
-      <td>수신 VASP가 송신 VASP가 전송한 주소를 변경하여 반환한 경우</td>
+      <td>Address returned by the Beneficiary VASP does not match the one sent by the Ordering VASP</td>
     </tr>
     <tr>
       <td class="code-col"><code>REQUEST-TIMEOUT</code></td>
       <td>-</td>
-      <td>검증 요청 후 대기시간이 초과한 경우</td>
+      <td>Verification request timed out</td>
     </tr>
   </tbody>
 </table>
