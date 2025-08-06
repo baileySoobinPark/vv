@@ -88,79 +88,79 @@ Return the final result in the <code>result</code> field:
   <tbody>
     <tr>
       <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
-      <td>미지원 자산 심볼<br>(ex)"ETH"</td>
-      <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
+      <td>Unsupported asset symbol<br>(e.g., "ETH")</td>
+      <td>A virtual asset not supported by the VASP (e.g., an asset not listed on the exchange)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
-      <td>Unsupported asset symbol<br>("Ethereum"</td>
-      <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
+      <td>Unsupported network name<br>(e.g., "Ethereum")</td>
+      <td>A network not supported by the VASP (e.g., USDT-Ethereum requested but only USDT-Tron supported)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>확인할 수 없는 지갑 주소</td>
+      <td>Target address<br>(e.g., "0xasd...")</td>
+      <td>Unrecognized wallet address</td>
     </tr>
     <tr>
       <td class="code-col"><code>LACK-OF-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 누락 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>송신자 정보 부족</td>
+      <td>Missing fields separated by commas<br>(e.g., "ACCOUNT_NUMBER")</td>
+      <td>Insufficient originator information</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNAVAILABLE-INFORMATION</code></td>
-      <td>콤마(,)로 구분된 제공 불가 필드 목록<br>(ex)"ACCOUNT_NUMBER"</td>
-      <td>제공 불가한 수신자 정보</td>
+      <td>Unavailable fields separated by commas<br>(e.g., "ACCOUNT_NUMBER")</td>
+      <td>Beneficiary information unavailable</td>
     </tr>
     <tr>
       <td class="code-col"><code>BLACKLISTED</code></td>
-      <td>대상 주소<br>(ex)"0xasd..."</td>
-      <td>제재 목록에 포함된 주소</td>
+      <td>Target address<br>(e.g., "0xasd...")</td>
+      <td>Address is on a sanctions list</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNVERIFIED-KYC</code></td>
       <td>-</td>
-      <td>KYC 미완료</td>
+      <td>KYC not completed</td>
     </tr>
     <tr>
       <td class="code-col"><code>MISMATCHED-NAME</code></td>
       <td>-</td>
-      <td>수신자 이름 불일치</td>
+      <td>Beneficiary name mismatch</td>
     </tr>
     <tr>
       <td class="code-col"><code>NOT-ALLOWED</code></td>
-      <td>해당 사유<br>(ex) "This user is locked by internal policy."</td>
-      <td>내부 정책으로 인해 거부됨</td>
+      <td>Reason<br>(e.g., "This user is locked by internal policy.")</td>
+      <td>Blocked due to internal policy</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNDEFINED-ERROR</code></td>
       <td>-</td>
-      <td>정의되지 않은 기타 오류</td>
+      <td>Undefined or other error</td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
 
-### 제약 조건
+### Constraints
 
-이 API는 5초 이내에 응답해야 합니다.
+* The API must respond within 5 seconds.
 
-### 구현 권장사항
+### Recommended Implementation
 
-* 규제 요건과 관계없이 모든 가상자산 전송건에 대해 Travel Rule 프로토콜을 적용하는 것을 권장합니다. 보안성과 컴플라이언스를 강화하고 운영 리소스를 줄일 수 있습니다.
-* 송신 VASP의 요청의 `isExceedingThreshold` 필드가 `false`로 설정된 경우 해당 전송은 Travel Rule 적용 대상이 아니며, 사용자 검증 절차 없이 전송할 수 있습니다.
+* Apply the Travel Rule protocol to all asset transfers, regardless of regulatory obligation, to strengthen security and compliance while reducing operational risk.
+* If the Ordering VASP’s request includes <code>isExceedingThreshold</code>: <code>false</code>, the transaction is not subject to the Travel Rule and may be processed without user verification.
 
-### Enclave 연동 설정
+### Enclave Integration Settings
 
-Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+Set the following Enclave environment variables for integration:
 
-* `VEGA_VERIFICATION_API_PATH`: 해당 API 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
+* `VEGA_VERIFICATION_API_PATH`: API endpoint path
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API authentication token value
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: HTTP header key for passing the authentication token
 
-### 관련 링크
+### Related Links
 
 * [IVMS101 Guide](ref:ivms101-guide)
 
 ***
 
-## API 명세
+## API Specification
