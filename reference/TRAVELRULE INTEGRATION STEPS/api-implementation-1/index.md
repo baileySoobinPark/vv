@@ -125,8 +125,8 @@ Each VASP must be capable of acting as both Ordering VASP and Beneficiary VASP. 
           <code>VERIFICATION_RESULT</code> : Verification result received<br>
           <code>TX_REPORT</code> : Verification result received<br>
           <code>ERROR_REPORT</code> : Error during protocol processing<br>
-          <code>CHAINALYSIS_KYT_RESULT</code> : Chainalysis 연계 리스크 평가 결과 수신<br>
-          <code>REFINITIV_WCO_RESULT</code> : Refinitiv WCO 연계 리스크 평가 결과 수신
+          <code>CHAINALYSIS_KYT_RESULT</code> : Chainalysis risk assessment result<br>
+          <code>REFINITIV_WCO_RESULT</code> : Refinitiv WCO risk assessment result
         </div>
       </td>
     </tr>
