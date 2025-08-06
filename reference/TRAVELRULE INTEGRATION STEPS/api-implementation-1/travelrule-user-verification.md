@@ -5,40 +5,50 @@ api:
   operationId: travelrule-User-Verification
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 수신 VASP 역할 수행시 호출되는 API로, 송신 VASP의 요청을 받은 수신 VASP측 Enclave에 의해 호출됩니다. 수신VASP는 이 API로 수신인 정보와 규제 요건 충족 여부를 검증하고 그 결과에 따라 자산 이전을 허가할 수 있습니다.
+The **Verify User API** is called when a VASP acts as the **Beneficiary VASP** in the TravelRule protocol. It is invoked by the Beneficiary VASP’s Enclave upon receiving a request from the Ordering VASP.\
+The Beneficiary VASP uses this API to verify the beneficiary’s information, confirm compliance with regulatory requirements, and determine whether to allow the asset transfer.
 
 ***
 
-## 구현 가이드
+## Implementation Guide
 
-### 기능 요구사항
+### Functional Requirements
 
-#### 1. 개인 정보 검증
+#### 1. Verify Personal Information
 
-IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP가 보유한 정보와 대조하여 일치 여부를 검증해야합니다. 이름 검증 및 주소 검증을 포함합니다.
+* Compare the beneficiary’s personal information, provided in IVMS101 format, against your VASP’s records.
+* This includes name verification and address verification.
 
-#### 2. Travel Rule 규제 요건 검증
+#### 2. Verify Travel Rule Regulatory Compliance
 
-아래 항목들을 검토하여 해당 자산 전송의 규제 준수 요건 충족 여부 검증해야 합니다.
+Check whether the transaction meets compliance requirements by verifying:
 
-* KYC 완료 여부
-* AML 정책 충족 여부
-* 송신자에 대한 STR 모니터링 및 Sanction Screening 검증
-* VASP 정책에 따라 추가적인 필터링 수행
+* KYC completion status
+* AML policy compliance
+* STR monitoring and sanction screening for the originator
+* Any additional filtering as required by your VASP’s internal policies
 
-#### 3. 송신 VASP의 요청 정보 반환
+#### 3. Return Requested Information from Ordering VASP
 
-송신 VASP가 `requiredBeneficiaryInfo`에 지정한 요청 항목를 `ivms101` 객체에 채워 반드시 전달해야 합니다.
+If the Ordering VASP specifies <code>requiredBeneficiaryInfo</code>, the requested fields must be returned in the <code>>ivms101</code> object.
 
-* 요청된 정보를 보유하지 않았거나 제공할 수 없는 경우, `verificationResult`는 `DENIED`, `reason`은 `UNAVAILABLE-INFORMATION`으로 설정해야 합니다.
-* 요청된 항목만 반환해야 하며, 요청되지 않은 항목은 반드시 빈 값으로 반환합니다.
-* 지갑 주소는 요청 원본 그대로 반환하며, 유효하지 않은 주소인 경우 `verificationResult`를 `DENIED`로 반환합니다.
+* If the requested information is unavailable or cannot be provided:
+  * Set verificationResult to <code>DENIED</code>
+  * Set reason to <code>UNAVAILABLE-INFORMATION</code>
+* Only return requested fields; unrequested fields must be returned as empty values.
+* Return the wallet address exactly as provided in the request.
+  * If the address is invalid, set <code>verificationResult</code> to <code>DENIED</code>.
 
 #### 4. 검증 결과 응답
 
 최종 검증 결과를 `result`필드로 반환해야 합니다. 검증 결과 해당 전송건에 문제가 없다고 판단하는 경우 `VERIFIED`로 응답하고, 수신자 정보를 IVMS101으로 함께 반환합니다. 정보를 검증할 수 없거나 검증 결과에 문제가 있는 경우 결과를 `DENIED`로 응답하고, 아래 실패 사유 코드 중 하나를 선택하여 `reason`필드와 `message` 필드에 값을 반환해야 합니다.
 
 <br />
+
+Return the final result in the <code>result</code> field:
+
+* <code>VERIFIED</code> → No issues found; include beneficiary details in IVMS101 format.
+* <code>DENIED</code> → Issues found; include one of the following failure reason codes in both <code>reason</code> and <code>message</code> fields:
 
 <HTMLBlock>{`
 <style>
@@ -87,7 +97,7 @@ IVMS101 포맷으로 전달된 수신자 개인정보를 귀사 VASP가 보유�
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
-      <td>미지원 네트워크 이름<br>(ex)"Ethereum"</td>
+      <td>Unsupported asset symbol<br>("Ethereum"</td>
       <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
     </tr>
     <tr>
