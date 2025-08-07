@@ -5,33 +5,38 @@ api:
   operationId: travelrule-Refinitiv-WCO
 hidden: false
 ---
-이 API는 Refinitiv WCO(World-Check One) API를 활용한 지갑 주소 소유자 및 거래 당사자의 리스크 평가 용도로 사용됩니다. VASP는 잠재적 위험을 사전에 파악함으로서 고위험 거래를 방지할 수 있습니다.
+This API is used to assess the risk of wallet owners and transaction parties by integrating with the Refinitiv World-Check One (WCO) API. VASPs can proactively identify potential threats and prevent high-risk transfers.
 
 ***
 
-## Refinitiv WCO API란?
+## What is the Refinitiv WCO API?
 
-Refinitiv World-Check One(WCO) API는 개인 또는 법인에 대한 식별 정보를 기반으로 리스크 평가를 수행하는 유료 서비스입니다. 평가 요청은 “케이스(case)“로 생성되며, 각각은 Refinitiv에서 발급하는 caseSystemId로 식별됩니다. 또한, 각 케이스는 하나의 “그룹(group)“에 속하며, 그룹 단위로 케이스를 관리합니다. WCO API 연동 전에 그룹 구성을 미리 검토하고 체계화하는 것이 좋습니다.
+The Refinitiv World-Check One (WCO) API is a paid service that performs risk screening based on identity information of individuals or legal entities. Each screening request is created as a "case", which is uniquely identified by a `caseSystemId` issued by Refinitiv. Each case belongs to a "group", and cases are managed by group. It is recommended to plan and organize your group structure before integrating the WCO API.
 
-* WCO API 사용을 위해서는 Refinitiv 계정 생성과 라이선스 구매가 필요합니다.\
-  [Refinitiv WCO 공식 페이지](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) 또는 VerifyVASP팀을 통해 미팅을 진행할 수 있습니다.
-* 라이선스를 구매한 후, [WCO 콘솔 사이트](https://worldcheck.refinitiv.com/)에 로그인하여 API Key를 확인할 수 있습니다. Refinitiv WCO API의 자세한 사용법은 [WCO API 개요](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api) 및 [WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html) 문서를 확인하세요.
+* To use the WCO API, you must first create a Refinitiv account and purchase a license.\
+  You can initiate this process via the official [Official Refinitiv WCO page](https://www.refinitiv.com/ko/products/world-check-kyc-screening/world-check-one-kyc-verification) or by contacting the VerifyVASP team.
+* After purchasing the license, you can log into the [WCO Console](https://worldcheck.refinitiv.com/) to retrieve your API Key. For detailed usage instructions, refer to the [WCO API Overview](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api) and the [WCO API Reference](https://developers.lseg.com/content/dam/devportal/en_us/product-docs/wc1-api/index.html).
 
-## 구현 가이드
+## Implementation Guide
 
-WCO API를 통해, 송신 VASP와 수신 VASP는 송신인 또는 수신인의 실명 정보를 기반으로 한 리스크 평가를 진행하고 규제 준수 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 합니다.
+Using the WCO API, both the Ordering VASP and the Beneficiary VASP may perform risk assessments on the Originator or Beneficiary, based on their verified real-name identity information. This process can support regulatory compliance obligations.
 
-## 비동기 API
+\*Note: A user verification request (`POST /verifications`) must be completed prior to invoking this API.
 
-WCO API는 비동기 방식으로 동작하며, 검증 결과는 Callback API를 통해 전달됩니다.
+<br />
 
-## 사용 전 준비 사항
+## Asynchronous API
 
-1. **Enclave 환경 변수 설정**
+The WCO API operates asynchronously. Risk assessment results are delivered via the Callback API.
 
-* `VEGA_REFINITIV_WCO_API_KEY`: Refinitiv 콘솔에서 발급받은 API Key.
-* `VEGA_REFINITIV_WCO_API_SECRET`: Refinitiv 콘솔에서 발급받은 API Secret.
-* `VEGA_REFINITIV_WCO_GROUP_ID`: 케이스를 분류하기 위한 Group ID. Group은 Refinitiv 콘솔의 어드민 페이지에서 생성 가능하며 Group ID는 Refinitiv WCO API Quick Start Postman Collection의 Group Information > Get my top-level groups 요청을 실행하여 조회할 수 있습니다.
+## Prerequisites
 
-2. **데이터베이스 테이블 구성**\
-   Enclave DB에는 WCO API 결과를 저장하기 위한 전용 테이블이 구성되어야 합니다. [Enclave 데이터베이스 생성](ref:database-setup-copy)페이지를 참고하여 적절한 선택 테이블을 생성하십시오.
+1. **Set Enclave Environment Variables**
+
+* `VEGA_REFINITIV_WCO_API_KEY`: API key issued in the Refinitiv console.
+* `VEGA_REFINITIV_WCO_API_SECRET`: API secret issued in the Refinitiv console.
+* `VEGA_REFINITIV_WCO_GROUP_ID`: Group ID used to classify cases. You can create groups from the admin page of the Refinitiv console. To retrieve the Group ID, use the "Get my top-level groups" endpoint in the Refinitiv WCO API Quick Start Postman Collection under Group Information.
+
+2. **Database Table Setup**\
+   The Enclave database must include dedicated tables to store WCO API responses.
+   Refer to the [Enclave Database Setup](ref:database-setup-copy) page for instructions on how to create and configure these tables.
