@@ -5,16 +5,17 @@ api:
   operationId: travelrule-enclave-report-Transaction-Result
 hidden: false
 ---
-송신 VASP가 블록체인에서 자산 이전을 위한 트랜잭션을 실행한 후, 해당 트랜잭션의 해시(Txhash 또는 TxId)를 수신 VASP에 보고할 때 사용되는 API입니다.
+This API is used by the sending VASP to report the transaction hash (TxHash or TxId) to the receiving VASP after executing an on-chain transaction for asset transfer.
 
 ***
 
-## 구현 정책
+## Implementation Policy
 
-1. 사용자 검증이 완료된 건에 대해서만 자산 이전 트랜잭션을 실행해야 하며, 실행 후 반드시 본 API를 통해 트랜잭션 해시(Txhash 또는 TxId)를 보고해야 합니다.
-2. 트랜잭션 해시가 생성되는 즉시 본 API를 호출하여 정보를 VerifyVASP Central Server에 전달해야 합니다.
-3. 트랜잭션 finality가 확보되지 않아 자산 이전이 실패할 경우, 즉시 오류 보고 API(Report Error API) 를 호출하여 Central Server에 중단 상황을 보고해야 합니다.
+1. Transactions should only be executed after successful user verification.
+2. Upon execution, the transaction hash (TxHash or TxId) must be reported via this API.
+3. This API should be called immediately after the transaction hash is generated to notify the VerifyVASP Central Server.
+4. If the asset transfer fails due to lack of finality, the sending VASP must call the Report Error API immediately to report the failure to the Central Server.
 
 ***
 
-## API 명세
+## API Specification
