@@ -5,17 +5,18 @@ api:
   operationId: travelrule-list-Vasp-ids
 hidden: false
 ---
-Travel Rule 검증을 지원하는 모든 VASP 목록을 조회하기 위한 API입니다. 고객의 자산 이전 요청 시 본 API를 호출하여 고객이 목록 중 하나의 VASP를 선택하도록 한 뒤, 해당 VASP의 vaspId 값을 활용하여 검증을 요청할 수 있습니다.
+This API is used to retrieve a list of all VASPs that support Travel Rule verification.\
+When a customer requests an asset transfer, your system can call this API to display a list of VASPs for the customer to choose from. You can then use the selected VASP's `vaspId` to perform the verification request.
 
 ***
 
-## VASP 목록 포함 기준
+## Criteria for VASP List Inclusion
 
-응답의 VASP 목록은 귀사의 VASP를 포함하여 다음 조건을 충족하는 다른 VASP들을 포함합니다.
+The response will include your VASP as well as other VASPs that meet the following conditions:
 
-* 해당 VASP가 VerifyVASP 또는 타 Travel Rule 프로토콜의 회원일 것
-* 양사가 서로를 자산 이전 처리가 가능한 VASP로 설정할 것
+* The VASP is a member of VerifyVASP or another Travel Rule protocol.
+* Both parties have mutually configured each other as eligible VASPs for asset transfers.
 
 ***
 
-## API 명세
+## API Specification
