@@ -5,40 +5,40 @@ api:
   operationId: travelrule-Chainalysis-KYT
 hidden: false
 ---
-이 API는 Chainalysis KYT API를 활용한 지갑 주소 및 트랜잭션의 리스크 평가 용도로 사용됩니다. VASP는 특정 주소와 트랜잭션의 잠재적 위험을 사전에 파악함으로서 비인가 또는 고위험 거래를 방지할 수 있습니다.
+This API is used to assess the risk of wallet addresses and transactions using the Chainalysis KYT API. VASPs can leverage this to identify potential risks associated with specific addresses or transactions in advance, thereby preventing unauthorized or high-risk transfers.
 
 ***
 
-## Chainalysis KYT API란?
+## What is the Chainalysis KYT API?
 
-Chainalysis의 Know Your Transaction(KYT) API는 유료 서비스로, 가상자산 거래에 대해 고도화된 리스크 평가 기능을 제공합니다. 이 API는 무료로 제공되는 Sanction API보다 더 정교하고 정확한 리스크 분석을 제공하며, 특히 수신인 지갑 주소 리스크 평가 및 자산 이전 이후 트랜잭션 위험도 평가에도 최적화되어 있습니다.
+Chainalysis' Know Your Transaction (KYT) API is a paid service that offers advanced risk assessment capabilities for virtual asset transactions. It provides more precise and sophisticated analysis compared to the free Sanction API and is particularly effective in assessing the risk of beneficiary wallet addresses and post-transfer transactions.
 
-* KYT API 사용을 위해서는 [Chainalysis KYT 소개 페이지](https://www.chainalysis.com/solution/crypto-compliance/)에서 라이선스 구매를 신청해야 합니다.
-* 라이선스 구매 후, [KYT 콘솔 사이트](https://kyt.chainalysis.com/)에 로그인하여 API 키를 발급받을 수 있습니다. 자세한 기능 및 구현 방법은 [API Reference 문서](https://docs.chainalysis.com/api/kyt/) 및 [공식 개발자 가이드 문서](https://docs.chainalysis.com/api/kyt/guides/#developer-portal)를 참고하십시오.
+* To use the KYT API, you must first apply for a license through the [Chainalysis KYT Solution Page](https://www.chainalysis.com/solution/crypto-compliance/).
+* After purchasing a license, you can issue an API key from the [KYT Console](https://kyt.chainalysis.com/). For detailed features and implementation, refer to the [API Reference Docs](https://docs.chainalysis.com/api/kyt/) and the [Official Developer Guide](https://docs.chainalysis.com/api/kyt/guides/#developer-portal).
 
-## 구현 가이드
+## Implementation Guide
 
-송신 VASP와 수신 VASP 모두 KYT API로 고객의 지갑주소 및 트랜잭션에 대한 리스크 평가를 진행하여 규제 준수 요건으로 활용할 수 있습니다. 단, API 호출 전 반드시 사용자 검증(POST /verifications API 호출)이 완료되어야 하며 VASP의 역할에 따라 API 호출 시점은 상이할 수 있습니다. 트랜잭션 수행 시점을 기준으로, 각VASP들은 다음과 같이 API를 활용할 수 있습니다.
+Both the Ordering VASP and the Beneficiary VASP may use the KYT API to assess risks associated with customer wallet addresses or transactions, as part of their regulatory compliance process. However, the user verification (`POST /verifications`) must be completed before invoking this API. Depending on the VASP’s role, the timing of API usage may differ as follows:
 
-**\[트랜잭션 수행 전]**
+**\[Before Transaction Execution]**
 
-* 자산 이전을 실행하기에 앞서, 송신 VASP는 수신인의 지갑 주소의 위험도를 사전에 파악할 수 있습니다.
-* 이 시점에서는 수신 VASP측 KYT API 사용이 제한됩니다. API 호출 시 UNSUPPORTED-RISK-ASSESSMENT 오류가 반환됩니다.
+* Before initiating a transfer, the Ordering VASP can assess the risk of the beneficiary’s wallet address.
+* At this stage, usage of the KYT API by the Beneficiary VASP is restricted. If invoked, the API will return an `UNSUPPORTED-RISK-ASSESSMENT` error.
 
-**\[트랜잭션 수행 후]**
+**\[After Transaction Execution]**
 
-* 송신 VASP는 트랜잭션 수행 후 API를 호출하여 사후 해당 트랜잭션의 리스크를 평가 할 수 있습니다.
-* 수신 VASP는 감지된 입금 트랜잭션에 대해 리스크를 평가하고 이에 따른 조치를 취할 수 있습니다.
+* The Ordering VASP can invoke the API after the transfer to evaluate the transaction risk.
+* The Beneficiary VASP can assess the risk of an incoming transaction and take necessary actions based on the evaluation.
 
-## 비동기 API
+## Asynchronous API
 
-KYT API는 비동기 방식으로 동작합니다. 최종 평가 결과는 Callback API를 통해 전달됩니다.
+The KYT API operates asynchronously. Final assessment results will be delivered via the Callback API.
 
-## 사용 전 준비 사항
+## Prerequisites
 
-1. **Enclave 환경 변수 설정**\
-   발급받은 API 키를 `VEGA_CHAINALYSIS_KYT_API_KEY` 환경 변수에 설정해야 합니다.
-2. **데이터베이스 테이블 구성**\
-   Enclave DB에는 Chainalysis KYT API 결과를 저장하기 위한 전용 테이블이 구성되어야 합니다. [Enclave 데이터베이스 생성](ref:database-setup-copy)페이지를 참고하여 적절한 선택 테이블을 생성하십시오.
+1. **Set Enclave Environment Variables**\
+   The issued API key must be set in the `VEGA_CHAINALYSIS_KYT_API_KEY` environment variable.
+2. **Database Table Setup**\
+   The Enclave database must include dedicated tables to store the results of KYT API responses. Refer to the [Enclave Database Setup](ref:database-setup-copy) page to create the necessary tables.
 
-## API 명세
+## API Specification
