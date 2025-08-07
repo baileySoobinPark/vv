@@ -5,7 +5,7 @@ api:
   operationId: travelrule-enclave-report-Transaction-Result
 hidden: false
 ---
-This API is used by the sending VASP to report the transaction hash (TxHash or TxId) to the receiving VASP after executing an on-chain transaction for asset transfer.
+This API is used by the sending VASP to report the transaction hash (TxHash or TxId) to the beneficiary VASP after executing an on-chain transaction for asset transfer.
 
 ***
 
