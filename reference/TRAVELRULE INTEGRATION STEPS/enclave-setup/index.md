@@ -52,9 +52,9 @@ Enclave uses the following five groups of environment variables:
 <table class="enclave-env-table">
   <thead>
     <tr>
-      <th>환경변수 그룹</th>
-      <th>설명</th>
-      <th>예시</th>
+      <th>Environment Variable Group</th>
+      <th>Description</th>
+      <th>Example</th>
     </tr>
   </thead>
   <tbody>
@@ -65,23 +65,23 @@ Enclave uses the following five groups of environment variables:
     </tr>
     <tr>
       <td>Authentication Keys</td>
-      <td>VerifyVASP 중앙 서버 및 3rd Party 서비스 연동을 위한 인증 정보</td>
-      <td>access key/secret key, Chainalysis API key, Refinitiv API key 등</td>
+      <td>Credentials for integrating with the VerifyVASP central server and 3rd party services</td>
+      <td>access key/secret key, Chainalysis API key, Refinitiv API key, etc.</td>
     </tr>
     <tr>
-      <td>VASP API 엔드포인트</td>
-      <td>Enclave가 VASP API를 호출할 때 사용되는 API 엔드포인트</td>
-      <td>사용자 계정 검증 API, 사용자 정보 검증 API 등</td>
+      <td>VASP API Endpoints</td>
+      <td>API endpoints used when Enclave calls the VASP’s APIs</td>
+      <td>User account verification API, user identity verification API, etc.</td>
     </tr>
     <tr>
-      <td>보안 및 설정 관련 변수</td>
-      <td>Enclave 서버의 보안 수준 및 운영 설정을 위한 변수</td>
-      <td>공개키 캐시 옵션 등</td>
+      <td>Security and Configuration Settings</td>
+      <td>Variables for configuring Enclave server security level and operations</td>
+      <td>Public key cache options, etc.</td>
     </tr>
     <tr>
-      <td>Enclave 모드 설정</td>
-      <td>Enclave의 구동 모드, 지원 프로토콜에 따라 복수 설정</td>
-      <td>TR(TravelRule), VN1_CALL/VN1_RESPONSE(VerifyName 1.0), VN2 등</td>
+      <td>Enclave Mode Configuration</td>
+      <td>Enclave operating modes, configured per supported protocol</td>
+      <td>TR (TravelRule), VN1_CALL/VN1_RESPONSE (VerifyName 1.0), VN2, etc.</td>
     </tr>
   </tbody>
 </table>
