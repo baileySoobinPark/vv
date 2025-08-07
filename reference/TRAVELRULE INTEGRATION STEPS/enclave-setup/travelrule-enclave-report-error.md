@@ -16,4 +16,4 @@ By calling this API, the receiving VASP can acknowledge the termination of the t
 
 ***
 
-## API 명세
+## API Specification
