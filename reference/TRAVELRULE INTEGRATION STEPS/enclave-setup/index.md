@@ -59,12 +59,12 @@ Enclave uses the following five groups of environment variables:
   </thead>
   <tbody>
     <tr>
-      <td>서버 및 데이터베이스 설정 변수</td>
-      <td>서버 실행 및 데이터베이스 접속을 위해 필요한 설정</td>
-      <td>서버 엔드포인트/포트, DB 사용자명/비밀번호, DB 접속 설정 등</td>
+      <td>Server and Database Settings</td>
+      <td>For setting up the server and connecting to the database</td>
+      <td>e.g., endpoint/port, DB username/password</td>
     </tr>
     <tr>
-      <td>인증 관련 변수</td>
+      <td>Authentication Keys</td>
       <td>VerifyVASP 중앙 서버 및 3rd Party 서비스 연동을 위한 인증 정보</td>
       <td>access key/secret key, Chainalysis API key, Refinitiv API key 등</td>
     </tr>
