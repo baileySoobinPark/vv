@@ -5,46 +5,55 @@ api:
   operationId: travelrule-check-Transaction-Status
 hidden: false
 ---
-VASP는 TravelRule 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 송신 VASP 역할에 해당하는 구현 요구사항입니다. 수신 VASP가 사전에 확인되지 않은 입금을 인지했을 때(Transaction Report 누락 등으로 인해 사전에 입금 고지가 이루어지지 않은 경우), 해당 트랜잭션의 상태를 조회하고자 송신 VASP측에 구현된 본 API를 호출할 수 있습니다.
+This API is implemented by VASPs operating in the Ordering VASP role under the TravelRule protocol. It allows the Beneficiary VASP to query the status of a transaction when an unexpected deposit is detected (e.g., due to a missing Transaction Report or prior notification).
 
 ***
 
-## 구현 가이드
+## Implementation Guide
 
-### 기능 요구사항
+### Functional Requirements
 
-#### 1. verificationUuid와 트랜잭션 해시 값 쌍 저장 (상시)
+#### 1. Persisting the <code>verificationUuid</code> and Transaction Hash (Always)
 
-* 송신 VASP는 검증 요청에 대한 응답으로 발급받은 `verificationUuid`와, 해당 검증 결과에 따라 수행된 트랜잭션의 해시 값을 연동할 수 있어야 합니다.
+* The Ordering VASP must store the <code>verificationUuid</code> (received from the verification response) and associate it with the resulting blockchain transaction hash.
+* This mapping should be reliably retrievable for future status inquiries.
 
-#### 2. 트랜잭션 상태 조회 및 응답 (API 호출 시)
+#### 2. Querying and Responding with Transaction Status (When API is Called)
 
-* 트랜잭션 상태 조회 요청을 받게 되면 요청에 포함된 `verificationUuid`에 대응하는 트랜잭션을 식별하고 트랜잭션 해시를 이용해 트랜잭션의 블록체인 상의 상태를 확인한 후, `transactionStatus` 필드에 아래에 정의된 상태 중 하나로 응답해야 합니다:
-  * `PENDING`: 아직 블록체인에 제출되지 않은 상태
-  * `PROCESSING`: 제출되었지만 아직 블록에 포함되지 않은 상태
-  * `WAIT-CONFIRM`: 블록에 포함되었으나 아직 finality가 확보되지 않은 상태
-  * `CONFIRMED`: 채굴 완료 및 finality 확보된 상태
-  * `CANCELED`: 제출 전 또는 후에 취소된 상태
+Upon receiving a request with a <code>verificationUuid</code>, the VASP should:
 
-### 제약 조건
+* Identify the corresponding transaction hash.
+* Use the hash to query the blockchain.
+* Respond with one of the following transaction statuses in the <code>transactionStatus</code> field:
+  * `PENDING`: Transaction has not been submitted to the blockchain.
+  * `PROCESSING`: Transaction has been submitted but not yet included in a block.
+  * `WAIT-CONFIRM`: Transaction is included in a block but not yet finalized.
+  * `CONFIRMED`: Transaction is mined and finality is secured.
+  * `CANCELED`: Transaction was canceled before or after submission.
 
-이 API는 1초 이내에 응답해야 합니다.
+### Constraints
 
-### 구현 권장사항
+* Must respond within 1 second.
 
-다음과 같이 Enclave API들을 활용하여 별도의 데이터베이스 테이블 구축 없이도 `verificationUuid`와 트랜잭션 해시 값 쌍 데이터를 관리할 수 있습니다.
+### Recommended Implementation
 
-* **Report Transaction Result API**: 트랜잭션 전송 직후 호출하여 트랜잭션 해시를 Enclave 데이터베이스에 저장하고 수신 VASP에 보고
-* **Get Verification Result API**: 트랜잭션 상태 조회 요청 인입 시 `verificationUuid`로 Enclave 데이터베이스에 저장된 트랜잭션 해시를 조회하여 실시간 온체인 상태 확인에 사용
+You can manage <code>verificationUuid</code>–transactionHash mappings without building a separate database by leveraging existing Enclave APIs:
 
-### Enclave 연동 설정
+* **Report Transaction Result API** - called immediately after broadcasting a transaction to:
+  * Store the transaction hash in the Enclave database.
+  * Notify the Beneficiary VASP.
+* **Get Verification Result API** - use this to:
+  * Retrieve the transaction hash from the Enclave using the <code>verificationUuid</code>.
+  * Then check the real-time blockchain status based on the hash.
 
-Enclave와의 연동을 위해 아래 환경 변수를 설정해야 합니다.
+### Enclave Integration Settings
 
-* `VEGA_VERIFICATION_TRANSACTION_API_PATH`: 해당 API 구현 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
+Set the following environment variables to integrate with Enclave:
+
+* `VEGA_VERIFICATION_TRANSACTION_API_PATH`: Path to this API implementation.
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Token value used for authenticating Enclave requests.
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: HTTP header key for passing the token.
 
 ***
 
-## API 명세
+## API Specification
