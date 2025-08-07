@@ -89,7 +89,7 @@ Enclave uses the following five groups of environment variables:
 
 <br />
 
-환경 변수에 대한 목적, 기본값, 설정 방법을 요약한 표는 다음과 같습니다. 환경 변수의 이름은 **반드시 변경 없이 그대로 사용**하십시오.
+The following table summarizes the purpose, default values, and configuration methods for each environment variable. Do not modify the environment variable names—they must be used exactly as defined.
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -119,7 +119,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave 서버 포트 번호.
+        Port number for the Enclave server.
       </td>
     </tr>
 
@@ -133,14 +133,11 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave의 구동모드.
-        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.
+        Enclave operating mode. Specifies the VerifyVASP protocols supported by the Enclave.
 
-        단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.
+        Single or multiple values allowed, separated by commas (e.g., VEGA\_ENCLAVE\_MODE=TR,VN2).
 
-        **사용 가능한 모드 값** : `TR`, `VN2`, `VN1_CALL`, `VN1_RESPONSE`
-
-        (ex) `VEGA_ENCLAVE_MODE=TR,VN2`
+        Supported values: TR, VN2, VN1\_CALL, VN1\_RESPONSE.
       </td>
     </tr>
 
@@ -154,8 +151,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave 서버의 Public Endpoint URL.\
-        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.
+        Public endpoint URL of the Enclave server.
+
+        Must be a publicly accessible HTTPS address reachable by the VerifyVASP central server.
 
         `https://api.vasp.com/enclave`
       </td>
@@ -171,10 +169,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VerifyVASP API Access Key.\
-        온보딩 시 발급받은 값을 입력합니다.
+        VerifyVASP API Access Key issued during onboarding.
 
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+        **Link**: [Onboarding](ref:onboarding-copy-1)
       </td>
     </tr>
 
@@ -188,10 +185,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VerifyVASP API Secret Key.\
-        온보딩 시 발급받은 값을 입력합니다.
+        VerifyVASP API Secret Key issued during onboarding.
 
-        **관련 링크**: [Onboarding](ref:onboarding-copy-1)
+        **Link**: [Onboarding](ref:onboarding-copy-1)
       </td>
     </tr>
 
@@ -205,10 +201,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave 데이터베이스의 DBMS 유형.\
-        **사용 가능한 값**: `pg`, `mysql`, `mysql2`, `oracledb`, `mssql`
+        DBMS type for the Enclave database. Supported: pg, mysql, mysql2, oracledb, mssql.
 
-        **관련 링크**: [Enclave Database Setup](ref:database-setup-copy)
+        **Link**: [Enclave Database Setup](ref:database-setup-copy)
       </td>
     </tr>
 
@@ -222,7 +217,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Database user name.
+        Database username..
       </td>
     </tr>
 
@@ -250,7 +245,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 연동을 위한 Host URL.
+        Host URL for the database connection.
       </td>
     </tr>
 
@@ -264,7 +259,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 포트 번호.
+        Port number for the database connection.
       </td>
     </tr>
 
@@ -278,7 +273,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 DB 이름.
+        Database name.
       </td>
     </tr>
 
@@ -292,7 +287,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Custom schema 이름(PostgreSQL 케이스에 한함).
+        Custom schema name (PostgreSQL only).
       </td>
     </tr>
 
@@ -306,7 +301,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        최소 데이터베이스 Connection Pool 크기.
+        Minimum size of the database connection pool.
       </td>
     </tr>
 
@@ -320,7 +315,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        최대 데이터베이스 Connection Pool 크기.
+        Maximum size of the database connection pool.
       </td>
     </tr>
 
@@ -334,8 +329,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결 사용 여부\
-        (사용시 `true`로 설정)
+        Enable SSL for the database connection (set to `true` to enable)
       </td>
     </tr>
 
@@ -349,7 +343,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치
+        Path to CA certificate file for SSL connection
       </td>
     </tr>
 
@@ -363,7 +357,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.
+        Path to client SSL certificate private key.
       </td>
     </tr>
 
@@ -377,7 +371,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.
+        Path to client SSL certificate.
       </td>
     </tr>
 
@@ -391,7 +385,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로
+        Directory path for CA certificates
       </td>
     </tr>
 
@@ -405,7 +399,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결을 위한 암호화 방식
+        Cipher suite for SSL connection
       </td>
     </tr>
 
@@ -419,7 +413,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)
+        Reject connection if certificate validation fails (set to true to enable)
       </td>
     </tr>
 
@@ -433,8 +427,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VASP API 호출을 위한 Verify User API Endpoint.\
-        **관련 링크**:  [Verify User API](ref:travelrule-user-verification-1)
+        Endpoint for the Verify User API.\
+        **Link**:  [Verify User API](ref:travelrule-user-verification-1)
       </td>
     </tr>
 
@@ -448,8 +442,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VASP API 호출을 위한 Verify User Account API Endpoint.\
-        **관련 링크**: [Verify User Account API](ref:travelrule-user-account-verification-1)
+        Endpoint for the Verify User Account API\
+        **Link**: [Verify User Account API](ref:travelrule-user-account-verification-1)
       </td>
     </tr>
 
@@ -463,8 +457,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VASP API 호출을 위한 Check Transaction Status API Endpoint.\
-        **관련 링크**: [Check Trasnaction Status API](ref:travelrule-check-transaction-status-1)
+        Endpoint for the Check Transaction Status API.\
+        **Link**: [Check Trasnaction Status API](ref:travelrule-check-transaction-status-1)
       </td>
     </tr>
 
@@ -479,7 +473,7 @@ Enclave uses the following five groups of environment variables:
 
       <td>
         Callback API Endpoint.\
-        **관련 링크**: [Callback API](ref:travelrule-callback-1)
+        **Link**: [Callback API](ref:travelrule-callback-1)
       </td>
     </tr>
 
@@ -493,7 +487,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VASP API 호출시 사용할 인증 token 값.
+        Authorization token for VASP API calls.
       </td>
     </tr>
 
@@ -507,7 +501,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VASP API 호출시 인증 헤더 Key 값. 미설정시 `Authorization` 헤더 사용.
+        Header key used for the authorization token. If not set, default is `Authorization`.
       </td>
     </tr>
 
@@ -521,7 +515,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        VerifyVASP Central API Server Endpoint.
+        Endpoint for the VerifyVASP Central API Server:
 
         * PRD (KR): `https://api-kr.vega-protocol.com`
         * PRD (Global): `https://api.vega-protocol.com`
@@ -540,8 +534,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Log level.\
-        **사용 가능한 값**:`none`, `error`, `warn`, `info`, `debug`
+        Logging level.\
+        Supported values: `none`, `error`, `warn`, `info`, `debug`.
       </td>
     </tr>
 
@@ -555,8 +549,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        상대 VASP의 공개키 캐싱 TTL(ms).\
-        기본 1800000 (30분), 최소 600000 (10분)
+        Public key caching TTL (ms) for counterparty VASPs.
+
+        Default is 1800000 (30 mins), minimum is 600000 (10 mins).
       </td>
     </tr>
 
@@ -570,8 +565,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave 데이터베이스 암호화 대칭키 조회를 위한 API Path.\
-        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        API path for retrieving the encryption key for database decryption.\
+        Link: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
       </td>
     </tr>
 
@@ -585,8 +580,8 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.\
-        관련 링크: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        Reference value for the encryption key, or the key itself if directly injected.\
+        Link: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
       </td>
     </tr>
 
@@ -600,7 +595,9 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        `VEGA_ENCRYPTION_KEY_BASE64`에 설정된 암호화 키를 복호화하기 위한 외부 서비스의 엔드포인트입니다. 이 엔드포인트는 HSM(하드웨어 보안 모듈)과 같은 암호화 관련 외부 서비스를 사용하도록 설정되어 있습니다.
+        This is the endpoint of an external service used to decrypt the encryption key specified in `VEGA_ENCRYPTION_KEY_BASE64`.
+
+        This endpoint should be configured to use an encryption-related external service such as an HSM (Hardware Security Module).
       </td>
     </tr>
 
@@ -614,7 +611,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Chainalysis Sanction API를 통해 상대방의 지갑 주소를 스크리닝하고자 하는 경우, Chainalysis Sanction API Key를 설정하십시오.
+        Chainalysis Sanction API key for wallet address screening.
       </td>
     </tr>
 
@@ -628,7 +625,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        상대방의 지갑 주소나 전송 거래에 대한 리스크 평가를 위해 Chainalysis KYT API를 이용하고자 하는 경우, Chainalysis KYT API Key를 설정하십시오.
+        Chainalysis KYT API key for transaction risk assessments.
       </td>
     </tr>
 
@@ -642,7 +639,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, Refinitiv World Check One API Key를 설정하십시오.
+        Refinitiv World Check One API key for user risk assessments.
       </td>
     </tr>
 
@@ -656,7 +653,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, API Key와 함께 발급된 Secret 값을 설정하십시오.
+        Secret key issued with the Refinitiv API key.
       </td>
     </tr>
 
@@ -670,7 +667,7 @@ Enclave uses the following five groups of environment variables:
       </td>
 
       <td>
-        Refinitiv World Check One API 연동 기능을 사용하여 상대방 사용자의 리스크 평가를 수행하고자 하는 경우, Refinitiv 콘솔 사이트에서 생성된 그룹 ID를 설정하십시오.
+        Group ID from the Refinitiv console for API usage.
       </td>
     </tr>
   </tbody>
@@ -678,32 +675,30 @@ Enclave uses the following five groups of environment variables:
 
 <br />
 
-## Step 3. 네트워크 설정
+## Step 3. Network Whitelisting
 
-Enclave 서버가 정상적으로 실행된 이후, VerifyVASP Central 서버와의 통신을 위해 네트워크 Allowlist를 구성해야 합니다.
+After the Enclave server is up and running, you must configure mutual network access between your infrastructure and the VerifyVASP Central Server.
 
-### Enclave 서버 IP를 VerifyVASP 중앙 서버에 등록
+### Whitelist Your Enclave Server IP
 
-VASP의 Enclave 서버 IP를 [support@verifyvasp.com](mailto:corporate@verifyvasp.com) 으로 전달하여 VerifyVASP측 네트워크 허용 목록에 등록하십시오. 등록 가능한 값은 IP 주소에 한정되며, 도메인 주소는 허용되지 않습니다.
+Send the public IP of your Enclave server to: [support@verifyvasp.com](mailto:corporate@verifyvasp.com). Only IP addresses are accepted. Domain names are not supported.
 
-### VerifyVASP Central Server의 IP를 VASP 측에 등록
+### Allow VerifyVASP Central IP Access
 
-VerifyVASP Central 서버가 VASP의 인프라에 접근할 수 있도록, VASP 인프라 네트워크 설정으로 VerifyVASP의 IP 주소를 허용 목록에 등록해야 합니다. 해당 IP 정보는 [support@verifyvasp.com](mailto:corporate@verifyvasp.com) 또는 전용 Slack 채널을 통해 문의해 주세요.
+Ensure your firewall allows inbound traffic from the VerifyVASP Central Server. Request current IP ranges from [support@verifyvasp.com](mailto:corporate@verifyvasp.com) or your Slack channel.
 
 <br />
 
-## Step 4. Enclave 통합 API 구성
+## Step 4. Integrate Enclave with Your Backend
 
-Enclave 서버가 정상적으로 구동되어 VerifyVASP Central 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 입출금 프로세스에 TravelRule을 이용한 검증 프로세스를 추가할 수 있습니다.
+Once the Enclave server is running and connected to the VerifyVASP Central server, you can start invoking Enclave APIs from your backend. These APIs will allow you to implement user and transaction verification as part of your deposit/withdrawal flow using TravelRule.
 
-TravelRule 의 API Flow와 이 문서 하위에 포함된 아래 API 명세를 확인하여 Enclave API를 구현하십시오.
-
-#### VASP 조회 API
+#### VASP Discovery APIs
 
 * [Get VASP ID API](ref:travelrule-get-vasp-id-1)
 * [List VASP API](ref:travelrule-list-vasp-ids-1)
 
-#### 검증 API
+#### Verification APIs
 
 * [User Account Verification API](ref:travelrule-enclave-user-account-verification-1)
 * [User Verification API](ref:travelrule-encalve-request-user-verification-1)
