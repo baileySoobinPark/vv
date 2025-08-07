@@ -5,7 +5,7 @@ api:
   operationId: travelrule-encalve-request-User-Verification
 hidden: false
 ---
-This API is used by the sending VASP to initiate a user verification request to the receiving VASP. If the request is successfully received by the VerifyVASP Central Server, a unique `verificationUuid` will be returned in the response to identify the request.
+This API is used by the ordering VASP to initiate a user verification request to the beneficiary VASP. If the request is successfully received by the VerifyVASP Central Server, a unique `verificationUuid` will be returned in the response to identify the request.
 
 ***
 
