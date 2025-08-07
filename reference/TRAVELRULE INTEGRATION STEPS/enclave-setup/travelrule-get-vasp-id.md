@@ -6,8 +6,8 @@ api:
   operationId: travelrule-get-Vasp-Id
 hidden: false
 ---
-귀사 VASP의 VASP ID를 조회하기 위한 API입니다.
+This API is used to retrieve your VASP’s unique VASP ID.
 
 ***
 
-## API 명세
+## API Specification
