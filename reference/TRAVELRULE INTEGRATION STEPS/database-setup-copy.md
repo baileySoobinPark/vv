@@ -1,9 +1,11 @@
 ---
-title: Enclave 데이터베이스 생성
+title: Enclave Database Initialization
 excerpt: >-
-  VASP API 구현이 완료되었다면 Enclave 서버 구동을 위한 준비를 시작합니다. Enclave 서버를 실행하기에 앞서,
-  Enclave가 사용할 데이터베이스가 사전에 준비되어 있어야 합니다. 본 가이드는 Enclave 서버에서 사용할 데이터베이스 설정을 위해
-  필요한 시스템 요구사항, 운영 정책, 설정 항목 등을 상세히 설명합니다.
+  Once the VASP API implementation is complete, you can begin preparing to
+  launch the Enclave server. Before running the Enclave server, a dedicated
+  database must be provisioned. This guide outlines the system requirements,
+  operational policies, and configuration details required to set up the
+  database used by the Enclave.
 deprecated: false
 hidden: false
 metadata:
@@ -13,27 +15,29 @@ metadata:
 
 <br />
 
-## Step 1. DBMS 선택 및 설치
+## Step 1. Choose and Install a DBMS
 
-VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 로그, 상대 VASP의 공개 키 등 주요 데이터를 저장하는데 사용됩니다. 아래 제시된 지원 DBMS 중 귀사의 인프라 및 운영 환경에 적절한 DBMS를 선택하여 구성하시기 바랍니다.
+The Enclave database stores key data such as verification results, transaction logs, and counterparty public keys. Choose one of the supported DBMS platforms below based on your infrastructure and operational environment.
 
-### 지원하는 DBMS
+### Supported DBMS Options:
 
 * **MySQL`Recommended`**
-  * 설치 및 운영이 간편하며 성능이 우수한 MySQL 사용을 권장합니다.
+  * Simple to install and manage, with excellent performance.
 * **PostgreSQL**
 * **MSSQL**
 * **Oracle DBMS**
 
 <br />
 
-## Step 2. 스키마 생성
+## Step 2. Schema Initialization
 
-DBMS 설치가 완료되면, Enclave에서 사용할 테이블을 생성해야 합니다. 전체 스키마는 필수 테이블 4개와 선택 테이블 4개로 구성됩니다. 선택 테이블은 Chainalysis, Refinitiv 등 3rd Party를 통한 Screening기능을 사용하는 경우에만 필요합니다. 각 테이블의 상세 설명은 아래 표와 같습니다.
+After the DBMS installation is complete, you must create the required tables for the Enclave to function. The schema consists of 4 required tables and 4 optional tables.\
+Optional tables are only necessary if using third-party screening services like Chainalysis or Refinitiv. Each table is explained in the list below.
 
-> ⚠️ 저장소 크기 및 백업 정책 유의사항
+> ⚠️ Storage and Backup Considerations
 >
-> 각 테이블 설명에 포함된 예상 레코드 크기를 참고하여, 예상 요청량에 대비한 충분한 저장소를 사전에 확보하시기 바랍니다. 또한, 장기적인 데이터 무결성과 안정적인 운영을 위해 백업 및 복구 정책을 반드시 적용해 주십시오.
+> Please refer to the estimated record size for each table to ensure you allocate sufficient storage capacity based on your expected request volume.\
+> To maintain long-term data integrity and ensure stable operations, a proper backup and recovery policy must be applied.
 
 <HTMLBlock>{`
 <style>
