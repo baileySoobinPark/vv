@@ -27,13 +27,6 @@ Both ordering and beneficiary VASPs may use the Sanction API to perform addition
 
 ## Pre-Implementation Checklist
 
-1. **Enclave 환경 변수 설정**\
-   Enclave 구동 전, 등록 과정에서 발급받은 API 키를 `VEGA_CHAINALYSIS_SANCTION_API_KEY` 환경 변수에 반드시 설정해야 합니다.
-2. **데이터베이스 테이블 구성**\
-   Enclave 서버가 Chainalysis Sanction API 결과를 저장할 수 있도록 데이터베이스 내에 전용 테이블을 구성해야 합니다. 구현 세부사항은 [Enclave 데이터베이스 생성](ref:database-setup-copy) 페이지의 Chainalysis 관련 테이블 정의를 참조하세요.
-
-<br />
-
 1. **Set Enclave Environment Variable**\
    Before running the Enclave, make sure to set the API key issued during registration in the `VEGA_CHAINALYSIS_SANCTION_API_KEY` environment variable.
 2. **Configure Database Tables**\
