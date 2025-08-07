@@ -47,38 +47,38 @@ The verification result can be found in the `accountVerificationResult` field of
 <table class="custom-table">
   <thead>
     <tr>
-      <th>사유 코드</th>
-      <th>설명</th>
+      <th>Reason Code</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="code-col"><code>UNKNOWN-SYMBOL</code></td>
-      <td>지원하지 않는 가상자산 종목 (예: 거래소에서 미지원인 종목)</td>
+      <td>Unsupported virtual asset symbol (e.g., symbol not supported on the exchange)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-NETWORK</code></td>
-      <td>지원하지 않는 네트워크 (예: USDT-Ethereum 요청되었으나 거래소에서 USDT-Tron만 지원하는 경우)</td>
+      <td>Unsupported network (e.g., USDT-Ethereum requested but only USDT-Tron supported)</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNKNOWN-ADDRESS</code></td>
-      <td>확인할 수 없는 주소</td>
+      <td>Unrecognized or unidentifiable address</td>
     </tr>
     <tr>
       <td class="code-col"><code>MISMATCHED-NAME</code></td>
-      <td>수신자 이름 불일치</td>
+      <td>Beneficiary name mismatch</td>
     </tr>
     <tr>
       <td class="code-col"><code>BLACKLISTED</code></td>
-      <td>수신 계정이 블랙리스트에 포함됨</td>
+      <td>Beneficiary wallet address is on a sanctions or blacklist</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNVERIFIED-KYC</code></td>
-      <td>KYC 미완료 사용자</td>
+      <td>User has not completed KYC verification</td>
     </tr>
     <tr>
       <td class="code-col"><code>UNDEFINED-ERROR</code></td>
-      <td>정의되지 않은 기타 오류</td>
+      <td>Undefined or unknown error</td>
     </tr>
   </tbody>
 </table>
@@ -86,4 +86,4 @@ The verification result can be found in the `accountVerificationResult` field of
 
 ***
 
-## API 명세
+## API Specification
