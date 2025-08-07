@@ -83,79 +83,79 @@ Optional tables are only necessary if using third-party screening services like 
     <tr>
       <td class="code-col"><code>verifications</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - TravelRule 프로토콜 검증 상태 및 이력을 저장합니다. <br>
-        - POST /verifications API 호출시 요청과 응답 데이터가 저장됩니다.<br>
-        - 암호화 대상 필드: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<br><code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code><br>
-        - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Stores TravelRule protocol verification status and history. <br>
+        - Called upon POST /verifications API request.<br>
+        - Encrypted fields: <code>ivms101_originator</code>,<code>ivms101_originating_vasp</code>,<br><code>ivms101_beneficiary</code>,<code>ivms101_beneficiary_vasp</code><br>
+        - stimated size per record: <strong>4-5 KB</strong>.
       </td>
-      <td>일일<br>백업 권장</td>
+      <td>Daily<br>backup recommended</td>
     </tr>
     <tr>
       <td class="code-col"><code>own_keys</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
-        - 검증 중 상대 VASP의 공개키 요청시 본 테이블로부터 조회 및 반환됩니다.<br>
-        - 암호화 대상 필드: <code>private_key</code><br>
-        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Stores your VASP's Enclave public/private key pair.<br>
+        - Referenced when responding to public key requests during verification.<br>
+        - Encrypted fields: <code>private_key</code><br>
+        - Estimated size per record: <strong>1 KB</strong>.
       </td>
-      <td>주기적인<br>백업 권장</td>
+      <td>Periodic<br>backup recommended</td>.
     </tr>
     <tr>
       <td class="code-col"><code>counter_party_keys</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Caches public keys of counterparty VASPs.<br>
+        - Estimated size per record: <strong>1 KB</strong>.
       </td>
-      <td>백업 또는<br>복원 정책<br>불필요</td>
+      <td>No backup<br>or restore required.<br></td>
     </tr>
     <tr>
       <td class="code-col"><code>commands</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
-        - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Internal use table for asynchronous API state management.<br> 
+        - Estimated size per record: <strong>1-5 KB</strong>.
       </td>
-      <td>백업 또는<br>복원 정책<br>불필요</td>
+      <td>No backup<br>or restore required.<br></td>
     </tr>
 		<tr>
       <td class="code-col"><code>chainalysis_sanction_results</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
-        - Sanction API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>1-2 KB</strong>입니다.
+        - Required only when using Chainalysis Sanction API.<br>
+        - Stores call logs and results of Sanction API.<br>
+        - Estimated size per record: <strong>1-2 KB</strong>.
       </td>
-      <td>주기적인<br>백업 권장</td>
+      <td>Periodic<br>backup recommended.</td>
     </tr>
     <tr>
       <td class="code-col"><code>chainalysis_kyt_results</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다. <br>
-        - KYT API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
+        - Required only when using Chainalysis KYT API. <br>
+        - Stores call logs and results of KYT API.<br>
+        - Estimated size per record: <strong>2-3 KB</strong>.
       </td>
-      <td>주기적인<br>백업 권장</td>
+      <td>Periodic<br>backup recommended</td>
     </tr>
     <tr>
       <td class="code-col"><code>chainalysis_kyt_alerts</code></td>
       <td>
-        - Chainalysis를 통한 스크리닝 사용시에만 필요한 테이블입니다.<br> 
-        - KYT API 호출 이력과 결과를 저장합니다.<br>
-        - <code>chainalysis_kyt_results</code>테이블 레코드과 1:n 대응 관계를 갖습니다.<br>
-        - 레코드당 예상크키는 약 <strong>0-3 KB</strong>입니다.
+        - Required only when using Chainalysis KYT.<br> 
+        - Stores alerts associated with KYT API results.<br>
+        - Has a 1:n relationship with<code>chainalysis_kyt_results</code>.<br>
+        - Estimated size per record: <strong>0-3 KB</strong>.
       </td>
-      <td>주기적인<br>백업 권장</td>
+      <td>Periodic<br>backup recommended</td>
     </tr>
     <tr>
       <td class="code-col"><code>refinitiv_wco_results</code></td>
       <td>
-        - Refinitiv 통한 스크리닝 사용시에만 필요한 테이블입니다.<br>
-        - WCO API 호출 이력과 결과를 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>2-3 KB</strong>입니다.
+        - Required only when using Refinitiv WCO screening.<br>
+        - Stores call logs and results of WCO API.<br>
+        - Estimated size per record: <strong>2-3 KB</strong>.
       </td>
-      <td>주기적인<br>백업 권장</td>
+      <td>Periodic<br>backup recommended</td>
     </tr>
   </tbody>
 </table>
@@ -163,9 +163,9 @@ Optional tables are only necessary if using third-party screening services like 
 
 <br />
 
-### TravelRule/VerifyName 공통 필수 테이블 생성 쿼리
+### Common Table Schema for TravelRule and VerifyName
 
-본 쿼리는 Travel Rule과 VerifyName을 모두 구현하는 VASP를 위한 것으로, 두 프로토콜에서 공통으로 사용하는 필수 테이블을 생성하기 위해 사용됩니다. 만약 VerifyName 연동 과정에서 해당 테이블들이 이미 생성되어 있다면, 이 단계는 생략하셔도 됩니다.
+Use the provided table creation queries to initialize the shared tables used by both TravelRule and VerifyName protocols. If these tables have already been created during VerifyName setup, this step can be skipped.
 
 <Tabs>
   <Tab title="MySQL">
@@ -362,9 +362,10 @@ Optional tables are only necessary if using third-party screening services like 
 
 <br />
 
-### TravelRule 필수 테이블 생성 쿼리
+### TravelRule-Specific Table Creation
 
-TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 TR 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
+Use these queries to initialize tables that are required only when operating the Enclave in TravelRule mode.\
+Make sure to execute these queries and configure encryption keys appropriately before launching the Enclave server.
 
 <Tabs>
   <Tab title="MySQL">
@@ -527,9 +528,9 @@ TravelRule 프로토콜에서만 필수로 사용되는 테이블을 생성하�
 
 <br />
 
-### TravelRule 선택 테이블 생성 쿼리: Chainalysis Sanction 스크리닝
+### Optional Table Creation Queries: Chainalysis Sanction Screening
 
-Chainalysis의 Sanction API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
+If using Chainalysis Sanction API, run the provided SQL scripts to create the necessary tables.
 
 <Tabs>
   <Tab title="MySQL">
@@ -647,9 +648,9 @@ Chainalysis의 Sanction API를 사용하여 스크리닝 기능을 활성화하�
 
 <br />
 
-### TravelRule 선택 테이블 생성 쿼리: Chainalysis KYT 스크리닝 사용시
+### Optional Table Creation Queries: Chainalysis KYT Screening
 
-Chainalysis의 KYT 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오
+If using Chainalysis KYT API, execute the relevant table creation queries for storing KYT results and alerts.
 
 <Tabs>
   <Tab title="MySQL">
@@ -907,9 +908,9 @@ Chainalysis의 KYT 사용하여 스크리닝 기능을 활성화하는 경우 �
 
 <br />
 
-### TravelRule 선택 테이블 생성 쿼리: Refinitiv WCO 스크리닝 사용시
+### Optional Table Creation Queries: Refinitiv WCO Screening
 
-Refinitiv의 WCO API를 사용하여 스크리닝 기능을 활성화하는 경우 반드시 아래 쿼리를 실행하여 관련 테이블을 생성하십시오.
+If using Refinitiv's WCO API, execute the necessary table creation queries to store WCO screening data.
 
 <Tabs>
   <Tab title="MySQL">
