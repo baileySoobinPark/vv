@@ -5,7 +5,7 @@ api:
   operationId: travelrule-Enclave-User-Account-Verification
 hidden: false
 ---
-This API is used by the sending VASP to request ownership verification of a specific wallet address from the receiving VASP. The response will confirm whether the provided address is owned by the receiving VASP.
+This API is used by the ordering VASP to request ownership verification of a specific wallet address from the beneficiary VASP. The response will confirm whether the provided address is owned by the beneficiary VASP.
 
 ***
 
