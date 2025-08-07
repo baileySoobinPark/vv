@@ -5,13 +5,13 @@ api:
   operationId: travelrule-Enclave-User-Account-Verification
 hidden: false
 ---
-송신 VASP가 수신 VASP에게 특정 지갑 주소의 소유 여부를 검증 요청하는데 사용되는 API입니다. API 요청 시 지정된 지갑 주소가 수신 VASP 소유임을 검증한 결과가 응답으로 반환됩니다.
+This API is used by the sending VASP to request ownership verification of a specific wallet address from the receiving VASP. The response will confirm whether the provided address is owned by the receiving VASP.
 
 ***
 
-## 검증 결과
+## Verification Result
 
-검증 결과는 응답의 `accountVerificationResult` 필드에서 확인할 수 있습니다. 결과가 `DENIED`인 경우, reason 필드에 아래 중 하나의 실패 사유가 반환됩니다.
+The verification result can be found in the `accountVerificationResult` field of the response. If the result is `DENIED`, the reason field will contain one of the following failure reasons.
 
 <HTMLBlock>{`
 <style>
