@@ -5,29 +5,40 @@ api:
   operationId: travelrule-Chainalysis-Sanction
 hidden: false
 ---
-이 API는 Chainalysis Sanction API를 활용하여 지갑 주소의 리스크를 사전에 평가하는데 사용됩니다. 응답 결과를 바탕으로, VASP는 특정 주소의 잠재적 위험을 식별하고 비인가 또는 고위험 거래를 사전에 차단할 수 있습니다.
+This API uses the Chainalysis Sanction API to assess the risk level of a wallet address in advance. Based on the response, a VASP can identify potentially high-risk or unauthorized addresses and prevent related transactions proactively.
 
 ***
 
-## Chainalysis Sanction API란?
+## What is Chainalysis Sanction API?
 
-[Chainalysis](https://www.chainalysis.com/)에서 무료로 제공하는 API로, 가상자산 지갑 주소의 제재 여부 및 위험 수준을 평가하는데 사용됩니다. VASP를 포함한 기관은 이를 통해 제재 대상 주소나 규제상 문제가 있는 주소를 신속하게 식별할 수 있습니다. 해당 API는 자금세탁방지(AML) 및 제재 스크리닝 요구사항을 보다 효율적으로 충족하도록 지원하며, 가상자산 거래의 보안성과 신뢰성을 높입니다.
+Provided for free by [Chainalysis](https://www.chainalysis.com/), this API is used to check whether a crypto wallet address is sanctioned or high-risk. It enables institutions, including VASPs, to quickly identify addresses flagged under regulatory or sanctions watchlists. The API helps fulfill AML and sanction screening requirements more efficiently, enhancing the safety and trustworthiness of virtual asset transfers.
 
-* API 사용을 위해서는 먼저 Chainalysis [Sign-Up 링크](https://go.chainalysis.com/crypto-sanctions-screening.html)를 통해 API 키를 발급받아야 합니다.
-* 사용 가이드 등 상세한 정보는 [공식 문서](https://public.chainalysis.com/docs/index.html)를 참조하십시오.
+* To use the API, obtain an API key via the Chainalysis [Sign-Up Page](https://go.chainalysis.com/crypto-sanctions-screening.html).
+* For usage instructions and technical details, refer to the [official docs](https://public.chainalysis.com/docs/index.html).
 
-## 구현 가이드
+## Integration Guide
 
-송신 VASP와 수신 VASP 모두 Sanction API를 활용해 사용자 계정의 추가 리스크 평가를 수행할 수 있으며,이는 내부 규제 요건 수립 시 활용될 수 있습니다. 단, Sanction API 호출 전 반드시 사용자 검증 API(POST /verifications)이 선행되어야 합니다. Sanction API 구현 가이드는 다음과 같습니다.
+Both ordering and beneficiary VASPs may use the Sanction API to perform additional risk assessments on user accounts, which may assist in establishing internal compliance rules. The Sanction API must only be called after the user verification API (POST /verifications) has been invoked.
 
-* 송신 VASP: 사용자 검증 이후 자산 이전을 수행하기 전에 수신자의 지갑 주소에 대한 리스크를 평가하고 내부 정책에 따라 자산 이전 여부를 판단할 수 있습니다.
-* 수신 VASP: 송신자의 지갑 주소를 대상으로 리스크 평가를 수행하여 잠재적인 위협 요소를 식별하고, 필요한 경우 사전 조치를 취할 수 있습니다.
+* Ordering VASP: Can assess the risk of the beneficiary's wallet address after verification and decide whether to proceed with the asset transfer based on internal policies.
+* Beneficiary VASP: Can evaluate the ordering wallet address to detect potential threats and take preventive measures if needed.
 
-## 사용 전 준비 사항
+<br />
+
+## Pre-Implementation Checklist
 
 1. **Enclave 환경 변수 설정**\
    Enclave 구동 전, 등록 과정에서 발급받은 API 키를 `VEGA_CHAINALYSIS_SANCTION_API_KEY` 환경 변수에 반드시 설정해야 합니다.
 2. **데이터베이스 테이블 구성**\
    Enclave 서버가 Chainalysis Sanction API 결과를 저장할 수 있도록 데이터베이스 내에 전용 테이블을 구성해야 합니다. 구현 세부사항은 [Enclave 데이터베이스 생성](ref:database-setup-copy) 페이지의 Chainalysis 관련 테이블 정의를 참조하세요.
 
-## API 명세
+<br />
+
+1. **Set Enclave Environment Variable**\
+   Before running the Enclave, make sure to set the API key issued during registration in the `VEGA_CHAINALYSIS_SANCTION_API_KEY` environment variable.
+2. **Configure Database Tables**\
+   Ensure the Enclave server can store Chainalysis Sanction API results by creating dedicated tables in your database. Refer to the Chainalysis table definitions in the [Enclave Database Setup](ref:database-setup-copy) documentation for implementation details.
+
+<br />
+
+## API Specification
