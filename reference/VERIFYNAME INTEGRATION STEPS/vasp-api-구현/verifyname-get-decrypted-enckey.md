@@ -49,7 +49,7 @@ If using this method:
 
 ## Implementation Guide
 
-### 기능 요구사항
+### Functional requirements
 
 #### 1. Symmetric Key Generation & Management
 
