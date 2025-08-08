@@ -378,22 +378,25 @@ The following table summarizes the purpose, default values, and configuration me
 
 <br />
 
-## Step 3. 네트워크 설정
+## Step 3. Network Configuration
 
-Enclave 서버가 정상적으로 실행된 이후, VerifyVASP Central 서버와의 안전한 통신을 위해 네트워크 Allowlist를 구성해야 합니다.
+Once the Enclave server is running, configure the network allowlist to ensure secure communication with the VerifyVASP Central server.
 
-### Enclave 서버 IP를 VerifyVASP 중앙 서버에 등록
+### Register the Enclave server IP with the VerifyVASP Central server
 
-VASP의 Enclave 서버 IP를 [support@verifyvasp.com](mailto:support@verifyvasp.com) 으로 전달하여 VerifyVASP측 네트워크 허용 목록에 등록하십시오. 등록 가능한 값은 IP 주소에 한정되며, 도메인 주소는 허용되지 않습니다.
+Send your VASP’s Enclave server IP address to [support@verifyvasp.com](mailto:support@verifyvasp.com) so it can be added to VerifyVASP’s network allowlist.\
+Only IP addresses are supported — domain names are not accepted.
 
-### VerifyVASP 중앙 서버의 IP를 VASP 측에 등록
+### Register the VerifyVASP Central server IP in your infrastructure
 
-VerifyVASP Central 서버가 VASP의 인프라에 접근할 수 있도록, VASP 인프라 네트워크 설정으로 VerifyVASP의 IP 주소를 허용 목록에 등록해야 합니다. 해당 IP 정보는 [support@verifyvasp.com](mailto:support@verifyvasp.com) 또는 전용 Slack 채널을 통해 문의해 주세요.
+To allow the VerifyVASP Central server to access your VASP infrastructure, add the VerifyVASP IP address to your infrastructure’s network allowlist.\
+For the IP information, please contact [support@verifyvasp.com](mailto:support@verifyvasp.com) or your dedicated Slack channel.
 
 <br />
 
-## Step 4. Enclave 통합 API 구성
+## Step 4. Enclave Integration API Setup
 
-Enclave 서버가 정상적으로 구동되어 VerifyVASP Central 서버와 정상적으로 연동되었다면, 이제 Enclave API를 VASP 백엔드에서 호출하여 서비스 및 입출금 프로세스에 VerifyName을 이용한 검증 프로세스를 추가할 수 있습니다.
+After the Enclave server is running and successfully connected to the VerifyVASP Central server, you can integrate the Enclave API into your VASP backend.\
+This allows you to incorporate the VerifyName verification process into your services and deposit/withdrawal flows.
 
-VerifyName의 API Flow와 이 문서 하위에 포함된 아래 API 명세를 확인하여 Enclave API를 연동하십시오.
+Refer to the VerifyName API Flow and the API specifications included in the following sections of this document to complete your Enclave API integration.
