@@ -63,7 +63,7 @@ The supported callback types are as follows, and both `OWNER_VERIFICATION_RESULT
     </tr>
     <tr>
       <td class="code-col"><code>OWNER_VERIFICATION_TX_REPORT</code></td>
-      <td>Used in the receiving VASP role. Invoked when the sending VASP reports the transaction result.</td>
+      <td>Used in the beneficiary VASP role. Invoked when the ordering VASP reports the transaction result.</td>
     </tr>
   </tbody>
 </table>
