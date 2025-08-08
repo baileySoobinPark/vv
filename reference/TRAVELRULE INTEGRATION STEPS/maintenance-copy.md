@@ -1,38 +1,44 @@
 ---
-title: 운영
+title: Operations
 excerpt: >-
-  Travel Rule Protocol을 안정적으로 운영하기 위한 VASP 운영 규정입니다. 본 문서의 규정을 준수함으로써 VASP 간 상호
-  검증과정에서 발생할 수 있는 오류를 최소화하고 안정적인 사용자 경험을 제공하십시오.
+  This section defines the operational regulations for VASPs to ensure stable
+  operation of the Travel Rule Protocol. By adhering to these regulations, VASPs
+  can minimize errors during inter-VASP verification processes and provide a
+  stable user experience.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-> 💡 본 문서는 지속적으로 업데이트됩니다.
->
-> 각 VASP의 운영 담당자는 필요한 유지보수 절차를 누락 없이 수행하기 위해 본 가이드를 주기적으로 검토할 것을 권장합니다.
+<Callout icon="💡" theme="default">
+  ### This document is continuously updated.
 
-## VASP 서버 유지보수 일정 사전 고지
+  Each VASP’s operations manager is advised to review this guide periodically to ensure that no required maintenance procedures are omitted.
+</Callout>
 
-VASP는 서버 유지보수 진행 최소 1주일 전까지 VerifyVASP 운영팀에 해당 일정을 고지해야 합니다. 고지 방법은 아래와 같습니다.
+## Advance Notice of VASP Server Maintenance Schedule
 
-### 1. Slack 또는 이메일을 통한 일정 고지
+VASPs must notify the VerifyVASP Operations Team of any planned server maintenance at least one week in advance. The notification can be made through the following methods:
 
-VerifyVASP Alliance에 참여하는 모든 VASP는 각 사별 전용 Slack 채널을 통해 운영팀과 소통할 수 있습니다. 예정된 서버 유지보수 작업이 있다면, 최소 1주일 전 Slack 채널을 통해 운영팀에 일정을 고지해야 합니다. 이메일 고지를 선호하는 경우 아래 주소로 작업 내용을 전달해 주십시오.
+### 1. Notification via Slack or Email
 
-* 연락처: [support@verifyvasp.com](mailto:support@verifyvasp.com)
+All VASPs participating in the VerifyVASP Alliance can communicate with the Operations Team through their dedicated Slack channel. If a server maintenance task is scheduled, the operations team must be notified via the Slack channel at least one week prior.
+
+If you prefer to notify by email, please send the details to the address below:
+
+* Contact: [support@verifyvasp.com](mailto:support@verifyvasp.com)
 
 <br />
 
-### 2. VerifyVASP 콘솔을 통한 일정 고지
+### 2. Notification via VerifyVASP Console
 
-VerifyVASP 콘솔을 통해 서버 유지보수 일정을 회원사 VASP들과 공유할 수 있습니다.
+VASPs can share their server maintenance schedule with other member VASPs via the VerifyVASP Console.
 
-1. **VerifyVASP 콘솔 내 \[Members] > \[My Schedule] 메뉴 접속**\
-   VerifyVASP 콘솔에 로그인 한 후 웹사이트 좌측 메뉴에서 \[Members] > \[My Schedule] 항목을 선택합니다.
-2. **\[등록] 버튼 클릭**\
-   VerifyVASP Alliance에 참여 중인 모든 VASP의 유지보수 일정 목록이 표시됩니다. \[등록] 버튼을 클릭하여 일정을 등록합니다.
-3. **일정 및 사유 입력**\
-   유지보수 예정일과 사유를 입력합니다.
-4. **일정 등록 완료 및 공개**\
-   등록된 일정은 VerifyVASP Alliance 전체 회원이 열람할 수 있습니다.
+1. **Access \[Members] > \[My Schedule] Menu**\
+   After logging in to the VerifyVASP Console, select \[Members] > \[My Schedule] from the left-hand menu.
+2. **Click \[Register]**\
+   A list of all maintenance schedules of participating VASPs in the VerifyVASP Alliance will be displayed. Click the \[Register] button to add your schedule.
+3. **Enter Schedule and Reason**\
+   Input the planned maintenance date and the reason for the maintenance.
+4. **Complete Registration and Publish**\
+   Once registered, the schedule will be visible to all members of the VerifyVASP Alliance.
