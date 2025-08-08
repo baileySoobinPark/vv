@@ -32,7 +32,6 @@ The VASP must perform the appropriate verification logic according to the scenar
 
 **Pre-Verification Requirements**
 
-* 일치하는 주소가 존재하는 경우, 해당 주소의 소유주 정보를 `creditor` 객체에 포함하여 반환합니다.
 * Applies when the request `type` is **VerifyBeneficiary** and your VASP is acting as the **beneficiary VASP**. This occurs when the **ordering VASP** requests verification before executing the asset transfer.
 * Verify that the `supplementary_data.envelope.address` in the request matches one of your VASP’s registered beneficiary deposit addresses. Return the result in the `address` field of `verification_results`. If the request includes a `supplementary_data.envelope.tag`, also verify tag consistency and include it in the `address` field result.
 * Additionally, verify whether other information such as **ticker**, **network**, and **dti** matches, and return the results in the respective fields of the `verification_results` object.
@@ -51,36 +50,36 @@ The VASP must perform the appropriate verification logic according to the scenar
 <table class="verify-params">
   <thead>
     <tr>
-      <th>필드 명</th>
-      <th width=110px>검증 필수여부</th>
-      <th>결과 반환 정책</th>
+      <th>Field name</th>
+      <th width=110px>Required</th>
+      <th>Result return policy</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>address</code></td>
       <td>Required</td>
-      <td>Pre-verification의 경우, 요청 address가 등록된 수취인 주소인지 확인<br>Post-verification의 경우, 해당 트랜잭션에서 사용된 수취인 주소와 비교<br>tag가 입력된 경우, tag 일치 여부도 결과에 반영해야 함<br>일치하면<code>MATCHED</code>, 다르면 <code>MISMATCHED</code></td>
+      <td>Pre-verification: Check whether the requested address is a registered beneficiary address<br>Post-verification: Compare with the beneficiary address used in the corresponding transaction<br>If a tag is provided, the verification result must also reflect tag matching status.<br>If matched<code>MATCHED</code>, if not <code>MISMATCHED</code></td>
     </tr>
     <tr>
       <td><code>tx_hash</code></td>
       <td>Optional</td>
-      <td>요청 tx_hash 값이 귀사의 VASP가 실행한 트랜잭션인지 확인하여 일치하면 <code>MATCHED</code>, 다르면 <code>MISMATCHED</code><br>검증 항목이 아니거나 값이 제공되지 않은 경우 <code>SKIPPED</code></td>
+      <td>Verify whether the requested tx_hash corresponds to a transaction executed by your VASP. If matched <code>MATCHED</code>, if not <code>MISMATCHED</code><br> If not a verification item or value not provided <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>ticker</code></td>
       <td>Required</td>
-      <td>앞서 찾은 address 혹은 tx_hash가 해당 자산에 관한 것이면 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code></td>
+      <td> If the identified address or tx_hash belongs to the corresponding network <code>MATCHED</code>, otherwise <code>MISMATCHED</code></td>
     </tr>
     <tr>
       <td><code>network</code></td>
       <td>Optional</td>
-      <td>앞서 찾은 address 혹은 tx_hash가 해당 네트워크에 관한 것이면 <code>MATCHED</code>, 그렇지 않으면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
+      <td> If the identified address or tx_hash belongs to the corresponding network <code>MATCHED</code>, otherwise <code>MISMATCHED</code><br>If verification not requested or cannot be compared <code>SKIPPED</code></td>
     </tr>
     <tr>
       <td><code>dti</code></td>
       <td>Optional</td>
-      <td>앞서 찾은 address 혹은 tx_hash가 해당 디지털 자산 식별자(DTI)에 관한 것이면 <code>MATCHED</code>, 아니면 <code>MISMATCHED</code><br>검증 미요청 항목이거나 비교할 수 없는 경우 <code>SKIPPED</code></td>
+      <td> If the identified address or tx_hash corresponds to the specified Digital Token Identifier (DTI) <code>MATCHED</code>, otherwise <code>MISMATCHED</code><br>If verification not requested or cannot be compared <code>SKIPPED</code></td>
     </tr>
   </tbody>
 </table>
@@ -119,47 +118,47 @@ The scope of information to be provided is as follows:
 <table class="personal-info-table">
   <thead>
     <tr>
-      <th>계정 유형</th>
-      <th>개인정보 제공 범위</th>
-      <th>필수 여부</th>
+      <th>Account type</th>
+      <th>Scope of PI to be provided</th>
+      <th>Required</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2">개인</td>
-      <td>이름</td>
-      <td>필수</td>
+      <td rowspan="2">Individual</td>
+      <td>Name</td>
+      <td>Required</td>
     </tr>
     <tr>
-      <td>생년월일<small>(ex)<code>2025-01-01</code></small></td>
-      <td>필수</td>
+      <td>DOB<small>(ex)<code>2025-01-01</code></small></td>
+      <td>Required</td>
     </tr>
     <tr>
-      <td rowspan="5">법인</td>
-      <td>이름</td>
-      <td>필수</td>
+      <td rowspan="5">Corporate</td>
+      <td>Name</td>
+      <td>Required</td>
     </tr>
     <tr>
-      <td>법인 설립일 <small>(ex)<code>2025-01-01</code></small></td>
-      <td>필수</td>
+      <td>Date of incorporation <small>(ex)<code>2025-01-01</code></small></td>
+      <td>Required</td>
     </tr>
     <tr>
       <td>LEI</td>
-      <td>선택</td>
+      <td>Optional</td>
     </tr>
     <tr>
       <td>BIC</td>
-      <td>선택</td>
+      <td>Optional</td>
     </tr>
     <tr>
       <td>Identification &amp; Issuer</td>
-      <td>선택</td>
+      <td>Optional</td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
 
-검증 요청 `type` 에 따른 소유주 정보 응답 예시는 다음과 같습니다.
+Examples:
 
 * `VerifyOriginator` → Return the originator account owner information in the `debtor` object.
 
