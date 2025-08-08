@@ -10,8 +10,6 @@ After owner verification, if the final decision is reported as `VERIFIED` via th
 
 <br />
 
-<br />
-
 ## Implementation Policy
 
 * Only transactions with a final decision of `VERIFIED` should be executed after owner verification.
