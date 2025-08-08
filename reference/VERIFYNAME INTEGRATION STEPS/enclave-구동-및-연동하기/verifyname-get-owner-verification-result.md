@@ -5,8 +5,8 @@ api:
   operationId: verifyname-get-owner-verification-result
 hidden: false
 ---
-`request_id`로 특정 VerifyName 검증 요청의 결과를 조회하기 위한 API입니다. 해당 요청 건의 검증 결과가 반환됩니다.
+Retrieves the result of a specific VerifyName verification request using `request_id`. The API returns the verification result for the specified request.
 
 ***
 
-## API 명세
+## API Specification
