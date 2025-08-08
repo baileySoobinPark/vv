@@ -159,7 +159,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td></td>
       <td>
         Enclave operating mode.<br>
-        Enclave를 통해 지원하고자 하는 VerifyVASP의 프로토콜들을 명시합니다.<br><br>
+        Specifies the VerifyVASP protocols that the Enclave should run.<br><br>
         단일 또는 복수 설정이 가능하며, 복수 설정시 모드 값을 콤마(,)로 구분하여 모두 입력합니다. 복수 설정시 설정된 모드들을 동시 지원합니다.<br><br>
         <b>사용 가능한 모드 값</b> : <code>TR</code>, <code>VN2</code>, <code>VN1_CALL</code>, <code>VN1_RESPONSE</code><br><br>
         (ex) <code>VEGA_ENCLAVE_MODE=TR,VN2</code>
