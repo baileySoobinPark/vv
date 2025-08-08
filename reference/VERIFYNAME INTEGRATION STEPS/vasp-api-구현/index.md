@@ -1,20 +1,24 @@
 ---
-title: VASP API 구현
+title: VASP API Implementation
 excerpt: >-
-  VerifyName 연동을 위한 첫번째 단계인 VASP API 구현 단계입니다. 본 문서를 통해 VASP 백엔드에 구현해야 하는 REST
-  API의 명세와 요구사항을 확인할 수 있습니다.
+  This is the first step for integrating with VerifyName — implementing the VASP
+  API. This document outlines the specifications and requirements for the REST
+  APIs that must be implemented in your VASP backend.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 API를 비롯한 필수 VASP API들을 구현하고, Enclave가 호출 할 수 있도 제공해야 합니다. 본 섹션에서는 구현 대상 API 목록과 각 API의 명세, 호출 흐름, 구현 시 유의사항 등을 설명합니다.
+To integrate with the VerifyName protocol, all VASPs must implement the required VASP APIs — including the Originator/Beneficiary verification API — and make them accessible so that the Enclave can call them.\
+This section describes the list of required APIs, their specifications, call flows, and important considerations for implementation.
 
 <br />
 
-## 구현 대상 VASP API 목록
+## List of Required VASP APIs
 
-각 VASP는 자산 이전 과정에서 송신 VASP와 수신 VASP의 역할을 모두 수행해야 합니다. 이를 위한 필수 구현 API 목록과, 각 API Endpoint를 제공하는 VASP의 역할(송신 또는 수신), 그리고 수행해야 하는 주요 비즈니스 로직을 아래 표에서 확인할 수 있습니다. 각 API의 구체적인 구현 요구사항 및 명세는 각 API Specficiation 문서를 참고하시기 바랍니다.
+Each VASP must be capable of acting as both the Ordering VASP and the Beneficiary VASP during asset transfers.\
+The table below lists the essential APIs to be implemented, the role of the VASP providing each API (Ordering or Beneficiary), and the key business logic that must be performed.
+For detailed implementation requirements and specifications, refer to the corresponding API Specification documents.
 
 <HTMLBlock>{`
 <style>
@@ -113,25 +117,30 @@ VerifyName 프로토콜 연동을 위해, 모든 VASP는 송/수신인 검증 AP
 
 <br />
 
-## VASP API 인증 (선택)
+## VASP API Authentication (Optional)
 
-인증 기능을 통해 VASP API가 오직 Enclave에서만 호출되도록 접근을 제한하여 보안을 강화할 수 있습니다. VASP는 적절한 인증 헤더를 정의한 뒤, 해당 헤더로 전달된 인증 토큰을 검증하는 로직을 구현해야 합니다. 이후 Enclave 환경 변수를 설정하여 Enclave로부터의 모든 VASP API 호출 요청에 인증 헤더를 포함하도록 구성하세요.
+You can enhance security by restricting access so that VASP APIs are callable only from the Enclave.\
+To do this, the VASP must:
 
-설정 방법은 다음과 같습니다.
+1. Define an appropriate authentication header.
+2. Implement logic to validate the authentication token passed in that header.
+3. Configure Enclave environment variables so that all VASP API calls from the Enclave include the authentication header.
 
-#### 인증 관련 Enclave 환경 변수 설정 방
+<br />
 
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: 인증 토큰 값(Value). 설정한 값이 Enclave의 모든 요청의 인증 헤더 값으로 포함되어 전달됩니다.
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: 인증 토큰을 전달할 HTTP 헤더의 Key.
-  * 미 설정시 기본 `Authorization` 헤더를 사용한 Bearer 인증 방식을 사용합니다.
-  * Key 설정시 설정한 Key 값의 헤더를 추가하고, 토큰을 값으로 전달합니다.
+#### Enclave Environment Variables for Authentication
 
-**예시**
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: The authentication token value. This value will be included as the authentication header in all requests from the Enclave.
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: The HTTP header key for passing the authentication token.
+  * If not set, the default `Authorization` header with Bearer token authentication is used.
+  * If set, the Enclave will include the specified header key with the token value.
+
+**Examples**
 
 ```json
-// VEGA_VERIFICATION_AUTHORIZATION_KEY 미설정 시 헤더 예시
+// If VEGA_VERIFICATION_AUTHORIZATION_KEY is NOT set:
 Authorization: Bearer <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
 
-// VEGA_VERIFICATION_AUTHORIZATION_KEY를 X-Api-Key 로 설정 시 헤더 예시
+// If VEGA_VERIFICATION_AUTHORIZATION_KEY를 X-Api-Key is set to X-Api-Key:
 X-Api-Key: <VEGA_VERIFICATION_AUTHORIZATION_TOKEN>
 ```
