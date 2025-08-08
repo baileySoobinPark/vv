@@ -175,12 +175,12 @@ The virtual user information used for testing is as follows. This information is
 
   <br />
 
-  <Accordion title="User Account Verification Simulation API 호출 방법">
+  <Accordion title="User Account Verification Simulation API Invocation">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/account`
 
-    * **요청 Body 예제**
+    * **Request Body Example**
 
     ```
     {
@@ -235,12 +235,12 @@ The virtual user information used for testing is as follows. This information is
 
   <br />
 
-  <Accordion title="User Verification Simulation API 호출 방법">
+  <Accordion title="User Verification Simulation API Invocation">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications`
 
-    * **요청 Body 예제**
+    * **Request Body Example**
 
     ```
     // copy and paste it in request body params
@@ -327,19 +327,19 @@ The virtual user information used for testing is as follows. This information is
 
   <br />
 
-  <Accordion title="Robot VASP Withdrawal Request API 호출 방법">
+  <Accordion title="Robot VASP Withdrawal Request API Invocation">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/withdrawal`
 
-    * **요청 쿼리 파라미터**
+    * **Request Parameters**
 
-    | Parameter Name     | Type    | Description                                                                                              |
-    | ------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
-    | `verificationUuid` | string  | UUser Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다.                     |
-    | `omitTxReport`     | boolean | 출금 트랜잭션을 실행한 후 트랜잭션 결과 보고 수행 여부를 판단하는 값. `true`로 설정한 경우, 트랜잭션 실행 후 트랜잭션 결과를 보고하지 않습니다. 기본값은 `false` 입니다. |
+    | Parameter Name     | Type    | Description                                                                                                                                         |
+    | ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `verificationUuid` | string  | Unique identifier specifying the User Verification. You can verify it by calling the User Verification API from the Enclave API.                    |
+    | `omitTxReport`     | boolean | Determines whether to send a transaction result report after executing a withdrawal transaction. If set to true, no report is sent. Default: false. |
 
-    * **요청 Body 에제**
+    * **Request Body Example**
 
     ```
     {
@@ -370,19 +370,19 @@ The virtual user information used for testing is as follows. This information is
 
   <br />
 
-  <Accordion title="Transaction Reporting Simulation API 호출 방법">
+  <Accordion title="Transaction Reporting Simulation API Invocation">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/tx`
 
-    * **요청 바디 파라미터**
+    * **Request Parameters**
 
-    | Parameter Name     | Type   | Description                                                                         | Example                                        |
-    | ------------------ | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------------- |
-    | `verificationUuid` | string | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"`       |
-    | `txHash`           | string | 트랜잭션을 구분하는 고유 식별자.                                                                  | `"0xaaa042c0632f4d44c7cea978f22cd02e751a410e"` |
+    | Parameter Name     | Type   | Description                                                                                                                      | Example                                        |
+    | ------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+    | `verificationUuid` | string | Unique identifier specifying the User Verification. You can verify it by calling the User Verification API from the Enclave API. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"`       |
+    | `txHash`           | string | Unique identifier specifying the transaction hash.                                                                               | `"0xaaa042c0632f4d44c7cea978f22cd02e751a410e"` |
 
-    * **요청 Body 예제**
+    * **Request Body Example**
 
     ```
     {
@@ -405,21 +405,21 @@ The virtual user information used for testing is as follows. This information is
 
   <br />
 
-  <Accordion title="Error Situation Reporting Simulation API 호출 방법">
+  <Accordion title="Error Situation Reporting Simulation API Invocation">
     **Method**: `POST`
 
     * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/verifications/error`
 
-    * **요청 쿼리 파라미터**
+    * **Request Parameters**
 
-    | Field Name         | Type   | Description                                                                         | Example                                  |
-    | ------------------ | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------- |
-    | `verificationUuid` | string | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"` |
-    | `result`           | string | User Verification의 결과.                                                              | `"DENIED"`                               |
-    | `reason`           | string | `result`가 DENIED일 때 사유를 설명하는 필드. `DENIED`일 때에만 확인할 수 있는 필드 입니다.                     | `"USER-CANCELED"`                        |
-    | `message`          | string | `result`가 DENIED일 때 자세한 이유를 설명하는 필드. `DENIED`일 때에만 확인할 수 있는 필드 입니다.                 | `"User canceled this transaction"`       |
+    | Field Name         | Type   | Description                                                                                                                      | Example                                  |
+    | ------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+    | `verificationUuid` | string | Unique identifier specifying the User Verification. You can verify it by calling the User Verification API from the Enclave API. | `"ecb457e3-2307-4e72-8a42-16a3774e154b"` |
+    | `result`           | string | Result of the User Verification.                                                                                                 | `"DENIED"`                               |
+    | `reason`           | string | Specifies the reason when result is DENIED. This field is only applicable when the value is DENIED.                              | `"USER-CANCELED"`                        |
+    | `message`          | string | Describes the reason in detail when result is DENIED. This field is only applicable when the value is DENIED.                    | `"User canceled this transaction"`       |
 
-    * **요청 Body 예제**
+    * **Request Body Example**
 
     ```
     {
