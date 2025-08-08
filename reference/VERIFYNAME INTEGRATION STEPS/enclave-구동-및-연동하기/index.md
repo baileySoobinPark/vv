@@ -169,8 +169,8 @@ The following table summarizes the purpose, default values, and configuration me
       <td class="code-col"><code>VEGA_ENCLAVE_PUBLIC_ENDPOINT</code></td>
       <td>–</td>
       <td>
-        Enclave 서버의 Public Endpoint URL.<br>
-        VerifyVASP 중앙서버로부터 접근 가능한HTTPS 주소를 입력해야합니다.<br><br>
+        Public endpoint URL for the Enclave server.<br>
+        Enter the URL used for direct access from the VerifyVASP central server.<br><br>
 
         <code>https://api.vasp.com/enclave</code>
       </td>
@@ -181,9 +181,9 @@ The following table summarizes the purpose, default values, and configuration me
       <td>–</td>
       <td>
         VerifyVASP API Access Key.<br>
-        온보딩 시 발급받은 값을 입력합니다.<br><br>
+        Enter the issued key provided during onboarding.<br><br>
 
-        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>link</b>: <a href="/reference/onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -192,9 +192,9 @@ The following table summarizes the purpose, default values, and configuration me
       <td>–</td>
       <td>
         VerifyVASP API Secret Key.<br>
-        온보딩 시 발급받은 값을 입력합니다.<br><br>
+        Enter the issued key provided during onboarding.<br><br>
 
-        <b>관련 링크</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>link</b>: <a href="/reference/onboarding-copy">Onboarding</a>
       </td>
     </tr>
 
@@ -202,10 +202,10 @@ The following table summarizes the purpose, default values, and configuration me
       <td class="code-col"><code>VEGA_DATABASE_CLIENT</code></td>
       <td><code>mysql2</code></td>
       <td>
-        Enclave 데이터베이스의 DBMS 유형.<br>
-        <b>사용 가능한 값</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br><br>
+        Type of DBMS for the Enclave database.<br>
+        <b>Support values</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br><br>
 
-        <b>관련 링크</b>: <a href="/reference/enclave-데이터베이스-생성">Enclave Database Setup</a>
+        <b>link</b>: <a href="/reference/enclave-데이터베이스-생성">Enclave Database Setup</a>
       </td>
     </tr>
 
@@ -224,82 +224,82 @@ The following table summarizes the purpose, default values, and configuration me
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_HOST</code></td>
       <td>–</td>
-      <td>데이터베이스 연동을 위한 Host URL.</td>
+      <td>Host URL for database connection.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_PORT</code></td>
       <td><code>3306</code></td>
-      <td>데이터베이스 포트 번호.</td>
+      <td>Database port number.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_DB</code></td>
       <td><code>verifyvasp</code></td>
-      <td>데이터베이스 DB 이름.</td>
+      <td>Database name.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SEARCH_PATH</code></td>
       <td><code>enclave</code></td>
-      <td>Custom schema 이름(PostgreSQL 케이스에 한함).</td>
+      <td>Custom schema name (PostgreSQL only).</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_POOL_MIN</code></td>
       <td><code>0</code></td>
-      <td>최소 데이터베이스 Connection Pool 크기.</td>
+      <td>Minimum database connection pool size.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_POOL_MAX</code></td>
       <td><code>5</code></td>
-      <td>최대 데이터베이스 Connection Pool 크기.</td>
+      <td>Maximum database connection pool size.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL</code></td>
       <td><code>false</code></td>
       <td>
-        데이터베이스 SSL 연결 사용 여부<br>
-        (사용시 <code>true</code>로 설정)
+        Whether to use SSL for database connection<br>
+        (<code>true or false</code>)
       </td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_CA</code></td>
       <td>–</td>
-      <td>데이터베이스 SSL 연결을 위한 CA 인증서 파일 위치</td>
+      <td>CA certificate for database SSL connection</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_KEY</code></td>
       <td>–</td>
-      <td>데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 Private Key 경로.</td>
+      <td>Private key file for database SSL connection.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_CERT</code></td>
       <td>–</td>
-      <td>데이터베이스 SSL 연결을 위한 클라이언트 SSL 인증서 경로.</td>
+      <td>Client certificate for database SSL connection.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_CAPATH</code></td>
       <td>–</td>
-      <td>데이터베이스 SSL 연결을 위한 CA 인증서 디렉토리 경로</td>
+      <td>Path to CA certificates for database SSL connection</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_CIPHER</code></td>
       <td>–</td>
-      <td>데이터베이스 SSL 연결을 위한 암호화 방식</td>
+      <td>Cipher suites for database SSL connection</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DATABASE_SSL_REJECT_UNAUTHORIZED</code></td>
       <td><code>true</code></td>
-      <td>데이터베이스 SSL 연결시 인증서 인증 오류시 연결 거절 여부 (거절시 true로 설정)</td>
+      <td>Whether to reject unauthorized SSL certificates (true or false)</td>
     </tr>
 
     <tr>
