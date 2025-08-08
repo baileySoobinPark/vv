@@ -1,26 +1,28 @@
 ---
-title: Enclave 구동 및 연동하기
+title: Running and Integrating the Enclave
 excerpt: >-
-  Enclave 데이터베이스 설정이 완료되었다면, Enclave Docker 이미지를 다운로드 받아 서버를 구동하십시오. 본 문서는
-  Enclave 구동과 환경변수 설정과 관련된 가이드를 제공합니다.
+  Once the Enclave database has been configured, you can proceed to download the
+  Enclave Docker image and start the server. This document provides guidance on
+  running the Enclave and configuring its environment variables.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Step 1. Enclave Docker 이미지 준비
+## Step 1. Prepare the Enclave Docker Image
 
-VerifyVASP Enclave 서버는 AWS ECR 레지스트리를 통해 Docker 이미지 형태로 배포됩니다. 접근 권한을 얻기 위해 AWS CLI Access Key를 수령하실 이메일 주소를 [support@verifyvasp.com](mailto:support@verifyvasp.com) 로 전달해주세요.
+The VerifyVASP Enclave server is distributed as a Docker image via the AWS ECR registry. To obtain access, please send the email address for which you will receive the AWS CLI Access Key to [support@verifyvasp.com](mailto:support@verifyvasp.com) .
 
 <Enclave />
 
 <br />
 
-## Step 2. Enclave 서버 실행 및 환경 변수 설정
+## Step 2. Start the Enclave Server and Configure Environment Variables
 
-접근 권한이 부여되었다면, 이제 VASP 내부 인프라 환경에서 Enclave 서버를 다운로드하고 실행해야 합니다. 다만 Enclave 서버와 관련 컴포넌트 간의 원활한 통신을 위해, 서버를 실행하기 전 필수 환경 변수들을 먼저 설정해야 합니다.
+Once access is granted, download and run the Enclave server within your internal VASP infrastructure.\
+Before starting the server, you must configure the required environment variables to ensure seamless communication between the Enclave and its related components.
 
-Enclave의 환경 변수는 아래 다섯 가지 주요 그룹으로 분류됩니다.
+The Enclave environment variables are categorized into the following five main groups:
 
 <HTMLBlock>{`
 <style>
