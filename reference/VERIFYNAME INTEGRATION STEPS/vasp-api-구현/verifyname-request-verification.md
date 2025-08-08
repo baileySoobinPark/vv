@@ -5,38 +5,47 @@ api:
   operationId: verifyName-Request-Verification
 hidden: false
 ---
-VASP는 VerifyName 프로토콜 내에서 송신 VASP와 수신 VASP의 역할을 모두 수행합니다. 본 API는 수신 VASP와 송신 VASP 역할 수행시 모두 호출될 수 있는 API입니다. 전송 자산 정보와 수신인 지갑 주소의 유효성을 검증하고, 해당 주소 소유자의 성명과 생년월일 값을 응답으로 반환합니다. 반환된 개인 정보는 Enclave 내부에서 송신자 정보와의 비교 검증에 사용됩니다. VerifyName을 지원하는 모든 VASP는 반드시 이 API를 구현하여 타 VASP들로부터의 소유자 검증 요청에 대응해야 합니다.
+In the VerifyName protocol, a VASP plays the role of both the originating VASP and the beneficiary VASP.\
+This API can be invoked in both roles. It verifies the validity of the transferred asset information and the beneficiary’s wallet address, and returns the account owner’s full name and date of birth as the response.
+
+The returned personal information is used inside the Enclave to compare and validate against the originator’s information.\
+All VASPs that support VerifyName must implement this API to handle ownership verification requests from other VASPs.
 
 ***
 
-## 구현 가이드
+## Implementation Guide
 
-### 기능 요구사항
+### Functional Requirements
 
-#### 1. 시나리오별 비즈니스 로직 구현
+#### 1. Implement business logic for each scenario
 
-VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검증과 사후 검증을 모두 지원합니다. VASP는 시나리오에 따라 적절한 검증 로직을 수행하고 사용자 정보를 응답에 반환하여 Enclave로 전달해야 합니다.
+The VerifyName protocol supports both pre-verification and post-verification based on the timing of the transaction.\
+The VASP must perform the appropriate verification logic according to the scenario, return the user information in the response, and deliver it to the Enclave.
 
-**사후 검증(Post-Verification) 구현 요구사항**
+**Post-Verification Requirements**
 
-* 요청 type이 `VerifyOriginator`인 경우로, 귀사의 VASP는 송신 VASP로서 검증 요청에 응답해야 합니다. 송신 VASP로부터 자산 이전 트랜잭션이 먼저 실행되어, 수신 VASP가 검증을 요청한 경우입니다.
-* 요청에 포함된 tx\_hash 값이 귀사의 VASP가 실행한 트랜잭션이 맞는지 검증하고, 결과를 응답의 `verification_results` 객체 내 `tx_hash` 필드로 반환해야 합니다.
-* 해당 트랜잭션의 수신인 지갑 주소가 API 요청에 포함된 `supplementary_data.envelope.address`의 주소와 일치하는지 검증하고, 결과를 응답 객체 `verification_results`의 `address` 필드에 반환해야 합니다. 또한 요청에`supplementary_data.envelope.tag` 정보가 포함되어 있는 경우, tag 일치 여부도 포함하여 `address` 필드의 결과에 반영해야 합니다.
-* 그 밖에 `ticker`, `network`, `dti` 등의 정보가 일치하는지 검증하고, 결과를 `verification_results` 객체 내 각 필드로 반환해야 합니다.
-* 송신자를 특정할 수 있는 경우, 해당 송신자의 개인 정보를 `debtor` 객체에 포함하여 반환합니다.
+* Applies when the request `type` is **VerifyOriginator** and your VASP is acting as the **ordering VASP**. This occurs when the asset transfer transaction has already been executed by your VASP, and the **beneficiary VASP** requests verification afterward.
+* Verify whether the `tx_hash` in the request matches a transaction executed by your VASP. Return the result in the `tx_hash` field inside the `verification_results` object in the response.
+* Verify that the transaction’s beneficiary wallet address matches the `supplementary_data.envelope.address` provided in the request. Return the result in the `address` field of `verification_results`. If the request includes a `supplementary_data.envelope.tag`, also verify tag consistency and include it in the address field result.
+* Additionally, verify whether other information such as ticker, network, and dti matches, and return the results in the respective fields of the `verification_results` object.
+* If the originator can be identified, include their personal information in the `debtor` object in the response.
 
-**사전 검증(Pre-Verification) 구현 요구사항**
+**Pre-Verification Requirements**
 
-* 요청 type이 `VerifyBeneficiary`인 경우로, 귀사의 VASP는 수신 VASP로서 검증 요청에 응답해야 합니다. 송신 VASP가 자산 이전을 실행하기에 앞서 수신 VASP로 검증을 요청한 경우입니다.
-* 요청의 `supplementary_data.envelope.address`의 주소가 귀사의 VASP에 등록된 수취인 입금 주소 중 하나와 일치하는지 확인하고, 결과를 응답 객체 `verification_results`의 `address` 필드에 반환해야 합니다. 또한 요청에`supplementary_data.envelope.tag` 정보가 포함되어 있는 경우, tag 일치 여부도 포함하여 `address` 필드의 결과에 반영해야 합니다.
-* 그 밖에 해당 주소의 `ticker`, `network`, `dti` 등의 정보가 일치하는지 검증하고, 결과를 `verification_results` 객체 내 각 필드로 반환해야 합니다.
 * 일치하는 주소가 존재하는 경우, 해당 주소의 소유주 정보를 `creditor` 객체에 포함하여 반환합니다.
+* Applies when the request `type` is **VerifyBeneficiary** and your VASP is acting as the **beneficiary VASP**. This occurs when the **ordering VASP** requests verification before executing the asset transfer.
+* Verify that the `supplementary_data.envelope.address` in the request matches one of your VASP’s registered beneficiary deposit addresses. Return the result in the `address` field of `verification_results`. If the request includes a `supplementary_data.envelope.tag`, also verify tag consistency and include it in the `address` field result.
+* Additionally, verify whether other information such as **ticker**, **network**, and **dti** matches, and return the results in the respective fields of the `verification_results` object.
+* If a matching address exists, include the address owner’s information in the `creditor` object in the response.
 
 <br />
 
-#### 2. 검증 수행 결과 반환
+#### 2. Return verification results
 
-항목별 검증 수행 결과를 응답의 `verification_results` 객체 내 관련 필드에 명시하여 반환해야 합니다. 각 필드는 `MATCHED`, `MISMATCHED`, `SKIPPED` 중 하나의 값을 가질수 있습니다. **요청에 값이 입력되지 않아서 검증을 수행하지 않았거나, VASP에 해당 정보가 없어서 검증을 수행하지 못한 항목의 경우라도 빈 값으로 반환하거나 제외하지 않고`SKIPPED`로 반드시 항목을 포함하여 반환해야**합니다. 즉, 아래의 Optional 항목들도 모두 검증 결과에 포함되어야 합니다. 각 항목별 결과는 다음과 같은 정책에 따라 결정할 수 있습니다.
+* For each item verified, return the result in the relevant field of the `verification_results` object in the response.
+* Each field must have one of the following values: **MATCHED**, **MISMATCHED**, or **SKIPPED**.
+* Even if no value is provided in the request (and therefore verification is not performed), or if your VASP does not have the relevant information, you must still include the field in the result with the value **SKIPPED**. Do not omit or leave the field empty.
+* This requirement applies to all optional items as well.
 
 <HTMLBlock>{`
 <table class="verify-params">
@@ -79,9 +88,11 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 <br />
 
-#### 3. 주소 소유주 정보 반환
+#### 3. Return account owner information
 
-`address` 또는 `tx_hash` 필드의 검증 결과가 `MATCHED`인 경우, 관련 계정의 소유주 정보를 응답에 포함하여 반환해야 합니다. 정보 제공 범위는 다음과 같습니다.
+If the verification result for the address or tx\_hash field is MATCHED, the account owner information related to that account must be included in the response.
+
+The scope of information to be provided is as follows:
 
 <HTMLBlock>{`
 <style>
@@ -150,9 +161,9 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 검증 요청 `type` 에 따른 소유주 정보 응답 예시는 다음과 같습니다.
 
-* `VerifyOriginator` 인 경우 트랜잭션 송신 계좌의 소유주 정보를 `debtor`객체로 반환합니다.
+* `VerifyOriginator` → Return the originator account owner information in the `debtor` object.
 
-<Accordion title="Example of Response Body: VerifyOriginator 타입, 개인 계정인 경우" icon="fa-info-circle">
+<Accordion title="Example of Response Body: VerifyOriginator type – individual account" icon="fa-info-circle">
   ```json
   {
     "verification_results": {
@@ -189,7 +200,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   ```
 </Accordion>
 
-<Accordion title="Example of Response Body: VerifyOriginator 타입, 법인 계정인 경우" icon="fa-info-circle">
+<Accordion title="Example of Response Body: VerifyOriginator type – corporate account" icon="fa-info-circle">
   ```json
   {
     "verification_results": {
@@ -222,9 +233,9 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   ```
 </Accordion>
 
-* `VerifyBeneficiary` 인 경우 수신 계좌의 소유주 정보를 `creditor`객체로 반환합니다.
+* `VerifyBeneficiary` → Return the beneficiary account owner information in the creditor object.
 
-<Accordion title="Example of Response Body: VerifyBeneficiary 타입, 개인 계정인 경우" icon="fa-info-circle">
+<Accordion title="Example of Response Body: VerifyBeneficiary type – individual account" icon="fa-info-circle">
   ```json
   {
     "verification_results": {
@@ -260,7 +271,7 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
   ```
 </Accordion>
 
-<Accordion title="Example of Response Body: VerifyBeneficiary 타입, 법인 계정인 경우" icon="fa-info-circle">
+<Accordion title="Example of Response Body: VerifyBeneficiary type – corporate account" icon="fa-info-circle">
   ```json
   {
     "verification_results": {
@@ -294,18 +305,18 @@ VerifyName 프로토콜은 트랜잭션 전송 시점을 기준으로 사전 검
 
 <br />
 
-### 제약 사항
+### Constraints
 
-이 API는 3초 이내에 응답해야 합니다.
+This API must return a response within 3 seconds.
 
-### 환경 변수 설정
+### Environment Variable Settings
 
-Enclave와의 정상 연동을 위해 아래와 같이 Enclave 환경 변수를 설정해야합니다.
+To ensure proper integration with the Enclave, configure the following Enclave environment variables:
 
-* `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH`: 해당 API의 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
+* `VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH`: Path of this API
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Authentication token value for API authentication
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: Header key used to pass the authentication token
 
 ***
 
-## API 명세
+## API Specification
