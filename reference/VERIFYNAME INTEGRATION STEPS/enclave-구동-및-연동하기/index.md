@@ -151,7 +151,7 @@ The following table summarizes the purpose, default values, and configuration me
     <tr>
       <td class="code-col"><code>VEGA_SERVER_PORT</code></td>
       <td>21117</td>
-      <td>Enclave 서버 포트 번호.</td>
+      <td>Enclave server port number.</td>
     </tr>
 
     <tr>
