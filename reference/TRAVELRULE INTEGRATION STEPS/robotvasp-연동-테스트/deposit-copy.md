@@ -109,11 +109,11 @@ The virtual user information used for testing is as follows. This information is
 
   ### Personal information
 
-  * **성**: Robbins
+  * **last name**: Robbins
 
-  * **이름**: Taylor
+  * **first name**: Taylor
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
@@ -122,16 +122,16 @@ The virtual user information used for testing is as follows. This information is
   **'XRP' destination tag**: `123456789`
 </Accordion>
 
-<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)">
-  아래의 정보를 정확하게 입력하여도 Robot VASP가 DENIED를 반환합니다.
+<Accordion title="User 2(Individual user without completed KYC)">
+  Even if the information is entered correctly, the Robot VASP returns DENIED.
 
-  ### 개인 정보
+  ### Personal information
 
-  * **성**: Cook
+  * **last name**: Cook
 
-  * **이름**: Ethan
+  * **first name**: Ethan
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
 
@@ -140,20 +140,20 @@ The virtual user information used for testing is as follows. This information is
   **'XRP' destination tag**: `345678912`
 </Accordion>
 
-<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)">
-  대표 이름을 포함한 모든 정보를 정확하게 입력한 경우 Robot VASP가 'VERIFIED'를 반환합니다. 그러나 다른 모든 정보를 정확하게 입력하였어도 대표 이름 정보에 오류가 있는 경우, DENIED를 반환합니다.
+<Accordion title="User 3(Corporate user with completed KYC)">
+  If all information, including the representative’s name, is entered correctly, the Robot VASP returns VERIFIED. However, if the representative’s name is incorrect, even when all other information is correct, the Robot VASP returns DENIED.
 
-  ### 개인 정보
+  ### Personal information
 
-  * **기업 이름**: Garrit Studio
+  * **entity name**: Garrit Studio
 
-    ### 대표 이름
+    ### Representative name
 
-  * **성**: Clarke
+  * **last name**: Clarke
 
-  * **이름**: Jason
+  * **first name**: Jason
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
 
