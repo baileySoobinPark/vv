@@ -1,48 +1,51 @@
 ---
-title: RobotVASP 연동 통합 테스트
+title: RobotVASP Integration End-to-End Test
 excerpt: >-
-  주요 연동 작업이 완료되면 VerifyVASP가 제공하는 Robot VASP를 상대 VASP로 하여 모의 입출금을 테스트해볼 수 있습니다.
-  본 문서에서는 모의 테스트를 통해 주요 케이스에 대한 정상 연동 여부를 확인하는 방법을 안내합니다. 
+  Once the main integration tasks are completed, you can perform simulated
+  deposit and withdrawal tests by using the Robot VASP provided by VerifyVASP as
+  the counterparty VASP. This document explains how to verify the proper
+  integration of major use cases through simulation tests.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Robot VASP란?
+## What is Robot VASP?
 
-Robot VASP란, VerifyVASP에서 제공하는 TravelRule 연동 테스트 환경 내 가상의 VASP입니다. VASP API와 Enclave 초도 연동이 완료된 VASP는 Robot VASP를 상대 VASP로 하는 가상 사용자 기반의 모의 입출금 테스트를 통해 구현의 완결성을 확인할 수 있습니다.
+The Robot VASP is a **virtual VASP** within VerifyVASP’s Travel Rule integration test environment. VASPs that have completed their initial integration with the VASP API and Enclave can use the Robot VASP as a counterparty to perform simulated deposit and withdrawal tests with virtual users, ensuring the completeness of their implementation.
 
-Robot VASP를 활용하여 다음과 같은 시나리오들을 테스트 할 수 있습니다:
+Using the Robot VASP, you can test scenarios such as:
 
-1. **KYC를 완료한 개인 사용자에 대한 정보 검증**
-2. **KYC를 완료하지 않은 개인 사용자에 대한 정보 검증**
-3. **KYC를 완료한 법인 사용자에 대한 정보 검증**
+1. Information verification for an **individual user** who has completed KYC.
+2. Information verification for an **individual user** who has not completed KYC.
+3. Information verification for a **corporate user** who has completed KYC.
 
-각 테스트 케이스의 결과에 따라 트랜잭션 결과 보고(Report Transaction) 또는 오류 보고(Report Error) 시나리오 또한 함께 테스트 할 수 있습니다.
+Based on the results of each test case, you can also test transaction reporting (`Report Transaction`) or error reporting (`Report Error`) scenarios.
 
 <br />
 
-## Robot VASP 연동 테스트 시 주의사항
+## Important Notes for Robot VASP Integration Testing
 
-Robot VASP와 테스트넷을 이용해 실제 가상 자산을 전송하는 테스트 과정에서 다음과 같은 사항에 주의하십시오.
+When using the Robot VASP and the testnet to send actual virtual assets for testing, please keep the following points in mind:
 
-#### 1. 출금 테스트를 먼저 수행한 뒤에, 입금 테스트를 진행 할 수 있습니다.
+#### 1. Perform a withdrawal test first, then a deposit test
 
-* 출금 시나리오를 통해 Robot VASP에게 먼저 가상 자산을 전송한 뒤에, 해당 자산을 활용한 입금 테스트가 가능합니다.
+* After sending virtual assets to the Robot VASP in the withdrawal scenario, you can use those assets for the deposit test.
 
-#### 2. Robot VASP의 가상 자산은 각 수신 주소별로 관리됩니다. (hot / cold wallet을 사용하지 않습니다.)
+#### 2. Robot VASP’s assets are managed per receiving address (no hot/cold wallet separation)
 
-* 출금 테스트 시 전송한 자산을 입금 테스트를 통해 다시 받기 위해서는 입금 테스트 송신 주소에 반드시 출금 테스트 시 기재한 수신 주소를 사용하십시오.
-* 입금 테스트 시 전송할 수 있는 수량은 출금 테스트 시 전송한 총 수량을 넘을 수 없습니다.
+* To reuse the assets sent in a withdrawal test for a deposit test, you must use the same receiving address from the withdrawal test as the sending address in the deposit test.
+* The amount sent in the deposit test cannot exceed the total amount sent in the withdrawal test.
 
-#### 3. 자산 전송 트랜잭션은 반드시 VERIFIED 된 사용자 검증 결과 수신 이후 진행하십시오. 출금과 입금 테스트 모두 마찬가지입니다.
+#### 3. Execute the asset transfer transaction only after receiving a VERIFIED user verification result
 
-* VERIFIED 된 검증 결과를 받지 않고 수신 VASP인 Robot VASP로의 온체인 자산 전송 트랜잭션을 생성하는 경우, 해당 자산은 다시 돌려받을 수 없으므로 주의하십시오.
+* This applies to both withdrawal and deposit tests.
+* If you initiate an on-chain asset transfer to the Robot VASP (as the Beneficiary VASP) without receiving a VERIFIED result, you will not be able to recover the assets.
 
-#### 4. XRP 주소에 대해 입출금 테스트를 할 때에는 destination tag를 기재하는 것을 잊지 마십시오.
+#### 4. When testing deposits/withdrawals for XRP addresses, always include the destination tag
 
-* Destination tag를 ivms101 포맷으로 기재하는 방법은 IVMS101 정보 기입 가이드을 참고하세요.
+* For instructions on specifying the destination tag in IVMS101 format, refer to the IVMS101 Data Entry Guide.
 
-#### 5. 자산 전송 테스트는 Ethereum Sepolia, Ethereum Holesky 및 Ripple Testnet에서만 수행 가능합니다.
+#### 5. Asset transfer tests are only available on Ethereum Sepolia, Ethereum Holesky, and Ripple Testnet
 
-* 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
+* Before starting the test, confirm whether asset transfers are supported in the respective environment and verify the VASP’s deposit account details and other required information.
