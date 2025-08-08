@@ -1,9 +1,12 @@
 ---
-title: Enclave 데이터베이스 생성
+title: Enclave Database Setup
 excerpt: >-
-  VASP API 구현이 완료되었다면 Enclave 서버를 구동하기 위한 준비를 시작합니다. Enclave 서버를 구동하기에 앞서,
-  Enclave가 사용할 데이터베이스를 사용 가능한 상태로 사전 구성해야 합니다. 본 가이드는 Enclave 서버에서 사용할 데이터베이스
-  설정을 위한 시스템 요구사항, 운영 정책, 설정 항목들을 상세히 설명합니다.
+  Once the VASP API implementation is complete, you can begin preparing to
+  launch the Enclave server. Before starting the Enclave server, you must
+  pre-configure the database that will be used by the Enclave so that it is
+  ready for use. This guide describes in detail the system requirements,
+  operational policies, and configuration parameters for setting up the database
+  used by the Enclave server.
 deprecated: false
 hidden: false
 metadata:
@@ -11,25 +14,25 @@ metadata:
 ---
 <Common_database />
 
-## Step 1. DBMS 선택 및 설치
+## Step 1. Select and Install a DBMS
 
-VerifyVASP Enclave 데이터베이스는 Enclave의 검증 결과, 트랜잭션 로그, 상대 VASP의 공개 키 등 주요 정보를 저장하기 위해 사용됩니다. 아래 지원 DBMS 중 귀사의 인프라와 운영 환경에 적합한 DBMS를 선택하십시오.
+The VerifyVASP Enclave database stores key information such as verification results, transaction logs, and counterparty VASP public keys. Select a DBMS from the supported list below that best fits your infrastructure and operational environment.
 
-### 지원하는 DBMS
+### Supported DBMS
 
 * **MySQL`Recommended`**
-  * 설치 및 운영이 간편하고 성능이 우수한 MySQL 사용을 권장합니다.
+  * MySQL is recommended for its ease of installation/operation and excellent performance.
 * **PostgreSQL**
 * **MSSQL**
 * **Oracle DBMS**
 
-## Step 2. 스키마 생성
+## Step 2. Create the Schema
 
-DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 합니다. 전체 스키마는 필수 테이블 4개(TravelRule 공통 사용 필수 테이블 3개)로 구성됩니다. 각 테이블에 대한 상세 설명은 아래 표와 같습니다.
+Once the DBMS installation is complete, create the tables that will be used by the Enclave. The full schema consists of **four required tables**, three of which are shared with the Travel Rule module. A detailed description of each table is provided in the table below.
 
-> ⚠️ 저장소 크기 및 백업 정책 유의사항
+> ⚠️ Storage Size and Backup Policy Considerations
 >
-> 각 테이블 설명에 포함된 예상 레코드 크기를 참고하여, 예상 요청량에 맞는 충분한 저장소를 사전에 확보하시기 바랍니다. 또한, 장기적인 데이터 무결성과 안정적인 운영을 위해 백업 및 복구 정책을 반드시 적용해 주십시오.
+> Refer to the estimated record size for each table and ensure you have sufficient storage capacity to handle the expected request volume. To ensure **long-term data integrity** and **stable operations**, you must implement and apply appropriate backup and recovery policies.
 
 <HTMLBlock>{`
 <style>
@@ -75,50 +78,51 @@ DBMS 설치가 완료되면, Enclave가 사용할 테이블들을 생성해야 �
     <tr>
       <td class="code-col"><code>own_keys</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - 귀사 VASP Enclave의 공개키/비밀키 쌍을 저장합니다.<br>
-        - 상대 VASP가 공개키 요청시 본 테이블로부터 조회 및 반환됩니다.<br>
-        - 암호화 대상 필드: <code>private_key</code><br>
-        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Stores the public/private key pair for your VASP Enclave.<br>
+        - Returned when a counterparty VASP requests your public key.<br>
+        - Encrypted field: <code>private_key.</code><br>
+        - Estimated record size: <strong>1 KB</strong>.
       </td>
-      <td>주기적인 백업 권장</td>
+      <td>Periodic backup recommended</td>
     </tr>
     <tr>
       <td class="code-col"><code>counter_party_keys</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - 상대 VASP의 공개키를 캐싱하여 저장합니다.<br>
-        - 레코드당 예상크키는 약 <strong>1 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Caches and stores public keys from counterparty VASPs.<br>
+        - Estimated record size: <strong>1 KB</strong>.
       </td>
-      <td>백업 또는 복원 정책<br>불필요</td>
+      <td>No backup or restore policy needed</td>
     </tr>
     <tr>
       <td class="code-col"><code>commands</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - Enclave 내부적으로 비동기 API의 중간 처리 상태를 저장합니다.<br> 
-        - 레코드당 예상크키는 약 <strong>1-5 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Stores intermediate states for asynchronous API processing within the Enclave.<br> 
+        - Estimated record size: <strong>1-5 KB</strong>.
       </td>
-      <td>백업 또는 복원 정책<br>불필요</td>
+      <td>No backup or restore policy needed</td>
     </tr>
 		<tr>
       <td class="code-col"><code>owner_verifications</code></td>
       <td>
-        - <b>필수 테이블입니다.</b> <br>
-        - 계좌 소유주 검증 요청 및 결과 이력을 저장합니다.<br> 
- 				- VerifyName 2.0 API 호출시 요청과 응답 데이터가 저장됩니다.<br>
-        - 암호화 대상 필드:<code>party_info</code>,<code>party_info_hash</code><br>
-        - 레코드당 예상크키는 약 <strong>4-5 KB</strong>입니다.
+        - <b>Required table.</b> <br>
+        - Stores account ownership verification requests, results, and history.<br> 
+ 				- Contains request/response data from VerifyName 2.0 API calls.<br>
+        - Encrypted fields: <code>party_info</code>,<code>party_info_hash</code><br>
+        - Estimated record size: <strong>4-5 KB</strong>.
       </td>
-      <td>일일 백업 권장</td>
+      <td>Daily backup recommended</td>
     </tr>
   </tbody>
 </table>
 `}</HTMLBlock>
 
-### TravelRule/VerifyName 공통 필수 테이블 생성 쿼리
+### TravelRule / VerifyName Common Required Table Creation Queries
 
-TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜에 대해 공통으로 사용하는 필수 테이블들을 생성하기 위한 쿼리입니다. VerifyName을 연동하는 과정에서 아래 테이블들이 이미 생성 되었다면 이 단계를 건너뛸 수 있습니다.
+If your VASP implements both TravelRule and VerifyName protocols, the following queries create the **required tables** used by both protocols.\
+If these tables were already created during the VerifyName integration process, you may skip this step.
 
 <Tabs>
   <Tab title="MySQL">
@@ -311,9 +315,10 @@ TravelRule과 VerifyName을 모두 구현하는 VASP의 경우 두 프로토콜�
   </Tab>
 </Tabs>
 
-### VerifyName 필수 테이블 생성 쿼리
+### VerifyName Required Table Creation Queries
 
-VerifyName 프로토콜에서만 필수로 사용되는 테이블을 생성하기 위한 쿼리입니다. Enclave를 VN2 모드로 구동하는 경우 아래 쿼리를 반드시 실행하여 필수 테이블을 생성하고 키를 구성하십시오.
+The following queries create the tables required exclusively by the VerifyName protocol.\
+If running the Enclave in VN2 mode, you must execute these queries to create the required tables and configure the associated keys.
 
 <Tabs>
   <Tab title="MySQL">
