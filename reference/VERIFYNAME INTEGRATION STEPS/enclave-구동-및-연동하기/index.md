@@ -306,7 +306,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
-        <code>VerifyName</code> VASP API 호출을 위한 <a href="/reference/verifyname-request-verification">Verify Name API</a> Endpoint.
+        <a href="/reference/verifyname-request-verification">Verify Name API</a> endpoint path.
       </td>
     </tr>
 
@@ -319,13 +319,13 @@ The following table summarizes the purpose, default values, and configuration me
     <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_AUTHORIZATION_TOKEN</code></td>
       <td>–</td>
-      <td>VASP API 호출시 사용할 인증 token 값.</td>
+      <td>Pre-issued authentication token for calling VASP API.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_AUTHORIZATION_KEY</code></td>
       <td>–</td>
-      <td>VASP API 호출시 인증 헤더 Key 값. 미설정시 <code>Authorization</code> 헤더 사용.</td>
+      <td>Header key used for API authentication. Default is <code>Authorization</code> if not set.</td>
     </tr>
 
     <tr>
@@ -346,7 +346,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td><code>info</code></td>
       <td>
         Log level.<br>
-        <b>사용 가능한 값</b>:<code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>
+        <b>Available values</b>:<code>none</code>, <code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code>
       </td>
     </tr>
 
@@ -354,23 +354,22 @@ The following table summarizes the purpose, default values, and configuration me
       <td class="code-col"><code>VEGA_PUBLIC_KEY_TTL</code></td>
       <td><code>1800000</code></td>
       <td>
-        상대 VASP의 공개키 캐싱 TTL(ms).<br>
-        기본 1800000 (30분), 최소 600000 (10분)
+        Public key cache TTL in milliseconds.<br>
+        (default: 1800000, min: 600000
       </td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_DECRYPT_API_ENDPOINT</code></td>
       <td>–</td>
-      <td>Enclave 데이터베이스 암호화 <a href="/reference/verifyname-get-decrypted-enckey">대칭키 조회를 위한 API</a> Path.</td>
+      <td>API endpoint for retrieving the database encryption key.</td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_ENCRYPTION_KEY_BASE64</code></td>
       <td>–</td>
       <td>
-        Enclave 데이터베이스 암호화 대칭키 값 또는 API 사용을 위한 참조값.<br>
-        <b>관련 링크</b>: <a href="/reference/verifyname-get-decrypted-enckey">Database Management API</a>
+        Reference value for the database encryption key.
       </td>
     </tr>
   </tbody>
