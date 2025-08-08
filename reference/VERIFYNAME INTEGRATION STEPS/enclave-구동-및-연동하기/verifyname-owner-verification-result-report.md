@@ -5,13 +5,14 @@ api:
   operationId: verifyname-owner-verification-result-report
 hidden: false
 ---
-이 API는 소유자 검증 결과를 수신한 VASP가 최종 트랜잭션 수행 결정을 상대 VASP에게 Report할 때 호출됩니다. 소유자 검증을 요청한 VASP는 항목별 검증 결과를 바탕으로 **최종적으로 종합 판단한 검증 결과를 반드시 이 API를 호출하여 Central 서버에 보고**해야 합니다.
+Called by the VASP receiving the owner verification results to report its **final transaction execution decision** to the counterparty VASP.\
+The VASP that requested the owner verification must call this API to report the consolidated final result to the Central server.
 
-## 구현 정책
+## Implementation Policy
 
-* 소유자 검증 결과를 수신한 VASP는 반드시 최종 트랜잭션 수행 결정 결과를 보고해야 합니다.
-* 최종적으로 판단한 검증 결과가 DENIED 또는 ERROR인 경우, `reason` 및 `message` 필드에 그 사유를 명확히 기재해야 합니다.
+* The VASP receiving the verification results must report the final transaction execution decision.
+* If the final decision is `DENIED` or `ERROR`, the reason and message fields must clearly specify the grounds for the decision.
 
 ***
 
-## API 명세
+## API Specification
