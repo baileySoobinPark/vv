@@ -270,13 +270,14 @@ The virtual user information used for the tests is as follows. This information 
 
 <br />
 
-**Case 2. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 Hash) 미전송**
+**Case 2. Execute Transaction Without Reporting Transaction ID (Transaction Hash) to VV Central Server**
 
-* **조건**
-  * 가상 자산 이전 트랜잭션 실행 후 실행 결과를 VV Central 서버에 보고하지 않아야 합니다.
-* **기대 결과**
-  * 트랜잭션 실행하고 10분 후 Robot VASP가 송신 VASP의 [Check Transaction Status API]() 호출해 트랜잭션 상태를 문의합니다.
-  * 혹은 Robot VASP의 Transaction Status Simulation API를 호출해 Robot VASP가 즉시 트랜잭션 상태 조회를 시작하도록 명령할 수 있습니다. Transaction Status Simulation API를 호출하는 방법은 아래와 같습니다.
+* **Condition**
+  * After executing the virtual asset transfer transaction, do not report the execution result to the VV Central server.
+* **Expected Result**
+  * After 10 minutes, the Robot VASP will call the sender VASP’s [Check Transaction Status API]() to inquire about the transaction status.
+  * Alternatively, you can call the Robot VASP’s Transaction Status Simulation API to instruct it to immediately start querying the transaction status.
+  * Instructions for calling the Transaction Status Simulation API are provided below.
 
 <Accordion title="Transaction Status Simulation API – How to Call">
   **Method**: `POST`
@@ -299,21 +300,23 @@ The virtual user information used for the tests is as follows. This information 
 
 <br />
 
-### 4-2. 검증 완료 후 트랜잭션 취소 Test
+### 4-2. Cancel Transaction After Verification – Test
 
-**Case 1. 가상 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 보고**
+**Case 1. Cancel Virtual Asset Transfer Transaction and Report Error to VV Central Server**
 
-* **조건**
-  * 가상 자산 전송 트랜잭션을 실행하지 않고 [Report Error API]() 를 호출해 VV Central 서버에 에러를 보고합니다.
-* **기대 결과**
-  * Robot VASP가 Transaction Status Query API 호출을 중지합니다.
-  * Verification 결과가 `VERIFIED`에서 `ERROR`로 변경됩니다. 테스트를 진행하는 사용자는 Enclave API 중 [Get Verification Result API]()  혹은 [List Verification Result API]() 를 호출해 변경 사항을 확인할 수 있습니다.
+* **Condition**
+  * Do not execute the virtual asset transfer transaction, and instead call the [Report Error API]() to report the error to the VV Central server.
+* **Expected Result**
+  * The Robot VASP stops calling the Transaction Status Query API.
+  * The verification result changes from `VERIFIED` to `ERROR`.
+  * The test user can confirm the change by calling the [Get Verification Result API]() or [List Verification Result API]() from the Enclave API.
 
 <br />
 
-**Case 2. 가상 자산 전송 트랜잭션 취소 후 VV Central 서버에 에러 미보고**
+**Case 2. Cancel Virtual Asset Transfer Transaction Without Reporting Error to VV Central Server**
 
-* **조건**
-  * Robot VASP가 자산 전송 트랜잭션을 실행하지 않고 VV Central 서버에 에러를 보고하지 않습니다.
-* **기대 결과**
-  * Robot VASP가 사용자 VASP가 구현한 Transaction Status Query API를 주기적으로 호출해 트랜잭션의 상태를 확인합니다. Robot VASP는 최대 1시간 까지 Transaction Status Query API를 호출합니다.
+* **Condition**
+  * The Robot VASP does not execute the asset transfer transaction and does not report the error to the VV Central server.
+* **Expected Result**
+  * The Robot VASP periodically calls the Transaction Status Query API implemented by the user’s VASP to check the transaction status.
+  * The Robot VASP will continue calling the Transaction Status Query API for **up to 1 hour**.
