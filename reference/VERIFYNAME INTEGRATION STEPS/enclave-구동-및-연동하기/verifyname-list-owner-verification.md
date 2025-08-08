@@ -5,10 +5,8 @@ api:
   operationId: verifyname-list-owner-verification
 hidden: false
 ---
-VerifyName 검증 결과 이력을 조회할 수 있는 API입니다. 검증 상태, 기간, 자산 종류, 상대 VASP 등 다양한 쿼리 파라미터(필터 조건)을 지원하며, 지정한 조건을 만족하는 항목만 응답으로 반환됩니다.
-
-모든 조건은 선택 필드로서 복수 조건 사용시 AND 조건으로 적용됩니다
+Retrieves the history of VerifyName verification results. Supports multiple query parameters (filters) such as verification status, date range, asset type, and counterparty VASP. Only items matching all specified conditions are returned in the response. All conditions are optional, and multiple conditions are combined with an **AND** operator.
 
 ***
 
-## API 명세
+## API Specification
