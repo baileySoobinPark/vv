@@ -84,32 +84,32 @@ For detailed implementation requirements and specifications, refer to the corres
 <table class="api-table">
   <thead>
     <tr>
-      <th width=220px>API 이름</th>
-      <th width=175px>VASP의 역할</th>
-      <th>API 설명</th>
+      <th width=220px>API Name</th>
+      <th width=175px>VASP Role</th>
+      <th>API Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="api-name"><a href="#">Verify Name API</a></td>
-      <td class="api-role">송신 VASP & 수신 VASP</td>
-      <td>전송 자산과 수신 계좌의 유효성을 검증하고 Enclave로 계좌 소유주의 성명과 생년월일 정보를 반환합니다.</td>
+      <td class="api-role">Ordering VASP & Beneficiary VASP</td>
+      <td>Verifies the validity of the originator and beneficiary accounts, and returns the account holder’s name and date of birth to the Enclave.</td>
     </tr>
     <tr>
       <td class="api-name"><a href="#">Callback API</a></td>
-      <td class="api-role">송신 VASP & 수신 VASP</td>
+      <td class="api-role">Ordering VASP & Beneficiary VASP</td>
       <td>
-        Enclave와의 비동기 통신을 위해 제공해야 하는 공통 인터페이스입니다. 아래 두가지 유형의 Callback 이벤트로 수신할 수 있습니다.
+        A common interface that must be provided for asynchronous communication with the Enclave. The following two types of callback events can be received:
         <div class="callback-events">
-          <code>OWNER_VERIFICATION_RESULT_REPORT</code>: 검증 결과 수신<br>
-          <code>OWNER_VERIFICATION_TX_REPORT</code>: 트랜잭션 결과 수신
+          <code>OWNER_VERIFICATION_RESULT_REPORT</code>: Verification result reception<br>
+          <code>OWNER_VERIFICATION_TX_REPORT</code>: Transaction result reception
         </div>
       </td>
     </tr>
     <tr>
       <td class="api-name"><a href="#">Database Management API</a></td>
-      <td class="api-role">송신 VASP & 수신 VASP</td>
-      <td>Enclave 데이터베이스에 사용할 암호화 키를 반환하여 Runtime으로 주입합니다.</td>
+      <td class="api-role">Ordering VASP & Beneficiary VASP</td>
+      <td>Returns the encryption key to be used for the Enclave database and delivers it to the Runtime.</td>
     </tr>
   </tbody>
 </table>
