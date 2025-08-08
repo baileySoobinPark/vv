@@ -45,8 +45,6 @@ When performing asset transfer tests with Robot VASP and the testnet, please obs
 
 #### 4. For XRP address tests, remember to include the destination tag.
 
-<br />
-
 #### 5. Asset transfer tests can only be performed on Ethereum Sepolia, Ethereum Holesky, and Ripple Testnet.
 
 * Before starting the test, check in advance whether asset transfer tests are available in your environment and gather all necessary information such as the VASP deposit account.
