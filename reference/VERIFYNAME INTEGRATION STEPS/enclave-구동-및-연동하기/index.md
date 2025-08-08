@@ -86,7 +86,7 @@ The Enclave environment variables are categorized into the following five main g
 </table>
 `}</HTMLBlock>
 
-환경 변수에 대한 목적, 기본값, 설정 방법을 요약한 표는 다음과 같습니다. 환경 변수의 이름은 **반드시 변경 없이 그대로** 사용하십시오.
+The following table summarizes the purpose, default values, and configuration methods for the environment variables. **Do not modify the environment variable names**; they must be used exactly as provided.
 
 <HTMLBlock>{`
 <style>
