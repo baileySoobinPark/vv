@@ -5,17 +5,17 @@ api:
   operationId: verifyName-List-VASP
 hidden: false
 ---
-자산 이전이 가능한 모든 VASP 목록을 조회하기 위한 API입니다. 고객의 자산 이전 요청 시 본 API를 호출하여 고객이 목록 중 하나의 VASP를 선택하도록 한 뒤, 해당 VASP의 vaspId 값을 활용하여 검증을 요청할 수 있습니다.
+Retrieves a list of all VASPs to which asset transfers are possible. When processing a customer’s asset transfer request, call this API to display the list to the customer, allow them to select a VASP, and then use the selected VASP’s `vaspId` value for verification requests.
 
 ***
 
-## VASP 목록 포함 기준
+## Inclusion Criteria for VASP List
 
-응답의 VASP 목록은 귀사의 VASP를 포함하여 다음 조건을 충족하는 다른 VASP들을 포함합니다.
+The returned list includes your VASP as well as other VASPs that meet all of the following conditions:
 
-* 해당 VASP가 VerifyVASP 회원일 것
-* 양사가 서로를 자산 이전 처리가 가능한 VASP로 설정할 것
+* The VASP is a VerifyVASP member.
+* Both VASPs have configured each other as eligible for asset transfer processing.
 
 ***
 
-## API 명세
+## API Specification
