@@ -168,9 +168,10 @@ The virtual user information used for testing is as follows. This information is
 
 ### 1. User Account Verification Test
 
-* **조건**
+* **Condition**
 
-  * Robot VASP가 귀사의 VASP에게 User Account Verification을 요청하도록 해야 합니다. User Account Verification Simulation API를 호출해 User Account Verification을 요청하도록 명령할 수 있습니다.
+  * The Robot VASP must be instructed to send a User Account Verification request to your VASP.
+  * You can call the User Account Verification Simulation API to instruct the Robot VASP to send the request.
 
   <br />
 
@@ -212,8 +213,8 @@ The virtual user information used for testing is as follows. This information is
     }
     ```
   </Accordion>
-* **기대 결과**
-  * 테스트 데이터를 기준으로 정상 검증(VERIFIED) 시나리오를 포함하여 발생 가능한 아래 모든 DENIED 케이스에 대해 기대한 사유 코드를 반환해야 합니다.
+* **Expected Result**
+  * Based on the test data, the verification should return one of the following results, including the expected reason codes for all possible `DENIED` cases:
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -224,12 +225,13 @@ The virtual user information used for testing is as follows. This information is
 
 ### 2. User Verification Test
 
-* **조건**
+* **Condition**
 
-  * Robot VASP가 귀사의 VASP에게 User Verification을 요청하도록 해야 합니다. User Verification Simulation API를 호출해 User Verification을 요청하도록 명령할 수 있습니다.
-  * Robot VASP에서 가상 자산을 전송할 송신인 주소(Originator's Account Number)는 출금 시나리오 테스트에서 가상 자산을 받은 Robot VASP의 수신인 주소와 일치해야 합니다.
-  * 입금 시나리오 테스트에서 전송할 가상 자산의 총량은 출금 시나리오 테스트에서 Robot VASP에게 전송한 가상 자산의 총량을 초과할 수 없습니다.
-  * User Verification Simulation API를 실행하기 전 User Account Verification Simulation API를 호출해야 하며 응답으로 `VERIFIED`를 받은 후 User Verification을 요청하도록 해야 합니다.
+  * The Robot VASP must be instructed to send a User Verification request to your VASP.
+  * You can call the User Verification Simulation API to instruct the Robot VASP to send the request.
+  * The Originator’s Account Number (sending address) used by the Robot VASP must match the beneficiary address that received virtual assets during the withdrawal scenario test.
+  * The total amount of virtual assets sent in the deposit test must not exceed the total amount sent to the Robot VASP in the withdrawal test.
+  * Before running the User Verification Simulation API, you must first call the User Account Verification Simulation API and receive a `VERIFIED` response.
 
   <br />
 
@@ -303,8 +305,8 @@ The virtual user information used for testing is as follows. This information is
     }
     ```
   </Accordion>
-* **기대 결과**
-  * 귀사의 VASP가 진행한 검증 결과에 따라 아래의 값 중의 하나를 반환합니다.
+* **Expected Result**
+  * Depending on your VASP’s verification result, one of the following values is returned:
     * `VERIFIED`
     * `UNKNOWN-SYMBOL`
     * `UNKNOWN-ADDRESS`
@@ -316,12 +318,12 @@ The virtual user information used for testing is as follows. This information is
 
 <br />
 
-### 3-1. 온체인 전송 트랜잭션 실행 Test
+### 3-1. On-Chain Transaction Execution Test
 
-* **조건**
+* **Condition**
 
-  * Robot VASP가 실행한 User Verification의 결과가 `VERIFIED`여야 진행할 수 있습니다.
-  * Robot VASP Withdrawal Request API를 호출해 Robot VASP가 가상 자산 전송 트랜잭션을 실행하도록 명령해야 합니다.
+  * The result of the User Verification executed by the Robot VASP must be `VERIFIED`.
+  * Call the Robot VASP Withdrawal Request API to instruct the Robot VASP to execute the virtual asset transfer transaction.
 
   <br />
 
@@ -346,25 +348,25 @@ The virtual user information used for testing is as follows. This information is
     }
     ```
   </Accordion>
-* **기대 결과**
-  * 귀사의 VASP가 입금을 확인할 수 있습니다.
+* **Expected Result**
+  * Your VASP can confirm the deposit.
 
-**Case 1. 트랜잭션 실행 후 트랜잭션 결과 전송 (omitTxReport = false)**
+**Case 1. Transaction Executed and Result Reported (omitTxReport = false)**
 
-* **조건**
-  * Robot VASP가 가상 자산 전송 트랜잭션을 실행한 후 귀사의 VASP에게 Transaction Result Report 를 전송합니다.
-* **기대 결과**
-  * 귀사의 VASP가 Callback API를 통해 트랜잭션 결과를 확인할 수 있습니다.
+* **Condition**
+  * After executing the virtual asset transfer transaction, the Robot VASP sends the Transaction Result Report to your VASP.
+* **Expected Result**
+  * Your VASP can confirm the transaction result via the Callback API.
 
 <br />
 
-**Case 2. 트랜잭션 실행 후 트랜잭션 결과 미전송 (omitTxReport = true)**
+**Case 2. Transaction Executed and Result Not Reported (omitTxReport = true)**
 
-* **조건**
+* **Condition**
 
-  * Robot VASP Withdrawal Request API를 호출할 때, `omixTxReport` 필드를 `true`로 설정하여 Robot VASP가 트랜잭션 실행 결과를 전송하지 않도록 합니다.
-  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출하여 트랜잭션의 현재 상태를 조회합니다.
-  * 실제 가상 자산 전송 없이 Robot VASP가 Transaction Report를 전송하도록 하고 싶으면 Transaction Reporting Simulation API를 호출하십시오.
+  * When calling the Robot VASP Withdrawal Request API, set the `omitTxReport` field to `true` to prevent the Robot VASP from sending the transaction execution result.
+  * Your VASP must call the Check Transaction Status API from the Enclave API to check the current transaction status.
+  * If you want the Robot VASP to send a Transaction Report without actually transferring virtual assets, call the Transaction Reporting Simulation API.
 
   <br />
 
@@ -389,17 +391,17 @@ The virtual user information used for testing is as follows. This information is
     }
     ```
   </Accordion>
-* **기대 결과**
-  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출해 트랜잭션의 현재 상태를 조회할 수 있습니다.
+* **Expected Result**
+  * Your VASP can check the current transaction status by calling the Check Transaction Status API.
 
 <br />
 
-### 3-2. 검증 완료 후 트랜잭션 취소 Test
+### 3-2. Cancel Transaction After Verification Test
 
-* **조건**
+* **Condition**
 
-  * Robot VASP가 가상 자산 전송 트랜잭션을 실패하지 않는 이상 VV Central 서버에 에러를 보고하지 않습니다.
-  * 테스트를 진행하기 위해, Error Situation Reporting Simulation API를 호출해 Robot VASP가 에러를 보고하도록 명령해야 합니다.
+  * Unless the Robot VASP encounters a failed virtual asset transfer transaction, it does not report an error to the VV Central server.
+  * To run this test, call the Error Situation Reporting Simulation API to instruct the Robot VASP to report an error.
 
   <br />
 
@@ -428,5 +430,5 @@ The virtual user information used for testing is as follows. This information is
     }
     ```
   </Accordion>
-* **기대 결과**
-  * 귀사의 VASP가 Enclave API 중 Check Transaction Status API를 호출해 트랜잭션의 현재 상태를 확인할 수 있습니다.
+* **Expected Result**
+  * Your VASP can check the current transaction status by calling the Check Transaction Status API from the Enclave API.
