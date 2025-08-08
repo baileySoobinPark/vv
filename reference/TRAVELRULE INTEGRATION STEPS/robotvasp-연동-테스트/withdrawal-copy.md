@@ -249,19 +249,19 @@ The virtual user information used for the tests is as follows. This information 
 * **Expected Result**
   * Call the Deposit Reflection Inquiry API to confirm that the asset has been deposited into the Robot VASP.
 
-<Accordion title=" Deposit Reflection Inquery API 호출 방법">
+<Accordion title=" Deposit Reflection Inquiry API – How to Call">
   **Method**: `GET`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance`
-  * **요청 쿼리 파라미터**
+  * **Query Parameters**
 
-  | Parameter Name | Type   | Description   | Example                                    |
-  | -------------- | ------ | ------------- | ------------------------------------------ |
-  | `vaspId`       | string | 송신인 VASP의 ID  | 15952089931162058999                       |
-  | `symbol`       | string | 전송된 가상 자산의 심볼 | ETH                                        |
-  | `address`      | string | 가상 자산을 수신할 주소 | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
+  | Parameter Name | Type   | Description                          | Example                                    |
+  | -------------- | ------ | ------------------------------------ | ------------------------------------------ |
+  | `vaspId`       | string | Ordering VASP ID                     | 15952089931162058999                       |
+  | `symbol`       | string | Symbol of virtual asset              | ETH                                        |
+  | `address`      | string | Address to receive the virtual asset | 0xb0bFf9721871e22653358956cf59a5FdBF3D752F |
 
-  * **요청 예제**
+  * **Request Example**
 
   ```
   <https://api.verifyvasp.xyz/vega/robot/v1.0/testnet/balance?vaspId=15952089931162058999&symbol=ETH&address=0xb0bFf9721871e22653358956cf59a5FdBF3D752F>
@@ -278,17 +278,17 @@ The virtual user information used for the tests is as follows. This information 
   * 트랜잭션 실행하고 10분 후 Robot VASP가 송신 VASP의 [Check Transaction Status API]() 호출해 트랜잭션 상태를 문의합니다.
   * 혹은 Robot VASP의 Transaction Status Simulation API를 호출해 Robot VASP가 즉시 트랜잭션 상태 조회를 시작하도록 명령할 수 있습니다. Transaction Status Simulation API를 호출하는 방법은 아래와 같습니다.
 
-<Accordion title="Transaction Status Simulation API 호출 방법">
+<Accordion title="Transaction Status Simulation API – How to Call">
   **Method**: `POST`
 
   * **Endpoint**: `https://api.verifyvasp.xyz/vega/robot/v1.0/action/tx/inquiry`
-  * **요청 쿼리 파라미터**
+  * **Query Parameter**
 
-  | Parameter Name     | Description                                                                         | Example                              |
-  | ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------ |
-  | `verificationUuid` | User Verification을 특정하는 고유 식별자. Encalve API의 User Verification API를 호출해 확인할 수 있습니다. | ecb457e3-2307-4e72-8a42-16a3774e154b |
+  | Parameter Name     | Description                                                                                                                                | Example                              |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+  | `verificationUuid` | A unique identifier specifying the User Verification. You can obtain this value by calling the User Verification API from the Enclave API. | ecb457e3-2307-4e72-8a42-16a3774e154b |
 
-  * **요청 body 예제**
+  * **Request Body Example**
 
   ```
   {
