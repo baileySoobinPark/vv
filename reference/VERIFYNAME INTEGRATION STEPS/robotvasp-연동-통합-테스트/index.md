@@ -1,48 +1,52 @@
 ---
-title: RobotVASP 연동 통합 테스트
+title: RobotVASP Integration End-to-End Test
 excerpt: >-
-  주요 연동 작업이 완료되면 VerifyVASP가 제공하는 Robot VASP를 상대 VASP로 하여 모의 입출금을 테스트해볼 수 있습니다.
-  본 문서에서는 모의 테스트를 통해 주요 케이스에 대한 정상 연동 여부를 확인하는 방법을 안내합니다.
+  Once the main integration work is complete, you can perform mock deposit and
+  withdrawal tests using the Robot VASP provided by VerifyVASP as the
+  counterparty VASP. This document explains how to verify successful integration
+  for key cases through mock testing.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Robot VASP란?
+## What is Robot VASP?
 
-Robot VASP란, VerifyVASP에서 제공하는 연동 테스트 환경 내 가상의 VASP입니다. VASP API와 Enclave 초도 연동이 완료된 VASP는 Robot VASP를 상대 VASP로 하는 가상 사용자 기반의 모의 입출금 테스트를 통해 구현의 완결성을 확인할 수 있습니다.
+Robot VASP is a virtual VASP in the integration test environment provided by VerifyVASP.\
+Once the initial integration of the VASP API and Enclave is complete, you can use Robot VASP as the counterparty VASP to conduct mock deposit and withdrawal tests with virtual users, ensuring the completeness of your implementation.
 
-Robot VASP를 활용하여 다음과 같은 시나리오들을 테스트 할 수 있습니다:
+Using Robot VASP, you can test the following scenarios:
 
-1. **KYC를 완료한 개인 사용자에 대한 정보 검증**
-2. **KYC를 완료하지 않은 개인 사용자에 대한 정보 검증**
-3. **KYC를 완료한 법인 사용자에 대한 정보 검증**
+1. Information verification for individual users who have completed KYC
+2. Information verification for individual users who have not completed KYC
+3. Information verification for corporate users who have completed KYC
 
-각 테스트 케이스의 결과에 따라 최종 검증 결과 보고(Result Report), 트랜잭션 보고 (Transaction Hash Report) 시나리오 또한 함께 테스트 할 수 있습니다.
-
-<br />
-
-## Robot VASP 연동 테스트 시 주의사항
-
-Robot VASP와 테스트넷을 이용해 실제 가상 자산을 전송하는 테스트 과정에서 다음과 같은 사항에 주의하십시오.
-
-#### 1. VerifyName 프로토콜은 동일인 검증이 목적입니다.
-
-* RobotVASP의 사용자 정보가 테스트를 진행하는 귀사의 VASP에도 동일하게 저장되어 있어야하며, 테스트를 진행할 때에도 RobotVASP와 동일한 사용자 정보를 이용해 테스트를 진행해야 합니다.
-
-#### 2. Robot VASP의 가상 자산은 각 수신 주소별로 관리됩니다. (hot / cold wallet을 사용하지 않습니다.)
-
-* 출금 테스트 시 전송한 자산을 입금 테스트를 통해 다시 받기 위해서는 입금 테스트 송신 주소에 반드시 출금 테스트 시 기재한 수신 주소를 사용하십시오.
-* 또한 입금 테스트 시 전송할 수 있는 수량은 출금 테스트 시 전송한 총 수량을 넘을 수 없습니다.
-
-#### 3. 자산 전송 트랜잭션은 최종 검증 결과가 반드시 VERIFIED인 검증을 대상으로 진행하십시오. 출금과 입금 테스트 모두 마찬가지입니다.
-
-* VERIFIED 된 검증 결과를 받지 않고 수신 VASP인 Robot VASP로의 온체인 자산 전송 트랜잭션을 생성하는 경우, 해당 자산은 다시 돌려받을 수 없으므로 주의하십시오.
-
-#### 4. XRP 주소에 대해 입출금 테스트를 할 때에는 destination tag를 기재하는 것을 잊지 마십시오.
+Based on the results of each test case, you can also test the **Result Report** (final verification result reporting) and **Transaction Hash Report** scenarios.
 
 <br />
 
-#### 5. 자산 전송 테스트는 Ethereum Sepolia, Ethereum Holesky 및 Ripple Testnet에서만 수행 가능합니다.
+## Cautions when testing with Robot VASP
 
-* 테스트를 시작하기에 앞서, 해당 환경에서 자산 전송 테스트가 가능한지 여부와 VASP 입금 계좌 등 필요한 정보를 미리 확인하십시오.
+When performing asset transfer tests with Robot VASP and the testnet, please observe the following:
+
+#### 1. VerifyName protocol is intended for same-person verification.
+
+* The user information in Robot VASP must be identically stored in your VASP as well.
+* When testing, use the same user information as stored in Robot VASP.
+
+#### 2. Robot VASP manages virtual assets per receiving address (no hot/cold wallet separation).
+
+* To receive assets back in a deposit test after a withdrawal test, make sure the deposit test’s sending address matches the receiving address used in the withdrawal test.
+* The amount sent in the deposit test cannot exceed the total amount sent in the withdrawal test.
+
+#### 3. On-chain asset transfers must only be performed for verifications with a final result of VERIFIED, for both withdrawal and deposit tests.
+
+* If you create an on-chain asset transfer transaction to Robot VASP (as the receiving VASP) without obtaining a `VERIFIED` result, the transferred assets cannot be returned.
+
+#### 4. For XRP address tests, remember to include the destination tag.
+
+<br />
+
+#### 5. Asset transfer tests can only be performed on Ethereum Sepolia, Ethereum Holesky, and Ripple Testnet.
+
+* Before starting the test, check in advance whether asset transfer tests are available in your environment and gather all necessary information such as the VASP deposit account.
