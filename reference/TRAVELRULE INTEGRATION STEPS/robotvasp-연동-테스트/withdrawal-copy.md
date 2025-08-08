@@ -1,18 +1,23 @@
 ---
-title: ' 출금 시나리오 테스트'
-excerpt: '본 문서를 통해 출금 시나리오를 확인하고 테스트 케이스와 기대 동작을 확인할 수 있습니다. '
+title: ' Withdrawal Scenario Test'
+excerpt: >-
+  This document explains the withdrawal scenario, including test cases and
+  expected behaviors.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-> 💡 테스트 환경 제약사항
->
-> 출금 테스트는 **Ethereum Sepolia** 및 **Ripple Testnet**에서만 수행 가능합니다. 테스트를 시작하기에 앞서, 해당 환경에서 자산 이전 테스트 가능 여부와 VASP 출금 계좌 등 필요한 정보를 미리 확인하십시오.
+<Callout icon="💡" theme="default">
+  ### Test Environment Limitations
 
-## 테스트 순서
+  Withdrawal tests can only be performed on **Ethereum Sepolia** and **Ripple Testnet**.\
+  Before starting, verify that asset transfer tests are supported in the selected environment and confirm the necessary information such as the Ordering VASP’s withdrawal account.
+</Callout>
 
-출금 시나리오 테스트는 다음과 같은 순서로 진행됩니다.
+## Test Flow
+
+Withdrawal scenario testing is performed in the following order:
 
 <HTMLBlock>{`
 <style>
@@ -59,33 +64,33 @@ metadata:
   <li class="vasp-step-item">
     <div class="vasp-step-badge">1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">상대 VASP로 동작할 Robot VASP정보를 확인합니다.</div>
+      <div class="vasp-step-title">Check the Robot VASP information that will act as the Beneficiary VASP.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">User Account Verification: 테스트용 수신 계정 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+      <div class="vasp-step-title">User Account Verification: Send a verification request for the test beneficiary account information to the Robot VASP and confirm the expected response.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">3</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">User Verification: 테스트용 수신자 정보에 대한 검증 요청을 Robot VASP에게 전송한 뒤, 기대 응답의 발생 여부를 확인합니다.</div>
+      <div class="vasp-step-title">User Verification: Send a verification request for the test beneficiary’s identity information to the Robot VASP and confirm the expected response.</div>
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">4-1</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">검증 이후 자산 전송 트랜잭션을 실행하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다.</div>
-      (Case 1)트랜잭션 Report 전송 (Case 2)트랜잭션 Report 미전송
+      <div class="vasp-step-title">Proceed with a scenario where an asset transfer transaction is executed after verification. Test the following two sub-cases:</div>
+      Case 1: Transaction report sent Case 2: Transaction report not sent
     </div>
   </li>
   <li class="vasp-step-item">
     <div class="vasp-step-badge">4-2</div>
     <div class="vasp-step-content">
-      <div class="vasp-step-title">검증 이후 트랜잭션을 취소하는 시나리오로 진행합니다. 아래 두 하위 케이스에 대해 테스트합니다. </div>
-      (Case 1)Error Report 전송 (Case 2)Error Report 미전송
+      <div class="vasp-step-title">Proceed with a scenario where the transaction is canceled after verification. Test the following two sub-cases:</div>
+      Case 1: Error report sent Case 2: Error report not sent
     </div>
   </li>
 </ol>
@@ -93,18 +98,18 @@ metadata:
 
 <br />
 
-## 테스트 데이터
+## Test Data
 
-테스트의 사용할 가상의 사용자 정보는 아래와 같습니다. 이 정보는 수신 VASP로 동작하는 Robot VASP에 미리 저장되어 있어 검증이 가능한 정보입니다.
+The virtual user information used for the tests is as follows. This information is pre-registered in the Robot VASP (acting as the Beneficiary VASP) and can be successfully verified.
 
 <Accordion title="RobotVASP KR" icon="fa-info-circle">
-  KR 지역의 RobotVASP 입니다.
+  Robot VASP in the KR region.
 
-  ### 정보
+  ### Information
 
   * **url**: [https://api-kr.verifyvasp.xyz/vega/robot](https://api-kr.verifyvasp.xyz/vega/robot)
 
-  * **이름**: RobotVASP KR
+  * **name**: RobotVASP KR
 
   * **vaspId**: 4855741808338010592
 
@@ -112,29 +117,29 @@ metadata:
 </Accordion>
 
 <Accordion title="RobotVASP Global" icon="fa-info-circle">
-  Global 지역의 RobotVASP 입니다.
+  Robot VASP in the Global region.
 
-  ### 정보
+  ### Information
 
   * **url**: [https://api.verifyvasp.xyz/vega/robot](https://api.verifyvasp.xyz/vega/robot)
 
-  * **이름**: RobotVASP
+  * **name**: RobotVASP
 
   * **vaspId**: 17104899575711300402
 
   * **testnet**: Ethereum Holesky, Ripple testnet
 </Accordion>
 
-<Accordion title="User 1(KYC 인증을 완료한 개인 사용자)" icon="fa-info-circle">
-  아래의 정보를 정확하게 입력하였다면 Robot VASP가 `VERIFIED`를 반환합니다.
+<Accordion title="User 1(KYC-Verified Individual User)" icon="fa-info-circle">
+  When all information below is entered correctly, the Robot VASP will return 'VERIFIED'.
 
-  ### 개인 정보
+  ### Personal information
 
-  * **성**: Robbins
+  * **last name**: Robbins
 
-  * **이름**: Taylor
+  * **first name**: Taylor
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
 
@@ -143,16 +148,16 @@ metadata:
   **'XRP' destination tag**: `123456789`
 </Accordion>
 
-<Accordion title="User 2(KYC 인증을 완료하지 않은 개인 사용자)" icon="fa-info-circle">
-  아래의 정보를 정확하게 입력하여도 Robot VASP가 `DENIED`를 반환합니다.
+<Accordion title="User 2(Non-KYC Individual User)" icon="fa-info-circle">
+  Even if all information below is entered correctly, the Robot VASP will return 'DENIED'.
 
-  ### 개인 정보
+  ### Personal information
 
-  * **성**: Cook
+  * **last name**: Cook
 
-  * **이름**: Ethan
+  * **first name**: Ethan
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0x319E92715729c46869ed31d228f3b4f31e951450`
 
@@ -161,20 +166,20 @@ metadata:
   **'XRP' destination tag**: `345678912`
 </Accordion>
 
-<Accordion title="User 3(KYC 인증을 완료한 기업 사용자)" icon="fa-info-circle">
-  대표 이름을 포함한 모든 정보를 정확하게 입력한 경우 Robot VASP가 'VERIFIED'를 반환합니다. 그러나 다른 모든 정보를 정확하게 입력하였어도 대표 이름 정보에 오류가 있는 경우, `DENIED`를 반환합니다.
+<Accordion title="User 3(KYC-Verified Corporate User)" icon="fa-info-circle">
+  When all information, including the representative’s name, is entered correctly, the Robot VASP will return 'VERIFIED'. If all information is correct except for the representative’s name, the Robot VASP will return 'DENIED'.
 
-  ### 개인 정보
+  ### Personal information
 
-  * **회사 이름**: Garrit Studio
+  * **entity name**: Garrit Studio
 
-    ### 대표 이름
+    ### Represemtative name
 
-  * **성**: Clarke
+  * **last name**: Clarke
 
-  * **이름**: Jason
+  * **first name**: Jason
 
-  ### 지갑 주소
+  ### wallet address
 
   **'ETH' address**: `0x26704Dc20d0ddF6cAa45b4D2b8AcB643015B951E`
 
@@ -230,11 +235,13 @@ metadata:
 
 ### 4-1. 온체인 전송 트랜잭션 실행 Test
 
-> 💡 참고 사항:
->
-> User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 가상 자산을 전송해야 합니다. 만약 가상 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 가상 자산을 전송할 경우, 출금 건이 반영되지 않기 때문에 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
->
-> XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드](ivms101-guide#guidelines-for-wallet-address-entry) 에서 확인할 수 있습니다.
+<Callout icon="💡" theme="default">
+  ### 참고 사항:
+
+  User Account Verification과 User Verification 테스트에서 응답으로 `VERIFIED`를 받은 경우, 반드시 수신인(Robot VASP가 관리하는 가상의 사용자) 지갑 주소에 가상 자산을 전송해야 합니다. 만약 가상 자산을 전송하지 않거나 `VERIFIED` 응답을 받지 않고 Robot VASP에 가상 자산을 전송할 경우, 출금 건이 반영되지 않기 때문에 본 테스트 이후 입금 테스트를 진행할 수 없습니다.
+
+  XRP 주소로 테스트를 진행할 때에는 반드시 destination tag를 포함해 주십시오. destination tag를 포함하는 방법은 [IVMS101 가이드](ivms101-guide#guidelines-for-wallet-address-entry) 에서 확인할 수 있습니다.
+</Callout>
 
 **Case 1. 트랜잭션 실행 후 VV Central 서버에 트랜잭션 ID(트랜잭션 Hash) 전송**
 
