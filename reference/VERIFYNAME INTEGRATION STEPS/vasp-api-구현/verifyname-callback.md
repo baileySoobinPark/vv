@@ -5,17 +5,18 @@ api:
   operationId: verifyName-Callback
 hidden: false
 ---
-본 API는 비동기적 콜백 상황을 처리하기 위한 공통 인터페이스입니다. Enclave는 상대 VASP로부터 Report API가 호출되었을 때 이 API를 실행합니다.
+This API serves as a common interface for handling asynchronous callback events. Enclave executes this API when the Report API is invoked by the counterparty VASP.
 
 ***
 
-## 구현 가이드
+## Implementation Guide
 
-### 기능 요구사항
+### Functional Requirements
 
-#### 1. 콜백 타입 분기 처리
+#### 1. Branch Processing by Callback Type
 
-API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈니스 로직으로 분기 처리해야 합니다. 지원해야 하는 콜백 유형은 아래와 같으며, `OWNER_VERIFICATION_RESULT_REPORT`, `OWNER_VERIFICATION_TX_REPORT` 모두 필수 구현 대상입니다.
+Based on the `callbackType` field in the API request, you must branch the business logic according to the callback type.\
+The supported callback types are as follows, and both `OWNER_VERIFICATION_RESULT_REPORT` and `OWNER_VERIFICATION_TX_REPORT` must be implemented.
 
 <HTMLBlock>{`
 <style>
@@ -52,17 +53,17 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
   <thead>
     <tr>
       <th><code>callbackType</code></th>
-      <th>설명</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="code-col"><code>OWNER_VERIFICATION_RESULT_REPORT</code></td>
-      <td>상대 VASP로 요청한 계정 소유자 검증이 완료되어 결과가 비동기적으로 전달될 때 호출됩니다.</td>
+      <td>Invoked when the account ownership verification requested from the counterparty VASP has been completed and the result is delivered asynchronously.</td>
     </tr>
     <tr>
       <td class="code-col"><code>OWNER_VERIFICATION_TX_REPORT</code></td>
-      <td>수신 VASP 역할에서 사용됩니다. 송신 VASP가 트랜잭션 결과를 Report할 때 호출됩니다.</td>
+      <td>Used in the receiving VASP role. Invoked when the sending VASP reports the transaction result.</td>
     </tr>
   </tbody>
 </table>
@@ -72,14 +73,14 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 <br />
 
-#### 2. OWNER\_VERIFICATION\_RESULT\_REPORT 유형 콜백 처리
+#### 2. Processing OWNER\_VERIFICATION\_RESULT\_REPORT Callbacks
 
-콜백으로 수신한 검증 결과에 따라 후속 조치를 수행해야 합니다.
+You must perform follow-up actions based on the verification result received via the callback.
 
-* 최종 검증 결과가 VERIFIED인 경우, 상대 VASP에서 자산 전송 트랜잭션을 수행할 것입니다.
-* 최종 검증 결과가 DENIED 또는 ERROR인 경우, 상대 VASP에서 자산 전송을 중단한 것입니다.
+* If the final verification result is `VERIFIED`, the counterparty VASP will proceed with the asset transfer transaction.
+* If the final verification result is `DENIED` or `ERROR`, the counterparty VASP has aborted the asset transfer.
 
-`OWNER_VERIFICATION_RESULT_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
+Example callback messages for `OWNER_VERIFICATION_RESULT_REPORT` are provided below.
 
 <Accordion title="Example of Callback: OWNER_VERIFICATION_RESULT_REPORT" icon="fa-info-circle">
   ```json
@@ -125,14 +126,14 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 <br />
 
-#### 3. OWNER\_VERIFICATION\_TX\_REPORT 유형 콜백 처리
+#### 3. Processing OWNER\_VERIFICATION\_TX\_REPORT Callbacks
 
-트랜잭션 결과 Report를 수신한 경우, 다음과 같은 후속 작업을 진행할 수 있습니다.
+When receiving a transaction result report, you may perform the following actions:
 
-* 보고된 온체인 트랜잭션 해시가 실제 수신인 주소로의 입금 건과 일치하는지 확인합니다.
-* 자산 이전 요청이 이루어졌는지 확인하고 관련 정보를 기록합니다.
+* Verify that the reported on-chain transaction hash matches the actual deposit made to the recipient address.
+* Confirm that the asset transfer request was executed and record the related information.
 
-`OWNER_VERIFICATION_TX_REPORT` 유형 콜백 메시지 예시는 아래와 같습니다.
+Example callback messages for `OWNER_VERIFICATION_TX_REPORT` are provided below.
 
 <Accordion title="Example of Callback: OWNER_VERIFICATION_TX_REPORT" icon="fa-info-circle">
   ```json
@@ -149,26 +150,28 @@ API 요청의 `callbackType` 필드에 따라 각 콜백 유형에 맞는 비즈
 
 <br />
 
-### 제약 조건
+### Constraints
 
-* 이 API는 1초 이내에 응답해야 합니다.
-* 응답의 HTTP 상태 코드는 반드시 '200 OK'로 반환해야 합니다.
-* 동일한 콜백 요청이 반복 수신되더라도 처리 결과가 변하지 않도록 멱등성을 반드시 보장해야 합니다.
-  * 즉, 중복 요청인 경우 내부 처리 로직에서 이미 처리된 요청으로 간주하고 무시하도록 구현합니다.
-  * 다만, **최종 검증 결과는 달라질 수 있기 때문에** 최초 보고와 다른 결과가 보고된 경우에는 결과에 맞게 적절히 처리해야 합니다.
+* This API must respond within 1 second.
+* The HTTP status code in the response must be 200 OK.
+* Idempotency must be guaranteed so that repeated receipt of the same callback request does not alter the processing result.
+  * In other words, duplicate requests should be treated as already processed and ignored in the internal logic.
+  * However, if the final verification result differs from the initial report, it must still be processed appropriately according to the updated result.
 
-### 구현 권장사항
+<br />
 
-* 콜백 API의 경우 응답 속도가 중요하므로, 시간 소모가 큰 작업은 응답 이후 비동기 방식으로 처리하는 것을 권장합니다.
+### Recommended Implementation Practices
 
-### Enclave 연동 설정
+* Since response speed is critical for the Callback API, it is recommended to process any time-consuming operations asynchronously after sending the API response.
 
-Enclave와의 정상 연동을 위해 아래 환경 변수를 설정해야 합니다.
+### Enclave Integration Settings
 
-* `VEGA_VERIFICATION_CALLBACK_API_PATH`: 해당 API 경로
-* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: API 인증을 위한 인증 토큰 값
-* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: API 인증 토큰을 전달할 header key
+To ensure proper integration with Enclave, configure the following environment variables:
+
+* `VEGA_VERIFICATION_CALLBACK_API_PATH`: API path for this endpoint
+* `VEGA_VERIFICATION_AUTHORIZATION_TOKEN`: Authentication token for API access
+* `VEGA_VERIFICATION_AUTHORIZATION_KEY`: Header key for transmitting the authentication token
 
 ***
 
-## API 명세
+## API Specification
