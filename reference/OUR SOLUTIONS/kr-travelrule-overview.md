@@ -56,19 +56,7 @@ The TravelRule verification process ensures that the beneficiary and their accou
 The process typically involves six steps, as outlined below. Detailed API specifications and integration flows can be found in the Scenarios and Flows and Integration Guide documents.
 
 <HTMLBlock>{`
-<!DOCTYPE html>
-
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f8fb;
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
+<style>
 
 
 .flow-container {
@@ -161,7 +149,7 @@ The process typically involves six steps, as outlined below. Detailed API specif
 }
 
 
-  </style>
+</style>
 </head>
 <body>
   <div class="flow-container">
