@@ -637,10 +637,10 @@ paths:
                         local_name:
                           first_name: 길동
                           last_name: 홍
-                        identification:
-                          private_identification:
-                            date_and_place_of_birth:
-                              birth_date: '2025-01-01'
+                    identification:
+                      private_identification:
+                        date_and_place_of_birth:
+                          birth_date: '2025-01-01'
       responses:
         '200':
           description: 200 Response
