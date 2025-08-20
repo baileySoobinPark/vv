@@ -195,7 +195,7 @@ The virtual user information used for the tests is as follows. This information 
 ### 1. Robot VASP Identification Test
 
 * **Condition**
-  * Call the [VASP List API](ref:travelrule-list-vasp-ids) from the Enclave API running in the STG endpoint to retrieve Robot VASP information.
+  * Call the [List VASP API](ref:travelrule-list-vasp-ids) from the Enclave API running in the STG endpoint to retrieve Robot VASP information.
 * **Expected Result**
   * The API response should include the Robot VASP’s information, including its vaspId.
 
