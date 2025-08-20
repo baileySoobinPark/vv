@@ -15,8 +15,6 @@ The Verify User Account API is called when a VASP is acting as the **Beneficiary
 
 #### 1. Verify VASP Address Ownership
 
-API 요청에 포함된 수신 주소(beneficiary.accountNumber)가 귀사 VASP로부터 발급된 주소인지 여부를 데이터베이스와 대조하여 확인한 후, 그 결과를 반환해야 합니다.
-
 * Check whether the <code>beneficiary.accountNumber</code> in the API request exists in your VASP’s issued addresses.
 * Compare the value against your database and return the result.
 
