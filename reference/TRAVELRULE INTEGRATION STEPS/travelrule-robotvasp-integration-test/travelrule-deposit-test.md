@@ -13,7 +13,7 @@ metadata:
 
   1. Deposit tests can only be performed on **Ethereum Sepolia** and **Ripple Testnet**.
   2. Before starting, ensure that asset transfers can be tested in the given environment and that you have the necessary information such as the VASP’s deposit account.
-  3. A withdrawal test must be completed before the deposit test. If you have not run the [Withdrawal Test]() , please complete it first before proceeding with the deposit test.
+  3. A withdrawal test must be completed before the deposit test. If you have not run the [Withdrawal Test](ref:travelrule-withdrawal-test) , please complete it first before proceeding with the deposit test.
   4. The total amount of assets deposited to your VASP in the deposit test cannot exceed the total amount of virtual assets sent to the Robot VASP during the withdrawal test.
 </Callout>
 
