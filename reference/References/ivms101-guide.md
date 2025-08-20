@@ -2406,7 +2406,7 @@ All verifications must involve information for only one transaction per verifica
   * The `accountNumber` is case-sensitive and must be an array of strings.
   * For addresses that have additional components, such as "parent address," "memo," or "destination tag" (e.g., XRP or EOS), the address should be formatted as follows:
     * "ParentAddress:memo" or "ParentAddress:destinationTag"
-  * For more information on wallet address formats, refer to the [Wallet Address and Transaction ID Standard Guide]() .
+  * For more information on wallet address formats, refer to the [Wallet Address and Transaction ID Standard Guide](ref:wallet-address-format-standard) .
 * **`accountNumber`of the Originator**
   * The `accountNumber` for the originator should contain the wallet address where the originator's assets are held.
   * The blockchain account address of the originator must uniquely identify the originator.
