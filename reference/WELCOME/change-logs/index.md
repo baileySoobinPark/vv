@@ -7,6 +7,8 @@ metadata:
 ---
 # Version 2.0.0
 
+Update: 2025-08-26
+
 * New version of docs released
   * A comprehensive guide for implementing and understanding VerifyName has been included.
   * New documentation detailing VerifyVASP integration and functionality is now available.
