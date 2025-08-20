@@ -39,4 +39,4 @@ The WCO API operates asynchronously. Risk assessment results are delivered via t
 
 2. **Database Table Setup**\
    The Enclave database must include dedicated tables to store WCO API responses.
-   Refer to the [Enclave Database Setup](ref:database-setup-copy) page for instructions on how to create and configure these tables.
+   Refer to the [Enclave Database Setup](ref:travelrule-database-setup) page for instructions on how to create and configure these tables.
