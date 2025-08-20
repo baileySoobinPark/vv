@@ -18,4 +18,4 @@ In the API response, each verification item in the `verification_results` object
 
 ***
 
-## API 명세
+## API Specification
