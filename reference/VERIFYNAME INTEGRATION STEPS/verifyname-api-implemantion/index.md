@@ -91,12 +91,12 @@ For detailed implementation requirements and specifications, refer to the corres
   </thead>
   <tbody>
     <tr>
-      <td class="api-name"><a href="#">Verify Name API</a></td>
+      <td class="api-name"><a href="verifyname-request-verification">Verify Name API</a></td>
       <td class="api-role">Ordering VASP & Beneficiary VASP</td>
       <td>Verifies the validity of the originator and beneficiary accounts, and returns the account holder’s name and date of birth to the Enclave.</td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Callback API</a></td>
+      <td class="api-name"><a href="verifyname-callback">Callback API</a></td>
       <td class="api-role">Ordering VASP & Beneficiary VASP</td>
       <td>
         A common interface that must be provided for asynchronous communication with the Enclave. The following two types of callback events can be received:
@@ -107,7 +107,7 @@ For detailed implementation requirements and specifications, refer to the corres
       </td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Database Management API</a></td>
+      <td class="api-name"><a href="verifyname-get-decrypted-enckey">Database Management API</a></td>
       <td class="api-role">Ordering VASP & Beneficiary VASP</td>
       <td>Returns the encryption key to be used for the Enclave database and delivers it to the Runtime.</td>
     </tr>
