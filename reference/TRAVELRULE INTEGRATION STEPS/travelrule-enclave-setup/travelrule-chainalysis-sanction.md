@@ -30,7 +30,7 @@ Both ordering and beneficiary VASPs may use the Sanction API to perform addition
 1. **Set Enclave Environment Variable**\
    Before running the Enclave, make sure to set the API key issued during registration in the `VEGA_CHAINALYSIS_SANCTION_API_KEY` environment variable.
 2. **Configure Database Tables**\
-   Ensure the Enclave server can store Chainalysis Sanction API results by creating dedicated tables in your database. Refer to the Chainalysis table definitions in the [Enclave Database Setup](ref:database-setup-copy) documentation for implementation details.
+   Ensure the Enclave server can store Chainalysis Sanction API results by creating dedicated tables in your database. Refer to the Chainalysis table definitions in the [Enclave Database Setup](ref:travelrule-database-setup) documentation for implementation details.
 
 <br />
 
