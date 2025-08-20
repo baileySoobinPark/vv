@@ -1,5 +1,5 @@
 ---
-title: Enclave Database Setup
+title: Enclave Database Initialization
 excerpt: >-
   Once the VASP API implementation is complete, you can begin preparing to
   launch the Enclave server. Before starting the Enclave server, you must
