@@ -702,7 +702,7 @@ Once the Enclave server is running and connected to the VerifyVASP Central serve
 
 * [User Account Verification API](ref:travelrule-enclave-user-account-verification)
 * [User Verification API](ref:travelrule-encalve-request-user-verification)
-* [Lookup Verification Result API](ref:travelrule-enclave-list-verification-result)
+* [List Verification Result API](ref:travelrule-enclave-list-verification-result)
 * [Get Verification Result API](ref:travelrule-enclave-get-verification-result)
 
 #### Report API
