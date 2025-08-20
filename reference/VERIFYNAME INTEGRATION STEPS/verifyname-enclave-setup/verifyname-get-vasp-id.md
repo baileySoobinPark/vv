@@ -9,4 +9,4 @@ Retrieves your VASP’s unique VASP ID.
 
 ***
 
-## API 명세
+## API Specification
