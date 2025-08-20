@@ -33,7 +33,7 @@ Required VASP APIs:
 * [Verify User Account API](ref:travelrule-user-account-verification)
 * [Verify User API](ref:travelrule-user-verification)
 * [Check Transaction Status API](ref:travelrule-enclave-check-transaction-status)
-* [Callback API](ref:travelrule-callback-api)
+* [Callback API](ref:travelrule-callback)
 * [Database Setup](ref:travelrule-database-setup)
 
 <br />
