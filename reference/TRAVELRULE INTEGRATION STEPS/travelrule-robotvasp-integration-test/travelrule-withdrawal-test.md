@@ -245,7 +245,7 @@ The virtual user information used for the tests is as follows. This information 
 **Case 1. After executing the transaction, send the Transaction ID (hash) to the VV Central Server**
 
 * **Condition**
-  * Call the [Report Transaction Result API]()  from the Enclave API to report the transaction result to the VV Central server.
+  * Call the [Report Transaction Result API](ref:travelrule-enclave-report-transaction-result)  from the Enclave API to report the transaction result to the VV Central server.
 * **Expected Result**
   * Call the Deposit Reflection Inquiry API to confirm that the asset has been deposited into the Robot VASP.
 
@@ -275,7 +275,7 @@ The virtual user information used for the tests is as follows. This information 
 * **Condition**
   * After executing the virtual asset transfer transaction, do not report the execution result to the VV Central server.
 * **Expected Result**
-  * After 10 minutes, the Robot VASP will call the sender VASP’s [Check Transaction Status API]() to inquire about the transaction status.
+  * After 10 minutes, the Robot VASP will call the sender VASP’s [Check Transaction Status API](ref:travelrule-check-transaction-status) to inquire about the transaction status.
   * Alternatively, you can call the Robot VASP’s Transaction Status Simulation API to instruct it to immediately start querying the transaction status.
   * Instructions for calling the Transaction Status Simulation API are provided below.
 
@@ -305,11 +305,11 @@ The virtual user information used for the tests is as follows. This information 
 **Case 1. Cancel Virtual Asset Transfer Transaction and Report Error to VV Central Server**
 
 * **Condition**
-  * Do not execute the virtual asset transfer transaction, and instead call the [Report Error API]() to report the error to the VV Central server.
+  * Do not execute the virtual asset transfer transaction, and instead call the [Report Error API](ref:travelrule-enclave-report-error) to report the error to the VV Central server.
 * **Expected Result**
   * The Robot VASP stops calling the Transaction Status Query API.
   * The verification result changes from `VERIFIED` to `ERROR`.
-  * The test user can confirm the change by calling the [Get Verification Result API]() or [List Verification Result API]() from the Enclave API.
+  * The test user can confirm the change by calling the [Get Verification Result API](ref:travelrule-enclave-get-verification-result) or [List Verification Result API](ref:travelrule-enclave-list-verification-result) from the Enclave API.
 
 <br />
 
