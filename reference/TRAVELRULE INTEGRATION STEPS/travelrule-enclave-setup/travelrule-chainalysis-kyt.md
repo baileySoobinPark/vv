@@ -39,6 +39,6 @@ The KYT API operates asynchronously. Final assessment results will be delivered 
 1. **Set Enclave Environment Variables**\
    The issued API key must be set in the `VEGA_CHAINALYSIS_KYT_API_KEY` environment variable.
 2. **Database Table Setup**\
-   The Enclave database must include dedicated tables to store the results of KYT API responses. Refer to the [Enclave Database Setup](ref:database-setup-copy) page to create the necessary tables.
+   The Enclave database must include dedicated tables to store the results of KYT API responses. Refer to the [Enclave Database Setup](ref:travelrule-database-setup) page to create the necessary tables.
 
 ## API Specification
