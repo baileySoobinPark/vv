@@ -29,18 +29,12 @@ metadata:
 ### Major changes
 
 * Added: New owner verification (VerifyName V2) APIs
-  * POST /v2/owner-verifications
-    * [https://verifyvasp.readme.io/reference/verifyname-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification#/)
-  * POST /v2/owner-verifications/:requestId/result
-    * [https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/](https://verifyvasp.readme.io/reference/verifyname-owner-verification-result-report#/)
-  * POST /v2/owner-verifications/:requestId/tx
-    * [https://verifyvasp.readme.io/reference/verifyname-transaction-report#/](https://verifyvasp.readme.io/reference/verifyname-transaction-report#/)
-  * GET /v2/owner-verifications
-    * [https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/](https://verifyvasp.readme.io/reference/verifyname-list-owner-verification#/)
-  * GET /v2/owner-verifications/:requestId
-    * [https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/](https://verifyvasp.readme.io/reference/verifyname-get-owner-verification-result#/)
-  * GET /v2/vasps
-    * [https://verifyvasp.readme.io/reference/verifyname-list-vasp#/](https://verifyvasp.readme.io/reference/verifyname-list-vasp#/)
+  * [POST /v2/owner-verifications](ref:verifyname-owner-verification)
+  * [POST /v2/owner-verifications/:requestId/result](verifyname-owner-verification-result-report)
+  * [POST /v2/owner-verifications/:requestId/tx](verifyname-transaction-report)
+  * [GET /v2/owner-verifications](verifyname-list-owner-verification)
+  * [GET /v2/owner-verifications/:requestId](verifyname-get-owner-verification-result)
+  * [GET /v2/vasps](verifyname-list-vasp)
 
 <br />
 
