@@ -99,12 +99,12 @@ Each VASP must be capable of acting as both Ordering VASP and Beneficiary VASP. 
   </thead>
   <tbody>
     <tr>
-      <td class="api-name"><a href="#">Verify User Account API</a></td>
+      <td class="api-name"><a href="travelrule-user-account-verification">Verify User Account API</a></td>
       <td class="api-role">Beneficiary VASP</td>
       <td>Checks whether the beneficiary account is issued by the VASP.</td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Verify User API</a></td>
+      <td class="api-name"><a href="travelrule-user-verification">Verify User API</a></td>
       <td class="api-role">Beneficary VASP</td>
       <td>
         <span class="badge-key">Core API</span><br>
@@ -112,12 +112,12 @@ Each VASP must be capable of acting as both Ordering VASP and Beneficiary VASP. 
       </td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Check Transaction Status API</a></td>
+      <td class="api-name"><a href="travelrule-check-transaction-status">Check Transaction Status API</a></td>
       <td class="api-role">Ordering VASP</td>
       <td>Returns the current processing status of an on-chain withdrawal transaction.</td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Callback API</a></td>
+      <td class="api-name"><a href="travelrule-callback">Callback API</a></td>
       <td class="api-role">Both</td>
       <td>
         Common interface for asynchronous communication with the Enclave. Must handle the following event types:
@@ -131,7 +131,7 @@ Each VASP must be capable of acting as both Ordering VASP and Beneficiary VASP. 
       </td>
     </tr>
     <tr>
-      <td class="api-name"><a href="#">Database Management API</a></td>
+      <td class="api-name"><a href="travelrule-get-decrypted-enckey">Database Management API</a></td>
       <td class="api-role">Both</td>
       <td>Returns the encryption key to be used by the Enclave database at runtime.</td>
     </tr>
