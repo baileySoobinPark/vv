@@ -20,7 +20,7 @@ To enable TravelRule support, integrate the processes shown within the dotted bo
 ### Withdrawal Verification Process Integration
 
 To operate as a Travel Rule–compliant Ordering VASP, all VASPs must integrate both beneficiary account verification and beneficiary identity verification scenarios into the withdrawal process.\
-Following the Best Practice workflow defined in the [Scenarios and Flows](ref:flow-diagram-copy) section ensures compliance with regulatory requirements and strengthens the VASP’s operational capabilities.
+Following the Best Practice workflow defined in the [Scenarios and Flows](ref:travelrule-scenarios-and-flows) section ensures compliance with regulatory requirements and strengthens the VASP’s operational capabilities.
 
 <br />
 
