@@ -208,7 +208,7 @@ This scenario assumes your VASP has a regulatory obligation to verify the recipi
 ### 1. Robot VASP Identification Test
 
 * **Condition**
-  * Call the [List VASP API](ref:travelrule-list-vasp-ids-1) from the Enclave API (running on the STG endpoint) to retrieve the Robot VASP information.
+  * Call the [List VASP API](ref:verifyname-list-vasp) from the Enclave API (running on the STG endpoint) to retrieve the Robot VASP information.
 * **Expected Result**
   * The API response contains Robot VASP details including `vaspId`.
 
@@ -329,7 +329,7 @@ The final decision (Result Report) must be immediately reported to Robot VASP.
 
 * **Condition**
   * Based on the itemized verification results returned by Robot VASP, your VASP determines the final verification outcome.
-  * Call the [Result Reort API]()from the Enclave API to report the result to Robot VASP.
+  * Call the [Result Report API](ref:verifyname-owner-verification-result-report) from the Enclave API to report the result to Robot VASP.
 
     <Accordion title="Result Report API Call Examples" icon="fa-info-circle">
       **Method**: `POST`
@@ -413,7 +413,7 @@ Before initiating the virtual asset transfer, call the Balance Check API to conf
 
   * Before the transfer, call the Balance Check API to confirm the current balance of the beneficiary’s wallet address.
   * Execute the on-chain asset transfer transaction.
-  * Call the [Transaction Report API]() to report the transaction result.
+  * Call the [Transaction Report API](ref:verifyname-transaction-report) to report the transaction result.
 
   <br />
 
