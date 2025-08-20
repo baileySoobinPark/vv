@@ -171,7 +171,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td>
         VerifyVASP API Access Key issued during onboarding.
 
-        **Link**: [Onboarding](ref:onboarding-copy-1)
+        **Link**: [Onboarding](ref:onboarding)
       </td>
     </tr>
 
@@ -187,7 +187,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td>
         VerifyVASP API Secret Key issued during onboarding.
 
-        **Link**: [Onboarding](ref:onboarding-copy-1)
+        **Link**: [Onboarding](ref:onboarding)
       </td>
     </tr>
 
@@ -203,7 +203,7 @@ The following table summarizes the purpose, default values, and configuration me
       <td>
         DBMS type for the Enclave database. Supported: pg, mysql, mysql2, oracledb, mssql.
 
-        **Link**: [Enclave Database Setup](ref:database-setup-copy)
+        **Link**: [Enclave Database Setup](ref:travelrule-database-setup)
       </td>
     </tr>
 
@@ -428,7 +428,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         Endpoint for the Verify User API.\
-        **Link**:  [Verify User API](ref:travelrule-user-verification-1)
+        **Link**:  [Verify User API](ref:travelrule-user-verification)
       </td>
     </tr>
 
@@ -443,7 +443,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         Endpoint for the Verify User Account API\
-        **Link**: [Verify User Account API](ref:travelrule-user-account-verification-1)
+        **Link**: [Verify User Account API](ref:travelrule-user-account-verification)
       </td>
     </tr>
 
@@ -458,7 +458,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         Endpoint for the Check Transaction Status API.\
-        **Link**: [Check Trasnaction Status API](ref:travelrule-check-transaction-status-1)
+        **Link**: [Check Transaction Status API](ref:travelrule-check-transaction-status)
       </td>
     </tr>
 
@@ -473,7 +473,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         Callback API Endpoint.\
-        **Link**: [Callback API](ref:travelrule-callback-1)
+        **Link**: [Callback API](ref:travelrule-callback)
       </td>
     </tr>
 
@@ -566,7 +566,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         API path for retrieving the encryption key for database decryption.\
-        Link: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        Link: [Database Management API](ref:travelrule-get-decrypted-enckey)
       </td>
     </tr>
 
@@ -581,7 +581,7 @@ The following table summarizes the purpose, default values, and configuration me
 
       <td>
         Reference value for the encryption key, or the key itself if directly injected.\
-        Link: [Database Management API](ref:travelrule-get-decrypted-enckey-1)
+        Link: [Database Management API](ref:travelrule-get-decrypted-enckey)
       </td>
     </tr>
 
@@ -695,27 +695,27 @@ Once the Enclave server is running and connected to the VerifyVASP Central serve
 
 #### VASP Discovery APIs
 
-* [Get VASP ID API](ref:travelrule-get-vasp-id-1)
-* [List VASP API](ref:travelrule-list-vasp-ids-1)
+* [Get VASP ID API](ref:travelrule-get-vasp-id)
+* [List VASP API](ref:travelrule-list-vasp-ids)
 
 #### Verification APIs
 
-* [User Account Verification API](ref:travelrule-enclave-user-account-verification-1)
-* [User Verification API](ref:travelrule-encalve-request-user-verification-1)
-* [Lookup Verification Result API](ref:travelrule-enclave-list-verification-result-1)
-* [Get Verification Result API](ref:travelrule-enclave-get-verification-result-1)
+* [User Account Verification API](ref:travelrule-enclave-user-account-verification)
+* [User Verification API](ref:travelrule-encalve-request-user-verification)
+* [Lookup Verification Result API](ref:travelrule-enclave-list-verification-result)
+* [Get Verification Result API](ref:travelrule-enclave-get-verification-result)
 
 #### Report API
 
-* [Report Transaction Result API](ref:travelrule-enclave-report-transaction-result-1)
-* [Report Error API](ref:travelrule-enclave-report-error-1)
+* [Report Transaction Result API](ref:travelrule-enclave-report-transaction-result)
+* [Report Error API](ref:travelrule-enclave-report-error)
 
 #### Transaction API
 
-* [Check Transaction Status API](ref:travelrule-enclave-check-transaction-status-1)
+* [Check Transaction Status API](ref:travelrule-enclave-check-transaction-status)
 
 #### 3rd Party Risk Assessment API
 
-* [Risk Assessment Via Chainalysis Sanction API](ref:travelrule-chainalysis-sanction-1)
-* [Risk Assessment Via Chainalysis KYT API](ref:travelrule-chainalysis-kyt-1)
-* [Risk Assessment Via Refinitiv WCO API](ref:travelrule-refinitiv-wco-1)
+* [Risk Assessment Via Chainalysis Sanction API](ref:travelrule-chainalysis-sanction)
+* [Risk Assessment Via Chainalysis KYT API](ref:travelrule-chainalysis-kyt)
+* [Risk Assessment Via Refinitiv WCO API](ref:travelrule-refinitiv-wco)
