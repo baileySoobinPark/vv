@@ -110,7 +110,7 @@ The Beneficiary VASP can use the VerifyName protocol to confirm whether the orig
     <li class="step-item"><div class="step-badge">11</div><div class="step-badge">12</div>
       <div class="step-content">The Beneficiary VASP’s Enclave generates a random salt and, per the VerifyName protocol, creates a hash using the salt, name, and DOB.</div></li>
     <li class="step-item"><div class="step-badge">13</div>
-      <div class="step-content">The Enclave encrypts the salt with the Ordering VASP’s public key. If the public key is not cached or is unavailable, the Enclave performs key exchange and caching as in the <a href="https://verifyvasp.readme.io/reference/flow-diagram-copy#/travelrule-best-practice"> same way as <a herf="">TravelRule protocol.</a></div></li>
+      <div class="step-content">The Enclave encrypts the salt with the Ordering VASP’s public key. If the public key is not cached or is unavailable, the Enclave performs key exchange and caching as in the same way as <a herf="travelrule-scenarios-and-flows">TravelRule protocol.</a></div></li>
     <li class="step-item"><div class="step-badge">14</div>
       <div class="step-badge">15</div><div class="step-content"> The verification request, including the generated hash, is sent via the Central Server to the Ordering VASP’s Enclave.</div></li>
     
