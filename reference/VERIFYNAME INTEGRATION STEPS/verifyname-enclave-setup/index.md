@@ -183,7 +183,7 @@ The following table summarizes the purpose, default values, and configuration me
         VerifyVASP API Access Key.<br>
         Enter the issued key provided during onboarding.<br><br>
 
-        <b>link</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>link</b>: <a href="onboarding">Onboarding</a>
       </td>
     </tr>
 
@@ -194,7 +194,7 @@ The following table summarizes the purpose, default values, and configuration me
         VerifyVASP API Secret Key.<br>
         Enter the issued key provided during onboarding.<br><br>
 
-        <b>link</b>: <a href="/reference/onboarding-copy">Onboarding</a>
+        <b>link</b>: <a href="onboarding">Onboarding</a>
       </td>
     </tr>
 
@@ -205,7 +205,7 @@ The following table summarizes the purpose, default values, and configuration me
         Type of DBMS for the Enclave database.<br>
         <b>Support values</b>: <code>pg</code>, <code>mysql</code>, <code>mysql2</code>, <code>oracledb</code>, <code>mssql</code><br><br>
 
-        <b>link</b>: <a href="/reference/enclave-데이터베이스-생성">Enclave Database Setup</a>
+        <b>link</b>: <a href="verifyname-database-setup">Enclave Database Setup</a>
       </td>
     </tr>
 
@@ -306,14 +306,14 @@ The following table summarizes the purpose, default values, and configuration me
       <td class="code-col"><code class="long-var2">VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH</code></td>
       <td></td>
       <td>
-        <a href="/reference/verifyname-request-verification">Verify Name API</a> endpoint path.
+        <a href="verifyname-request-verification">Verify Name API</a> endpoint path.
       </td>
     </tr>
 
     <tr>
       <td class="code-col"><code>VEGA_VERIFICATION_CALLBACK_API_PATH</code></td>
       <td>–</td>
-      <td><a href="/reference/verifyname-callback">Callback API</a> Endpoint.</td>
+      <td><a href="verifyname-callback">Callback API</a> Endpoint.</td>
     </tr>
 
     <tr>
