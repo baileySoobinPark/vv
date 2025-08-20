@@ -117,7 +117,7 @@ a.card-link:active {
     </div>
   </a>
 
-      <a href="#" class="card-link">
+      <a href="understanding-travel-rule" class="card-link">
     <div class="card">
       <img class="card-image" src="https://files.readme.io/7dba9908acf3bf5359a3b54b73b5ad6c4c2445c37e242442af06f0168a4fc1ec-IMG_2157.png" alt="Card Image" />
       <div class="contents-space">
@@ -126,7 +126,7 @@ a.card-link:active {
     </div>
   </a>
 
-<a href="#" class="card-link">
+<a href="purpose-and-scope" class="card-link">
     <div class="card">
       <img class="card-image" src="https://files.readme.io/b6c2a8626aaeb494c534130f426310d5a015baf5ab33428b1060940fa09e23a4-IMG_2156.png" alt="Card Image" />
       <div class="contents-space">
