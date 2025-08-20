@@ -14,7 +14,7 @@ Follow the steps below to complete your VerifyVASP console registration. Once co
 
 <br />
 
-### 1. Click the \[Get Started] button in the top-right corner of the [VerifyVASP website](\[https://www.verifyvasp.com]\(https://www.verifyvasp.com\)) to open the console.
+### 1. Click the \[Get Started] button in the top-right corner of the [VerifyVASP website](https://www.verifyvasp.com) to open the console.
 
 <Image align="center" src="https://files.readme.io/01daa9f786c6b15eb40a8ca98e865271467b0c1a4793dd7f731b8dfd21b2404c-VV_Onboarding.png" />
 
@@ -66,5 +66,6 @@ For detailed instructions, see the attached API Key issuance video.
 >
 >    To use the API Key, set the following environment variables in your Enclave server.\
 >    The variable names **must not be changed**.
+>
 >    1. `VEGA_ALLIANCE_ACCESS_KEY` : Enter the issued Access Key.
 >    2. `VEGA_ALLIANCE_SECRET_KEY` : Enter the issued Secret Key.
