@@ -80,8 +80,8 @@ Return the final result in the <code>result</code> field:
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>Reason Code</code></th>
-      <th><code>Message</code></th>
+      <th>Reason Code</th>
+      <th>Message</th>
       <th>Description</th>
     </tr>
   </thead>
