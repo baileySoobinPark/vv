@@ -305,8 +305,8 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>reason</code></th>
-      <th width=200px><code>message</code></th>
+      <th>reason</th>
+      <th width=200px>message</th>
       <th>Description</th>
     </tr>
   </thead>
