@@ -52,7 +52,7 @@ The Callback API is a common interface used by both Ordering VASP and Beneficiar
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>callbackType</code></th>
+      <th>CallbackType</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -85,7 +85,7 @@ The Callback API is a common interface used by both Ordering VASP and Beneficiar
 
 <br />
 
-#### 2. VERIFICATION\_RESULT Handling
+#### 2. VERIFICATION_RESULT Handling
 
 Perform follow-up actions based on the verification result:
 
@@ -377,7 +377,7 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 3. TX\_REPORT Handling (Beneficiary VASP role)
+#### 3. TX_REPORT Handling (Beneficiary VASP role)
 
 * Verify that the reported transaction hash (txHash) corresponds to a transaction sent to the beneficiary’s actual deposit address.
 * Record the result and verification history in your database.
@@ -397,7 +397,7 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 4. ERROR\_REPORT Handling (Beneficiary VASP role)
+#### 4. ERROR_REPORT Handling (Beneficiary VASP role)
 
 * Review the reported error details.
 * Stop the transfer process, end any ongoing transaction tracking, and log the error.
@@ -418,7 +418,7 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 5. CHAINALYSIS\_KYT\_RESULT Handling (Optional)
+#### 5. CHAINALYSIS_KYT_RESULT Handling (Optional)
 
 * Update sender or beneficiary risk assessment data based on the KYT results.
 * Decide whether to allow or block the transaction.
@@ -470,7 +470,7 @@ Possible failure reason codes when <code>data.result</code> is <code>DENIED</cod
 
 <br />
 
-#### 6. REFINITIV\_WCO\_RESULT Handling (Optional)
+#### 6. REFINITIV_WCO_RESULT Handling (Optional)
 
 * Update sender or beneficiary risk assessment data based on the WCO results.
 * Decide whether to allow, resume, or block the transaction.
