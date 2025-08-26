@@ -5,7 +5,7 @@ api:
   operationId: travelrule-User-Verification
 hidden: false
 ---
-The **Verify User API** is called when a VASP acts as the **Beneficiary VASP** in the TravelRule protocol. It is invoked by the Beneficiary VASP’s Enclave upon receiving a request from the Ordering VASP.\
+The **Verify User API** is called when a VASP acts as the **Beneficiary VASP** in the TravelRule protocol. It is invoked by the Beneficiary VASP’s Enclave upon receiving a request from the Ordering VASP.
 The Beneficiary VASP uses this API to verify the beneficiary’s information, confirm compliance with regulatory requirements, and determine whether to allow the asset transfer.
 
 ***
@@ -80,8 +80,8 @@ Return the final result in the <code>result</code> field:
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>reason</code></th>
-      <th><code>message</code></th>
+      <th><code>Reason Code</code></th>
+      <th><code>Message</code></th>
       <th>Description</th>
     </tr>
   </thead>
