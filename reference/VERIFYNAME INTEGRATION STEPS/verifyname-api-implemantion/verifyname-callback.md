@@ -15,7 +15,7 @@ This API serves as a common interface for handling asynchronous callback events.
 
 #### 1. Branch Processing by Callback Type
 
-Based on the `callbackType` field in the API request, you must branch the business logic according to the callback type.\
+Based on the `callbackType` field in the API request, you must branch the business logic according to the callback type.
 The supported callback types are as follows, and both `OWNER_VERIFICATION_RESULT_REPORT` and `OWNER_VERIFICATION_TX_REPORT` must be implemented.
 
 <HTMLBlock>{`
@@ -52,7 +52,7 @@ The supported callback types are as follows, and both `OWNER_VERIFICATION_RESULT
 <table class="custom-table">
   <thead>
     <tr>
-      <th><code>callbackType</code></th>
+      <th>CallbackType</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -73,7 +73,7 @@ The supported callback types are as follows, and both `OWNER_VERIFICATION_RESULT
 
 <br />
 
-#### 2. Processing OWNER\_VERIFICATION\_RESULT\_REPORT Callbacks
+#### 2. Processing OWNER_VERIFICATION_RESULT_REPORT Callbacks
 
 You must perform follow-up actions based on the verification result received via the callback.
 
@@ -126,7 +126,7 @@ Example callback messages for `OWNER_VERIFICATION_RESULT_REPORT` are provided be
 
 <br />
 
-#### 3. Processing OWNER\_VERIFICATION\_TX\_REPORT Callbacks
+#### 3. Processing OWNER_VERIFICATION_TX_REPORT Callbacks
 
 When receiving a transaction result report, you may perform the following actions:
 
