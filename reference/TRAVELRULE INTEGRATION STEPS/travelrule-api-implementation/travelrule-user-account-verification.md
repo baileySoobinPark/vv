@@ -60,7 +60,7 @@ The Verify User Account API is called when a VASP is acting as the **Beneficiary
 <table class="custom-table">
   <thead>
     <tr>
-      <th>Code</th>
+      <th>Reason Code</th>
       <th>Description</th>
     </tr>
   </thead>
