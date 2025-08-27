@@ -52,7 +52,7 @@ Diagram 1 illustrates the components of the VerifyVASP service and the communica
 
 ### TravelRule Verification Process
 
-The TravelRule verification process ensures that the beneficiary and their account are validated before asset transfers.\
+The TravelRule verification process ensures that the beneficiary and their account are validated before asset transfers.
 The process typically involves six steps, as outlined below. Detailed API specifications and integration flows can be found in the Scenarios and Flows and Integration Guide documents.
 
 <HTMLBlock>{`
@@ -189,7 +189,7 @@ The process typically involves six steps, as outlined below. Detailed API specif
     </div>
   </div>
   <div class="step-box">
-    <div class="step-title">5. Excute Transaction<br><span class="subtitle">(Ordering VASP)</span></div>
+    <div class="step-title">5. Execute Transaction<br><span class="subtitle">(Ordering VASP)</span></div>
     <div class="step-content">
       <p>If the verification result is valid, the Ordering VASP executes the withdrawal on the blockchain.</p>
     </div>
@@ -212,7 +212,7 @@ The process typically involves six steps, as outlined below. Detailed API specif
 
 ### VerifyName Verification Process
 
-The VerifyName protocol can be used between a regulated VASP and an unregulated VASP.\
+The VerifyName protocol can be used between a regulated VASP and an unregulated VASP.
 Depending on their regulatory status, the process may involve pre-verification or post-verification.
 See the Scenarios and Flows and Integration Guide for detailed API specs and integration steps.
 
@@ -349,7 +349,7 @@ See the Scenarios and Flows and Integration Guide for detailed API specs and int
 
 ### End-to-End Encryption Between VASPs
 
-VerifyVASP applies end-to-end encryption (E2EE) to protect the integrity and privacy of personal data exchanged during the verification process.\
+VerifyVASP applies end-to-end encryption (E2EE) to protect the integrity and privacy of personal data exchanged during the verification process.
 Only the Ordering VASP and the Beneficiary VASP can decrypt the data. The VerifyVASP Central Server never decrypts or stores it.
 
 Each Enclave generates its own asymmetric key pair and securely stores it in its dedicated database. The private key never leaves the Enclave and is used only for encryption and decryption inside the Enclave.
@@ -457,7 +457,7 @@ Key management (generation, storage, rotation) is fully automated within the Enc
 
 #### Public Key Caching
 
-> * Configure caching duration via VEGA\_PUBLIC\_KEY\_TTL (milliseconds).
+> * Configure caching duration via VEGA_PUBLIC_KEY_TTL (milliseconds).
 > * Default: 1800000 (30 min)
 > * Minimum: 600000 (10 min)
 
