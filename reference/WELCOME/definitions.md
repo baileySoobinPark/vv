@@ -8,7 +8,7 @@ metadata:
 ## VASP
 
 * Virtual Asset Service Provider
-* ex. Cryptocurrency exchanges or cryptocurrency custodies
+* e.g., cryptocurrency exchanges or custody service providers.
 
 ## Verification
 
