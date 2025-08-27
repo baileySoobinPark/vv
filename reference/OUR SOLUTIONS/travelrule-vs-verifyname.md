@@ -22,7 +22,7 @@ metadata:
 
 **VerifyName**
 
-* Used between a Travel Rule–obliged and a non-obliged VASPs.
+* Used between a Travel Rule–obliged and a non-obliged VASP.
 * Allows the obliged VASP to perform **one-way verification** to meet compliance requirements.
 * Transfers are permitted **only when the originator and beneficiary are the same person**.
 * Instead of exchanging personal data directly, the protocol compares hashed values of the name and date of birth to confirm identity.
@@ -34,8 +34,8 @@ metadata:
 
 ## Implementation Requirements and Recommendations
 
-* **Travel Rule–obligated VASPs**: Must implement the **TravelRule protocol**. Implementation of VerifyName is optional but recommended. Supporting both protocols allows transfers to and from non-obligated VASPs, expanding transaction coverage.
-* **Non-obligated VASPs**: Can implement **VerifyName** to support transfers with Travel Rule–obligated VASPs.
+* **Travel Rule–obliged VASPs**: Must implement the **TravelRule protocol**. Implementation of VerifyName is optional but recommended. Supporting both protocols allows transfers to and from non-obliged VASPs, expanding transaction coverage.
+* **Non-obliged VASPs**: Can implement **VerifyName** to support transfers with Travel Rule–obliged VASPs.
 
 <br />
 
