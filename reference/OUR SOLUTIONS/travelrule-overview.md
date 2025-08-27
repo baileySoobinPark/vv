@@ -1,7 +1,7 @@
 ---
 title: Overview
 excerpt: >-
-  This document provides an overview of VerifyVASP’s architecture and the
+  This page provides an overview of VerifyVASP’s architecture and the
   verification processes based on the TravelRule and VerifyName protocols.
   Before beginning integration, review the available security options and the
   integration sequence on the VASP side to plan your implementation.
