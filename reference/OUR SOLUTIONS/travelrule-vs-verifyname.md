@@ -22,8 +22,8 @@ metadata:
 
 **VerifyName**
 
-* Used between a Travel Rule–obligated VASP and a non-obligated VASP.
-* Allows the obligated VASP to perform **one-way verification** to meet compliance requirements.
+* Used between a Travel Rule–obliged VASP and a non-obliged VASP.
+* Allows the obliged VASP to perform **one-way verification** to meet compliance requirements.
 * Transfers are permitted **only when the originator and beneficiary are the same person**.
 * Instead of exchanging personal data directly, the protocol compares hashed values of the name and date of birth to confirm identity.
 * Supports both **pre-verification** and **post-verification**.
