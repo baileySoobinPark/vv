@@ -43,7 +43,7 @@ metadata:
 
 * A server module to be installed in each VASP infrastructure
 * A backend server module to ease VV connection. Provided by VerifyVASP.
-* Vicariously proceeds detailed performances communicating with VV Central Server
+* Handles detailed communications with the VV Central Server on behalf of the VASP
 
 ## Sanction Screening
 
