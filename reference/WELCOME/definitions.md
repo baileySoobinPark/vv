@@ -64,4 +64,4 @@ metadata:
 
 ## Vout
 
-* In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which transfer corresponds to within a single transaction
+* In cases where multiple transfers can be included in a single transaction, such as Bitcoin, an index value indicating which specific transfer within the transaction it corresponds to
