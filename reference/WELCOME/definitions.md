@@ -12,7 +12,7 @@ metadata:
 
 ## Verification
 
-* A verification process performed before sending virtual assets to satisfy Travel Rules
+* A verification process performed before sending virtual assets to satisfy the Travel Rule
 * Generally, verification is a process where the originator information is sent to the beneficiary VASP, the beneficiary VASP verifies the beneficiary information entered by the originator and delivers the results.
 
 ## Originator
