@@ -9,8 +9,6 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
-next:
-  description: Flow Diagram을 통해 입출금 시나리오에서의 요청 순서와 통신 흐름을 확인하고 TravelRule 프로토콜을 이해할 수 있습니다.
 ---
 ## Architecture Overview
 
