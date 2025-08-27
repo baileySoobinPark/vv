@@ -60,7 +60,7 @@ metadata:
 
 ## TxHash
 
-* ID value which can identify the transaction in the blockchain after the virtual asset was performed in the actual blockchain
+* An identifier used to identify the transaction on the blockchain after the virtual asset transfer is executed on-chain
 
 ## Vout
 
