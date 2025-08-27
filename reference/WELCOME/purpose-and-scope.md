@@ -1,9 +1,9 @@
 ---
 title: Purpose and Scope
 excerpt: >-
-  이 This guide provides a comprehensive overview of the Travel Rule and
-  VerifyName solutions, helping Virtual Asset Service Providers (VASPs) comply
-  effectively with Travel Rule and related regulatory requirements.
+  This guide provides a comprehensive overview of the Travel Rule and VerifyName
+  solutions, helping Virtual Asset Service Providers (VASPs) comply effectively
+  with Travel Rule and related regulatory requirements.
 deprecated: false
 hidden: false
 metadata:
