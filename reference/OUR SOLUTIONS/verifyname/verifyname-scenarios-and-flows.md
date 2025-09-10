@@ -2,9 +2,9 @@
 title: Scenarios and Flows
 excerpt: >-
   This section introduces the Post-Verification and Pre-Verification scenarios
-  for the VerifyName 2.0 protocol, along with the related API flows. Each VASP
-  can choose the appropriate scenario based on the counterparty VASP’s Travel
-  Rule regulatory obligations.
+  for the VerifyName protocol, along with the related API flows. Each VASP can
+  choose the appropriate scenario based on the counterparty VASP’s Travel Rule
+  regulatory obligations.
 deprecated: false
 hidden: false
 metadata:
