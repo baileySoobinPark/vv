@@ -1,5 +1,5 @@
 ---
-title: VerifyName 2.0
+title: VerifyName
 deprecated: false
 hidden: false
 metadata:
