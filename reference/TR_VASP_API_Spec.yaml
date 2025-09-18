@@ -197,7 +197,7 @@ paths:
                     - isExceedingThreshold
                     - tradePrice
                     - tradeCurrency
-                    - tradeISODateTime
+                    - tradeISODatetime
                   description: The object of asset information
                   properties:
                     symbol:
@@ -246,7 +246,7 @@ paths:
                         The code of the fiat currency into which the virtual
                         asset is converted.
                       example: KRW
-                    tradeISODateTime:
+                    tradeISODatetime:
                       type: string
                       description: >
                         The timestamp used as the exchange rate reference when
