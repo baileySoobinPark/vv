@@ -11,7 +11,7 @@ metadata:
 <Callout icon="💡" theme="default">
   ### Test Environment Restrictions
 
-  Withdrawal tests can only be performed on `Ethereum Sepolia`, `Ethereum Holesky`, and `Ripple Testnet`. They must be executed within the permitted networks for each environment.\
+  Withdrawal tests can only be performed on `Ethereum Sepolia`, `Ethereum Holesky`, and `Ripple Testnet`. They must be executed within the permitted networks for each environment.
   Before starting the test, ensure that asset transfer tests are available in the selected environment, and prepare the necessary information such as the VASP withdrawal wallet address in advance.
 </Callout>
 
@@ -69,6 +69,8 @@ The test uses virtual user information as follows. This information is pre-regis
 
   * **first name**: Taylor
 
+  * **date of birth**: 1981-01-01
+
   ### wallet address
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
@@ -86,6 +88,8 @@ The test uses virtual user information as follows. This information is pre-regis
   * **last name**: Cook
 
   * **first name**: Ethan
+
+  * **date of birth**: 1991-10-23
 
   ### wallet address
 
@@ -324,7 +328,7 @@ This scenario assumes your VASP has a regulatory obligation to verify the recipi
 
 ### 3. Report Verification Result Test
 
-Your VASP (ordering VASP) must determine the final verification result based on the itemized results received from the Owner Verification process.\
+Your VASP (ordering VASP) must determine the final verification result based on the itemized results received from the Owner Verification process.
 The final decision (Result Report) must be immediately reported to Robot VASP.
 
 * **Condition**
