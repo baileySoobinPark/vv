@@ -72,6 +72,8 @@ Use the provided virtual user data for testing. This information is pre-register
 
   * **first name**: Taylor
 
+  * **date of birth**: 1981-01-01
+
   ### wallet address
 
   **'ETH' address**: `0xFa230E9cCAF5e382539147294d7965Eeccbbfa5c`
@@ -89,6 +91,8 @@ Use the provided virtual user data for testing. This information is pre-register
   * **last name**: Cook
 
   * **first name**: Ethan
+
+  * **date of birth**: 1991-10-23
 
   ### wallet address
 
@@ -359,7 +363,7 @@ This scenario assumes that RobotVASP (with regulatory obligations) performs reci
     </Accordion>
 * **Expected Result**
   * Your VASP’s Callback API receives the final verification result reported by RobotVASP.
-  * Confirm that callbackType is OWNER\_VERIFICATION\_RESULT\_REPORT.
+  * Confirm that callbackType is OWNER_VERIFICATION_RESULT_REPORT.
 
 <br />
 
@@ -371,7 +375,7 @@ This scenario assumes that RobotVASP (with regulatory obligations) performs reci
 
 <br />
 
-**\[Precondition 1.]** Before transfer, call the Balance Check API to confirm the current balance of the originator’s wallet.
+**[Precondition 1.]** Before transfer, call the Balance Check API to confirm the current balance of the originator’s wallet.
 
 <Accordion title="Check Balance API Call Example" icon="fa-info-circle">
   **Method**: `GET`
@@ -409,7 +413,7 @@ This scenario assumes that RobotVASP (with regulatory obligations) performs reci
 
 <br />
 
-**\[Precondition 2.]** Call the RobotVASP Withdrawal API to instruct RobotVASP to send virtual assets to your VASP-managed wallet address.
+**[Precondition 2.]** Call the RobotVASP Withdrawal API to instruct RobotVASP to send virtual assets to your VASP-managed wallet address.
 
 <Accordion title="RobotVASP Withdrawal API Call Example" icon="fa-info-circle">
   **Method**: `POST`
@@ -450,9 +454,9 @@ This scenario assumes that RobotVASP (with regulatory obligations) performs reci
 <br />
 
 * **Conditions**
-  * When omit\_tx\_report = false, your Callback API should automatically receive the transaction hash.
+  * When omit_tx_report = false, your Callback API should automatically receive the transaction hash.
 * **Expected result**
-  * Your Callback API receives the transaction hash (callbackType = OWNER\_VERIFICATION\_TX\_REPORT).
+  * Your Callback API receives the transaction hash (callbackType = OWNER_VERIFICATION_TX_REPORT).
     * Deposit confirmation may take up to 20 minutes
 
 <br />
@@ -635,8 +639,10 @@ This scenario assumes that RobotVASP (without regulatory obligations) sends virt
 ### 2. Owner Verification Test
 
 * **Conditions**
+
   * Using the transaction hash returned by the RobotVASP Unverified Withdrawal API, request post-verification from RobotVASP.
   * Set verification type to `VerifyOriginator`
+
   <Accordion title="Owner Verification Simulation API Call Example" icon="fa-info-circle">
     **Method**: `POST`
 
