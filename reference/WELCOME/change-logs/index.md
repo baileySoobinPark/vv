@@ -5,6 +5,16 @@ hidden: false
 metadata:
   robots: index
 ---
+# Version 2.0.1
+
+Update: 2025-10-22
+
+### Enclave
+
+* Fixed vulnerabilities by old packages.
+
+<br />
+
 # Version 2.0.0
 
 Update: 2025-08-26
@@ -19,12 +29,12 @@ Update: 2025-08-26
 ### Breaking Changes
 
 * Added required enclave environment variable
-  * **VEGA\_ENCLAVE\_MODE**
+  * **VEGA_ENCLAVE_MODE**
     * Added support for Enclave mode configuration.
-    * This must be a comma-separated list containing one or more of the following: TR, VN1\_CALL, VN1\_RESPONSE, VN2.
+    * This must be a comma-separated list containing one or more of the following: TR, VN1_CALL, VN1_RESPONSE, VN2.
 * Added database table
-  * **owner\_verifications**
-    * This table is required when one of VN1\_CALL, VN1\_RESPONSE, VN2 mode is enabled in VEGA\_ENCLAVE\_MODE.
+  * **owner_verifications**
+    * This table is required when one of VN1_CALL, VN1_RESPONSE, VN2 mode is enabled in VEGA_ENCLAVE_MODE.
 
 <br />
 
@@ -41,13 +51,23 @@ Update: 2025-08-26
 <br />
 
 * Added: New Enclave environment variables for new owner verification (VerifyName V2) VASP API
-  * VEGA\_VERIFICATION\_VERIFY\_NAME\_V2\_API\_PATH
+  * VEGA_VERIFICATION_VERIFY_NAME_V2_API_PATH
     * API path implemented by VASP to respond to VerifyName V2 requests.
 
 <br />
 
 * Added: New result code for legacy owner verification (VerifyName) API
   * MISMATCH-SYMBOL : the specified symbol is not supported by counterparty VASP
+
+<br />
+
+# Version 1.5.11
+
+Update: 2025-10-22
+
+### Enclave
+
+* Fixed vulnerabilities by old packages.
 
 <br />
 
@@ -395,8 +415,8 @@ Update: 2022-02-08
 * Enclave database - table definition updated.
   * verifications
 * Enclave database - new tables
-  * counter\_party\_keys
-  * own\_keys
+  * counter_party_keys
+  * own_keys
 * Enclave database applies encryption to some columns
 * Environment variables added
   * `VEGA_ENCLAVE_PUBLIC_ENDPOINT`
