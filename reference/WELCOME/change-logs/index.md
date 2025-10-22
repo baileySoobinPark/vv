@@ -11,7 +11,7 @@ Update: 2025-10-22
 
 ### Enclave
 
-* Fixed vulnerabilities by old packages.
+* Fixed vulnerabilities caused by outdated packages.
 
 <br />
 
@@ -67,7 +67,7 @@ Update: 2025-10-22
 
 ### Enclave
 
-* Fixed vulnerabilities by old packages.
+* Fixed vulnerabilities caused by outdated packages.
 
 <br />
 
