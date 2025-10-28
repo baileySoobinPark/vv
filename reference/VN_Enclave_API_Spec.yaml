@@ -359,264 +359,272 @@ paths:
                             be required.
                           example: >-
                             8a54d58ca4100112a5430818776d74898f2232770bae03046862575cb851a042
-                        creditor:
+                creditor:
+                  type: object
+                  description: >
+                    An object containing information about the Owner's
+                    information when the type is **VerifyBeneficiary**.
+                  required:
+                    - name
+                    - identification
+                  properties:
+                    name:
+                      type: string
+                      description: |
+                        The name of the Owner.
+                    supplementary_data:
+                      type: object
+                      required:
+                        - envelope
+                      properties:
+                        envelope:
                           type: object
-                          description: >
-                            An object containing information about the Owner's
-                            information when the type is **VerifyBeneficiary**.
-                          required:
-                            - name
-                            - identification
                           properties:
                             name:
-                              type: string
-                              description: |
-                                The name of the Owner.
-                            supplementary_data:
                               type: object
+                              required:
+                                - first_name
                               properties:
-                                name:
-                                  type: object
-                                  required:
-                                    - first_name
-                                  properties:
-                                    first_name:
-                                      type: string
-                                      description: |
-                                        The first name of the Owner.
-                                      example: JOHN
-                                    last_name:
-                                      type: string
-                                      description: |
-                                        The last name of the Owner.
-                                      example: DOE
-                                local_name:
-                                  type: object
-                                  required:
-                                    - first_name
-                                  properties:
-                                    first_name:
-                                      type: string
-                                      description: >
-                                        The first name of the Owner in local
-                                        language.
-                                      example: 길동
-                                    last_name:
-                                      type: string
-                                      description: >
-                                        The last name of the Owner in local
-                                        language.
-                                      example: 홍
-                            identification:
+                                first_name:
+                                  type: string
+                                  description: |
+                                    The first name of the Owner.
+                                  example: JOHN
+                                last_name:
+                                  type: string
+                                  description: |
+                                    The last name of the Owner.
+                                  example: DOE
+                            local_name:
                               type: object
-                              description: >
-                                An object containing information about the
-                                Owner's identification.
+                              required:
+                                - first_name
                               properties:
-                                private_identification:
-                                  type: object
-                                  properties:
-                                    date_and_place_of_birth:
-                                      type: object
-                                      required:
-                                        - birth_date
-                                      properties:
-                                        birth_date:
-                                          type: string
-                                          description: |
-                                            Date of Birth.
-                                          example: '2025-01-01'
-                                organisation_identification:
-                                  type: object
+                                first_name:
+                                  type: string
                                   description: >
-                                    An object containing information about the
-                                    legal organisation identification.
-                                  required:
-                                    - supplementary_data
-                                  properties:
-                                    supplementary_data:
-                                      type: object
-                                      required:
-                                        - envelope
-                                      properties:
-                                        envelope:
-                                          type: object
-                                          required:
-                                            - date_of_incorporation
-                                          properties:
-                                            date_of_incorporation:
-                                              type: string
-                                              description: |
-                                                Date of incorporation.
-                                              example: '2025-01-01'
-                                    lei:
-                                      type: string
-                                      description: |
-                                        Legal Entity Identifier (LEI).
-                                      example: 506700GE1G29325QX363
-                                    bic:
-                                      type: string
-                                      description: >
-                                        Business Identifier Code (BIC). A code
-                                        defined in accordance with the ISO 9362
-                                        standard for identifying financial and
-                                        non-financial institutions.
-
-                                        - also known as a SWIFT code, is an 8-11
-                                        character code used to identify banks
-                                        and their branches globally.
-                                      example: HBUKGB4B
-                                    other:
-                                      type: object
-                                      description: >
-                                        MATCHED is returned only if both the
-                                        provided identification and issuer
-                                        exactly match the values stored in the
-                                        Enclave server.
-                                      required:
-                                        - identification
-                                        - issuer
-                                      properties:
-                                        identification:
-                                          type: string
-                                          description: |
-                                            Business Registration Number.
-                                          example: 5493001KJTIIGC8Y1R12
-                                        issuer:
-                                          type: string
-                                          description: >
-                                            Issuing Authority for the Business
-                                            Registration Number
-                                          example: ISO17442
-                        debtor:
+                                    The first name of the Owner in local
+                                    language.
+                                  example: 길동
+                                last_name:
+                                  type: string
+                                  description: >
+                                    The last name of the Owner in local
+                                    language.
+                                  example: 홍
+                    identification:
+                      type: object
+                      description: >
+                        An object containing information about the Owner's
+                        identification.
+                      properties:
+                        private_identification:
+                          type: object
+                          properties:
+                            date_and_place_of_birth:
+                              type: object
+                              required:
+                                - birth_date
+                              properties:
+                                birth_date:
+                                  type: string
+                                  description: |
+                                    Date of Birth.
+                                  example: '2025-01-01'
+                        organisation_identification:
                           type: object
                           description: >
-                            An object containing information about the Owner's
-                            information when the type is **VerifyOriginator**.
+                            An object containing information about the legal
+                            organisation identification.
                           required:
-                            - name
-                            - identification
+                            - supplementary_data
                           properties:
-                            name:
-                              type: string
-                              description: |
-                                The name of the Owner.
                             supplementary_data:
                               type: object
+                              required:
+                                - envelope
                               properties:
-                                name:
+                                envelope:
                                   type: object
                                   required:
-                                    - first_name
+                                    - date_of_incorporation
                                   properties:
-                                    first_name:
+                                    date_of_incorporation:
                                       type: string
                                       description: |
-                                        The first name of the Owner.
-                                      example: JOHN
-                                    last_name:
-                                      type: string
-                                      description: |
-                                        The last name of the Owner.
-                                      example: DOE
-                                local_name:
-                                  type: object
-                                  required:
-                                    - first_name
-                                  properties:
-                                    first_name:
-                                      type: string
-                                      description: >
-                                        The first name of the Owner in local
-                                        language.
-                                      example: 길동
-                                    last_name:
-                                      type: string
-                                      description: >
-                                        The last name of the Owner in local
-                                        language.
-                                      example: 홍
-                            identification:
+                                        Date of incorporation.
+                                      example: '2025-01-01'
+                            lei:
+                              type: string
+                              description: |
+                                Legal Entity Identifier (LEI).
+                              example: 506700GE1G29325QX363
+                            bic:
+                              type: string
+                              description: >
+                                Business Identifier Code (BIC). A code defined
+                                in accordance with the ISO 9362 standard for
+                                identifying financial and non-financial
+                                institutions.
+
+                                - also known as a SWIFT code, is an 8-11
+                                character code used to identify banks and their
+                                branches globally.
+                              example: HBUKGB4B
+                            other:
                               type: object
                               description: >
-                                An object containing information about the
-                                Owner's identification.
+                                MATCHED is returned only if both the provided
+                                identification and issuer exactly match the
+                                values stored in the Enclave server.
+                              required:
+                                - identification
+                                - issuer
                               properties:
-                                private_identification:
-                                  type: object
-                                  properties:
-                                    date_and_place_of_birth:
-                                      type: object
-                                      required:
-                                        - birth_date
-                                      properties:
-                                        birth_date:
-                                          type: string
-                                          description: |
-                                            Date of Birth.
-                                          example: '2025-01-01'
-                                organisation_identification:
-                                  type: object
+                                identification:
+                                  type: string
+                                  description: |
+                                    Business Registration Number.
+                                  example: 5493001KJTIIGC8Y1R12
+                                issuer:
+                                  type: string
                                   description: >
-                                    An object containing information about the
-                                    legal organisation identification.
+                                    Issuing Authority for the Business
+                                    Registration Number
+                                  example: ISO17442
+                debtor:
+                  type: object
+                  description: >
+                    An object containing information about the Owner's
+                    information when the type is **VerifyOriginator**.
+                  required:
+                    - name
+                    - identification
+                  properties:
+                    name:
+                      type: string
+                      description: |
+                        The name of the Owner.
+                    supplementary_data:
+                      type: object
+                      required:
+                        - envelope
+                      properties:
+                        envelope:
+                          type: object
+                          properties:
+                            name:
+                              type: object
+                              required:
+                                - first_name
+                              properties:
+                                first_name:
+                                  type: string
+                                  description: |
+                                    The first name of the Owner.
+                                  example: JOHN
+                                last_name:
+                                  type: string
+                                  description: |
+                                    The last name of the Owner.
+                                  example: DOE
+                            local_name:
+                              type: object
+                              required:
+                                - first_name
+                              properties:
+                                first_name:
+                                  type: string
+                                  description: >
+                                    The first name of the Owner in local
+                                    language.
+                                  example: 길동
+                                last_name:
+                                  type: string
+                                  description: >
+                                    The last name of the Owner in local
+                                    language.
+                                  example: 홍
+                    identification:
+                      type: object
+                      description: >
+                        An object containing information about the Owner's
+                        identification.
+                      properties:
+                        private_identification:
+                          type: object
+                          properties:
+                            date_and_place_of_birth:
+                              type: object
+                              required:
+                                - birth_date
+                              properties:
+                                birth_date:
+                                  type: string
+                                  description: |
+                                    Date of Birth.
+                                  example: '2025-01-01'
+                        organisation_identification:
+                          type: object
+                          description: >
+                            An object containing information about the legal
+                            organisation identification.
+                          required:
+                            - supplementary_data
+                          properties:
+                            supplementary_data:
+                              type: object
+                              required:
+                                - envelope
+                              properties:
+                                envelope:
+                                  type: object
                                   required:
-                                    - supplementary_data
+                                    - date_of_incorporation
                                   properties:
-                                    supplementary_data:
-                                      type: object
-                                      required:
-                                        - envelope
-                                      properties:
-                                        envelope:
-                                          type: object
-                                          required:
-                                            - date_of_incorporation
-                                          properties:
-                                            date_of_incorporation:
-                                              type: string
-                                              description: |
-                                                Date of incorporation.
-                                              example: '2025-01-01'
-                                    lei:
+                                    date_of_incorporation:
                                       type: string
                                       description: |
-                                        Legal Entity Identifier (LEI).
-                                      example: 506700GE1G29325QX363
-                                    bic:
-                                      type: string
-                                      description: >
-                                        Business Identifier Code (BIC). A code
-                                        defined in accordance with the ISO 9362
-                                        standard for identifying financial and
-                                        non-financial institutions.
+                                        Date of incorporation.
+                                      example: '2025-01-01'
+                            lei:
+                              type: string
+                              description: |
+                                Legal Entity Identifier (LEI).
+                              example: 506700GE1G29325QX363
+                            bic:
+                              type: string
+                              description: >
+                                Business Identifier Code (BIC). A code defined
+                                in accordance with the ISO 9362 standard for
+                                identifying financial and non-financial
+                                institutions.
 
-                                        - also known as a SWIFT code, is an 8-11
-                                        character code used to identify banks
-                                        and their branches globally.
-                                      example: HBUKGB4B
-                                    other:
-                                      type: object
-                                      description: >
-                                        MATCHED is returned only if both the
-                                        provided identification and issuer
-                                        exactly match the values stored in the
-                                        Enclave server.
-                                      required:
-                                        - identification
-                                        - issuer
-                                      properties:
-                                        identification:
-                                          type: string
-                                          description: |
-                                            Business Registration Number.
-                                          example: 5493001KJTIIGC8Y1R12
-                                        issuer:
-                                          type: string
-                                          description: >
-                                            Issuing Authority for the Business
-                                            Registration Number
-                                          example: ISO17442
+                                - also known as a SWIFT code, is an 8-11
+                                character code used to identify banks and their
+                                branches globally.
+                              example: HBUKGB4B
+                            other:
+                              type: object
+                              description: >
+                                MATCHED is returned only if both the provided
+                                identification and issuer exactly match the
+                                values stored in the Enclave server.
+                              required:
+                                - identification
+                                - issuer
+                              properties:
+                                identification:
+                                  type: string
+                                  description: |
+                                    Business Registration Number.
+                                  example: 5493001KJTIIGC8Y1R12
+                                issuer:
+                                  type: string
+                                  description: >
+                                    Issuing Authority for the Business
+                                    Registration Number
+                                  example: ISO17442
             examples:
               Request Example:
                 value:
