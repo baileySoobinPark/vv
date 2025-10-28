@@ -5,10 +5,10 @@ api:
   operationId: verifyName-Request-Verification
 hidden: false
 ---
-In the VerifyName protocol, a VASP plays the role of both the originating VASP and the beneficiary VASP.\
+In the VerifyName protocol, a VASP plays the role of both the originating VASP and the beneficiary VASP.  
 This API can be invoked in both roles. It verifies the validity of the transferred asset information and the beneficiary’s wallet address, and returns the account owner’s full name and date of birth as the response.
 
-The returned personal information is used inside the Enclave to compare and validate against the originator’s information.\
+The returned personal information is used inside the Enclave to compare and validate against the originator’s information.  
 All VASPs that support VerifyName must implement this API to handle ownership verification requests from other VASPs.
 
 ***
@@ -19,7 +19,7 @@ All VASPs that support VerifyName must implement this API to handle ownership ve
 
 #### 1. Implement business logic for each scenario
 
-The VerifyName protocol supports both pre-verification and post-verification based on the timing of the transaction.\
+The VerifyName protocol supports both pre-verification and post-verification based on the timing of the transaction.  
 The VASP must perform the appropriate verification logic according to the scenario, return the user information in the response, and deliver it to the Enclave.
 
 **Post-Verification Requirements**
@@ -89,7 +89,10 @@ The VASP must perform the appropriate verification logic according to the scenar
 
 #### 3. Return account owner information
 
-If the verification result for the address or tx\_hash field is MATCHED, the account owner information related to that account must be included in the response.
+If the verification result for the address or tx_hash field is MATCHED, the account owner information related to that account must be included in the response.
+
+Some fields in this response are optional.
+However, **it is recommended to populate all fields whenever relevant data is available**.
 
 The scope of information to be provided is as follows:
 
@@ -140,7 +143,7 @@ The scope of information to be provided is as follows:
     </tr>
     <tr>
       <td>Date of incorporation <small>(ex)<code>2025-01-01</code></small></td>
-      <td>Required</td>
+      <td>Optional</td>
     </tr>
     <tr>
       <td>LEI</td>
@@ -218,12 +221,12 @@ Examples:
               "date_of_incorporation": "2020-01-01"
             }
           }
-        },
-        "lei": "506700GE1G29325QX363",
-        "bic": "KRKRKR",
-        "other": {
-          "identification": "5493001KJTIIGC8Y1R12",
-          "issuer": "ISO17442"
+          "lei": "506700GE1G29325QX363",
+          "bic": "KRKRKR",
+          "other": {
+            "identification": "5493001KJTIIGC8Y1R12",
+            "issuer": "ISO17442"
+          }
         }
       }
     }
@@ -289,12 +292,12 @@ Examples:
               "date_of_incorporation": "2020-01-01"
             }
           }
-        },
-        "lei": "506700GE1G29325QX363",
-        "bic": "KRKRKR",
-        "other": {
-          "identification": "5493001KJTIIGC8Y1R12",
-          "issuer": "ISO17442"
+          "lei": "506700GE1G29325QX363",
+          "bic": "KRKRKR",
+          "other": {
+            "identification": "5493001KJTIIGC8Y1R12",
+            "issuer": "ISO17442"
+          }
         }
       }
     }
