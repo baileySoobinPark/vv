@@ -220,7 +220,7 @@ Examples:
             "envelope": {
               "date_of_incorporation": "2020-01-01"
             }
-          }
+          },
           "lei": "506700GE1G29325QX363",
           "bic": "KRKRKR",
           "other": {
@@ -291,7 +291,7 @@ Examples:
             "envelope": {
               "date_of_incorporation": "2020-01-01"
             }
-          }
+          },
           "lei": "506700GE1G29325QX363",
           "bic": "KRKRKR",
           "other": {
