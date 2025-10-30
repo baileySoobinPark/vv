@@ -2485,9 +2485,9 @@ All verifications must involve information for only one transaction per verifica
 
 <br />
 
-### IVMS101 Personal Information Code
+## IVMS101 Personal Information Code
 
-The Beneficiary VASP must return the Beneficiary’s personal information as specified in the `requiredBeneficiaryInfo` field in the request.
+The Beneficiary VASP must return the Beneficiary’s personal information as specified in the requiredBeneficiaryInfo field in the request.
 
 * If the Beneficiary VASP cannot return the Beneficiary’s personal information for any reason, it must set the result field to DENIED, the reason field to `UNAVAILABLE-INFORMATION`, and the `message` field to a comma-separated string of the personal information codes that could not be returned. These fields must be included in the response.
 * If the Originator’s personal information is insufficient to proceed with verification by the Beneficiary VASP, it must set the result field to `DENIED`, the reason field to`LACK-OF-INFORMATION`, and the message field to a comma-separated string listing the personal information codes required for verification. These fields must be included in the response.
