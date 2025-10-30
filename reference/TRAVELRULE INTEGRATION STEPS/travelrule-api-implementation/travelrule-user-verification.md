@@ -30,7 +30,7 @@ Check whether the transaction meets compliance requirements by verifying:
 
 #### 3. Return Requested Information from Ordering VASP
 
-If the Ordering VASP specifies <code>requiredBeneficiaryInfo</code>, the requested fields must be returned in the <code>>ivms101</code> object.
+If the Ordering VASP specifies <code>requiredBeneficiaryInfo</code>, the requested fields must be returned in the <code>ivms101</code> object. For more information about <code>requiredBeneficiaryInfo</code>, see [this section](ivms101-guide#ivms101-personal-information-code).
 
 * If the requested information is unavailable or cannot be provided:
   * Set verificationResult to <code>DENIED</code>
