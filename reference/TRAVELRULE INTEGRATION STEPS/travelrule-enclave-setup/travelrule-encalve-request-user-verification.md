@@ -17,8 +17,6 @@ The response only includes the unique `verificationUuid` for the request; the ac
 * via a Callback API request containing the same UUID, or
 * by querying the Get Verification Result API.
 
-<br />
-
 ## Required Beneficiary Information
 
 When requesting user verification to the beneficiary VASP, the originating VASP may specify which beneficiary information should be returned by using the <code>requiredBeneficiaryInfo</code> field in the request body.
@@ -29,6 +27,8 @@ If **ACCOUNT_NUMBER** is specified, the wallet address or account number should 
 Multiple attributes can be requested at once by separating them with commas (e.g., NATURAL_PERSON_NAME,ACCOUNT_NUMBER).
 
 This mechanism helps both parties exchange only the necessary information for Travel Rule compliance while minimizing unnecessary data exposure. For more information about <code>requiredBeneficiaryInfo</code>, see [this section](ivms101-guide#ivms101-personal-information-code).
+
+<br />
 
 ***
 
