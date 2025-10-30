@@ -724,7 +724,7 @@ Data Model Containing Additional Metadata.
   </tbody>
 </Table>
 
-<Image align="center" src="https://files.readme.io/ddf8d360f11360e3fa984e3f70c468b25c56ae11e3a52419d0da3e61ab863873-transliterationMethod.png" />
+<Image align="center" border={false} src="https://files.readme.io/ddf8d360f11360e3fa984e3f70c468b25c56ae11e3a52419d0da3e61ab863873-transliterationMethod.png" />
 
 <br />
 
@@ -1581,7 +1581,7 @@ The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the sam
 
         <br />
 
-        The possible values for this field are as follows:\
+        The possible values for this field are as follows:  
         `LEGL`: Legally registered name.
 
         `SHRT`: Abbreviated name of the legal entity.
@@ -1667,7 +1667,7 @@ The `LegalPersonNameID` type and the `LocalLegalPersonNameID` type share the sam
 
         <br />
 
-        The possible values for this field are as follows:\
+        The possible values for this field are as follows:  
         `LEGL`: Legally registered name.
 
         `SHRT`: Abbreviated name of the legal entity.
@@ -2341,7 +2341,7 @@ To address this issue, this document provides guidelines on how to input and int
 
 > 📘 💡 Note:
 >
-> For the cases presented in this guide, adherence to the guidelines is mandatory.\
+> For the cases presented in this guide, adherence to the guidelines is mandatory.  
 > For any cases not covered in this document, please raise a separate issue.
 
 <br />
@@ -2487,7 +2487,7 @@ All verifications must involve information for only one transaction per verifica
 
 ### IVMS101 Personal Information Code
 
-The Beneficiary VASP must return the Beneficiary’s personal information as specified in the requiredBeneficiaryInfo field in the request.
+The Beneficiary VASP must return the Beneficiary’s personal information as specified in the `requiredBeneficiaryInfo` field in the request.
 
 * If the Beneficiary VASP cannot return the Beneficiary’s personal information for any reason, it must set the result field to DENIED, the reason field to `UNAVAILABLE-INFORMATION`, and the `message` field to a comma-separated string of the personal information codes that could not be returned. These fields must be included in the response.
 * If the Originator’s personal information is insufficient to proceed with verification by the Beneficiary VASP, it must set the result field to `DENIED`, the reason field to`LACK-OF-INFORMATION`, and the message field to a comma-separated string listing the personal information codes required for verification. These fields must be included in the response.
@@ -2513,7 +2513,7 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
   <tbody>
     <tr>
       <td>
-        ACCOUNT\_NUMBER\*
+        ACCOUNT_NUMBER*
       </td>
 
       <td>
@@ -2528,55 +2528,55 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
 
     <tr>
       <td>
-        NATURAL\_PERSON\_DATE\_AND\_PLACE\_OF\_BIRTH
+        NATURAL_PERSON_DATE_AND_PLACE_OF_BIRTH
       </td>
 
       <td>
-        Date of birth and place of birth.\
+        Date of birth and place of birth.  
         If there is no information about place of birth, please input your home address.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.dateAndPlaceOfBirth
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.dataAndPlaceOfBirth
+        * Originator.originatorPersons[0].naturalPerson.dateAndPlaceOfBirth
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.dataAndPlaceOfBirth
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_NAME\*
+        NATURAL_PERSON_NAME*
       </td>
 
       <td>
-        Information of personal name.\
+        Information of personal name.  
         For transactions between VASPs within South Korea, it is acceptable to provide names in Korean.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.name.nameIdentifier
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.name.nameIdentifier
+        * Originator.originatorPersons[0].naturalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.name.nameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        LOCAL\_NATURAL\_PERSON\_NAME
+        LOCAL_NATURAL_PERSON_NAME
       </td>
 
       <td>
-        An individual’s name written in the language of the respective country.\
+        An individual’s name written in the language of the respective country.  
         To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.name.localNameIdentifier
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.name.localNameIdentifier
+        * Originator.originatorPersons[0].naturalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.name.localNameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_NATIONALITY
+        NATURAL_PERSON_NATIONALITY
       </td>
 
       <td>
@@ -2584,30 +2584,30 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.nationality
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.nationality
+        * Originator.originatorPersons[0].naturalPerson.nationality
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.nationality
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_GEOGRAPHIC\_ADDRESS
+        NATURAL_PERSON_GEOGRAPHIC_ADDRESS
       </td>
 
       <td>
-        A geographic address in English.\
+        A geographic address in English.  
         For transactions between VASPs within South Korea, it is acceptable to provide in Korean.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.geographicAddress
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.geographicAddress
+        * Originator.originatorPersons[0].naturalPerson.geographicAddress
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.geographicAddress
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_NATIONAL\_IDENTIFICATION
+        NATURAL_PERSON_NATIONAL_IDENTIFICATION
       </td>
 
       <td>
@@ -2615,14 +2615,14 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.nationalIdentification
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.nationalIdentification
+        * Originator.originatorPersons[0].naturalPerson.nationalIdentification
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.nationalIdentification
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_CUSTOMER\_IDENTIFICATION
+        NATURAL_PERSON_CUSTOMER_IDENTIFICATION
       </td>
 
       <td>
@@ -2630,161 +2630,161 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.customerIdentification
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.customerIdentification
+        * Originator.originatorPersons[0].naturalPerson.customerIdentification
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.customerIdentification
       </td>
     </tr>
 
     <tr>
       <td>
-        NATURAL\_PERSON\_COUNTRY\_OF\_RESIDENCE
+        NATURAL_PERSON_COUNTRY_OF_RESIDENCE
       </td>
 
       <td>
-        The country of current residence.\
+        The country of current residence.  
         Input it as a 2-letter country code.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].naturalPerson.countryOfResidence
-        * Beneficiary.beneficiaryPersons\[0].naturalPerson.countryOfResidence
+        * Originator.originatorPersons[0].naturalPerson.countryOfResidence
+        * Beneficiary.beneficiaryPersons[0].naturalPerson.countryOfResidence
       </td>
     </tr>
 
     <tr>
       <td>
-        LEGAL\_PERSON\_NAME\*
+        LEGAL_PERSON_NAME*
       </td>
 
       <td>
-        The corporate name in English.\
+        The corporate name in English.  
         For transactions between VASPs within South Korea, it is acceptable to provide the name in Korean.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.name.nameIdentifier
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.name.nameIdentifier
+        * Originator.originatorPersons[0].legalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons[0].legalPerson.name.nameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        LOCAL\_LEGAL\_PERSON\_NAME
+        LOCAL_LEGAL_PERSON_NAME
       </td>
 
       <td>
-        The corporate name in the language of the respective country.\
+        The corporate name in the language of the respective country.  
         To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.name.localNameIdentifier
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.name.localNameIdentifier
+        * Originator.originatorPersons[0].legalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons[0].legalPerson.name.localNameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        CORPORATE\_REPRESENTATIVE\_NAME\*
+        CORPORATE_REPRESENTATIVE_NAME*
       </td>
 
       <td>
-        The representative’s name in English.\
+        The representative’s name in English.  
         For transactions between VASPs within South Korea, it is acceptable to provide the name in Korean.
         Input the representative’s information in the second element of beneficiaryPersons or originatorPersons.
       </td>
 
       <td>
-        * Originator.originatorPersons\[1].naturalPerson.name.nameIdentifier
-        * Beneficiary.beneficiaryPersons\[1].naturalPerson.name.nameIdentifier
+        * Originator.originatorPersons[1].naturalPerson.name.nameIdentifier
+        * Beneficiary.beneficiaryPersons[1].naturalPerson.name.nameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        LOCAL\_CORPORATE\_REPRESENTATIVE\_NAME
+        LOCAL_CORPORATE_REPRESENTATIVE_NAME
       </td>
 
       <td>
-        The representative’s name in the language of the respective country.\
+        The representative’s name in the language of the respective country.  
         To use this code, both the localNameIdentifier field and the nameIdentifier field must be filled in.
       </td>
 
       <td>
-        * Originator.originatorPersons\[1].naturalPerson.name.localNameIdentifier
-        * Beneficiary.beneficiaryPersons\[1].naturalPerson.name.localNameIdentifier
+        * Originator.originatorPersons[1].naturalPerson.name.localNameIdentifier
+        * Beneficiary.beneficiaryPersons[1].naturalPerson.name.localNameIdentifier
       </td>
     </tr>
 
     <tr>
       <td>
-        CORPORATE\_REPRESENTATIVE\_DATE\_AND\_PLACE\_OF\_BIRTH
+        CORPORATE_REPRESENTATIVE_DATE_AND_PLACE_OF_BIRTH
       </td>
 
       <td>
-        The date of birth and place of birth of the corporate representative.\
+        The date of birth and place of birth of the corporate representative.  
         If the place of birth information is unavailable, provide the home address instead.
       </td>
 
       <td>
-        * Originator.originatorPersons\[1].naturalPerson.dateAndPlaceOfBirth
-        * Beneficiary.beneficiaryPersons\[1].naturalPerson.dateAndPlaceOfBirth
+        * Originator.originatorPersons[1].naturalPerson.dateAndPlaceOfBirth
+        * Beneficiary.beneficiaryPersons[1].naturalPerson.dateAndPlaceOfBirth
       </td>
     </tr>
 
     <tr>
       <td>
-        CORPORATE\_REPRESENTATIVE\_NATIONALITY
+        CORPORATE_REPRESENTATIVE_NATIONALITY
       </td>
 
       <td>
-        The nationality of the corporate representative.\
+        The nationality of the corporate representative.  
         Enter it as a two-letter country code.
       </td>
 
       <td>
-        * Originator.originatorPersons\[1].naturalPerson.nationality
-        * Beneficiary.beneficiaryPersons\[1].naturalPerson.nationality
+        * Originator.originatorPersons[1].naturalPerson.nationality
+        * Beneficiary.beneficiaryPersons[1].naturalPerson.nationality
       </td>
     </tr>
 
     <tr>
       <td>
-        HEAD\_OFFICE\_GEOGRAPHIC\_ADDRESS
+        HEAD_OFFICE_GEOGRAPHIC_ADDRESS
       </td>
 
       <td>
-        The address of the corporate headquarters.\
+        The address of the corporate headquarters.  
         Input it as the first element in the geographicAddress array.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.geographicAddress\[0]
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.geographicAddress\[0]
+        * Originator.originatorPersons[0].legalPerson.geographicAddress[0]
+        * Beneficiary.beneficiaryPersons[0].legalPerson.geographicAddress[0]
       </td>
     </tr>
 
     <tr>
       <td>
-        BRANCH\_OFFICE\_GEOGRAPHIC\_ADDRESS
+        BRANCH_OFFICE_GEOGRAPHIC_ADDRESS
       </td>
 
       <td>
-        The address of the corporate business location.\
+        The address of the corporate business location.  
         Enter it as the second element in the geographicAddress array.
         If you want to include information for multiple business locations, you can add them starting from the third element in the geographicAddress array.
         Even if the headquarters address and business location address are the same, include them separately.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.geographicAddress\[1]
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.geographicAddress\[1]
+        * Originator.originatorPersons[0].legalPerson.geographicAddress[1]
+        * Beneficiary.beneficiaryPersons[0].legalPerson.geographicAddress[1]
       </td>
     </tr>
 
     <tr>
       <td>
-        LEGAL\_PERSON\_CUSTOMER\_IDENTIFICATION
+        LEGAL_PERSON_CUSTOMER_IDENTIFICATION
       </td>
 
       <td>
@@ -2792,14 +2792,14 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.customerIdentification
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.customerIdentification
+        * Originator.originatorPersons[0].legalPerson.customerIdentification
+        * Beneficiary.beneficiaryPersons[0].legalPerson.customerIdentification
       </td>
     </tr>
 
     <tr>
       <td>
-        LEGAL\_PERSON\_NATIONAL\_IDENTIFICATION
+        LEGAL_PERSON_NATIONAL_IDENTIFICATION
       </td>
 
       <td>
@@ -2807,40 +2807,40 @@ The Beneficiary VASP must return the Beneficiary’s personal information as spe
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.nationalIdentification
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.nationalIdentification
+        * Originator.originatorPersons[0].legalPerson.nationalIdentification
+        * Beneficiary.beneficiaryPersons[0].legalPerson.nationalIdentification
       </td>
     </tr>
 
     <tr>
       <td>
-        LEGAL\_PERSON\_COUNTRY\_OF\_REGISTRATION
+        LEGAL_PERSON_COUNTRY_OF_REGISTRATION
       </td>
 
       <td>
-        The country where the corporation is registered.\
+        The country where the corporation is registered.  
         Enter it as a two-letter country code.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.countryOfRegistration
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.countryOfRegistration
+        * Originator.originatorPersons[0].legalPerson.countryOfRegistration
+        * Beneficiary.beneficiaryPersons[0].legalPerson.countryOfRegistration
       </td>
     </tr>
 
     <tr>
       <td>
-        LEGAL\_PERSON\_DATE\_OF\_INCORPORATION
+        LEGAL_PERSON_DATE_OF_INCORPORATION
       </td>
 
       <td>
-        The established date of the corporation.\
+        The established date of the corporation.  
         You must input “YYYY-MM-DD” format.
       </td>
 
       <td>
-        * Originator.originatorPersons\[0].legalPerson.dateOfIncorporation
-        * Beneficiary.beneficiaryPersons\[0].legalPerson.dateOfIncorporation
+        * Originator.originatorPersons[0].legalPerson.dateOfIncorporation
+        * Beneficiary.beneficiaryPersons[0].legalPerson.dateOfIncorporation
       </td>
     </tr>
   </tbody>
