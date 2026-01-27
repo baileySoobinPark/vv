@@ -5,6 +5,19 @@ hidden: false
 metadata:
   robots: index
 ---
+# Version 2.1.0
+
+Update: 2026-01-27
+
+### Enclave
+
+* Upgraded E2E encryption algorithm from CBC to GCM
+* Automatically selects encryption algorithm based on counter-party's enclave version
+  * GCM for 2.1.0+, CBC for older versions
+  * Maintains backward compatibility with CBC-based encryption for older clients
+
+<br />
+
 # Version 2.0.1
 
 Update: 2025-10-22
