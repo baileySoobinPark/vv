@@ -5,6 +5,17 @@ hidden: false
 metadata:
   robots: index
 ---
+# Version 2.1.1
+
+Update: 2026-02-24
+
+### Enclave
+
+* Fixed an issue where a Bad MAC error intermittently occurred during E2E decryption.
+  * **Upgrade Required for 2.0.0 – 2.1.0 Enclave**
+
+<br />
+
 # Version 2.1.0
 
 Update: 2026-01-27
@@ -71,6 +82,17 @@ Update: 2025-08-26
 
 * Added: New result code for legacy owner verification (VerifyName) API
   * MISMATCH-SYMBOL : the specified symbol is not supported by counterparty VASP
+
+<br />
+
+# Version 1.5.12
+
+Update: 2026-02-24
+
+### Enclave
+
+* Fixed an issue where a Bad MAC error intermittently occurred during E2E decryption.
+  * **Upgrade Required for 1.5.8 – 1.5.11 Enclave**
 
 <br />
 
