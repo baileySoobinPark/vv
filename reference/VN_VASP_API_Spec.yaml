@@ -752,9 +752,10 @@ paths:
                 properties:
                   result:
                     type: boolean
-                    description: |
-                      Result of the callback.
-                    example: 'true'
+                    description: >
+                      A static result field for callback response. Return
+                      **true** always.
+                    example: true
               examples:
                 Successful Example:
                   value:
