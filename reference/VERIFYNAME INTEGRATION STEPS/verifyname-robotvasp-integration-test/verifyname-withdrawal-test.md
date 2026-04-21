@@ -106,6 +106,8 @@ The test uses virtual user information as follows. This information is pre-regis
   ### Entity information
 
   * **entity name**: Garrit Studio
+  
+  * **date of incorporation**: 2019-04-01
 
   * **LEI**: 506700GE1G29325QX363
 
@@ -115,7 +117,7 @@ The test uses virtual user information as follows. This information is pre-regis
 
   * **Issuer**: ISO17442
 
-    ### Representative name
+  ### Representative name
 
   * **last name**: Clarke
 
