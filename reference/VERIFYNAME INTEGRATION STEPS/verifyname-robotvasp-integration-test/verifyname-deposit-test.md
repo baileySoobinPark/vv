@@ -110,6 +110,8 @@ Use the provided virtual user data for testing. This information is pre-register
 
   * **Entity name**: Garrit Studio
 
+  * **date of incorporation**: 2019-04-01
+
   * **LEI**: 506700GE1G29325QX363
 
   * **Business Idnetifier Code(BIC)**: BNKYUS33
@@ -118,7 +120,7 @@ Use the provided virtual user data for testing. This information is pre-register
 
   * **Issuer**: ISO17442
 
-    ### Representative name
+  ### Representative name
 
   * **last name**: Clarke
 
