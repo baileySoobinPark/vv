@@ -5,6 +5,17 @@ hidden: false
 metadata:
   robots: index
 ---
+# Version 2.1.2
+
+Update : 2026-04-30
+
+### Enclave
+
+* Added support for verifying the Date of Incorporation for legal persons in the VerifyName protocol.
+* Improved the logic for separating addresses and tags.
+
+<br />
+
 # Version 2.1.1
 
 Update: 2026-02-24
@@ -82,6 +93,17 @@ Update: 2025-08-26
 
 * Added: New result code for legacy owner verification (VerifyName) API
   * MISMATCH-SYMBOL : the specified symbol is not supported by counterparty VASP
+
+<br />
+
+# Version 1.5.13
+
+Update: 2026-04-30
+
+### Enclave
+
+* Added support for verifying the Date of Incorporation for legal persons in the VerifyName protocol.
+* Improved the logic for separating addresses and tags.
 
 <br />
 
